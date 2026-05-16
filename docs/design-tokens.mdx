@@ -1,0 +1,45 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Documentation/Design Tokens" />
+
+# Design Tokens
+
+Os Core tokens SGGD foram importados do Figma e normalizados como tokens primitivos. O inventario visual esta disponivel em `Foundations/Core Tokens`.
+
+Os tokens seguem uma estrategia em tres camadas:
+
+- `primitive`: valores base, sem semantica de produto.
+- `semantic`: aliases orientados a uso, como texto, fundo, borda e feedback.
+- `component`: tokens especificos de componentes, permitidos apenas quando uma abstracao global nao for suficiente.
+
+Component tokens ainda nao devem ser criados nesta etapa.
+
+## Categorias previstas
+
+`color`, `typography`, `spacing`, `radius`, `border`, `shadow`, `opacity`, `motion`, `z-index` e `breakpoint`.
+
+## Pipeline
+
+1. Coloque exports brutos do Figma em `src/foundations/tokens/raw`.
+2. Execute `pnpm tokens:validate`.
+3. Execute `pnpm tokens:build`.
+4. Consuma as variaveis CSS geradas em `src/foundations/tokens/css/tokens.css`.
+5. Use `src/foundations/tokens/build/tokens.json` para consumo interno e integracoes futuras.
+
+O Style Dictionary esta configurado para gerar CSS variables e JSON normalizado. Saidas Swift e Android serao adicionadas em `platforms/ios` e `platforms/android` quando essas entregas entrarem no escopo.
+
+## Decisoes de normalizacao
+
+- Tokens de cor importados do Figma mantem `sggd.figmaPath` quando o caminho de origem precisa ser rastreado.
+- Valores repetidos de marca e feedback foram preservados como aliases para evitar duplicacao de literais.
+- O grupo original `color.utility.sucess` foi normalizado para `color.utility.success`, mantendo `sggd.normalizedFrom` e o caminho original do Figma.
+- Tokens de tipografia presentes no export recebido foram analisados, mas nao foram importados nesta etapa porque o escopo solicitado foi a biblioteca de cores.
+
+## Core tokens atuais
+
+- 143 tokens primitivos.
+- 55 tokens de cor.
+- 17 tokens de spacing.
+- 9 tokens de border/radius.
+- 4 breakpoints.
+- 58 tokens de tipografia.

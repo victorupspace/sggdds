@@ -1,0 +1,12 @@
+.card-story-media {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  background:
+    linear-gradient(
+      135deg,
+      var(--ds-primitive-color-neutral-alpha-12),
+      var(--ds-primitive-color-neutral-alpha-2)
+    ),
+    var(--ds-primitive-color-neutral-grey-700);
+}

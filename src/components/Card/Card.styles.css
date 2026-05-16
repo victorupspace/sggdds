@@ -1,0 +1,393 @@
+.ds-card {
+  --card-surface: var(--ds-primitive-color-white);
+  --card-surface-hover: var(--ds-primitive-color-neutral-alpha-2);
+  --card-surface-active: var(--ds-primitive-color-neutral-alpha-4);
+  --card-border: var(--ds-primitive-color-neutral-grey-200);
+  --card-border-hover: var(--ds-primitive-color-neutral-grey-300);
+  --card-text: var(--ds-primitive-color-pure-black);
+  --card-description: var(--ds-primitive-color-neutral-grey-700);
+  --card-muted: var(--ds-primitive-color-neutral-grey-600);
+  --card-disabled-text: var(--ds-primitive-color-neutral-grey-500);
+  --card-disabled-surface: var(--ds-primitive-color-neutral-grey-100);
+  --card-focus-ring: var(--ds-primitive-color-identity-blue-primary);
+  --card-action-bg: var(--ds-primitive-color-identity-blue-primary);
+  --card-action-bg-hover: var(--ds-primitive-color-identity-blue-dark);
+  --card-action-bg-active: var(--ds-primitive-color-identity-blue-darker);
+  --card-action-color: var(--ds-primitive-color-white);
+  --card-action-disabled-bg: var(--ds-primitive-color-neutral-grey-300);
+  --card-action-disabled-color: var(--ds-primitive-color-neutral-grey-600);
+  --card-media-surface: var(--ds-primitive-color-neutral-grey-700);
+  --card-padding: var(--ds-primitive-spacing-24);
+  --card-gap: var(--ds-primitive-spacing-24);
+  --card-content-gap: var(--ds-primitive-spacing-24);
+  --card-copy-gap: var(--ds-primitive-spacing-12);
+  --card-footer-gap: var(--card-action-gap);
+  --card-action-gap: var(--ds-primitive-spacing-16);
+  --card-action-padding: var(--ds-primitive-spacing-24);
+  --card-action-min-block-size: var(--ds-primitive-spacing-48);
+  --card-horizontal-inline-size: calc(
+    var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-128) +
+      var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-16)
+  );
+  --card-horizontal-block-size: calc(
+    var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-128)
+  );
+  --card-horizontal-media-inline-size: calc(
+    var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-32) + var(--ds-primitive-spacing-4)
+  );
+  --card-horizontal-media-block-size: calc(
+    var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-80)
+  );
+  --card-radius: var(--ds-primitive-border-radius-radius-lg);
+  --card-inner-radius: var(--ds-primitive-border-radius-radius-md);
+  --card-border-width: var(--ds-primitive-border-width-border-sm);
+
+  display: grid;
+  box-sizing: border-box;
+  inline-size: 100%;
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  gap: var(--card-gap);
+  padding: var(--card-padding);
+  overflow: hidden;
+  border: var(--card-border-width) solid var(--card-border);
+  border-radius: var(--card-radius);
+  background: var(--card-surface);
+  color: var(--card-text);
+  font-family:
+    var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease;
+}
+
+.ds-card--tone-brand {
+  --card-focus-ring: var(--ds-primitive-color-brand-red);
+  --card-action-bg: var(--ds-primitive-color-brand-red);
+  --card-action-bg-hover: var(--ds-primitive-color-utility-danger-red-300);
+  --card-action-bg-active: var(--ds-primitive-color-utility-danger-red-400);
+}
+
+.ds-card--tone-info {
+  --card-focus-ring: var(--ds-primitive-color-utility-info-blue-300);
+  --card-action-bg: var(--ds-primitive-color-utility-info-blue-300);
+  --card-action-bg-hover: var(--ds-primitive-color-identity-blue-dark);
+  --card-action-bg-active: var(--ds-primitive-color-utility-info-blue-400);
+}
+
+.ds-card--tone-success {
+  --card-focus-ring: var(--ds-primitive-color-utility-success-green-300);
+  --card-action-bg: var(--ds-primitive-color-utility-success-green-300);
+  --card-action-bg-hover: var(--ds-primitive-color-utility-success-green-400);
+  --card-action-bg-active: var(--ds-primitive-color-utility-success-green-400);
+}
+
+.ds-card--tone-warning {
+  --card-focus-ring: var(--ds-primitive-color-utility-warning-yellow-300);
+  --card-action-bg: var(--ds-primitive-color-utility-warning-yellow-300);
+  --card-action-bg-hover: var(--ds-primitive-color-utility-warning-yellow-400);
+  --card-action-bg-active: var(--ds-primitive-color-utility-warning-yellow-400);
+  --card-action-color: var(--ds-primitive-color-pure-black);
+}
+
+.ds-card--tone-danger {
+  --card-focus-ring: var(--ds-primitive-color-utility-danger-red-300);
+  --card-action-bg: var(--ds-primitive-color-utility-danger-red-300);
+  --card-action-bg-hover: var(--ds-primitive-color-utility-danger-red-400);
+  --card-action-bg-active: var(--ds-primitive-color-utility-danger-red-400);
+}
+
+.ds-card:not(.ds-card--disabled):hover {
+  border-color: var(--card-border-hover);
+  background:
+    linear-gradient(var(--card-surface-hover), var(--card-surface-hover)), var(--card-surface);
+}
+
+.ds-card:not(.ds-card--disabled):active {
+  background:
+    linear-gradient(var(--card-surface-active), var(--card-surface-active)), var(--card-surface);
+}
+
+.ds-card--orientation-horizontal {
+  --card-content-gap: var(--ds-primitive-spacing-20);
+  --card-copy-gap: var(--ds-primitive-spacing-8);
+  --card-footer-gap: var(--ds-primitive-spacing-12);
+  --card-action-min-block-size: var(--ds-primitive-spacing-32);
+  --card-action-padding: var(--ds-primitive-spacing-20);
+  --card-border-width: var(--ds-primitive-border-width-border-none);
+
+  inline-size: min(100%, var(--card-horizontal-inline-size));
+  block-size: var(--card-horizontal-block-size);
+  grid-template-columns:
+    var(--card-horizontal-media-inline-size)
+    minmax(0, var(--card-horizontal-media-inline-size));
+  align-items: start;
+}
+
+.ds-card__media {
+  display: grid;
+  min-inline-size: 0;
+  overflow: hidden;
+  border-radius: var(--card-inner-radius);
+  background: var(--card-media-surface);
+  color: var(--ds-primitive-color-white);
+}
+
+.ds-card--media-wide .ds-card__media {
+  aspect-ratio: 16 / 9;
+}
+
+.ds-card--media-square .ds-card__media,
+.ds-card--orientation-horizontal .ds-card__media {
+  aspect-ratio: 1;
+}
+
+.ds-card--orientation-horizontal .ds-card__media {
+  grid-column: 1;
+  grid-row: 1;
+  inline-size: var(--card-horizontal-media-inline-size);
+  block-size: var(--card-horizontal-media-block-size);
+  aspect-ratio: auto;
+}
+
+.ds-card__media > :where(img, picture, video, svg, canvas) {
+  display: block;
+  inline-size: 100%;
+  block-size: 100%;
+  object-fit: cover;
+}
+
+.ds-card__content {
+  display: grid;
+  position: relative;
+  z-index: 1;
+  min-inline-size: 0;
+  align-content: start;
+  gap: var(--card-content-gap);
+}
+
+.ds-card--orientation-horizontal .ds-card__content {
+  grid-column: 2;
+  grid-row: 1;
+  align-self: stretch;
+  block-size: 100%;
+}
+
+.ds-card--orientation-horizontal.ds-card--without-media {
+  block-size: auto;
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.ds-card--orientation-horizontal.ds-card--without-media .ds-card__content {
+  grid-column: 1;
+}
+
+.ds-card--without-media .ds-card__content {
+  min-block-size: 100%;
+}
+
+.ds-card__badge,
+.ds-card__copy,
+.ds-card__slot,
+.ds-card__footer,
+.ds-card__actions {
+  min-inline-size: 0;
+}
+
+.ds-card__badge {
+  display: flex;
+  align-items: center;
+}
+
+.ds-card--orientation-horizontal .ds-badge {
+  --badge-height: var(--ds-primitive-spacing-24);
+  --badge-padding-inline: var(--ds-primitive-spacing-12);
+  --badge-gap: var(--ds-primitive-spacing-6);
+  --badge-font-size: var(--ds-primitive-typography-font-size-12);
+  --badge-icon-size: var(--ds-primitive-spacing-16);
+}
+
+.ds-card__copy {
+  display: grid;
+  gap: var(--card-copy-gap);
+}
+
+.ds-card__title {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--card-text);
+  font-size: var(--ds-primitive-typography-font-size-28);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: var(--ds-primitive-typography-line-height-36);
+}
+
+.ds-card__description {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--card-description);
+  font-size: var(--ds-primitive-typography-font-size-20);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: var(--ds-primitive-typography-line-height-30);
+}
+
+.ds-card--orientation-horizontal .ds-card__title {
+  font-size: var(--ds-primitive-typography-font-size-16);
+  line-height: var(--ds-primitive-typography-line-height-24);
+}
+
+.ds-card--orientation-horizontal .ds-card__description {
+  font-size: var(--ds-primitive-typography-font-size-16);
+  line-height: var(--ds-primitive-typography-line-height-24);
+}
+
+.ds-card__slot {
+  display: grid;
+  gap: var(--ds-primitive-spacing-12);
+  overflow-wrap: anywhere;
+  color: var(--card-description);
+  font-size: var(--ds-primitive-typography-font-size-16);
+  line-height: var(--ds-primitive-typography-line-height-24);
+}
+
+.ds-card__slot :where(p) {
+  margin: 0;
+}
+
+.ds-card__footer {
+  display: grid;
+  gap: var(--card-footer-gap);
+}
+
+.ds-card__divider {
+  block-size: var(--ds-primitive-border-width-border-sm);
+  background: var(--card-border);
+}
+
+.ds-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--card-action-gap);
+  align-items: center;
+}
+
+.ds-card--orientation-horizontal .ds-card__actions {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.ds-card__action.ds-button {
+  --button-min-block-size: var(--card-action-min-block-size);
+  --button-padding-inline: var(--card-action-padding);
+}
+
+.ds-card--orientation-horizontal .ds-card__action.ds-button {
+  --button-font-size: var(--ds-primitive-typography-font-size-16);
+  --button-line-height: var(--ds-primitive-typography-line-height-24);
+
+  inline-size: 100%;
+}
+
+.ds-card--orientation-horizontal .ds-card__action--secondary.ds-button {
+  --button-min-block-size: var(--ds-primitive-spacing-24);
+}
+
+.ds-card--disabled {
+  --card-text: var(--card-disabled-text);
+  --card-description: var(--card-disabled-text);
+  --card-media-surface: var(--card-disabled-surface);
+
+  background: var(--card-surface);
+  color: var(--card-disabled-text);
+}
+
+.ds-card--disabled .ds-card__media {
+  color: var(--card-disabled-text);
+}
+
+@media (max-width: 768px) {
+  .ds-card--orientation-horizontal {
+    --card-content-gap: var(--ds-primitive-spacing-24);
+    --card-copy-gap: var(--ds-primitive-spacing-12);
+    --card-footer-gap: var(--ds-primitive-spacing-16);
+    --card-action-min-block-size: var(--ds-primitive-spacing-48);
+    --card-action-padding: var(--ds-primitive-spacing-24);
+    --card-border-width: var(--ds-primitive-border-width-border-sm);
+
+    inline-size: 100%;
+    block-size: auto;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ds-card--orientation-horizontal .ds-card__content,
+  .ds-card--orientation-horizontal .ds-card__media {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .ds-card--orientation-horizontal .ds-card__media {
+    inline-size: 100%;
+    block-size: auto;
+    aspect-ratio: 16 / 9;
+  }
+
+  .ds-card--orientation-horizontal .ds-card__content {
+    block-size: auto;
+  }
+
+  .ds-card--orientation-horizontal .ds-card__title {
+    font-size: var(--ds-primitive-typography-font-size-28);
+    line-height: var(--ds-primitive-typography-line-height-36);
+  }
+
+  .ds-card--orientation-horizontal .ds-card__description {
+    font-size: var(--ds-primitive-typography-font-size-20);
+    line-height: var(--ds-primitive-typography-line-height-30);
+  }
+
+  .ds-card--orientation-horizontal .ds-card__action {
+    inline-size: auto;
+  }
+
+  .ds-card--orientation-horizontal .ds-card__action.ds-button {
+    --button-font-size: var(--ds-primitive-typography-font-size-18);
+    --button-line-height: var(--ds-primitive-typography-line-height-24);
+  }
+
+  .ds-card--orientation-horizontal .ds-card__action--secondary.ds-button {
+    --button-min-block-size: var(--card-action-min-block-size);
+  }
+
+  .ds-card--orientation-horizontal .ds-card__actions {
+    flex-direction: row;
+    align-items: center;
+  }
+}
+
+@media (max-width: 420px) {
+  .ds-card {
+    --card-padding: var(--ds-primitive-spacing-20);
+    --card-gap: var(--ds-primitive-spacing-20);
+    --card-content-gap: var(--ds-primitive-spacing-20);
+    --card-action-gap: var(--ds-primitive-spacing-12);
+    --card-action-padding: var(--ds-primitive-spacing-20);
+  }
+
+  .ds-card__title {
+    font-size: var(--ds-primitive-typography-font-size-24);
+    line-height: var(--ds-primitive-typography-line-height-30);
+  }
+
+  .ds-card__description {
+    font-size: var(--ds-primitive-typography-font-size-18);
+    line-height: var(--ds-primitive-typography-line-height-28);
+  }
+
+  .ds-card__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ds-card__action {
+    inline-size: 100%;
+  }
+}

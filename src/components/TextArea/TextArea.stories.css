@@ -1,0 +1,40 @@
+.text-area-story-shell {
+  display: grid;
+  box-sizing: border-box;
+  min-block-size: 100%;
+  place-items: center;
+  padding: var(--ds-primitive-spacing-32);
+  background: var(--ds-primitive-color-neutral-grey-100);
+}
+
+.text-area-story-panel {
+  display: grid;
+  box-sizing: border-box;
+  inline-size: min(100%, 520px);
+  gap: var(--ds-primitive-spacing-24);
+}
+
+.text-area-story-stack {
+  display: grid;
+  box-sizing: border-box;
+  inline-size: min(100%, 640px);
+  gap: var(--ds-primitive-spacing-32);
+}
+
+.text-area-story-long {
+  box-sizing: border-box;
+  inline-size: min(100%, 720px);
+}
+
+@media (max-width: 420px) {
+  .text-area-story-shell {
+    place-items: start stretch;
+    padding: var(--ds-primitive-spacing-16);
+  }
+
+  .text-area-story-panel,
+  .text-area-story-stack,
+  .text-area-story-long {
+    inline-size: 100%;
+  }
+}

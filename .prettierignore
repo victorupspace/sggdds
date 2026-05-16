@@ -1,0 +1,9 @@
+node_modules/
+dist/
+storybook-static/
+coverage/
+playwright-report/
+test-results/
+src/foundations/tokens/build/*.json
+src/foundations/tokens/css/*.css
+src/foundations/tokens/normalized/**/*.tokens.json

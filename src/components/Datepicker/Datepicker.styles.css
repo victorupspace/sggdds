@@ -1,0 +1,457 @@
+.ds-datepicker {
+  --datepicker-label-color: var(--ds-primitive-color-soft-black);
+  --datepicker-text-color: var(--ds-primitive-color-soft-black);
+  --datepicker-placeholder-color: var(--ds-primitive-color-neutral-grey-500);
+  --datepicker-helper-color: var(--ds-primitive-color-soft-black);
+  --datepicker-background: var(--ds-primitive-color-white);
+  --datepicker-border-color: var(--ds-primitive-color-neutral-grey-300);
+  --datepicker-hover-border-color: var(--ds-primitive-color-soft-black);
+  --datepicker-focus-color: var(--ds-primitive-color-identity-blue-primary);
+  --datepicker-error-color: var(--ds-primitive-color-utility-danger-red-300);
+  --datepicker-success-color: var(--ds-primitive-color-identity-green-primary);
+  --datepicker-disabled-background: var(--ds-primitive-color-neutral-grey-100);
+  --datepicker-disabled-border-color: var(--ds-primitive-color-neutral-grey-300);
+  --datepicker-disabled-color: var(--ds-primitive-color-neutral-grey-500);
+  --datepicker-selected-background: var(--ds-primitive-color-soft-black);
+  --datepicker-range-background: var(--ds-primitive-color-soft-black);
+  --datepicker-surface-shadow: var(--ds-primitive-color-neutral-alpha-24);
+  --datepicker-gap: var(--ds-primitive-spacing-8);
+  --datepicker-padding-inline-start: var(--ds-primitive-spacing-12);
+  --datepicker-padding-inline-end: var(--ds-primitive-spacing-8);
+  --datepicker-min-block-size: var(--ds-primitive-spacing-48);
+  --datepicker-icon-size: var(--ds-primitive-spacing-24);
+  --datepicker-icon-gap: var(--ds-primitive-spacing-8);
+  --datepicker-popover-width: calc(var(--ds-primitive-spacing-128) * 4);
+
+  position: relative;
+  display: grid;
+  box-sizing: border-box;
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  gap: var(--datepicker-gap);
+  color: var(--datepicker-text-color);
+  font-family:
+    var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
+}
+
+.ds-datepicker--full-width {
+  inline-size: 100%;
+}
+
+.ds-datepicker__label {
+  display: flex;
+  min-inline-size: 0;
+  gap: var(--ds-primitive-spacing-8);
+  align-items: center;
+  overflow-wrap: anywhere;
+  color: var(--datepicker-label-color);
+  font-size: var(--ds-primitive-typography-font-size-20);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  line-height: var(--ds-primitive-typography-line-height-28);
+}
+
+.ds-datepicker__required {
+  color: currentColor;
+}
+
+.ds-datepicker__control {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  min-inline-size: 0;
+  min-block-size: var(--datepicker-min-block-size);
+  align-items: center;
+}
+
+.ds-datepicker__field {
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-inline-size: 0;
+  min-block-size: var(--datepicker-min-block-size);
+  padding-inline: var(--datepicker-padding-inline-start)
+    calc(
+      var(--datepicker-padding-inline-end) + var(--datepicker-icon-size) +
+        var(--datepicker-icon-gap)
+    );
+  border: var(--ds-primitive-border-width-border-sm) solid var(--datepicker-border-color);
+  border-radius: var(--ds-primitive-border-radius-radius-md);
+  outline: 0;
+  background: var(--datepicker-background);
+  color: var(--datepicker-text-color);
+  font: inherit;
+  font-size: var(--ds-primitive-typography-font-size-20);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: var(--ds-primitive-typography-line-height-28);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+
+.ds-datepicker__field::placeholder {
+  color: var(--datepicker-placeholder-color);
+  opacity: 1;
+}
+
+.ds-datepicker:not(.ds-datepicker--disabled):not(.ds-datepicker--error)
+  .ds-datepicker__field:hover {
+  border-color: var(--datepicker-hover-border-color);
+}
+
+.ds-datepicker__field:focus {
+  border-color: var(--datepicker-focus-color);
+  outline: var(--ds-primitive-border-width-border-md) solid var(--datepicker-focus-color);
+  outline-offset: var(--ds-primitive-spacing-2);
+}
+
+.ds-datepicker__field:disabled {
+  cursor: not-allowed;
+}
+
+.ds-datepicker__icon-button {
+  position: absolute;
+  inset-inline-end: var(--datepicker-padding-inline-end);
+  display: inline-grid;
+  box-sizing: border-box;
+  place-items: center;
+  inline-size: var(--datepicker-icon-size);
+  block-size: var(--datepicker-icon-size);
+  padding: var(--ds-primitive-spacing-0);
+  border: 0;
+  border-radius: var(--ds-primitive-border-radius-radius-sm);
+  background: transparent;
+  color: currentColor;
+  cursor: pointer;
+}
+
+.ds-datepicker__icon-button:focus-visible {
+  outline: var(--ds-primitive-border-width-border-md) solid var(--datepicker-focus-color);
+  outline-offset: var(--ds-primitive-spacing-2);
+}
+
+.ds-datepicker__icon-button:disabled {
+  cursor: not-allowed;
+}
+
+.ds-datepicker__icon-button > svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.ds-datepicker__popover {
+  position: absolute;
+  z-index: 20;
+  inset-block-start: calc(100% + var(--ds-primitive-spacing-4));
+  inset-inline-start: 0;
+  display: grid;
+  box-sizing: border-box;
+  inline-size: min(calc(100vw - var(--ds-primitive-spacing-32)), var(--datepicker-popover-width));
+  gap: var(--ds-primitive-spacing-20);
+  padding: var(--ds-primitive-spacing-24);
+  border: var(--ds-primitive-border-width-border-sm) solid
+    var(--ds-primitive-color-neutral-grey-100);
+  border-radius: var(--ds-primitive-border-radius-radius-lg);
+  background: var(--ds-primitive-color-white);
+  box-shadow: var(--ds-primitive-spacing-0) var(--ds-primitive-spacing-20)
+    var(--ds-primitive-spacing-40) var(--datepicker-surface-shadow);
+}
+
+.ds-datepicker__selected-title {
+  overflow-wrap: anywhere;
+  color: var(--datepicker-text-color);
+  font-size: var(--ds-primitive-typography-font-size-28);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  line-height: var(--ds-primitive-typography-line-height-34);
+}
+
+.ds-datepicker__month-header {
+  display: grid;
+  grid-template-columns: var(--ds-primitive-spacing-40) minmax(0, 1fr) var(
+      --ds-primitive-spacing-40
+    );
+  align-items: center;
+  gap: var(--ds-primitive-spacing-8);
+}
+
+.ds-datepicker__month-title {
+  min-inline-size: 0;
+  text-align: center;
+  color: var(--datepicker-text-color);
+  font-size: var(--ds-primitive-typography-font-size-20);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  line-height: var(--ds-primitive-typography-line-height-28);
+}
+
+.ds-datepicker__nav-button {
+  display: inline-grid;
+  box-sizing: border-box;
+  place-items: center;
+  inline-size: var(--ds-primitive-spacing-40);
+  block-size: var(--ds-primitive-spacing-40);
+  padding: var(--ds-primitive-spacing-0);
+  border: 0;
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  background: transparent;
+  color: currentColor;
+  cursor: pointer;
+}
+
+.ds-datepicker__nav-button:hover {
+  background: var(--ds-primitive-color-neutral-grey-100);
+}
+
+.ds-datepicker__nav-button:focus-visible {
+  outline: var(--ds-primitive-border-width-border-md) solid var(--datepicker-focus-color);
+  outline-offset: var(--ds-primitive-spacing-2);
+}
+
+.ds-datepicker__nav-button > svg {
+  inline-size: var(--ds-primitive-spacing-24);
+  block-size: var(--ds-primitive-spacing-24);
+}
+
+.ds-datepicker__weekdays,
+.ds-datepicker__days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: var(--ds-primitive-spacing-8);
+}
+
+.ds-datepicker__weekdays {
+  color: var(--ds-primitive-color-neutral-grey-600);
+  text-align: center;
+  font-size: var(--ds-primitive-typography-font-size-20);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  line-height: var(--ds-primitive-typography-line-height-28);
+}
+
+.ds-datepicker__day {
+  position: relative;
+  display: inline-grid;
+  box-sizing: border-box;
+  place-items: center;
+  min-inline-size: var(--ds-primitive-spacing-40);
+  min-block-size: var(--ds-primitive-spacing-40);
+  padding: var(--ds-primitive-spacing-0);
+  border: var(--ds-primitive-border-width-border-sm) solid transparent;
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  background: transparent;
+  color: var(--datepicker-text-color);
+  font: inherit;
+  font-size: var(--ds-primitive-typography-font-size-20);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: var(--ds-primitive-typography-line-height-28);
+  cursor: pointer;
+}
+
+.ds-datepicker__day:hover {
+  background: var(--ds-primitive-color-neutral-grey-100);
+}
+
+.ds-datepicker__day:focus-visible {
+  outline: var(--ds-primitive-border-width-border-md) solid var(--datepicker-focus-color);
+  outline-offset: var(--ds-primitive-spacing-2);
+}
+
+.ds-datepicker__day--outside {
+  color: var(--ds-primitive-color-neutral-grey-500);
+}
+
+.ds-datepicker__day--today {
+  border-color: var(--datepicker-focus-color);
+}
+
+.ds-datepicker__day--in-range {
+  border-radius: var(--ds-primitive-border-radius-radius-none);
+  background: var(--datepicker-range-background);
+  color: var(--ds-primitive-color-white);
+}
+
+.ds-datepicker__day--selected {
+  background: var(--datepicker-selected-background);
+  color: var(--ds-primitive-color-white);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+}
+
+.ds-datepicker__day:disabled {
+  color: var(--ds-primitive-color-neutral-grey-400);
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.ds-datepicker__metadata {
+  display: grid;
+  gap: var(--ds-primitive-spacing-8);
+  color: var(--ds-primitive-color-neutral-grey-600);
+  font-size: var(--ds-primitive-typography-font-size-16);
+  line-height: var(--ds-primitive-typography-line-height-24);
+}
+
+.ds-datepicker__metadata-item {
+  display: flex;
+  min-inline-size: 0;
+  gap: var(--ds-primitive-spacing-8);
+  align-items: center;
+}
+
+.ds-datepicker__metadata-icon {
+  display: inline-grid;
+  place-items: center;
+  inline-size: var(--ds-primitive-spacing-20);
+  block-size: var(--ds-primitive-spacing-20);
+  border-radius: var(--ds-primitive-border-radius-radius-sm);
+  background: var(--ds-primitive-color-neutral-grey-500);
+  color: var(--ds-primitive-color-white);
+  font-size: var(--ds-primitive-typography-font-size-14);
+  line-height: var(--ds-primitive-typography-line-height-16);
+}
+
+.ds-datepicker__time-field {
+  display: grid;
+  gap: var(--ds-primitive-spacing-4);
+  color: inherit;
+}
+
+.ds-datepicker__time-input {
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-block-size: var(--ds-primitive-spacing-40);
+  padding-inline: var(--ds-primitive-spacing-12);
+  border: var(--ds-primitive-border-width-border-sm) solid
+    var(--ds-primitive-color-neutral-grey-300);
+  border-radius: var(--ds-primitive-border-radius-radius-sm);
+  background: var(--ds-primitive-color-white);
+  color: var(--datepicker-text-color);
+  font: inherit;
+}
+
+.ds-datepicker__time-input:focus {
+  outline: var(--ds-primitive-border-width-border-md) solid var(--datepicker-focus-color);
+  outline-offset: var(--ds-primitive-spacing-2);
+}
+
+.ds-datepicker__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--ds-primitive-spacing-8);
+}
+
+.ds-datepicker__message {
+  display: flex;
+  min-inline-size: 0;
+  gap: var(--ds-primitive-spacing-8);
+  align-items: center;
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--datepicker-helper-color);
+  font-size: var(--ds-primitive-typography-font-size-16);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  line-height: var(--ds-primitive-typography-line-height-20);
+}
+
+.ds-datepicker__message--error {
+  color: var(--datepicker-error-color);
+}
+
+.ds-datepicker__message--success {
+  color: var(--datepicker-success-color);
+}
+
+.ds-datepicker__message-icon {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  inline-size: var(--ds-primitive-spacing-20);
+  block-size: var(--ds-primitive-spacing-20);
+  border: var(--ds-primitive-border-width-border-md) solid currentColor;
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  font-size: var(--ds-primitive-typography-font-size-12);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  line-height: var(--ds-primitive-typography-line-height-16);
+}
+
+.ds-datepicker--error {
+  --datepicker-label-color: var(--datepicker-error-color);
+  --datepicker-border-color: var(--datepicker-error-color);
+  --datepicker-focus-color: var(--datepicker-error-color);
+}
+
+.ds-datepicker--success {
+  --datepicker-border-color: var(--datepicker-success-color);
+}
+
+.ds-datepicker--disabled,
+.ds-datepicker--read-only {
+  --datepicker-label-color: var(--datepicker-disabled-color);
+  --datepicker-text-color: var(--datepicker-disabled-color);
+  --datepicker-placeholder-color: var(--datepicker-disabled-color);
+  --datepicker-helper-color: var(--datepicker-disabled-color);
+  --datepicker-background: var(--datepicker-disabled-background);
+  --datepicker-border-color: var(--datepicker-disabled-border-color);
+
+  cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+  .ds-datepicker {
+    --datepicker-popover-width: calc(100vw - var(--ds-primitive-spacing-32));
+  }
+
+  .ds-datepicker__field {
+    font-size: var(--ds-primitive-typography-font-size-18);
+    line-height: var(--ds-primitive-typography-line-height-28);
+  }
+
+  .ds-datepicker__popover {
+    position: fixed;
+    inset-block-start: 50%;
+    inset-inline: var(--ds-primitive-spacing-16);
+    inline-size: auto;
+    max-block-size: calc(100vh - var(--ds-primitive-spacing-32));
+    overflow: auto;
+    transform: translateY(-50%);
+  }
+}
+
+@media (max-width: 420px) {
+  .ds-datepicker {
+    --datepicker-padding-inline-start: var(--ds-primitive-spacing-12);
+    --datepicker-padding-inline-end: var(--ds-primitive-spacing-8);
+  }
+
+  .ds-datepicker__popover {
+    gap: var(--ds-primitive-spacing-16);
+    padding: var(--ds-primitive-spacing-16);
+  }
+
+  .ds-datepicker__selected-title {
+    font-size: var(--ds-primitive-typography-font-size-24);
+    line-height: var(--ds-primitive-typography-line-height-30);
+  }
+
+  .ds-datepicker__month-title,
+  .ds-datepicker__weekdays,
+  .ds-datepicker__day {
+    font-size: var(--ds-primitive-typography-font-size-16);
+    line-height: var(--ds-primitive-typography-line-height-24);
+  }
+
+  .ds-datepicker__weekdays,
+  .ds-datepicker__days {
+    gap: var(--ds-primitive-spacing-4);
+  }
+
+  .ds-datepicker__day {
+    min-inline-size: var(--ds-primitive-spacing-32);
+    min-block-size: var(--ds-primitive-spacing-32);
+  }
+
+  .ds-datepicker__footer {
+    justify-content: stretch;
+  }
+
+  .ds-datepicker__footer .ds-button {
+    flex: 1 1 0;
+  }
+}

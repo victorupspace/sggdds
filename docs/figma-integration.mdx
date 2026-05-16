@@ -1,0 +1,22 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Documentation/Figma Integration" />
+
+# Figma Integration
+
+O Design System visual vive no Figma. Este repositorio recebe exports de tokens e especificacoes de componentes como insumo tecnico versionado.
+
+## Como importar tokens
+
+1. Exporte as Figma Variables em JSON.
+2. Salve o arquivo em `src/foundations/tokens/raw` usando o sufixo `.tokens.json`.
+3. Preserve a separacao por `primitive`, `semantic` e `component`.
+4. Execute `pnpm tokens:validate`.
+5. Execute `pnpm tokens:build`.
+6. Revise o diff dos arquivos gerados antes de abrir pull request.
+
+Exports de Core tokens com categorias no topo, como `color`, `spacing`, `border`, `breakpoints` e `typography`, sao aceitos pelo pipeline e normalizados como `primitive`.
+
+Quando um nome vindo do Figma precisar de correcao tecnica segura, preserve o caminho original em `sggd.figmaPath` e registre a adaptacao em `sggd.normalizedFrom`. Valores repetidos devem virar aliases para o token fonte quando a equivalencia for direta.
+
+Nao inclua segredos, dados sensiveis, nomes de usuarios ou artefatos privados desnecessarios no JSON exportado.

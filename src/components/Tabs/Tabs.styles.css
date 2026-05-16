@@ -1,0 +1,201 @@
+.ds-tabs {
+  --tabs-foreground: var(--ds-primitive-color-soft-black);
+  --tabs-muted: var(--ds-primitive-color-neutral-grey-600);
+  --tabs-disabled: var(--ds-primitive-color-neutral-grey-400);
+  --tabs-selected: var(--ds-primitive-color-identity-blue-primary);
+  --tabs-selected-foreground: var(--tabs-selected);
+  --tabs-hover: var(--ds-primitive-color-neutral-alpha-4);
+  --tabs-active: var(--ds-primitive-color-neutral-alpha-8);
+  --tabs-border: var(--ds-primitive-color-neutral-grey-300);
+  --tabs-focus-ring: var(--ds-primitive-color-identity-blue-primary);
+  --tabs-tab-gap: var(--ds-primitive-spacing-8);
+  --tabs-tab-padding-inline: var(--ds-primitive-spacing-16);
+  --tabs-tab-padding-block: var(--ds-primitive-spacing-12);
+  --tabs-icon-size: var(--ds-primitive-spacing-32);
+  --tabs-badge-size: var(--ds-primitive-spacing-24);
+  --tabs-indicator-size: var(--ds-primitive-border-width-border-lg);
+  --tabs-font-size: var(--ds-primitive-typography-font-size-20);
+  --tabs-line-height: var(--ds-primitive-typography-line-height-28);
+
+  display: grid;
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-inline-size: 0;
+  color: var(--tabs-foreground);
+  font-family:
+    var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
+}
+
+.ds-tabs *,
+.ds-tabs *::before,
+.ds-tabs *::after {
+  box-sizing: border-box;
+}
+
+.ds-tabs__list {
+  position: relative;
+  display: flex;
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  align-items: stretch;
+  border-block-end: var(--ds-primitive-border-width-border-sm) solid var(--tabs-border);
+  overflow-x: auto;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ds-tabs__list::-webkit-scrollbar {
+  display: none;
+}
+
+.ds-tabs__tab {
+  position: relative;
+  display: inline-flex;
+  flex: 0 0 auto;
+  min-inline-size: calc(var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-24));
+  min-block-size: var(--ds-primitive-spacing-64);
+  padding: var(--tabs-tab-padding-block) var(--tabs-tab-padding-inline);
+  gap: var(--tabs-tab-gap);
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: var(--ds-primitive-border-radius-radius-sm)
+    var(--ds-primitive-border-radius-radius-sm) var(--ds-primitive-border-radius-radius-none)
+    var(--ds-primitive-border-radius-radius-none);
+  background: transparent;
+  color: var(--tabs-muted);
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--tabs-font-size);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  line-height: var(--tabs-line-height);
+  text-align: center;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.ds-tabs__tab::after {
+  position: absolute;
+  inset-block-end: calc(var(--ds-primitive-border-width-border-sm) * -1);
+  inset-inline: 0;
+  block-size: var(--tabs-indicator-size);
+  background: transparent;
+  content: '';
+}
+
+.ds-tabs__tab:hover:not(:disabled) {
+  background: var(--tabs-hover);
+  color: var(--tabs-foreground);
+}
+
+.ds-tabs__tab:active:not(:disabled) {
+  background: var(--tabs-active);
+}
+
+.ds-tabs__tab:focus-visible {
+  z-index: 1;
+  outline: var(--ds-primitive-border-width-border-md) solid var(--tabs-focus-ring);
+  outline-offset: calc(var(--ds-primitive-spacing-2) * -1);
+}
+
+.ds-tabs__tab[aria-selected='true'] {
+  color: var(--tabs-selected-foreground);
+}
+
+.ds-tabs__tab[aria-selected='true']::after {
+  background: var(--tabs-selected);
+}
+
+.ds-tabs__tab:disabled {
+  color: var(--tabs-disabled);
+  cursor: not-allowed;
+}
+
+.ds-tabs__tab-icon,
+.ds-tabs__tab-badge {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+}
+
+.ds-tabs__tab-icon {
+  inline-size: var(--tabs-icon-size);
+  block-size: var(--tabs-icon-size);
+}
+
+.ds-tabs__tab-icon > svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.ds-tabs__tab-label {
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ds-tabs__tab-badge {
+  min-inline-size: var(--tabs-badge-size);
+  block-size: var(--tabs-badge-size);
+  padding-inline: var(--ds-primitive-spacing-6);
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  background: var(--tabs-selected);
+  color: var(--ds-primitive-color-white);
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  line-height: var(--ds-primitive-typography-line-height-20);
+}
+
+.ds-tabs__tab:disabled .ds-tabs__tab-badge {
+  background: var(--tabs-disabled);
+}
+
+.ds-tabs__panel {
+  min-inline-size: 0;
+  padding-block-start: var(--ds-primitive-spacing-24);
+  color: var(--tabs-foreground);
+  font-size: var(--ds-primitive-typography-font-size-16);
+  line-height: var(--ds-primitive-typography-line-height-24);
+  outline: none;
+}
+
+.ds-tabs__panel:focus-visible {
+  outline: var(--ds-primitive-border-width-border-md) solid var(--tabs-focus-ring);
+  outline-offset: var(--ds-primitive-spacing-4);
+}
+
+.ds-tabs--variant-compact .ds-tabs__tab {
+  min-inline-size: var(--ds-primitive-spacing-96);
+  min-block-size: var(--ds-primitive-spacing-80);
+  flex-direction: column;
+  gap: var(--ds-primitive-spacing-4);
+  padding-block: var(--ds-primitive-spacing-8);
+}
+
+.ds-tabs--variant-compact .ds-tabs__tab-badge {
+  position: absolute;
+  inset-block-start: var(--ds-primitive-spacing-12);
+  inset-inline-end: var(--ds-primitive-spacing-12);
+}
+
+@media (max-width: 640px) {
+  .ds-tabs {
+    --tabs-tab-padding-inline: var(--ds-primitive-spacing-12);
+    --tabs-tab-padding-block: var(--ds-primitive-spacing-8);
+    --tabs-icon-size: var(--ds-primitive-spacing-24);
+    --tabs-font-size: var(--ds-primitive-typography-font-size-16);
+    --tabs-line-height: var(--ds-primitive-typography-line-height-24);
+  }
+
+  .ds-tabs__tab {
+    min-inline-size: var(--ds-primitive-spacing-128);
+    min-block-size: var(--ds-primitive-spacing-56);
+  }
+
+  .ds-tabs--variant-compact .ds-tabs__tab {
+    min-inline-size: var(--ds-primitive-spacing-80);
+    min-block-size: var(--ds-primitive-spacing-80);
+  }
+}

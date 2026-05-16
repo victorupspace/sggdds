@@ -1,0 +1,31 @@
+.pagination-story-surface {
+  display: grid;
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-block-size: calc(var(--ds-primitive-spacing-128) * 2);
+  place-items: center;
+  padding: var(--ds-primitive-spacing-32);
+  background: var(--ds-primitive-color-neutral-grey-100);
+}
+
+.pagination-story-panel {
+  box-sizing: border-box;
+  inline-size: min(100%, calc(var(--ds-primitive-spacing-128) * 8));
+  padding: var(--ds-primitive-spacing-24);
+  background: var(--ds-primitive-color-white);
+}
+
+.pagination-story-stack {
+  display: grid;
+  gap: var(--ds-primitive-spacing-32);
+}
+
+@media (max-width: 640px) {
+  .pagination-story-surface {
+    padding: var(--ds-primitive-spacing-16);
+  }
+
+  .pagination-story-panel {
+    padding: var(--ds-primitive-spacing-16);
+  }
+}

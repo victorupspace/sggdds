@@ -1,0 +1,24 @@
+.button-story-grid {
+  display: grid;
+  box-sizing: border-box;
+  inline-size: min(100%, 720px);
+  gap: var(--ds-primitive-spacing-24);
+  padding: var(--ds-primitive-spacing-24);
+}
+
+.button-story-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-primitive-spacing-16);
+  align-items: center;
+}
+
+@media (max-width: 420px) {
+  .button-story-grid {
+    padding: var(--ds-primitive-spacing-16);
+  }
+
+  .button-story-row {
+    align-items: stretch;
+  }
+}

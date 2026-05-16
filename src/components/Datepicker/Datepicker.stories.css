@@ -1,0 +1,42 @@
+.datepicker-story-shell {
+  display: grid;
+  box-sizing: border-box;
+  min-block-size: 100%;
+  place-items: center;
+  padding: var(--ds-primitive-spacing-32);
+  background: var(--ds-primitive-color-neutral-grey-100);
+}
+
+.datepicker-story-panel {
+  display: grid;
+  box-sizing: border-box;
+  inline-size: min(100%, 321px);
+  gap: var(--ds-primitive-spacing-24);
+}
+
+.datepicker-story-stack {
+  display: grid;
+  box-sizing: border-box;
+  inline-size: min(100%, 420px);
+  gap: var(--ds-primitive-spacing-32);
+}
+
+.datepicker-story-range {
+  display: grid;
+  box-sizing: border-box;
+  inline-size: min(100%, 520px);
+  gap: var(--ds-primitive-spacing-24);
+}
+
+@media (max-width: 420px) {
+  .datepicker-story-shell {
+    place-items: start stretch;
+    padding: var(--ds-primitive-spacing-16);
+  }
+
+  .datepicker-story-panel,
+  .datepicker-story-stack,
+  .datepicker-story-range {
+    inline-size: 100%;
+  }
+}

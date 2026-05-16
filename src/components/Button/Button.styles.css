@@ -1,0 +1,169 @@
+.ds-button {
+  --button-background: var(--ds-primitive-color-soft-black);
+  --button-background-hover: var(--ds-primitive-color-pure-black);
+  --button-background-active: var(--ds-primitive-color-pure-black);
+  --button-foreground: var(--ds-primitive-color-white);
+  --button-border-color: var(--button-background);
+  --button-focus-ring: var(--ds-primitive-color-identity-blue-primary);
+  --button-disabled-background: var(--ds-primitive-color-neutral-grey-100);
+  --button-disabled-foreground: var(--ds-primitive-color-neutral-grey-500);
+  --button-disabled-border-color: var(--ds-primitive-color-neutral-grey-200);
+  --button-min-block-size: calc(var(--ds-primitive-spacing-16) + var(--ds-primitive-spacing-16));
+  --button-padding-inline: var(--ds-primitive-spacing-12);
+  --button-gap: var(--ds-primitive-spacing-4);
+  --button-icon-size: var(--ds-primitive-spacing-16);
+  --button-font-size: var(--ds-primitive-typography-font-size-12);
+  --button-line-height: var(--ds-primitive-typography-line-height-16);
+  --button-border-width: var(--ds-primitive-border-width-border-sm);
+
+  position: relative;
+  display: inline-flex;
+  box-sizing: border-box;
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  min-block-size: var(--button-min-block-size);
+  padding: 0 var(--button-padding-inline);
+  gap: var(--button-gap);
+  align-items: center;
+  justify-content: center;
+  border: var(--button-border-width) solid var(--button-border-color);
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  background: var(--button-background);
+  color: var(--button-foreground);
+  cursor: pointer;
+  font-family:
+    var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
+  font-size: var(--button-font-size);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  line-height: var(--button-line-height);
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.ds-button--variant-secondary {
+  --button-background: var(--ds-primitive-color-brand-red);
+  --button-background-hover: var(--ds-primitive-color-utility-danger-red-300);
+  --button-background-active: var(--ds-primitive-color-utility-danger-red-400);
+  --button-border-color: var(--button-background);
+}
+
+.ds-button--variant-tertiary {
+  --button-background: transparent;
+  --button-background-hover: var(--ds-primitive-color-neutral-alpha-4);
+  --button-background-active: var(--ds-primitive-color-neutral-alpha-8);
+  --button-foreground: var(--ds-primitive-color-soft-black);
+  --button-border-color: transparent;
+}
+
+.ds-button--size-small {
+  --button-min-block-size: calc(var(--ds-primitive-spacing-12) + var(--ds-primitive-spacing-12));
+  --button-padding-inline: var(--ds-primitive-spacing-10);
+  --button-icon-size: var(--ds-primitive-spacing-12);
+}
+
+.ds-button--size-medium {
+  --button-min-block-size: calc(var(--ds-primitive-spacing-16) + var(--ds-primitive-spacing-16));
+  --button-padding-inline: var(--ds-primitive-spacing-12);
+  --button-icon-size: var(--ds-primitive-spacing-16);
+}
+
+.ds-button--size-large {
+  --button-min-block-size: var(--ds-primitive-spacing-40);
+  --button-padding-inline: var(--ds-primitive-spacing-16);
+  --button-gap: var(--ds-primitive-spacing-8);
+  --button-icon-size: var(--ds-primitive-spacing-20);
+  --button-font-size: var(--ds-primitive-typography-font-size-14);
+  --button-line-height: var(--ds-primitive-typography-line-height-20);
+}
+
+.ds-button--full-width {
+  inline-size: 100%;
+}
+
+.ds-button:not(:disabled):not([aria-disabled='true']):hover {
+  border-color: var(--button-background-hover);
+  background: var(--button-background-hover);
+}
+
+.ds-button:not(:disabled):not([aria-disabled='true']):active {
+  border-color: var(--button-background-active);
+  background: var(--button-background-active);
+}
+
+.ds-button--variant-tertiary:not(:disabled):not([aria-disabled='true']):hover {
+  border-color: transparent;
+  color: var(--button-foreground);
+}
+
+.ds-button--variant-tertiary:not(:disabled):not([aria-disabled='true']):active {
+  border-color: transparent;
+}
+
+.ds-button:focus-visible {
+  outline: var(--ds-primitive-border-width-border-md) solid var(--button-focus-ring);
+  outline-offset: var(--ds-primitive-spacing-4);
+}
+
+.ds-button:disabled,
+.ds-button[aria-disabled='true'] {
+  border-color: var(--button-disabled-border-color);
+  background: var(--button-disabled-background);
+  color: var(--button-disabled-foreground);
+  cursor: not-allowed;
+}
+
+.ds-button--variant-tertiary:disabled,
+.ds-button--variant-tertiary[aria-disabled='true'] {
+  background: transparent;
+}
+
+.ds-button__icon,
+.ds-button__spinner {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  inline-size: var(--button-icon-size);
+  block-size: var(--button-icon-size);
+}
+
+.ds-button__icon > svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.ds-button__label {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+
+.ds-button__spinner {
+  border: var(--ds-primitive-border-width-border-md) solid currentColor;
+  border-inline-end-color: transparent;
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  animation: ds-button-spinner 800ms linear infinite;
+}
+
+@keyframes ds-button-spinner {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-button__spinner {
+    animation: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .ds-button--size-medium,
+  .ds-button--size-large {
+    --button-min-block-size: var(--ds-primitive-spacing-48);
+    --button-padding-inline: var(--ds-primitive-spacing-16);
+  }
+}

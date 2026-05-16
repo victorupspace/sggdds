@@ -1,0 +1,185 @@
+.ds-dropdown {
+  --dropdown-label-color: var(--ds-primitive-color-soft-black);
+  --dropdown-text-color: var(--ds-primitive-color-soft-black);
+  --dropdown-placeholder-color: var(--ds-primitive-color-neutral-grey-500);
+  --dropdown-helper-color: var(--ds-primitive-color-soft-black);
+  --dropdown-background: var(--ds-primitive-color-white);
+  --dropdown-border-color: var(--ds-primitive-color-neutral-grey-500);
+  --dropdown-hover-border-color: var(--ds-primitive-color-soft-black);
+  --dropdown-focus-color: var(--ds-primitive-color-identity-blue-primary);
+  --dropdown-error-color: var(--ds-primitive-color-utility-danger-red-300);
+  --dropdown-disabled-background: var(--ds-primitive-color-neutral-grey-100);
+  --dropdown-disabled-border-color: var(--ds-primitive-color-neutral-grey-300);
+  --dropdown-disabled-color: var(--ds-primitive-color-neutral-grey-500);
+  --dropdown-gap: var(--ds-primitive-spacing-8);
+  --dropdown-padding-inline-start: var(--ds-primitive-spacing-12);
+  --dropdown-padding-inline-end: var(--ds-primitive-spacing-8);
+  --dropdown-min-block-size: var(--ds-primitive-spacing-48);
+  --dropdown-icon-size: var(--ds-primitive-spacing-24);
+  --dropdown-icon-gap: var(--ds-primitive-spacing-8);
+
+  display: grid;
+  box-sizing: border-box;
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  gap: var(--dropdown-gap);
+  color: var(--dropdown-text-color);
+  font-family:
+    var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
+}
+
+.ds-dropdown--full-width {
+  inline-size: 100%;
+}
+
+.ds-dropdown__label {
+  display: flex;
+  min-inline-size: 0;
+  gap: var(--ds-primitive-spacing-2);
+  align-items: center;
+  overflow-wrap: anywhere;
+  color: var(--dropdown-label-color);
+  font-size: var(--ds-primitive-typography-font-size-16);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  line-height: var(--ds-primitive-typography-line-height-24);
+}
+
+.ds-dropdown__required {
+  color: var(--dropdown-error-color);
+}
+
+.ds-dropdown__control {
+  position: relative;
+  display: flex;
+  box-sizing: border-box;
+  min-inline-size: 0;
+  min-block-size: var(--dropdown-min-block-size);
+  align-items: center;
+}
+
+.ds-dropdown__field {
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-inline-size: 0;
+  min-block-size: var(--dropdown-min-block-size);
+  padding-inline: var(--dropdown-padding-inline-start)
+    calc(var(--dropdown-padding-inline-end) + var(--dropdown-icon-size) + var(--dropdown-icon-gap));
+  border: var(--ds-primitive-border-width-border-sm) solid var(--dropdown-border-color);
+  border-radius: var(--ds-primitive-border-radius-radius-sm);
+  outline: 0;
+  appearance: none;
+  background: var(--dropdown-background);
+  color: var(--dropdown-text-color);
+  font: inherit;
+  font-size: var(--ds-primitive-typography-font-size-18);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: var(--ds-primitive-typography-line-height-28);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+
+.ds-dropdown--placeholder .ds-dropdown__field {
+  color: var(--dropdown-placeholder-color);
+}
+
+.ds-dropdown:not(.ds-dropdown--disabled):not(.ds-dropdown--error) .ds-dropdown__field:hover {
+  border-color: var(--dropdown-hover-border-color);
+}
+
+.ds-dropdown__field:focus {
+  border-color: var(--dropdown-focus-color);
+  outline: var(--ds-primitive-border-width-border-md) solid var(--dropdown-focus-color);
+  outline-offset: var(--ds-primitive-spacing-2);
+}
+
+.ds-dropdown__field:disabled {
+  cursor: not-allowed;
+}
+
+.ds-dropdown__icon {
+  position: absolute;
+  inset-inline-end: var(--dropdown-padding-inline-end);
+  display: inline-grid;
+  pointer-events: none;
+  place-items: center;
+  inline-size: var(--dropdown-icon-size);
+  block-size: var(--dropdown-icon-size);
+  color: currentColor;
+}
+
+.ds-dropdown__icon > svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.ds-dropdown__message {
+  display: flex;
+  min-inline-size: 0;
+  gap: var(--ds-primitive-spacing-8);
+  align-items: center;
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--dropdown-helper-color);
+  font-size: var(--ds-primitive-typography-font-size-16);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  line-height: var(--ds-primitive-typography-line-height-20);
+}
+
+.ds-dropdown__message--error {
+  color: var(--dropdown-error-color);
+}
+
+.ds-dropdown__message-icon {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  inline-size: var(--ds-primitive-spacing-20);
+  block-size: var(--ds-primitive-spacing-20);
+  border: var(--ds-primitive-border-width-border-md) solid currentColor;
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  font-size: var(--ds-primitive-typography-font-size-12);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  line-height: var(--ds-primitive-typography-line-height-16);
+}
+
+.ds-dropdown--error {
+  --dropdown-border-color: var(--dropdown-error-color);
+  --dropdown-focus-color: var(--dropdown-error-color);
+}
+
+.ds-dropdown--disabled {
+  --dropdown-label-color: var(--dropdown-disabled-color);
+  --dropdown-text-color: var(--dropdown-disabled-color);
+  --dropdown-placeholder-color: var(--dropdown-disabled-color);
+  --dropdown-helper-color: var(--dropdown-disabled-color);
+  --dropdown-background: var(--dropdown-disabled-background);
+  --dropdown-border-color: var(--dropdown-disabled-border-color);
+
+  cursor: not-allowed;
+}
+
+.ds-dropdown--size-medium {
+  --dropdown-min-block-size: var(--ds-primitive-spacing-48);
+}
+
+.ds-dropdown--size-large {
+  --dropdown-min-block-size: calc(var(--ds-primitive-spacing-48) + var(--ds-primitive-spacing-8));
+  --dropdown-padding-inline-start: var(--ds-primitive-spacing-16);
+  --dropdown-padding-inline-end: var(--ds-primitive-spacing-8);
+}
+
+@media (max-width: 420px) {
+  .ds-dropdown {
+    --dropdown-min-block-size: var(--ds-primitive-spacing-48);
+    --dropdown-padding-inline-start: var(--ds-primitive-spacing-12);
+    --dropdown-padding-inline-end: var(--ds-primitive-spacing-8);
+  }
+
+  .ds-dropdown__field {
+    font-size: var(--ds-primitive-typography-font-size-16);
+    line-height: var(--ds-primitive-typography-line-height-24);
+  }
+}

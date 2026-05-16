@@ -1,0 +1,40 @@
+.dropdown-story-shell {
+  display: grid;
+  box-sizing: border-box;
+  min-block-size: 100%;
+  place-items: center;
+  padding: var(--ds-primitive-spacing-32);
+  background: var(--ds-primitive-color-neutral-grey-100);
+}
+
+.dropdown-story-panel {
+  display: grid;
+  box-sizing: border-box;
+  inline-size: min(100%, 321px);
+  gap: var(--ds-primitive-spacing-24);
+}
+
+.dropdown-story-stack {
+  display: grid;
+  box-sizing: border-box;
+  inline-size: min(100%, 420px);
+  gap: var(--ds-primitive-spacing-24);
+}
+
+.dropdown-story-long {
+  box-sizing: border-box;
+  inline-size: min(100%, 560px);
+}
+
+@media (max-width: 420px) {
+  .dropdown-story-shell {
+    place-items: start stretch;
+    padding: var(--ds-primitive-spacing-16);
+  }
+
+  .dropdown-story-panel,
+  .dropdown-story-stack,
+  .dropdown-story-long {
+    inline-size: 100%;
+  }
+}

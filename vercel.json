@@ -1,0 +1,5 @@
+{
+  "installCommand": "corepack pnpm install --frozen-lockfile",
+  "buildCommand": "corepack pnpm build-storybook",
+  "outputDirectory": "storybook-static"
+}

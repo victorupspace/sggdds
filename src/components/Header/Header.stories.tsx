@@ -25,7 +25,7 @@ const navigationItems = [
 ];
 
 const meta = {
-  title: 'Components/Header',
+  title: 'Web Components/Header',
   component: Header,
   parameters: {
     componentCanvas: {

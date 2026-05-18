@@ -25,7 +25,7 @@ function ControlledFileUpload(args: FileUploadProps) {
 }
 
 const meta = {
-  title: 'Components/FileUpload',
+  title: 'Web Components/FileUpload',
   component: FileUpload,
   parameters: {
     componentCanvas: {

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { CoreTokensTypographyPage } from './core-tokens.docs';
 
 const meta = {
-  title: 'Foundations/Core Tokens/Typography',
+  title: 'Foundations/Typography',
   component: CoreTokensTypographyPage,
   parameters: {
     layout: 'fullscreen',

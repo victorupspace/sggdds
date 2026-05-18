@@ -11,7 +11,7 @@ const defaultOptions = [
 ];
 
 const meta = {
-  title: 'Components/Dropdown',
+  title: 'Web Components/Dropdown',
   component: Dropdown,
   parameters: {
     componentCanvas: {

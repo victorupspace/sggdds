@@ -64,7 +64,7 @@ function ModalExample({
 }
 
 const meta = {
-  title: 'Components/Modal',
+  title: 'Web Components/Modal',
   component: Modal,
   parameters: {
     componentCanvas: {

@@ -7,7 +7,7 @@ import type { ProgressBarVariant } from './ProgressBar.types';
 const variants: ProgressBarVariant[] = ['brand', 'neutral', 'success', 'error'];
 
 const meta = {
-  title: 'Components/ProgressBar',
+  title: 'Web Components/ProgressBar',
   component: ProgressBar,
   parameters: {
     componentCanvas: {

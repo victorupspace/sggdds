@@ -66,7 +66,7 @@ const sevenItems = Array.from({ length: 7 }, (_, index) => ({
 }));
 
 const meta = {
-  title: 'Components/Tabs',
+  title: 'Web Components/Tabs',
   component: Tabs,
   parameters: {
     componentCanvas: {

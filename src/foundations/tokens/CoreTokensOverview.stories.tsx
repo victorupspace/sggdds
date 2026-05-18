@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { CoreTokensOverviewPage } from './core-tokens.docs';
 
 const meta = {
-  title: 'Foundations/Core Tokens/Overview',
+  title: 'Foundations/Overview',
   component: CoreTokensOverviewPage,
   parameters: {
     docs: {

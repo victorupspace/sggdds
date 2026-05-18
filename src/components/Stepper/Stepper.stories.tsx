@@ -30,7 +30,7 @@ const tenSteps: StepperStep[] = Array.from({ length: 10 }, (_, index) => ({
 }));
 
 const meta = {
-  title: 'Components/Stepper',
+  title: 'Web Components/Stepper',
   component: Stepper,
   parameters: {
     componentCanvas: {

@@ -4,7 +4,7 @@ import { Divider } from './Divider';
 import './Divider.stories.css';
 
 const meta = {
-  title: 'Components/Divider',
+  title: 'Web Components/Divider',
   component: Divider,
   parameters: {
     componentCanvas: {

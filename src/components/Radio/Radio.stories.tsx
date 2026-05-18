@@ -5,7 +5,7 @@ import { Radio } from './Radio';
 import { RadioGroup } from './RadioGroup';
 
 const meta = {
-  title: 'Components/Radio',
+  title: 'Web Components/Radio',
   component: Radio,
   parameters: {
     componentCanvas: {

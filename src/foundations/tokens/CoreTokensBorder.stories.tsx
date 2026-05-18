@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { CoreTokensBorderPage } from './core-tokens.docs';
 
 const meta = {
-  title: 'Foundations/Core Tokens/Border',
+  title: 'Foundations/Border',
   component: CoreTokensBorderPage,
   parameters: {
     layout: 'fullscreen',

@@ -70,7 +70,7 @@ function BadgeStack({
 
 
 const meta = {
-  title: 'Components/Badge',
+  title: 'Web Components/Badge',
   component: Badge,
   parameters: {
     componentCanvas: {

@@ -4,7 +4,7 @@ import { Datepicker } from './Datepicker';
 import './Datepicker.stories.css';
 
 const meta = {
-  title: 'Components/Datepicker',
+  title: 'Web Components/Datepicker',
   component: Datepicker,
   parameters: {
     componentCanvas: {

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { CoreTokensSpacingPage } from './core-tokens.docs';
 
 const meta = {
-  title: 'Foundations/Core Tokens/Spacing',
+  title: 'Foundations/Spacing',
   component: CoreTokensSpacingPage,
   parameters: {
     layout: 'fullscreen',

@@ -28,7 +28,7 @@ function CarIcon() {
 }
 
 const meta = {
-  title: 'Components/InfoCard',
+  title: 'Web Components/InfoCard',
   component: InfoCard,
   parameters: {
     componentCanvas: {

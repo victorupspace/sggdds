@@ -37,7 +37,7 @@ function SquareMedia() {
 }
 
 const meta = {
-  title: 'Components/Hero',
+  title: 'Web Components/Hero',
   component: Hero,
   parameters: {
     componentCanvas: {

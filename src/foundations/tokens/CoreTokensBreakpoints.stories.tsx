@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { CoreTokensBreakpointsPage } from './core-tokens.docs';
 
 const meta = {
-  title: 'Foundations/Core Tokens/Breakpoints',
+  title: 'Foundations/Breakpoints',
   component: CoreTokensBreakpointsPage,
   parameters: {
     layout: 'fullscreen',

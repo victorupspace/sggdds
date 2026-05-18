@@ -10,7 +10,7 @@ const shapes: SkeletonShape[] = ['rectangle', 'rounded', 'circle', 'text'];
 const tones: SkeletonTone[] = ['default', 'subtle', 'strong'];
 
 const meta = {
-  title: 'Components/Skeleton',
+  title: 'Web Components/Skeleton',
   component: Skeleton,
   parameters: {
     componentCanvas: {

@@ -19,7 +19,7 @@ function FilterIcon() {
 const noop = () => undefined;
 
 const meta = {
-  title: 'Components/Chip',
+  title: 'Web Components/Chip',
   component: Chip,
   parameters: {
     componentCanvas: {

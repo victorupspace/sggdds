@@ -30,7 +30,7 @@ function MediaPlaceholder() {
 }
 
 const meta = {
-  title: 'Components/Card',
+  title: 'Web Components/Card',
   component: Card,
   parameters: {
     componentCanvas: {

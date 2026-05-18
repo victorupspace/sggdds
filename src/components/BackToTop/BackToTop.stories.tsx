@@ -23,7 +23,7 @@ function ScrollContainerDemo(args: BackToTopProps) {
 }
 
 const meta = {
-  title: 'Components/BackToTop',
+  title: 'Web Components/BackToTop',
   component: BackToTop,
   parameters: {
     componentCanvas: {

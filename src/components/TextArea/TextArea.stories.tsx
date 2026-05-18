@@ -4,7 +4,7 @@ import { TextArea } from './TextArea';
 import './TextArea.stories.css';
 
 const meta = {
-  title: 'Components/TextArea',
+  title: 'Web Components/TextArea',
   component: TextArea,
   parameters: {
     componentCanvas: {

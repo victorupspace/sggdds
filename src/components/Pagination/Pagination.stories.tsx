@@ -4,7 +4,7 @@ import { Pagination } from './Pagination';
 import './Pagination.stories.css';
 
 const meta = {
-  title: 'Components/Pagination',
+  title: 'Web Components/Pagination',
   component: Pagination,
   parameters: {
     componentCanvas: {

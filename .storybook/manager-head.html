@@ -1,0 +1,27 @@
+<script>
+  (function () {
+    try {
+      var EXPANDED_KEY = '@storybook/ui/store';
+      var FLAG_KEY = 'sggd-ds-initial-expand-v2';
+
+      if (!localStorage.getItem(FLAG_KEY)) {
+        var raw = localStorage.getItem(EXPANDED_KEY);
+        var state = raw ? JSON.parse(raw) : {};
+        state.expanded = state.expanded || {};
+        state.expanded['documentation'] = true;
+        state.expanded['foundations'] = true;
+        state.expanded['web-components'] = true;
+        localStorage.setItem(EXPANDED_KEY, JSON.stringify(state));
+        localStorage.setItem(FLAG_KEY, '1');
+      }
+
+      var url = new URL(window.location.href);
+      var hasPath = url.searchParams.has('path');
+      var hasId = url.searchParams.has('id');
+      if (!hasPath && !hasId) {
+        url.searchParams.set('path', '/docs/documentation-introducao--docs');
+        window.location.replace(url.toString());
+      }
+    } catch (e) {}
+  })();
+</script>

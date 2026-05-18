@@ -45,7 +45,7 @@ function ControlledExample() {
 }
 
 const meta = {
-  title: 'Components/Checkbox',
+  title: 'Web Components/Checkbox',
   component: Checkbox,
   parameters: {
     componentCanvas: {

@@ -18,7 +18,7 @@ function ArrowRightIcon() {
 }
 
 const meta = {
-  title: 'Components/Link',
+  title: 'Web Components/Link',
   component: Link,
   parameters: {
     componentCanvas: {

@@ -51,7 +51,7 @@ function ControlledToast(args: ToastProps) {
 }
 
 const meta = {
-  title: 'Components/Toast',
+  title: 'Web Components/Toast',
   component: Toast,
   parameters: {
     componentCanvas: {

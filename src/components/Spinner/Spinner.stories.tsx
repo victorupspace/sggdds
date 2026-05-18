@@ -8,7 +8,7 @@ const sizes: SpinnerSize[] = ['sm', 'md', 'lg'];
 const variants: SpinnerVariant[] = ['neutral', 'brand', 'inverse'];
 
 const meta = {
-  title: 'Components/Spinner',
+  title: 'Web Components/Spinner',
   component: Spinner,
   parameters: {
     componentCanvas: {

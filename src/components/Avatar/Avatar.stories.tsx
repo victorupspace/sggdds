@@ -7,7 +7,7 @@ const imageSrc =
   'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96"%3E%3Crect width="96" height="96" fill="%23292929"/%3E%3Ccircle cx="48" cy="37" r="18" fill="%23ffffff"/%3E%3Cpath d="M18 88c4-20 17-31 30-31s26 11 30 31" fill="%23ffffff"/%3E%3C/svg%3E';
 
 const meta = {
-  title: 'Components/Avatar',
+  title: 'Web Components/Avatar',
   component: Avatar,
   parameters: {
     componentCanvas: {

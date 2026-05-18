@@ -46,7 +46,7 @@ function ControlledAlert(args: AlertProps) {
 }
 
 const meta = {
-  title: 'Components/Alert',
+  title: 'Web Components/Alert',
   component: Alert,
   parameters: {
     componentCanvas: {

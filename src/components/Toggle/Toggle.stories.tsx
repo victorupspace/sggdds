@@ -45,7 +45,7 @@ function ControlledExample() {
 }
 
 const meta = {
-  title: 'Components/Toggle',
+  title: 'Web Components/Toggle',
   component: Toggle,
   parameters: {
     componentCanvas: {

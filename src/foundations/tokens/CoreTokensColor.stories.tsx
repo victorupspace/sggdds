@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { CoreTokensColorPage } from './core-tokens.docs';
 
 const meta = {
-  title: 'Foundations/Core Tokens/Color',
+  title: 'Foundations/Color',
   component: CoreTokensColorPage,
   parameters: {
     layout: 'fullscreen',

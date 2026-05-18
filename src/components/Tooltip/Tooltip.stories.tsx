@@ -13,7 +13,7 @@ function InfoIcon() {
 }
 
 const meta = {
-  title: 'Components/Tooltip',
+  title: 'Web Components/Tooltip',
   component: Tooltip,
   parameters: {
     componentCanvas: {

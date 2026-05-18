@@ -6,7 +6,7 @@ import './Breadcrumb.stories.css';
 const defaultItems = [{ href: '#servicos', label: 'Unselected' }, { label: 'Selected' }];
 
 const meta = {
-  title: 'Components/Breadcrumb',
+  title: 'Web Components/Breadcrumb',
   component: Breadcrumb,
   parameters: {
     componentCanvas: {

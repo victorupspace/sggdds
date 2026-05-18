@@ -18,7 +18,7 @@ function SearchIcon() {
 }
 
 const meta = {
-  title: 'Components/TextInput',
+  title: 'Web Components/TextInput',
   component: TextInput,
   parameters: {
     componentCanvas: {

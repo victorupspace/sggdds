@@ -44,7 +44,7 @@ const loremSections = [
 ];
 
 const meta = {
-  title: 'Components/Footer',
+  title: 'Web Components/Footer',
   component: Footer,
   parameters: {
     componentCanvas: {

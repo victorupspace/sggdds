@@ -6,7 +6,7 @@ import '../src/foundations/tokens/css/tokens.css';
 const preview: Preview = {
   decorators: [
     (Story, context) => {
-      if (!context.title.startsWith('Components/')) {
+      if (!context.title.startsWith('Web Components/')) {
         return createElement(Story);
       }
 
@@ -79,7 +79,12 @@ const preview: Preview = {
     },
     options: {
       storySort: {
-        order: ['Foundations', 'Components'],
+        order: [
+          'Documentation',
+          ['Introdução', '*'],
+          'Foundations',
+          'Web Components',
+        ],
       },
     },
     viewport: {

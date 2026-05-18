@@ -32,7 +32,7 @@ function DownloadIcon() {
 }
 
 const meta = {
-  title: 'Components/Button',
+  title: 'Web Components/Button',
   component: Button,
   parameters: {
     componentCanvas: {

@@ -6,7 +6,7 @@ import './ButtonGov.stories.css';
 const noop = () => undefined;
 
 const meta = {
-  title: 'Components/ButtonGov',
+  title: 'Web Components/ButtonGov',
   component: ButtonGov,
   parameters: {
     componentCanvas: {

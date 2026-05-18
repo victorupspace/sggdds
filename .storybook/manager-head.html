@@ -1,9 +1,11 @@
 <script>
   (function () {
+    var INTRO_ID = 'documentation-introdução--docs';
+    var INTRO_PATH = '/docs/' + INTRO_ID;
+
     try {
       var EXPANDED_KEY = '@storybook/ui/store';
-      var FLAG_KEY = 'sggd-ds-initial-expand-v2';
-
+      var FLAG_KEY = 'sggd-ds-initial-expand-v3';
       if (!localStorage.getItem(FLAG_KEY)) {
         var raw = localStorage.getItem(EXPANDED_KEY);
         var state = raw ? JSON.parse(raw) : {};
@@ -14,14 +16,54 @@
         localStorage.setItem(EXPANDED_KEY, JSON.stringify(state));
         localStorage.setItem(FLAG_KEY, '1');
       }
-
-      var url = new URL(window.location.href);
-      var hasPath = url.searchParams.has('path');
-      var hasId = url.searchParams.has('id');
-      if (!hasPath && !hasId) {
-        url.searchParams.set('path', '/docs/documentation-introducao--docs');
-        window.location.replace(url.toString());
-      }
     } catch (e) {}
+
+    function getQuery(name) {
+      var search = window.location.search || '';
+      var pairs = search.replace(/^\?/, '').split('&');
+      for (var i = 0; i < pairs.length; i++) {
+        var pair = pairs[i].split('=');
+        if (decodeURIComponent(pair[0]) === name) {
+          return decodeURIComponent(pair.slice(1).join('='));
+        }
+      }
+      return null;
+    }
+
+    function shouldRedirect() {
+      var path = getQuery('path');
+      var id = getQuery('id');
+      if (!path && !id) return true;
+      if (path === '/' || path === '') return true;
+      return false;
+    }
+
+    function redirect() {
+      var search = window.location.search || '';
+      var hasPath = /[?&]path=/.test(search);
+      var newSearch;
+      if (!search || search === '?') {
+        newSearch = '?path=' + encodeURIComponent(INTRO_PATH);
+      } else if (hasPath) {
+        newSearch = search.replace(
+          /([?&])path=[^&]*/,
+          '$1path=' + encodeURIComponent(INTRO_PATH),
+        );
+      } else {
+        newSearch = search + '&path=' + encodeURIComponent(INTRO_PATH);
+      }
+      var target =
+        window.location.protocol +
+        '//' +
+        window.location.host +
+        window.location.pathname +
+        newSearch +
+        window.location.hash;
+      window.location.replace(target);
+    }
+
+    if (shouldRedirect()) {
+      redirect();
+    }
   })();
 </script>

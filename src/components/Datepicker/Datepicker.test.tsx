@@ -33,7 +33,7 @@ describe('Datepicker', () => {
     );
 
     fireEvent.click(screen.getByRole('button', { name: 'Open calendar' }));
-    fireEvent.click(screen.getByRole('gridcell', { name: 'Tuesday, December 15, 2026' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Tuesday, December 15, 2026' }));
 
     expect(onValueChange).toHaveBeenCalledWith('2026-12-15');
     expect(screen.getByLabelText('Data')).toHaveValue('12/15/2026');
@@ -61,8 +61,8 @@ describe('Datepicker', () => {
     );
 
     fireEvent.click(screen.getByRole('button', { name: 'Open calendar' }));
-    fireEvent.click(screen.getByRole('gridcell', { name: 'Thursday, December 17, 2026' }));
-    fireEvent.click(screen.getByRole('gridcell', { name: 'Saturday, December 26, 2026' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Thursday, December 17, 2026' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Saturday, December 26, 2026' }));
 
     expect(onRangeValueChange).toHaveBeenLastCalledWith({
       end: '2026-12-26',

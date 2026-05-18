@@ -1,16 +1,16 @@
 .ds-text-area {
-  --text-area-label-color: var(--ds-primitive-color-soft-black);
-  --text-area-text-color: var(--ds-primitive-color-soft-black);
-  --text-area-placeholder-color: var(--ds-primitive-color-neutral-grey-500);
-  --text-area-helper-color: var(--ds-primitive-color-neutral-grey-600);
-  --text-area-background: var(--ds-primitive-color-white);
-  --text-area-border-color: var(--ds-primitive-color-neutral-grey-300);
-  --text-area-hover-border-color: var(--ds-primitive-color-soft-black);
-  --text-area-focus-color: var(--ds-primitive-color-identity-blue-primary);
-  --text-area-error-color: var(--ds-primitive-color-utility-danger-red-300);
-  --text-area-disabled-background: var(--ds-primitive-color-neutral-grey-100);
-  --text-area-disabled-border-color: var(--ds-primitive-color-neutral-grey-300);
-  --text-area-disabled-color: var(--ds-primitive-color-neutral-grey-500);
+  --text-area-label-color: var(--ds-semantic-color-content-neutral-default);
+  --text-area-text-color: var(--ds-semantic-color-content-neutral-default);
+  --text-area-placeholder-color: var(--ds-semantic-color-content-neutral-disabled);
+  --text-area-helper-color: var(--ds-semantic-color-content-neutral-muted);
+  --text-area-background: var(--ds-semantic-color-background-neutral-default);
+  --text-area-border-color: var(--ds-semantic-color-border-neutral-default);
+  --text-area-hover-border-color: var(--ds-semantic-color-content-neutral-default);
+  --text-area-focus-color: var(--ds-semantic-color-action-primary-default);
+  --text-area-error-color: var(--ds-semantic-color-content-negative-default);
+  --text-area-disabled-background: var(--ds-semantic-color-background-neutral-disabled);
+  --text-area-disabled-border-color: var(--ds-semantic-color-border-neutral-default);
+  --text-area-disabled-color: var(--ds-semantic-color-content-neutral-disabled);
   --text-area-min-block-size: calc(
     var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-16)
   );
@@ -54,7 +54,7 @@
   min-block-size: var(--text-area-min-block-size);
   padding: var(--text-area-padding-block) var(--text-area-padding-inline);
   border: var(--ds-primitive-border-width-border-md) solid var(--text-area-border-color);
-  border-radius: var(--ds-primitive-border-radius-radius-lg);
+  border-radius: var(--ds-semantic-radius-lg);
   outline: 0;
   background: var(--text-area-background);
   color: var(--text-area-text-color);

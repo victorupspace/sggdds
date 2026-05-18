@@ -1,18 +1,18 @@
 .ds-chip {
-  --chip-background: var(--ds-primitive-color-white);
-  --chip-background-hover: var(--ds-primitive-color-neutral-alpha-4);
-  --chip-background-active: var(--ds-primitive-color-neutral-alpha-8);
-  --chip-border: var(--ds-primitive-color-neutral-grey-200);
-  --chip-border-hover: var(--ds-primitive-color-neutral-grey-300);
-  --chip-foreground: var(--ds-primitive-color-soft-black);
-  --chip-muted: var(--ds-primitive-color-neutral-grey-600);
-  --chip-focus-ring: var(--ds-primitive-color-identity-blue-primary);
-  --chip-disabled-background: var(--ds-primitive-color-neutral-grey-100);
-  --chip-disabled-border: var(--ds-primitive-color-neutral-grey-200);
-  --chip-disabled-foreground: var(--ds-primitive-color-neutral-grey-500);
-  --chip-selected-background: var(--ds-primitive-color-utility-info-blue-100);
-  --chip-selected-border: var(--ds-primitive-color-identity-blue-primary);
-  --chip-selected-foreground: var(--ds-primitive-color-soft-black);
+  --chip-background: var(--ds-semantic-color-background-neutral-default);
+  --chip-background-hover: var(--ds-semantic-color-background-neutral-hover);
+  --chip-background-active: var(--ds-semantic-color-background-neutral-active);
+  --chip-border: var(--ds-semantic-color-border-neutral-subtle);
+  --chip-border-hover: var(--ds-semantic-color-border-neutral-default);
+  --chip-foreground: var(--ds-semantic-color-content-neutral-default);
+  --chip-muted: var(--ds-semantic-color-content-neutral-muted);
+  --chip-focus-ring: var(--ds-semantic-color-action-primary-default);
+  --chip-disabled-background: var(--ds-semantic-color-background-neutral-disabled);
+  --chip-disabled-border: var(--ds-semantic-color-border-neutral-subtle);
+  --chip-disabled-foreground: var(--ds-semantic-color-content-neutral-disabled);
+  --chip-selected-background: var(--ds-semantic-color-background-information-subtle);
+  --chip-selected-border: var(--ds-semantic-color-action-primary-default);
+  --chip-selected-foreground: var(--ds-semantic-color-content-neutral-default);
   --chip-block-size: var(--ds-primitive-spacing-32);
   --chip-padding-start: var(--ds-primitive-spacing-8);
   --chip-padding-end: var(--ds-primitive-spacing-4);
@@ -31,7 +31,7 @@
   gap: var(--chip-gap);
   align-items: center;
   border: var(--ds-primitive-border-width-border-sm) solid var(--chip-border);
-  border-radius: var(--ds-primitive-border-radius-radius-sm);
+  border-radius: var(--ds-semantic-radius-sm);
   background: var(--chip-background);
   color: var(--chip-foreground);
   font-family:
@@ -68,8 +68,8 @@
 }
 
 .ds-chip--variant-brand {
-  --chip-selected-background: var(--ds-primitive-color-utility-info-blue-100);
-  --chip-selected-border: var(--ds-primitive-color-identity-blue-primary);
+  --chip-selected-background: var(--ds-semantic-color-background-information-subtle);
+  --chip-selected-border: var(--ds-semantic-color-action-primary-default);
 }
 
 .ds-chip--selected {
@@ -123,19 +123,19 @@
   block-size: var(--chip-remove-size);
   padding: var(--ds-primitive-spacing-0);
   border: 0;
-  border-radius: var(--ds-primitive-border-radius-radius-sm);
+  border-radius: var(--ds-semantic-radius-sm);
   background: transparent;
   color: var(--chip-muted);
   cursor: pointer;
 }
 
 .ds-chip__remove:hover:not(:disabled) {
-  background: var(--ds-primitive-color-neutral-alpha-8);
+  background: var(--ds-semantic-color-background-neutral-active);
   color: var(--chip-foreground);
 }
 
 .ds-chip__remove:active:not(:disabled) {
-  background: var(--ds-primitive-color-neutral-alpha-12);
+  background: var(--ds-semantic-color-background-neutral-overlay-subtle);
 }
 
 .ds-chip__remove:focus-visible {
@@ -163,6 +163,6 @@
     --chip-block-size: var(--ds-primitive-spacing-40);
     --chip-padding-start: var(--ds-primitive-spacing-12);
     --chip-padding-end: var(--ds-primitive-spacing-6);
-    --chip-remove-size: var(--ds-primitive-spacing-28);
+    --chip-remove-size: calc(var(--ds-primitive-spacing-24) + var(--ds-primitive-spacing-4));
   }
 }

@@ -198,6 +198,33 @@ export const Controlled: Story = {
   render: () => <ControlledExample />,
 };
 
+export const GroupedStates: Story = {
+  args: {
+    label: defaultLabel,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Exibe estados comuns em uma composicao vertical para validar espacamento, quebra de texto e area de toque.',
+      },
+    },
+  },
+  render: () => <ToggleGroup />,
+};
+
+export const GroupedStatesMobile: Story = {
+  args: {
+    label: defaultLabel,
+  },
+  parameters: {
+    componentCanvas: {
+      width: 320,
+    },
+  },
+  render: () => <ToggleGroup narrow />,
+};
+
 export const Accessibility: Story = {
   args: {
     hint: 'Use Espaco para alternar o estado do recurso.',

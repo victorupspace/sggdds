@@ -1,21 +1,21 @@
 .ds-file-upload {
-  --file-upload-label-color: var(--ds-primitive-color-soft-black);
-  --file-upload-text-color: var(--ds-primitive-color-soft-black);
-  --file-upload-muted-color: var(--ds-primitive-color-neutral-grey-600);
-  --file-upload-background: var(--ds-primitive-color-white);
-  --file-upload-border-color: var(--ds-primitive-color-neutral-grey-200);
-  --file-upload-border-hover-color: var(--ds-primitive-color-neutral-grey-500);
-  --file-upload-focus-color: var(--ds-primitive-color-identity-blue-primary);
-  --file-upload-error-color: var(--ds-primitive-color-utility-danger-red-300);
-  --file-upload-disabled-background: var(--ds-primitive-color-neutral-grey-100);
-  --file-upload-disabled-color: var(--ds-primitive-color-neutral-grey-500);
-  --file-upload-action-primary-background: var(--ds-primitive-color-soft-black);
-  --file-upload-action-primary-background-hover: var(--ds-primitive-color-pure-black);
-  --file-upload-action-primary-color: var(--ds-primitive-color-white);
-  --file-upload-action-secondary-background: var(--ds-primitive-color-white);
-  --file-upload-action-secondary-background-hover: var(--ds-primitive-color-neutral-grey-100);
-  --file-upload-action-secondary-color: var(--ds-primitive-color-soft-black);
-  --file-upload-action-secondary-border: var(--ds-primitive-color-neutral-grey-200);
+  --file-upload-label-color: var(--ds-semantic-color-content-neutral-default);
+  --file-upload-text-color: var(--ds-semantic-color-content-neutral-default);
+  --file-upload-muted-color: var(--ds-semantic-color-content-neutral-muted);
+  --file-upload-background: var(--ds-semantic-color-background-neutral-default);
+  --file-upload-border-color: var(--ds-semantic-color-border-neutral-subtle);
+  --file-upload-border-hover-color: var(--ds-semantic-color-content-neutral-disabled);
+  --file-upload-focus-color: var(--ds-semantic-color-action-primary-default);
+  --file-upload-error-color: var(--ds-semantic-color-content-negative-default);
+  --file-upload-disabled-background: var(--ds-semantic-color-background-neutral-disabled);
+  --file-upload-disabled-color: var(--ds-semantic-color-content-neutral-disabled);
+  --file-upload-action-primary-background: var(--ds-semantic-color-content-neutral-default);
+  --file-upload-action-primary-background-hover: var(--ds-semantic-color-content-neutral-strong);
+  --file-upload-action-primary-color: var(--ds-semantic-color-background-neutral-default);
+  --file-upload-action-secondary-background: var(--ds-semantic-color-background-neutral-default);
+  --file-upload-action-secondary-background-hover: var(--ds-semantic-color-background-neutral-disabled);
+  --file-upload-action-secondary-color: var(--ds-semantic-color-content-neutral-default);
+  --file-upload-action-secondary-border: var(--ds-semantic-color-border-neutral-subtle);
   --file-upload-gap: var(--ds-primitive-spacing-8);
   --file-upload-action-gap: var(--ds-primitive-spacing-8);
 
@@ -78,7 +78,7 @@
   align-items: center;
   justify-content: center;
   border: var(--ds-primitive-border-width-border-sm) solid transparent;
-  border-radius: var(--ds-primitive-border-radius-radius-full);
+  border-radius: var(--ds-semantic-radius-full);
   cursor: pointer;
   font: inherit;
   font-size: var(--ds-primitive-typography-font-size-16);
@@ -122,7 +122,7 @@
 
 .ds-file-upload__action--tertiary:not(:disabled):hover {
   border-color: transparent;
-  background: var(--ds-primitive-color-neutral-alpha-4);
+  background: var(--ds-semantic-color-background-neutral-hover);
   color: var(--file-upload-action-secondary-color);
 }
 
@@ -132,9 +132,9 @@
 }
 
 .ds-file-upload__action:disabled {
-  border-color: var(--ds-primitive-color-neutral-grey-200);
-  background: var(--ds-primitive-color-neutral-grey-100);
-  color: var(--ds-primitive-color-neutral-grey-500);
+  border-color: var(--ds-semantic-color-border-neutral-subtle);
+  background: var(--ds-semantic-color-background-neutral-disabled);
+  color: var(--ds-semantic-color-content-neutral-disabled);
   cursor: not-allowed;
 }
 
@@ -165,7 +165,7 @@
   gap: var(--ds-primitive-spacing-16);
   place-items: center;
   border: var(--ds-primitive-border-width-border-md) dashed var(--file-upload-border-color);
-  border-radius: var(--ds-primitive-border-radius-radius-lg);
+  border-radius: var(--ds-semantic-radius-lg);
   background: var(--file-upload-background);
   color: var(--file-upload-text-color);
   cursor: pointer;
@@ -179,7 +179,7 @@
 .ds-file-upload__dropzone:hover,
 .ds-file-upload--dragging .ds-file-upload__dropzone {
   border-color: var(--file-upload-border-hover-color);
-  background: var(--ds-primitive-color-neutral-grey-50);
+  background: var(--ds-semantic-color-background-neutral-elevated);
 }
 
 .ds-file-upload__dropzone:has(.ds-file-upload__input:focus-visible) {
@@ -195,7 +195,7 @@
   inline-size: var(--ds-primitive-spacing-48);
   block-size: var(--ds-primitive-spacing-48);
   border: var(--ds-primitive-border-width-border-sm) solid var(--file-upload-border-color);
-  border-radius: var(--ds-primitive-border-radius-radius-md);
+  border-radius: var(--ds-semantic-radius-md);
   color: var(--file-upload-muted-color);
 }
 
@@ -256,9 +256,9 @@
   gap: var(--ds-primitive-spacing-12);
   align-items: center;
   justify-content: space-between;
-  border: var(--ds-primitive-border-width-border-sm) solid var(--ds-primitive-color-neutral-grey-200);
-  border-radius: var(--ds-primitive-border-radius-radius-md);
-  background: var(--ds-primitive-color-neutral-grey-50);
+  border: var(--ds-primitive-border-width-border-sm) solid var(--ds-semantic-color-border-neutral-subtle);
+  border-radius: var(--ds-semantic-radius-md);
+  background: var(--ds-semantic-color-background-neutral-elevated);
   color: var(--file-upload-text-color);
   font-size: var(--ds-primitive-typography-font-size-14);
   font-weight: var(--ds-primitive-typography-font-weight-medium);
@@ -288,7 +288,7 @@
   --file-upload-text-color: var(--file-upload-disabled-color);
   --file-upload-muted-color: var(--file-upload-disabled-color);
   --file-upload-background: var(--file-upload-disabled-background);
-  --file-upload-border-color: var(--ds-primitive-color-neutral-grey-300);
+  --file-upload-border-color: var(--ds-semantic-color-border-neutral-default);
 
   cursor: not-allowed;
 }

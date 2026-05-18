@@ -320,6 +320,7 @@ export const Datepicker = forwardRef<HTMLInputElement, DatepickerProps>(function
           readOnly
           ref={ref}
           required={required}
+          role="combobox"
           type="text"
           value={inputValue}
         />
@@ -337,7 +338,13 @@ export const Datepicker = forwardRef<HTMLInputElement, DatepickerProps>(function
       </div>
 
       {isOpen ? (
-        <div aria-modal="false" className="ds-datepicker__popover" id={popupId} role="dialog">
+        <div
+          aria-label={`${label} calendar`}
+          aria-modal="false"
+          className="ds-datepicker__popover"
+          id={popupId}
+          role="dialog"
+        >
           <div className="ds-datepicker__selected-title">{popupTitle}</div>
 
           <div className="ds-datepicker__month-header">
@@ -373,45 +380,52 @@ export const Datepicker = forwardRef<HTMLInputElement, DatepickerProps>(function
           </div>
 
           <div className="ds-datepicker__days" role="grid">
-            {days.map((day) => {
-              const isoValue = formatIsoDate(day);
-              const isOutsideMonth = day.getMonth() !== visibleMonth.getMonth();
-              const isSelected =
-                mode === 'range'
-                  ? isoValue === currentRange.start || isoValue === currentRange.end
-                  : isoValue === currentValue;
-              const isRangeDay = mode === 'range' && isInRange(isoValue, currentRange);
-              const isToday = isoValue === formatIsoDate(new Date());
-              const dayDisabled = isDateDisabled(isoValue, minDate, maxDate);
-              const dayClassName = [
-                'ds-datepicker__day',
-                isOutsideMonth ? 'ds-datepicker__day--outside' : undefined,
-                isToday ? 'ds-datepicker__day--today' : undefined,
-                isSelected ? 'ds-datepicker__day--selected' : undefined,
-                isRangeDay ? 'ds-datepicker__day--in-range' : undefined,
-              ]
-                .filter(Boolean)
-                .join(' ');
+            {Array.from({ length: Math.ceil(days.length / 7) }, (_, weekIndex) => (
+              <div
+                className="ds-datepicker__week"
+                key={`week-${String(weekIndex)}`}
+                role="row"
+              >
+                {days.slice(weekIndex * 7, weekIndex * 7 + 7).map((day) => {
+                  const isoValue = formatIsoDate(day);
+                  const isOutsideMonth = day.getMonth() !== visibleMonth.getMonth();
+                  const isSelected =
+                    mode === 'range'
+                      ? isoValue === currentRange.start || isoValue === currentRange.end
+                      : isoValue === currentValue;
+                  const isRangeDay = mode === 'range' && isInRange(isoValue, currentRange);
+                  const isToday = isoValue === formatIsoDate(new Date());
+                  const dayDisabled = isDateDisabled(isoValue, minDate, maxDate);
+                  const dayClassName = [
+                    'ds-datepicker__day',
+                    isOutsideMonth ? 'ds-datepicker__day--outside' : undefined,
+                    isToday ? 'ds-datepicker__day--today' : undefined,
+                    isSelected ? 'ds-datepicker__day--selected' : undefined,
+                    isRangeDay ? 'ds-datepicker__day--in-range' : undefined,
+                  ]
+                    .filter(Boolean)
+                    .join(' ');
 
-              return (
-                <button
-                  aria-label={new Intl.DateTimeFormat('en-US', {
-                    dateStyle: 'full',
-                  }).format(day)}
-                  aria-selected={isSelected}
-                  className={dayClassName}
-                  disabled={dayDisabled}
-                  key={isoValue}
-                  onClick={() => {
-                    selectDate(isoValue);
-                  }}
-                  role="gridcell"
-                  type="button"
-                >
-                  <span>{day.getDate()}</span>
-                </button>
-              );
-            })}
+                  return (
+                    <div aria-selected={isSelected} key={isoValue} role="gridcell">
+                      <button
+                        aria-label={new Intl.DateTimeFormat('en-US', {
+                          dateStyle: 'full',
+                        }).format(day)}
+                        className={dayClassName}
+                        disabled={dayDisabled}
+                        onClick={() => {
+                          selectDate(isoValue);
+                        }}
+                        type="button"
+                      >
+                        <span>{day.getDate()}</span>
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            ))}
           </div>
 
           {mode === 'range' || showTime ? (

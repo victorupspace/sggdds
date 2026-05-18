@@ -1,15 +1,15 @@
 .ds-progress-bar {
-  --progress-bar-track-color: var(--ds-primitive-color-neutral-grey-200);
-  --progress-bar-fill-color: var(--ds-primitive-color-identity-blue-primary);
-  --progress-bar-label-color: var(--ds-primitive-color-neutral-grey-700);
-  --progress-bar-helper-color: var(--ds-primitive-color-neutral-grey-600);
-  --progress-bar-value-color: var(--ds-primitive-color-neutral-grey-700);
+  --progress-bar-track-color: var(--ds-semantic-color-border-neutral-subtle);
+  --progress-bar-fill-color: var(--ds-semantic-color-action-primary-default);
+  --progress-bar-label-color: var(--ds-semantic-color-content-neutral-subtle);
+  --progress-bar-helper-color: var(--ds-semantic-color-content-neutral-muted);
+  --progress-bar-value-color: var(--ds-semantic-color-content-neutral-subtle);
   --progress-bar-icon-color: var(--progress-bar-fill-color);
-  --progress-bar-icon-mark: var(--ds-primitive-color-white);
+  --progress-bar-icon-mark: var(--ds-semantic-color-background-neutral-default);
   --progress-bar-height: var(--ds-primitive-spacing-8);
   --progress-bar-width: 480px;
   --progress-bar-gap: var(--ds-primitive-spacing-4);
-  --progress-bar-radius: var(--ds-primitive-border-radius-radius-full);
+  --progress-bar-radius: var(--ds-semantic-radius-full);
 
   display: grid;
   box-sizing: border-box;
@@ -22,22 +22,22 @@
 }
 
 .ds-progress-bar--variant-neutral {
-  --progress-bar-fill-color: var(--ds-primitive-color-soft-black);
-  --progress-bar-icon-color: var(--ds-primitive-color-neutral-grey-700);
+  --progress-bar-fill-color: var(--ds-semantic-color-content-neutral-default);
+  --progress-bar-icon-color: var(--ds-semantic-color-content-neutral-subtle);
 }
 
 .ds-progress-bar--variant-success {
-  --progress-bar-fill-color: var(--ds-primitive-color-utility-success-green-300);
-  --progress-bar-label-color: var(--ds-primitive-color-neutral-grey-700);
-  --progress-bar-helper-color: var(--ds-primitive-color-utility-success-green-300);
-  --progress-bar-value-color: var(--ds-primitive-color-utility-success-green-300);
+  --progress-bar-fill-color: var(--ds-semantic-color-background-positive-default);
+  --progress-bar-label-color: var(--ds-semantic-color-content-neutral-subtle);
+  --progress-bar-helper-color: var(--ds-semantic-color-background-positive-default);
+  --progress-bar-value-color: var(--ds-semantic-color-background-positive-default);
 }
 
 .ds-progress-bar--variant-error {
-  --progress-bar-fill-color: var(--ds-primitive-color-utility-danger-red-300);
-  --progress-bar-label-color: var(--ds-primitive-color-utility-danger-red-300);
-  --progress-bar-helper-color: var(--ds-primitive-color-utility-danger-red-300);
-  --progress-bar-value-color: var(--ds-primitive-color-utility-danger-red-300);
+  --progress-bar-fill-color: var(--ds-semantic-color-content-negative-default);
+  --progress-bar-label-color: var(--ds-semantic-color-content-negative-default);
+  --progress-bar-helper-color: var(--ds-semantic-color-content-negative-default);
+  --progress-bar-value-color: var(--ds-semantic-color-content-negative-default);
 }
 
 .ds-progress-bar--size-sm {

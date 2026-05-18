@@ -1,9 +1,9 @@
 .ds-avatar {
-  --avatar-background: var(--ds-primitive-color-soft-black);
-  --avatar-foreground: var(--ds-primitive-color-white);
-  --avatar-border-color: var(--ds-primitive-color-neutral-alpha-8);
-  --avatar-disabled-background: var(--ds-primitive-color-neutral-grey-300);
-  --avatar-disabled-foreground: var(--ds-primitive-color-neutral-grey-600);
+  --avatar-background: var(--ds-semantic-color-content-neutral-default);
+  --avatar-foreground: var(--ds-semantic-color-background-neutral-default);
+  --avatar-border-color: var(--ds-semantic-color-background-neutral-active);
+  --avatar-disabled-background: var(--ds-semantic-color-border-neutral-default);
+  --avatar-disabled-foreground: var(--ds-semantic-color-content-neutral-muted);
   --avatar-size: var(--ds-primitive-spacing-40);
   --avatar-font-size: var(--ds-primitive-typography-font-size-16);
   --avatar-line-height: var(--ds-primitive-typography-line-height-20);
@@ -17,7 +17,7 @@
   place-items: center;
   overflow: hidden;
   border: var(--ds-primitive-border-width-border-sm) solid var(--avatar-border-color);
-  border-radius: var(--ds-primitive-border-radius-radius-full);
+  border-radius: var(--ds-semantic-radius-full);
   background: var(--avatar-background);
   color: var(--avatar-foreground);
   font-family:

@@ -1,16 +1,16 @@
 .ds-dropdown {
-  --dropdown-label-color: var(--ds-primitive-color-soft-black);
-  --dropdown-text-color: var(--ds-primitive-color-soft-black);
-  --dropdown-placeholder-color: var(--ds-primitive-color-neutral-grey-500);
-  --dropdown-helper-color: var(--ds-primitive-color-soft-black);
-  --dropdown-background: var(--ds-primitive-color-white);
-  --dropdown-border-color: var(--ds-primitive-color-neutral-grey-500);
-  --dropdown-hover-border-color: var(--ds-primitive-color-soft-black);
-  --dropdown-focus-color: var(--ds-primitive-color-identity-blue-primary);
-  --dropdown-error-color: var(--ds-primitive-color-utility-danger-red-300);
-  --dropdown-disabled-background: var(--ds-primitive-color-neutral-grey-100);
-  --dropdown-disabled-border-color: var(--ds-primitive-color-neutral-grey-300);
-  --dropdown-disabled-color: var(--ds-primitive-color-neutral-grey-500);
+  --dropdown-label-color: var(--ds-semantic-color-content-neutral-default);
+  --dropdown-text-color: var(--ds-semantic-color-content-neutral-default);
+  --dropdown-placeholder-color: var(--ds-semantic-color-content-neutral-disabled);
+  --dropdown-helper-color: var(--ds-semantic-color-content-neutral-default);
+  --dropdown-background: var(--ds-semantic-color-background-neutral-default);
+  --dropdown-border-color: var(--ds-semantic-color-content-neutral-disabled);
+  --dropdown-hover-border-color: var(--ds-semantic-color-content-neutral-default);
+  --dropdown-focus-color: var(--ds-semantic-color-action-primary-default);
+  --dropdown-error-color: var(--ds-semantic-color-content-negative-default);
+  --dropdown-disabled-background: var(--ds-semantic-color-background-neutral-disabled);
+  --dropdown-disabled-border-color: var(--ds-semantic-color-border-neutral-default);
+  --dropdown-disabled-color: var(--ds-semantic-color-content-neutral-disabled);
   --dropdown-gap: var(--ds-primitive-spacing-8);
   --dropdown-padding-inline-start: var(--ds-primitive-spacing-12);
   --dropdown-padding-inline-end: var(--ds-primitive-spacing-8);
@@ -66,7 +66,7 @@
   padding-inline: var(--dropdown-padding-inline-start)
     calc(var(--dropdown-padding-inline-end) + var(--dropdown-icon-size) + var(--dropdown-icon-gap));
   border: var(--ds-primitive-border-width-border-sm) solid var(--dropdown-border-color);
-  border-radius: var(--ds-primitive-border-radius-radius-sm);
+  border-radius: var(--ds-semantic-radius-sm);
   outline: 0;
   appearance: none;
   background: var(--dropdown-background);
@@ -139,7 +139,7 @@
   inline-size: var(--ds-primitive-spacing-20);
   block-size: var(--ds-primitive-spacing-20);
   border: var(--ds-primitive-border-width-border-md) solid currentColor;
-  border-radius: var(--ds-primitive-border-radius-radius-full);
+  border-radius: var(--ds-semantic-radius-full);
   font-size: var(--ds-primitive-typography-font-size-12);
   font-weight: var(--ds-primitive-typography-font-weight-bold);
   line-height: var(--ds-primitive-typography-line-height-16);

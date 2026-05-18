@@ -1,16 +1,16 @@
 .ds-text-input {
-  --text-input-label-color: var(--ds-primitive-color-soft-black);
-  --text-input-text-color: var(--ds-primitive-color-soft-black);
-  --text-input-placeholder-color: var(--ds-primitive-color-neutral-grey-500);
-  --text-input-helper-color: var(--ds-primitive-color-soft-black);
-  --text-input-background: var(--ds-primitive-color-white);
-  --text-input-border-color: var(--ds-primitive-color-neutral-grey-500);
-  --text-input-hover-border-color: var(--ds-primitive-color-soft-black);
-  --text-input-focus-color: var(--ds-primitive-color-identity-blue-primary);
-  --text-input-error-color: var(--ds-primitive-color-utility-danger-red-300);
-  --text-input-disabled-background: var(--ds-primitive-color-neutral-grey-100);
-  --text-input-disabled-border-color: var(--ds-primitive-color-neutral-grey-300);
-  --text-input-disabled-color: var(--ds-primitive-color-neutral-grey-500);
+  --text-input-label-color: var(--ds-semantic-color-content-neutral-default);
+  --text-input-text-color: var(--ds-semantic-color-content-neutral-default);
+  --text-input-placeholder-color: var(--ds-semantic-color-content-neutral-disabled);
+  --text-input-helper-color: var(--ds-semantic-color-content-neutral-default);
+  --text-input-background: var(--ds-semantic-color-background-neutral-default);
+  --text-input-border-color: var(--ds-semantic-color-content-neutral-disabled);
+  --text-input-hover-border-color: var(--ds-semantic-color-content-neutral-default);
+  --text-input-focus-color: var(--ds-semantic-color-action-primary-default);
+  --text-input-error-color: var(--ds-semantic-color-content-negative-default);
+  --text-input-disabled-background: var(--ds-semantic-color-background-neutral-disabled);
+  --text-input-disabled-border-color: var(--ds-semantic-color-border-neutral-default);
+  --text-input-disabled-color: var(--ds-semantic-color-content-neutral-disabled);
   --text-input-gap: var(--ds-primitive-spacing-8);
   --text-input-control-gap: var(--ds-primitive-spacing-8);
   --text-input-padding-inline-start: var(--ds-primitive-spacing-12);
@@ -57,7 +57,7 @@
   align-items: center;
   padding-inline: var(--text-input-padding-inline-start) var(--text-input-padding-inline-end);
   border: var(--ds-primitive-border-width-border-sm) solid var(--text-input-border-color);
-  border-radius: var(--ds-primitive-border-radius-radius-sm);
+  border-radius: var(--ds-semantic-radius-sm);
   background: var(--text-input-background);
   color: var(--text-input-text-color);
   transition:
@@ -139,7 +139,7 @@
   inline-size: var(--ds-primitive-spacing-20);
   block-size: var(--ds-primitive-spacing-20);
   border: var(--ds-primitive-border-width-border-md) solid currentColor;
-  border-radius: var(--ds-primitive-border-radius-radius-full);
+  border-radius: var(--ds-semantic-radius-full);
   font-size: var(--ds-primitive-typography-font-size-12);
   font-weight: var(--ds-primitive-typography-font-weight-bold);
   line-height: var(--ds-primitive-typography-line-height-16);

@@ -1,10 +1,10 @@
 .ds-hero {
-  --hero-surface: var(--ds-primitive-color-neutral-grey-50);
-  --hero-foreground: var(--ds-primitive-color-soft-black);
-  --hero-muted: var(--ds-primitive-color-neutral-grey-700);
-  --hero-border: var(--ds-primitive-color-neutral-grey-200);
-  --hero-media-surface: var(--ds-primitive-color-white);
-  --hero-media-border: var(--ds-primitive-color-neutral-alpha-24);
+  --hero-surface: var(--ds-semantic-color-background-neutral-elevated);
+  --hero-foreground: var(--ds-semantic-color-content-neutral-default);
+  --hero-muted: var(--ds-semantic-color-content-neutral-subtle);
+  --hero-border: var(--ds-semantic-color-border-neutral-subtle);
+  --hero-media-surface: var(--ds-semantic-color-background-neutral-default);
+  --hero-media-border: var(--ds-semantic-color-background-neutral-overlay-muted);
   --hero-padding-block: var(--ds-primitive-spacing-96);
   --hero-padding-inline: var(--ds-primitive-spacing-64);
   --hero-content-max-inline-size: 560px;
@@ -34,26 +34,26 @@
 }
 
 .ds-hero--variant-light {
-  --hero-surface: var(--ds-primitive-color-neutral-grey-50);
-  --hero-foreground: var(--ds-primitive-color-identity-blue-darker);
-  --hero-muted: var(--ds-primitive-color-soft-black);
-  --hero-media-surface: var(--ds-primitive-color-white);
+  --hero-surface: var(--ds-semantic-color-background-neutral-elevated);
+  --hero-foreground: var(--ds-semantic-color-action-primary-active);
+  --hero-muted: var(--ds-semantic-color-content-neutral-default);
+  --hero-media-surface: var(--ds-semantic-color-background-neutral-default);
 }
 
 .ds-hero--variant-dark {
-  --hero-surface: var(--ds-primitive-color-identity-blue-darker);
-  --hero-foreground: var(--ds-primitive-color-white);
-  --hero-muted: var(--ds-primitive-color-white);
-  --hero-media-surface: var(--ds-primitive-color-neutral-alpha-12);
-  --hero-media-border: var(--ds-primitive-color-neutral-alpha-48);
+  --hero-surface: var(--ds-semantic-color-action-primary-active);
+  --hero-foreground: var(--ds-semantic-color-background-neutral-default);
+  --hero-muted: var(--ds-semantic-color-background-neutral-default);
+  --hero-media-surface: var(--ds-semantic-color-background-neutral-overlay-subtle);
+  --hero-media-border: var(--ds-semantic-color-background-neutral-overlay-strong);
 }
 
 .ds-hero--variant-image {
-  --hero-surface: var(--ds-primitive-color-soft-black);
-  --hero-foreground: var(--ds-primitive-color-white);
-  --hero-muted: var(--ds-primitive-color-neutral-grey-100);
-  --hero-media-surface: var(--ds-primitive-color-neutral-alpha-12);
-  --hero-media-border: var(--ds-primitive-color-neutral-alpha-48);
+  --hero-surface: var(--ds-semantic-color-content-neutral-default);
+  --hero-foreground: var(--ds-semantic-color-background-neutral-default);
+  --hero-muted: var(--ds-semantic-color-background-neutral-disabled);
+  --hero-media-surface: var(--ds-semantic-color-background-neutral-overlay-subtle);
+  --hero-media-border: var(--ds-semantic-color-background-neutral-overlay-strong);
   --hero-media-max-inline-size: 520px;
   --hero-media-aspect-ratio: 1 / 1;
 }
@@ -154,7 +154,7 @@
   aspect-ratio: var(--hero-media-aspect-ratio);
   overflow: hidden;
   border: var(--ds-primitive-border-width-border-sm) solid var(--hero-media-border);
-  border-radius: var(--ds-primitive-border-radius-radius-md);
+  border-radius: var(--ds-semantic-radius-md);
   background: var(--hero-media-surface);
 }
 

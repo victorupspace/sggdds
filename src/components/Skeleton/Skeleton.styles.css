@@ -1,10 +1,10 @@
 .ds-skeleton {
-  --skeleton-background: var(--ds-primitive-color-neutral-grey-300);
-  --skeleton-highlight: var(--ds-primitive-color-neutral-grey-200);
+  --skeleton-background: var(--ds-semantic-color-border-neutral-default);
+  --skeleton-highlight: var(--ds-semantic-color-border-neutral-subtle);
   --skeleton-width: 100%;
   --skeleton-height: var(--ds-primitive-spacing-20);
   --skeleton-line-gap: var(--ds-primitive-spacing-8);
-  --skeleton-radius: var(--ds-primitive-border-radius-radius-sm);
+  --skeleton-radius: var(--ds-semantic-radius-sm);
 
   position: relative;
   display: block;
@@ -17,33 +17,33 @@
 }
 
 .ds-skeleton--tone-subtle {
-  --skeleton-background: var(--ds-primitive-color-neutral-grey-200);
-  --skeleton-highlight: var(--ds-primitive-color-neutral-grey-100);
+  --skeleton-background: var(--ds-semantic-color-border-neutral-subtle);
+  --skeleton-highlight: var(--ds-semantic-color-background-neutral-disabled);
 }
 
 .ds-skeleton--tone-strong {
-  --skeleton-background: var(--ds-primitive-color-neutral-grey-400);
-  --skeleton-highlight: var(--ds-primitive-color-neutral-grey-300);
+  --skeleton-background: var(--ds-semantic-color-content-neutral-weak);
+  --skeleton-highlight: var(--ds-semantic-color-border-neutral-default);
 }
 
 .ds-skeleton--radius-none {
-  --skeleton-radius: var(--ds-primitive-border-radius-radius-none);
+  --skeleton-radius: var(--ds-semantic-radius-none);
 }
 
 .ds-skeleton--radius-sm {
-  --skeleton-radius: var(--ds-primitive-border-radius-radius-sm);
+  --skeleton-radius: var(--ds-semantic-radius-sm);
 }
 
 .ds-skeleton--radius-md {
-  --skeleton-radius: var(--ds-primitive-border-radius-radius-md);
+  --skeleton-radius: var(--ds-semantic-radius-md);
 }
 
 .ds-skeleton--radius-lg {
-  --skeleton-radius: var(--ds-primitive-border-radius-radius-lg);
+  --skeleton-radius: var(--ds-semantic-radius-lg);
 }
 
 .ds-skeleton--radius-full {
-  --skeleton-radius: var(--ds-primitive-border-radius-radius-full);
+  --skeleton-radius: var(--ds-semantic-radius-full);
 }
 
 .ds-skeleton--shape-circle {
@@ -57,7 +57,7 @@
 
 .ds-skeleton--shape-text {
   --skeleton-height: var(--ds-primitive-spacing-16);
-  --skeleton-radius: var(--ds-primitive-border-radius-radius-full);
+  --skeleton-radius: var(--ds-semantic-radius-full);
 }
 
 .ds-skeleton--multiline {

@@ -1,12 +1,18 @@
 .ds-badge {
-  --badge-bg: var(--ds-primitive-color-soft-black, #292929);
-  --badge-color: var(--ds-primitive-color-white, #ffffff);
+  --badge-bg: var(
+    --ds-semantic-color-background-neutral-knockout-default,
+    var(--ds-semantic-color-content-neutral-default)
+  );
+  --badge-color: var(
+    --ds-semantic-color-content-neutral-knockout-default,
+    var(--ds-semantic-color-background-neutral-default)
+  );
   --badge-gap: var(--ds-primitive-spacing-6, 6px);
   --badge-padding-inline: var(--ds-primitive-spacing-12, 12px);
   --badge-height: 32px;
   --badge-font-size: var(--ds-primitive-typography-font-size-14, 14px);
   --badge-font-weight: var(--ds-primitive-typography-font-weight-bold, 700);
-  --badge-radius: var(--ds-primitive-border-radius-radius-full, 999px);
+  --badge-radius: var(--ds-semantic-radius-full, 999px);
   --badge-icon-size: 16px;
 
   display: inline-flex;
@@ -73,69 +79,69 @@
 }
 
 .ds-badge--variant-brand.ds-badge--appearance-solid {
-  --badge-bg: #5b00a8;
-  --badge-color: #ffffff;
+  --badge-bg: var(--ds-semantic-color-background-brand-default);
+  --badge-color: var(--ds-semantic-color-content-neutral-knockout-default);
 }
 
 .ds-badge--variant-neutral.ds-badge--appearance-solid {
-  --badge-bg: var(--ds-primitive-color-soft-black, #292929);
-  --badge-color: #ffffff;
+  --badge-bg: var(--ds-semantic-color-background-neutral-knockout-default);
+  --badge-color: var(--ds-semantic-color-content-neutral-knockout-default);
 }
 
 .ds-badge--variant-information.ds-badge--appearance-solid {
-  --badge-bg: #006db8;
-  --badge-color: #ffffff;
+  --badge-bg: var(--ds-semantic-color-background-information-default);
+  --badge-color: var(--ds-semantic-color-content-neutral-knockout-default);
 }
 
 .ds-badge--variant-positive.ds-badge--appearance-solid {
-  --badge-bg: #007a12;
-  --badge-color: #ffffff;
+  --badge-bg: var(--ds-semantic-color-background-positive-default);
+  --badge-color: var(--ds-semantic-color-content-neutral-knockout-default);
 }
 
 .ds-badge--variant-negative.ds-badge--appearance-solid {
-  --badge-bg: #d92512;
-  --badge-color: #ffffff;
+  --badge-bg: var(--ds-semantic-color-background-negative-default);
+  --badge-color: var(--ds-semantic-color-content-neutral-knockout-default);
 }
 
 .ds-badge--variant-notice.ds-badge--appearance-solid {
-  --badge-bg: #946200;
-  --badge-color: #ffffff;
+  --badge-bg: var(--ds-semantic-color-background-notice-default);
+  --badge-color: var(--ds-semantic-color-content-neutral-knockout-default);
 }
 
 .ds-badge--variant-brand.ds-badge--appearance-subtle {
-  --badge-bg: #f3e8ff;
-  --badge-color: #5b00a8;
+  --badge-bg: var(--ds-semantic-color-background-brand-subtle);
+  --badge-color: var(--ds-semantic-color-content-brand-default);
 }
 
 .ds-badge--variant-neutral.ds-badge--appearance-subtle {
-  --badge-bg: var(--ds-primitive-color-neutral-grey-100, #f5f5f5);
-  --badge-color: var(--ds-primitive-color-neutral-grey-700, #484848);
+  --badge-bg: var(--ds-semantic-color-background-neutral-subtle);
+  --badge-color: var(--ds-semantic-color-content-neutral-subtle);
 }
 
 .ds-badge--variant-information.ds-badge--appearance-subtle {
-  --badge-bg: #e5f3ff;
-  --badge-color: #006db8;
+  --badge-bg: var(--ds-semantic-color-background-information-subtle);
+  --badge-color: var(--ds-semantic-color-content-information-default);
 }
 
 .ds-badge--variant-positive.ds-badge--appearance-subtle {
-  --badge-bg: #e7f8e9;
-  --badge-color: #007a12;
+  --badge-bg: var(--ds-semantic-color-background-positive-subtle);
+  --badge-color: var(--ds-semantic-color-content-positive-default);
 }
 
 .ds-badge--variant-negative.ds-badge--appearance-subtle {
-  --badge-bg: #ffe8e5;
-  --badge-color: #c91f0e;
+  --badge-bg: var(--ds-semantic-color-background-negative-subtle);
+  --badge-color: var(--ds-semantic-color-content-negative-default);
 }
 
 .ds-badge--variant-notice.ds-badge--appearance-subtle {
-  --badge-bg: #fff2cc;
-  --badge-color: #7a5100;
+  --badge-bg: var(--ds-semantic-color-background-notice-subtle);
+  --badge-color: var(--ds-semantic-color-content-notice-default);
 }
 
 @media (max-width: 420px) {
   .ds-badge--size-large {
     --badge-height: 36px;
-    --badge-padding-inline: var(--ds-primitive-spacing-14, 14px);
+    --badge-padding-inline: calc(var(--ds-primitive-spacing-12) + var(--ds-primitive-spacing-2));
     --badge-font-size: var(--ds-primitive-typography-font-size-14, 14px);
     --badge-icon-size: 18px;
   }

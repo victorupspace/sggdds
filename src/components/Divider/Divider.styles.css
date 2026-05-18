@@ -1,5 +1,5 @@
 .ds-divider {
-  --divider-color: var(--ds-primitive-color-neutral-grey-300);
+  --divider-color: var(--ds-semantic-color-border-neutral-default);
   --divider-size: var(--ds-primitive-border-width-border-sm);
   --divider-length: 100%;
 
@@ -11,15 +11,15 @@
 }
 
 .ds-divider--tone-subtle {
-  --divider-color: var(--ds-primitive-color-neutral-grey-200);
+  --divider-color: var(--ds-semantic-color-border-neutral-subtle);
 }
 
 .ds-divider--tone-default {
-  --divider-color: var(--ds-primitive-color-neutral-grey-300);
+  --divider-color: var(--ds-semantic-color-border-neutral-default);
 }
 
 .ds-divider--tone-strong {
-  --divider-color: var(--ds-primitive-color-neutral-grey-500);
+  --divider-color: var(--ds-semantic-color-content-neutral-disabled);
 }
 
 .ds-divider--thickness-sm {

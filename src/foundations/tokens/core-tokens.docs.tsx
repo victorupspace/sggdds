@@ -10,7 +10,6 @@ import {
   lineHeights,
   spacing,
   tokenSummary,
-  totalTokenCount,
   type TokenEntry,
 } from './core-tokens.data';
 import './core-tokens.docs.css';
@@ -112,11 +111,6 @@ function TokenMeta({ compact = false, token }: { compact?: boolean; token: Token
 function CategoryMetricGrid() {
   return (
     <section className="token-metric-grid" aria-label="Resumo dos Core tokens">
-      <article className="token-metric token-metric-primary">
-        <span>Total</span>
-        <strong>{totalTokenCount}</strong>
-        <p>Core tokens primitivos compilados</p>
-      </article>
       {tokenSummary.map((item) => (
         <article className="token-metric" key={item.category}>
           <span>{item.label}</span>
@@ -150,7 +144,6 @@ export function CoreTokensOverviewPage() {
   return (
     <PageShell>
       <PageIntro
-        count={totalTokenCount}
         description="Tokens primitivos importados do Figma, normalizados para CSS custom properties e JSON interno, com estrutura preparada para evoluir para plataformas nativas."
         eyebrow="SGGD Core Tokens"
         title="Fundacao visual do Design System"

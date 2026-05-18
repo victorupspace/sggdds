@@ -1,14 +1,14 @@
 .ds-accordion {
-  --accordion-background: var(--ds-primitive-color-white);
-  --accordion-border-color: var(--ds-primitive-color-neutral-grey-200);
-  --accordion-text-color: var(--ds-primitive-color-soft-black);
-  --accordion-description-color: var(--ds-primitive-color-neutral-grey-700);
-  --accordion-hover-background: var(--ds-primitive-color-neutral-alpha-4);
-  --accordion-active-background: var(--ds-primitive-color-neutral-alpha-8);
-  --accordion-focus-ring: var(--ds-primitive-color-soft-black);
-  --accordion-disabled-background: var(--ds-primitive-color-neutral-grey-100);
-  --accordion-disabled-text-color: var(--ds-primitive-color-neutral-grey-500);
-  --accordion-radius: var(--ds-primitive-border-radius-radius-md);
+  --accordion-background: var(--ds-semantic-color-background-neutral-default);
+  --accordion-border-color: var(--ds-semantic-color-border-neutral-subtle);
+  --accordion-text-color: var(--ds-semantic-color-content-neutral-default);
+  --accordion-description-color: var(--ds-semantic-color-content-neutral-subtle);
+  --accordion-hover-background: var(--ds-semantic-color-background-neutral-hover);
+  --accordion-active-background: var(--ds-semantic-color-background-neutral-active);
+  --accordion-focus-ring: var(--ds-semantic-color-content-neutral-default);
+  --accordion-disabled-background: var(--ds-semantic-color-background-neutral-disabled);
+  --accordion-disabled-text-color: var(--ds-semantic-color-content-neutral-disabled);
+  --accordion-radius: var(--ds-semantic-radius-md);
 
   display: grid;
   inline-size: 100%;

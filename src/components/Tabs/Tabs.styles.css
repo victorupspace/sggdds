@@ -1,13 +1,13 @@
 .ds-tabs {
-  --tabs-foreground: var(--ds-primitive-color-soft-black);
-  --tabs-muted: var(--ds-primitive-color-neutral-grey-600);
-  --tabs-disabled: var(--ds-primitive-color-neutral-grey-400);
-  --tabs-selected: var(--ds-primitive-color-identity-blue-primary);
+  --tabs-foreground: var(--ds-semantic-color-content-neutral-default);
+  --tabs-muted: var(--ds-semantic-color-content-neutral-muted);
+  --tabs-disabled: var(--ds-semantic-color-content-neutral-weak);
+  --tabs-selected: var(--ds-semantic-color-action-primary-default);
   --tabs-selected-foreground: var(--tabs-selected);
-  --tabs-hover: var(--ds-primitive-color-neutral-alpha-4);
-  --tabs-active: var(--ds-primitive-color-neutral-alpha-8);
-  --tabs-border: var(--ds-primitive-color-neutral-grey-300);
-  --tabs-focus-ring: var(--ds-primitive-color-identity-blue-primary);
+  --tabs-hover: var(--ds-semantic-color-background-neutral-hover);
+  --tabs-active: var(--ds-semantic-color-background-neutral-active);
+  --tabs-border: var(--ds-semantic-color-border-neutral-default);
+  --tabs-focus-ring: var(--ds-semantic-color-action-primary-default);
   --tabs-tab-gap: var(--ds-primitive-spacing-8);
   --tabs-tab-padding-inline: var(--ds-primitive-spacing-16);
   --tabs-tab-padding-block: var(--ds-primitive-spacing-12);
@@ -59,9 +59,9 @@
   align-items: center;
   justify-content: center;
   border: 0;
-  border-radius: var(--ds-primitive-border-radius-radius-sm)
-    var(--ds-primitive-border-radius-radius-sm) var(--ds-primitive-border-radius-radius-none)
-    var(--ds-primitive-border-radius-radius-none);
+  border-radius: var(--ds-semantic-radius-sm)
+    var(--ds-semantic-radius-sm) var(--ds-semantic-radius-none)
+    var(--ds-semantic-radius-none);
   background: transparent;
   color: var(--tabs-muted);
   cursor: pointer;
@@ -140,9 +140,9 @@
   min-inline-size: var(--tabs-badge-size);
   block-size: var(--tabs-badge-size);
   padding-inline: var(--ds-primitive-spacing-6);
-  border-radius: var(--ds-primitive-border-radius-radius-full);
+  border-radius: var(--ds-semantic-radius-full);
   background: var(--tabs-selected);
-  color: var(--ds-primitive-color-white);
+  color: var(--ds-semantic-color-background-neutral-default);
   font-size: var(--ds-primitive-typography-font-size-14);
   font-weight: var(--ds-primitive-typography-font-weight-bold);
   line-height: var(--ds-primitive-typography-line-height-20);
@@ -191,7 +191,7 @@
 
   .ds-tabs__tab {
     min-inline-size: var(--ds-primitive-spacing-128);
-    min-block-size: var(--ds-primitive-spacing-56);
+    min-block-size: calc(var(--ds-primitive-spacing-48) + var(--ds-primitive-spacing-8));
   }
 
   .ds-tabs--variant-compact .ds-tabs__tab {

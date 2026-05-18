@@ -1,10 +1,10 @@
 .ds-stepper {
-  --stepper-surface: var(--ds-primitive-color-neutral-grey-50, #fafafa);
-  --stepper-text: var(--ds-primitive-color-pure-black, #000000);
-  --stepper-muted: var(--ds-primitive-color-neutral-grey-600, #505050);
-  --stepper-track: var(--ds-primitive-color-neutral-grey-200, #e5e5e5);
-  --stepper-active: var(--ds-primitive-color-pure-black, #000000);
-  --stepper-radius: var(--ds-primitive-border-radius-radius-lg, 16px);
+  --stepper-surface: var(--ds-semantic-color-background-neutral-elevated);
+  --stepper-text: var(--ds-semantic-color-content-neutral-default);
+  --stepper-muted: var(--ds-semantic-color-content-neutral-muted);
+  --stepper-track: var(--ds-semantic-color-border-neutral-subtle);
+  --stepper-active: var(--ds-semantic-color-content-neutral-default);
+  --stepper-radius: var(--ds-semantic-radius-lg, 16px);
   --stepper-padding-block: 17px;
   --stepper-padding-inline: 20px;
   --stepper-number-size: 32px;
@@ -68,9 +68,9 @@
   place-items: center;
   inline-size: var(--stepper-number-size);
   block-size: var(--stepper-number-size);
-  border-radius: var(--ds-primitive-border-radius-radius-full, 999px);
+  border-radius: var(--ds-semantic-radius-full, 999px);
   background: var(--stepper-active);
-  color: var(--ds-primitive-color-white, #ffffff);
+  color: var(--ds-semantic-color-content-neutral-inverse);
   font-size: var(--ds-primitive-typography-font-size-18, 18px);
   font-weight: var(--ds-primitive-typography-font-weight-regular, 400);
   line-height: 1;
@@ -95,7 +95,7 @@
   overflow: hidden;
   inline-size: 100%;
   block-size: var(--stepper-bar-size);
-  border-radius: var(--ds-primitive-border-radius-radius-full, 999px);
+  border-radius: var(--ds-semantic-radius-full, 999px);
   background: var(--stepper-track);
 }
 
@@ -105,7 +105,7 @@
   inset-inline-start: 0;
   min-inline-size: 0;
   border-radius: inherit;
-  background: var(--ds-primitive-color-soft-black, #292929);
+  background: var(--ds-semantic-color-background-neutral-knockout-default);
 }
 
 .ds-stepper__dots {
@@ -130,7 +130,7 @@
   display: inline-block;
   inline-size: var(--stepper-dot-size);
   block-size: var(--stepper-dot-size);
-  border-radius: var(--ds-primitive-border-radius-radius-full, 999px);
+  border-radius: var(--ds-semantic-radius-full, 999px);
   background: var(--stepper-track);
 }
 

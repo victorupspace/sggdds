@@ -1,7 +1,7 @@
 .ds-spinner {
-  --spinner-color: var(--ds-primitive-color-soft-black);
-  --spinner-track-color: var(--ds-primitive-color-neutral-alpha-12);
-  --spinner-label-color: var(--ds-primitive-color-neutral-grey-700);
+  --spinner-color: var(--ds-semantic-color-content-neutral-default);
+  --spinner-track-color: var(--ds-semantic-color-background-neutral-overlay-subtle);
+  --spinner-label-color: var(--ds-semantic-color-content-neutral-subtle);
   --spinner-size: var(--ds-primitive-spacing-32);
   --spinner-stroke: var(--ds-primitive-border-width-border-lg);
   --spinner-gap: var(--ds-primitive-spacing-8);
@@ -13,19 +13,19 @@
 }
 
 .ds-spinner--variant-brand {
-  --spinner-color: var(--ds-primitive-color-identity-blue-primary);
-  --spinner-label-color: var(--ds-primitive-color-identity-blue-primary);
+  --spinner-color: var(--ds-semantic-color-action-primary-default);
+  --spinner-label-color: var(--ds-semantic-color-action-primary-default);
 }
 
 .ds-spinner--variant-neutral {
-  --spinner-color: var(--ds-primitive-color-soft-black);
-  --spinner-label-color: var(--ds-primitive-color-neutral-grey-700);
+  --spinner-color: var(--ds-semantic-color-content-neutral-default);
+  --spinner-label-color: var(--ds-semantic-color-content-neutral-subtle);
 }
 
 .ds-spinner--variant-inverse {
-  --spinner-color: var(--ds-primitive-color-white);
-  --spinner-track-color: var(--ds-primitive-color-neutral-alpha-24);
-  --spinner-label-color: var(--ds-primitive-color-white);
+  --spinner-color: var(--ds-semantic-color-background-neutral-default);
+  --spinner-track-color: var(--ds-semantic-color-background-neutral-overlay-muted);
+  --spinner-label-color: var(--ds-semantic-color-background-neutral-default);
 }
 
 .ds-spinner--size-sm {
@@ -77,7 +77,7 @@
   border-block-end-color: var(--spinner-color);
   border-block-start-color: var(--spinner-color);
   border-inline-end-color: var(--spinner-color);
-  border-radius: var(--ds-primitive-border-radius-radius-full);
+  border-radius: var(--ds-semantic-radius-full);
   animation: ds-spinner-rotate 800ms linear infinite;
 }
 

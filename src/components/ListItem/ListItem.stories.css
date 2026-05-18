@@ -1,0 +1,94 @@
+.list-item-story-shell {
+  display: grid;
+  min-block-size: 100vh;
+  place-items: center;
+  padding: var(--ds-primitive-spacing-48);
+  background: var(--ds-primitive-color-neutral-grey-100);
+}
+
+.list-item-story-panel {
+  display: grid;
+  inline-size: min(100%, 720px);
+  gap: var(--ds-primitive-spacing-32);
+}
+
+.list-item-story-surface {
+  overflow: hidden;
+  padding: var(--ds-primitive-spacing-24);
+  border: var(--ds-primitive-border-width-border-sm) solid var(--ds-primitive-color-neutral-grey-200);
+  border-radius: var(--ds-primitive-border-radius-radius-md);
+  background: var(--ds-primitive-color-white);
+}
+
+.list-item-story-list {
+  display: grid;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list-item-story-tabs {
+  display: flex;
+  gap: var(--ds-primitive-spacing-8);
+  align-items: center;
+  border-bottom: var(--ds-primitive-border-width-border-sm) solid var(--ds-primitive-color-neutral-grey-200);
+}
+
+.list-item-story-tab {
+  min-block-size: var(--ds-primitive-spacing-48);
+  padding: var(--ds-primitive-spacing-12) var(--ds-primitive-spacing-24);
+  border: 0;
+  border-bottom: var(--ds-primitive-border-width-border-md) solid transparent;
+  background: transparent;
+  color: var(--ds-primitive-color-neutral-grey-600);
+  font-family:
+    var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
+  font-size: var(--ds-primitive-typography-font-size-18);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  letter-spacing: var(--ds-primitive-typography-letter-spacing-ls-wide);
+  line-height: var(--ds-primitive-typography-line-height-24);
+  text-transform: uppercase;
+}
+
+.list-item-story-tab--active {
+  border-bottom-color: var(--ds-primitive-color-soft-black);
+  color: var(--ds-primitive-color-soft-black);
+}
+
+.list-item-story-icon {
+  display: inline-grid;
+  place-items: center;
+  inline-size: var(--ds-primitive-spacing-24);
+  block-size: var(--ds-primitive-spacing-24);
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  background: var(--ds-primitive-color-utility-info-blue-100);
+  color: var(--ds-primitive-color-utility-info-blue-300);
+}
+
+.list-item-story-icon > svg {
+  inline-size: var(--ds-primitive-spacing-16);
+  block-size: var(--ds-primitive-spacing-16);
+}
+
+.list-item-story-meta {
+  color: var(--ds-primitive-color-neutral-grey-600);
+  font-size: var(--ds-primitive-typography-font-size-14);
+  line-height: var(--ds-primitive-typography-line-height-20);
+  white-space: nowrap;
+}
+
+@media (max-width: 640px) {
+  .list-item-story-shell {
+    padding: var(--ds-primitive-spacing-24);
+  }
+
+  .list-item-story-surface {
+    padding: var(--ds-primitive-spacing-16);
+  }
+
+  .list-item-story-tab {
+    padding-inline: var(--ds-primitive-spacing-12);
+    font-size: var(--ds-primitive-typography-font-size-14);
+    letter-spacing: 0;
+  }
+}

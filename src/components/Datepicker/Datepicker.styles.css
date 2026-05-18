@@ -1,20 +1,19 @@
 .ds-datepicker {
-  --datepicker-label-color: var(--ds-primitive-color-soft-black);
-  --datepicker-text-color: var(--ds-primitive-color-soft-black);
-  --datepicker-placeholder-color: var(--ds-primitive-color-neutral-grey-500);
-  --datepicker-helper-color: var(--ds-primitive-color-soft-black);
-  --datepicker-background: var(--ds-primitive-color-white);
-  --datepicker-border-color: var(--ds-primitive-color-neutral-grey-300);
-  --datepicker-hover-border-color: var(--ds-primitive-color-soft-black);
-  --datepicker-focus-color: var(--ds-primitive-color-identity-blue-primary);
-  --datepicker-error-color: var(--ds-primitive-color-utility-danger-red-300);
-  --datepicker-success-color: var(--ds-primitive-color-identity-green-primary);
-  --datepicker-disabled-background: var(--ds-primitive-color-neutral-grey-100);
-  --datepicker-disabled-border-color: var(--ds-primitive-color-neutral-grey-300);
-  --datepicker-disabled-color: var(--ds-primitive-color-neutral-grey-500);
-  --datepicker-selected-background: var(--ds-primitive-color-soft-black);
-  --datepicker-range-background: var(--ds-primitive-color-soft-black);
-  --datepicker-surface-shadow: var(--ds-primitive-color-neutral-alpha-24);
+  --datepicker-label-color: var(--ds-semantic-color-content-neutral-default);
+  --datepicker-text-color: var(--ds-semantic-color-content-neutral-default);
+  --datepicker-placeholder-color: var(--ds-semantic-color-content-neutral-disabled);
+  --datepicker-helper-color: var(--ds-semantic-color-content-neutral-default);
+  --datepicker-background: var(--ds-semantic-color-background-neutral-default);
+  --datepicker-border-color: var(--ds-semantic-color-border-neutral-default);
+  --datepicker-hover-border-color: var(--ds-semantic-color-content-neutral-default);
+  --datepicker-focus-color: var(--ds-semantic-color-focus-default);
+  --datepicker-error-color: var(--ds-semantic-color-content-negative-default);
+  --datepicker-success-color: var(--ds-semantic-color-content-positive-default);
+  --datepicker-disabled-background: var(--ds-semantic-color-background-neutral-disabled);
+  --datepicker-disabled-border-color: var(--ds-semantic-color-border-neutral-default);
+  --datepicker-disabled-color: var(--ds-semantic-color-content-neutral-disabled);
+  --datepicker-selected-background: var(--ds-semantic-color-background-neutral-knockout-default);
+  --datepicker-range-background: var(--ds-semantic-color-background-neutral-knockout-default);
   --datepicker-gap: var(--ds-primitive-spacing-8);
   --datepicker-padding-inline-start: var(--ds-primitive-spacing-12);
   --datepicker-padding-inline-end: var(--ds-primitive-spacing-8);
@@ -75,7 +74,7 @@
         var(--datepicker-icon-gap)
     );
   border: var(--ds-primitive-border-width-border-sm) solid var(--datepicker-border-color);
-  border-radius: var(--ds-primitive-border-radius-radius-md);
+  border-radius: var(--ds-semantic-radius-md);
   outline: 0;
   background: var(--datepicker-background);
   color: var(--datepicker-text-color);
@@ -119,7 +118,7 @@
   block-size: var(--datepicker-icon-size);
   padding: var(--ds-primitive-spacing-0);
   border: 0;
-  border-radius: var(--ds-primitive-border-radius-radius-sm);
+  border-radius: var(--ds-semantic-radius-sm);
   background: transparent;
   color: currentColor;
   cursor: pointer;
@@ -150,11 +149,10 @@
   gap: var(--ds-primitive-spacing-20);
   padding: var(--ds-primitive-spacing-24);
   border: var(--ds-primitive-border-width-border-sm) solid
-    var(--ds-primitive-color-neutral-grey-100);
-  border-radius: var(--ds-primitive-border-radius-radius-lg);
-  background: var(--ds-primitive-color-white);
-  box-shadow: var(--ds-primitive-spacing-0) var(--ds-primitive-spacing-20)
-    var(--ds-primitive-spacing-40) var(--datepicker-surface-shadow);
+    var(--ds-semantic-color-border-neutral-subtle);
+  border-radius: var(--ds-semantic-radius-lg);
+  background: var(--ds-semantic-color-background-neutral-default);
+  box-shadow: var(--ds-semantic-shadow-popover);
 }
 
 .ds-datepicker__selected-title {
@@ -191,14 +189,14 @@
   block-size: var(--ds-primitive-spacing-40);
   padding: var(--ds-primitive-spacing-0);
   border: 0;
-  border-radius: var(--ds-primitive-border-radius-radius-full);
+  border-radius: var(--ds-semantic-radius-full);
   background: transparent;
   color: currentColor;
   cursor: pointer;
 }
 
 .ds-datepicker__nav-button:hover {
-  background: var(--ds-primitive-color-neutral-grey-100);
+  background: var(--ds-semantic-color-background-neutral-disabled);
 }
 
 .ds-datepicker__nav-button:focus-visible {
@@ -211,15 +209,29 @@
   block-size: var(--ds-primitive-spacing-24);
 }
 
-.ds-datepicker__weekdays,
-.ds-datepicker__days {
+.ds-datepicker__weekdays {
   display: grid;
   grid-template-columns: repeat(7, minmax(0, 1fr));
   gap: var(--ds-primitive-spacing-8);
 }
 
+.ds-datepicker__days {
+  display: grid;
+  gap: var(--ds-primitive-spacing-8);
+}
+
+.ds-datepicker__week {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: var(--ds-primitive-spacing-8);
+}
+
+.ds-datepicker__days > [role='row'] > [role='gridcell'] {
+  display: contents;
+}
+
 .ds-datepicker__weekdays {
-  color: var(--ds-primitive-color-neutral-grey-600);
+  color: var(--ds-semantic-color-content-neutral-muted);
   text-align: center;
   font-size: var(--ds-primitive-typography-font-size-20);
   font-weight: var(--ds-primitive-typography-font-weight-bold);
@@ -235,7 +247,7 @@
   min-block-size: var(--ds-primitive-spacing-40);
   padding: var(--ds-primitive-spacing-0);
   border: var(--ds-primitive-border-width-border-sm) solid transparent;
-  border-radius: var(--ds-primitive-border-radius-radius-full);
+  border-radius: var(--ds-semantic-radius-full);
   background: transparent;
   color: var(--datepicker-text-color);
   font: inherit;
@@ -246,7 +258,7 @@
 }
 
 .ds-datepicker__day:hover {
-  background: var(--ds-primitive-color-neutral-grey-100);
+  background: var(--ds-semantic-color-background-neutral-disabled);
 }
 
 .ds-datepicker__day:focus-visible {
@@ -255,7 +267,7 @@
 }
 
 .ds-datepicker__day--outside {
-  color: var(--ds-primitive-color-neutral-grey-500);
+  color: var(--ds-semantic-color-content-neutral-disabled);
 }
 
 .ds-datepicker__day--today {
@@ -263,19 +275,19 @@
 }
 
 .ds-datepicker__day--in-range {
-  border-radius: var(--ds-primitive-border-radius-radius-none);
+  border-radius: var(--ds-semantic-radius-none);
   background: var(--datepicker-range-background);
-  color: var(--ds-primitive-color-white);
+  color: var(--ds-semantic-color-background-neutral-default);
 }
 
 .ds-datepicker__day--selected {
   background: var(--datepicker-selected-background);
-  color: var(--ds-primitive-color-white);
+  color: var(--ds-semantic-color-background-neutral-default);
   font-weight: var(--ds-primitive-typography-font-weight-bold);
 }
 
 .ds-datepicker__day:disabled {
-  color: var(--ds-primitive-color-neutral-grey-400);
+  color: var(--ds-semantic-color-content-neutral-weak);
   cursor: not-allowed;
   text-decoration: line-through;
 }
@@ -283,7 +295,7 @@
 .ds-datepicker__metadata {
   display: grid;
   gap: var(--ds-primitive-spacing-8);
-  color: var(--ds-primitive-color-neutral-grey-600);
+  color: var(--ds-semantic-color-content-neutral-muted);
   font-size: var(--ds-primitive-typography-font-size-16);
   line-height: var(--ds-primitive-typography-line-height-24);
 }
@@ -300,9 +312,9 @@
   place-items: center;
   inline-size: var(--ds-primitive-spacing-20);
   block-size: var(--ds-primitive-spacing-20);
-  border-radius: var(--ds-primitive-border-radius-radius-sm);
-  background: var(--ds-primitive-color-neutral-grey-500);
-  color: var(--ds-primitive-color-white);
+  border-radius: var(--ds-semantic-radius-sm);
+  background: var(--ds-semantic-color-content-neutral-disabled);
+  color: var(--ds-semantic-color-background-neutral-default);
   font-size: var(--ds-primitive-typography-font-size-14);
   line-height: var(--ds-primitive-typography-line-height-16);
 }
@@ -319,9 +331,9 @@
   min-block-size: var(--ds-primitive-spacing-40);
   padding-inline: var(--ds-primitive-spacing-12);
   border: var(--ds-primitive-border-width-border-sm) solid
-    var(--ds-primitive-color-neutral-grey-300);
-  border-radius: var(--ds-primitive-border-radius-radius-sm);
-  background: var(--ds-primitive-color-white);
+    var(--ds-semantic-color-border-neutral-default);
+  border-radius: var(--ds-semantic-radius-sm);
+  background: var(--ds-semantic-color-background-neutral-default);
   color: var(--datepicker-text-color);
   font: inherit;
 }
@@ -365,7 +377,7 @@
   inline-size: var(--ds-primitive-spacing-20);
   block-size: var(--ds-primitive-spacing-20);
   border: var(--ds-primitive-border-width-border-md) solid currentColor;
-  border-radius: var(--ds-primitive-border-radius-radius-full);
+  border-radius: var(--ds-semantic-radius-full);
   font-size: var(--ds-primitive-typography-font-size-12);
   font-weight: var(--ds-primitive-typography-font-weight-bold);
   line-height: var(--ds-primitive-typography-line-height-16);

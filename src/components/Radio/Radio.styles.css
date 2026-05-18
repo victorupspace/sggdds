@@ -5,21 +5,21 @@
   --radio-dot-size: 8px;
   --radio-touch-size: 44px;
   --radio-gap: var(--ds-primitive-spacing-12, 12px);
-  --radio-label-color: var(--ds-primitive-color-soft-black, #292929);
-  --radio-description-color: var(--ds-primitive-color-neutral-grey-600, #505050);
-  --radio-border-color: var(--ds-primitive-color-neutral-grey-600, #505050);
-  --radio-background: var(--ds-primitive-color-white, #ffffff);
-  --radio-selected-border: var(--ds-primitive-color-soft-black, #292929);
-  --radio-selected-dot: var(--ds-primitive-color-soft-black, #292929);
-  --radio-hover-border: var(--ds-primitive-color-pure-black, #000000);
-  --radio-hover-background: var(--ds-primitive-color-neutral-alpha-4, rgba(24, 24, 24, 0.04));
-  --radio-active-background: var(--ds-primitive-color-neutral-alpha-8, rgba(24, 24, 24, 0.08));
-  --radio-focus-ring: var(--ds-primitive-color-soft-black, #292929);
-  --radio-disabled-border: var(--ds-primitive-color-neutral-grey-300, #d4d4d4);
-  --radio-disabled-background: var(--ds-primitive-color-neutral-grey-100, #f5f5f5);
-  --radio-disabled-dot: var(--ds-primitive-color-neutral-grey-500, #737373);
-  --radio-disabled-label-color: var(--ds-primitive-color-neutral-grey-500, #737373);
-  --radio-disabled-description-color: var(--ds-primitive-color-neutral-grey-400, #a3a3a3);
+  --radio-label-color: var(--ds-semantic-color-content-neutral-default);
+  --radio-description-color: var(--ds-semantic-color-content-neutral-muted);
+  --radio-border-color: var(--ds-semantic-color-border-neutral-strong);
+  --radio-background: var(--ds-semantic-color-background-neutral-default);
+  --radio-selected-border: var(--ds-semantic-color-content-neutral-default);
+  --radio-selected-dot: var(--ds-semantic-color-content-neutral-default);
+  --radio-hover-border: var(--ds-semantic-color-content-neutral-default);
+  --radio-hover-background: var(--ds-semantic-color-background-neutral-hover);
+  --radio-active-background: var(--ds-semantic-color-background-neutral-active);
+  --radio-focus-ring: var(--ds-semantic-color-focus-default);
+  --radio-disabled-border: var(--ds-semantic-color-border-neutral-default);
+  --radio-disabled-background: var(--ds-semantic-color-background-neutral-disabled);
+  --radio-disabled-dot: var(--ds-semantic-color-content-neutral-disabled);
+  --radio-disabled-label-color: var(--ds-semantic-color-content-neutral-disabled);
+  --radio-disabled-description-color: var(--ds-semantic-color-content-neutral-weak);
 
   position: relative;
   display: grid;
@@ -56,7 +56,7 @@
   block-size: var(--radio-control-size);
   margin-block-start: var(--ds-primitive-spacing-2, 2px);
   border: var(--ds-primitive-border-width-border-md, 2px) solid var(--radio-border-color);
-  border-radius: var(--ds-primitive-border-radius-radius-full, 999px);
+  border-radius: var(--ds-semantic-radius-full, 999px);
   background: var(--radio-background);
   transition:
     border-color 160ms ease,
@@ -67,7 +67,7 @@
 .ds-radio__dot {
   inline-size: var(--radio-dot-size);
   block-size: var(--radio-dot-size);
-  border-radius: var(--ds-primitive-border-radius-radius-full, 999px);
+  border-radius: var(--ds-semantic-radius-full, 999px);
   background: var(--radio-selected-dot);
   opacity: 0;
   transform: scale(0.5);
@@ -189,7 +189,7 @@
 .ds-radio-group__legend {
   margin-block-end: var(--ds-primitive-spacing-8, 8px);
   padding: 0;
-  color: var(--ds-primitive-color-soft-black, #292929);
+  color: var(--ds-semantic-color-content-neutral-default);
   font-size: var(--ds-primitive-typography-font-size-14, 14px);
   font-weight: var(--ds-primitive-typography-font-weight-semi-bold, 600);
   line-height: var(--ds-primitive-typography-line-height-20, 20px);

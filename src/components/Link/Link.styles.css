@@ -1,9 +1,9 @@
 .ds-link {
-  --link-color: var(--ds-primitive-color-identity-blue-primary);
-  --link-hover-color: var(--ds-primitive-color-identity-blue-dark);
-  --link-active-color: var(--ds-primitive-color-identity-blue-darker);
-  --link-disabled-color: var(--ds-primitive-color-neutral-grey-500);
-  --link-focus-ring: var(--ds-primitive-color-identity-blue-primary);
+  --link-color: var(--ds-semantic-color-action-primary-default);
+  --link-hover-color: var(--ds-semantic-color-action-primary-hover);
+  --link-active-color: var(--ds-semantic-color-action-primary-active);
+  --link-disabled-color: var(--ds-semantic-color-content-neutral-disabled);
+  --link-focus-ring: var(--ds-semantic-color-action-primary-default);
   --link-gap: var(--ds-primitive-spacing-4);
   --link-icon-size: var(--ds-primitive-spacing-16);
   --link-font-size: var(--ds-primitive-typography-font-size-16);
@@ -17,7 +17,7 @@
   min-block-size: var(--link-touch-size);
   gap: var(--link-gap);
   align-items: center;
-  border-radius: var(--ds-primitive-border-radius-radius-sm);
+  border-radius: var(--ds-semantic-radius-sm);
   color: var(--link-color);
   cursor: pointer;
   font-family:
@@ -35,18 +35,18 @@
 }
 
 .ds-link--variant-neutral {
-  --link-color: var(--ds-primitive-color-soft-black);
-  --link-hover-color: var(--ds-primitive-color-pure-black);
-  --link-active-color: var(--ds-primitive-color-pure-black);
-  --link-focus-ring: var(--ds-primitive-color-soft-black);
+  --link-color: var(--ds-semantic-color-content-neutral-default);
+  --link-hover-color: var(--ds-semantic-color-content-neutral-strong);
+  --link-active-color: var(--ds-semantic-color-content-neutral-strong);
+  --link-focus-ring: var(--ds-semantic-color-content-neutral-default);
 }
 
 .ds-link--variant-inverse {
-  --link-color: var(--ds-primitive-color-white);
-  --link-hover-color: var(--ds-primitive-color-neutral-grey-100);
-  --link-active-color: var(--ds-primitive-color-neutral-grey-200);
-  --link-disabled-color: var(--ds-primitive-color-neutral-grey-400);
-  --link-focus-ring: var(--ds-primitive-color-white);
+  --link-color: var(--ds-semantic-color-background-neutral-default);
+  --link-hover-color: var(--ds-semantic-color-background-neutral-disabled);
+  --link-active-color: var(--ds-semantic-color-border-neutral-subtle);
+  --link-disabled-color: var(--ds-semantic-color-content-neutral-weak);
+  --link-focus-ring: var(--ds-semantic-color-background-neutral-default);
 }
 
 .ds-link--size-small {

@@ -1,11 +1,11 @@
 .ds-alert {
-  --alert-surface: var(--ds-primitive-color-utility-info-blue-100);
-  --alert-border-color: var(--ds-primitive-color-utility-info-blue-200);
-  --alert-foreground: var(--ds-primitive-color-neutral-grey-800);
-  --alert-icon-color: var(--ds-primitive-color-utility-info-blue-300);
-  --alert-icon-mark: var(--ds-primitive-color-white);
-  --alert-action-color: var(--ds-primitive-color-neutral-grey-900);
-  --alert-focus-ring: var(--ds-primitive-color-identity-blue-primary);
+  --alert-surface: var(--ds-semantic-color-background-information-subtle);
+  --alert-border-color: var(--ds-semantic-color-border-information-subtle);
+  --alert-foreground: var(--ds-semantic-color-content-neutral-high);
+  --alert-icon-color: var(--ds-semantic-color-content-information-default);
+  --alert-icon-mark: var(--ds-semantic-color-background-neutral-default);
+  --alert-action-color: var(--ds-semantic-color-content-neutral-strongest);
+  --alert-focus-ring: var(--ds-semantic-color-action-primary-default);
   --alert-padding-block: var(--ds-primitive-spacing-12);
   --alert-padding-inline: var(--ds-primitive-spacing-16);
   --alert-column-gap: var(--ds-primitive-spacing-16);
@@ -23,7 +23,7 @@
   align-items: start;
   padding: var(--alert-padding-block) var(--alert-padding-inline);
   border: var(--ds-primitive-border-width-border-sm) solid var(--alert-border-color);
-  border-radius: var(--ds-primitive-border-radius-radius-sm);
+  border-radius: var(--ds-semantic-radius-sm);
   background: var(--alert-surface);
   color: var(--alert-foreground);
   font-family:
@@ -31,34 +31,34 @@
 }
 
 .ds-alert--variant-success {
-  --alert-surface: var(--ds-primitive-color-utility-success-green-100);
-  --alert-border-color: var(--ds-primitive-color-utility-success-green-200);
-  --alert-icon-color: var(--ds-primitive-color-utility-success-green-300);
-  --alert-focus-ring: var(--ds-primitive-color-utility-success-green-400);
+  --alert-surface: var(--ds-semantic-color-background-positive-subtle);
+  --alert-border-color: var(--ds-semantic-color-border-positive-subtle);
+  --alert-icon-color: var(--ds-semantic-color-background-positive-default);
+  --alert-focus-ring: var(--ds-semantic-color-content-positive-default);
 }
 
 .ds-alert--variant-warning {
-  --alert-surface: var(--ds-primitive-color-utility-warning-yellow-100);
-  --alert-border-color: var(--ds-primitive-color-utility-warning-yellow-200);
-  --alert-icon-color: var(--ds-primitive-color-utility-warning-yellow-400);
-  --alert-focus-ring: var(--ds-primitive-color-utility-warning-yellow-400);
+  --alert-surface: var(--ds-semantic-color-background-notice-subtle);
+  --alert-border-color: var(--ds-semantic-color-border-notice-subtle);
+  --alert-icon-color: var(--ds-semantic-color-content-notice-default);
+  --alert-focus-ring: var(--ds-semantic-color-content-notice-default);
 }
 
 .ds-alert--variant-error {
-  --alert-surface: var(--ds-primitive-color-utility-danger-red-100);
-  --alert-border-color: var(--ds-primitive-color-utility-danger-red-200);
-  --alert-icon-color: var(--ds-primitive-color-utility-danger-red-300);
-  --alert-focus-ring: var(--ds-primitive-color-utility-danger-red-300);
+  --alert-surface: var(--ds-semantic-color-background-negative-subtle);
+  --alert-border-color: var(--ds-semantic-color-border-negative-subtle);
+  --alert-icon-color: var(--ds-semantic-color-content-negative-default);
+  --alert-focus-ring: var(--ds-semantic-color-content-negative-default);
 }
 
 .ds-alert--variant-critical {
-  --alert-surface: var(--ds-primitive-color-utility-danger-red-400);
-  --alert-border-color: var(--ds-primitive-color-utility-danger-red-400);
-  --alert-foreground: var(--ds-primitive-color-white);
-  --alert-icon-color: var(--ds-primitive-color-white);
-  --alert-icon-mark: var(--ds-primitive-color-utility-danger-red-400);
-  --alert-action-color: var(--ds-primitive-color-white);
-  --alert-focus-ring: var(--ds-primitive-color-white);
+  --alert-surface: var(--ds-semantic-color-action-brand-active);
+  --alert-border-color: var(--ds-semantic-color-action-brand-active);
+  --alert-foreground: var(--ds-semantic-color-background-neutral-default);
+  --alert-icon-color: var(--ds-semantic-color-background-neutral-default);
+  --alert-icon-mark: var(--ds-semantic-color-action-brand-active);
+  --alert-action-color: var(--ds-semantic-color-background-neutral-default);
+  --alert-focus-ring: var(--ds-semantic-color-background-neutral-default);
 }
 
 .ds-alert--without-icon {
@@ -120,7 +120,7 @@
 .ds-alert__dismiss {
   box-sizing: border-box;
   border: var(--ds-primitive-border-width-border-sm) solid transparent;
-  border-radius: var(--ds-primitive-border-radius-radius-sm);
+  border-radius: var(--ds-semantic-radius-sm);
   background: transparent;
   color: var(--alert-action-color);
   cursor: pointer;
@@ -156,17 +156,17 @@
 
 .ds-alert__action:hover,
 .ds-alert__dismiss:hover {
-  background: var(--ds-primitive-color-neutral-alpha-8);
+  background: var(--ds-semantic-color-background-neutral-active);
 }
 
 .ds-alert--variant-critical .ds-alert__action:hover,
 .ds-alert--variant-critical .ds-alert__dismiss:hover {
-  background: var(--ds-primitive-color-neutral-alpha-24);
+  background: var(--ds-semantic-color-background-neutral-overlay-muted);
 }
 
 .ds-alert__action:active,
 .ds-alert__dismiss:active {
-  background: var(--ds-primitive-color-neutral-alpha-12);
+  background: var(--ds-semantic-color-background-neutral-overlay-subtle);
 }
 
 .ds-alert__action:focus-visible,
@@ -176,7 +176,7 @@
 }
 
 .ds-alert__action:disabled {
-  color: var(--ds-primitive-color-neutral-grey-500);
+  color: var(--ds-semantic-color-content-neutral-disabled);
   cursor: not-allowed;
 }
 

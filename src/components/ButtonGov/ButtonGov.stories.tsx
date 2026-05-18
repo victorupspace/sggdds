@@ -23,7 +23,10 @@ Responsividade:
 Este componente foi desenvolvido com comportamento responsivo nativo. Em desktop respeita a especificacao de 250px de largura por 48px de altura, padding horizontal de 24px, padding vertical de 8px e gap de 8px. Em telas estreitas, ocupa a largura disponivel do container para preservar area de toque e evitar overflow horizontal.
 
 Tokens:
-Cores, radius, espacamentos, foco e estados usam variaveis CSS geradas pelos tokens do Figma. A largura fixa de 250px vem da especificacao do componente e nao possui token equivalente na base atual. A familia Open Sans e aplicada como excecao institucional deste CTA: "Entrar com o" usa Semibold 600 e "gov.br" usa Bold 700.
+Cores, radius, espacamentos, foco e estados usam variaveis CSS geradas pelos tokens do Figma. A largura fixa de 250px vem da especificacao do componente e nao possui token equivalente na base atual.
+
+Excecao formal de tipografia:
+Este e o unico componente autorizado a nao usar Plus Jakarta Sans. A familia Open Sans e aplicada porque o CTA representa exclusivamente a marca gov.br e segue a especificacao institucional externa: "Entrar com o" usa Semibold 600 e "gov.br" usa Bold 700. Esta excecao nao deve ser replicada para outros componentes.
 
 Acessibilidade:
 - Renderiza button nativo ou anchor quando href e informado.

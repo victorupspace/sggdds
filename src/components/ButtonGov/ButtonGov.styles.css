@@ -1,13 +1,19 @@
+/*
+ * Excecao formal de tipografia:
+ * ButtonGov representa exclusivamente o CTA institucional gov.br e segue a
+ * especificacao externa da marca gov.br, que exige Open Sans 600/700.
+ * Os demais componentes devem continuar usando Plus Jakarta Sans via tokens.
+ */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700&display=swap');
 
 .ds-button-gov {
-  --button-gov-background: var(--ds-primitive-color-identity-blue-primary);
-  --button-gov-background-hover: var(--ds-primitive-color-identity-blue-dark);
-  --button-gov-background-active: var(--ds-primitive-color-identity-blue-darker);
-  --button-gov-foreground: var(--ds-primitive-color-white);
-  --button-gov-focus-ring: var(--ds-primitive-color-soft-black);
-  --button-gov-disabled-background: var(--ds-primitive-color-neutral-grey-100);
-  --button-gov-disabled-foreground: var(--ds-primitive-color-neutral-grey-500);
+  --button-gov-background: var(--ds-semantic-color-action-primary-default);
+  --button-gov-background-hover: var(--ds-semantic-color-action-primary-hover);
+  --button-gov-background-active: var(--ds-semantic-color-action-primary-active);
+  --button-gov-foreground: var(--ds-semantic-color-background-neutral-default);
+  --button-gov-focus-ring: var(--ds-semantic-color-content-neutral-default);
+  --button-gov-disabled-background: var(--ds-semantic-color-background-neutral-disabled);
+  --button-gov-disabled-foreground: var(--ds-semantic-color-content-neutral-disabled);
   --button-gov-inline-size: 250px;
   --button-gov-block-size: var(--ds-primitive-spacing-48);
   --button-gov-icon-size: var(--ds-primitive-spacing-20);
@@ -23,7 +29,7 @@
   align-items: center;
   justify-content: center;
   border: var(--ds-primitive-border-width-border-sm) solid var(--button-gov-background);
-  border-radius: var(--ds-primitive-border-radius-radius-full);
+  border-radius: var(--ds-semantic-radius-full);
   background: var(--button-gov-background);
   color: var(--button-gov-foreground);
   cursor: pointer;
@@ -106,7 +112,7 @@
 .ds-button-gov__spinner {
   border: var(--ds-primitive-border-width-border-md) solid currentColor;
   border-inline-end-color: transparent;
-  border-radius: var(--ds-primitive-border-radius-radius-full);
+  border-radius: var(--ds-semantic-radius-full);
   animation: ds-button-gov-spinner 800ms linear infinite;
 }
 

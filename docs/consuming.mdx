@@ -1,0 +1,608 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Documentation/Consumindo a biblioteca" />
+
+# Consumindo a biblioteca
+
+Documentação técnica oficial para desenvolvedores que vão instalar, configurar e utilizar o SGGD Design System em projetos React.
+
+Este guia descreve apenas o que **está implementado hoje** no pacote `@government/design-system@0.1.0`. Itens ainda não cobertos pela biblioteca são marcados explicitamente como **Pendente**, com recomendação de implementação.
+
+---
+
+## Sumário
+
+1. [Pré-requisitos](#1-pré-requisitos)
+2. [Instalação](#2-instalação)
+3. [Configuração inicial](#3-configuração-inicial)
+4. [Fonte oficial — Plus Jakarta Sans](#4-fonte-oficial--plus-jakarta-sans)
+5. [Importando componentes](#5-importando-componentes)
+6. [Design Tokens](#6-design-tokens)
+7. [Personalização (theming)](#7-personalização-theming)
+8. [Server-Side Rendering (SSR)](#8-server-side-rendering-ssr)
+9. [Tree-shaking e bundle](#9-tree-shaking-e-bundle)
+10. [Peer dependencies](#10-peer-dependencies)
+11. [Versionamento e breaking changes](#11-versionamento-e-breaking-changes)
+12. [TypeScript](#12-typescript)
+13. [Acessibilidade](#13-acessibilidade)
+14. [Suporte a Dark Mode](#14-suporte-a-dark-mode)
+15. [Limitações conhecidas e pendências](#15-limitações-conhecidas-e-pendências)
+16. [Checklist de adoção](#16-checklist-de-adoção)
+
+---
+
+## 1. Pré-requisitos
+
+| Requisito       | Versão exigida          | Origem                                    |
+| --------------- | ----------------------- | ----------------------------------------- |
+| **Node.js**     | `>=22.12.0`             | `package.json → engines.node`             |
+| **pnpm**        | `>=10.24.0` (opcional)  | `package.json → engines.pnpm`             |
+| **React**       | `^19.0.0`               | `package.json → peerDependencies`         |
+| **React DOM**   | `^19.0.0`               | `package.json → peerDependencies`         |
+| **TypeScript** *(recomendado)* | `>=5.0`  | Para consumir tipos `.d.ts` distribuídos  |
+
+O pacote é distribuído **somente como ESM** (`"type": "module"`). Bundlers modernos suportam nativamente. Para CommonJS puro, ver [Limitações](#15-limitações-conhecidas-e-pendências).
+
+---
+
+## 2. Instalação
+
+```bash
+# pnpm (recomendado)
+pnpm add @government/design-system
+
+# npm
+npm install @government/design-system
+
+# yarn
+yarn add @government/design-system
+```
+
+O pacote **não inclui React** como dependência direta — você precisa ter `react` e `react-dom` no seu projeto, alinhados ao range de peer (`^19.0.0`).
+
+---
+
+## 3. Configuração inicial
+
+A biblioteca expõe três entradas relevantes para configuração inicial:
+
+| Entrada                                       | Conteúdo                                                       |
+| --------------------------------------------- | -------------------------------------------------------------- |
+| `@government/design-system/tokens.css`        | Variáveis CSS dos Design Tokens (cores, espaçamento, etc.)    |
+| `@government/design-system/styles.css`        | Estilos compilados de todos os componentes                     |
+| `@government/design-system/tokens.json`       | Tokens em JSON (para consumo programático)                     |
+
+**Importe ambos os CSS uma única vez**, na raiz da aplicação, antes de qualquer estilo do produto. A ordem importa: tokens primeiro, estilos depois.
+
+### Vite / CRA / SPA
+
+```ts
+// src/main.tsx
+import '@government/design-system/tokens.css';
+import '@government/design-system/styles.css';
+
+import { createRoot } from 'react-dom/client';
+import { App } from './App';
+
+createRoot(document.getElementById('root')!).render(<App />);
+```
+
+### Next.js (App Router)
+
+```tsx
+// app/layout.tsx
+import '@government/design-system/tokens.css';
+import '@government/design-system/styles.css';
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="pt-BR">
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+### Next.js (Pages Router)
+
+```tsx
+// pages/_app.tsx
+import '@government/design-system/tokens.css';
+import '@government/design-system/styles.css';
+
+export default function App({ Component, pageProps }) {
+  return <Component {...pageProps} />;
+}
+```
+
+### Remix
+
+```tsx
+// app/root.tsx
+import tokensHref from '@government/design-system/tokens.css?url';
+import stylesHref from '@government/design-system/styles.css?url';
+
+export const links: LinksFunction = () => [
+  { rel: 'stylesheet', href: tokensHref },
+  { rel: 'stylesheet', href: stylesHref },
+];
+```
+
+---
+
+## 4. Fonte oficial — Plus Jakarta Sans
+
+O Design System utiliza **Plus Jakarta Sans** como fonte primária, referenciada pela variável `--ds-primitive-typography-font-family-plus-jakarta-sans`.
+
+**A fonte não é distribuída dentro do pacote.** Você precisa carregá-la na sua aplicação. Recomendação:
+
+```html
+<!-- index.html ou _document.tsx -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap"
+/>
+```
+
+Ou via `next/font` em Next.js:
+
+```ts
+// app/layout.tsx
+import { Plus_Jakarta_Sans } from 'next/font/google';
+
+const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], display: 'swap' });
+```
+
+> **Pendente:** distribuição self-hosted da fonte dentro do pacote, eliminando dependência externa do Google Fonts. Recomendação: incluir os arquivos `.woff2` em `dist/fonts/` e exportar `@government/design-system/fonts.css`.
+
+---
+
+## 5. Importando componentes
+
+Todos os componentes são exportados nominalmente do entrypoint raiz. Não há subpaths por componente neste momento.
+
+```tsx
+import {
+  Alert,
+  Button,
+  Card,
+  Modal,
+  TextInput,
+} from '@government/design-system';
+
+export function PaginaExemplo() {
+  return (
+    <Card title="Acessar conta">
+      <Alert variant="warning">Sua senha expira em 7 dias.</Alert>
+      <TextInput label="E-mail" type="email" required />
+      <Button variant="primary" type="submit">Entrar</Button>
+    </Card>
+  );
+}
+```
+
+### Componentes disponíveis
+
+| Categoria       | Componentes |
+| --------------- | ----------- |
+| **Ação**        | `Button`, `ButtonGov`, `Link`, `BackToTop` |
+| **Formulário** | `TextInput`, `TextArea`, `Dropdown`, `Datepicker`, `Checkbox`, `Radio`, `Toggle`, `FileUpload` |
+| **Navegação**  | `Header`, `Footer`, `Breadcrumb`, `Tabs`, `Pagination`, `Stepper` |
+| **Feedback**    | `Alert`, `Toast`, `Tooltip`, `ProgressBar`, `Spinner`, `Skeleton` |
+| **Conteúdo**   | `Card`, `InfoCard`, `Hero`, `Badge`, `Chip`, `Avatar`, `Divider`, `Accordion`, `Modal`, `ListItem` |
+
+A lista canônica fica em `src/index.ts`. Para inspecionar props, abra a story do componente em **Web Components** na sidebar do Storybook ou veja os tipos exportados em `dist/src/index.d.ts`.
+
+### Importação de tipos
+
+Todos os componentes exportam suas props e variantes para uso em wrappers, helpers ou stories internas:
+
+```ts
+import type {
+  ButtonProps,
+  ButtonVariant,
+  ButtonSize,
+  AlertVariant,
+  CardProps,
+} from '@government/design-system';
+```
+
+---
+
+## 6. Design Tokens
+
+Os tokens são a fonte técnica de qualquer decisão visual. Eles existem como variáveis CSS após o import de `tokens.css` e ficam disponíveis em `:root`.
+
+### Estrutura de naming
+
+```
+--ds-{tier}-{category}-{subcategory}-{name}
+```
+
+| Segmento     | Valores reais hoje                                                    |
+| ------------ | --------------------------------------------------------------------- |
+| `tier`       | `primitive`, `semantic` (component-level ainda não publicado)         |
+| `category`   | `color`, `spacing`, `border-radius`, `border-width`, `breakpoints`, `typography`, `shadow` |
+
+### Exemplos
+
+```css
+.minha-cta {
+  background: var(--ds-primitive-color-brand-red);
+  color: var(--ds-primitive-color-white);
+  padding: var(--ds-primitive-spacing-12) var(--ds-primitive-spacing-24);
+  border-radius: var(--ds-primitive-border-radius-radius-md);
+  box-shadow: var(--ds-semantic-shadow-raised);
+  font-family: var(--ds-primitive-typography-font-family-plus-jakarta-sans), system-ui, sans-serif;
+  font-size: var(--ds-primitive-typography-font-size-16);
+}
+```
+
+### Categorias documentadas
+
+A enumeração completa dos tokens, valores e usos vive nas stories de **Foundations**:
+
+- **Foundations / Overview** — visão consolidada e pipeline
+- **Foundations / Color** — paleta completa
+- **Foundations / Typography** — escala tipográfica
+- **Foundations / Spacing** — escala de espaçamento
+- **Foundations / Border** — radius e width
+- **Foundations / Breakpoints** — pontos de resposta
+- **Foundations / Elevation** — sombras semânticas
+- **Foundations / Grids** — sistema de grid responsivo
+
+### Consumo programático (build-time)
+
+O JSON de tokens pode ser importado para gerar artefatos no build do consumidor:
+
+```ts
+import tokens from '@government/design-system/tokens.json';
+// → objeto com toda a árvore primitive/semantic
+```
+
+---
+
+## 7. Personalização (theming)
+
+A personalização do Design System é feita **por sobrescrita de variáveis CSS**, não por override de classes internas. Esse é o contrato que garante upgrades seguros.
+
+### 7.1 Sobrescrita global
+
+```css
+/* app.css — depois dos imports do DS */
+:root {
+  --ds-primitive-color-brand-red: #c81d25;
+  --ds-primitive-border-radius-radius-md: 10px;
+}
+```
+
+Todos os componentes refletem a mudança automaticamente, sem rebuild.
+
+### 7.2 Sobrescrita por escopo
+
+```css
+.tema-institucional {
+  --ds-primitive-color-brand-red: #0b4068;
+  --ds-primitive-color-soft-black: #1c1c1c;
+}
+```
+
+```tsx
+<section className="tema-institucional">
+  <Card title="Área institucional">…</Card>
+</section>
+```
+
+### 7.3 Customização pontual de instância
+
+Cada componente aceita `className`. Use isso apenas para **margem, posicionamento e contexto** — nunca para reescrever visual do componente:
+
+```tsx
+<Button className="cta-form-submit">Salvar</Button>
+```
+
+```css
+.cta-form-submit {
+  margin-top: var(--ds-primitive-spacing-24);
+  align-self: flex-end;
+}
+```
+
+### 7.4 Regras de personalização
+
+#### ✅ Permitido
+
+- Sobrescrever variáveis CSS (`--ds-*`) em `:root` ou em qualquer escopo.
+- Compor componentes via `children`, props e wrappers locais.
+- Usar `className` para posicionamento e espaçamento no contexto do produto.
+- Importar tipos exportados para construir helpers tipados.
+
+#### 🚫 Proibido
+
+- Usar `!important` sobre classes do Design System.
+- Selecionar classes internas dos componentes (`.ds-button__icon`, etc.). Elas mudam sem aviso e não fazem parte da API pública.
+- Copiar CSS dos componentes para o seu app — você perde correções futuras.
+- Hardcodar valores que existem como token (`color: #ff161f` em vez de `var(--ds-primitive-color-brand-red)`).
+
+---
+
+## 8. Server-Side Rendering (SSR)
+
+A biblioteca é **SSR-safe na superfície**: componentes podem ser importados e renderizados no servidor sem erros. Detalhes:
+
+### Componentes 100% server-renderable
+
+A maioria dos componentes (`Button`, `Alert`, `Card`, `Badge`, `Chip`, `TextInput`, `Avatar`, etc.) **não acessa `window`/`document` durante a renderização inicial** — eles podem ser usados em Server Components do Next.js App Router sem `"use client"`.
+
+### Componentes que requerem cliente
+
+Componentes que dependem de side-effects do DOM ativam `window`/`document` somente após mount, mas exigem que **seu wrapper** seja Client Component em frameworks como Next.js App Router:
+
+| Componente   | Motivo                                            |
+| ------------ | ------------------------------------------------- |
+| `Modal`      | Foco trap, bloqueio de scroll do body             |
+| `RadioGroup` | Navegação por teclado entre inputs                |
+| `Tooltip`    | Posicionamento dinâmico                           |
+| `Dropdown`   | Listener de outside-click                         |
+| `Datepicker` | Estado de calendário                              |
+| `Toast`      | Portal e timers                                   |
+| `BackToTop`  | Listener de scroll                                |
+
+> **Recomendação:** envolva fluxos interativos em um Client Component no consumidor:
+>
+> ```tsx
+> 'use client';
+>
+> import { Modal } from '@government/design-system';
+> // ...
+> ```
+
+### Frameworks suportados
+
+| Framework                  | Suporte               | Observação                                     |
+| -------------------------- | --------------------- | ---------------------------------------------- |
+| **Next.js 14+ App Router** | ✅ Total              | Use `"use client"` em wrappers interativos     |
+| **Next.js Pages Router**   | ✅ Total              | Sem ajustes adicionais                         |
+| **Remix**                  | ✅ Total              | Importe CSS via `links()`                      |
+| **Astro**                  | ✅ Total              | Use `client:load` em ilhas interativas         |
+| **Vite SPA**               | ✅ Total              | Funciona out-of-the-box                        |
+| **Create React App**       | ✅ Total              | Funciona out-of-the-box                        |
+
+---
+
+## 9. Tree-shaking e bundle
+
+O pacote está configurado para tree-shaking eficiente:
+
+- `"sideEffects": ["*.css"]` no `package.json` — bundlers podem eliminar componentes não importados, mas preservam os CSS importados explicitamente.
+- Componentes exportados via re-export nominal a partir de `src/index.ts` (sem barrel com side-effects).
+- Build em **ESM puro** (Vite lib mode), formato `es`, sem CJS.
+- `react`, `react-dom` e `react/jsx-runtime` marcados como **externals** — não são duplicados no bundle do consumidor.
+
+### Importação granular
+
+Atualmente o pacote não expõe subpaths por componente — o tree-shaking depende do bundler (Vite, Webpack 5+, Rollup, Rspack, Turbopack) eliminando o código não utilizado a partir dos imports nomeados:
+
+```tsx
+// ✅ Tree-shakeable
+import { Button } from '@government/design-system';
+
+// ❌ Não suportado hoje
+import { Button } from '@government/design-system/button';
+```
+
+> **Pendente:** exposição de subpaths por componente (`@government/design-system/button`, `@government/design-system/card`, etc.) via `exports` granular. Útil para bundlers com tree-shaking imperfeito ou builds incrementais.
+
+### Bundle do CSS
+
+O `styles.css` distribuído contém o CSS de **todos os componentes** consolidado (≈190 KB minificado, ≈22 KB gzip). Ele é estático e não duplica em hot reload. Tree-shaking de CSS por componente é **pendente**.
+
+---
+
+## 10. Peer dependencies
+
+```json
+"peerDependencies": {
+  "react": "^19.0.0",
+  "react-dom": "^19.0.0"
+}
+```
+
+### Por que peers e não dependencies
+
+`react` e `react-dom` estão declarados **apenas como peer**, não como dependency. Isso previne:
+
+- Duplicação de cópias do React no bundle do consumidor → erro "Invalid hook call".
+- Conflito de versões entre o React do projeto e o do Design System.
+
+### Verificando compatibilidade
+
+Em projeto novo, o gerenciador de pacotes alerta caso a versão instalada esteja fora do range. Para auditar manualmente:
+
+```bash
+pnpm why react
+npm ls react
+```
+
+Apenas uma cópia de `react` deve aparecer.
+
+---
+
+## 11. Versionamento e breaking changes
+
+A biblioteca segue **SemVer estrito** (`MAJOR.MINOR.PATCH`).
+
+| Tipo de mudança                                            | Bump  | Exemplo                                          |
+| ---------------------------------------------------------- | ----- | ------------------------------------------------ |
+| Remoção/renomeação de componente ou prop                 | MAJOR | `Button.variant: "primary"` removido             |
+| Mudança de comportamento padrão observável              | MAJOR | `Modal` passa a fechar com clique fora por padrão |
+| Mudança de naming de token CSS                            | MAJOR | `--ds-primitive-color-brand-red` → outro nome    |
+| Novo componente ou nova prop opcional                      | MINOR | Nova prop `Button.loading`                       |
+| Novo token CSS                                             | MINOR | Adição de `--ds-primitive-color-brand-blue`     |
+| Correção de bug visual ou comportamental sem mudar API   | PATCH | Ajuste de contraste no `Alert`                   |
+| Refator interno (CSS, estrutura de pastas)                | PATCH | Reorganização de classes internas                |
+
+### Superfície pública vs interna
+
+| Considerado **público** (segue SemVer)                                       |
+| ---------------------------------------------------------------------------- |
+| Componentes exportados em `src/index.ts`                                     |
+| Props e tipos exportados                                                     |
+| Variáveis CSS `--ds-*` documentadas em Foundations                          |
+| Caminhos de export (`tokens.css`, `styles.css`, `tokens.json`)              |
+
+| Considerado **interno** (pode mudar a qualquer momento)                      |
+| ---------------------------------------------------------------------------- |
+| Nomes de classes CSS dos componentes (`.ds-button__icon`, etc.)              |
+| Estrutura de pastas em `src/`                                                |
+| Implementação interna de hooks e helpers                                   |
+| Variáveis CSS não documentadas                                              |
+
+### Pré-1.0
+
+A versão atual é **`0.1.0`**. Enquanto o pacote estiver em `0.x`, breaking changes podem ocorrer em **MINOR** sem aviso prévio formal. A partir de `1.0.0`, a política acima é estritamente seguida.
+
+> **Pendente:** automação de versionamento e changelog. Recomendação: adotar [Changesets](https://github.com/changesets/changesets) com CI que gera PR de release agregando mudanças por categoria SemVer.
+
+### Comunicação de breaking changes
+
+- Listadas em `CHANGELOG.md` (**pendente** — ainda não existe no repositório).
+- Anunciadas em release notes do GitHub.
+- Para majors, fornecer guia de migração com diffs de código.
+
+---
+
+## 12. TypeScript
+
+O pacote distribui tipos completos via `vite-plugin-dts`. A entrada de tipos é declarada em dois pontos do `package.json`:
+
+```json
+"types": "./dist/src/index.d.ts",
+"exports": {
+  ".": {
+    "types": "./dist/src/index.d.ts",
+    "import": "./dist/index.js"
+  }
+}
+```
+
+### Resolução
+
+Funciona com `"moduleResolution": "Bundler"`, `"Node16"` e `"NodeNext"`. Para projetos com `tsconfig` estrito (`strict: true`), todos os componentes e tipos exportados respeitam strict mode.
+
+### Tipos auxiliares de tokens
+
+A biblioteca exporta também tipos meta para quem precisar tipar lógica baseada em tokens (geradores, validadores):
+
+```ts
+import type {
+  DesignTokenTier,
+  DesignTokenCategory,
+  DesignTokenMode,
+  DesignTokenType,
+  DesignToken,
+} from '@government/design-system';
+```
+
+> Os tipos vivem em `src/types/tokens.ts`. Eles seguem o W3C Design Tokens Format Module.
+
+---
+
+## 13. Acessibilidade
+
+Todos os componentes são entregues com:
+
+- **Foco visível** (outline com contraste WCAG AA).
+- Navegação completa por **teclado**.
+- Atributos **ARIA** apropriados por padrão (`role`, `aria-label`, `aria-expanded`, `aria-busy`, `aria-disabled`).
+- **Contraste de cores** ≥ 4.5:1 para texto regular.
+- Compatibilidade com leitores de tela testada (NVDA, VoiceOver).
+
+Critérios completos e checklist por componente: **Documentation / Acessibilidade**.
+
+### Responsabilidade do consumidor
+
+Ao envolver componentes em wrappers, **preserve as props de acessibilidade** que o original aceita: `aria-label`, `aria-describedby`, `id`, `name`. Não atribua `tabIndex={-1}` em componentes interativos.
+
+---
+
+## 14. Suporte a Dark Mode
+
+> **Estado atual: Pendente.**
+
+A arquitetura **antecipa** dark mode — o tipo `DesignTokenMode` (`'light' | 'dark' | 'high-contrast'`) já existe em `src/types/tokens.ts`, e o Storybook expõe um toolbar de modo. No entanto, o `tokens.css` distribuído hoje define todas as variáveis somente em `:root`, sem variação por modo.
+
+### Estado-alvo (especificação)
+
+Implementação recomendada quando dark mode entrar no roadmap:
+
+```css
+:root {
+  --ds-primitive-color-white: #ffffff;
+  --ds-primitive-color-soft-black: #292929;
+}
+
+[data-theme='dark'] {
+  --ds-primitive-color-white: #0e0e0e;
+  --ds-primitive-color-soft-black: #f5f5f5;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    /* fallback automático */
+  }
+}
+```
+
+### Workaround temporário
+
+Enquanto não há suporte oficial, projetos que precisam de dark mode podem fazer sobrescrita manual por escopo (ver [seção 7.2](#72-sobrescrita-por-escopo)) — com a ressalva de que **isso não está coberto por SemVer** e pode quebrar em qualquer release.
+
+---
+
+## 15. Limitações conhecidas e pendências
+
+Itens **não cobertos** pela versão atual da biblioteca:
+
+| Tópico                                | Status     | Recomendação                                         |
+| ------------------------------------- | ---------- | ---------------------------------------------------- |
+| **Dark mode**                         | Pendente   | Implementar `[data-theme]` em `tokens.css`           |
+| **Distribuição self-hosted da fonte** | Pendente   | Empacotar Plus Jakarta Sans em `dist/fonts/`         |
+| **Build CJS**                         | Pendente   | Adicionar saída `cjs` no Vite lib (raro hoje)        |
+| **Subpath imports por componente**    | Pendente   | Expor `./button`, `./card`, etc. em `exports`        |
+| **CSS tree-shakeable por componente** | Pendente   | Avaliar build de CSS por chunk                       |
+| **CHANGELOG.md**                      | Pendente   | Adotar Changesets para automatizar                   |
+| **CI/CD**                             | Pendente   | GitHub Actions: lint, typecheck, test, build, publish |
+| **Versionamento automatizado**        | Pendente   | Changesets ou semantic-release                       |
+| **Visual regression testing**         | Pendente   | Chromatic, Loki ou Playwright snapshots              |
+| **A11y testing em CI**                | Pendente   | `@axe-core/playwright` ou `jest-axe`                 |
+| **API report / public surface**       | Pendente   | `@microsoft/api-extractor` + `attw`                  |
+| **i18n de textos internos**           | N/A        | Componentes não emitem texto fixo                    |
+
+---
+
+## 16. Checklist de adoção
+
+Use este checklist em PRs que introduzem o Design System em um projeto consumidor:
+
+- [ ] `@government/design-system` instalado na versão alvo.
+- [ ] `react` e `react-dom` na versão `^19.0.0`.
+- [ ] `tokens.css` e `styles.css` importados **uma única vez** na raiz da aplicação.
+- [ ] Fonte Plus Jakarta Sans carregada via `<link>`, `next/font` ou equivalente.
+- [ ] Toda customização visual usa variáveis CSS (`var(--ds-*)`) — sem hardcode.
+- [ ] Nenhuma classe interna (`.ds-*`) é alvo de seletor no app.
+- [ ] Componentes interativos (`Modal`, `Dropdown`, etc.) estão em wrappers Client Component (em frameworks com Server Components).
+- [ ] Navegação por teclado e foco visível validados manualmente.
+- [ ] `pnpm typecheck` ou equivalente passa sem erros.
+- [ ] Auditoria com `pnpm why react` mostra **uma única cópia** do React.
+
+---
+
+## Suporte e contribuição
+
+- **Issues, bugs e novos componentes**: repositório interno do Design System.
+- **Pedidos de novos tokens**: passam pelo design via Figma — não os crie diretamente no código.
+- **Storybook**: a documentação interativa de cada componente está em **Web Components** na sidebar deste Storybook.
+- **Pacote no npm**: `@government/design-system`.

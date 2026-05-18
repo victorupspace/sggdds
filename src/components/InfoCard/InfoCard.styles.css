@@ -1,8 +1,8 @@
 .ds-info-card {
-  --info-card-surface: var(--ds-primitive-color-white, #ffffff);
-  --info-card-text: var(--ds-primitive-color-pure-black, #000000);
-  --info-card-icon-background: var(--ds-primitive-color-soft-black, #292929);
-  --info-card-icon-color: var(--ds-primitive-color-white, #ffffff);
+  --info-card-surface: var(--ds-semantic-color-background-neutral-default);
+  --info-card-text: var(--ds-semantic-color-content-neutral-default);
+  --info-card-icon-background: var(--ds-semantic-color-background-neutral-knockout-default);
+  --info-card-icon-color: var(--ds-semantic-color-icon-neutral-inverse);
   --info-card-radius: 24px;
   --info-card-padding-block: 20px;
   --info-card-padding-inline: 20px;
@@ -36,7 +36,7 @@
   place-items: center;
   inline-size: var(--info-card-icon-size);
   block-size: var(--info-card-icon-size);
-  border-radius: var(--ds-primitive-border-radius-radius-full, 999px);
+  border-radius: var(--ds-semantic-radius-full, 999px);
   background: var(--info-card-icon-background);
   color: var(--info-card-icon-color);
 }

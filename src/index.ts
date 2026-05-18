@@ -92,6 +92,14 @@ export { InfoCard } from './components/InfoCard';
 export type { InfoCardHeadingLevel, InfoCardProps } from './components/InfoCard';
 export { Link } from './components/Link';
 export type { LinkProps, LinkSize, LinkVariant } from './components/Link';
+export { ListItem } from './components/ListItem';
+export type {
+  ListItemClickEvent,
+  ListItemDensity,
+  ListItemLine,
+  ListItemProps,
+  ListItemRadius,
+} from './components/ListItem';
 export { Modal } from './components/Modal';
 export type { ModalAction, ModalActionVariant, ModalProps, ModalSize } from './components/Modal';
 export { Pagination } from './components/Pagination';

@@ -1,12 +1,12 @@
 .ds-footer {
-  --footer-surface: var(--ds-primitive-color-pure-black);
-  --footer-foreground: var(--ds-primitive-color-white);
-  --footer-muted: var(--ds-primitive-color-neutral-grey-200);
-  --footer-subtle: var(--ds-primitive-color-neutral-grey-400);
-  --footer-border: var(--ds-primitive-color-neutral-grey-800);
-  --footer-hover: var(--ds-primitive-color-neutral-grey-900);
-  --footer-focus: var(--ds-primitive-color-identity-blue-secondary);
-  --footer-brand-accent: var(--ds-primitive-color-brand-red);
+  --footer-surface: var(--ds-semantic-color-content-neutral-strong);
+  --footer-foreground: var(--ds-semantic-color-background-neutral-default);
+  --footer-muted: var(--ds-semantic-color-border-neutral-subtle);
+  --footer-subtle: var(--ds-semantic-color-content-neutral-weak);
+  --footer-border: var(--ds-semantic-color-content-neutral-high);
+  --footer-hover: var(--ds-semantic-color-content-neutral-strongest);
+  --footer-focus: var(--ds-semantic-color-action-primary-subtle);
+  --footer-brand-accent: var(--ds-semantic-color-action-brand-default);
   --footer-container-width: calc(var(--ds-primitive-spacing-128) * 15);
   --footer-inline-padding: var(--ds-primitive-spacing-80);
   --footer-block-padding: var(--ds-primitive-spacing-80);
@@ -78,7 +78,7 @@
   block-size: var(--ds-primitive-spacing-48);
   padding: var(--ds-primitive-spacing-0);
   border: 0;
-  border-radius: var(--ds-primitive-border-radius-radius-full);
+  border-radius: var(--ds-semantic-radius-full);
   background: transparent;
   color: var(--footer-foreground);
   cursor: pointer;
@@ -193,17 +193,17 @@
 
 .ds-footer-logo__mark > span:first-child {
   inline-size: var(--ds-primitive-spacing-40);
-  block-size: var(--ds-primitive-spacing-28);
-  border-radius: var(--ds-primitive-border-radius-radius-sm);
+  block-size: calc(var(--ds-primitive-spacing-24) + var(--ds-primitive-spacing-4));
+  border-radius: var(--ds-semantic-radius-sm);
   background: var(--footer-foreground);
 }
 
 .ds-footer-logo__mark > span:last-child {
   inline-size: var(--ds-primitive-spacing-40);
   block-size: var(--ds-primitive-spacing-40);
-  border-radius: var(--ds-primitive-border-radius-radius-sm)
-    var(--ds-primitive-border-radius-radius-lg) var(--ds-primitive-border-radius-radius-sm)
-    var(--ds-primitive-border-radius-radius-sm);
+  border-radius: var(--ds-semantic-radius-sm)
+    var(--ds-semantic-radius-lg) var(--ds-semantic-radius-sm)
+    var(--ds-semantic-radius-sm);
   background: var(--footer-brand-accent);
 }
 
@@ -237,7 +237,7 @@
   block-size: var(--footer-social-size);
   padding: var(--ds-primitive-spacing-0);
   border: 0;
-  border-radius: var(--ds-primitive-border-radius-radius-full);
+  border-radius: var(--ds-semantic-radius-full);
   background: transparent;
   color: var(--footer-foreground);
   cursor: pointer;

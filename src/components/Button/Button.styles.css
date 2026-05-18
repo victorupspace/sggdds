@@ -1,13 +1,13 @@
 .ds-button {
-  --button-background: var(--ds-primitive-color-soft-black);
-  --button-background-hover: var(--ds-primitive-color-pure-black);
-  --button-background-active: var(--ds-primitive-color-pure-black);
-  --button-foreground: var(--ds-primitive-color-white);
+  --button-background: var(--ds-semantic-color-content-neutral-default);
+  --button-background-hover: var(--ds-semantic-color-content-neutral-strong);
+  --button-background-active: var(--ds-semantic-color-content-neutral-strong);
+  --button-foreground: var(--ds-semantic-color-background-neutral-default);
   --button-border-color: var(--button-background);
-  --button-focus-ring: var(--ds-primitive-color-identity-blue-primary);
-  --button-disabled-background: var(--ds-primitive-color-neutral-grey-100);
-  --button-disabled-foreground: var(--ds-primitive-color-neutral-grey-500);
-  --button-disabled-border-color: var(--ds-primitive-color-neutral-grey-200);
+  --button-focus-ring: var(--ds-semantic-color-action-primary-default);
+  --button-disabled-background: var(--ds-semantic-color-background-neutral-disabled);
+  --button-disabled-foreground: var(--ds-semantic-color-content-neutral-disabled);
+  --button-disabled-border-color: var(--ds-semantic-color-border-neutral-subtle);
   --button-min-block-size: calc(var(--ds-primitive-spacing-16) + var(--ds-primitive-spacing-16));
   --button-padding-inline: var(--ds-primitive-spacing-12);
   --button-gap: var(--ds-primitive-spacing-4);
@@ -27,7 +27,7 @@
   align-items: center;
   justify-content: center;
   border: var(--button-border-width) solid var(--button-border-color);
-  border-radius: var(--ds-primitive-border-radius-radius-full);
+  border-radius: var(--ds-semantic-radius-full);
   background: var(--button-background);
   color: var(--button-foreground);
   cursor: pointer;
@@ -46,17 +46,17 @@
 }
 
 .ds-button--variant-secondary {
-  --button-background: var(--ds-primitive-color-brand-red);
-  --button-background-hover: var(--ds-primitive-color-utility-danger-red-300);
-  --button-background-active: var(--ds-primitive-color-utility-danger-red-400);
+  --button-background: var(--ds-semantic-color-action-brand-default);
+  --button-background-hover: var(--ds-semantic-color-content-negative-default);
+  --button-background-active: var(--ds-semantic-color-action-brand-active);
   --button-border-color: var(--button-background);
 }
 
 .ds-button--variant-tertiary {
   --button-background: transparent;
-  --button-background-hover: var(--ds-primitive-color-neutral-alpha-4);
-  --button-background-active: var(--ds-primitive-color-neutral-alpha-8);
-  --button-foreground: var(--ds-primitive-color-soft-black);
+  --button-background-hover: var(--ds-semantic-color-background-neutral-hover);
+  --button-background-active: var(--ds-semantic-color-background-neutral-active);
+  --button-foreground: var(--ds-semantic-color-content-neutral-default);
   --button-border-color: transparent;
 }
 
@@ -144,7 +144,7 @@
 .ds-button__spinner {
   border: var(--ds-primitive-border-width-border-md) solid currentColor;
   border-inline-end-color: transparent;
-  border-radius: var(--ds-primitive-border-radius-radius-full);
+  border-radius: var(--ds-semantic-radius-full);
   animation: ds-button-spinner 800ms linear infinite;
 }
 

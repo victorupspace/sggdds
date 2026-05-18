@@ -1,23 +1,23 @@
 .ds-checkbox {
   --checkbox-control-size: 20px;
-  --checkbox-control-radius: var(--ds-primitive-border-radius-radius-sm, 4px);
+  --checkbox-control-radius: var(--ds-semantic-radius-sm, 4px);
   --checkbox-touch-size: 44px;
   --checkbox-gap: var(--ds-primitive-spacing-12, 12px);
-  --checkbox-label-color: var(--ds-primitive-color-soft-black, #292929);
-  --checkbox-hint-color: var(--ds-primitive-color-neutral-grey-600, #505050);
-  --checkbox-border-color: var(--ds-primitive-color-neutral-grey-600, #505050);
-  --checkbox-background: var(--ds-primitive-color-white, #ffffff);
-  --checkbox-selected-background: var(--ds-primitive-color-soft-black, #292929);
-  --checkbox-selected-color: var(--ds-primitive-color-white, #ffffff);
-  --checkbox-hover-border-color: var(--ds-primitive-color-pure-black, #000000);
-  --checkbox-hover-background: var(--ds-primitive-color-neutral-alpha-4, rgba(24, 24, 24, 0.04));
-  --checkbox-active-background: var(--ds-primitive-color-neutral-alpha-8, rgba(24, 24, 24, 0.08));
-  --checkbox-disabled-background: var(--ds-primitive-color-neutral-grey-100, #f5f5f5);
-  --checkbox-disabled-border-color: var(--ds-primitive-color-neutral-grey-300, #d4d4d4);
-  --checkbox-disabled-indicator-color: var(--ds-primitive-color-neutral-grey-500, #737373);
-  --checkbox-disabled-label-color: var(--ds-primitive-color-neutral-grey-500, #737373);
-  --checkbox-disabled-hint-color: var(--ds-primitive-color-neutral-grey-400, #a3a3a3);
-  --checkbox-focus-ring: var(--ds-primitive-color-soft-black, #292929);
+  --checkbox-label-color: var(--ds-semantic-color-content-neutral-default);
+  --checkbox-hint-color: var(--ds-semantic-color-content-neutral-muted);
+  --checkbox-border-color: var(--ds-semantic-color-border-neutral-strong);
+  --checkbox-background: var(--ds-semantic-color-background-neutral-default);
+  --checkbox-selected-background: var(--ds-semantic-color-background-neutral-knockout-default);
+  --checkbox-selected-color: var(--ds-semantic-color-content-neutral-inverse);
+  --checkbox-hover-border-color: var(--ds-semantic-color-content-neutral-default);
+  --checkbox-hover-background: var(--ds-semantic-color-background-neutral-hover);
+  --checkbox-active-background: var(--ds-semantic-color-background-neutral-active);
+  --checkbox-disabled-background: var(--ds-semantic-color-background-neutral-disabled);
+  --checkbox-disabled-border-color: var(--ds-semantic-color-border-neutral-default);
+  --checkbox-disabled-indicator-color: var(--ds-semantic-color-content-neutral-disabled);
+  --checkbox-disabled-label-color: var(--ds-semantic-color-content-neutral-disabled);
+  --checkbox-disabled-hint-color: var(--ds-semantic-color-content-neutral-weak);
+  --checkbox-focus-ring: var(--ds-semantic-color-focus-default);
 
   position: relative;
   display: grid;
@@ -82,7 +82,7 @@
 .ds-checkbox__mixed {
   inline-size: 10px;
   block-size: 1.5px;
-  border-radius: var(--ds-primitive-border-radius-radius-full, 999px);
+  border-radius: var(--ds-semantic-radius-full, 999px);
   background: currentColor;
 }
 

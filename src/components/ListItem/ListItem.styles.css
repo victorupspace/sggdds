@@ -1,0 +1,198 @@
+.ds-list-item {
+  --list-item-surface: var(--ds-semantic-color-background-neutral-default);
+  --list-item-surface-hover: var(--ds-semantic-color-background-neutral-hover);
+  --list-item-surface-active: var(--ds-semantic-color-background-neutral-active);
+  --list-item-surface-selected: var(--ds-semantic-color-background-information-subtle);
+  --list-item-border-color: var(--ds-semantic-color-border-neutral-subtle);
+  --list-item-title-color: var(--ds-semantic-color-content-neutral-default);
+  --list-item-description-color: var(--ds-semantic-color-content-neutral-disabled);
+  --list-item-icon-color: var(--ds-semantic-color-content-neutral-subtle);
+  --list-item-focus-ring: var(--ds-semantic-color-action-primary-default);
+  --list-item-padding-block: var(--ds-primitive-spacing-20);
+  --list-item-padding-inline: var(--ds-primitive-spacing-32);
+  --list-item-gap: var(--ds-primitive-spacing-16);
+  --list-item-radius: var(--ds-semantic-radius-none);
+  --list-item-leading-size: var(--ds-primitive-spacing-24);
+  --list-item-trailing-size: var(--ds-primitive-spacing-24);
+
+  display: block;
+  box-sizing: border-box;
+  min-inline-size: 0;
+  list-style: none;
+  color: var(--list-item-title-color);
+  font-family:
+    var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
+}
+
+.ds-list-item--radius-sm {
+  --list-item-radius: var(--ds-semantic-radius-sm);
+}
+
+.ds-list-item--radius-md {
+  --list-item-radius: var(--ds-semantic-radius-md);
+}
+
+.ds-list-item--density-compact {
+  --list-item-padding-block: var(--ds-primitive-spacing-12);
+  --list-item-padding-inline: var(--ds-primitive-spacing-20);
+  --list-item-gap: var(--ds-primitive-spacing-12);
+}
+
+.ds-list-item--one-line {
+  --list-item-padding-block: var(--ds-primitive-spacing-20);
+}
+
+.ds-list-item--one-line.ds-list-item--density-compact {
+  --list-item-padding-block: var(--ds-primitive-spacing-12);
+}
+
+.ds-list-item__control {
+  display: grid;
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-block-size: var(--ds-primitive-spacing-64);
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: var(--list-item-gap);
+  align-items: center;
+  padding: var(--list-item-padding-block) var(--list-item-padding-inline);
+  border: 0;
+  border-radius: var(--list-item-radius);
+  background: var(--list-item-surface);
+  color: inherit;
+  font: inherit;
+  text-align: start;
+  text-decoration: none;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    box-shadow 160ms ease;
+}
+
+.ds-list-item--two-line .ds-list-item__control {
+  min-block-size: var(--ds-primitive-spacing-80);
+}
+
+.ds-list-item--without-leading .ds-list-item__control {
+  grid-template-columns: minmax(0, 1fr) auto;
+}
+
+.ds-list-item--without-leading.ds-list-item--without-trailing .ds-list-item__control {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.ds-list-item--divider {
+  border-bottom: var(--ds-primitive-border-width-border-sm) solid var(--list-item-border-color);
+}
+
+.ds-list-item--selected {
+  --list-item-surface: var(--list-item-surface-selected);
+  --list-item-icon-color: var(--ds-semantic-color-content-information-default);
+}
+
+.ds-list-item--interactive:not(.ds-list-item--disabled) .ds-list-item__control {
+  cursor: pointer;
+}
+
+.ds-list-item--interactive:not(.ds-list-item--disabled) .ds-list-item__control:hover {
+  background: var(--list-item-surface-hover);
+}
+
+.ds-list-item--interactive.ds-list-item--selected:not(.ds-list-item--disabled)
+  .ds-list-item__control:hover {
+  background: var(--ds-semantic-color-background-information-subtle);
+}
+
+.ds-list-item--interactive:not(.ds-list-item--disabled) .ds-list-item__control:active {
+  background: var(--list-item-surface-active);
+}
+
+.ds-list-item__control:focus-visible {
+  outline: var(--ds-primitive-border-width-border-md) solid var(--list-item-focus-ring);
+  outline-offset: calc(var(--ds-primitive-spacing-2) * -1);
+}
+
+.ds-list-item--disabled {
+  --list-item-title-color: var(--ds-semantic-color-content-neutral-disabled);
+  --list-item-description-color: var(--ds-semantic-color-content-neutral-weak);
+  --list-item-icon-color: var(--ds-semantic-color-content-neutral-weak);
+
+  cursor: not-allowed;
+}
+
+.ds-list-item--disabled .ds-list-item__control {
+  cursor: not-allowed;
+}
+
+.ds-list-item__leading,
+.ds-list-item__trailing {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  inline-size: var(--list-item-leading-size);
+  block-size: var(--list-item-leading-size);
+  color: var(--list-item-icon-color);
+}
+
+.ds-list-item__trailing {
+  inline-size: var(--list-item-trailing-size);
+  block-size: var(--list-item-trailing-size);
+}
+
+.ds-list-item__leading > svg,
+.ds-list-item__trailing > svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.ds-list-item__content {
+  display: grid;
+  min-inline-size: 0;
+  gap: var(--ds-primitive-spacing-4);
+}
+
+.ds-list-item__title,
+.ds-list-item__description {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+}
+
+.ds-list-item__title {
+  color: var(--list-item-title-color);
+  font-size: var(--ds-primitive-typography-font-size-22);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: var(--ds-primitive-typography-line-height-30);
+}
+
+.ds-list-item__description {
+  color: var(--list-item-description-color);
+  font-size: var(--ds-primitive-typography-font-size-18);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: var(--ds-primitive-typography-line-height-26);
+}
+
+.ds-list-item--density-compact .ds-list-item__title {
+  font-size: var(--ds-primitive-typography-font-size-18);
+  line-height: var(--ds-primitive-typography-line-height-24);
+}
+
+.ds-list-item--density-compact .ds-list-item__description {
+  font-size: var(--ds-primitive-typography-font-size-14);
+  line-height: var(--ds-primitive-typography-line-height-20);
+}
+
+@media (max-width: 640px) {
+  .ds-list-item {
+    --list-item-padding-inline: var(--ds-primitive-spacing-20);
+    --list-item-gap: var(--ds-primitive-spacing-12);
+  }
+
+  .ds-list-item__title {
+    font-size: var(--ds-primitive-typography-font-size-18);
+    line-height: var(--ds-primitive-typography-line-height-26);
+  }
+
+  .ds-list-item__description {
+    font-size: var(--ds-primitive-typography-font-size-14);
+    line-height: var(--ds-primitive-typography-line-height-20);
+  }
+}

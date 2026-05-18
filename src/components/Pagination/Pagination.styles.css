@@ -1,15 +1,15 @@
 .ds-pagination {
-  --pagination-foreground: var(--ds-primitive-color-soft-black);
-  --pagination-muted: var(--ds-primitive-color-neutral-grey-600);
-  --pagination-disabled: var(--ds-primitive-color-neutral-grey-400);
-  --pagination-selected-background: var(--ds-primitive-color-soft-black);
-  --pagination-selected-foreground: var(--ds-primitive-color-white);
-  --pagination-hover: var(--ds-primitive-color-neutral-alpha-4);
-  --pagination-active: var(--ds-primitive-color-neutral-alpha-8);
-  --pagination-border: var(--ds-primitive-color-neutral-grey-200);
-  --pagination-border-strong: var(--ds-primitive-color-neutral-grey-300);
-  --pagination-surface: var(--ds-primitive-color-white);
-  --pagination-focus-ring: var(--ds-primitive-color-identity-blue-primary);
+  --pagination-foreground: var(--ds-semantic-color-content-neutral-default);
+  --pagination-muted: var(--ds-semantic-color-content-neutral-muted);
+  --pagination-disabled: var(--ds-semantic-color-content-neutral-weak);
+  --pagination-selected-background: var(--ds-semantic-color-content-neutral-default);
+  --pagination-selected-foreground: var(--ds-semantic-color-background-neutral-default);
+  --pagination-hover: var(--ds-semantic-color-background-neutral-hover);
+  --pagination-active: var(--ds-semantic-color-background-neutral-active);
+  --pagination-border: var(--ds-semantic-color-border-neutral-subtle);
+  --pagination-border-strong: var(--ds-semantic-color-border-neutral-default);
+  --pagination-surface: var(--ds-semantic-color-background-neutral-default);
+  --pagination-focus-ring: var(--ds-semantic-color-action-primary-default);
   --pagination-control-size: var(--ds-primitive-spacing-40);
   --pagination-icon-size: var(--ds-primitive-spacing-24);
   --pagination-gap: var(--ds-primitive-spacing-4);
@@ -90,7 +90,7 @@
   block-size: var(--pagination-control-size);
   padding: var(--ds-primitive-spacing-0) var(--ds-primitive-spacing-8);
   border: 0;
-  border-radius: var(--ds-primitive-border-radius-radius-md);
+  border-radius: var(--ds-semantic-radius-md);
   background: transparent;
   color: var(--pagination-foreground);
   font: inherit;
@@ -161,7 +161,7 @@
   min-block-size: var(--pagination-control-size);
   padding-inline: var(--ds-primitive-spacing-12) var(--ds-primitive-spacing-32);
   border: var(--ds-primitive-border-width-border-sm) solid var(--pagination-border);
-  border-radius: var(--ds-primitive-border-radius-radius-md);
+  border-radius: var(--ds-semantic-radius-md);
   appearance: none;
   background: var(--pagination-surface);
   color: var(--pagination-foreground);

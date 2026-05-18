@@ -226,6 +226,33 @@ export const Controlled: Story = {
   render: () => <ControlledExample />,
 };
 
+export const GroupedStates: Story = {
+  args: {
+    label: defaultLabel,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Exibe estados comuns em uma composicao vertical para validar espacamento, quebra de texto e alinhamento em grupos.',
+      },
+    },
+  },
+  render: () => <CheckboxGroup />,
+};
+
+export const GroupedStatesMobile: Story = {
+  args: {
+    label: defaultLabel,
+  },
+  parameters: {
+    componentCanvas: {
+      width: 320,
+    },
+  },
+  render: () => <CheckboxGroup narrow />,
+};
+
 export const Accessibility: Story = {
   args: {
     hint: 'Alguns itens da lista ja foram selecionados. Use Espaço para alterar a selecao.',

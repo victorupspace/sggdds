@@ -1,13 +1,11 @@
 .ds-tooltip {
-  --tooltip-surface: var(--ds-primitive-color-soft-black);
-  --tooltip-foreground: var(--ds-primitive-color-white);
-  --tooltip-shadow-color: var(--ds-primitive-color-neutral-alpha-24);
-  --tooltip-shadow-soft-color: var(--ds-primitive-color-neutral-alpha-12);
+  --tooltip-surface: var(--ds-semantic-color-background-neutral-knockout-default);
+  --tooltip-foreground: var(--ds-semantic-color-content-neutral-inverse);
   --tooltip-offset: var(--ds-primitive-spacing-8);
   --tooltip-arrow-size: var(--ds-primitive-spacing-8);
   --tooltip-padding-block: var(--ds-primitive-spacing-4);
   --tooltip-padding-inline: var(--ds-primitive-spacing-8);
-  --tooltip-radius: var(--ds-primitive-border-radius-radius-sm);
+  --tooltip-radius: var(--ds-semantic-radius-sm);
   --tooltip-max-inline-size: 240px;
 
   position: relative;
@@ -17,8 +15,8 @@
 }
 
 .ds-tooltip--tone-light {
-  --tooltip-surface: var(--ds-primitive-color-white);
-  --tooltip-foreground: var(--ds-primitive-color-soft-black);
+  --tooltip-surface: var(--ds-semantic-color-background-neutral-default);
+  --tooltip-foreground: var(--ds-semantic-color-content-neutral-default);
 }
 
 .ds-tooltip__bubble {
@@ -29,9 +27,7 @@
   padding: var(--tooltip-padding-block) var(--tooltip-padding-inline);
   border-radius: var(--tooltip-radius);
   background: var(--tooltip-surface);
-  box-shadow:
-    0 var(--ds-primitive-spacing-2) var(--ds-primitive-spacing-4) var(--tooltip-shadow-color),
-    0 var(--ds-primitive-spacing-8) var(--ds-primitive-spacing-16) var(--tooltip-shadow-soft-color);
+  box-shadow: var(--ds-semantic-shadow-floating);
   color: var(--tooltip-foreground);
   font-family:
     var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;

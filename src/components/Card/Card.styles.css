@@ -1,22 +1,22 @@
 .ds-card {
-  --card-surface: var(--ds-primitive-color-white);
-  --card-surface-hover: var(--ds-primitive-color-neutral-alpha-2);
-  --card-surface-active: var(--ds-primitive-color-neutral-alpha-4);
-  --card-border: var(--ds-primitive-color-neutral-grey-200);
-  --card-border-hover: var(--ds-primitive-color-neutral-grey-300);
-  --card-text: var(--ds-primitive-color-pure-black);
-  --card-description: var(--ds-primitive-color-neutral-grey-700);
-  --card-muted: var(--ds-primitive-color-neutral-grey-600);
-  --card-disabled-text: var(--ds-primitive-color-neutral-grey-500);
-  --card-disabled-surface: var(--ds-primitive-color-neutral-grey-100);
-  --card-focus-ring: var(--ds-primitive-color-identity-blue-primary);
-  --card-action-bg: var(--ds-primitive-color-identity-blue-primary);
-  --card-action-bg-hover: var(--ds-primitive-color-identity-blue-dark);
-  --card-action-bg-active: var(--ds-primitive-color-identity-blue-darker);
-  --card-action-color: var(--ds-primitive-color-white);
-  --card-action-disabled-bg: var(--ds-primitive-color-neutral-grey-300);
-  --card-action-disabled-color: var(--ds-primitive-color-neutral-grey-600);
-  --card-media-surface: var(--ds-primitive-color-neutral-grey-700);
+  --card-surface: var(--ds-semantic-color-background-neutral-default);
+  --card-surface-hover: var(--ds-semantic-color-background-neutral-hover-subtle);
+  --card-surface-active: var(--ds-semantic-color-background-neutral-hover);
+  --card-border: var(--ds-semantic-color-border-neutral-subtle);
+  --card-border-hover: var(--ds-semantic-color-border-neutral-default);
+  --card-text: var(--ds-semantic-color-content-neutral-strong);
+  --card-description: var(--ds-semantic-color-content-neutral-subtle);
+  --card-muted: var(--ds-semantic-color-content-neutral-muted);
+  --card-disabled-text: var(--ds-semantic-color-content-neutral-disabled);
+  --card-disabled-surface: var(--ds-semantic-color-background-neutral-disabled);
+  --card-focus-ring: var(--ds-semantic-color-action-primary-default);
+  --card-action-bg: var(--ds-semantic-color-action-primary-default);
+  --card-action-bg-hover: var(--ds-semantic-color-action-primary-hover);
+  --card-action-bg-active: var(--ds-semantic-color-action-primary-active);
+  --card-action-color: var(--ds-semantic-color-background-neutral-default);
+  --card-action-disabled-bg: var(--ds-semantic-color-border-neutral-default);
+  --card-action-disabled-color: var(--ds-semantic-color-content-neutral-muted);
+  --card-media-surface: var(--ds-semantic-color-content-neutral-subtle);
   --card-padding: var(--ds-primitive-spacing-24);
   --card-gap: var(--ds-primitive-spacing-24);
   --card-content-gap: var(--ds-primitive-spacing-24);
@@ -38,8 +38,8 @@
   --card-horizontal-media-block-size: calc(
     var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-80)
   );
-  --card-radius: var(--ds-primitive-border-radius-radius-lg);
-  --card-inner-radius: var(--ds-primitive-border-radius-radius-md);
+  --card-radius: var(--ds-semantic-radius-lg);
+  --card-inner-radius: var(--ds-semantic-radius-md);
   --card-border-width: var(--ds-primitive-border-width-border-sm);
 
   display: grid;
@@ -62,39 +62,39 @@
 }
 
 .ds-card--tone-brand {
-  --card-focus-ring: var(--ds-primitive-color-brand-red);
-  --card-action-bg: var(--ds-primitive-color-brand-red);
-  --card-action-bg-hover: var(--ds-primitive-color-utility-danger-red-300);
-  --card-action-bg-active: var(--ds-primitive-color-utility-danger-red-400);
+  --card-focus-ring: var(--ds-semantic-color-action-brand-default);
+  --card-action-bg: var(--ds-semantic-color-action-brand-default);
+  --card-action-bg-hover: var(--ds-semantic-color-content-negative-default);
+  --card-action-bg-active: var(--ds-semantic-color-action-brand-active);
 }
 
 .ds-card--tone-info {
-  --card-focus-ring: var(--ds-primitive-color-utility-info-blue-300);
-  --card-action-bg: var(--ds-primitive-color-utility-info-blue-300);
-  --card-action-bg-hover: var(--ds-primitive-color-identity-blue-dark);
-  --card-action-bg-active: var(--ds-primitive-color-utility-info-blue-400);
+  --card-focus-ring: var(--ds-semantic-color-content-information-default);
+  --card-action-bg: var(--ds-semantic-color-content-information-default);
+  --card-action-bg-hover: var(--ds-semantic-color-action-primary-hover);
+  --card-action-bg-active: var(--ds-semantic-color-action-primary-active);
 }
 
 .ds-card--tone-success {
-  --card-focus-ring: var(--ds-primitive-color-utility-success-green-300);
-  --card-action-bg: var(--ds-primitive-color-utility-success-green-300);
-  --card-action-bg-hover: var(--ds-primitive-color-utility-success-green-400);
-  --card-action-bg-active: var(--ds-primitive-color-utility-success-green-400);
+  --card-focus-ring: var(--ds-semantic-color-background-positive-default);
+  --card-action-bg: var(--ds-semantic-color-background-positive-default);
+  --card-action-bg-hover: var(--ds-semantic-color-content-positive-default);
+  --card-action-bg-active: var(--ds-semantic-color-content-positive-default);
 }
 
 .ds-card--tone-warning {
-  --card-focus-ring: var(--ds-primitive-color-utility-warning-yellow-300);
-  --card-action-bg: var(--ds-primitive-color-utility-warning-yellow-300);
-  --card-action-bg-hover: var(--ds-primitive-color-utility-warning-yellow-400);
-  --card-action-bg-active: var(--ds-primitive-color-utility-warning-yellow-400);
-  --card-action-color: var(--ds-primitive-color-pure-black);
+  --card-focus-ring: var(--ds-semantic-color-content-notice-accent);
+  --card-action-bg: var(--ds-semantic-color-content-notice-accent);
+  --card-action-bg-hover: var(--ds-semantic-color-content-notice-default);
+  --card-action-bg-active: var(--ds-semantic-color-content-notice-default);
+  --card-action-color: var(--ds-semantic-color-content-neutral-strong);
 }
 
 .ds-card--tone-danger {
-  --card-focus-ring: var(--ds-primitive-color-utility-danger-red-300);
-  --card-action-bg: var(--ds-primitive-color-utility-danger-red-300);
-  --card-action-bg-hover: var(--ds-primitive-color-utility-danger-red-400);
-  --card-action-bg-active: var(--ds-primitive-color-utility-danger-red-400);
+  --card-focus-ring: var(--ds-semantic-color-content-negative-default);
+  --card-action-bg: var(--ds-semantic-color-content-negative-default);
+  --card-action-bg-hover: var(--ds-semantic-color-action-brand-active);
+  --card-action-bg-active: var(--ds-semantic-color-action-brand-active);
 }
 
 .ds-card:not(.ds-card--disabled):hover {
@@ -130,7 +130,7 @@
   overflow: hidden;
   border-radius: var(--card-inner-radius);
   background: var(--card-media-surface);
-  color: var(--ds-primitive-color-white);
+  color: var(--ds-semantic-color-background-neutral-default);
 }
 
 .ds-card--media-wide .ds-card__media {

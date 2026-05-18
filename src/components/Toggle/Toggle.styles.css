@@ -5,18 +5,18 @@
   --toggle-thumb-offset: 3px;
   --toggle-touch-size: 44px;
   --toggle-gap: var(--ds-primitive-spacing-12, 12px);
-  --toggle-label-color: var(--ds-primitive-color-soft-black, #292929);
-  --toggle-hint-color: var(--ds-primitive-color-neutral-grey-600, #505050);
-  --toggle-track-off: var(--ds-primitive-color-neutral-grey-400, #a3a3a3);
-  --toggle-track-on: var(--ds-primitive-color-soft-black, #292929);
-  --toggle-thumb-color: var(--ds-primitive-color-white, #ffffff);
-  --toggle-hover-track-off: var(--ds-primitive-color-neutral-grey-600, #505050);
-  --toggle-hover-track-on: var(--ds-primitive-color-pure-black, #000000);
-  --toggle-focus-ring: var(--ds-primitive-color-soft-black, #292929);
-  --toggle-disabled-track: var(--ds-primitive-color-neutral-grey-300, #d4d4d4);
-  --toggle-disabled-thumb: var(--ds-primitive-color-neutral-grey-100, #f5f5f5);
-  --toggle-disabled-label-color: var(--ds-primitive-color-neutral-grey-500, #737373);
-  --toggle-disabled-hint-color: var(--ds-primitive-color-neutral-grey-400, #a3a3a3);
+  --toggle-label-color: var(--ds-semantic-color-content-neutral-default);
+  --toggle-hint-color: var(--ds-semantic-color-content-neutral-muted);
+  --toggle-track-off: var(--ds-semantic-color-content-neutral-weak);
+  --toggle-track-on: var(--ds-semantic-color-background-neutral-knockout-default);
+  --toggle-thumb-color: var(--ds-semantic-color-background-neutral-default);
+  --toggle-hover-track-off: var(--ds-semantic-color-border-neutral-strong);
+  --toggle-hover-track-on: var(--ds-semantic-color-content-neutral-default);
+  --toggle-focus-ring: var(--ds-semantic-color-focus-default);
+  --toggle-disabled-track: var(--ds-semantic-color-border-neutral-default);
+  --toggle-disabled-thumb: var(--ds-semantic-color-background-neutral-disabled);
+  --toggle-disabled-label-color: var(--ds-semantic-color-content-neutral-disabled);
+  --toggle-disabled-hint-color: var(--ds-semantic-color-content-neutral-weak);
 
   position: relative;
   display: grid;
@@ -53,7 +53,7 @@
   block-size: var(--toggle-track-height);
   margin-block-start: var(--ds-primitive-spacing-2, 2px);
   padding: var(--toggle-thumb-offset);
-  border-radius: var(--ds-primitive-border-radius-radius-full, 999px);
+  border-radius: var(--ds-semantic-radius-full, 999px);
   background: var(--toggle-track-off);
   transition: background-color 160ms ease, box-shadow 160ms ease;
 }
@@ -61,9 +61,9 @@
 .ds-toggle__thumb {
   inline-size: var(--toggle-thumb-size);
   block-size: var(--toggle-thumb-size);
-  border-radius: var(--ds-primitive-border-radius-radius-full, 999px);
+  border-radius: var(--ds-semantic-radius-full, 999px);
   background: var(--toggle-thumb-color);
-  box-shadow: 0 1px 3px var(--ds-primitive-color-neutral-alpha-24, rgba(24, 24, 24, 0.24));
+  box-shadow: var(--ds-semantic-shadow-switch-thumb);
   transform: translateX(0);
   transition: transform 160ms ease, background-color 160ms ease;
   will-change: transform;

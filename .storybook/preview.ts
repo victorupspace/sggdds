@@ -83,6 +83,7 @@ const preview: Preview = {
           'Documentation',
           ['Introdução', '*'],
           'Foundations',
+          ['Overview', '*'],
           'Web Components',
         ],
       },

@@ -1,0 +1,243 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="Documentation/Instalação e Uso" />
+
+# Instalação e Uso
+
+Guia técnico para consumir o SGGD Design System em aplicações React. Cobre desde a instalação até personalização avançada via tokens.
+
+---
+
+## Pré-requisitos
+
+| Requisito       | Versão mínima |
+| --------------- | ------------- |
+| **Node.js**     | 22.12.0       |
+| **React**       | 19.0.0        |
+| **React DOM**   | 19.0.0        |
+| **TypeScript** *(recomendado)* | 5.0     |
+
+O pacote distribui **ESM** e tipos TypeScript. Bundlers modernos (Vite, Webpack 5+, Rspack, Turbopack) consomem nativamente. Para Next.js ≥ 14, Remix e Astro funciona sem configuração extra.
+
+---
+
+## 1. Instalação
+
+```bash
+# pnpm (recomendado)
+pnpm add @government/design-system
+
+# npm
+npm install @government/design-system
+
+# yarn
+yarn add @government/design-system
+```
+
+> **Atenção:** `react` e `react-dom` são **peer dependencies**. Eles precisam estar instalados no seu projeto. Versões diferentes da família 19.x são aceitas via `^19.0.0`.
+
+---
+
+## 2. Carregue os tokens uma única vez
+
+O Design System depende de variáveis CSS publicadas em um arquivo de tokens. Importe-o **uma única vez** na raiz da sua aplicação — antes de qualquer outro CSS de produto.
+
+```ts
+// src/main.tsx (Vite) ou src/app/layout.tsx (Next.js)
+import '@government/design-system/tokens.css';
+import '@government/design-system/styles.css';
+```
+
+| Arquivo            | O que entrega                                                                                   |
+| ------------------ | ----------------------------------------------------------------------------------------------- |
+| `tokens.css`       | Variáveis CSS de cor, tipografia, espaçamento, borda, breakpoints. Disponíveis em `:root`.      |
+| `styles.css`       | Estilos compilados dos componentes. Necessário para visual padrão.                              |
+| `tokens.json`      | Os mesmos tokens em JSON, para consumo programático (build-time, geração de docs, etc).        |
+
+### Em SSR (Next.js / Remix)
+
+Importe no arquivo de layout global. O CSS é estático — sem flash, sem hidratação especial.
+
+```tsx
+// app/layout.tsx
+import '@government/design-system/tokens.css';
+import '@government/design-system/styles.css';
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="pt-BR">
+      <body>{children}</body>
+    </html>
+  );
+}
+```
+
+---
+
+## 3. Use um componente
+
+Todos os componentes são exportados nominalmente a partir do entrypoint raiz.
+
+```tsx
+import { Button, TextInput, Alert } from '@government/design-system';
+
+export function LoginForm() {
+  return (
+    <form>
+      <Alert variant="warning">Suas credenciais expiram em 7 dias.</Alert>
+
+      <TextInput label="E-mail" type="email" required />
+      <TextInput label="Senha" type="password" required />
+
+      <Button variant="primary" type="submit">
+        Entrar
+      </Button>
+    </form>
+  );
+}
+```
+
+### Tipos exportados
+
+Para qualquer componente, importe as props e variantes para usar em wrappers, helpers ou histórias do seu próprio app:
+
+```ts
+import type { ButtonProps, ButtonVariant, ButtonSize } from '@government/design-system';
+```
+
+A lista completa de componentes e suas props vive em **Web Components** na sidebar.
+
+---
+
+## 4. Personalização
+
+A personalização do Design System é feita **por tokens**, não por sobrescrita de CSS interno. Esse é o contrato que mantém upgrades seguros e consistência visual.
+
+### 4.1 Redefinir tokens globais
+
+Sobrescreva variáveis CSS em `:root` (ou em qualquer escopo) para alterar o visual do sistema inteiro.
+
+```css
+/* src/app.css — depois dos imports do DS */
+:root {
+  /* Troca a cor primária do brand */
+  --ds-primitive-color-brand-red: #c81d25;
+
+  /* Aumenta levemente o raio padrão */
+  --ds-primitive-border-radius-radius-md: 10px;
+}
+```
+
+Todo componente que consome esses tokens reflete a mudança automaticamente. **Não há rebuild.**
+
+### 4.2 Theming por escopo
+
+Para aplicar variantes em uma área da página (modal, dashboard, modo embed), redefina os tokens num seletor:
+
+```css
+.dark-section {
+  --ds-primitive-color-white: #1a1a1a;
+  --ds-primitive-color-soft-black: #f5f5f5;
+  --ds-primitive-color-neutral-grey-100: #2a2a2a;
+}
+```
+
+```tsx
+<section className="dark-section">
+  <Card title="Modo escuro local">…</Card>
+</section>
+```
+
+### 4.3 Customização pontual de instância
+
+Cada componente aceita `className` e estilos via tokens locais. Use isso apenas para **espaçamento, margem ou contexto** — nunca para reescrever o componente.
+
+```tsx
+<Button className="my-submit-cta">Salvar</Button>
+```
+
+```css
+.my-submit-cta {
+  margin-top: var(--ds-primitive-spacing-24);
+  align-self: flex-end;
+}
+```
+
+---
+
+## 5. Guidelines de personalização
+
+### ✅ Faça
+
+- Use tokens (`var(--ds-primitive-…)`) ao invés de hardcode de hex, px ou fontes.
+- Sobrescreva tokens no nível de aplicação para theming global e branding.
+- Componha componentes existentes com slots e `children` para criar UI nova.
+- Crie wrappers locais quando precisar de comportamento de domínio (`<LoginButton>` que delega para `<Button>`).
+- Importe apenas o que usa: o tree-shaking funciona porque cada componente está em seu próprio módulo.
+
+### 🚫 Evite
+
+- `!important` para forçar estilos sobre os componentes.
+- Selecionar classes internas (`.ds-button__icon`, `.ds-card-header`) — elas mudam sem aviso.
+- Copiar CSS dos componentes para o seu app: você perde futuras correções e melhorias.
+- Hardcode de valores que existem como token (`color: #ff161f` quando há `--ds-primitive-color-brand-red`).
+- Criar variantes paralelas de um componente em vez de propor extensão no DS.
+
+---
+
+## 6. Acessibilidade
+
+Todos os componentes são entregues com:
+
+- Foco visível (outline com contraste AA).
+- Suporte completo a teclado.
+- Atributos ARIA corretos por padrão (role, label, expanded, disabled, busy).
+- Cores que atendem WCAG AA (contraste ≥ 4.5:1 para texto regular).
+
+Se você criar wrappers, **preserve as props de acessibilidade** que o componente original aceita (`aria-label`, `id`, `aria-describedby`).
+
+Veja **Documentation/Acessibilidade** para critérios completos e checklist por componente.
+
+---
+
+## 7. SSR e hidratação
+
+Os componentes são **client-friendly mas server-renderable**. Não há acesso a `window` ou `document` na render inicial. Componentes que precisam de side effects (foco, observers, listeners) só os ativam após mount.
+
+- **Next.js App Router:** todos os componentes podem ser usados em Server Components. Componentes interativos (formulário, modal, dropdown) precisam de `"use client"` no arquivo do consumidor.
+- **Next.js Pages Router:** funciona sem ajuste.
+- **Remix:** funciona sem ajuste.
+- **Vite SPA:** funciona sem ajuste.
+
+---
+
+## 8. Stack interna (referência)
+
+| Camada                  | Tecnologia                                      |
+| ----------------------- | ----------------------------------------------- |
+| UI Framework            | React 19 + TypeScript estrito                   |
+| Styling                 | CSS puro com CSS custom properties (tokens)     |
+| Build                   | Vite (lib mode), ESM, tree-shakeable            |
+| Tipos                   | Emitidos com `vite-plugin-dts`                  |
+| Tokens                  | Style Dictionary (Figma → CSS + JSON)           |
+| Documentação            | Storybook 10                                    |
+| Testes                  | Vitest + Testing Library + addon-a11y           |
+
+---
+
+## 9. Suporte
+
+- Issues e proposta de novos componentes: repositório interno.
+- Bugs reproduzíveis: inclua versão do pacote, exemplo mínimo e ambiente.
+- Pedidos de novos tokens passam pela equipe de Design via Figma — não os crie diretamente no código.
+
+---
+
+## 10. Checklist rápido (cole no seu PR)
+
+- [ ] Importei `tokens.css` e `styles.css` na raiz uma única vez.
+- [ ] Uso variáveis CSS do DS para qualquer cor, espaçamento ou tipografia customizada.
+- [ ] Não sobrescrevi classes internas dos componentes.
+- [ ] Componentes interativos têm `aria-label` ou label visível.
+- [ ] Testei navegação por teclado e foco visível.
+- [ ] `pnpm typecheck` e `pnpm test` passam.

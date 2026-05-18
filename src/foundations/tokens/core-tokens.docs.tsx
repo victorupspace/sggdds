@@ -177,14 +177,13 @@ export function CoreTokensColorPage() {
   return (
     <PageShell>
       <PageIntro
-        count={colors.length}
         description="Paleta primitiva importada do Figma e organizada por base, identidade, marca, utilitarios de feedback, neutros e overlays alfa. Aliases preservam a intencao sem duplicar literais."
         eyebrow="Core Tokens"
         title="Color"
       />
       {groupColorTokens(colors).map(([group, groupTokens]) => (
         <section className="token-section" key={group}>
-          <SectionHeader count={groupTokens.length} eyebrow="Color category" title={group} />
+          <SectionHeader eyebrow="Color category" title={group} />
           <div className="color-grid">
             {groupTokens.map((token) => (
               <article className="color-card" key={token.path}>
@@ -202,34 +201,68 @@ export function CoreTokensColorPage() {
 }
 
 export function CoreTokensSpacingPage() {
+  const sortedSpacing = spacing.slice().sort(sortByValueAsc);
+  const maxSpacing = Math.max(...sortedSpacing.map((t) => toNumericValue(t.value)));
+
   return (
     <PageShell>
       <PageIntro
-        count={spacing.length}
         description="Escala de distancia para gaps, paddings, margins e composicao responsiva. Os valores sao compilados como dimensoes em px."
         eyebrow="Core Tokens"
         title="Spacing"
       />
       <section className="token-section">
-        <SectionHeader count={spacing.length} eyebrow="Scale" title="Spacing scale" />
-        <div className="scale-list">
-          {spacing.map((token) => (
-            <article className="scale-row" key={token.path}>
-              <TokenMeta token={token} />
-              <div className="scale-visual" aria-hidden="true">
-                <span style={{ width: `clamp(2px, var(${token.variable}), 100%)` }} />
-              </div>
-            </article>
-          ))}
+        <SectionHeader eyebrow="Scale" title="Spacing scale" />
+        <div className="spacing-cards">
+          {sortedSpacing.map((token) => {
+            const numeric = toNumericValue(token.value);
+            const ratio = maxSpacing > 0 ? (numeric / maxSpacing) * 100 : 0;
+            return (
+              <article className="spacing-card" key={token.path}>
+                <div className="spacing-card-step">
+                  <strong>{numeric > 0 ? `${String(numeric)}px` : '0'}</strong>
+                  <small>spacing-{token.name}</small>
+                </div>
+                <div className="spacing-card-bar" aria-hidden="true">
+                  <span
+                    className="spacing-card-bar-fill"
+                    style={{ width: `max(${numeric > 0 ? '4px' : '0px'}, ${String(ratio)}%)` }}
+                  />
+                </div>
+                <div className="spacing-card-meta">
+                  <code className="spacing-card-token">{token.variable}</code>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </section>
     </PageShell>
   );
 }
 
+function toNumericValue(value: TokenEntry['value']): number {
+  if (typeof value === 'number') return value;
+  if (typeof value === 'string') {
+    const parsed = parseFloat(value);
+    return Number.isNaN(parsed) ? 0 : parsed;
+  }
+  return 0;
+}
+
+function sortByValueAsc(a: TokenEntry, b: TokenEntry): number {
+  return toNumericValue(a.value) - toNumericValue(b.value);
+}
+
 export function CoreTokensBorderPage() {
-  const radiusTokens = borders.filter((token) => token.path.includes('.radius.'));
-  const widthTokens = borders.filter((token) => token.path.includes('.width.'));
+  const radiusTokens = borders
+    .filter((token) => token.path.includes('.radius.'))
+    .slice()
+    .sort(sortByValueAsc);
+  const widthTokens = borders
+    .filter((token) => token.path.includes('.width.'))
+    .slice()
+    .sort(sortByValueAsc);
 
   return (
     <PageShell>
@@ -272,7 +305,28 @@ export function CoreTokensBorderPage() {
   );
 }
 
+const BREAKPOINT_LABELS: Record<string, { description: string; device: string }> = {
+  'bp-xs': {
+    description: 'Mobile pequeno e ponto de partida da escala responsiva.',
+    device: 'Mobile XS',
+  },
+  'bp-sm': {
+    description: 'Mobile padrão. Layouts de uma coluna com toque confortável.',
+    device: 'Mobile',
+  },
+  'bp-md': {
+    description: 'Tablet. Layouts de 2 colunas e densidade intermediária.',
+    device: 'Tablet',
+  },
+  'bp-lg': {
+    description: 'Desktop. Grid de 12 colunas, navegação horizontal e densidade alta.',
+    device: 'Desktop',
+  },
+};
+
 export function CoreTokensBreakpointsPage() {
+  const orderedBreakpoints = breakpoints.slice().sort(sortByValueAsc);
+
   return (
     <PageShell>
       <PageIntro
@@ -283,15 +337,34 @@ export function CoreTokensBreakpointsPage() {
       />
       <section className="token-section">
         <SectionHeader count={breakpoints.length} eyebrow="Responsive" title="Viewport scale" />
-        <div className="breakpoint-list">
-          {breakpoints.map((token) => (
-            <article className="breakpoint-row" key={token.path}>
-              <TokenMeta token={token} />
-              <div className="breakpoint-visual" aria-hidden="true">
-                <span style={{ width: `clamp(2px, calc(var(${token.variable}) / 12), 100%)` }} />
-              </div>
-            </article>
-          ))}
+        <div className="bp-cards">
+          {orderedBreakpoints.map((token) => {
+            const info = BREAKPOINT_LABELS[token.name] ?? { description: '', device: token.name };
+            const numeric = toNumericValue(token.value);
+            return (
+              <article className="bp-card" key={token.path}>
+                <div className="bp-card-head">
+                  <div>
+                    <span className="bp-card-device">{info.device}</span>
+                    <strong className="bp-card-value">
+                      {numeric > 0 ? `${String(numeric)}px` : '0'}
+                    </strong>
+                  </div>
+                  <code className="bp-card-name">{token.name}</code>
+                </div>
+                <div className="bp-card-bar" aria-hidden="true">
+                  <span
+                    className="bp-card-bar-fill"
+                    style={{ width: `${String(Math.max(2, (numeric / 1440) * 100))}%` }}
+                  />
+                  <span className="bp-card-bar-tick">0</span>
+                  <span className="bp-card-bar-tick bp-card-bar-tick-end">1440</span>
+                </div>
+                <p className="bp-card-desc">{info.description}</p>
+                <TokenMeta compact token={token} />
+              </article>
+            );
+          })}
         </div>
       </section>
     </PageShell>
@@ -299,30 +372,72 @@ export function CoreTokensBreakpointsPage() {
 }
 
 export function CoreTokensTypographyPage() {
+  const primaryFamily = fontFamilies[0];
+  const familyName = String(primaryFamily.value).replace(/['"]/g, '');
+  const googleFontsUrl = `https://fonts.google.com/specimen/${familyName.replace(/\s+/g, '+')}`;
+
   return (
     <PageShell>
       <PageIntro
-        count={typographyCount}
         description="Escalas primitivas de familia, peso, tamanho, altura de linha e tracking para orientar componentes responsivos futuros."
         eyebrow="Core Tokens"
         title="Typography"
       />
       <section className="token-section">
-        <SectionHeader count={fontFamilies.length} eyebrow="Typography" title="Font family" />
-        <div className="type-family-grid">
-          {fontFamilies.map((token) => (
-            <article className="type-family-card" key={token.path}>
-              <p>Family</p>
-              <strong style={{ fontFamily: `var(${token.variable})` }}>
-                {String(token.value)}
-              </strong>
-              <TokenMeta token={token} />
-            </article>
-          ))}
-        </div>
+        <SectionHeader eyebrow="Typography" title="Font family" />
+        <article className="type-family-feature">
+          <div className="type-family-feature-preview">
+            <p className="type-family-feature-display">
+              Aa<span className="accent">Bb</span>
+            </p>
+            <p className="type-family-feature-sample">
+              The quick brown fox jumps over the lazy dog. — A raposa marrom salta sobre o cachorro
+              preguiçoso.
+            </p>
+          </div>
+          <div className="type-family-feature-meta">
+            <dl>
+              <div>
+                <dt>Família</dt>
+                <dd>{familyName}</dd>
+              </div>
+              <div>
+                <dt>Tipo</dt>
+                <dd>Sans-serif geométrica · Open source</dd>
+              </div>
+              <div>
+                <dt>Pesos disponíveis</dt>
+                <dd>200 → 800 (Variable)</dd>
+              </div>
+              <div>
+                <dt>Token</dt>
+                <dd>
+                  <code>{primaryFamily.variable}</code>
+                </dd>
+              </div>
+            </dl>
+            <a
+              className="type-family-feature-cta"
+              href={googleFontsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Baixar no Google Fonts
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <path
+                  d="M7 17L17 7M9 7h8v8"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </a>
+          </div>
+        </article>
       </section>
       <section className="token-section">
-        <SectionHeader count={fontSizes.length} eyebrow="Typography" title="Font size" />
+        <SectionHeader eyebrow="Typography" title="Font size" />
         <div className="type-scale">
           {fontSizes.map((token) => (
             <article className="type-row" key={token.path}>
@@ -343,13 +458,6 @@ export function CoreTokensTypographyPage() {
     </PageShell>
   );
 }
-
-const typographyCount =
-  fontFamilies.length +
-  fontSizes.length +
-  fontWeights.length +
-  lineHeights.length +
-  letterSpacing.length;
 
 function TokenCompactList({ title, tokens: entries }: { title: string; tokens: TokenEntry[] }) {
   return (

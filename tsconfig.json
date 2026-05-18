@@ -23,6 +23,8 @@
     "tests/**/*.ts",
     "scripts/**/*.ts",
     ".storybook/**/*.ts",
+    "docs/**/*.ts",
+    "docs/**/*.tsx",
     "vite.config.ts",
     "style-dictionary.config.ts"
   ]

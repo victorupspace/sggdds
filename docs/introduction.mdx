@@ -1,17 +1,17 @@
-import { Meta } from '@storybook/addon-docs/blocks';
+import { Meta, Unstyled } from '@storybook/addon-docs/blocks';
 
-<Meta title="Documentation/Introdução" />
+import { IntroductionPage } from './introduction.docs';
 
-# Introduction
+<Meta
+  title="Documentation/Introdução"
+  parameters={{
+    layout: 'fullscreen',
+    docs: { toc: false },
+    previewTabs: { canvas: { hidden: true } },
+    viewMode: 'docs',
+  }}
+/>
 
-Este Storybook documenta a implementacao web React do Design System. A fundacao foi preparada para receber componentes de forma incremental, um por vez, sempre a partir de especificacoes rastreaveis do Figma.
-
-O repositorio separa fundamentos, componentes, utilitarios, tipos, documentacao e saidas por plataforma. A primeira entrega executavel e web responsiva, mas os tokens foram organizados para evoluir para iOS e Android sem reescrever a estrategia central.
-
-## Principios
-
-- Acessibilidade e requisito de aceite, nao uma etapa posterior.
-- Tokens sao a fonte tecnica de decisao visual.
-- Componentes devem ser pequenos, testaveis, documentados e independentes de aplicacao.
-- Stories devem demonstrar comportamento real, estados e criterios de uso.
-- Componentes nao devem depender de Tailwind ou de layout de produto.
+<Unstyled>
+  <IntroductionPage />
+</Unstyled>

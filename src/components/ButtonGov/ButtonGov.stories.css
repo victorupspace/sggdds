@@ -1,0 +1,31 @@
+.button-gov-story-surface {
+  display: grid;
+  min-block-size: 260px;
+  padding: var(--ds-primitive-spacing-48);
+  place-items: center;
+  background: var(--ds-primitive-color-neutral-grey-100);
+}
+
+.button-gov-story-panel {
+  display: grid;
+  inline-size: min(100%, 420px);
+  padding: var(--ds-primitive-spacing-40);
+  gap: var(--ds-primitive-spacing-24);
+  place-items: center;
+  background: var(--ds-primitive-color-white);
+}
+
+.button-gov-story-stack {
+  justify-items: center;
+}
+
+@media (max-width: 420px) {
+  .button-gov-story-surface {
+    min-block-size: 220px;
+    padding: var(--ds-primitive-spacing-24);
+  }
+
+  .button-gov-story-panel {
+    padding: var(--ds-primitive-spacing-24);
+  }
+}

@@ -24,21 +24,26 @@ function getFocusableElements(container: HTMLElement | null) {
 }
 
 export function Modal({
+  actions = [],
   children,
   className,
+  closeLabel = 'Fechar modal',
   closeOnEsc = true,
   closeOnOverlayClick = true,
   footer,
   isOpen,
   onClose,
   size = 'md',
+  subtitle,
   title,
 }: ModalProps) {
   const titleId = useId();
+  const subtitleId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previousActiveElementRef = useRef<HTMLElement | null>(null);
   const mouseDownStartedOnOverlayRef = useRef(false);
+  const renderedActions = actions.slice(0, 3);
 
   useEffect(() => {
     if (!isOpen || typeof document === 'undefined') {
@@ -117,7 +122,33 @@ export function Modal({
     return null;
   }
 
-  const rootClassName = ['ds-modal', `ds-modal--size-${size}`, className].filter(Boolean).join(' ');
+  const rootClassName = [
+    'ds-modal',
+    `ds-modal--size-${size}`,
+    subtitle ? 'ds-modal--with-subtitle' : undefined,
+    !children ? 'ds-modal--without-body' : undefined,
+    !footer && renderedActions.length === 0 ? 'ds-modal--without-footer' : undefined,
+    className,
+  ]
+    .filter(Boolean)
+    .join(' ');
+  const footerContent =
+    footer ??
+    (renderedActions.length > 0 ? (
+      <>
+        {renderedActions.map(({ label, onClick, variant = 'primary', ...actionProps }, index) => (
+          <button
+            {...actionProps}
+            className={`ds-modal__action ds-modal__action--${variant}`}
+            key={`${label}-${String(index)}`}
+            onClick={onClick}
+            type="button"
+          >
+            {label}
+          </button>
+        ))}
+      </>
+    ) : null);
 
   return (
     <div
@@ -136,6 +167,7 @@ export function Modal({
       }}
     >
       <div
+        aria-describedby={subtitle ? subtitleId : undefined}
         aria-labelledby={titleId}
         aria-modal="true"
         className="ds-modal__dialog"
@@ -143,11 +175,18 @@ export function Modal({
         role="dialog"
       >
         <header className="ds-modal__header">
-          <h2 className="ds-modal__title" id={titleId}>
-            {title}
-          </h2>
+          <div className="ds-modal__heading">
+            <h2 className="ds-modal__title" id={titleId}>
+              {title}
+            </h2>
+            {subtitle ? (
+              <p className="ds-modal__subtitle" id={subtitleId}>
+                {subtitle}
+              </p>
+            ) : null}
+          </div>
           <button
-            aria-label="Fechar modal"
+            aria-label={closeLabel}
             className="ds-modal__close"
             onClick={onClose}
             ref={closeButtonRef}
@@ -166,7 +205,7 @@ export function Modal({
 
         <div className="ds-modal__body">{children}</div>
 
-        {footer ? <footer className="ds-modal__footer">{footer}</footer> : null}
+        {footerContent ? <footer className="ds-modal__footer">{footerContent}</footer> : null}
       </div>
     </div>
   );

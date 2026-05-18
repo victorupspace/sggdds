@@ -6,9 +6,6 @@
   --header-border: var(--ds-primitive-color-neutral-grey-200);
   --header-hover: var(--ds-primitive-color-neutral-alpha-4);
   --header-focus: var(--ds-primitive-color-identity-blue-primary);
-  --header-account-background: var(--ds-primitive-color-identity-blue-primary);
-  --header-account-background-hover: var(--ds-primitive-color-identity-blue-dark);
-  --header-account-foreground: var(--ds-primitive-color-white);
   --header-container-width: calc(var(--ds-primitive-spacing-128) * 10);
   --header-brand-block-size: calc(var(--ds-primitive-spacing-40) + var(--ds-primitive-spacing-24));
   --header-nav-block-size: var(--ds-primitive-spacing-64);
@@ -328,20 +325,6 @@
   white-space: nowrap;
 }
 
-.ds-header__account-action.ds-button {
-  --button-background: var(--header-account-background);
-  --button-background-hover: var(--header-account-background-hover);
-  --button-background-active: var(--header-account-background-hover);
-  --button-foreground: var(--header-account-foreground);
-  --button-border-color: var(--header-account-background);
-  --button-padding-inline: var(--ds-primitive-spacing-24);
-  --button-gap: var(--ds-primitive-spacing-8);
-  --button-font-size: var(--ds-primitive-typography-font-size-16);
-  --button-line-height: var(--ds-primitive-typography-line-height-24);
-
-  white-space: nowrap;
-}
-
 @media (max-width: 900px) {
   .ds-header {
     --header-inline-padding: var(--ds-primitive-spacing-24);
@@ -430,7 +413,7 @@
     border-radius: var(--ds-primitive-border-radius-radius-md);
   }
 
-  .ds-header__account-action.ds-button {
+  .ds-header__account-action.ds-button-gov {
     inline-size: 100%;
   }
 }

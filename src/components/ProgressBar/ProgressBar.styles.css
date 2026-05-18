@@ -1,0 +1,189 @@
+.ds-progress-bar {
+  --progress-bar-track-color: var(--ds-primitive-color-neutral-grey-200);
+  --progress-bar-fill-color: var(--ds-primitive-color-identity-blue-primary);
+  --progress-bar-label-color: var(--ds-primitive-color-neutral-grey-700);
+  --progress-bar-helper-color: var(--ds-primitive-color-neutral-grey-600);
+  --progress-bar-value-color: var(--ds-primitive-color-neutral-grey-700);
+  --progress-bar-icon-color: var(--progress-bar-fill-color);
+  --progress-bar-icon-mark: var(--ds-primitive-color-white);
+  --progress-bar-height: var(--ds-primitive-spacing-8);
+  --progress-bar-width: 480px;
+  --progress-bar-gap: var(--ds-primitive-spacing-4);
+  --progress-bar-radius: var(--ds-primitive-border-radius-radius-full);
+
+  display: grid;
+  box-sizing: border-box;
+  inline-size: min(100%, var(--progress-bar-width));
+  min-inline-size: 0;
+  gap: var(--progress-bar-gap);
+  color: var(--progress-bar-label-color);
+  font-family:
+    var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
+}
+
+.ds-progress-bar--variant-neutral {
+  --progress-bar-fill-color: var(--ds-primitive-color-soft-black);
+  --progress-bar-icon-color: var(--ds-primitive-color-neutral-grey-700);
+}
+
+.ds-progress-bar--variant-success {
+  --progress-bar-fill-color: var(--ds-primitive-color-utility-success-green-300);
+  --progress-bar-label-color: var(--ds-primitive-color-neutral-grey-700);
+  --progress-bar-helper-color: var(--ds-primitive-color-utility-success-green-300);
+  --progress-bar-value-color: var(--ds-primitive-color-utility-success-green-300);
+}
+
+.ds-progress-bar--variant-error {
+  --progress-bar-fill-color: var(--ds-primitive-color-utility-danger-red-300);
+  --progress-bar-label-color: var(--ds-primitive-color-utility-danger-red-300);
+  --progress-bar-helper-color: var(--ds-primitive-color-utility-danger-red-300);
+  --progress-bar-value-color: var(--ds-primitive-color-utility-danger-red-300);
+}
+
+.ds-progress-bar--size-sm {
+  --progress-bar-height: var(--ds-primitive-spacing-4);
+  --progress-bar-gap: var(--ds-primitive-spacing-2);
+}
+
+.ds-progress-bar__header {
+  display: flex;
+  min-inline-size: 0;
+  gap: var(--ds-primitive-spacing-12);
+  align-items: end;
+  justify-content: space-between;
+}
+
+.ds-progress-bar__label {
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
+  color: var(--progress-bar-label-color);
+  font-size: var(--ds-primitive-typography-font-size-18);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  line-height: var(--ds-primitive-typography-line-height-24);
+}
+
+.ds-progress-bar__meta {
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: var(--ds-primitive-spacing-8);
+  align-items: center;
+  justify-content: flex-end;
+  color: var(--progress-bar-value-color);
+}
+
+.ds-progress-bar__value {
+  color: inherit;
+  font-size: var(--ds-primitive-typography-font-size-16);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: var(--ds-primitive-typography-line-height-20);
+  white-space: nowrap;
+}
+
+.ds-progress-bar__icon {
+  display: inline-grid;
+  place-items: center;
+  inline-size: var(--ds-primitive-spacing-24);
+  block-size: var(--ds-primitive-spacing-24);
+  color: var(--progress-bar-icon-color);
+}
+
+.ds-progress-bar__icon > svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.ds-progress-bar__track {
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  inline-size: 100%;
+  block-size: var(--progress-bar-height);
+  border-radius: var(--progress-bar-radius);
+  background: var(--progress-bar-track-color);
+}
+
+.ds-progress-bar__fill {
+  position: absolute;
+  inset-block: 0;
+  inset-inline-start: 0;
+  display: block;
+  max-inline-size: 100%;
+  border-radius: inherit;
+  background: var(--progress-bar-fill-color);
+  transition: inline-size 180ms ease;
+}
+
+.ds-progress-bar--mode-indeterminate .ds-progress-bar__fill {
+  inline-size: 40%;
+  animation: ds-progress-bar-indeterminate 1200ms ease-in-out infinite;
+}
+
+.ds-progress-bar__helper {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--progress-bar-helper-color);
+  font-size: var(--ds-primitive-typography-font-size-16);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: var(--ds-primitive-typography-line-height-24);
+}
+
+.ds-progress-bar--size-sm .ds-progress-bar__label {
+  font-size: var(--ds-primitive-typography-font-size-14);
+  line-height: var(--ds-primitive-typography-line-height-20);
+}
+
+.ds-progress-bar--size-sm .ds-progress-bar__value,
+.ds-progress-bar--size-sm .ds-progress-bar__helper {
+  font-size: var(--ds-primitive-typography-font-size-12);
+  line-height: var(--ds-primitive-typography-line-height-16);
+}
+
+.ds-progress-bar--size-sm .ds-progress-bar__icon {
+  inline-size: var(--ds-primitive-spacing-20);
+  block-size: var(--ds-primitive-spacing-20);
+}
+
+@keyframes ds-progress-bar-indeterminate {
+  0% {
+    transform: translateX(-110%);
+  }
+
+  50% {
+    transform: translateX(80%);
+  }
+
+  100% {
+    transform: translateX(260%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-progress-bar__fill {
+    transition: none;
+  }
+
+  .ds-progress-bar--mode-indeterminate .ds-progress-bar__fill {
+    animation-duration: 2400ms;
+  }
+}
+
+@media (max-width: 420px) {
+  .ds-progress-bar {
+    --progress-bar-width: 100%;
+  }
+
+  .ds-progress-bar__header {
+    gap: var(--ds-primitive-spacing-8);
+  }
+
+  .ds-progress-bar__label {
+    font-size: var(--ds-primitive-typography-font-size-16);
+    line-height: var(--ds-primitive-typography-line-height-22);
+  }
+
+  .ds-progress-bar__helper,
+  .ds-progress-bar__value {
+    font-size: var(--ds-primitive-typography-font-size-14);
+    line-height: var(--ds-primitive-typography-line-height-20);
+  }
+}

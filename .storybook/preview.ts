@@ -20,9 +20,11 @@ const preview: Preview = {
         {
           style: {
             alignItems: 'flex-start',
-            background: '#E9E9E9',
+            background: 'var(--ds-primitive-color-neutral-grey-100, #f5f5f5)',
             boxSizing: 'border-box',
             display: 'flex',
+            fontFamily:
+              'var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif',
             justifyContent: 'center',
             minWidth: 0,
             overflow: 'visible',
@@ -53,11 +55,11 @@ const preview: Preview = {
       options: {
         canvas: {
           name: 'Canvas',
-          value: 'var(--ds-primitive-color-white, #ffffff)',
+          value: 'var(--ds-primitive-color-neutral-grey-100, #f5f5f5)',
         },
         surface: {
           name: 'Surface',
-          value: 'var(--ds-primitive-color-neutral-grey-50, #fafafa)',
+          value: 'var(--ds-primitive-color-white, #ffffff)',
         },
         contrast: {
           name: 'Contrast',
@@ -74,6 +76,11 @@ const preview: Preview = {
     },
     docs: {
       toc: true,
+    },
+    options: {
+      storySort: {
+        order: ['Foundations', 'Components'],
+      },
     },
     viewport: {
       options: {

@@ -1,49 +1,63 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
+import type { ReactNode } from 'react';
 
 import './Modal.stories.css';
 
 import { Button } from '../Button';
-import { TextInput } from '../TextInput';
 import { Modal } from './Modal';
-import type { ModalSize } from './Modal.types';
+import type { ModalAction, ModalSize } from './Modal.types';
 
 const sizes: ModalSize[] = ['sm', 'md', 'lg', 'full'];
 
+const defaultActions: ModalAction[] = [
+  {
+    label: 'Action 3',
+    variant: 'tertiary',
+  },
+  {
+    label: 'Action 2',
+    variant: 'secondary',
+  },
+  {
+    label: 'Action 1',
+    variant: 'primary',
+  },
+];
+
 function ModalExample({
+  actions = defaultActions,
   closeOnEsc = true,
   closeOnOverlayClick = true,
+  content = <p>Body content</p>,
+  footer,
   size = 'md',
+  subtitle = 'Subtitle or description',
+  title = 'Title',
 }: {
+  actions?: ModalAction[];
   closeOnEsc?: boolean;
   closeOnOverlayClick?: boolean;
+  content?: ReactNode;
+  footer?: ReactNode;
   size?: ModalSize;
+  subtitle?: string;
+  title?: string;
 }) {
   return (
     <div className="ds-modal-storybook-shell">
       <Modal
+        actions={actions}
         className="ds-modal-storybook-fit"
         closeOnEsc={closeOnEsc}
         closeOnOverlayClick={closeOnOverlayClick}
-        footer={
-          <>
-            <Button variant="tertiary">Cancelar</Button>
-            <Button>Confirmar</Button>
-          </>
-        }
+        footer={footer}
         isOpen
         onClose={() => undefined}
         size={size}
-        title="Confirmar solicitacao"
+        subtitle={subtitle}
+        title={title}
       >
-        <p>
-          Revise as informacoes antes de enviar. Depois da confirmacao, o protocolo sera gerado e
-          ficara disponivel para acompanhamento.
-        </p>
-        <TextInput
-          helperText="Inclua um contexto curto, se necessario."
-          label="Observacao opcional"
-          placeholder="Descreva se necessario"
-        />
+        {content}
       </Modal>
     </div>
   );
@@ -64,9 +78,9 @@ O Modal exibe uma janela centralizada sobre overlay para fluxos que exigem atenc
 Anatomia:
 - Overlay com escurecimento e blur.
 - Dialog com superficie elevada, header, area de conteudo e footer opcional.
-- Header com titulo obrigatorio e botao de fechar.
+- Header com titulo obrigatorio, subtitle opcional e botao de fechar.
 - Corpo rolavel quando o conteudo ultrapassa a altura disponivel.
-- Footer opcional para acoes primarias e secundarias.
+- Footer opcional para ate tres acoes tipadas: tertiary, secondary e primary.
 - Tamanhos sm, md, lg e full para acomodar diferentes densidades de conteudo.
 
 Comportamento:
@@ -83,7 +97,7 @@ Nao use para mensagens leves, feedback passivo, navegacao comum ou conteudo long
 
 Responsividade:
 - Em desktop, o modal centraliza no overlay e respeita o tamanho selecionado.
-- Em telas pequenas, o dialog vira uma superficie de altura cheia com header fixo e conteudo rolavel.
+- Em telas pequenas, o dialog permanece como card responsivo e empilha as acoes em largura total.
 - Nas stories, todas as variacoes sao exibidas abertas em uma preview contida para documentacao. Esse enquadramento evita que o overlay fixo invada outras stories na pagina de Docs.
 `,
       },
@@ -91,9 +105,17 @@ Responsividade:
     layout: 'fullscreen',
   },
   argTypes: {
+    actions: {
+      control: false,
+      description: 'Lista de ate tres acoes tipadas renderizadas no footer.',
+    },
     children: {
       control: false,
       description: 'Conteudo principal do modal.',
+    },
+    closeLabel: {
+      control: 'text',
+      description: 'Rotulo acessivel do botao de fechar.',
     },
     closeOnEsc: {
       control: 'boolean',
@@ -105,7 +127,7 @@ Responsividade:
     },
     footer: {
       control: false,
-      description: 'Area opcional de acoes.',
+      description: 'Area opcional customizada. Quando informada, substitui actions.',
     },
     isOpen: {
       control: 'boolean',
@@ -124,6 +146,10 @@ Responsividade:
       control: 'text',
       description: 'Titulo acessivel do modal.',
     },
+    subtitle: {
+      control: 'text',
+      description: 'Descricao curta conectada ao dialog por aria-describedby.',
+    },
   },
   tags: ['autodocs'],
 } satisfies Meta<typeof Modal>;
@@ -134,6 +160,7 @@ type Story = StoryObj<typeof ModalExample>;
 
 export const Default: Story = {
   args: {
+    actions: defaultActions,
     closeOnEsc: true,
     closeOnOverlayClick: true,
     size: 'md',
@@ -151,6 +178,7 @@ export const Default: Story = {
 
 export const Small: Story = {
   args: {
+    actions: defaultActions.slice(1),
     size: 'sm',
   },
   parameters: {
@@ -166,6 +194,7 @@ export const Small: Story = {
 
 export const Large: Story = {
   args: {
+    actions: defaultActions,
     size: 'lg',
   },
   parameters: {
@@ -181,6 +210,7 @@ export const Large: Story = {
 
 export const Full: Story = {
   args: {
+    actions: defaultActions,
     size: 'full',
   },
   parameters: {
@@ -196,6 +226,7 @@ export const Full: Story = {
 
 export const Persistent: Story = {
   args: {
+    actions: defaultActions,
     closeOnEsc: false,
     closeOnOverlayClick: false,
     size: 'md',
@@ -209,4 +240,62 @@ export const Persistent: Story = {
     },
   },
   render: (args) => <ModalExample {...args} />,
+};
+
+export const LongContent: Story = {
+  args: {
+    actions: defaultActions,
+    size: 'md',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Conteudo longo valida area interna rolavel, header preservado e footer sempre acessivel para acoes.',
+      },
+    },
+  },
+  render: (args) => (
+    <ModalExample
+      {...args}
+      content={
+        <div className="ds-modal-storybook-long-content">
+          <p>Body content</p>
+          <p>Body content</p>
+          <p>Body content</p>
+          <p>Body content</p>
+          <p>Body content</p>
+          <p>Body content</p>
+          <p>Body content</p>
+          <p>Body content</p>
+        </div>
+      }
+    />
+  ),
+};
+
+export const CustomFooter: Story = {
+  args: {
+    actions: [],
+    size: 'md',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Mantem compatibilidade com footer customizado para composicoes existentes que ja usam Button ou outros componentes do DS.',
+      },
+    },
+  },
+  render: (args) => (
+    <ModalExample
+      {...args}
+      footer={
+        <>
+          <Button variant="tertiary">Cancelar</Button>
+          <Button>Confirmar</Button>
+        </>
+      }
+    />
+  ),
 };

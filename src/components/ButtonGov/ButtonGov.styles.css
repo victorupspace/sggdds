@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700&display=swap');
+
+.ds-button-gov {
+  --button-gov-background: var(--ds-primitive-color-identity-blue-primary);
+  --button-gov-background-hover: var(--ds-primitive-color-identity-blue-dark);
+  --button-gov-background-active: var(--ds-primitive-color-identity-blue-darker);
+  --button-gov-foreground: var(--ds-primitive-color-white);
+  --button-gov-focus-ring: var(--ds-primitive-color-soft-black);
+  --button-gov-disabled-background: var(--ds-primitive-color-neutral-grey-100);
+  --button-gov-disabled-foreground: var(--ds-primitive-color-neutral-grey-500);
+  --button-gov-inline-size: 250px;
+  --button-gov-block-size: var(--ds-primitive-spacing-48);
+  --button-gov-icon-size: var(--ds-primitive-spacing-20);
+
+  position: relative;
+  display: inline-flex;
+  box-sizing: border-box;
+  inline-size: min(var(--button-gov-inline-size), 100%);
+  min-inline-size: 0;
+  block-size: var(--button-gov-block-size);
+  padding: var(--ds-primitive-spacing-8) var(--ds-primitive-spacing-24);
+  gap: var(--ds-primitive-spacing-8);
+  align-items: center;
+  justify-content: center;
+  border: var(--ds-primitive-border-width-border-sm) solid var(--button-gov-background);
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  background: var(--button-gov-background);
+  color: var(--button-gov-foreground);
+  cursor: pointer;
+  font-family: 'Open Sans', Arial, system-ui, sans-serif;
+  font-size: var(--ds-primitive-typography-font-size-18);
+  font-weight: 600;
+  line-height: var(--ds-primitive-typography-line-height-24);
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  white-space: nowrap;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.ds-button-gov *,
+.ds-button-gov *::before,
+.ds-button-gov *::after {
+  box-sizing: border-box;
+}
+
+.ds-button-gov:not(:disabled):not([aria-disabled='true']):hover {
+  border-color: var(--button-gov-background-hover);
+  background: var(--button-gov-background-hover);
+}
+
+.ds-button-gov:not(:disabled):not([aria-disabled='true']):active {
+  border-color: var(--button-gov-background-active);
+  background: var(--button-gov-background-active);
+}
+
+.ds-button-gov:focus-visible {
+  outline: var(--ds-primitive-border-width-border-md) solid var(--button-gov-focus-ring);
+  outline-offset: var(--ds-primitive-spacing-4);
+}
+
+.ds-button-gov:disabled,
+.ds-button-gov[aria-disabled='true'] {
+  border-color: var(--button-gov-disabled-background);
+  background: var(--button-gov-disabled-background);
+  color: var(--button-gov-disabled-foreground);
+  cursor: not-allowed;
+}
+
+.ds-button-gov__icon,
+.ds-button-gov__spinner {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  inline-size: var(--button-gov-icon-size);
+  block-size: var(--button-gov-icon-size);
+}
+
+.ds-button-gov__icon > svg {
+  inline-size: 100%;
+  block-size: 100%;
+  overflow: visible;
+}
+
+.ds-button-gov__label {
+  display: inline-flex;
+  min-inline-size: 0;
+  gap: var(--ds-primitive-spacing-4);
+  align-items: baseline;
+  justify-content: center;
+  color: inherit;
+  white-space: nowrap;
+}
+
+.ds-button-gov__label-base {
+  font-weight: 600;
+}
+
+.ds-button-gov__label-brand {
+  font-weight: 700;
+}
+
+.ds-button-gov__spinner {
+  border: var(--ds-primitive-border-width-border-md) solid currentColor;
+  border-inline-end-color: transparent;
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  animation: ds-button-gov-spinner 800ms linear infinite;
+}
+
+@keyframes ds-button-gov-spinner {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-button-gov__spinner {
+    animation: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .ds-button-gov {
+    inline-size: 100%;
+  }
+}

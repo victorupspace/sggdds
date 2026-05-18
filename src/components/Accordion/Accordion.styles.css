@@ -18,7 +18,8 @@
   border-radius: var(--accordion-radius);
   background: var(--accordion-background);
   color: var(--accordion-text-color);
-  font-family: var(--ds-primitive-typography-font-family-plus-jakarta-sans);
+  font-family:
+    var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
 }
 
 .ds-accordion__item + .ds-accordion__item {

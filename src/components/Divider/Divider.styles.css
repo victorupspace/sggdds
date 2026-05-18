@@ -1,0 +1,56 @@
+.ds-divider {
+  --divider-color: var(--ds-primitive-color-neutral-grey-300);
+  --divider-size: var(--ds-primitive-border-width-border-sm);
+  --divider-length: 100%;
+
+  display: block;
+  box-sizing: border-box;
+  flex: 0 0 auto;
+  border: 0;
+  background: var(--divider-color);
+}
+
+.ds-divider--tone-subtle {
+  --divider-color: var(--ds-primitive-color-neutral-grey-200);
+}
+
+.ds-divider--tone-default {
+  --divider-color: var(--ds-primitive-color-neutral-grey-300);
+}
+
+.ds-divider--tone-strong {
+  --divider-color: var(--ds-primitive-color-neutral-grey-500);
+}
+
+.ds-divider--thickness-sm {
+  --divider-size: var(--ds-primitive-border-width-border-sm);
+}
+
+.ds-divider--thickness-md {
+  --divider-size: var(--ds-primitive-border-width-border-md);
+}
+
+.ds-divider--thickness-lg {
+  --divider-size: var(--ds-primitive-border-width-border-lg);
+}
+
+.ds-divider--orientation-horizontal {
+  inline-size: var(--divider-length);
+  min-inline-size: 0;
+  block-size: var(--divider-size);
+  min-block-size: var(--divider-size);
+}
+
+.ds-divider--orientation-vertical {
+  inline-size: var(--divider-size);
+  min-inline-size: var(--divider-size);
+  block-size: var(--divider-length);
+  min-block-size: 100%;
+  align-self: stretch;
+}
+
+@media (max-width: 420px) {
+  .ds-divider--orientation-horizontal {
+    inline-size: 100%;
+  }
+}

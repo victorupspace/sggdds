@@ -139,6 +139,43 @@ export const WithMetadata: Story = {
   ),
 };
 
+export const Anatomy: Story = {
+  args: {
+    page: 1,
+    totalPages: 10,
+  },
+  parameters: {
+    componentCanvas: {
+      width: 980,
+    },
+    docs: {
+      description: {
+        story:
+          'Demonstra as duas anatomias principais: paginacao numerica completa e paginacao com metadados, range, seletor de resultados por pagina e seletor direto de pagina.',
+      },
+    },
+  },
+  render: () => (
+    <div className="pagination-story-surface">
+      <div className="pagination-story-panel pagination-story-anatomy">
+        <div className="pagination-story-anatomy-row">
+          <Pagination page={1} totalPages={10} />
+        </div>
+        <div className="pagination-story-anatomy-row">
+          <Pagination
+            page={1}
+            pageSize={20}
+            showPageSelect
+            showPageSize
+            showRange
+            totalItems={100}
+          />
+        </div>
+      </div>
+    </div>
+  ),
+};
+
 export const MiddlePage: Story = {
   args: {
     page: 6,

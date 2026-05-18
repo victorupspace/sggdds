@@ -1,0 +1,48 @@
+.back-to-top-story-surface {
+  position: relative;
+  display: grid;
+  min-block-size: 520px;
+  padding: var(--ds-primitive-spacing-48);
+  background: var(--ds-primitive-color-neutral-grey-100);
+  overflow: hidden;
+}
+
+.back-to-top-story-panel {
+  position: relative;
+  min-block-size: 420px;
+  border-radius: var(--ds-primitive-border-radius-radius-md);
+  background: var(--ds-primitive-color-neutral-grey-800);
+  overflow: hidden;
+}
+
+.back-to-top-story-panel .ds-back-to-top {
+  position: absolute;
+}
+
+.back-to-top-story-content {
+  display: grid;
+  min-block-size: 760px;
+  padding: var(--ds-primitive-spacing-32);
+  align-content: end;
+  color: var(--ds-primitive-color-white);
+  font-family:
+    var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
+  font-size: var(--ds-primitive-typography-font-size-16);
+  line-height: var(--ds-primitive-typography-line-height-24);
+}
+
+.back-to-top-story-scroll {
+  max-block-size: 420px;
+  overflow: auto;
+}
+
+@media (max-width: 420px) {
+  .back-to-top-story-surface {
+    min-block-size: 360px;
+    padding: var(--ds-primitive-spacing-24);
+  }
+
+  .back-to-top-story-panel {
+    min-block-size: 320px;
+  }
+}

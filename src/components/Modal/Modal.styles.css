@@ -7,27 +7,38 @@
   --modal-muted-color: var(--ds-primitive-color-neutral-grey-600);
   --modal-hover-background: var(--ds-primitive-color-neutral-alpha-4);
   --modal-active-background: var(--ds-primitive-color-neutral-alpha-8);
-  --modal-focus-ring: var(--ds-primitive-color-soft-black);
+  --modal-focus-ring: var(--ds-primitive-color-identity-blue-primary);
   --modal-shadow-color: var(--ds-primitive-color-neutral-alpha-24);
+  --modal-shadow-soft-color: var(--ds-primitive-color-neutral-alpha-12);
+  --modal-action-primary-background: var(--ds-primitive-color-identity-blue-primary);
+  --modal-action-primary-background-hover: var(--ds-primitive-color-identity-blue-dark);
+  --modal-action-primary-background-active: var(--ds-primitive-color-identity-blue-darker);
+  --modal-action-primary-foreground: var(--ds-primitive-color-white);
+  --modal-action-secondary-background: var(--ds-primitive-color-white);
+  --modal-action-secondary-border: var(--ds-primitive-color-neutral-grey-200);
+  --modal-action-secondary-border-hover: var(--ds-primitive-color-neutral-grey-300);
+  --modal-action-secondary-foreground: var(--ds-primitive-color-soft-black);
   --modal-radius: var(--ds-primitive-border-radius-radius-lg);
   --modal-width: calc(var(--ds-primitive-spacing-128) * 5);
+  --modal-padding: var(--ds-primitive-spacing-24);
 
   position: fixed;
   inset: var(--ds-primitive-spacing-0);
   display: grid;
   box-sizing: border-box;
   place-items: center;
-  padding: var(--ds-primitive-spacing-24);
+  padding: var(--modal-padding);
   overflow: auto;
   background: var(--modal-overlay-background);
   backdrop-filter: blur(var(--ds-primitive-spacing-4));
   color: var(--modal-text-color);
-  font-family: var(--ds-primitive-typography-font-family-plus-jakarta-sans);
+  font-family:
+    var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
   animation: ds-modal-overlay-in 180ms ease both;
 }
 
 .ds-modal--size-sm {
-  --modal-width: calc(var(--ds-primitive-spacing-128) * 3);
+  --modal-width: calc((var(--ds-primitive-spacing-128) * 3) + var(--ds-primitive-spacing-40));
 }
 
 .ds-modal--size-md {
@@ -46,7 +57,7 @@
   display: grid;
   box-sizing: border-box;
   inline-size: min(100%, var(--modal-width));
-  max-block-size: calc(100dvh - (var(--ds-primitive-spacing-24) * 2));
+  max-block-size: calc(100dvh - (var(--modal-padding) * 2));
   grid-template-rows: auto minmax(var(--ds-primitive-spacing-0), 1fr) auto;
   overflow: hidden;
   border: var(--ds-primitive-border-width-border-sm) solid var(--modal-border-color);
@@ -54,7 +65,9 @@
   background: var(--modal-surface-background);
   box-shadow:
     var(--ds-primitive-spacing-0) var(--ds-primitive-spacing-20) var(--ds-primitive-spacing-40)
-      var(--modal-shadow-color);
+      var(--modal-shadow-color),
+    var(--ds-primitive-spacing-0) var(--ds-primitive-spacing-4) var(--ds-primitive-spacing-12)
+      var(--modal-shadow-soft-color);
   animation: ds-modal-dialog-in 200ms ease both;
 }
 
@@ -63,11 +76,17 @@
   inset-block-start: var(--ds-primitive-spacing-0);
   display: grid;
   grid-template-columns: minmax(var(--ds-primitive-spacing-0), 1fr) var(--ds-primitive-spacing-40);
-  gap: var(--ds-primitive-spacing-12);
+  gap: var(--ds-primitive-spacing-16);
   align-items: start;
-  padding: var(--ds-primitive-spacing-20) var(--ds-primitive-spacing-24);
+  padding: var(--ds-primitive-spacing-24);
   border-block-end: var(--ds-primitive-border-width-border-sm) solid var(--modal-border-color);
   background: var(--modal-surface-background);
+}
+
+.ds-modal__heading {
+  display: grid;
+  min-inline-size: var(--ds-primitive-spacing-0);
+  gap: var(--ds-primitive-spacing-4);
 }
 
 .ds-modal__title {
@@ -75,9 +94,19 @@
   margin: var(--ds-primitive-spacing-0);
   overflow-wrap: anywhere;
   color: var(--modal-text-color);
-  font-size: var(--ds-primitive-typography-font-size-20);
+  font-size: var(--ds-primitive-typography-font-size-24);
   font-weight: var(--ds-primitive-typography-font-weight-bold);
-  line-height: var(--ds-primitive-typography-line-height-28);
+  line-height: var(--ds-primitive-typography-line-height-32);
+}
+
+.ds-modal__subtitle {
+  min-inline-size: var(--ds-primitive-spacing-0);
+  margin: var(--ds-primitive-spacing-0);
+  overflow-wrap: anywhere;
+  color: var(--modal-muted-color);
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  line-height: var(--ds-primitive-typography-line-height-20);
 }
 
 .ds-modal__close {
@@ -127,8 +156,10 @@
   padding: var(--ds-primitive-spacing-24);
   color: var(--modal-body-color);
   font-size: var(--ds-primitive-typography-font-size-16);
-  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
   line-height: var(--ds-primitive-typography-line-height-24);
+  scrollbar-color: var(--ds-primitive-color-neutral-grey-300) transparent;
+  scrollbar-width: thin;
 }
 
 .ds-modal__body > *:first-child {
@@ -139,14 +170,95 @@
   margin-block-end: var(--ds-primitive-spacing-0);
 }
 
+.ds-modal--without-body .ds-modal__body {
+  display: none;
+}
+
 .ds-modal__footer {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--ds-primitive-spacing-12);
+  gap: var(--ds-primitive-spacing-8);
+  align-items: center;
   justify-content: flex-end;
   padding: var(--ds-primitive-spacing-16) var(--ds-primitive-spacing-24);
-  border-block-start: var(--ds-primitive-border-width-border-sm) solid var(--modal-border-color);
   background: var(--modal-surface-background);
+}
+
+.ds-modal__action {
+  display: inline-flex;
+  box-sizing: border-box;
+  max-inline-size: 100%;
+  min-block-size: var(--ds-primitive-spacing-40);
+  padding: var(--ds-primitive-spacing-0) var(--ds-primitive-spacing-20);
+  align-items: center;
+  justify-content: center;
+  border: var(--ds-primitive-border-width-border-sm) solid transparent;
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  line-height: var(--ds-primitive-typography-line-height-20);
+  text-align: center;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.ds-modal__action--primary {
+  border-color: var(--modal-action-primary-background);
+  background: var(--modal-action-primary-background);
+  color: var(--modal-action-primary-foreground);
+}
+
+.ds-modal__action--primary:not(:disabled):hover {
+  border-color: var(--modal-action-primary-background-hover);
+  background: var(--modal-action-primary-background-hover);
+}
+
+.ds-modal__action--primary:not(:disabled):active {
+  border-color: var(--modal-action-primary-background-active);
+  background: var(--modal-action-primary-background-active);
+}
+
+.ds-modal__action--secondary {
+  border-color: var(--modal-action-secondary-border);
+  background: var(--modal-action-secondary-background);
+  color: var(--modal-action-secondary-foreground);
+}
+
+.ds-modal__action--secondary:not(:disabled):hover {
+  border-color: var(--modal-action-secondary-border-hover);
+  background: var(--modal-hover-background);
+}
+
+.ds-modal__action--tertiary {
+  margin-inline-end: auto;
+  border-color: transparent;
+  background: transparent;
+  color: var(--modal-action-secondary-foreground);
+}
+
+.ds-modal__action--tertiary:not(:disabled):hover {
+  background: var(--modal-hover-background);
+}
+
+.ds-modal__action:focus-visible {
+  outline: var(--ds-primitive-border-width-border-md) solid var(--modal-focus-ring);
+  outline-offset: var(--ds-primitive-spacing-4);
+}
+
+.ds-modal__action:disabled {
+  border-color: var(--ds-primitive-color-neutral-grey-200);
+  background: var(--ds-primitive-color-neutral-grey-100);
+  color: var(--ds-primitive-color-neutral-grey-500);
+  cursor: not-allowed;
+}
+
+.ds-modal__action--tertiary:disabled {
+  border-color: transparent;
+  background: transparent;
 }
 
 @keyframes ds-modal-overlay-in {
@@ -173,9 +285,9 @@
 
 @media (max-width: 420px) {
   .ds-modal {
-    place-items: stretch;
-    padding: var(--ds-primitive-spacing-0);
-    overflow: hidden;
+    --modal-padding: var(--ds-primitive-spacing-16);
+    place-items: center;
+    overflow: auto;
   }
 
   .ds-modal__dialog,
@@ -184,24 +296,27 @@
   .ds-modal--size-lg .ds-modal__dialog,
   .ds-modal--size-full .ds-modal__dialog {
     inline-size: 100%;
-    block-size: 100dvh;
-    max-block-size: 100dvh;
+    block-size: auto;
+    max-block-size: calc(100dvh - (var(--modal-padding) * 2));
     min-block-size: var(--ds-primitive-spacing-0);
-    border-radius: var(--ds-primitive-border-radius-radius-none);
-    border-inline: var(--ds-primitive-border-width-border-none);
+    border-radius: var(--ds-primitive-border-radius-radius-lg);
   }
 
   .ds-modal__header {
     flex-shrink: 0;
     grid-template-columns: minmax(var(--ds-primitive-spacing-0), 1fr) var(--ds-primitive-spacing-40);
     gap: var(--ds-primitive-spacing-8);
-    padding: var(--ds-primitive-spacing-12);
-    padding-block-start: max(var(--ds-primitive-spacing-12), env(safe-area-inset-top));
+    padding: var(--ds-primitive-spacing-24);
   }
 
   .ds-modal__title {
-    font-size: var(--ds-primitive-typography-font-size-16);
-    line-height: var(--ds-primitive-typography-line-height-24);
+    font-size: var(--ds-primitive-typography-font-size-24);
+    line-height: var(--ds-primitive-typography-line-height-32);
+  }
+
+  .ds-modal__subtitle {
+    font-size: var(--ds-primitive-typography-font-size-12);
+    line-height: var(--ds-primitive-typography-line-height-18);
   }
 
   .ds-modal__close {
@@ -211,23 +326,35 @@
 
   .ds-modal__body {
     min-block-size: var(--ds-primitive-spacing-0);
-    padding: var(--ds-primitive-spacing-12);
+    padding: var(--ds-primitive-spacing-24);
     overflow: auto;
-    font-size: var(--ds-primitive-typography-font-size-14);
-    line-height: var(--ds-primitive-typography-line-height-22);
     -webkit-overflow-scrolling: touch;
   }
 
   .ds-modal__footer {
     flex-shrink: 0;
-    gap: var(--ds-primitive-spacing-8);
-    justify-content: stretch;
-    padding: var(--ds-primitive-spacing-12);
-    padding-block-end: max(var(--ds-primitive-spacing-12), env(safe-area-inset-bottom));
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: var(--ds-primitive-spacing-16) var(--ds-primitive-spacing-24)
+      var(--ds-primitive-spacing-24);
   }
 
   .ds-modal__footer > * {
     flex: 1 1 100%;
+    inline-size: 100%;
     min-inline-size: var(--ds-primitive-spacing-0);
+  }
+
+  .ds-modal__action--primary {
+    order: 1;
+  }
+
+  .ds-modal__action--secondary {
+    order: 2;
+  }
+
+  .ds-modal__action--tertiary {
+    order: 3;
+    margin-inline-end: var(--ds-primitive-spacing-0);
   }
 }

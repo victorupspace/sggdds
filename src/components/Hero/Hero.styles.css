@@ -1,0 +1,218 @@
+.ds-hero {
+  --hero-surface: var(--ds-primitive-color-neutral-grey-50);
+  --hero-foreground: var(--ds-primitive-color-soft-black);
+  --hero-muted: var(--ds-primitive-color-neutral-grey-700);
+  --hero-border: var(--ds-primitive-color-neutral-grey-200);
+  --hero-media-surface: var(--ds-primitive-color-white);
+  --hero-media-border: var(--ds-primitive-color-neutral-alpha-24);
+  --hero-padding-block: var(--ds-primitive-spacing-96);
+  --hero-padding-inline: var(--ds-primitive-spacing-64);
+  --hero-content-max-inline-size: 560px;
+  --hero-media-max-inline-size: 800px;
+  --hero-media-aspect-ratio: 3 / 2;
+  --hero-container-max-inline-size: var(--ds-primitive-breakpoints-values-bp-lg);
+  --hero-title-font-size: var(--ds-primitive-typography-font-size-44);
+  --hero-title-line-height: var(--ds-primitive-typography-line-height-50);
+  --hero-description-font-size: var(--ds-primitive-typography-font-size-18);
+  --hero-description-line-height: var(--ds-primitive-typography-line-height-30);
+
+  box-sizing: border-box;
+  inline-size: 100%;
+  padding-block: var(--hero-padding-block);
+  padding-inline: var(--hero-padding-inline);
+  overflow: hidden;
+  background: var(--hero-surface);
+  color: var(--hero-foreground);
+  font-family:
+    var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
+}
+
+.ds-hero *,
+.ds-hero *::before,
+.ds-hero *::after {
+  box-sizing: border-box;
+}
+
+.ds-hero--variant-light {
+  --hero-surface: var(--ds-primitive-color-neutral-grey-50);
+  --hero-foreground: var(--ds-primitive-color-identity-blue-darker);
+  --hero-muted: var(--ds-primitive-color-soft-black);
+  --hero-media-surface: var(--ds-primitive-color-white);
+}
+
+.ds-hero--variant-dark {
+  --hero-surface: var(--ds-primitive-color-identity-blue-darker);
+  --hero-foreground: var(--ds-primitive-color-white);
+  --hero-muted: var(--ds-primitive-color-white);
+  --hero-media-surface: var(--ds-primitive-color-neutral-alpha-12);
+  --hero-media-border: var(--ds-primitive-color-neutral-alpha-48);
+}
+
+.ds-hero--variant-image {
+  --hero-surface: var(--ds-primitive-color-soft-black);
+  --hero-foreground: var(--ds-primitive-color-white);
+  --hero-muted: var(--ds-primitive-color-neutral-grey-100);
+  --hero-media-surface: var(--ds-primitive-color-neutral-alpha-12);
+  --hero-media-border: var(--ds-primitive-color-neutral-alpha-48);
+  --hero-media-max-inline-size: 520px;
+  --hero-media-aspect-ratio: 1 / 1;
+}
+
+.ds-hero__container {
+  display: grid;
+  inline-size: min(100%, var(--hero-container-max-inline-size));
+  margin-inline: auto;
+  grid-template-columns: minmax(0, 0.92fr) minmax(320px, 1.08fr);
+  gap: clamp(var(--ds-primitive-spacing-40), 6vw, var(--ds-primitive-spacing-96));
+  align-items: center;
+}
+
+.ds-hero--without-media .ds-hero__container {
+  grid-template-columns: minmax(0, 760px);
+  justify-content: center;
+  text-align: center;
+}
+
+.ds-hero--media-start .ds-hero__media {
+  order: -1;
+}
+
+.ds-hero__content {
+  display: flex;
+  max-inline-size: var(--hero-content-max-inline-size);
+  min-inline-size: 0;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ds-hero--without-media .ds-hero__content {
+  max-inline-size: 760px;
+  align-items: center;
+}
+
+.ds-hero__eyebrow,
+.ds-hero__title,
+.ds-hero__description {
+  margin: 0;
+}
+
+.ds-hero__eyebrow {
+  margin-block-end: var(--ds-primitive-spacing-12);
+  color: var(--hero-muted);
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  line-height: var(--ds-primitive-typography-line-height-20);
+}
+
+.ds-hero__title {
+  color: var(--hero-foreground);
+  font-size: var(--hero-title-font-size);
+  font-weight: var(--ds-primitive-typography-font-weight-extra-bold);
+  line-height: var(--hero-title-line-height);
+  overflow-wrap: anywhere;
+}
+
+.ds-hero__description {
+  max-inline-size: 64ch;
+  margin-block-start: var(--ds-primitive-spacing-24);
+  color: var(--hero-muted);
+  font-size: var(--hero-description-font-size);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: var(--hero-description-line-height);
+  overflow-wrap: anywhere;
+}
+
+.ds-hero__slot {
+  max-inline-size: 100%;
+  margin-block-start: var(--ds-primitive-spacing-24);
+  color: var(--hero-muted);
+}
+
+.ds-hero__actions {
+  display: flex;
+  max-inline-size: 100%;
+  margin-block-start: var(--ds-primitive-spacing-32);
+  gap: var(--ds-primitive-spacing-16);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.ds-hero__action--secondary.ds-button {
+  color: var(--hero-foreground);
+}
+
+.ds-hero__media {
+  display: flex;
+  min-inline-size: 0;
+  justify-content: center;
+}
+
+.ds-hero__media-inner,
+.ds-hero__image {
+  display: block;
+  inline-size: min(100%, var(--hero-media-max-inline-size));
+  aspect-ratio: var(--hero-media-aspect-ratio);
+  overflow: hidden;
+  border: var(--ds-primitive-border-width-border-sm) solid var(--hero-media-border);
+  border-radius: var(--ds-primitive-border-radius-radius-md);
+  background: var(--hero-media-surface);
+}
+
+.ds-hero__media-inner {
+  display: grid;
+  place-items: center;
+}
+
+.ds-hero__image {
+  object-fit: cover;
+}
+
+@media (max-width: 900px) {
+  .ds-hero {
+    --hero-padding-block: var(--ds-primitive-spacing-64);
+    --hero-padding-inline: var(--ds-primitive-spacing-32);
+    --hero-title-font-size: var(--ds-primitive-typography-font-size-36);
+    --hero-title-line-height: var(--ds-primitive-typography-line-height-42);
+    --hero-description-font-size: var(--ds-primitive-typography-font-size-16);
+    --hero-description-line-height: var(--ds-primitive-typography-line-height-26);
+  }
+
+  .ds-hero__container {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ds-hero__content,
+  .ds-hero--without-media .ds-hero__content {
+    max-inline-size: 720px;
+  }
+
+  .ds-hero--media-start .ds-hero__media {
+    order: initial;
+  }
+
+  .ds-hero__media {
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .ds-hero {
+    --hero-padding-block: var(--ds-primitive-spacing-48);
+    --hero-padding-inline: var(--ds-primitive-spacing-24);
+    --hero-title-font-size: var(--ds-primitive-typography-font-size-30);
+    --hero-title-line-height: var(--ds-primitive-typography-line-height-38);
+  }
+
+  .ds-hero__description {
+    margin-block-start: var(--ds-primitive-spacing-16);
+  }
+
+  .ds-hero__actions {
+    inline-size: 100%;
+    margin-block-start: var(--ds-primitive-spacing-24);
+  }
+
+  .ds-hero__action.ds-button {
+    inline-size: 100%;
+  }
+}

@@ -1,2 +1,2 @@
 export { Modal } from './Modal';
-export type { ModalProps, ModalSize } from './Modal.types';
+export type { ModalAction, ModalActionVariant, ModalProps, ModalSize } from './Modal.types';

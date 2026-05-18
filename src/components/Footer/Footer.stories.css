@@ -1,0 +1,30 @@
+.footer-story-shell {
+  display: grid;
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-block-size: calc(var(--ds-primitive-spacing-128) * 4);
+  place-items: stretch;
+  background: var(--ds-primitive-color-neutral-grey-100);
+}
+
+.footer-story-frame {
+  box-sizing: border-box;
+  inline-size: 100%;
+  overflow: visible;
+}
+
+.footer-story-custom-brand {
+  display: inline-grid;
+  gap: var(--ds-primitive-spacing-4);
+  color: var(--ds-primitive-color-white);
+  font-size: var(--ds-primitive-typography-font-size-24);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  line-height: var(--ds-primitive-typography-line-height-32);
+}
+
+.footer-story-custom-brand span:last-child {
+  color: var(--ds-primitive-color-neutral-grey-300);
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: var(--ds-primitive-typography-line-height-20);
+}

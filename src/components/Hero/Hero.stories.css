@@ -1,0 +1,49 @@
+.hero-story-shell {
+  inline-size: 100%;
+  background: var(--ds-primitive-color-neutral-grey-100);
+}
+
+.hero-story-placeholder {
+  display: grid;
+  inline-size: 100%;
+  block-size: 100%;
+  place-items: center;
+  color: var(--ds-primitive-color-neutral-grey-600);
+  font-family:
+    var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  line-height: var(--ds-primitive-typography-line-height-20);
+  background:
+    linear-gradient(
+      to bottom right,
+      transparent calc(50% - 1px),
+      var(--ds-primitive-color-neutral-alpha-36) 50%,
+      transparent calc(50% + 1px)
+    ),
+    linear-gradient(
+      to top right,
+      transparent calc(50% - 1px),
+      var(--ds-primitive-color-neutral-alpha-36) 50%,
+      transparent calc(50% + 1px)
+    ),
+    var(--ds-primitive-color-neutral-grey-100);
+}
+
+.hero-story-placeholder--dark {
+  color: var(--ds-primitive-color-neutral-grey-100);
+  background:
+    linear-gradient(
+      to bottom right,
+      transparent calc(50% - 1px),
+      var(--ds-primitive-color-neutral-alpha-48) 50%,
+      transparent calc(50% + 1px)
+    ),
+    linear-gradient(
+      to top right,
+      transparent calc(50% - 1px),
+      var(--ds-primitive-color-neutral-alpha-48) 50%,
+      transparent calc(50% + 1px)
+    ),
+    var(--ds-primitive-color-neutral-alpha-12);
+}

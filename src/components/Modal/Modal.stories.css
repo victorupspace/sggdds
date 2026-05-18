@@ -17,8 +17,17 @@
 
 .ds-modal-storybook-fit .ds-modal__dialog {
   block-size: auto;
-  max-block-size: none;
+  max-block-size: calc(var(--ds-primitive-spacing-128) * 3);
   min-block-size: var(--ds-primitive-spacing-0);
+}
+
+.ds-modal-storybook-long-content {
+  display: grid;
+  gap: var(--ds-primitive-spacing-16);
+}
+
+.ds-modal-storybook-long-content p {
+  margin: var(--ds-primitive-spacing-0);
 }
 
 @media (max-width: 420px) {

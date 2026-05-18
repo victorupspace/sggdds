@@ -1,0 +1,332 @@
+.ds-file-upload {
+  --file-upload-label-color: var(--ds-primitive-color-soft-black);
+  --file-upload-text-color: var(--ds-primitive-color-soft-black);
+  --file-upload-muted-color: var(--ds-primitive-color-neutral-grey-600);
+  --file-upload-background: var(--ds-primitive-color-white);
+  --file-upload-border-color: var(--ds-primitive-color-neutral-grey-200);
+  --file-upload-border-hover-color: var(--ds-primitive-color-neutral-grey-500);
+  --file-upload-focus-color: var(--ds-primitive-color-identity-blue-primary);
+  --file-upload-error-color: var(--ds-primitive-color-utility-danger-red-300);
+  --file-upload-disabled-background: var(--ds-primitive-color-neutral-grey-100);
+  --file-upload-disabled-color: var(--ds-primitive-color-neutral-grey-500);
+  --file-upload-action-primary-background: var(--ds-primitive-color-soft-black);
+  --file-upload-action-primary-background-hover: var(--ds-primitive-color-pure-black);
+  --file-upload-action-primary-color: var(--ds-primitive-color-white);
+  --file-upload-action-secondary-background: var(--ds-primitive-color-white);
+  --file-upload-action-secondary-background-hover: var(--ds-primitive-color-neutral-grey-100);
+  --file-upload-action-secondary-color: var(--ds-primitive-color-soft-black);
+  --file-upload-action-secondary-border: var(--ds-primitive-color-neutral-grey-200);
+  --file-upload-gap: var(--ds-primitive-spacing-8);
+  --file-upload-action-gap: var(--ds-primitive-spacing-8);
+
+  display: grid;
+  box-sizing: border-box;
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  gap: var(--file-upload-gap);
+  color: var(--file-upload-text-color);
+  font-family:
+    var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
+}
+
+.ds-file-upload--full-width {
+  inline-size: 100%;
+}
+
+.ds-file-upload__label {
+  display: flex;
+  min-inline-size: 0;
+  gap: var(--ds-primitive-spacing-6);
+  align-items: center;
+  overflow-wrap: anywhere;
+  color: var(--file-upload-label-color);
+  font-size: var(--ds-primitive-typography-font-size-20);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  line-height: var(--ds-primitive-typography-line-height-28);
+}
+
+.ds-file-upload__required {
+  color: currentColor;
+}
+
+.ds-file-upload__input {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  margin: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.ds-file-upload__actions {
+  display: flex;
+  min-inline-size: 0;
+  flex-wrap: wrap;
+  gap: var(--file-upload-action-gap);
+  align-items: flex-start;
+}
+
+.ds-file-upload__action {
+  display: inline-flex;
+  box-sizing: border-box;
+  min-inline-size: 0;
+  min-block-size: var(--ds-primitive-spacing-40);
+  padding: 0 var(--ds-primitive-spacing-16);
+  gap: var(--ds-primitive-spacing-8);
+  align-items: center;
+  justify-content: center;
+  border: var(--ds-primitive-border-width-border-sm) solid transparent;
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--ds-primitive-typography-font-size-16);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  line-height: var(--ds-primitive-typography-line-height-24);
+  text-align: center;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.ds-file-upload__action--primary {
+  border-color: var(--file-upload-action-primary-background);
+  background: var(--file-upload-action-primary-background);
+  color: var(--file-upload-action-primary-color);
+}
+
+.ds-file-upload__action--secondary {
+  border-color: var(--file-upload-action-secondary-border);
+  background: var(--file-upload-action-secondary-background);
+  color: var(--file-upload-action-secondary-color);
+}
+
+.ds-file-upload__action--tertiary {
+  background: transparent;
+  color: var(--file-upload-action-secondary-color);
+}
+
+.ds-file-upload__action:not(:disabled):hover {
+  border-color: var(--file-upload-action-primary-background-hover);
+  background: var(--file-upload-action-primary-background-hover);
+  color: var(--file-upload-action-primary-color);
+}
+
+.ds-file-upload__action--secondary:not(:disabled):hover {
+  border-color: var(--file-upload-action-secondary-border);
+  background: var(--file-upload-action-secondary-background-hover);
+  color: var(--file-upload-action-secondary-color);
+}
+
+.ds-file-upload__action--tertiary:not(:disabled):hover {
+  border-color: transparent;
+  background: var(--ds-primitive-color-neutral-alpha-4);
+  color: var(--file-upload-action-secondary-color);
+}
+
+.ds-file-upload__action:focus-visible {
+  outline: var(--ds-primitive-border-width-border-md) solid var(--file-upload-focus-color);
+  outline-offset: var(--ds-primitive-spacing-4);
+}
+
+.ds-file-upload__action:disabled {
+  border-color: var(--ds-primitive-color-neutral-grey-200);
+  background: var(--ds-primitive-color-neutral-grey-100);
+  color: var(--ds-primitive-color-neutral-grey-500);
+  cursor: not-allowed;
+}
+
+.ds-file-upload__action--tertiary:disabled {
+  border-color: transparent;
+  background: transparent;
+}
+
+.ds-file-upload__action-icon {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  inline-size: var(--ds-primitive-spacing-20);
+  block-size: var(--ds-primitive-spacing-20);
+}
+
+.ds-file-upload__action-icon > svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.ds-file-upload__dropzone {
+  position: relative;
+  display: grid;
+  box-sizing: border-box;
+  min-block-size: calc(var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-32));
+  padding: var(--ds-primitive-spacing-32) var(--ds-primitive-spacing-24);
+  gap: var(--ds-primitive-spacing-16);
+  place-items: center;
+  border: var(--ds-primitive-border-width-border-md) dashed var(--file-upload-border-color);
+  border-radius: var(--ds-primitive-border-radius-radius-lg);
+  background: var(--file-upload-background);
+  color: var(--file-upload-text-color);
+  cursor: pointer;
+  text-align: center;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.ds-file-upload__dropzone:hover,
+.ds-file-upload--dragging .ds-file-upload__dropzone {
+  border-color: var(--file-upload-border-hover-color);
+  background: var(--ds-primitive-color-neutral-grey-50);
+}
+
+.ds-file-upload__dropzone:has(.ds-file-upload__input:focus-visible) {
+  border-color: var(--file-upload-focus-color);
+  outline: var(--ds-primitive-border-width-border-md) solid var(--file-upload-focus-color);
+  outline-offset: var(--ds-primitive-spacing-2);
+}
+
+.ds-file-upload__dropzone-icon {
+  display: inline-grid;
+  box-sizing: border-box;
+  place-items: center;
+  inline-size: var(--ds-primitive-spacing-48);
+  block-size: var(--ds-primitive-spacing-48);
+  border: var(--ds-primitive-border-width-border-sm) solid var(--file-upload-border-color);
+  border-radius: var(--ds-primitive-border-radius-radius-md);
+  color: var(--file-upload-muted-color);
+}
+
+.ds-file-upload__dropzone-icon > svg {
+  inline-size: var(--ds-primitive-spacing-24);
+  block-size: var(--ds-primitive-spacing-24);
+}
+
+.ds-file-upload__dropzone-text {
+  display: grid;
+  gap: var(--ds-primitive-spacing-4);
+  color: var(--file-upload-text-color);
+  font-size: var(--ds-primitive-typography-font-size-28);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: var(--ds-primitive-typography-line-height-38);
+}
+
+.ds-file-upload__dropzone-action {
+  justify-self: center;
+  text-decoration: underline;
+  text-decoration-thickness: var(--ds-primitive-border-width-border-sm);
+  text-underline-offset: var(--ds-primitive-spacing-4);
+}
+
+.ds-file-upload__dropzone-hint {
+  color: var(--file-upload-muted-color);
+  font-size: var(--ds-primitive-typography-font-size-24);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: var(--ds-primitive-typography-line-height-32);
+}
+
+.ds-file-upload__message {
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--file-upload-muted-color);
+  font-size: var(--ds-primitive-typography-font-size-16);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  line-height: var(--ds-primitive-typography-line-height-24);
+}
+
+.ds-file-upload__message--error {
+  color: var(--file-upload-error-color);
+}
+
+.ds-file-upload__file-list {
+  display: grid;
+  min-inline-size: 0;
+  margin: 0;
+  padding: 0;
+  gap: var(--ds-primitive-spacing-8);
+  list-style: none;
+}
+
+.ds-file-upload__file-item {
+  display: flex;
+  min-inline-size: 0;
+  padding: var(--ds-primitive-spacing-8) var(--ds-primitive-spacing-12);
+  gap: var(--ds-primitive-spacing-12);
+  align-items: center;
+  justify-content: space-between;
+  border: var(--ds-primitive-border-width-border-sm) solid var(--ds-primitive-color-neutral-grey-200);
+  border-radius: var(--ds-primitive-border-radius-radius-md);
+  background: var(--ds-primitive-color-neutral-grey-50);
+  color: var(--file-upload-text-color);
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  line-height: var(--ds-primitive-typography-line-height-20);
+}
+
+.ds-file-upload__file-name {
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ds-file-upload__file-size {
+  flex: 0 0 auto;
+  color: var(--file-upload-muted-color);
+}
+
+.ds-file-upload--error {
+  --file-upload-border-color: var(--file-upload-error-color);
+  --file-upload-border-hover-color: var(--file-upload-error-color);
+  --file-upload-focus-color: var(--file-upload-error-color);
+}
+
+.ds-file-upload--disabled {
+  --file-upload-label-color: var(--file-upload-disabled-color);
+  --file-upload-text-color: var(--file-upload-disabled-color);
+  --file-upload-muted-color: var(--file-upload-disabled-color);
+  --file-upload-background: var(--file-upload-disabled-background);
+  --file-upload-border-color: var(--ds-primitive-color-neutral-grey-300);
+
+  cursor: not-allowed;
+}
+
+.ds-file-upload--disabled .ds-file-upload__dropzone {
+  cursor: not-allowed;
+}
+
+@media (max-width: 640px) {
+  .ds-file-upload__dropzone {
+    min-block-size: var(--ds-primitive-spacing-128);
+    padding: var(--ds-primitive-spacing-24) var(--ds-primitive-spacing-16);
+  }
+
+  .ds-file-upload__dropzone-text {
+    font-size: var(--ds-primitive-typography-font-size-20);
+    line-height: var(--ds-primitive-typography-line-height-28);
+  }
+
+  .ds-file-upload__dropzone-hint {
+    font-size: var(--ds-primitive-typography-font-size-16);
+    line-height: var(--ds-primitive-typography-line-height-24);
+  }
+}
+
+@media (max-width: 420px) {
+  .ds-file-upload__actions {
+    align-items: stretch;
+  }
+
+  .ds-file-upload__action {
+    flex: 1 1 100%;
+    min-block-size: var(--ds-primitive-spacing-48);
+  }
+
+  .ds-file-upload__file-item {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: var(--ds-primitive-spacing-4);
+  }
+}

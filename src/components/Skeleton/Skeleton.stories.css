@@ -1,0 +1,85 @@
+.skeleton-story-shell {
+  display: grid;
+  min-block-size: 100vh;
+  place-items: center;
+  padding: var(--ds-primitive-spacing-48);
+  background: var(--ds-primitive-color-neutral-grey-100);
+}
+
+.skeleton-story-panel {
+  display: grid;
+  inline-size: min(100%, 720px);
+  gap: var(--ds-primitive-spacing-32);
+  padding: var(--ds-primitive-spacing-40);
+  border-radius: var(--ds-primitive-border-radius-radius-md);
+  background: var(--ds-primitive-color-white);
+}
+
+.skeleton-story-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-primitive-spacing-32);
+  align-items: center;
+}
+
+.skeleton-story-stack {
+  display: grid;
+  gap: var(--ds-primitive-spacing-16);
+}
+
+.skeleton-story-card {
+  display: grid;
+  gap: var(--ds-primitive-spacing-16);
+  inline-size: min(100%, 360px);
+  padding: var(--ds-primitive-spacing-24);
+  border: var(--ds-primitive-border-width-border-sm) solid var(--ds-primitive-color-neutral-grey-200);
+  border-radius: var(--ds-primitive-border-radius-radius-md);
+  background: var(--ds-primitive-color-white);
+}
+
+.skeleton-story-card__header {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--ds-primitive-spacing-12);
+  align-items: center;
+}
+
+.skeleton-story-card__content {
+  display: grid;
+  gap: var(--ds-primitive-spacing-10);
+}
+
+.skeleton-story-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--ds-primitive-spacing-24);
+}
+
+.skeleton-story-surface {
+  display: grid;
+  gap: var(--ds-primitive-spacing-16);
+  padding: var(--ds-primitive-spacing-24);
+  border-radius: var(--ds-primitive-border-radius-radius-md);
+}
+
+.skeleton-story-surface--white {
+  background: var(--ds-primitive-color-white);
+}
+
+.skeleton-story-surface--grey {
+  background: var(--ds-primitive-color-neutral-grey-100);
+}
+
+@media (max-width: 640px) {
+  .skeleton-story-shell {
+    padding: var(--ds-primitive-spacing-24);
+  }
+
+  .skeleton-story-panel {
+    padding: var(--ds-primitive-spacing-24);
+  }
+
+  .skeleton-story-grid {
+    grid-template-columns: 1fr;
+  }
+}

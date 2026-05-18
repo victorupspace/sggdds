@@ -3,7 +3,7 @@ import './Header.styles.css';
 import { useId, useState } from 'react';
 
 import type { ReactNode } from 'react';
-import { Button } from '../Button';
+import { ButtonGov } from '../ButtonGov';
 import spGovBrLogo from './assets/logo-spgov-default.png';
 import type {
   HeaderAction,
@@ -52,20 +52,6 @@ function AccessibilityIcon() {
     <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path
         d="M12 5.5a1.8 1.8 0 1 0 0-3.6 1.8 1.8 0 0 0 0 3.6Zm-7 3 7-1 7 1m-7-1v5m0 0-3 8m3-8 3 8"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.8"
-      />
-    </svg>
-  );
-}
-
-function UserIcon() {
-  return (
-    <svg aria-hidden="true" fill="none" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M10 10a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5 6a5 5 0 0 1 10 0"
         stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -137,7 +123,6 @@ const defaultUtilityItems: HeaderUtilityItem[] = [
 ];
 
 const defaultAccountAction: HeaderAction = {
-  icon: <UserIcon />,
   label: 'Entrar com o gov.br',
 };
 
@@ -334,16 +319,15 @@ export function Header({
             </div>
 
             {accountAction ? (
-              <Button
+              <ButtonGov
                 ariaLabel={accountAction.label}
                 className="ds-header__account-action"
                 href={accountAction.href}
-                iconStart={accountAction.icon ?? <UserIcon />}
+                icon={accountAction.icon}
                 onClick={accountAction.onClick}
-                size="large"
               >
                 {accountAction.label}
-              </Button>
+              </ButtonGov>
             ) : null}
           </div>
         </div>

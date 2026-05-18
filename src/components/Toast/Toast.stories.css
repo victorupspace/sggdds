@@ -1,0 +1,64 @@
+.toast-story-shell {
+  display: grid;
+  box-sizing: border-box;
+  min-block-size: 100%;
+  place-items: center;
+  padding: var(--ds-primitive-spacing-32);
+  background: var(--ds-primitive-color-neutral-grey-100);
+}
+
+.toast-story-panel {
+  display: grid;
+  box-sizing: border-box;
+  inline-size: min(100%, 520px);
+  gap: var(--ds-primitive-spacing-24);
+}
+
+.toast-story-narrow {
+  display: grid;
+  box-sizing: border-box;
+  inline-size: min(100%, 360px);
+  gap: var(--ds-primitive-spacing-24);
+}
+
+.toast-story-stack {
+  display: grid;
+  box-sizing: border-box;
+  inline-size: min(100%, 520px);
+  gap: var(--ds-primitive-spacing-24);
+}
+
+.toast-story-trigger {
+  justify-self: start;
+  min-block-size: var(--ds-primitive-spacing-40);
+  padding: 0 var(--ds-primitive-spacing-16);
+  border: var(--ds-primitive-border-width-border-sm) solid var(--ds-primitive-color-soft-black);
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  background: var(--ds-primitive-color-soft-black);
+  color: var(--ds-primitive-color-white);
+  cursor: pointer;
+  font-family:
+    var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  line-height: var(--ds-primitive-typography-line-height-20);
+}
+
+.toast-story-trigger:focus-visible {
+  outline: var(--ds-primitive-border-width-border-md) solid
+    var(--ds-primitive-color-identity-blue-primary);
+  outline-offset: var(--ds-primitive-spacing-4);
+}
+
+@media (max-width: 420px) {
+  .toast-story-shell {
+    place-items: start stretch;
+    padding: var(--ds-primitive-spacing-16);
+  }
+
+  .toast-story-panel,
+  .toast-story-narrow,
+  .toast-story-stack {
+    inline-size: 100%;
+  }
+}

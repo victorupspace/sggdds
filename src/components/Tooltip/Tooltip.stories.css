@@ -1,0 +1,78 @@
+.tooltip-story-shell {
+  display: grid;
+  box-sizing: border-box;
+  min-block-size: 100%;
+  place-items: center;
+  padding: var(--ds-primitive-spacing-64);
+  background: var(--ds-primitive-color-neutral-grey-100);
+}
+
+.tooltip-story-panel {
+  display: grid;
+  box-sizing: border-box;
+  inline-size: min(100%, 560px);
+  gap: var(--ds-primitive-spacing-32);
+  place-items: center;
+}
+
+.tooltip-story-grid {
+  display: grid;
+  inline-size: min(100%, 420px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--ds-primitive-spacing-48);
+  place-items: center;
+}
+
+.tooltip-story-button {
+  display: inline-flex;
+  box-sizing: border-box;
+  min-block-size: var(--ds-primitive-spacing-40);
+  padding: var(--ds-primitive-spacing-0) var(--ds-primitive-spacing-16);
+  align-items: center;
+  justify-content: center;
+  border: var(--ds-primitive-border-width-border-sm) solid var(--ds-primitive-color-neutral-grey-300);
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  background: var(--ds-primitive-color-white);
+  color: var(--ds-primitive-color-soft-black);
+  cursor: pointer;
+  font-family:
+    var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  line-height: var(--ds-primitive-typography-line-height-20);
+}
+
+.tooltip-story-button:focus-visible {
+  outline: var(--ds-primitive-border-width-border-md) solid
+    var(--ds-primitive-color-identity-blue-primary);
+  outline-offset: var(--ds-primitive-spacing-4);
+}
+
+.tooltip-story-icon-button {
+  display: inline-grid;
+  box-sizing: border-box;
+  place-items: center;
+  inline-size: var(--ds-primitive-spacing-40);
+  block-size: var(--ds-primitive-spacing-40);
+  border: var(--ds-primitive-border-width-border-sm) solid var(--ds-primitive-color-neutral-grey-300);
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  background: var(--ds-primitive-color-white);
+  color: var(--ds-primitive-color-soft-black);
+  cursor: pointer;
+}
+
+.tooltip-story-icon-button svg {
+  inline-size: var(--ds-primitive-spacing-20);
+  block-size: var(--ds-primitive-spacing-20);
+}
+
+@media (max-width: 420px) {
+  .tooltip-story-shell {
+    padding: var(--ds-primitive-spacing-32) var(--ds-primitive-spacing-16);
+  }
+
+  .tooltip-story-grid {
+    grid-template-columns: 1fr;
+    gap: var(--ds-primitive-spacing-32);
+  }
+}

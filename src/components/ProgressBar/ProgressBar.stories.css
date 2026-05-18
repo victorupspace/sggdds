@@ -1,0 +1,35 @@
+.progress-bar-story-shell {
+  display: grid;
+  min-block-size: 100vh;
+  place-items: center;
+  padding: var(--ds-primitive-spacing-48);
+  background: var(--ds-primitive-color-white);
+}
+
+.progress-bar-story-panel {
+  display: grid;
+  inline-size: min(100%, 720px);
+  gap: var(--ds-primitive-spacing-40);
+}
+
+.progress-bar-story-row {
+  display: grid;
+  gap: var(--ds-primitive-spacing-12);
+}
+
+.progress-bar-story-grid {
+  display: grid;
+  gap: var(--ds-primitive-spacing-32);
+}
+
+.progress-bar-story-compact {
+  display: grid;
+  inline-size: min(100%, 320px);
+  gap: var(--ds-primitive-spacing-24);
+}
+
+@media (max-width: 640px) {
+  .progress-bar-story-shell {
+    padding: var(--ds-primitive-spacing-24);
+  }
+}

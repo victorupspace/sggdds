@@ -48,13 +48,24 @@ describe('Modal', () => {
   });
 
   it('uses dialog accessibility attributes', () => {
-    renderModal();
+    render(
+      <Modal
+        isOpen
+        onClose={vi.fn()}
+        subtitle="Descricao curta"
+        title="Titulo do modal"
+      >
+        Conteudo
+      </Modal>,
+    );
 
     const dialog = screen.getByRole('dialog', { name: 'Titulo do modal' });
     const title = screen.getByText('Titulo do modal');
+    const subtitle = screen.getByText('Descricao curta');
 
     expect(dialog).toHaveAttribute('aria-modal', 'true');
     expect(dialog).toHaveAttribute('aria-labelledby', title.id);
+    expect(dialog).toHaveAttribute('aria-describedby', subtitle.id);
   });
 
   it('calls onClose when close button is clicked', () => {
@@ -65,6 +76,90 @@ describe('Modal', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Fechar modal' }));
 
     expect(onClose).toHaveBeenCalledTimes(1);
+  });
+
+  it('supports custom close button label', () => {
+    const onClose = vi.fn();
+
+    render(
+      <Modal closeLabel="Fechar janela" isOpen onClose={onClose} title="Titulo do modal">
+        Conteudo
+      </Modal>,
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: 'Fechar janela' }));
+
+    expect(onClose).toHaveBeenCalledTimes(1);
+  });
+
+  it('renders typed actions and calls their handlers', () => {
+    const onPrimaryClick = vi.fn();
+
+    render(
+      <Modal
+        actions={[
+          { label: 'Action 3', variant: 'tertiary' },
+          { label: 'Action 2', variant: 'secondary' },
+          { label: 'Action 1', onClick: onPrimaryClick, variant: 'primary' },
+        ]}
+        isOpen
+        onClose={vi.fn()}
+        title="Titulo do modal"
+      >
+        Conteudo
+      </Modal>,
+    );
+
+    expect(screen.getByRole('button', { name: 'Action 3' })).toHaveClass(
+      'ds-modal__action--tertiary',
+    );
+    expect(screen.getByRole('button', { name: 'Action 2' })).toHaveClass(
+      'ds-modal__action--secondary',
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: 'Action 1' }));
+
+    expect(onPrimaryClick).toHaveBeenCalledTimes(1);
+  });
+
+  it('renders at most three typed actions', () => {
+    render(
+      <Modal
+        actions={[
+          { label: 'Action 1' },
+          { label: 'Action 2' },
+          { label: 'Action 3' },
+          { label: 'Action 4' },
+        ]}
+        isOpen
+        onClose={vi.fn()}
+        title="Titulo do modal"
+      >
+        Conteudo
+      </Modal>,
+    );
+
+    expect(screen.getByRole('button', { name: 'Action 1' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Action 2' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Action 3' })).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Action 4' })).not.toBeInTheDocument();
+  });
+
+  it('keeps footer compatibility over typed actions', () => {
+    render(
+      <Modal
+        actions={[{ label: 'Generated action' }]}
+        footer={<button type="button">Custom action</button>}
+        isOpen
+        onClose={vi.fn()}
+        title="Titulo do modal"
+      >
+        Conteudo
+      </Modal>,
+    );
+
+    expect(screen.getByRole('button', { name: 'Custom action' })).toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Generated action' })).not.toBeInTheDocument();
   });
 
   it('calls onClose when Escape is pressed', () => {

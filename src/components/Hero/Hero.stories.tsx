@@ -3,11 +3,11 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Hero } from './Hero';
 import './Hero.stories.css';
 
-function ArrowDownIcon() {
+function ArrowRightIcon() {
   return (
     <svg aria-hidden="true" fill="none" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
       <path
-        d="M10 4v12m0 0 5-5m-5 5-5-5"
+        d="M4 10h12m0 0-5-5m5 5-5 5"
         stroke="currentColor"
         strokeLinecap="round"
         strokeLinejoin="round"
@@ -17,21 +17,13 @@ function ArrowDownIcon() {
   );
 }
 
-function PlaceholderMedia({ dark = false }: { dark?: boolean }) {
+function PlaceholderMedia({ ratio = '3 / 2', tone = 'light' }: { ratio?: string; tone?: 'light' | 'dark' }) {
   return (
     <div
       aria-hidden="true"
-      className={dark ? 'hero-story-placeholder hero-story-placeholder--dark' : 'hero-story-placeholder'}
+      className={tone === 'dark' ? 'hero-story-placeholder hero-story-placeholder--dark' : 'hero-story-placeholder'}
     >
-      3:2
-    </div>
-  );
-}
-
-function SquareMedia() {
-  return (
-    <div aria-hidden="true" className="hero-story-placeholder hero-story-placeholder--dark">
-      1:1
+      {ratio}
     </div>
   );
 }
@@ -46,21 +38,29 @@ const meta = {
     docs: {
       description: {
         component: `
-Hero apresenta uma area de destaque no topo da pagina para chamar atencao para uma mensagem principal, contexto importante e uma acao.
+O Hero ocupa o topo da pagina (ou de uma secao de alta prioridade) com titulo, descricao, CTA e mídia opcional. Use para apresentar a proposta principal do conteudo abaixo, nao para reforco decorativo.
 
-Use no inicio de paginas ou secoes de alta prioridade, combinando titulo, descricao, CTA e opcionalmente uma imagem ou ilustracao. Nao use Hero como card comum, banner pequeno, alerta ou bloco decorativo sem hierarquia de pagina.
+Anatomia:
+- Eyebrow opcional para categoria ou contexto.
+- Titulo (h1 por padrao; h2 ou h3 quando aninhado em secao com hierarquia propria).
+- Descricao curta (1 a 3 linhas).
+- Ate duas acoes: primaria (Button primary) e secundaria (Button tertiary).
+- Mídia opcional posicionada ao lado do conteudo em desktop, abaixo em mobile.
+
+Variantes:
+- light: superficie clara, conteudo em soft-black.
+- dark: superficie soft-black, conteudo em branco. Os CTAs trocam de cor automaticamente para garantir contraste.
 
 Responsividade:
-Este componente foi desenvolvido com comportamento responsivo nativo, adaptando espacamento superior/inferior, grid, ordem do conteudo, largura do texto, largura da imagem e area de toque do CTA para mobile, tablet e desktop. A responsividade e aplicada na implementacao do componente e nao depende de variacoes manuais no Storybook.
-
-Tokens:
-Cores, superficies, bordas, radius, espacamentos, tipografia e estados de acao usam variaveis CSS geradas pelos tokens do Figma. A largura maxima de 800px para media da variacao light e a recomendacao de imagem 1200x1200px para a variacao image seguem a especificacao funcional do componente, pois nao existem tokens de sizing equivalentes na base atual.
+- Acima de 900px: layout em duas colunas com mídia ao lado do conteudo.
+- Entre 640px e 900px: layout em uma coluna, mídia abaixo do texto.
+- Abaixo de 640px: padding reduzido, titulo menor, CTAs empilhados em largura total.
 
 Acessibilidade:
-- Renderiza section com ariaLabel opcional quando a pagina precisar nomear a regiao.
-- O titulo usa h1 por padrao e pode ser h2 quando o Hero estiver dentro de uma secao.
-- Imagens exigem alt via image.alt; media customizada deve cuidar da propria semantica.
-- CTAs reutilizam Button do Design System, mantendo foco visivel, teclado e estados disabled.
+- Renderiza section; use ariaLabel quando a pagina tiver multiplos heros.
+- Title respeita headingLevel para manter ordem de h1 a h3.
+- image.alt obrigatorio; media customizada deve cuidar da propria semantica.
+- CTAs usam Button do DS, herdando foco, teclado e estados.
 `,
       },
     },
@@ -69,7 +69,7 @@ Acessibilidade:
   argTypes: {
     action: {
       control: false,
-      description: 'Acao principal renderizada com Button medium.',
+      description: 'Acao principal (Button primary).',
     },
     ariaLabel: {
       control: 'text',
@@ -77,50 +77,44 @@ Acessibilidade:
     },
     children: {
       control: false,
-      description: 'Slot opcional abaixo da descricao.',
+      description: 'Slot opcional entre a descricao e as acoes.',
     },
     className: {
       control: 'text',
-      description: 'Classe CSS opcional aplicada ao Hero.',
     },
     description: {
       control: 'text',
-      description: 'Texto de apoio abaixo do titulo.',
     },
     eyebrow: {
       control: 'text',
-      description: 'Texto curto opcional antes do titulo.',
     },
     headingLevel: {
       control: 'select',
-      description: 'Nivel semantico do titulo.',
-      options: [1, 2],
+      options: [1, 2, 3],
     },
     image: {
       control: false,
-      description: 'Imagem responsiva com src, alt, srcSet e sizes.',
     },
     media: {
       control: false,
-      description: 'Slot de media customizada. Quando usado, substitui image.',
+    },
+    mediaAspectRatio: {
+      control: 'select',
+      options: ['1/1', '4/3', '3/2', '16/9'],
     },
     mediaPosition: {
       control: 'select',
-      description: 'Posicao da media em desktop.',
       options: ['start', 'end'],
     },
     secondaryAction: {
       control: false,
-      description: 'Acao secundaria renderizada com Button tertiary.',
     },
     title: {
       control: 'text',
-      description: 'Titulo principal do Hero.',
     },
     variant: {
       control: 'select',
-      description: 'Variacao visual do Hero.',
-      options: ['light', 'dark', 'image'],
+      options: ['light', 'dark'],
     },
   },
   tags: ['autodocs'],
@@ -130,101 +124,99 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const Light: Story = {
+export const Default: Story = {
   args: {
     action: {
-      iconEnd: <ArrowDownIcon />,
-      label: 'Aloita tasta',
+      iconEnd: <ArrowRightIcon />,
+      label: 'Acessar servicos',
     },
-    description: 'Vaivattomasti. Vain muutamassa minuutissa.',
-    headingLevel: 1,
-    media: <PlaceholderMedia />,
-    title: 'Elainvakuutus.',
+    description:
+      'Acompanhe pedidos, atualize cadastros e acesse documentos em um unico ambiente, sem precisar ir a uma unidade fisica.',
+    eyebrow: 'Servicos digitais',
+    media: <PlaceholderMedia ratio="3 / 2" />,
+    secondaryAction: {
+      label: 'Ver tutoriais',
+    },
+    title: 'Tudo o que voce precisa, em um so lugar.',
     variant: 'light',
   },
-  render: (args) => (
-    <div className="hero-story-shell">
-      <Hero {...args} />
-    </div>
-  ),
 };
 
 export const Dark: Story = {
   args: {
     action: {
-      label: 'Vaiha e-laskutukseen',
+      iconEnd: <ArrowRightIcon />,
+      label: 'Ver meus beneficios',
     },
     description:
-      'Talla sivulla naet vakuutuksiisi liittyvat laskut. Voit myos vaihtaa e-laskutukseen klikkaamalla alta.',
-    media: <PlaceholderMedia dark />,
-    title: 'Laskut',
+      'Consulte valores, datas de pagamento e atualize seus dados sem sair de casa. Disponivel 24 horas, com seguranca.',
+    eyebrow: 'Beneficios',
+    media: <PlaceholderMedia ratio="3 / 2" tone="dark" />,
+    secondaryAction: {
+      label: 'Saiba mais',
+    },
+    title: 'Acompanhe seus beneficios em tempo real.',
     variant: 'dark',
   },
-  render: (args) => (
-    <div className="hero-story-shell">
-      <Hero {...args} />
-    </div>
-  ),
 };
 
-export const Image: Story = {
+export const SquareMedia: Story = {
   args: {
     action: {
       label: 'Comecar agora',
     },
     description:
-      'Use a variacao image quando a mensagem depende de uma imagem quadrada forte, com origem recomendada em 1200x1200px.',
-    media: <SquareMedia />,
+      'Sua identidade digital agora cabe no celular. Aceita em mais de 4.000 servicos publicos com o mesmo nivel de seguranca dos documentos fisicos.',
+    eyebrow: 'Identidade digital',
+    media: <PlaceholderMedia ratio="1 / 1" tone="dark" />,
+    mediaAspectRatio: '1/1',
     secondaryAction: {
-      label: 'Saiba mais',
+      label: 'Como funciona',
     },
-    title: 'Atendimento digital simples e seguro',
-    variant: 'image',
+    title: 'Carteira de identidade digital.',
+    variant: 'dark',
   },
-  render: (args) => (
-    <div className="hero-story-shell">
-      <Hero {...args} />
-    </div>
-  ),
+};
+
+export const MediaStart: Story = {
+  args: {
+    action: {
+      label: 'Atualizar cadastro',
+    },
+    description:
+      'Mantenha endereco, telefone e e-mail sempre corretos para receber notificacoes importantes sobre seus servicos.',
+    media: <PlaceholderMedia ratio="3 / 2" />,
+    mediaPosition: 'start',
+    title: 'Seus dados atualizados garantem servicos mais agis.',
+    variant: 'light',
+  },
 };
 
 export const WithoutMedia: Story = {
   args: {
     action: {
-      label: 'Ver servicos',
+      label: 'Atualizar agora',
     },
     description:
-      'Quando nao houver imagem relevante, o Hero centraliza a mensagem e preserva espacamento proprio sem CSS adicional.',
-    title: 'Servicos para cidadaos',
+      'Voce tem ate 30 de junho para confirmar seus dados cadastrais e continuar recebendo seus beneficios sem interrupcao.',
+    eyebrow: 'Prazo importante',
+    secondaryAction: {
+      label: 'Verificar prazo',
+    },
+    title: 'Atualizacao cadastral anual.',
     variant: 'light',
   },
-  render: (args) => (
-    <div className="hero-story-shell">
-      <Hero {...args} />
-    </div>
-  ),
 };
 
-export const MobileResponsive: Story = {
+export const HeadingLevelTwo: Story = {
   args: {
     action: {
-      iconEnd: <ArrowDownIcon />,
-      label: 'Acessar',
+      label: 'Acessar painel',
     },
     description:
-      'Em telas pequenas, conteudo, CTA e media se reorganizam em uma coluna sem overflow horizontal.',
-    media: <PlaceholderMedia />,
-    title: 'Hero responsivo para mobile',
+      'Use headingLevel=2 quando o Hero estiver dentro de uma pagina que ja possui um h1 proprio.',
+    headingLevel: 2,
+    title: 'Hero como secao secundaria.',
     variant: 'light',
   },
-  parameters: {
-    componentCanvas: {
-      width: 360,
-    },
-  },
-  render: (args) => (
-    <div className="hero-story-shell">
-      <Hero {...args} />
-    </div>
-  ),
 };

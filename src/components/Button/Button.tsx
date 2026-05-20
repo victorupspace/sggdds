@@ -14,6 +14,9 @@ function ButtonIcon({ children }: { children: ReactNode }) {
 
 export function Button({
   ariaLabel,
+  ariaControls,
+  ariaExpanded,
+  ariaPressed,
   children,
   className,
   disabled = false,
@@ -55,8 +58,11 @@ export function Button({
     return (
       <a
         aria-busy={isLoading ? 'true' : undefined}
+        aria-controls={ariaControls}
         aria-disabled={isDisabled ? 'true' : undefined}
+        aria-expanded={ariaExpanded}
         aria-label={ariaLabel}
+        aria-pressed={ariaPressed}
         className={rootClassName}
         href={href}
         onClick={(event: MouseEvent<HTMLAnchorElement>) => {
@@ -79,7 +85,10 @@ export function Button({
   return (
     <button
       aria-busy={isLoading ? 'true' : undefined}
+      aria-controls={ariaControls}
+      aria-expanded={ariaExpanded}
       aria-label={ariaLabel}
+      aria-pressed={ariaPressed}
       className={rootClassName}
       disabled={isDisabled}
       onClick={onClick}

@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
-import type { ReactNode } from 'react';
+import { useState, type ReactNode } from 'react';
 
 import './Modal.stories.css';
 
@@ -33,6 +33,7 @@ function ModalExample({
   size = 'md',
   subtitle = 'Subtitle or description',
   title = 'Title',
+  triggerLabel = 'Abrir modal',
 }: {
   actions?: ModalAction[];
   closeOnEsc?: boolean;
@@ -42,17 +43,20 @@ function ModalExample({
   size?: ModalSize;
   subtitle?: string;
   title?: string;
+  triggerLabel?: string;
 }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <div className="ds-modal-storybook-shell">
+      <Button onClick={() => setIsOpen(true)}>{triggerLabel}</Button>
       <Modal
         actions={actions}
-        className="ds-modal-storybook-fit"
         closeOnEsc={closeOnEsc}
         closeOnOverlayClick={closeOnOverlayClick}
         footer={footer}
-        isOpen
-        onClose={() => undefined}
+        isOpen={isOpen}
+        onClose={() => setIsOpen(false)}
         size={size}
         subtitle={subtitle}
         title={title}
@@ -98,7 +102,7 @@ Nao use para mensagens leves, feedback passivo, navegacao comum ou conteudo long
 Responsividade:
 - Em desktop, o modal centraliza no overlay e respeita o tamanho selecionado.
 - Em telas pequenas, o dialog permanece como card responsivo e empilha as acoes em largura total.
-- Nas stories, todas as variacoes sao exibidas abertas em uma preview contida para documentacao. Esse enquadramento evita que o overlay fixo invada outras stories na pagina de Docs.
+- Cada story expoe um gatilho para abrir o modal sob demanda, garantindo que a pagina de Docs role livremente e que cada exemplo seja inspecionado isoladamente.
 `,
       },
     },
@@ -169,7 +173,7 @@ export const Default: Story = {
     docs: {
       description: {
         story:
-          'Uso padrao para decisoes ou formularios curtos. Na aplicacao, fecha por Escape, clique no overlay e botao de fechar; na documentacao permanece aberto para inspecao visual.',
+          'Uso padrao para decisoes ou formularios curtos. Clique no gatilho para abrir; fecha por Escape, clique no overlay ou botao de fechar.',
       },
     },
   },
@@ -189,7 +193,7 @@ export const Small: Story = {
       },
     },
   },
-  render: (args) => <ModalExample {...args} />,
+  render: (args) => <ModalExample {...args} triggerLabel="Abrir modal pequeno" />,
 };
 
 export const Large: Story = {
@@ -205,7 +209,7 @@ export const Large: Story = {
       },
     },
   },
-  render: (args) => <ModalExample {...args} />,
+  render: (args) => <ModalExample {...args} triggerLabel="Abrir modal grande" />,
 };
 
 export const Full: Story = {
@@ -221,7 +225,7 @@ export const Full: Story = {
       },
     },
   },
-  render: (args) => <ModalExample {...args} />,
+  render: (args) => <ModalExample {...args} triggerLabel="Abrir modal full" />,
 };
 
 export const Persistent: Story = {
@@ -239,7 +243,7 @@ export const Persistent: Story = {
       },
     },
   },
-  render: (args) => <ModalExample {...args} />,
+  render: (args) => <ModalExample {...args} triggerLabel="Abrir modal persistente" />,
 };
 
 export const LongContent: Story = {
@@ -258,6 +262,7 @@ export const LongContent: Story = {
   render: (args) => (
     <ModalExample
       {...args}
+      triggerLabel="Abrir modal com conteudo longo"
       content={
         <div className="ds-modal-storybook-long-content">
           <p>Body content</p>
@@ -290,6 +295,7 @@ export const CustomFooter: Story = {
   render: (args) => (
     <ModalExample
       {...args}
+      triggerLabel="Abrir modal com footer customizado"
       footer={
         <>
           <Button variant="tertiary">Cancelar</Button>

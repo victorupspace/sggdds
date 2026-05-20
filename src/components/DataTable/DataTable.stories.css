@@ -1,0 +1,69 @@
+.data-table-story-shell {
+  display: grid;
+  min-block-size: 100vh;
+  padding: var(--ds-primitive-spacing-48);
+  place-items: start center;
+  background: var(--ds-semantic-color-background-neutral-page);
+}
+
+.data-table-story-panel {
+  inline-size: min(100%, calc(var(--ds-primitive-spacing-128) * 12));
+}
+
+.data-table-story-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--ds-primitive-spacing-8);
+  align-items: center;
+}
+
+.data-table-story-control.ds-button {
+  flex: 0 0 auto;
+}
+
+.data-table-story-switch.ds-checkbox {
+  --checkbox-gap: var(--ds-primitive-spacing-8);
+  --checkbox-label-color: var(--ds-semantic-color-content-neutral-muted);
+
+  display: inline-flex;
+  align-items: center;
+}
+
+.data-table-story-status {
+  display: inline-flex;
+  padding: var(--ds-primitive-spacing-4) var(--ds-primitive-spacing-12);
+  border-radius: var(--ds-semantic-radius-full);
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  line-height: var(--ds-primitive-typography-line-height-20);
+}
+
+.data-table-story-status--active {
+  background: var(--ds-semantic-color-background-positive-subtle);
+  color: var(--ds-semantic-color-content-positive-default);
+}
+
+.data-table-story-status--leave {
+  background: var(--ds-semantic-color-background-notice-subtle);
+  color: var(--ds-semantic-color-content-notice-default);
+}
+
+.data-table-story-status--remote {
+  background: var(--ds-semantic-color-background-information-subtle);
+  color: var(--ds-semantic-color-content-information-default);
+}
+
+.data-table-story-expanded {
+  display: grid;
+  gap: var(--ds-primitive-spacing-4);
+}
+
+.data-table-story-expanded strong {
+  color: var(--ds-semantic-color-content-neutral-default);
+}
+
+@media (max-width: 720px) {
+  .data-table-story-shell {
+    padding: var(--ds-primitive-spacing-24);
+  }
+}

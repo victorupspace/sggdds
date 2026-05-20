@@ -46,7 +46,7 @@ Use para fluxos lineares com 2 a 10 etapas. Nao use para navegacao global, abas 
 Regras:
 - currentStep e baseado em 1: currentStep={1} renderiza 1/total.
 - O componente limita a renderizacao a 10 steps para preservar legibilidade.
-- Somente o dot da etapa atual fica destacado; etapas anteriores e futuras permanecem neutras, conforme a referencia visual.
+- Etapas concluidas e a etapa atual ficam destacadas; etapas futuras permanecem neutras.
 - A barra usa progresso proporcional a etapa atual em relacao ao total.
 - O texto "PROGRESSO", o prefixo "Próxima:" e o estado final podem ser customizados.
 

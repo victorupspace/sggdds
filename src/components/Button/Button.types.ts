@@ -19,6 +19,9 @@ export interface ButtonProps {
   loadingLabel?: string;
   fullWidth?: boolean;
   ariaLabel?: string;
+  ariaControls?: string;
+  ariaExpanded?: boolean;
+  ariaPressed?: boolean;
   className?: string;
   onClick?: MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>;
 }

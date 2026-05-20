@@ -77,7 +77,7 @@ describe('Header', () => {
     expect(onAccount).toHaveBeenCalledTimes(1);
   });
 
-  it('renders nested navigation groups with native disclosure', () => {
+  it('renders nested navigation groups with Meganav', () => {
     render(<Header navigationItems={navigationItems} />);
 
     fireEvent.click(screen.getByText('Informacoes'));

@@ -111,11 +111,14 @@ describe('Modal', () => {
     );
 
     expect(screen.getByRole('button', { name: 'Action 3' })).toHaveClass(
-      'ds-modal__action--tertiary',
+      'ds-modal__footer-action--tertiary',
     );
+    expect(screen.getByRole('button', { name: 'Action 3' })).toHaveClass('ds-button--variant-tertiary');
     expect(screen.getByRole('button', { name: 'Action 2' })).toHaveClass(
-      'ds-modal__action--secondary',
+      'ds-modal__footer-action--secondary',
     );
+    expect(screen.getByRole('button', { name: 'Action 2' })).toHaveClass('ds-button--variant-secondary');
+    expect(screen.getByRole('button', { name: 'Action 1' })).toHaveClass('ds-button--variant-primary');
 
     fireEvent.click(screen.getByRole('button', { name: 'Action 1' }));
 

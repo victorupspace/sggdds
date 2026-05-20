@@ -1,20 +1,50 @@
 import './Hero.styles.css';
 
-import type { ElementType } from 'react';
+import type { CSSProperties, ElementType } from 'react';
 
 import { Button } from '../Button';
-import type { HeroAction, HeroProps } from './Hero.types';
+import type {
+  HeroAction,
+  HeroMediaAspectRatio,
+  HeroProps,
+  HeroVariant,
+} from './Hero.types';
 
 const headingElements: Record<NonNullable<HeroProps['headingLevel']>, ElementType> = {
   1: 'h1',
   2: 'h2',
+  3: 'h3',
 };
 
-function HeroActionElement({ action, kind }: { action: HeroAction; kind: 'primary' | 'secondary' }) {
+let hasWarnedImageVariant = false;
+
+function resolveVariant(variant: HeroVariant): Exclude<HeroVariant, 'image'> {
+  if (variant === 'image') {
+    if (process.env.NODE_ENV !== 'production' && !hasWarnedImageVariant) {
+      hasWarnedImageVariant = true;
+      console.warn(
+        '[Hero] variant="image" está deprecated. Use variant="dark" com mediaAspectRatio="1/1".',
+      );
+    }
+    return 'dark';
+  }
+  return variant;
+}
+
+function resolveAspectRatio(
+  variant: HeroVariant,
+  mediaAspectRatio?: HeroMediaAspectRatio,
+): HeroMediaAspectRatio {
+  if (mediaAspectRatio) {
+    return mediaAspectRatio;
+  }
+  return variant === 'image' ? '1/1' : '3/2';
+}
+
+function HeroActionButton({ action, variant }: { action: HeroAction; variant: 'primary' | 'tertiary' }) {
   return (
     <Button
       ariaLabel={action.ariaLabel}
-      className={['ds-hero__action', `ds-hero__action--${kind}`].join(' ')}
       disabled={action.disabled}
       href={action.href}
       iconEnd={action.iconEnd}
@@ -23,7 +53,7 @@ function HeroActionElement({ action, kind }: { action: HeroAction; kind: 'primar
       rel={action.rel}
       size="medium"
       target={action.target}
-      variant={kind === 'primary' ? 'primary' : 'tertiary'}
+      variant={variant}
     >
       {action.label}
     </Button>
@@ -60,17 +90,21 @@ export function Hero({
   headingLevel = 1,
   image,
   media,
+  mediaAspectRatio,
   mediaPosition = 'end',
   secondaryAction,
   title,
   variant = 'light',
 }: HeroProps) {
   const Heading = headingElements[headingLevel];
+  const resolvedVariant = resolveVariant(variant);
+  const resolvedAspectRatio = resolveAspectRatio(variant, mediaAspectRatio);
   const hasMedia = media != null || image != null;
   const hasActions = action != null || secondaryAction != null;
+
   const rootClassName = [
     'ds-hero',
-    `ds-hero--variant-${variant}`,
+    `ds-hero--variant-${resolvedVariant}`,
     `ds-hero--media-${mediaPosition}`,
     !hasMedia ? 'ds-hero--without-media' : undefined,
     className,
@@ -78,8 +112,12 @@ export function Hero({
     .filter(Boolean)
     .join(' ');
 
+  const rootStyle = {
+    '--hero-media-aspect-ratio': resolvedAspectRatio.replace('/', ' / '),
+  } as CSSProperties;
+
   return (
-    <section aria-label={ariaLabel} className={rootClassName}>
+    <section aria-label={ariaLabel} className={rootClassName} style={rootStyle}>
       <div className="ds-hero__container">
         <div className="ds-hero__content">
           {eyebrow ? <p className="ds-hero__eyebrow">{eyebrow}</p> : null}
@@ -88,9 +126,9 @@ export function Hero({
           {children ? <div className="ds-hero__slot">{children}</div> : null}
           {hasActions ? (
             <div className="ds-hero__actions">
-              {action ? <HeroActionElement action={action} kind="primary" /> : null}
+              {action ? <HeroActionButton action={action} variant="primary" /> : null}
               {secondaryAction ? (
-                <HeroActionElement action={secondaryAction} kind="secondary" />
+                <HeroActionButton action={secondaryAction} variant="tertiary" />
               ) : null}
             </div>
           ) : null}

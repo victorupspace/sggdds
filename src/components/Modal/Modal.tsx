@@ -2,6 +2,7 @@ import './Modal.styles.css';
 
 import { useEffect, useId, useRef } from 'react';
 
+import { Button } from '../Button';
 import type { ModalProps } from './Modal.types';
 
 const focusableSelector = [
@@ -136,16 +137,17 @@ export function Modal({
     footer ??
     (renderedActions.length > 0 ? (
       <>
-        {renderedActions.map(({ label, onClick, variant = 'primary', ...actionProps }, index) => (
-          <button
-            {...actionProps}
-            className={`ds-modal__action ds-modal__action--${variant}`}
+        {renderedActions.map(({ disabled, label, onClick, variant = 'primary' }, index) => (
+          <Button
+            className={`ds-modal__footer-action ds-modal__footer-action--${variant}`}
+            disabled={disabled}
             key={`${label}-${String(index)}`}
             onClick={onClick}
-            type="button"
+            size="medium"
+            variant={variant}
           >
             {label}
-          </button>
+          </Button>
         ))}
       </>
     ) : null);

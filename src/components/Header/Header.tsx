@@ -4,6 +4,7 @@ import { useId, useState } from 'react';
 
 import type { ReactNode } from 'react';
 import { ButtonGov } from '../ButtonGov';
+import { Meganav } from '../Meganav';
 import spGovBrLogo from './assets/logo-spgov-default.png';
 import type {
   HeaderAction,
@@ -192,26 +193,16 @@ function HeaderNavigationLink({ item }: { item: HeaderNavigationItem }) {
 
   if (hasChildren) {
     return (
-      <details className="ds-header__nav-disclosure">
-        <summary className="ds-header__nav-link">
-          <span>{item.label}</span>
-          <span className="ds-header__nav-icon">
-            <ChevronDownIcon />
-          </span>
-        </summary>
-        <div className="ds-header__nav-panel">
-          {item.children?.map((child) => (
-            <a
-              aria-current={child.current ? 'page' : undefined}
-              className="ds-header__nav-panel-link"
-              href={child.href ?? '#'}
-              key={`${item.label}-${child.label}`}
-            >
-              {child.label}
-            </a>
-          ))}
-        </div>
-      </details>
+      <Meganav
+        align="start"
+        ariaLabel={`Navegacao de ${item.label}`}
+        className="ds-header__meganav"
+        drawerClassName="ds-header__meganav-drawer"
+        items={item.children ?? []}
+        mobileTitle={item.label}
+        triggerLabel={item.label}
+        triggerVariant="navigation"
+      />
     );
   }
 

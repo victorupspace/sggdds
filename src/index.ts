@@ -36,6 +36,13 @@ export type {
   CardProps,
   CardTone,
 } from './components/Card';
+export { Carousel } from './components/Carousel';
+export type { CarouselCardItem, CarouselLabels, CarouselProps } from './components/Carousel';
+export { CookieConsentBanner } from './components/CookieConsentBanner';
+export type {
+  CookieConsentBannerPosition,
+  CookieConsentBannerProps,
+} from './components/CookieConsentBanner';
 export { Accordion, AccordionItem } from './components/Accordion';
 export type { AccordionItemProps, AccordionProps } from './components/Accordion';
 export { Checkbox } from './components/Checkbox';
@@ -56,6 +63,17 @@ export type {
   DatepickerRangeValue,
   DatepickerState,
 } from './components/Datepicker';
+export { DataTable } from './components/DataTable';
+export type {
+  DataTableColumn,
+  DataTableKey,
+  DataTableLabels,
+  DataTableProps,
+  DataTableSelectionChange,
+  DataTableSortDirection,
+  DataTableSortValue,
+  DataTableTheme,
+} from './components/DataTable';
 export { Divider } from './components/Divider';
 export type {
   DividerOrientation,
@@ -100,6 +118,16 @@ export type {
   ListItemProps,
   ListItemRadius,
 } from './components/ListItem';
+export { Meganav } from './components/Meganav';
+export type {
+  MeganavAlign,
+  MeganavFeatured,
+  MeganavFeaturedAction,
+  MeganavIcon,
+  MeganavItem,
+  MeganavProps,
+  MeganavTriggerVariant,
+} from './components/Meganav';
 export { Modal } from './components/Modal';
 export type { ModalAction, ModalActionVariant, ModalProps, ModalSize } from './components/Modal';
 export { Pagination } from './components/Pagination';

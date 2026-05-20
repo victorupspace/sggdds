@@ -1,0 +1,300 @@
+.ds-carousel {
+  --carousel-surface: var(--ds-semantic-color-background-neutral-default);
+  --carousel-stage: var(--ds-semantic-color-background-neutral-elevated);
+  --carousel-hover: var(--ds-semantic-color-background-neutral-hover);
+  --carousel-active: var(--ds-semantic-color-background-neutral-active);
+  --carousel-foreground: var(--ds-semantic-color-content-neutral-default);
+  --carousel-muted: var(--ds-semantic-color-content-neutral-muted);
+  --carousel-disabled: var(--ds-semantic-color-content-neutral-disabled);
+  --carousel-border: var(--ds-semantic-color-border-neutral-subtle);
+  --carousel-border-strong: var(--ds-semantic-color-border-neutral-default);
+  --carousel-focus-ring: var(--ds-semantic-color-focus-default);
+  --carousel-shadow: var(--ds-semantic-shadow-floating);
+  --carousel-gap: var(--ds-primitive-spacing-24);
+  --carousel-control-size: var(--ds-primitive-spacing-48);
+  --carousel-icon-size: var(--ds-primitive-spacing-24);
+  --carousel-indicator-size: var(--ds-primitive-spacing-10);
+  --carousel-stage-padding: var(--ds-primitive-spacing-24);
+  --carousel-visible-items: 1;
+  --carousel-item-size: calc(
+    (100% - (var(--carousel-gap) * (var(--carousel-visible-items) - 1))) /
+      var(--carousel-visible-items)
+  );
+  --carousel-step-size: calc(var(--carousel-item-size) + var(--carousel-gap));
+
+  display: grid;
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-inline-size: 0;
+  gap: var(--ds-primitive-spacing-16);
+  color: var(--carousel-foreground);
+  font-family:
+    var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
+}
+
+.ds-carousel *,
+.ds-carousel *::before,
+.ds-carousel *::after {
+  box-sizing: border-box;
+}
+
+.ds-carousel__shell {
+  display: grid;
+  min-inline-size: 0;
+  padding: var(--carousel-stage-padding);
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: var(--ds-primitive-spacing-16);
+  align-items: center;
+  border: var(--ds-primitive-border-width-border-sm) solid var(--carousel-border);
+  border-radius: var(--ds-semantic-radius-lg);
+  background: var(--carousel-stage);
+}
+
+.ds-carousel__control--previous {
+  grid-column: 1;
+}
+
+.ds-carousel__control--next {
+  grid-column: 3;
+}
+
+.ds-carousel__viewport {
+  grid-column: 2;
+  overflow: hidden;
+  min-inline-size: 0;
+  outline: none;
+}
+
+.ds-carousel--visible-1 .ds-carousel__viewport {
+  inline-size: min(100%, calc(var(--ds-primitive-spacing-128) * 4));
+  justify-self: center;
+}
+
+.ds-carousel__viewport:focus-visible,
+.ds-carousel__control:focus-visible,
+.ds-carousel__indicator:focus-visible {
+  outline: var(--ds-primitive-border-width-border-md) solid var(--carousel-focus-ring);
+  outline-offset: var(--ds-primitive-spacing-4);
+}
+
+.ds-carousel__track {
+  display: flex;
+  min-inline-size: 0;
+  gap: var(--carousel-gap);
+  transform: translateX(calc(var(--carousel-step-size) * var(--carousel-current-index) * -1));
+  transition: transform 220ms ease;
+  will-change: transform;
+}
+
+.ds-carousel__item {
+  display: grid;
+  flex: 0 0 var(--carousel-item-size);
+  min-inline-size: 0;
+}
+
+.ds-carousel__card.ds-card {
+  min-block-size: calc(var(--ds-primitive-spacing-128) * 2);
+  box-shadow: var(--carousel-shadow);
+}
+
+.ds-carousel__control {
+  display: inline-grid;
+  flex: 0 0 auto;
+  inline-size: var(--carousel-control-size);
+  block-size: var(--carousel-control-size);
+  padding: var(--ds-primitive-spacing-0);
+  place-items: center;
+  border: var(--ds-primitive-border-width-border-sm) solid var(--carousel-border);
+  border-radius: var(--ds-semantic-radius-full);
+  background: var(--carousel-surface);
+  color: var(--carousel-foreground);
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.ds-carousel__control:hover:not(:disabled) {
+  border-color: var(--carousel-border-strong);
+  background: var(--carousel-hover);
+}
+
+.ds-carousel__control:active:not(:disabled) {
+  background: var(--carousel-active);
+}
+
+.ds-carousel__control:disabled {
+  color: var(--carousel-disabled);
+  cursor: not-allowed;
+}
+
+.ds-carousel__icon {
+  display: block;
+  inline-size: var(--carousel-icon-size);
+  block-size: var(--carousel-icon-size);
+  pointer-events: none;
+}
+
+.ds-carousel__navigation {
+  display: grid;
+  min-inline-size: 0;
+  gap: var(--ds-primitive-spacing-8);
+  justify-items: center;
+}
+
+.ds-carousel__status {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.ds-carousel__indicators {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: var(--ds-primitive-spacing-8);
+  align-items: center;
+  justify-content: center;
+}
+
+.ds-carousel__indicator {
+  display: inline-grid;
+  inline-size: var(--ds-primitive-spacing-24);
+  block-size: var(--ds-primitive-spacing-24);
+  padding: var(--ds-primitive-spacing-0);
+  place-items: center;
+  border: 0;
+  border-radius: var(--ds-semantic-radius-full);
+  background: transparent;
+  color: var(--carousel-border-strong);
+  cursor: pointer;
+}
+
+.ds-carousel__indicator::before {
+  display: block;
+  inline-size: var(--carousel-indicator-size);
+  block-size: var(--carousel-indicator-size);
+  border-radius: var(--ds-semantic-radius-full);
+  background: currentColor;
+  content: '';
+  transition:
+    inline-size 160ms ease,
+    background-color 160ms ease;
+}
+
+.ds-carousel__indicator:hover:not(:disabled),
+.ds-carousel__indicator[aria-pressed='true'] {
+  color: var(--carousel-foreground);
+}
+
+.ds-carousel__indicator[aria-pressed='true']::before {
+  inline-size: var(--ds-primitive-spacing-24);
+}
+
+.ds-carousel__indicator:disabled {
+  color: var(--carousel-disabled);
+  cursor: not-allowed;
+}
+
+.ds-carousel__indicator-label {
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.ds-carousel--disabled .ds-carousel__viewport {
+  color: var(--carousel-disabled);
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-carousel__track,
+  .ds-carousel__indicator::before,
+  .ds-carousel__control {
+    transition: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .ds-carousel {
+    --carousel-gap: var(--ds-primitive-spacing-16);
+    --carousel-stage-padding: var(--ds-primitive-spacing-16);
+  }
+
+  .ds-carousel__shell {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .ds-carousel {
+    --carousel-control-size: var(--ds-primitive-spacing-40);
+    --carousel-stage-padding: var(--ds-primitive-spacing-12);
+    --carousel-gap: var(--ds-primitive-spacing-12);
+  }
+
+  .ds-carousel__shell {
+    grid-template-areas:
+      'viewport viewport'
+      'previous next';
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: stretch;
+  }
+
+  .ds-carousel__viewport {
+    grid-area: viewport;
+    inline-size: 100%;
+    justify-self: stretch;
+  }
+
+  .ds-carousel__track {
+    transform: translateX(calc((100% + var(--carousel-gap)) * var(--carousel-current-index) * -1));
+  }
+
+  .ds-carousel__item {
+    flex-basis: 100%;
+  }
+
+  .ds-carousel__control {
+    align-self: center;
+  }
+
+  .ds-carousel__control--previous {
+    grid-area: previous;
+    justify-self: start;
+  }
+
+  .ds-carousel__control--next {
+    grid-area: next;
+    justify-self: end;
+  }
+}
+
+@media (max-width: 420px) {
+  .ds-carousel__shell {
+    padding-inline: var(--ds-primitive-spacing-8);
+    gap: var(--ds-primitive-spacing-8);
+  }
+
+  .ds-carousel__card.ds-card {
+    --card-padding: var(--ds-primitive-spacing-16);
+    --card-gap: var(--ds-primitive-spacing-16);
+    --card-content-gap: var(--ds-primitive-spacing-16);
+  }
+
+  .ds-carousel__card.ds-card .ds-card__title {
+    font-size: var(--ds-primitive-typography-font-size-24);
+    line-height: var(--ds-primitive-typography-line-height-32);
+  }
+
+  .ds-carousel__card.ds-card .ds-card__description {
+    font-size: var(--ds-primitive-typography-font-size-16);
+    line-height: var(--ds-primitive-typography-line-height-24);
+  }
+}

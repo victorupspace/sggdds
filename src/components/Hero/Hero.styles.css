@@ -1,75 +1,51 @@
 .ds-hero {
   --hero-surface: var(--ds-semantic-color-background-neutral-elevated);
   --hero-foreground: var(--ds-semantic-color-content-neutral-default);
-  --hero-muted: var(--ds-semantic-color-content-neutral-subtle);
-  --hero-border: var(--ds-semantic-color-border-neutral-subtle);
+  --hero-muted: var(--ds-semantic-color-content-neutral-muted);
+  --hero-eyebrow: var(--ds-semantic-color-content-neutral-muted);
   --hero-media-surface: var(--ds-semantic-color-background-neutral-default);
-  --hero-media-border: var(--ds-semantic-color-background-neutral-overlay-muted);
+  --hero-media-border: var(--ds-semantic-color-border-neutral-subtle);
+  --hero-container-max-inline-size: var(--ds-primitive-breakpoints-values-bp-lg);
   --hero-padding-block: var(--ds-primitive-spacing-96);
   --hero-padding-inline: var(--ds-primitive-spacing-64);
-  --hero-content-max-inline-size: 560px;
-  --hero-media-max-inline-size: 800px;
-  --hero-media-aspect-ratio: 3 / 2;
-  --hero-container-max-inline-size: var(--ds-primitive-breakpoints-values-bp-lg);
+  --hero-content-max-inline-size: 56ch;
   --hero-title-font-size: var(--ds-primitive-typography-font-size-44);
   --hero-title-line-height: var(--ds-primitive-typography-line-height-50);
   --hero-description-font-size: var(--ds-primitive-typography-font-size-18);
-  --hero-description-line-height: var(--ds-primitive-typography-line-height-30);
+  --hero-description-line-height: var(--ds-primitive-typography-line-height-28);
+  --hero-media-aspect-ratio: 3 / 2;
 
   box-sizing: border-box;
   inline-size: 100%;
   padding-block: var(--hero-padding-block);
   padding-inline: var(--hero-padding-inline);
-  overflow: hidden;
   background: var(--hero-surface);
   color: var(--hero-foreground);
   font-family:
     var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
 }
 
-.ds-hero *,
-.ds-hero *::before,
-.ds-hero *::after {
-  box-sizing: border-box;
-}
-
-.ds-hero--variant-light {
-  --hero-surface: var(--ds-semantic-color-background-neutral-elevated);
-  --hero-foreground: var(--ds-semantic-color-action-primary-active);
-  --hero-muted: var(--ds-semantic-color-content-neutral-default);
-  --hero-media-surface: var(--ds-semantic-color-background-neutral-default);
-}
-
 .ds-hero--variant-dark {
-  --hero-surface: var(--ds-semantic-color-action-primary-active);
-  --hero-foreground: var(--ds-semantic-color-background-neutral-default);
-  --hero-muted: var(--ds-semantic-color-background-neutral-default);
+  --hero-surface: var(--ds-semantic-color-background-neutral-knockout-default);
+  --hero-foreground: var(--ds-semantic-color-content-neutral-knockout-default);
+  --hero-muted: var(--ds-primitive-color-neutral-grey-300);
+  --hero-eyebrow: var(--ds-primitive-color-neutral-grey-300);
   --hero-media-surface: var(--ds-semantic-color-background-neutral-overlay-subtle);
   --hero-media-border: var(--ds-semantic-color-background-neutral-overlay-strong);
-}
-
-.ds-hero--variant-image {
-  --hero-surface: var(--ds-semantic-color-content-neutral-default);
-  --hero-foreground: var(--ds-semantic-color-background-neutral-default);
-  --hero-muted: var(--ds-semantic-color-background-neutral-disabled);
-  --hero-media-surface: var(--ds-semantic-color-background-neutral-overlay-subtle);
-  --hero-media-border: var(--ds-semantic-color-background-neutral-overlay-strong);
-  --hero-media-max-inline-size: 520px;
-  --hero-media-aspect-ratio: 1 / 1;
 }
 
 .ds-hero__container {
   display: grid;
   inline-size: min(100%, var(--hero-container-max-inline-size));
   margin-inline: auto;
-  grid-template-columns: minmax(0, 0.92fr) minmax(320px, 1.08fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
   gap: clamp(var(--ds-primitive-spacing-40), 6vw, var(--ds-primitive-spacing-96));
   align-items: center;
 }
 
 .ds-hero--without-media .ds-hero__container {
-  grid-template-columns: minmax(0, 760px);
-  justify-content: center;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
   text-align: center;
 }
 
@@ -86,7 +62,6 @@
 }
 
 .ds-hero--without-media .ds-hero__content {
-  max-inline-size: 760px;
   align-items: center;
 }
 
@@ -94,14 +69,18 @@
 .ds-hero__title,
 .ds-hero__description {
   margin: 0;
+  min-inline-size: 0;
+  overflow-wrap: anywhere;
 }
 
 .ds-hero__eyebrow {
   margin-block-end: var(--ds-primitive-spacing-12);
-  color: var(--hero-muted);
+  color: var(--hero-eyebrow);
   font-size: var(--ds-primitive-typography-font-size-14);
   font-weight: var(--ds-primitive-typography-font-weight-bold);
   line-height: var(--ds-primitive-typography-line-height-20);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
 }
 
 .ds-hero__title {
@@ -109,36 +88,29 @@
   font-size: var(--hero-title-font-size);
   font-weight: var(--ds-primitive-typography-font-weight-extra-bold);
   line-height: var(--hero-title-line-height);
-  overflow-wrap: anywhere;
 }
 
 .ds-hero__description {
-  max-inline-size: 64ch;
   margin-block-start: var(--ds-primitive-spacing-24);
   color: var(--hero-muted);
   font-size: var(--hero-description-font-size);
   font-weight: var(--ds-primitive-typography-font-weight-regular);
   line-height: var(--hero-description-line-height);
-  overflow-wrap: anywhere;
 }
 
 .ds-hero__slot {
-  max-inline-size: 100%;
+  inline-size: 100%;
   margin-block-start: var(--ds-primitive-spacing-24);
   color: var(--hero-muted);
 }
 
 .ds-hero__actions {
   display: flex;
-  max-inline-size: 100%;
+  flex-wrap: wrap;
+  inline-size: 100%;
   margin-block-start: var(--ds-primitive-spacing-32);
   gap: var(--ds-primitive-spacing-16);
   align-items: center;
-  flex-wrap: wrap;
-}
-
-.ds-hero__action--secondary.ds-button {
-  color: var(--hero-foreground);
 }
 
 .ds-hero__media {
@@ -150,7 +122,7 @@
 .ds-hero__media-inner,
 .ds-hero__image {
   display: block;
-  inline-size: min(100%, var(--hero-media-max-inline-size));
+  inline-size: 100%;
   aspect-ratio: var(--hero-media-aspect-ratio);
   overflow: hidden;
   border: var(--ds-primitive-border-width-border-sm) solid var(--hero-media-border);
@@ -167,40 +139,47 @@
   object-fit: cover;
 }
 
+.ds-hero--variant-dark .ds-button--variant-primary {
+  --button-background: var(--ds-semantic-color-background-neutral-default);
+  --button-background-hover: var(--ds-semantic-color-background-neutral-elevated);
+  --button-background-active: var(--ds-semantic-color-background-neutral-disabled);
+  --button-foreground: var(--ds-semantic-color-content-neutral-default);
+  --button-border-color: var(--button-background);
+}
+
+.ds-hero--variant-dark .ds-button--variant-tertiary {
+  --button-background-hover: var(--ds-semantic-color-background-neutral-overlay-subtle);
+  --button-background-active: var(--ds-semantic-color-background-neutral-overlay-muted);
+  --button-foreground: var(--ds-semantic-color-content-neutral-knockout-default);
+}
+
 @media (max-width: 900px) {
   .ds-hero {
     --hero-padding-block: var(--ds-primitive-spacing-64);
     --hero-padding-inline: var(--ds-primitive-spacing-32);
+    --hero-content-max-inline-size: 100%;
     --hero-title-font-size: var(--ds-primitive-typography-font-size-36);
     --hero-title-line-height: var(--ds-primitive-typography-line-height-42);
     --hero-description-font-size: var(--ds-primitive-typography-font-size-16);
-    --hero-description-line-height: var(--ds-primitive-typography-line-height-26);
+    --hero-description-line-height: var(--ds-primitive-typography-line-height-24);
   }
 
   .ds-hero__container {
     grid-template-columns: minmax(0, 1fr);
-  }
-
-  .ds-hero__content,
-  .ds-hero--without-media .ds-hero__content {
-    max-inline-size: 720px;
+    gap: var(--ds-primitive-spacing-32);
   }
 
   .ds-hero--media-start .ds-hero__media {
     order: initial;
-  }
-
-  .ds-hero__media {
-    justify-content: flex-start;
   }
 }
 
 @media (max-width: 640px) {
   .ds-hero {
     --hero-padding-block: var(--ds-primitive-spacing-48);
-    --hero-padding-inline: var(--ds-primitive-spacing-24);
-    --hero-title-font-size: var(--ds-primitive-typography-font-size-30);
-    --hero-title-line-height: var(--ds-primitive-typography-line-height-38);
+    --hero-padding-inline: var(--ds-primitive-spacing-20);
+    --hero-title-font-size: var(--ds-primitive-typography-font-size-28);
+    --hero-title-line-height: var(--ds-primitive-typography-line-height-34);
   }
 
   .ds-hero__description {
@@ -208,11 +187,13 @@
   }
 
   .ds-hero__actions {
-    inline-size: 100%;
+    flex-direction: column;
+    align-items: stretch;
     margin-block-start: var(--ds-primitive-spacing-24);
+    gap: var(--ds-primitive-spacing-8);
   }
 
-  .ds-hero__action.ds-button {
+  .ds-hero__actions > .ds-button {
     inline-size: 100%;
   }
 }

@@ -43,7 +43,7 @@ Nao use Header dentro de cards, modais, paineis secundarios ou areas internas qu
 Anatomia:
 - Slot de marca primaria configuravel, usado por padrao para SP.GOV.BR.
 - Slot de marca secundaria configuravel, usado por padrao para Portal de Servicos ao Cidadao.
-- Navegacao primaria com links simples ou grupos expansivos.
+- Navegacao primaria com links simples ou grupos expansivos via Meganav.
 - Acoes utilitarias globais.
 - CTA de conta/login.
 - Botao de menu mobile.
@@ -58,7 +58,7 @@ Acessibilidade:
 - Header usa elemento semantico header.
 - Navegacao principal usa nav com aria-label.
 - Menu mobile usa aria-controls e aria-expanded.
-- Grupos de navegacao usam details/summary nativos.
+- Grupos de navegacao usam Meganav com aria-expanded, fechamento por Escape e clique fora.
 - Acoes utilitarias possuem nomes acessiveis.
 - CTA de conta reutiliza Button do Design System.
 - Estados de foco sao visiveis para teclado.

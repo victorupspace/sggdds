@@ -29,7 +29,8 @@ export function Stepper({
     currentStepIndex >= 0 ? normalizedSteps[currentStepIndex] : undefined;
   const nextStepData: StepperStep | undefined =
     currentStepIndex + 1 < totalSteps ? normalizedSteps[currentStepIndex + 1] : undefined;
-  const progressValue = totalSteps > 0 ? (safeCurrentStep / totalSteps) * 100 : 0;
+  const progressValue =
+    totalSteps > 1 ? ((safeCurrentStep - 1) / (totalSteps - 1)) * 100 : 0;
   const progressLabel =
     totalSteps > 0
       ? `${label}: etapa ${String(safeCurrentStep)} de ${String(totalSteps)}${
@@ -40,7 +41,7 @@ export function Stepper({
   const rootClassName = ['ds-stepper', className].filter(Boolean).join(' ');
 
   return (
-    <section aria-label={progressLabel} className={rootClassName}>
+    <section aria-label={label} className={rootClassName}>
       <header className="ds-stepper__header">
         <p className="ds-stepper__label">{label}</p>
         <p
@@ -64,6 +65,7 @@ export function Stepper({
           aria-valuemax={totalSteps}
           aria-valuemin={0}
           aria-valuenow={safeCurrentStep}
+          aria-valuetext={progressLabel}
           className="ds-stepper__progress"
           role="progressbar"
         >
@@ -78,16 +80,21 @@ export function Stepper({
             {normalizedSteps.map((step, index) => {
               const stepNumber = index + 1;
               const isCurrent = stepNumber === safeCurrentStep;
+              const isCompleted = stepNumber < safeCurrentStep;
+              const dotClassName = [
+                'ds-stepper__dot',
+                isCurrent ? 'ds-stepper__dot--current' : undefined,
+                isCompleted ? 'ds-stepper__dot--completed' : undefined,
+              ]
+                .filter(Boolean)
+                .join(' ');
 
               return (
                 <li className="ds-stepper__dot-item" key={step.id}>
                   <span
                     aria-current={isCurrent ? 'step' : undefined}
                     aria-label={`Etapa ${String(stepNumber)} de ${String(totalSteps)}: ${step.label}`}
-                    className={
-                      isCurrent ? 'ds-stepper__dot ds-stepper__dot--current' : 'ds-stepper__dot'
-                    }
-                    title={step.label}
+                    className={dotClassName}
                   />
                 </li>
               );

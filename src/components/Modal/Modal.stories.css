@@ -4,23 +4,6 @@
   padding: var(--ds-primitive-spacing-0);
 }
 
-.ds-modal.ds-modal-storybook-fit {
-  position: relative;
-  inset: auto;
-  display: grid;
-  min-block-size: calc(var(--ds-primitive-spacing-128) * 3);
-  inline-size: 100%;
-  place-items: center;
-  padding: var(--ds-primitive-spacing-24);
-  overflow: visible;
-}
-
-.ds-modal-storybook-fit .ds-modal__dialog {
-  block-size: auto;
-  max-block-size: calc(var(--ds-primitive-spacing-128) * 3);
-  min-block-size: var(--ds-primitive-spacing-0);
-}
-
 .ds-modal-storybook-long-content {
   display: grid;
   gap: var(--ds-primitive-spacing-16);
@@ -28,26 +11,4 @@
 
 .ds-modal-storybook-long-content p {
   margin: var(--ds-primitive-spacing-0);
-}
-
-@media (max-width: 420px) {
-  .ds-modal.ds-modal-storybook-fit {
-    min-block-size: auto;
-    place-items: center;
-    padding: var(--ds-primitive-spacing-12);
-  }
-
-  .ds-modal-storybook-fit .ds-modal__dialog,
-  .ds-modal-storybook-fit.ds-modal--size-sm .ds-modal__dialog,
-  .ds-modal-storybook-fit.ds-modal--size-md .ds-modal__dialog,
-  .ds-modal-storybook-fit.ds-modal--size-lg .ds-modal__dialog,
-  .ds-modal-storybook-fit.ds-modal--size-full .ds-modal__dialog {
-    block-size: auto;
-    max-block-size: none;
-    min-block-size: var(--ds-primitive-spacing-0);
-    border: var(--ds-primitive-border-width-border-sm) solid var(--modal-border-color);
-    border-radius: var(--ds-primitive-border-radius-radius-lg);
-    box-shadow: var(--ds-primitive-spacing-0) var(--ds-primitive-spacing-20)
-      var(--ds-primitive-spacing-40) var(--modal-shadow-color);
-  }
 }

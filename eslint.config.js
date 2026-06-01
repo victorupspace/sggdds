@@ -7,12 +7,11 @@ import tseslint from 'typescript-eslint';
 export default tseslint.config(
   {
     ignores: [
-      'dist',
+      '**/dist',
       'storybook-static',
       'coverage',
-      'node_modules',
-      'src/foundations/tokens/build',
-      'src/foundations/tokens/css',
+      '**/node_modules',
+      'packages/tokens/src/normalized',
     ],
   },
   {
@@ -59,7 +58,7 @@ export default tseslint.config(
     },
   },
   {
-    files: ['*.config.{js,ts}', '.storybook/**/*.ts', 'scripts/**/*.ts'],
+    files: ['*.config.{js,ts}', '.storybook/**/*.ts', 'packages/*/scripts/**/*.ts', 'packages/*/style-dictionary.config.ts'],
     rules: {
       '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-unsafe-call': 'off',

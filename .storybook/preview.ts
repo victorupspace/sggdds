@@ -1,7 +1,7 @@
 import type { Preview } from '@storybook/react-vite';
 import { createElement } from 'react';
 
-import '../src/foundations/tokens/css/tokens.css';
+import '../packages/tokens/dist/css/tokens.css';
 
 const preview: Preview = {
   decorators: [

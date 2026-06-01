@@ -11,6 +11,7 @@
     "types": ["node"]
   },
   "include": [
+    "globals.d.ts",
     "vite.config.ts",
     "style-dictionary.config.ts",
     "scripts/**/*.ts",

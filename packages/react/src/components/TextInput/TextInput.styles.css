@@ -1,0 +1,188 @@
+.ds-text-input {
+  --text-input-label-color: var(--ds-semantic-color-content-neutral-default);
+  --text-input-text-color: var(--ds-semantic-color-content-neutral-default);
+  --text-input-placeholder-color: var(--ds-semantic-color-content-neutral-disabled);
+  --text-input-helper-color: var(--ds-semantic-color-content-neutral-default);
+  --text-input-background: var(--ds-semantic-color-background-neutral-default);
+  --text-input-border-color: var(--ds-semantic-color-content-neutral-disabled);
+  --text-input-hover-border-color: var(--ds-semantic-color-content-neutral-default);
+  --text-input-focus-color: var(--ds-semantic-color-action-primary-default);
+  --text-input-error-color: var(--ds-semantic-color-content-negative-default);
+  --text-input-disabled-background: var(--ds-semantic-color-background-neutral-disabled);
+  --text-input-disabled-border-color: var(--ds-semantic-color-border-neutral-default);
+  --text-input-disabled-color: var(--ds-semantic-color-content-neutral-disabled);
+  --text-input-gap: var(--ds-primitive-spacing-8);
+  --text-input-control-gap: var(--ds-primitive-spacing-8);
+  --text-input-padding-block: var(--ds-primitive-spacing-8);
+  --text-input-padding-inline: var(--ds-primitive-spacing-12);
+  --text-input-min-block-size: var(--ds-primitive-spacing-48);
+  --text-input-icon-size: var(--ds-primitive-spacing-20);
+
+  display: grid;
+  box-sizing: border-box;
+  max-inline-size: 100%;
+  min-inline-size: 0;
+  gap: var(--text-input-gap);
+  color: var(--text-input-text-color);
+  font-family:
+    var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
+}
+
+.ds-text-input--full-width {
+  inline-size: 100%;
+}
+
+.ds-text-input__label {
+  display: flex;
+  min-inline-size: 0;
+  gap: var(--ds-primitive-spacing-2);
+  align-items: center;
+  overflow-wrap: anywhere;
+  color: var(--text-input-label-color);
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: 100%;
+}
+
+.ds-text-input__required {
+  color: var(--text-input-error-color);
+}
+
+.ds-text-input__control {
+  display: flex;
+  box-sizing: border-box;
+  min-inline-size: 0;
+  min-block-size: var(--text-input-min-block-size);
+  gap: var(--text-input-control-gap);
+  align-items: center;
+  padding: var(--text-input-padding-block) var(--text-input-padding-inline);
+  border: var(--ds-primitive-border-width-border-sm) solid var(--text-input-border-color);
+  border-radius: var(--ds-semantic-radius-sm);
+  background: var(--text-input-background);
+  color: var(--text-input-text-color);
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+
+.ds-text-input:not(.ds-text-input--disabled):not(.ds-text-input--error):hover
+  .ds-text-input__control {
+  border-color: var(--text-input-hover-border-color);
+}
+
+.ds-text-input__control:focus-within {
+  border-color: var(--text-input-focus-color);
+  outline: var(--ds-primitive-border-width-border-md) solid var(--text-input-focus-color);
+  outline-offset: var(--ds-primitive-spacing-2);
+}
+
+.ds-text-input__field {
+  flex: 1 1 auto;
+  box-sizing: border-box;
+  inline-size: 100%;
+  min-inline-size: 0;
+  border: 0;
+  outline: 0;
+  background: transparent;
+  color: var(--text-input-text-color);
+  font: inherit;
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: 100%;
+}
+
+.ds-text-input__field::placeholder {
+  color: var(--text-input-placeholder-color);
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: 100%;
+  opacity: 1;
+}
+
+.ds-text-input__field:disabled {
+  cursor: not-allowed;
+}
+
+.ds-text-input__icon {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  inline-size: var(--text-input-icon-size);
+  block-size: var(--text-input-icon-size);
+  color: currentColor;
+}
+
+.ds-text-input__icon > svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.ds-text-input__message {
+  display: flex;
+  min-inline-size: 0;
+  gap: var(--ds-primitive-spacing-4);
+  align-items: center;
+  margin: 0;
+  overflow-wrap: anywhere;
+  color: var(--text-input-helper-color);
+  font-size: var(--ds-primitive-typography-font-size-12);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: 100%;
+}
+
+.ds-text-input__message--error {
+  color: var(--text-input-error-color);
+}
+
+.ds-text-input__message-icon {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  inline-size: var(--ds-primitive-spacing-16);
+  block-size: var(--ds-primitive-spacing-16);
+  border: var(--ds-primitive-border-width-border-md) solid currentColor;
+  border-radius: var(--ds-semantic-radius-full);
+  font-size: var(--ds-primitive-typography-font-size-12);
+  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  line-height: var(--ds-primitive-typography-line-height-16);
+}
+
+.ds-text-input--error {
+  --text-input-border-color: var(--text-input-error-color);
+  --text-input-focus-color: var(--text-input-error-color);
+}
+
+.ds-text-input--disabled {
+  --text-input-label-color: var(--text-input-disabled-color);
+  --text-input-text-color: var(--text-input-disabled-color);
+  --text-input-placeholder-color: var(--text-input-disabled-color);
+  --text-input-helper-color: var(--text-input-disabled-color);
+  --text-input-background: var(--text-input-disabled-background);
+  --text-input-border-color: var(--text-input-disabled-border-color);
+
+  cursor: not-allowed;
+}
+
+.ds-text-input--size-medium {
+  --text-input-min-block-size: var(--ds-primitive-spacing-48);
+}
+
+.ds-text-input--size-large {
+  --text-input-min-block-size: calc(var(--ds-primitive-spacing-48) + var(--ds-primitive-spacing-8));
+  --text-input-padding-block: var(--ds-primitive-spacing-8);
+  --text-input-padding-inline: var(--ds-primitive-spacing-12);
+}
+
+@media (max-width: 420px) {
+  .ds-text-input {
+    --text-input-min-block-size: var(--ds-primitive-spacing-48);
+    --text-input-padding-block: var(--ds-primitive-spacing-8);
+    --text-input-padding-inline: var(--ds-primitive-spacing-12);
+  }
+
+  .ds-text-input__field {
+    font-size: var(--ds-primitive-typography-font-size-14);
+    line-height: 100%;
+  }
+}

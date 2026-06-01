@@ -1,0 +1,31 @@
+{
+  "name": "@government/tokens",
+  "version": "0.1.0",
+  "description": "Design tokens da SGGD em CSS e JSON, gerados via Style Dictionary.",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": [
+    "*.css"
+  ],
+  "files": [
+    "dist",
+    "src/raw",
+    "LICENSE",
+    "README.md"
+  ],
+  "exports": {
+    ".": "./dist/json/tokens.json",
+    "./tokens.css": "./dist/css/tokens.css",
+    "./tokens.json": "./dist/json/tokens.json",
+    "./raw/*": "./src/raw/*",
+    "./normalized/*": "./src/normalized/*"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsx scripts/transform-tokens.ts",
+    "validate": "tsx scripts/validate-tokens.ts",
+    "clean": "rimraf dist src/normalized"
+  }
+}

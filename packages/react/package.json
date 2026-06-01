@@ -1,0 +1,55 @@
+{
+  "name": "@government/design-system",
+  "version": "0.1.0",
+  "description": "Biblioteca React de componentes do Design System governamental SGGD.",
+  "type": "module",
+  "license": "MIT",
+  "sideEffects": [
+    "*.css"
+  ],
+  "files": [
+    "dist",
+    "LICENSE",
+    "README.md"
+  ],
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "development": "./src/index.ts",
+      "types": "./dist/src/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": "./dist/index.css",
+    "./tokens.css": "./dist/tokens.css",
+    "./tokens.json": "./dist/tokens.json"
+  },
+  "publishConfig": {
+    "access": "public",
+    "main": "./dist/index.js",
+    "types": "./dist/src/index.d.ts",
+    "exports": {
+      ".": {
+        "types": "./dist/src/index.d.ts",
+        "import": "./dist/index.js"
+      },
+      "./styles.css": "./dist/index.css",
+      "./tokens.css": "./dist/tokens.css",
+      "./tokens.json": "./dist/tokens.json"
+    }
+  },
+  "scripts": {
+    "build": "pnpm --filter @government/tokens build && vite build",
+    "dev": "vite --host 0.0.0.0",
+    "test": "vitest run --passWithNoTests",
+    "test:watch": "vitest",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "dependencies": {
+    "@government/tokens": "workspace:*"
+  }
+}

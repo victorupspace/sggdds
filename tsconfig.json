@@ -7,6 +7,8 @@
     "globals.d.ts",
     ".storybook/**/*.ts",
     "docs/**/*.ts",
-    "docs/**/*.tsx"
+    "docs/**/*.tsx",
+    "showcase/**/*.ts",
+    "showcase/**/*.tsx"
   ]
 }

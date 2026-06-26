@@ -6,7 +6,8 @@ import '../packages/tokens/dist/css/tokens.css';
 const preview: Preview = {
   decorators: [
     (Story, context) => {
-      if (!context.title.startsWith('Web Components/')) {
+      const framedPrefixes = ['Web Components/', 'SwiftUI/', 'Android/'];
+      if (!framedPrefixes.some((prefix) => context.title.startsWith(prefix))) {
         return createElement(Story);
       }
 
@@ -85,6 +86,8 @@ const preview: Preview = {
           'Foundations',
           ['Overview', '*'],
           'Web Components',
+          'SwiftUI',
+          'Android',
         ],
       },
     },

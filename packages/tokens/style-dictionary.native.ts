@@ -1,0 +1,263 @@
+import type {
+  Dictionary,
+  FormatFn,
+  PlatformConfig,
+  TransformedToken,
+  ValueTransform,
+} from 'style-dictionary/types';
+
+/**
+ * Custom Style Dictionary hooks that turn the SGGD normalized DTCG tokens into
+ * native deliverables: SwiftUI sources for iOS and Android XML value resources.
+ *
+ * These are intentionally self-contained instead of relying on the built-in
+ * `ios-swift`/`android` transform groups, which assume UIKit `UIColor` types and
+ * rem-based dimensions. The SGGD pipeline emits hex/rgba colors and `px` strings,
+ * so deterministic custom transforms keep the output predictable.
+ */
+
+interface Rgba {
+  r: number;
+  g: number;
+  b: number;
+  a: number;
+}
+
+const clamp01 = (value: number): number => Math.min(1, Math.max(0, value));
+
+function parseColor(input: unknown): Rgba | undefined {
+  if (typeof input !== 'string') {
+    return undefined;
+  }
+
+  const value = input.trim();
+
+  const hexMatch = /^#([0-9a-fA-F]{3,8})$/.exec(value);
+  if (hexMatch) {
+    let hex = hexMatch[1];
+    if (hex.length === 3) {
+      hex = hex
+        .split('')
+        .map((char) => char + char)
+        .join('');
+    }
+    if (hex.length === 6) {
+      hex += 'ff';
+    }
+    const r = parseInt(hex.slice(0, 2), 16) / 255;
+    const g = parseInt(hex.slice(2, 4), 16) / 255;
+    const b = parseInt(hex.slice(4, 6), 16) / 255;
+    const a = parseInt(hex.slice(6, 8), 16) / 255;
+    return { r, g, b, a };
+  }
+
+  const rgbaMatch = /^rgba?\(([^)]+)\)$/.exec(value);
+  if (rgbaMatch) {
+    const parts = rgbaMatch[1].split(',').map((part) => part.trim());
+    if (parts.length >= 3) {
+      const r = parseFloat(parts[0]) / 255;
+      const g = parseFloat(parts[1]) / 255;
+      const b = parseFloat(parts[2]) / 255;
+      const a = parts.length >= 4 ? parseFloat(parts[3]) : 1;
+      return { r, g, b, a };
+    }
+  }
+
+  return undefined;
+}
+
+const toFixed3 = (value: number): string => clamp01(value).toFixed(3).replace(/0+$/, '').replace(/\.$/, '.0');
+
+function toHex2(value: number): string {
+  return Math.round(clamp01(value) * 255)
+    .toString(16)
+    .padStart(2, '0')
+    .toUpperCase();
+}
+
+/** Pull a numeric value out of `"16px"`, `16`, or `0`. */
+function toNumber(input: unknown): number | undefined {
+  if (typeof input === 'number') {
+    return input;
+  }
+  if (typeof input === 'string') {
+    const parsed = parseFloat(input);
+    return Number.isNaN(parsed) ? undefined : parsed;
+  }
+  return undefined;
+}
+
+const isFontSize = (token: TransformedToken): boolean =>
+  token.path.includes('typography') && token.path.includes('font-size');
+
+// --- iOS / SwiftUI transforms ------------------------------------------------
+
+const swiftColor: ValueTransform = {
+  name: 'sggd/swift/color',
+  type: 'value',
+  transitive: true,
+  filter: (token) => token.$type === 'color' || token.type === 'color',
+  transform: (token) => {
+    const raw: unknown = token.$value ?? token.value;
+    // Idempotent: a resolved reference already carries the transformed Swift value.
+    if (typeof raw === 'string' && raw.startsWith('Color')) {
+      return raw;
+    }
+    const rgba = parseColor(raw);
+    if (!rgba) {
+      return 'Color.clear';
+    }
+    return `Color(red: ${toFixed3(rgba.r)}, green: ${toFixed3(rgba.g)}, blue: ${toFixed3(rgba.b)}, opacity: ${toFixed3(rgba.a)})`;
+  },
+};
+
+const swiftDimension: ValueTransform = {
+  name: 'sggd/swift/dimension',
+  type: 'value',
+  transitive: true,
+  filter: (token) => token.$type === 'dimension' || token.type === 'dimension',
+  transform: (token) => {
+    const value = toNumber(token.$value ?? token.value);
+    return value === undefined ? '0' : String(value);
+  },
+};
+
+// --- Android transforms ------------------------------------------------------
+
+const androidColor: ValueTransform = {
+  name: 'sggd/android/color',
+  type: 'value',
+  transitive: true,
+  filter: (token) => token.$type === 'color' || token.type === 'color',
+  transform: (token) => {
+    const raw: unknown = token.$value ?? token.value;
+    // Idempotent: a resolved reference already carries the #AARRGGBB value.
+    if (typeof raw === 'string' && /^#[0-9a-fA-F]{8}$/.test(raw)) {
+      return raw;
+    }
+    const rgba = parseColor(raw);
+    if (!rgba) {
+      return '#00000000';
+    }
+    return `#${toHex2(rgba.a)}${toHex2(rgba.r)}${toHex2(rgba.g)}${toHex2(rgba.b)}`;
+  },
+};
+
+const androidDimension: ValueTransform = {
+  name: 'sggd/android/dimension',
+  type: 'value',
+  transitive: true,
+  filter: (token) => token.$type === 'dimension' || token.type === 'dimension',
+  transform: (token) => {
+    const value = toNumber(token.$value ?? token.value);
+    const unit = isFontSize(token) ? 'sp' : 'dp';
+    return `${String(value ?? 0)}${unit}`;
+  },
+};
+
+// --- Formats -----------------------------------------------------------------
+
+const header = (platform: PlatformConfig): string => {
+  const file = (platform.options as { fileHeader?: string } | undefined)?.fileHeader;
+  return file ?? 'SGGD Design System — generated by Style Dictionary. Do not edit by hand.';
+};
+
+const byType = (dictionary: Dictionary, type: string): TransformedToken[] =>
+  dictionary.allTokens.filter((token) => (token.$type ?? token.type) === type);
+
+/** Resolved, already-transformed token value as a string. */
+const valueOf = (token: TransformedToken): string => (token.$value ?? token.value) as string;
+
+/** SwiftUI source: grouped enums of Color / CGFloat / weights / families. */
+const swiftFormat: FormatFn = ({ dictionary, platform }) => {
+  const colors = byType(dictionary, 'color');
+  const dimensions = byType(dictionary, 'dimension');
+  const fontWeights = byType(dictionary, 'fontWeight');
+  const fontFamilies = byType(dictionary, 'fontFamily');
+
+  const section = (name: string, swiftType: string, tokens: TransformedToken[], render: (t: TransformedToken) => string) => {
+    if (tokens.length === 0) {
+      return '';
+    }
+    const lines = tokens
+      .map((token) => `    public static let ${token.name}: ${swiftType} = ${render(token)}`)
+      .join('\n');
+    return `public enum ${name} {\n${lines}\n}\n`;
+  };
+
+  const weightValue = (token: TransformedToken): string => {
+    const map: Record<string, string> = {
+      '300': '.light',
+      '400': '.regular',
+      '500': '.medium',
+      '600': '.semibold',
+      '700': '.bold',
+      '800': '.heavy',
+    };
+    return map[valueOf(token)] ?? '.regular';
+  };
+
+  return [
+    `// ${header(platform)}`,
+    '',
+    'import SwiftUI',
+    '',
+    section('DSColors', 'Color', colors, valueOf),
+    section('DSDimensions', 'CGFloat', dimensions, valueOf),
+    section('DSFontWeights', 'Font.Weight', fontWeights, weightValue),
+    section('DSFontFamilies', 'String', fontFamilies, (t) => JSON.stringify(valueOf(t))),
+  ]
+    .filter(Boolean)
+    .join('\n');
+};
+
+const xmlEscape = (value: string): string =>
+  value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+/** Android colors.xml */
+const androidColorsFormat: FormatFn = ({ dictionary, platform }) => {
+  const lines = byType(dictionary, 'color')
+    .map((token) => `    <color name="${token.name}">${valueOf(token)}</color>`)
+    .join('\n');
+  return `<?xml version="1.0" encoding="utf-8"?>\n<!-- ${header(platform)} -->\n<resources>\n${lines}\n</resources>\n`;
+};
+
+/** Android dimens.xml */
+const androidDimensFormat: FormatFn = ({ dictionary, platform }) => {
+  const lines = byType(dictionary, 'dimension')
+    .map((token) => `    <dimen name="${token.name}">${valueOf(token)}</dimen>`)
+    .join('\n');
+  return `<?xml version="1.0" encoding="utf-8"?>\n<!-- ${header(platform)} -->\n<resources>\n${lines}\n</resources>\n`;
+};
+
+/** Android integers.xml for font weights */
+const androidIntegersFormat: FormatFn = ({ dictionary, platform }) => {
+  const lines = byType(dictionary, 'fontWeight')
+    .map((token) => `    <integer name="${token.name}">${valueOf(token)}</integer>`)
+    .join('\n');
+  return `<?xml version="1.0" encoding="utf-8"?>\n<!-- ${header(platform)} -->\n<resources>\n${lines}\n</resources>\n`;
+};
+
+/** Android strings.xml for font families */
+const androidStringsFormat: FormatFn = ({ dictionary, platform }) => {
+  const lines = byType(dictionary, 'fontFamily')
+    .map((token) => `    <string name="${token.name}">${xmlEscape(valueOf(token))}</string>`)
+    .join('\n');
+  return `<?xml version="1.0" encoding="utf-8"?>\n<!-- ${header(platform)} -->\n<resources>\n${lines}\n</resources>\n`;
+};
+
+export const nativeHooks = {
+  transforms: {
+    [swiftColor.name]: swiftColor,
+    [swiftDimension.name]: swiftDimension,
+    [androidColor.name]: androidColor,
+    [androidDimension.name]: androidDimension,
+  },
+  formats: {
+    'sggd/swift': swiftFormat,
+    'sggd/android-colors': androidColorsFormat,
+    'sggd/android-dimens': androidDimensFormat,
+    'sggd/android-integers': androidIntegersFormat,
+    'sggd/android-strings': androidStringsFormat,
+  },
+};

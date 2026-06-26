@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Shared simple attributes (declared once, referenced by several components). -->
+    <attr name="dsLabel" format="string" />
+    <attr name="dsHint" format="string" />
+    <attr name="dsTitle" format="string" />
+    <attr name="dsMessage" format="string" />
+    <attr name="dsDescription" format="string" />
+    <attr name="dsValue" format="string" />
+    <attr name="dsChecked" format="boolean" />
+    <attr name="dsIndeterminate" format="boolean" />
+    <attr name="dsSelected" format="boolean" />
+    <attr name="dsProgress" format="float" />
+
+    <!-- Divider -->
+    <attr name="dsOrientation" format="enum">
+        <enum name="horizontal" value="0" />
+        <enum name="vertical" value="1" />
+    </attr>
+    <attr name="dsThickness" format="enum">
+        <enum name="sm" value="0" />
+        <enum name="md" value="1" />
+        <enum name="lg" value="2" />
+    </attr>
+    <attr name="dsTone" format="enum">
+        <enum name="subtle" value="0" />
+        <enum name="default" value="1" />
+        <enum name="strong" value="2" />
+    </attr>
+    <declare-styleable name="DSDivider">
+        <attr name="dsOrientation" />
+        <attr name="dsThickness" />
+        <attr name="dsTone" />
+    </declare-styleable>
+
+    <!-- Spinner -->
+    <attr name="dsSpinnerSize" format="enum">
+        <enum name="small" value="0" />
+        <enum name="medium" value="1" />
+        <enum name="large" value="2" />
+    </attr>
+    <attr name="dsSpinnerVariant" format="enum">
+        <enum name="brand" value="0" />
+        <enum name="neutral" value="1" />
+        <enum name="inverse" value="2" />
+    </attr>
+    <declare-styleable name="DSSpinner">
+        <attr name="dsSpinnerSize" />
+        <attr name="dsSpinnerVariant" />
+    </declare-styleable>
+
+    <!-- ProgressBar -->
+    <attr name="dsProgressSize" format="enum">
+        <enum name="sm" value="0" />
+        <enum name="md" value="1" />
+    </attr>
+    <attr name="dsProgressVariant" format="enum">
+        <enum name="brand" value="0" />
+        <enum name="neutral" value="1" />
+        <enum name="success" value="2" />
+        <enum name="error" value="3" />
+    </attr>
+    <declare-styleable name="DSProgressBar">
+        <attr name="dsProgressSize" />
+        <attr name="dsProgressVariant" />
+        <attr name="dsProgress" />
+    </declare-styleable>
+
+    <!-- Checkbox -->
+    <declare-styleable name="DSCheckbox">
+        <attr name="dsLabel" />
+        <attr name="dsHint" />
+        <attr name="dsChecked" />
+        <attr name="dsIndeterminate" />
+    </declare-styleable>
+
+    <!-- Radio -->
+    <declare-styleable name="DSRadioButton">
+        <attr name="dsValue" />
+        <attr name="dsLabel" />
+        <attr name="dsDescription" />
+        <attr name="dsChecked" />
+    </declare-styleable>
+
+    <!-- Toggle -->
+    <declare-styleable name="DSToggle">
+        <attr name="dsLabel" />
+        <attr name="dsHint" />
+        <attr name="dsChecked" />
+    </declare-styleable>
+
+    <!-- Chip -->
+    <attr name="dsChipSize" format="enum">
+        <enum name="small" value="0" />
+        <enum name="medium" value="1" />
+    </attr>
+    <attr name="dsChipVariant" format="enum">
+        <enum name="neutral" value="0" />
+        <enum name="brand" value="1" />
+    </attr>
+    <declare-styleable name="DSChip">
+        <attr name="dsLabel" />
+        <attr name="dsChipSize" />
+        <attr name="dsChipVariant" />
+        <attr name="dsSelected" />
+    </declare-styleable>
+
+    <!-- Link -->
+    <attr name="dsLinkVariant" format="enum">
+        <enum name="default" value="0" />
+        <enum name="neutral" value="1" />
+        <enum name="inverse" value="2" />
+    </attr>
+    <attr name="dsLinkSize" format="enum">
+        <enum name="small" value="0" />
+        <enum name="medium" value="1" />
+        <enum name="large" value="2" />
+    </attr>
+    <declare-styleable name="DSLink">
+        <attr name="dsLinkVariant" />
+        <attr name="dsLinkSize" />
+    </declare-styleable>
+
+    <!-- Alert -->
+    <attr name="dsAlertVariant" format="enum">
+        <enum name="information" value="0" />
+        <enum name="success" value="1" />
+        <enum name="warning" value="2" />
+        <enum name="error" value="3" />
+        <enum name="critical" value="4" />
+    </attr>
+    <declare-styleable name="DSAlert">
+        <attr name="dsTitle" />
+        <attr name="dsMessage" />
+        <attr name="dsAlertVariant" />
+    </declare-styleable>
+
+    <!-- Toast -->
+    <attr name="dsToastVariant" format="enum">
+        <enum name="brand" value="0" />
+        <enum name="neutral" value="1" />
+        <enum name="positive" value="2" />
+        <enum name="information" value="3" />
+        <enum name="notice" value="4" />
+        <enum name="negative" value="5" />
+    </attr>
+    <declare-styleable name="DSToast">
+        <attr name="dsTitle" />
+        <attr name="dsMessage" />
+        <attr name="dsToastVariant" />
+    </declare-styleable>
+</resources>

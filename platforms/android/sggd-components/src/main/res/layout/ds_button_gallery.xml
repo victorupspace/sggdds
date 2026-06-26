@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Reference gallery of DSButton states — the Android parallel to the web
+  Storybook stories. Use it in a sample app or Layout Editor preview.
+-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <br.gov.sggd.designsystem.components.DSButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Primary"
+        app:dsVariant="primary" />
+
+    <br.gov.sggd.designsystem.components.DSButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Secondary"
+        app:dsVariant="secondary" />
+
+    <br.gov.sggd.designsystem.components.DSButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Tertiary"
+        app:dsVariant="tertiary" />
+
+    <br.gov.sggd.designsystem.components.DSButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Small"
+        app:dsSize="small" />
+
+    <br.gov.sggd.designsystem.components.DSButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:enabled="false"
+        android:text="Disabled" />
+
+    <br.gov.sggd.designsystem.components.DSButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Loading"
+        app:dsLoading="true" />
+
+    <br.gov.sggd.designsystem.components.DSButton
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Full width"
+        app:dsFullWidth="true" />
+
+</LinearLayout>

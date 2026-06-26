@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="DSButton">
+        <!-- Visual variant, parity with the web `variant` prop. -->
+        <attr name="dsVariant" format="enum">
+            <enum name="primary" value="0" />
+            <enum name="secondary" value="1" />
+            <enum name="tertiary" value="2" />
+        </attr>
+        <!-- Size, parity with the web `size` prop. -->
+        <attr name="dsSize" format="enum">
+            <enum name="small" value="0" />
+            <enum name="medium" value="1" />
+            <enum name="large" value="2" />
+        </attr>
+        <!-- Loading state: shows the label and disables interaction. -->
+        <attr name="dsLoading" format="boolean" />
+        <!-- Loading label text, parity with `loadingLabel`. -->
+        <attr name="dsLoadingLabel" format="string" />
+        <!-- Stretches the button to the parent width. -->
+        <attr name="dsFullWidth" format="boolean" />
+    </declare-styleable>
+</resources>

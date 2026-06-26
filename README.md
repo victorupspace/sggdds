@@ -73,9 +73,9 @@ design-system/
     utilities/                 Utilitarios futuros
     types/                     Tipos publicos e compartilhados
   platforms/
-    web/                       Estrategia web
-    ios/                       Estrategia futura iOS
-    android/                   Estrategia futura Android
+    web/                       Estrategia web (React, em packages/react)
+    ios/                       Pacote SwiftUI (SPM): SGGDTokens + SGGDComponents
+    android/                   Modulos Gradle: sggd-tokens + sggd-components (Views/XML)
   tests/                       Setup de testes
 ```
 
@@ -123,4 +123,4 @@ Exporte o componente em `src/components/ComponentName/index.ts` e, quando aceito
 3. Implementar o primeiro componente piloto.
 4. Adicionar testes visuais com Playwright integrados ao Storybook.
 5. Preparar CI com lint, typecheck, testes, build e auditoria.
-6. Expandir Style Dictionary para Swift e Android quando as plataformas entrarem no escopo.
+6. ✅ Style Dictionary expandido para SwiftUI (iOS) e Android XML; componente piloto `Button` com paridade nas tres plataformas. Proximo: portar os demais componentes e adicionar CI nativa (swift build/test, gradle).

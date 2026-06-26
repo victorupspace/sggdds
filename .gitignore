@@ -10,3 +10,7 @@ test-results/
 .env.*
 !.env.example
 *.log
+
+# Generated native design tokens (run `pnpm tokens:build`)
+platforms/ios/Sources/SGGDTokens/DSTokens.swift
+platforms/android/sggd-tokens/src/main/res/values/ds_*.xml

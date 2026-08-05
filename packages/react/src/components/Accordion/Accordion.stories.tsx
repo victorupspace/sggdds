@@ -1,5 +1,8 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
+import { Avatar } from '../Avatar';
+import { Badge } from '../Badge';
+import { Button } from '../Button';
 import { Accordion, AccordionItem } from './Accordion';
 
 const meta = {
@@ -7,17 +10,22 @@ const meta = {
   component: Accordion,
   parameters: {
     componentCanvas: {
-      width: 640,
+      width: 720,
     },
     docs: {
       description: {
         component: `
-O Accordion organiza conteudo extenso em secoes colapsaveis.
+O Accordion organiza conteudo extenso em cards colapsaveis, seguindo o layout do Figma (Web Components / Accordion).
 
 Anatomia:
-- Accordion: controla quais itens estao expandidos.
-- AccordionItem: contem trigger, titulo, chevron e painel.
+- Accordion: controla quais itens estao expandidos e a superficie dos cards (white ou inverse).
+- AccordionItem: card com trigger (leading + titulo), badge e acao opcionais, chevron e slot de conteudo.
+- O slot de conteudo e um bloco arredondado com superficie invertida em relacao ao card.
 - O painel anima altura com grid-template-rows, sem medicao via JavaScript.
+
+Tokens: superficies e borda do card usam as variables do Figma (button/color/background ghost, outline/hover e outline/active), titulo e texto do slot usam text-style/content color/typography, o chevron usa color/icons/brand/default e os espacamentos usam Component sizing.
+
+Responsividade: abaixo de 640px o titulo reduz para 16px, o chevron para 24px e badge/acao ficam ocultos, conforme a variante Mobile do Figma.
 
 Use para reduzir densidade visual em paginas com blocos de informacao relacionados. Evite quando todo o conteudo precisa estar visivel para comparacao imediata.
 `,
@@ -29,6 +37,12 @@ Use para reduzir densidade visual em paginas com blocos de informacao relacionad
     allowMultiple: {
       control: 'boolean',
       description: 'Permite mais de um painel aberto ao mesmo tempo.',
+    },
+    background: {
+      control: 'inline-radio',
+      options: ['white', 'inverse'],
+      description:
+        'Superficie dos cards: white (card branco, slot cinza) ou inverse (card cinza, slot branco).',
     },
     children: {
       control: false,
@@ -50,28 +64,60 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
+const slotText = 'Isso é um slot, clique e adicione elementos para personalizar o componente';
+
+const buttonChevron = (
+  <svg aria-hidden="true" fill="none" height="20" viewBox="0 0 32 32" width="20">
+    <path
+      d="M16 20.0667L8.46667 12.5L9.53333 11.4333L16 17.9L22.4667 11.4333L23.5333 12.5333L16 20.0667Z"
+      fill="currentColor"
+    />
+  </svg>
+);
+
 function ExampleAccordion({
   allowMultiple = false,
-  defaultExpanded = ['documents'],
+  background = 'white' as const,
+  defaultExpanded = ['first'],
 }: {
   allowMultiple?: boolean;
+  background?: 'white' | 'inverse';
   defaultExpanded?: string[];
 }) {
   return (
-    <Accordion allowMultiple={allowMultiple} defaultExpanded={defaultExpanded}>
-      <AccordionItem id="documents" title="Documentos necessarios">
-        <p>
-          Tenha em maos documento de identificacao, comprovante de residencia e demais anexos
-          solicitados no formulario do servico.
-        </p>
+    <Accordion
+      allowMultiple={allowMultiple}
+      background={background}
+      defaultExpanded={defaultExpanded}
+    >
+      <AccordionItem
+        id="first"
+        title="Title do Accordion"
+        leading={<Avatar name="Serviço Digital" size="small" />}
+        badge={
+          <Badge size="small" variant="neutral">
+            Label
+          </Badge>
+        }
+        action={
+          <Button iconEnd={buttonChevron} size="small" variant="tertiary">
+            Button
+          </Button>
+        }
+      >
+        <p>{slotText}</p>
       </AccordionItem>
-      <AccordionItem id="deadlines" title="Prazos de atendimento">
+      <AccordionItem
+        id="second"
+        title="Prazos de atendimento"
+        leading={<Avatar name="Prazos Atendimento" size="small" />}
+      >
         <p>
           O prazo medio depende da complexidade da solicitacao e pode ser acompanhado pelos canais
           oficiais de atendimento.
         </p>
       </AccordionItem>
-      <AccordionItem id="channels" title="Canais disponiveis">
+      <AccordionItem id="third" title="Canais disponiveis">
         <p>
           Voce pode acompanhar o andamento pelo portal, por telefone ou presencialmente na unidade
           responsavel.
@@ -84,7 +130,17 @@ function ExampleAccordion({
 export const Default: Story = {
   args: {
     allowMultiple: false,
-    defaultExpanded: ['documents'],
+    background: 'white',
+    defaultExpanded: ['first'],
+  },
+  render: (args) => <ExampleAccordion {...args} />,
+};
+
+export const Inverse: Story = {
+  args: {
+    allowMultiple: false,
+    background: 'inverse',
+    defaultExpanded: ['first'],
   },
   render: (args) => <ExampleAccordion {...args} />,
 };
@@ -92,18 +148,23 @@ export const Default: Story = {
 export const AllowMultiple: Story = {
   args: {
     allowMultiple: true,
-    defaultExpanded: ['documents', 'deadlines'],
+    background: 'white',
+    defaultExpanded: ['first', 'second'],
   },
   render: (args) => <ExampleAccordion {...args} />,
 };
 
 export const DisabledItem: Story = {
   args: {
-    defaultExpanded: ['documents'],
+    defaultExpanded: ['first'],
   },
   render: () => (
-    <Accordion defaultExpanded={['documents']}>
-      <AccordionItem id="documents" title="Documentos necessarios">
+    <Accordion defaultExpanded={['first']}>
+      <AccordionItem
+        id="first"
+        title="Documentos necessarios"
+        leading={<Avatar name="Documentos Necessarios" size="small" />}
+      >
         <p>Confira a lista de documentos antes de iniciar a solicitacao.</p>
       </AccordionItem>
       <AccordionItem disabled id="blocked" title="Etapa indisponivel">
@@ -116,11 +177,11 @@ export const DisabledItem: Story = {
 export const MobileWidth: Story = {
   args: {
     allowMultiple: true,
-    defaultExpanded: ['documents'],
+    defaultExpanded: ['first'],
   },
   parameters: {
     componentCanvas: {
-      width: 320,
+      width: 328,
     },
   },
   render: (args) => <ExampleAccordion {...args} />,

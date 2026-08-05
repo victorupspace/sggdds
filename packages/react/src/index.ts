@@ -44,7 +44,11 @@ export type {
   CookieConsentBannerProps,
 } from './components/CookieConsentBanner';
 export { Accordion, AccordionItem } from './components/Accordion';
-export type { AccordionItemProps, AccordionProps } from './components/Accordion';
+export type {
+  AccordionBackground,
+  AccordionItemProps,
+  AccordionProps,
+} from './components/Accordion';
 export { Checkbox } from './components/Checkbox';
 export type { CheckboxProps, CheckboxState } from './components/Checkbox';
 export { Chip } from './components/Chip';

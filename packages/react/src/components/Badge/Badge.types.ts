@@ -6,14 +6,19 @@ export type BadgeAppearance = 'solid' | 'subtle';
 
 export type BadgeSize = 'small' | 'medium' | 'large';
 
-export type BadgeIconPosition = 'start' | 'end';
-
 export interface BadgeProps {
   children: ReactNode;
+  /** Tipo do Badge, equivalente à propriedade `type` do componente no Figma. */
   variant?: BadgeVariant;
+  /** Estilo visual, equivalente à propriedade `style` do Figma. */
   appearance?: BadgeAppearance;
   size?: BadgeSize;
+  /**
+   * Exibe o ícone padrão do Figma (percent) antes do texto, equivalente à
+   * propriedade booleana `icon` do componente.
+   */
+  showIcon?: boolean;
+  /** Substitui o ícone padrão (slot Icon Swap do Figma). Implica exibição. */
   icon?: ReactNode;
-  iconPosition?: BadgeIconPosition;
   className?: string;
 }

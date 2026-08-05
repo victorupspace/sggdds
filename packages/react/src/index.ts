@@ -9,13 +9,7 @@ export type {
   BackToTopScrollBehavior,
 } from './components/BackToTop';
 export { Badge } from './components/Badge';
-export type {
-  BadgeAppearance,
-  BadgeIconPosition,
-  BadgeProps,
-  BadgeSize,
-  BadgeVariant,
-} from './components/Badge';
+export type { BadgeAppearance, BadgeProps, BadgeSize, BadgeVariant } from './components/Badge';
 export { Breadcrumb } from './components/Breadcrumb';
 export type {
   BreadcrumbItem,

@@ -82,7 +82,6 @@ export function Card({
             <Badge
               appearance={badge.appearance ?? 'subtle'}
               icon={badge.icon}
-              iconPosition={badge.iconPosition}
               size={badge.size ?? 'medium'}
               variant={badge.variant ?? 'neutral'}
             >

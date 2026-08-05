@@ -15,54 +15,26 @@ const variants: BadgeVariant[] = [
 const appearances: BadgeAppearance[] = ['solid', 'subtle'];
 const sizes: BadgeSize[] = ['small', 'medium', 'large'];
 
-const variantLabels: Record<BadgeVariant, string> = {
-  brand: 'Brand',
-  information: 'Information',
-  negative: 'Negative',
-  neutral: 'Neutral',
-  notice: 'Notice',
-  positive: 'Positive',
-};
-
 const sizeLabels: Record<BadgeSize, string> = {
   large: 'Large',
   medium: 'Medium',
   small: 'Small',
 };
 
-function PercentIcon() {
+function BadgeGrid({ appearance }: { appearance: BadgeAppearance }) {
   return (
-    <svg aria-hidden="true" fill="none" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-      <path
-        d="M4.5 15.5 15.5 4.5M5.5 7.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4ZM14.5 16.5a2 2 0 1 0 0-4 2 2 0 0 0 0 4Z"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-      />
-    </svg>
-  );
-}
-
-function BadgeStack({
-  appearance,
-  size = 'medium',
-}: {
-  appearance: BadgeAppearance;
-  size?: BadgeSize;
-}) {
-  return (
-    <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
-      {variants.map((variant) => (
-        <Badge
-          appearance={appearance}
-          icon={<PercentIcon />}
-          key={variant}
-          size={size}
-          variant={variant}
+    <div style={{ display: 'grid', gap: 24 }}>
+      {sizes.map((size) => (
+        <div
+          key={size}
+          style={{ alignItems: 'center', display: 'flex', flexWrap: 'wrap', gap: 16 }}
         >
-          {variantLabels[variant]}
-        </Badge>
+          {variants.map((variant) => (
+            <Badge appearance={appearance} key={variant} showIcon size={size} variant={variant}>
+              Label
+            </Badge>
+          ))}
+        </div>
       ))}
     </div>
   );
@@ -73,28 +45,26 @@ const meta = {
   component: Badge,
   parameters: {
     componentCanvas: {
-      width: 520,
+      width: 560,
     },
     docs: {
       description: {
         component: `
-O Badge comunica status, categoria, classificacao ou destaque curto em um elemento compacto.
+O Badge reproduz o layout do Figma (Web Components / Badge Standard): pill compacta com icone opcional (14px) e texto curto.
 
-Anatomia:
-- Container em formato pill.
-- Texto curto obrigatorio.
-- Icone opcional e decorativo por padrao.
-- Variantes semanticas: brand, neutral, information, positive, negative e notice.
-- Aparencias: solid e subtle.
-- Tamanhos: small, medium e large.
+Propriedades espelhadas do Figma:
+- variant = type: brand, neutral, information, positive, negative e notice.
+- appearance = style: solid e subtle.
+- size: small (22px), medium (24px) e large (28px).
+- showIcon = icon: exibe o icone padrao percent; icon substitui o glifo (slot Icon Swap).
 
-Use quando precisar exibir status curto, classificar um item, destacar uma categoria ou apresentar metadados visuais compactos.
+Tokens: alturas seguem sizing/badge/height-sm|md|lg, espacamentos usam Component sizing (gap 4, padding 10/0), o radius usa border/radius/radius-full, fundos usam color/background por tipo (negative e notice solid usam os tons default-hover, como no Figma), textos usam text-style/content color/typography e o texto do notice subtle usa o literal #936700 do Figma (sem variable na collection).
 
-Nao use como botao, link, navegacao, alerta critico, toast, banner ou para mensagens completas. Em contexto governamental, o Badge deve complementar texto claro e nao depender exclusivamente de cor para informacao essencial.
+Tipografia: Disclaimer/Medium (Regular 10) no small e Body/Extra Small (Medium 12) no medium e large, sempre em Plus Jakarta Sans.
 
-Responsividade:
-- O componente usa inline-flex, max-width: 100% e quebra controlada para labels longos.
-- Stories Desktop, Tablet e Mobile demonstram o comportamento em diferentes containers.
+Responsividade: o Badge e inline-flex com max-width de 100%; labels maiores que o container sao truncados com reticencias, mantendo a pill integra em qualquer largura.
+
+Acessibilidade: o icone e decorativo (aria-hidden) e a informacao deve estar no texto. Nao use o Badge como botao ou link.
 `,
       },
     },
@@ -103,7 +73,7 @@ Responsividade:
   argTypes: {
     appearance: {
       control: 'select',
-      description: 'Intensidade visual do Badge.',
+      description: 'Estilo visual do Badge (style no Figma).',
       options: appearances,
     },
     children: {
@@ -116,21 +86,20 @@ Responsividade:
     },
     icon: {
       control: false,
-      description: 'ReactNode opcional renderizado como icone decorativo.',
+      description: 'ReactNode que substitui o icone padrao (slot Icon Swap).',
     },
-    iconPosition: {
-      control: 'inline-radio',
-      description: 'Posicao do icone.',
-      options: ['start', 'end'],
+    showIcon: {
+      control: 'boolean',
+      description: 'Exibe o icone padrao percent (propriedade icon no Figma).',
     },
     size: {
       control: 'select',
-      description: 'Tamanho visual do Badge.',
+      description: 'Tamanho do Badge.',
       options: sizes,
     },
     variant: {
       control: 'select',
-      description: 'Variante semantica do Badge.',
+      description: 'Tipo semantico do Badge (type no Figma).',
       options: variants,
     },
   },
@@ -145,8 +114,8 @@ export const Default: Story = {
   args: {
     appearance: 'solid',
     children: 'Label',
-    icon: <PercentIcon />,
-    size: 'medium',
+    showIcon: true,
+    size: 'small',
     variant: 'brand',
   },
 };
@@ -155,14 +124,14 @@ export const AllVariantsSolid: Story = {
   args: {
     children: 'Label',
   },
-  render: () => <BadgeStack appearance="solid" />,
+  render: () => <BadgeGrid appearance="solid" />,
 };
 
 export const AllVariantsSubtle: Story = {
   args: {
     children: 'Label',
   },
-  render: () => <BadgeStack appearance="subtle" />,
+  render: () => <BadgeGrid appearance="subtle" />,
 };
 
 export const AllSizes: Story = {
@@ -170,9 +139,9 @@ export const AllSizes: Story = {
     children: 'Label',
   },
   render: () => (
-    <div style={{ alignItems: 'center', display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+    <div style={{ alignItems: 'center', display: 'flex', flexWrap: 'wrap', gap: 16 }}>
       {sizes.map((size) => (
-        <Badge icon={<PercentIcon />} key={size} size={size}>
+        <Badge key={size} showIcon size={size}>
           {sizeLabels[size]}
         </Badge>
       ))}
@@ -189,37 +158,21 @@ export const WithoutIcon: Story = {
   },
 };
 
-export const IconEnd: Story = {
-  args: {
-    appearance: 'solid',
-    children: 'Desconto',
-    icon: <PercentIcon />,
-    iconPosition: 'end',
-    size: 'large',
-    variant: 'information',
-  },
-};
-
-export const LongLabel: Story = {
+export const CustomIcon: Story = {
   args: {
     appearance: 'subtle',
-    children: 'Status complementar com texto maior',
-    icon: <PercentIcon />,
-    size: 'medium',
-    variant: 'neutral',
-  },
-  parameters: {
-    componentCanvas: {
-      width: 220,
-    },
-  },
-};
-
-export const Accessibility: Story = {
-  args: {
-    appearance: 'subtle',
-    children: 'Prazo regular',
-    icon: <PercentIcon />,
+    children: 'Verificado',
+    icon: (
+      <svg aria-hidden="true" fill="none" viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="m2.9 7.4 2.6 2.6 5.6-5.9"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="1.4"
+        />
+      </svg>
+    ),
     size: 'medium',
     variant: 'information',
   },
@@ -227,7 +180,28 @@ export const Accessibility: Story = {
     docs: {
       description: {
         story:
-          'O texto do Badge deve comunicar a informacao. O icone e decorativo por padrao e recebe aria-hidden.',
+          'O slot Icon Swap aceita qualquer icone; a cor acompanha a variante via currentColor.',
+      },
+    },
+  },
+};
+
+export const LongLabel: Story = {
+  args: {
+    appearance: 'subtle',
+    children: 'Status complementar com texto maior',
+    showIcon: true,
+    size: 'medium',
+    variant: 'neutral',
+  },
+  parameters: {
+    componentCanvas: {
+      width: 180,
+    },
+    docs: {
+      description: {
+        story:
+          'Em containers estreitos o label e truncado com reticencias, preservando o formato pill.',
       },
     },
   },

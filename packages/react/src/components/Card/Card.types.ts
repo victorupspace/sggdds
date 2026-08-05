@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 
-import type { BadgeAppearance, BadgeIconPosition, BadgeSize, BadgeVariant } from '../Badge';
+import type { BadgeAppearance, BadgeSize, BadgeVariant } from '../Badge';
 
 export type CardHeadingLevel = 2 | 3 | 4 | 5 | 6;
 
@@ -13,7 +13,6 @@ export type CardMediaAspectRatio = 'wide' | 'square';
 export interface CardBadge {
   label: ReactNode;
   icon?: ReactNode;
-  iconPosition?: BadgeIconPosition;
   variant?: BadgeVariant;
   appearance?: BadgeAppearance;
   size?: BadgeSize;

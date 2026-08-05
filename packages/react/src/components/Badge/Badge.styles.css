@@ -1,53 +1,72 @@
+/*
+ * Layout do Figma: Web Components / Badge Standard (node 38:1035).
+ * Cada propriedade referencia a mesma variable usada no Figma; os comentários
+ * indicam o nome original da variable na collection.
+ */
 .ds-badge {
-  --badge-bg: var(
-    --ds-semantic-color-background-neutral-soft-black,
-    var(--ds-semantic-text-style-content-color-typography-secondary)
-  );
-  --badge-color: var(
-    --ds-semantic-text-style-content-color-typography-inverse,
-    var(--ds-semantic-color-background-neutral-default)
-  );
-  --badge-gap: var(--ds-primitive-spacing-8, 8px);
-  --badge-padding-inline: var(--ds-primitive-spacing-12, 12px);
-  --badge-height: 32px;
-  --badge-font-size: var(--ds-component-badge-typography-font-size-md, 12px);
-  --badge-font-weight: var(--ds-component-badge-typography-font-weight, 500);
-  --badge-line-height: var(--ds-primitive-typography-line-height-12, 12px);
-  --badge-radius: var(--ds-component-badge-border-radius-md, 999px);
-  --badge-icon-size: var(--ds-component-badge-size-icon-size-md);
+  /* color/background/brand/primary/default (Figma resolve #c60008; a collection
+     exportada ainda traz #c50007 — divergência anotada para o time de design) */
+  --badge-background: var(--ds-semantic-color-background-brand-primary-default);
+  /* text-style/content color/typography/inverse */
+  --badge-text-color: var(--ds-semantic-text-style-content-color-typography-inverse);
+  /* Por padrão o ícone acompanha a cor do texto (fills dos vetores exportados) */
+  --badge-icon-color: var(--badge-text-color);
+  /* Component sizing/4 (gap entre ícone e texto) */
+  --badge-gap: var(--ds-component-component-sizing-4);
+  /* Component sizing/10 e /0 (padding do container) */
+  --badge-padding-x: var(--ds-component-component-sizing-10);
+  --badge-padding-y: var(--ds-component-component-sizing-0);
+  /* border/radius/radius-full */
+  --badge-radius: var(--ds-primitive-border-radius-radius-full);
+  /* sizing/badge/height-sm (22px) — grupo novo do Figma, ainda ausente nas
+     collections exportadas; valor literal documentado */
+  --badge-height: 22px;
+  /* Icon Swap: 14px literal no Figma em todos os tamanhos */
+  --badge-icon-size: 14px;
+  /* Disclaimer/Medium: Plus Jakarta Sans Regular + Font-size/10 */
+  --badge-font-size: var(--ds-primitive-typography-font-size-10);
+  --badge-font-weight: var(--ds-primitive-typography-font-weight-regular);
 
   display: inline-flex;
   box-sizing: border-box;
   max-inline-size: 100%;
-  min-block-size: var(--badge-height);
-  padding: 0 var(--badge-padding-inline);
+  block-size: var(--badge-height);
+  padding: var(--badge-padding-y) var(--badge-padding-x);
   gap: var(--badge-gap);
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   border-radius: var(--badge-radius);
-  background: var(--badge-bg);
-  color: var(--badge-color);
+  background: var(--badge-background);
+  color: var(--badge-text-color);
   font-family:
     var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
   font-size: var(--badge-font-size);
   font-weight: var(--badge-font-weight);
-  line-height: var(--badge-line-height);
+  line-height: normal;
   text-align: center;
   vertical-align: middle;
 }
 
+/*
+ * Responsividade: o label do Figma usa whitespace-nowrap com overflow-clip no
+ * container; na web o texto excedente é truncado com reticências para não
+ * estourar containers estreitos.
+ */
 .ds-badge__label {
   min-inline-size: 0;
-  overflow-wrap: anywhere;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .ds-badge__icon {
   display: inline-grid;
-  flex: 0 0 auto;
+  flex: none;
   place-items: center;
   inline-size: var(--badge-icon-size);
   block-size: var(--badge-icon-size);
-  color: currentColor;
+  color: var(--badge-icon-color);
 }
 
 .ds-badge__icon > svg {
@@ -56,100 +75,107 @@
 }
 
 .ds-badge--size-small {
-  --badge-height: 28px;
-  --badge-padding-inline: var(--ds-primitive-spacing-10, 10px);
-  --badge-gap: var(--ds-primitive-spacing-8, 8px);
-  --badge-font-size: var(--ds-primitive-typography-font-size-12, 12px);
-  --badge-font-weight: var(--ds-component-badge-typography-font-weight, 500);
-  --badge-line-height: var(--ds-primitive-typography-line-height-12, 12px);
-  --badge-icon-size: 16px;
+  /* sizing/badge/height-sm (22px) */
+  --badge-height: 22px;
+  /* Disclaimer/Medium: Plus Jakarta Sans Regular + Font-size/10 */
+  --badge-font-size: var(--ds-primitive-typography-font-size-10);
+  --badge-font-weight: var(--ds-primitive-typography-font-weight-regular);
 }
 
 .ds-badge--size-medium {
-  --badge-height: 32px;
-  --badge-padding-inline: var(--ds-primitive-spacing-12, 12px);
-  --badge-gap: var(--ds-primitive-spacing-8, 8px);
-  --badge-font-size: var(--ds-component-badge-typography-font-size-md, 12px);
-  --badge-font-weight: var(--ds-component-badge-typography-font-weight, 500);
-  --badge-line-height: var(--ds-primitive-typography-line-height-12, 12px);
-  --badge-icon-size: var(--ds-component-badge-size-icon-size-md);
+  /* sizing/badge/height-md (24px) */
+  --badge-height: 24px;
+  /* Body/Extra Small: Plus Jakarta Sans Medium 12 */
+  --badge-font-size: var(--ds-primitive-typography-font-size-12);
+  --badge-font-weight: var(--ds-primitive-typography-font-weight-medium);
 }
 
 .ds-badge--size-large {
-  --badge-height: 40px;
-  --badge-padding-inline: var(--ds-primitive-spacing-16, 16px);
-  --badge-gap: var(--ds-primitive-spacing-8, 8px);
-  --badge-font-size: var(--ds-primitive-typography-font-size-12, 12px);
-  --badge-font-weight: var(--ds-component-badge-typography-font-weight, 500);
-  --badge-line-height: var(--ds-primitive-typography-line-height-12, 12px);
-  --badge-icon-size: 16px;
+  /* sizing/badge/height-lg (28px) */
+  --badge-height: 28px;
+  /* Body/Extra Small: Plus Jakarta Sans Medium 12 */
+  --badge-font-size: var(--ds-primitive-typography-font-size-12);
+  --badge-font-weight: var(--ds-primitive-typography-font-weight-medium);
 }
 
 .ds-badge--variant-brand.ds-badge--appearance-solid {
-  --badge-bg: var(--ds-semantic-color-background-brand-primary-default);
-  --badge-color: var(--ds-semantic-text-style-content-color-typography-inverse);
+  /* color/background/brand/primary/default */
+  --badge-background: var(--ds-semantic-color-background-brand-primary-default);
+  --badge-text-color: var(--ds-semantic-text-style-content-color-typography-inverse);
 }
 
 .ds-badge--variant-neutral.ds-badge--appearance-solid {
-  --badge-bg: var(--ds-semantic-color-background-neutral-soft-black);
-  --badge-color: var(--ds-semantic-text-style-content-color-typography-inverse);
+  /* color/background/neutral/soft-black */
+  --badge-background: var(--ds-semantic-color-background-neutral-soft-black);
+  --badge-text-color: var(--ds-semantic-text-style-content-color-typography-inverse);
 }
 
 .ds-badge--variant-information.ds-badge--appearance-solid {
-  --badge-bg: var(--ds-semantic-color-background-information-default);
-  --badge-color: var(--ds-semantic-text-style-content-color-typography-inverse);
+  /* color/background/information/default */
+  --badge-background: var(--ds-semantic-color-background-information-default);
+  --badge-text-color: var(--ds-semantic-text-style-content-color-typography-inverse);
 }
 
 .ds-badge--variant-positive.ds-badge--appearance-solid {
-  --badge-bg: var(--ds-semantic-color-background-success-default);
-  --badge-color: var(--ds-semantic-text-style-content-color-typography-inverse);
+  /* color/background/sucess/default (typo do Figma normalizado para success) */
+  --badge-background: var(--ds-semantic-color-background-success-default);
+  --badge-text-color: var(--ds-semantic-text-style-content-color-typography-inverse);
 }
 
 .ds-badge--variant-negative.ds-badge--appearance-solid {
-  --badge-bg: var(--ds-semantic-color-background-danger-default);
-  --badge-color: var(--ds-semantic-text-style-content-color-typography-inverse);
+  /* color/background/danger/default-hover (#b22929 — variable aplicada no Figma) */
+  --badge-background: var(--ds-semantic-color-background-danger-default-hover);
+  --badge-text-color: var(--ds-semantic-text-style-content-color-typography-inverse);
 }
 
 .ds-badge--variant-notice.ds-badge--appearance-solid {
-  --badge-bg: var(--ds-semantic-color-background-warning-default);
-  --badge-color: var(--ds-semantic-text-style-content-color-typography-inverse);
+  /* color/background/warning/default-hover (#c38900 — variable aplicada no Figma) */
+  --badge-background: var(--ds-semantic-color-background-warning-default-hover);
+  --badge-text-color: var(--ds-semantic-text-style-content-color-typography-inverse);
 }
 
 .ds-badge--variant-brand.ds-badge--appearance-subtle {
-  --badge-bg: var(--ds-component-badge-color-background-brand);
-  --badge-color: var(--ds-component-badge-color-text-brand);
+  /* color/background/brand/primary/subtle */
+  --badge-background: var(--ds-semantic-color-background-brand-primary-subtle);
+  /* text-style/content color/typography/danger (#b22929, cor aplicada no Figma) */
+  --badge-text-color: var(--ds-semantic-text-style-content-color-typography-danger);
+  /* color/background/brand/primary/default (#c60008, fill do vetor exportado) */
+  --badge-icon-color: var(--ds-semantic-color-background-brand-primary-default);
 }
 
 .ds-badge--variant-neutral.ds-badge--appearance-subtle {
-  --badge-bg: var(--ds-semantic-color-background-neutral-subtle);
-  --badge-color: var(--ds-primitive-color-neutral-grey-700);
+  /* color/background/neutral/default-hover */
+  --badge-background: var(--ds-semantic-color-background-neutral-default-hover);
+  /* text-style/content color/typography/primary */
+  --badge-text-color: var(--ds-semantic-text-style-content-color-typography-primary);
 }
 
 .ds-badge--variant-information.ds-badge--appearance-subtle {
-  --badge-bg: var(--ds-component-badge-color-background-info);
-  --badge-color: var(--ds-component-badge-color-text-info);
+  /* color/background/information/subtle */
+  --badge-background: var(--ds-semantic-color-background-information-subtle);
+  /* text-style/content color/typography/information */
+  --badge-text-color: var(--ds-semantic-text-style-content-color-typography-information);
 }
 
 .ds-badge--variant-positive.ds-badge--appearance-subtle {
-  --badge-bg: var(--ds-component-badge-color-background-success);
-  --badge-color: var(--ds-component-badge-color-text-success);
+  /* color/background/sucess/subtle */
+  --badge-background: var(--ds-semantic-color-background-success-subtle);
+  /* text-style/content color/typography/sucess */
+  --badge-text-color: var(--ds-semantic-text-style-content-color-typography-success);
 }
 
 .ds-badge--variant-negative.ds-badge--appearance-subtle {
-  --badge-bg: var(--ds-component-badge-color-background-error);
-  --badge-color: var(--ds-component-badge-color-text-error);
+  /* color/background/danger/subtle */
+  --badge-background: var(--ds-semantic-color-background-danger-subtle);
+  /* text-style/content color/typography/danger */
+  --badge-text-color: var(--ds-semantic-text-style-content-color-typography-danger);
 }
 
 .ds-badge--variant-notice.ds-badge--appearance-subtle {
-  --badge-bg: var(--ds-component-badge-color-background-warning);
-  --badge-color: var(--ds-component-badge-color-text-warning);
-}
-
-@media (max-width: 420px) {
-  .ds-badge--size-large {
-    --badge-height: 36px;
-    --badge-padding-inline: calc(var(--ds-primitive-spacing-12) + var(--ds-primitive-spacing-2));
-    --badge-font-size: var(--ds-primitive-typography-font-size-12, 12px);
-    --badge-icon-size: 16px;
-  }
+  /* color/background/warning/subtle */
+  --badge-background: var(--ds-semantic-color-background-warning-subtle);
+  /* #936700 literal no Figma — não há variable para este texto na collection */
+  --badge-text-color: #936700;
+  /* text-style/content color/typography/warning (#c38900, fill do vetor exportado) */
+  --badge-icon-color: var(--ds-semantic-text-style-content-color-typography-warning);
 }

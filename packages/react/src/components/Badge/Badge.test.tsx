@@ -4,8 +4,8 @@ import { describe, expect, it } from 'vitest';
 import { Badge } from './Badge';
 
 const icon = (
-  <svg data-testid="badge-icon" viewBox="0 0 20 20">
-    <path d="M4.5 15.5 15.5 4.5" />
+  <svg data-testid="badge-icon" viewBox="0 0 14 14">
+    <path d="M2.5 11.5 11.5 2.5" />
   </svg>
 );
 
@@ -16,24 +16,13 @@ describe('Badge', () => {
     expect(screen.getByText('Label')).toBeInTheDocument();
   });
 
-  it('applies the default variant', () => {
+  it('applies the default variant, appearance and size from Figma', () => {
     render(<Badge>Label</Badge>);
 
-    expect(screen.getByText('Label').closest('.ds-badge')).toHaveClass('ds-badge--variant-brand');
-  });
-
-  it('applies the default appearance', () => {
-    render(<Badge>Label</Badge>);
-
-    expect(screen.getByText('Label').closest('.ds-badge')).toHaveClass(
-      'ds-badge--appearance-solid',
-    );
-  });
-
-  it('applies the default size', () => {
-    render(<Badge>Label</Badge>);
-
-    expect(screen.getByText('Label').closest('.ds-badge')).toHaveClass('ds-badge--size-medium');
+    const badge = screen.getByText('Label').closest('.ds-badge');
+    expect(badge).toHaveClass('ds-badge--variant-brand');
+    expect(badge).toHaveClass('ds-badge--appearance-solid');
+    expect(badge).toHaveClass('ds-badge--size-small');
   });
 
   it('renders the positive variant', () => {
@@ -58,28 +47,24 @@ describe('Badge', () => {
     expect(screen.getByText('Destaque').closest('.ds-badge')).toHaveClass('ds-badge--size-large');
   });
 
-  it('renders with an icon', () => {
+  it('does not render an icon by default', () => {
+    render(<Badge>Sem icone</Badge>);
+
+    const badge = screen.getByText('Sem icone').closest('.ds-badge');
+    expect(badge?.querySelector('.ds-badge__icon')).not.toBeInTheDocument();
+  });
+
+  it('renders the default percent icon with showIcon', () => {
+    render(<Badge showIcon>Label</Badge>);
+
+    const badge = screen.getByText('Label').closest('.ds-badge');
+    expect(badge?.querySelector('.ds-badge__icon svg')).toBeInTheDocument();
+  });
+
+  it('renders a custom icon through the Icon Swap slot', () => {
     render(<Badge icon={icon}>Label</Badge>);
 
     expect(screen.getByTestId('badge-icon')).toBeInTheDocument();
-  });
-
-  it('renders the icon at the end', () => {
-    render(
-      <Badge icon={icon} iconPosition="end">
-        Desconto
-      </Badge>,
-    );
-
-    const badge = screen.getByText('Desconto').closest('.ds-badge');
-
-    expect(badge?.lastElementChild).toHaveClass('ds-badge__icon');
-  });
-
-  it('renders without an icon', () => {
-    render(<Badge>Sem icone</Badge>);
-
-    expect(screen.queryByTestId('badge-icon')).not.toBeInTheDocument();
   });
 
   it('keeps the icon decorative', () => {

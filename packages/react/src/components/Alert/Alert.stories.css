@@ -15,13 +15,6 @@
   gap: var(--ds-primitive-spacing-24);
 }
 
-.alert-story-narrow {
-  display: grid;
-  box-sizing: border-box;
-  inline-size: min(100%, 328px);
-  gap: var(--ds-primitive-spacing-24);
-}
-
 .alert-story-stack {
   display: grid;
   box-sizing: border-box;
@@ -36,7 +29,6 @@
   }
 
   .alert-story-panel,
-  .alert-story-narrow,
   .alert-story-stack {
     inline-size: 100%;
   }

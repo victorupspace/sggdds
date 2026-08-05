@@ -173,16 +173,3 @@ export const DisabledItem: Story = {
     </Accordion>
   ),
 };
-
-export const MobileWidth: Story = {
-  args: {
-    allowMultiple: true,
-    defaultExpanded: ['first'],
-  },
-  parameters: {
-    componentCanvas: {
-      width: 328,
-    },
-  },
-  render: (args) => <ExampleAccordion {...args} />,
-};

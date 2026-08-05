@@ -139,25 +139,3 @@ export const LongLabels: Story = {
     </div>
   ),
 };
-
-export const MobileWidth: Story = {
-  args: {
-    items: figmaItems,
-  },
-  parameters: {
-    componentCanvas: {
-      width: 375,
-    },
-    docs: {
-      description: {
-        story:
-          'Abaixo de 640px o padding lateral reduz para spacing/16, os labels truncam em 160px e a trilha rola horizontalmente quando nao cabe.',
-      },
-    },
-  },
-  render: (args) => (
-    <div className="breadcrumb-story-shell breadcrumb-story-shell--narrow">
-      <Breadcrumb {...args} />
-    </div>
-  ),
-};

@@ -164,15 +164,3 @@ export const Grid: Story = {
     </div>
   ),
 };
-
-export const MobileWidth: Story = {
-  args: {
-    ...baseArgs,
-    onClick: () => undefined,
-  },
-  parameters: {
-    componentCanvas: {
-      width: 328,
-    },
-  },
-};

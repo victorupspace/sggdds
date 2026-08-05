@@ -58,7 +58,7 @@ Variantes (propriedade type no Figma):
 
 Tokens: superficies e bordas usam color/background e color/border, textos usam text-style/content color/typography/primary, icones usam color/icons, espacamentos usam badge/spacing e accordion/content/spacing, o radius usa badge/border/radius/sm e os tamanhos usam Component sizing — as mesmas variables aplicadas no Figma.
 
-Responsividade: o card e fluido (100% do container), os textos quebram automaticamente e icone e botao de fechar ficam fixos nas extremidades. O node do Figma nao define variante mobile; a story MobileWidth demonstra o comportamento em 328px.
+Responsividade: o card e fluido (100% do container), os textos quebram automaticamente e icone e botao de fechar ficam fixos nas extremidades. O node do Figma nao define variante mobile.
 
 Acessibilidade: role status por padrao (alert na variante error), icone decorativo com aria-hidden e botao de fechar com rotulo acessivel. A visibilidade pode ser controlada via isVisible/onVisibleChange ou nao controlada via defaultVisible.
 `,
@@ -200,27 +200,6 @@ export const ErrorRole: Story = {
   render: (args) => (
     <div className="alert-story-shell">
       <div className="alert-story-panel">
-        <ControlledAlert {...args} />
-      </div>
-    </div>
-  ),
-};
-
-export const MobileWidth: Story = {
-  args: {
-    children:
-      'Texto de apoio mais longo para validar quebra de linha e ausencia de overflow horizontal em containers estreitos.',
-    title: 'Alerta com titulo longo para validar responsividade',
-    variant: 'information',
-  },
-  parameters: {
-    componentCanvas: {
-      width: 328,
-    },
-  },
-  render: (args) => (
-    <div className="alert-story-shell">
-      <div className="alert-story-narrow">
         <ControlledAlert {...args} />
       </div>
     </div>

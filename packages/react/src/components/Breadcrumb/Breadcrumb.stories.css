@@ -6,7 +6,3 @@
   padding-block: var(--ds-primitive-spacing-48);
   background: var(--ds-primitive-color-neutral-grey-100);
 }
-
-.breadcrumb-story-shell--narrow {
-  inline-size: min(100%, 375px);
-}

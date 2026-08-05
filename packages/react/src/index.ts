@@ -82,14 +82,7 @@ export type {
   HeaderUtilityItem,
 } from './components/Header';
 export { Hero } from './components/Hero';
-export type {
-  HeroAction,
-  HeroHeadingLevel,
-  HeroImage,
-  HeroMediaPosition,
-  HeroProps,
-  HeroVariant,
-} from './components/Hero';
+export type { HeroHeadingLevel, HeroProps, HeroVariant } from './components/Hero';
 export { ActionCard } from './components/ActionCard';
 export type { ActionCardHeadingLevel, ActionCardProps } from './components/ActionCard';
 export { Link } from './components/Link';

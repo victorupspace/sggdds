@@ -1,40 +1,57 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
+import { Badge } from '../Badge';
+import { Button } from '../Button';
 import { Hero } from './Hero';
 import './Hero.stories.css';
 
-function ArrowRightIcon() {
+/* Chevrons dos Buttons no Figma (vetores exportados, caixa de 24px) */
+function ChevronLeftIcon() {
   return (
-    <svg aria-hidden="true" fill="none" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+    <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path
-        d="M4 10h12m0 0-5-5m5 5-5 5"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.8"
+        d="M6.14645 0.146447C6.34171 -0.0488155 6.65822 -0.0488155 6.85348 0.146447C7.0487 0.341712 7.04873 0.658228 6.85348 0.853478L1.20699 6.49996L6.85348 12.1464C7.0487 12.3417 7.04873 12.6582 6.85348 12.8535C6.65823 13.0487 6.34171 13.0487 6.14645 12.8535L0.146447 6.85348C-0.0488155 6.65822 -0.0488155 6.34171 0.146447 6.14645L6.14645 0.146447Z"
+        fill="currentColor"
+        transform="translate(8.5 5.5)"
       />
     </svg>
   );
 }
 
-function PlaceholderMedia({
-  ratio = '3 / 2',
-  tone = 'light',
-}: {
-  ratio?: string;
-  tone?: 'light' | 'dark';
-}) {
+function ChevronRightIcon() {
   return (
-    <div
-      aria-hidden="true"
-      className={
-        tone === 'dark'
-          ? 'hero-story-placeholder hero-story-placeholder--dark'
-          : 'hero-story-placeholder'
-      }
-    >
-      {ratio}
-    </div>
+    <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M0.146447 0.146447C0.341709 -0.0488155 0.658216 -0.0488155 0.853478 0.146447L6.85348 6.14645C7.0487 6.34171 7.04873 6.65823 6.85348 6.85348L0.853478 12.8535C0.658228 13.0487 0.341712 13.0487 0.146447 12.8535C-0.0488153 12.6582 -0.0488153 12.3417 0.146447 12.1464L5.79293 6.49996L0.146447 0.853478C-0.0488155 0.658216 -0.0488155 0.341709 0.146447 0.146447Z"
+        fill="currentColor"
+        transform="translate(8.5 5.5)"
+      />
+    </svg>
+  );
+}
+
+const defaultBadge = (
+  <Badge size="small" variant="neutral">
+    Label
+  </Badge>
+);
+
+const defaultActions = (
+  <>
+    <Button iconEnd={<ChevronRightIcon />} iconStart={<ChevronLeftIcon />} variant="primary">
+      Button
+    </Button>
+    <Button iconEnd={<ChevronRightIcon />} iconStart={<ChevronLeftIcon />} variant="secondary">
+      Button
+    </Button>
+  </>
+);
+
+function SlotPlaceholder() {
+  return (
+    <span className="hero-story-slot">
+      Sou um slot. Remova este texto e selecione para adicionar componentes
+    </span>
   );
 }
 
@@ -43,88 +60,71 @@ const meta = {
   component: Hero,
   parameters: {
     componentCanvas: {
-      width: 1200,
+      width: 1280,
     },
     docs: {
       description: {
         component: `
-O Hero ocupa o topo da pagina (ou de uma secao de alta prioridade) com titulo, descricao, CTA e mídia opcional. Use para apresentar a proposta principal do conteudo abaixo, nao para reforco decorativo.
+O Hero reproduz o layout do Figma (Web Components / Hero): seção de destaque com fundo color/white e altura mínima de 280px.
 
-Anatomia:
-- Eyebrow opcional para categoria ou contexto.
-- Titulo (h1 por padrao; h2 ou h3 quando aninhado em secao com hierarquia propria).
-- Descricao curta (1 a 3 linhas).
-- Ate duas acoes: primaria (Button primary) e secundaria (Button tertiary).
-- Mídia opcional posicionada ao lado do conteudo em desktop, abaixo em mobile.
+Variantes (propriedade type no Figma):
+- default: conteúdo à esquerda (máximo de 600px) e slot livre à direita para imagens, ilustrações ou componentes.
+- center: coluna única centralizada, com o slot abaixo — ideal para mensagens de impacto sem mídia.
 
-Variantes:
-- light: superficie clara, conteudo em soft-black.
-- dark: superficie soft-black, conteudo em branco. Os CTAs trocam de cor automaticamente para garantir contraste.
+Anatomia: badge opcional (componha com o Badge do DS — Neutral Solid Small no Figma), título Display - Sm (Plus Jakarta Sans Regular 40 em color/soft-black), descrições Body/Medium (Medium 16 em color/neutral/grey-600) e slot de CTAs (componha com o Button do DS; máximo de 2, um primário e um secundário).
 
-Responsividade:
-- Acima de 900px: layout em duas colunas com mídia ao lado do conteudo.
-- Entre 640px e 900px: layout em uma coluna, mídia abaixo do texto.
-- Abaixo de 640px: padding reduzido, titulo menor, CTAs empilhados em largura total.
+Tokens: paddings e gaps usam Component sizing (16/20/24/40/64) e spacing (10/16), exatamente como as variables do Figma.
 
-Acessibilidade:
-- Renderiza section; use ariaLabel quando a pagina tiver multiplos heros.
-- Title respeita headingLevel para manter ordem de h1 a h3.
-- image.alt obrigatorio; media customizada deve cuidar da propria semantica.
-- CTAs usam Button do DS, herdando foco, teclado e estados.
+Responsividade: abaixo de 768px o layout default empilha o conteúdo sobre o slot e o padding lateral reduz para Component sizing/16; os CTAs quebram automaticamente.
+
+Diretrizes do Figma: use como primeiro bloco da página, títulos de até 8 palavras, no máximo 2 CTAs e imagens de alta qualidade (16:9 ou 4:3) no slot da variante default.
 `,
       },
     },
     layout: 'fullscreen',
   },
   argTypes: {
-    action: {
+    actions: {
       control: false,
-      description: 'Acao principal (Button primary).',
+      description: 'Slot dos CTAs (componha com o Button do DS).',
     },
     ariaLabel: {
       control: 'text',
-      description: 'Nome acessivel opcional da section.',
+      description: 'Nome acessível opcional da section.',
+    },
+    badge: {
+      control: false,
+      description: 'Slot da badge acima do título (componha com o Badge do DS).',
     },
     children: {
       control: false,
-      description: 'Slot opcional entre a descricao e as acoes.',
+      description: 'Slot Right content para imagens, ilustrações ou componentes.',
     },
     className: {
       control: 'text',
+      description: 'Classe CSS opcional aplicada à section.',
     },
     description: {
       control: 'text',
-    },
-    eyebrow: {
-      control: 'text',
+      description: 'Descrição principal (até 2 linhas).',
     },
     headingLevel: {
       control: 'select',
+      description: 'Nível semântico do título (H1 por padrão).',
       options: [1, 2, 3],
     },
-    image: {
-      control: false,
-    },
-    media: {
-      control: false,
-    },
-    mediaAspectRatio: {
-      control: 'select',
-      options: ['1/1', '4/3', '3/2', '16/9'],
-    },
-    mediaPosition: {
-      control: 'select',
-      options: ['start', 'end'],
-    },
-    secondaryAction: {
-      control: false,
+    secondDescription: {
+      control: 'text',
+      description: 'Segunda descrição opcional.',
     },
     title: {
       control: 'text',
+      description: 'Título principal (até 8 palavras).',
     },
     variant: {
-      control: 'select',
-      options: ['light', 'dark'],
+      control: 'inline-radio',
+      description: 'type no Figma: default (slot à direita) ou center.',
+      options: ['default', 'center'],
     },
   },
   tags: ['autodocs'],
@@ -136,97 +136,69 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    action: {
-      iconEnd: <ArrowRightIcon />,
-      label: 'Acessar servicos',
-    },
-    description:
-      'Acompanhe pedidos, atualize cadastros e acesse documentos em um unico ambiente, sem precisar ir a uma unidade fisica.',
-    eyebrow: 'Servicos digitais',
-    media: <PlaceholderMedia ratio="3 / 2" />,
-    secondaryAction: {
-      label: 'Ver tutoriais',
-    },
-    title: 'Tudo o que voce precisa, em um so lugar.',
-    variant: 'light',
+    actions: defaultActions,
+    badge: defaultBadge,
+    description: 'Main description for the hero component',
+    secondDescription: 'Second description for the hero component',
+    title: 'Main hero title',
   },
+  render: (args) => (
+    <div className="hero-story-shell">
+      <Hero {...args}>
+        <SlotPlaceholder />
+      </Hero>
+    </div>
+  ),
 };
 
-export const Dark: Story = {
+export const Center: Story = {
   args: {
-    action: {
-      iconEnd: <ArrowRightIcon />,
-      label: 'Ver meus beneficios',
-    },
-    description:
-      'Consulte valores, datas de pagamento e atualize seus dados sem sair de casa. Disponivel 24 horas, com seguranca.',
-    eyebrow: 'Beneficios',
-    media: <PlaceholderMedia ratio="3 / 2" tone="dark" />,
-    secondaryAction: {
-      label: 'Saiba mais',
-    },
-    title: 'Acompanhe seus beneficios em tempo real.',
-    variant: 'dark',
+    actions: defaultActions,
+    badge: defaultBadge,
+    description: 'Main description for the hero component',
+    secondDescription: 'Second description for the hero component',
+    title: 'Main hero title',
+    variant: 'center',
   },
+  render: (args) => (
+    <div className="hero-story-shell">
+      <Hero {...args}>
+        <SlotPlaceholder />
+      </Hero>
+    </div>
+  ),
 };
 
-export const SquareMedia: Story = {
+export const WithMedia: Story = {
   args: {
-    action: {
-      label: 'Comecar agora',
-    },
-    description:
-      'Sua identidade digital agora cabe no celular. Aceita em mais de 4.000 servicos publicos com o mesmo nivel de seguranca dos documentos fisicos.',
-    eyebrow: 'Identidade digital',
-    media: <PlaceholderMedia ratio="1 / 1" tone="dark" />,
-    mediaAspectRatio: '1/1',
-    secondaryAction: {
-      label: 'Como funciona',
-    },
-    title: 'Carteira de identidade digital.',
-    variant: 'dark',
+    actions: defaultActions,
+    badge: defaultBadge,
+    description: 'Acompanhe protocolos, agendamentos e documentos em um só lugar.',
+    title: 'Serviços digitais para o cidadão',
   },
+  render: (args) => (
+    <div className="hero-story-shell">
+      <Hero {...args}>
+        <span aria-hidden="true" className="hero-story-media" />
+      </Hero>
+    </div>
+  ),
 };
 
-export const MediaStart: Story = {
+export const Minimal: Story = {
   args: {
-    action: {
-      label: 'Atualizar cadastro',
-    },
-    description:
-      'Mantenha endereco, telefone e e-mail sempre corretos para receber notificacoes importantes sobre seus servicos.',
-    media: <PlaceholderMedia ratio="3 / 2" />,
-    mediaPosition: 'start',
-    title: 'Seus dados atualizados garantem servicos mais agis.',
-    variant: 'light',
+    actions: (
+      <Button iconEnd={<ChevronRightIcon />} variant="primary">
+        Acessar serviços
+      </Button>
+    ),
+    description: 'Uma mensagem de impacto com um único CTA.',
+    title: 'Landing focada em conversão',
+    variant: 'center',
   },
-};
-
-export const WithoutMedia: Story = {
-  args: {
-    action: {
-      label: 'Atualizar agora',
-    },
-    description:
-      'Voce tem ate 30 de junho para confirmar seus dados cadastrais e continuar recebendo seus beneficios sem interrupcao.',
-    eyebrow: 'Prazo importante',
-    secondaryAction: {
-      label: 'Verificar prazo',
-    },
-    title: 'Atualizacao cadastral anual.',
-    variant: 'light',
-  },
-};
-
-export const HeadingLevelTwo: Story = {
-  args: {
-    action: {
-      label: 'Acessar painel',
-    },
-    description:
-      'Use headingLevel=2 quando o Hero estiver dentro de uma pagina que ja possui um h1 proprio.',
-    headingLevel: 2,
-    title: 'Hero como secao secundaria.',
-    variant: 'light',
-  },
+  render: (args) => (
+    <div className="hero-story-shell">
+      <Hero {...args} />
+    </div>
+  ),
 };

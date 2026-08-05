@@ -1,199 +1,166 @@
+/*
+ * Layout do Figma: Web Components / Hero (node 99:26800).
+ * Cada propriedade referencia a mesma variable usada no Figma; os comentários
+ * indicam o nome original da variable na collection.
+ */
 .ds-hero {
-  --hero-surface: var(--ds-semantic-color-background-neutral-subtle);
-  --hero-foreground: var(--ds-semantic-text-style-content-color-typography-secondary);
-  --hero-muted: var(--ds-semantic-text-style-content-color-typography-tertiary);
-  --hero-eyebrow: var(--ds-semantic-text-style-content-color-typography-tertiary);
-  --hero-media-surface: var(--ds-semantic-color-background-neutral-default);
-  --hero-media-border: var(--ds-semantic-color-border-neutral-subtle);
-  --hero-container-max-inline-size: var(--ds-primitive-breakpoints-values-bp-lg);
-  --hero-padding-block: var(--ds-primitive-spacing-96);
-  --hero-padding-inline: var(--ds-primitive-spacing-64);
-  --hero-content-max-inline-size: 56ch;
-  --hero-title-font-size: var(--ds-primitive-typography-font-size-44);
-  --hero-title-line-height: var(--ds-primitive-typography-line-height-50);
-  --hero-description-font-size: var(--ds-primitive-typography-font-size-18);
-  --hero-description-line-height: var(--ds-primitive-typography-line-height-28);
-  --hero-media-aspect-ratio: 3 / 2;
+  /* color/white */
+  --hero-surface: var(--ds-primitive-color-white);
+  /* color/soft-black (título) */
+  --hero-title-color: var(--ds-primitive-color-soft-black);
+  /* color/neutral/grey-600 (descrições) */
+  --hero-description-color: var(--ds-primitive-color-neutral-grey-600);
+  /* Component sizing/24 (padding-y e gaps), /40 e /64 (padding-x do Default) */
+  --hero-padding-block: var(--ds-component-component-sizing-24);
+  --hero-padding-start: var(--ds-component-component-sizing-40);
+  --hero-padding-end: var(--ds-component-component-sizing-64);
+  --hero-content-gap: var(--ds-component-component-sizing-24);
+  /* Component sizing/20 (gap entre descrições e CTAs) */
+  --hero-body-gap: var(--ds-component-component-sizing-20);
+  /* spacing/16 (gap entre os CTAs) */
+  --hero-actions-gap: var(--ds-primitive-spacing-16);
+  /* Largura máxima do conteúdo (600px no Figma) */
+  --hero-content-max-inline-size: 600px;
 
+  display: flex;
   box-sizing: border-box;
+  min-block-size: 280px;
+  /* spacing/10 (gap entre conteúdo e slot no Default) */
+  gap: var(--ds-primitive-spacing-10);
+  align-items: center;
   inline-size: 100%;
-  padding-block: var(--hero-padding-block);
-  padding-inline: var(--hero-padding-inline);
+  padding: var(--hero-padding-block) var(--hero-padding-end) var(--hero-padding-block)
+    var(--hero-padding-start);
   background: var(--hero-surface);
-  color: var(--hero-foreground);
   font-family:
     var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
 }
 
-.ds-hero--variant-dark {
-  --hero-surface: var(--ds-semantic-color-background-neutral-soft-black);
-  --hero-foreground: var(--ds-semantic-text-style-content-color-typography-inverse);
-  --hero-muted: var(--ds-primitive-color-neutral-grey-300);
-  --hero-eyebrow: var(--ds-primitive-color-neutral-grey-300);
-  --hero-media-surface: var(--ds-primitive-color-neutral-alpha-12);
-  --hero-media-border: var(--ds-primitive-color-neutral-alpha-48);
+.ds-hero *,
+.ds-hero *::before,
+.ds-hero *::after {
+  box-sizing: border-box;
 }
 
-.ds-hero__container {
-  display: grid;
-  inline-size: min(100%, var(--hero-container-max-inline-size));
-  margin-inline: auto;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(var(--ds-primitive-spacing-40), 6vw, var(--ds-primitive-spacing-96));
-  align-items: center;
-}
+.ds-hero--variant-center {
+  /* Center: coluna centralizada com padding-x de Component sizing/16 e gap /24 */
+  --hero-padding-start: var(--ds-component-component-sizing-16);
 
-.ds-hero--without-media .ds-hero__container {
-  grid-template-columns: minmax(0, 1fr);
-  justify-items: center;
-  text-align: center;
-}
-
-.ds-hero--media-start .ds-hero__media {
-  order: -1;
+  flex-direction: column;
+  gap: var(--ds-component-component-sizing-24);
+  justify-content: center;
 }
 
 .ds-hero__content {
   display: flex;
-  max-inline-size: var(--hero-content-max-inline-size);
-  min-inline-size: 0;
   flex-direction: column;
+  gap: var(--hero-content-gap);
   align-items: flex-start;
+  inline-size: 100%;
+  max-inline-size: var(--hero-content-max-inline-size);
 }
 
-.ds-hero--without-media .ds-hero__content {
+.ds-hero--variant-center .ds-hero__content {
+  align-items: center;
+  text-align: center;
+}
+
+.ds-hero__badge {
+  display: flex;
+}
+
+.ds-hero__heading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hero-content-gap);
+  align-items: flex-start;
+  inline-size: 100%;
+}
+
+.ds-hero--variant-center .ds-hero__heading {
   align-items: center;
 }
 
-.ds-hero__eyebrow,
-.ds-hero__title,
-.ds-hero__description {
-  margin: 0;
-  min-inline-size: 0;
-  overflow-wrap: anywhere;
-}
-
-.ds-hero__eyebrow {
-  margin-block-end: var(--ds-primitive-spacing-12);
-  color: var(--hero-eyebrow);
-  font-size: var(--ds-primitive-typography-font-size-14);
-  font-weight: var(--ds-primitive-typography-font-weight-bold);
-  line-height: var(--ds-primitive-typography-line-height-20);
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-}
-
 .ds-hero__title {
-  color: var(--hero-foreground);
-  font-size: var(--hero-title-font-size);
-  font-weight: var(--ds-primitive-typography-font-weight-extra-bold);
-  line-height: var(--hero-title-line-height);
+  margin: var(--ds-primitive-spacing-0);
+  overflow-wrap: anywhere;
+  color: var(--hero-title-color);
+  /* Display/Display - Sm: Plus Jakarta Sans Regular 40 */
+  font-size: var(--ds-primitive-typography-font-size-40);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: normal;
+}
+
+.ds-hero__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--hero-body-gap);
+  align-items: flex-start;
+  inline-size: 100%;
+}
+
+.ds-hero--variant-center .ds-hero__body {
+  align-items: center;
 }
 
 .ds-hero__description {
-  margin-block-start: var(--ds-primitive-spacing-24);
-  color: var(--hero-muted);
-  font-size: var(--hero-description-font-size);
-  font-weight: var(--ds-primitive-typography-font-weight-regular);
-  line-height: var(--hero-description-line-height);
-}
-
-.ds-hero__slot {
-  inline-size: 100%;
-  margin-block-start: var(--ds-primitive-spacing-24);
-  color: var(--hero-muted);
+  margin: var(--ds-primitive-spacing-0);
+  overflow-wrap: anywhere;
+  color: var(--hero-description-color);
+  /* Body/Medium: Plus Jakarta Sans Medium 16 */
+  font-size: var(--ds-primitive-typography-font-size-16);
+  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  line-height: normal;
 }
 
 .ds-hero__actions {
   display: flex;
   flex-wrap: wrap;
-  inline-size: 100%;
-  margin-block-start: var(--ds-primitive-spacing-32);
-  gap: var(--ds-primitive-spacing-16);
+  gap: var(--hero-actions-gap);
   align-items: center;
 }
 
-.ds-hero__media {
-  display: flex;
-  min-inline-size: 0;
+.ds-hero--variant-center .ds-hero__actions {
   justify-content: center;
 }
 
-.ds-hero__media-inner,
-.ds-hero__image {
-  display: block;
+.ds-hero__slot {
+  display: flex;
+  min-inline-size: 300px;
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+  /* Padding de 10px do Right content no Figma */
+  padding: var(--ds-primitive-spacing-10);
+}
+
+.ds-hero--variant-center .ds-hero__slot {
+  flex: none;
   inline-size: 100%;
-  aspect-ratio: var(--hero-media-aspect-ratio);
-  overflow: hidden;
-  border: var(--ds-primitive-border-width-border-sm) solid var(--hero-media-border);
-  border-radius: var(--ds-primitive-border-radius-radius-md);
-  background: var(--hero-media-surface);
+  min-inline-size: 0;
 }
 
-.ds-hero__media-inner {
-  display: grid;
-  place-items: center;
-}
-
-.ds-hero__image {
-  object-fit: cover;
-}
-
-.ds-hero--variant-dark .ds-button--variant-primary {
-  --button-background: var(--ds-semantic-color-background-neutral-default);
-  --button-background-hover: var(--ds-semantic-color-background-neutral-subtle);
-  --button-background-active: var(--ds-semantic-color-background-neutral-disabled);
-  --button-foreground: var(--ds-semantic-text-style-content-color-typography-secondary);
-  --button-border-color: var(--button-background);
-}
-
-.ds-hero--variant-dark .ds-button--variant-tertiary {
-  --button-background-hover: var(--ds-primitive-color-neutral-alpha-12);
-  --button-background-active: var(--ds-primitive-color-neutral-alpha-24);
-  --button-foreground: var(--ds-semantic-text-style-content-color-typography-inverse);
-}
-
-@media (max-width: 900px) {
+/*
+ * Responsividade: o node do Figma não define variante mobile. Abaixo de 768px
+ * o Default empilha o conteúdo sobre o slot e o padding lateral reduz para
+ * Component sizing/16, mantendo os CTAs com quebra automática.
+ */
+@media (max-width: 768px) {
   .ds-hero {
-    --hero-padding-block: var(--ds-primitive-spacing-64);
-    --hero-padding-inline: var(--ds-primitive-spacing-32);
-    --hero-content-max-inline-size: 100%;
-    --hero-title-font-size: var(--ds-primitive-typography-font-size-36);
-    --hero-title-line-height: var(--ds-primitive-typography-line-height-42);
-    --hero-description-font-size: var(--ds-primitive-typography-font-size-16);
-    --hero-description-line-height: var(--ds-primitive-typography-line-height-24);
-  }
+    --hero-padding-start: var(--ds-component-component-sizing-16);
+    --hero-padding-end: var(--ds-component-component-sizing-16);
 
-  .ds-hero__container {
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--ds-primitive-spacing-32);
-  }
-
-  .ds-hero--media-start .ds-hero__media {
-    order: initial;
-  }
-}
-
-@media (max-width: 640px) {
-  .ds-hero {
-    --hero-padding-block: var(--ds-primitive-spacing-48);
-    --hero-padding-inline: var(--ds-primitive-spacing-20);
-    --hero-title-font-size: var(--ds-primitive-typography-font-size-28);
-    --hero-title-line-height: var(--ds-primitive-typography-line-height-34);
-  }
-
-  .ds-hero__description {
-    margin-block-start: var(--ds-primitive-spacing-16);
-  }
-
-  .ds-hero__actions {
     flex-direction: column;
-    align-items: stretch;
-    margin-block-start: var(--ds-primitive-spacing-24);
-    gap: var(--ds-primitive-spacing-8);
+    align-items: flex-start;
   }
 
-  .ds-hero__actions > .ds-button {
+  .ds-hero--variant-center {
+    align-items: center;
+  }
+
+  .ds-hero__slot {
     inline-size: 100%;
+    min-inline-size: 0;
+    flex: none;
   }
 }

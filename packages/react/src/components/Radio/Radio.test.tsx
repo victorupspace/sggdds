@@ -18,17 +18,32 @@ describe('Radio', () => {
     expect(screen.getByRole('radio', { name: 'Opcao B' })).not.toBeChecked();
   });
 
-  it('associates the description through aria-describedby', () => {
+  it('associates the hint through aria-describedby', () => {
     render(
       <RadioGroup label="Plano" name="plan" onChange={vi.fn()} value="basic">
-        <Radio description="Descricao complementar." label="Basico" value="basic" />
+        <Radio hint="Hint goes here" label="Basico" value="basic" />
       </RadioGroup>,
     );
 
     const radio = screen.getByRole('radio', { name: 'Basico' });
-    const description = screen.getByText('Descricao complementar.');
+    const hint = screen.getByText('Hint goes here');
 
-    expect(radio).toHaveAttribute('aria-describedby', description.id);
+    expect(radio).toHaveAttribute('aria-describedby', hint.id);
+  });
+
+  it('does not call onChange for read-only options', () => {
+    const handleChange = vi.fn();
+
+    render(
+      <RadioGroup label="Plano" name="plan" onChange={handleChange} value="basic">
+        <Radio label="Basico" readOnly value="basic" />
+        <Radio label="Premium" value="premium" />
+      </RadioGroup>,
+    );
+
+    fireEvent.click(screen.getByRole('radio', { name: 'Basico' }));
+
+    expect(handleChange).not.toHaveBeenCalled();
   });
 
   it('calls onChange when an option is selected', () => {

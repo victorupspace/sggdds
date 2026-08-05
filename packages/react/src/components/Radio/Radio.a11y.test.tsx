@@ -16,15 +16,20 @@ describe('RadioGroup — accessibility', () => {
     expect(await axe(container)).toHaveNoViolations();
   });
 
-  it('has no violations with descriptions', async () => {
+  it('has no violations with hints', async () => {
     const { container } = render(
       <RadioGroup name="plan" value="annual" onChange={() => undefined} label="Plano">
-        <Radio value="monthly" label="Mensal" description="Renovação automática a cada 30 dias." />
-        <Radio
-          value="annual"
-          label="Anual"
-          description="20% de desconto comparado ao plano mensal."
-        />
+        <Radio value="monthly" label="Mensal" hint="Renovação automática a cada 30 dias." />
+        <Radio value="annual" label="Anual" hint="20% de desconto comparado ao plano mensal." />
+      </RadioGroup>,
+    );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('has no violations with read-only option', async () => {
+    const { container } = render(
+      <RadioGroup name="status" value="approved" onChange={() => undefined} label="Situação">
+        <Radio value="approved" label="Aprovado" hint="Hint goes here" readOnly />
       </RadioGroup>,
     );
     expect(await axe(container)).toHaveNoViolations();

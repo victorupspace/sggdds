@@ -1,8 +1,9 @@
 export interface RadioProps {
   value: string;
   label: string;
-  description?: string;
+  hint?: string;
   disabled?: boolean;
+  readOnly?: boolean;
   className?: string;
   /* injected by RadioGroup — not part of the public API */
   _checked?: boolean;

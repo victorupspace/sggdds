@@ -1,38 +1,39 @@
+/*
+ * Layout do Figma: Web Components / Radio Button (node 12:2511) e atômicos
+ * RadioButton Unselected/Selected e .Radio Control. Cada propriedade
+ * referencia a mesma variable usada no Figma; os comentários indicam o nome
+ * original da variable na collection.
+ */
+
 /* ── Radio item ─────────────────────────────────────────────────────────── */
 
 .ds-radio {
-  --radio-control-size: var(--ds-primitive-spacing-24, 24px);
-  --radio-dot-size: 8px;
-  --radio-touch-size: 44px;
-  --radio-gap: var(--ds-primitive-spacing-4, 4px);
-  --radio-label-color: var(--ds-semantic-text-style-content-color-typography-secondary);
-  --radio-description-color: var(--ds-semantic-text-style-content-color-typography-tertiary);
-  --radio-border-color: var(--ds-semantic-color-border-neutral-prominent);
-  --radio-background: var(--ds-semantic-color-background-neutral-default);
-  --radio-selected-border: var(--ds-semantic-text-style-content-color-typography-secondary);
-  --radio-selected-dot: var(--ds-semantic-text-style-content-color-typography-secondary);
-  --radio-hover-border: var(--ds-semantic-text-style-content-color-typography-secondary);
-  --radio-hover-background: var(--ds-primitive-color-neutral-alpha-4);
-  --radio-active-background: var(--ds-primitive-color-neutral-alpha-8);
-  --radio-focus-ring: var(--ds-component-focus-ring-color-ring);
-  --radio-disabled-border: var(--ds-semantic-color-border-neutral-default);
-  --radio-disabled-background: var(--ds-semantic-color-background-neutral-disabled);
-  --radio-disabled-dot: var(--ds-semantic-text-style-content-color-typography-disabled);
-  --radio-disabled-label-color: var(--ds-component-radio-label-color-text-disabled);
-  --radio-disabled-description-color: var(
-    --ds-semantic-text-style-content-color-typography-placeholder
-  );
+  /* Controle de 24px (Component sizing/24) com ripple de 32px */
+  --radio-control-size: var(--ds-component-component-sizing-24);
+  /* Fills dos vetores exportados: color/pure-black (circle enabled/focused),
+     color/icons/neutral/default-hover (#292929, hover e pressed) */
+  --radio-control-color: var(--ds-primitive-color-pure-black);
+  --radio-control-color-hover: var(--ds-semantic-color-icons-neutral-default-hover);
+  /* radio_button_checked selecionado: #034EA2 (color/icons/information/default) */
+  --radio-control-color-selected: var(--ds-semantic-color-icons-information-default);
+  /* Disabled: #737373 (text-style/content-color/typography/disabled) */
+  --radio-control-color-disabled: var(--ds-semantic-text-style-content-color-typography-disabled);
+  /* color/neutral-alpha/4% e /8% (ripple de hover e pressed) */
+  --radio-ripple-hover: var(--ds-primitive-color-neutral-alpha-4);
+  --radio-ripple-pressed: var(--ds-primitive-color-neutral-alpha-8);
+  /* text-style/content-color/typography/primary (label Label/Medium) */
+  --radio-label-color: var(--ds-semantic-text-style-content-color-typography-primary);
+  /* color/icons/neutral/black (hint) */
+  --radio-hint-color: var(--ds-semantic-color-icons-neutral-black);
+  /* Component sizing/6 (gap entre controle e conteúdo) e /0 (label-hint) */
+  --radio-gap: var(--ds-component-component-sizing-6);
+  --radio-content-gap: var(--ds-component-component-sizing-0);
 
-  position: relative;
-  display: grid;
+  display: inline-flex;
   box-sizing: border-box;
-  inline-size: 100%;
   max-inline-size: 100%;
-  min-block-size: var(--radio-touch-size);
-  grid-template-columns: var(--radio-control-size) minmax(0, 1fr);
   gap: var(--radio-gap);
-  align-items: start;
-  padding-block: var(--ds-primitive-spacing-4, 4px);
+  align-items: center;
   color: var(--radio-label-color);
   cursor: pointer;
   font-family:
@@ -51,175 +52,177 @@
 }
 
 .ds-radio__control {
+  position: relative;
   display: inline-grid;
   box-sizing: border-box;
+  flex: none;
   place-items: center;
   inline-size: var(--radio-control-size);
   block-size: var(--radio-control-size);
-  border: var(--ds-component-radio-control-border-width, 2px) solid var(--radio-border-color);
-  border-radius: var(--ds-primitive-border-radius-radius-full, 999px);
-  background: var(--radio-background);
+  /* border/radius/radius-full (estado Focused do Figma) */
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  color: var(--radio-control-color);
   transition:
-    border-color 160ms ease,
-    background-color 160ms ease,
-    box-shadow 160ms ease;
+    color 120ms ease,
+    box-shadow 120ms ease;
 }
 
-.ds-radio__dot {
-  inline-size: var(--radio-dot-size);
-  block-size: var(--radio-dot-size);
-  border-radius: var(--ds-primitive-border-radius-radius-full, 999px);
-  background: var(--radio-selected-dot);
+/* Ripple de 32px (border/radius/full) atrás do controle, como no Figma */
+.ds-radio__control::before {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: 32px;
+  block-size: 32px;
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  background: transparent;
+  content: '';
+  transform: translate(-50%, -50%);
+  transition: background-color 120ms ease;
+}
+
+.ds-radio__icon {
+  grid-area: 1 / 1;
+  inline-size: 100%;
+  block-size: 100%;
   opacity: 0;
-  transform: scale(0.5);
-  transition:
-    opacity 120ms ease,
-    transform 120ms ease;
+  transition: opacity 120ms ease;
+}
+
+.ds-radio__icon--unselected {
+  opacity: 1;
+}
+
+.ds-radio__input:checked + .ds-radio__control {
+  color: var(--radio-control-color-selected);
+}
+
+.ds-radio__input:checked + .ds-radio__control .ds-radio__icon--unselected {
+  opacity: 0;
+}
+
+.ds-radio__input:checked + .ds-radio__control .ds-radio__icon--selected {
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .ds-radio:not(.ds-radio--disabled, .ds-radio--readonly):hover
+    .ds-radio__input:not(:checked)
+    + .ds-radio__control {
+    color: var(--radio-control-color-hover);
+  }
+
+  .ds-radio:not(.ds-radio--disabled, .ds-radio--readonly):hover .ds-radio__control::before {
+    background: var(--radio-ripple-hover);
+  }
+}
+
+.ds-radio:not(.ds-radio--disabled, .ds-radio--readonly):active
+  .ds-radio__input:not(:checked)
+  + .ds-radio__control {
+  color: var(--radio-control-color-hover);
+}
+
+.ds-radio:not(.ds-radio--disabled, .ds-radio--readonly):active .ds-radio__control::before {
+  background: var(--radio-ripple-pressed);
+}
+
+/* Focus ring do Figma: anel duplo branco (84%) + #2c84d0 — cor sem variable
+   exposta na collection exportada, valor literal documentado */
+.ds-radio__input:focus-visible + .ds-radio__control {
+  box-shadow:
+    0 0 0 2px rgb(255 255 255 / 84%),
+    0 0 0 4px #2c84d0;
 }
 
 .ds-radio__content {
-  display: grid;
+  display: flex;
   min-inline-size: 0;
-  gap: var(--ds-primitive-spacing-4, 4px);
+  flex-direction: column;
+  gap: var(--radio-content-gap);
+  justify-content: center;
 }
 
 .ds-radio__label {
   overflow-wrap: anywhere;
   color: var(--radio-label-color);
-  font-size: var(--ds-primitive-typography-font-size-14, 14px);
-  font-weight: var(--ds-primitive-typography-font-weight-regular, 400);
-  line-height: var(--ds-primitive-typography-line-height-24, 24px);
+  /* Label/Medium: Plus Jakarta Sans Medium 14 */
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  line-height: normal;
 }
 
-.ds-radio__description {
+.ds-radio__hint {
   overflow-wrap: anywhere;
-  color: var(--radio-description-color);
-  font-size: var(--ds-primitive-typography-font-size-10, 10px);
-  font-weight: var(--ds-primitive-typography-font-weight-regular, 400);
-  line-height: 150%;
+  color: var(--radio-hint-color);
+  /* Plus Jakarta Sans Regular + Font-size/10 */
+  font-size: var(--ds-primitive-typography-font-size-10);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: normal;
 }
 
-/* hover */
-.ds-radio:not(.ds-radio--disabled):hover .ds-radio__control {
-  border-color: var(--radio-hover-border);
-  background:
-    linear-gradient(var(--radio-hover-background), var(--radio-hover-background)),
-    var(--radio-background);
-}
-
-/* active */
-.ds-radio:not(.ds-radio--disabled):active .ds-radio__control {
-  background:
-    linear-gradient(var(--radio-active-background), var(--radio-active-background)),
-    var(--radio-background);
-}
-
-/* checked */
-.ds-radio__input:checked + .ds-radio__control {
-  border-color: var(--radio-selected-border);
-}
-
-.ds-radio__input:checked + .ds-radio__control .ds-radio__dot {
-  opacity: 1;
-  transform: scale(1);
-}
-
-/* hover when checked */
-.ds-radio:not(.ds-radio--disabled):hover .ds-radio__input:checked + .ds-radio__control {
-  border-color: var(--radio-hover-border);
-  background:
-    linear-gradient(var(--radio-hover-background), var(--radio-hover-background)),
-    var(--radio-background);
-}
-
-/* focus */
-.ds-radio__input:focus-visible + .ds-radio__control {
-  outline: var(--ds-component-radio-control-effect-focus-ring-width, 2px) solid
-    var(--radio-focus-ring);
-  outline-offset: var(--ds-primitive-spacing-4, 4px);
-}
-
-/* disabled */
 .ds-radio--disabled {
-  --radio-label-color: var(--radio-disabled-label-color);
-  --radio-description-color: var(--radio-disabled-description-color);
+  /* Disabled no Figma: circle, label e hint em typography/disabled (#737373) */
+  --radio-control-color: var(--radio-control-color-disabled);
+  --radio-control-color-selected: var(--radio-control-color-disabled);
+  --radio-label-color: var(--ds-semantic-text-style-content-color-typography-disabled);
+  --radio-hint-color: var(--ds-semantic-text-style-content-color-typography-disabled);
+
   cursor: not-allowed;
 }
 
-.ds-radio--disabled .ds-radio__control {
-  border-color: var(--radio-disabled-border);
-  background: var(--radio-disabled-background);
+.ds-radio--readonly {
+  /* Read Only no Figma: apenas label (typography/primary) e hint
+     (typography/disabled), sem o controle visível */
+  --radio-hint-color: var(--ds-semantic-text-style-content-color-typography-disabled);
+
+  cursor: default;
 }
 
-.ds-radio--disabled .ds-radio__input:checked + .ds-radio__control {
-  border-color: var(--radio-disabled-border);
-  background: var(--radio-disabled-background);
+.ds-radio--readonly .ds-radio__control {
+  display: none;
 }
 
-.ds-radio--disabled .ds-radio__dot {
-  background: var(--radio-disabled-dot);
-}
-
-/* mobile */
-@media (max-width: 420px) {
-  .ds-radio {
-    --radio-gap: var(--ds-primitive-spacing-4, 4px);
-    --radio-control-size: var(--ds-primitive-spacing-24, 24px);
-    --radio-touch-size: 48px;
-  }
-
-  .ds-radio__label {
-    font-size: var(--ds-primitive-typography-font-size-14, 14px);
-    line-height: var(--ds-primitive-typography-line-height-24, 24px);
-  }
-
-  .ds-radio__description {
-    font-size: var(--ds-primitive-typography-font-size-10, 10px);
-    line-height: 150%;
+@media (prefers-reduced-motion: reduce) {
+  .ds-radio__control,
+  .ds-radio__control::before,
+  .ds-radio__icon {
+    transition: none;
   }
 }
 
-/* ── RadioGroup ─────────────────────────────────────────────────────────── */
+/* ── Radio group ────────────────────────────────────────────────────────── */
 
 .ds-radio-group {
-  display: grid;
-  gap: var(--ds-primitive-spacing-4, 4px);
+  min-inline-size: 0;
   font-family:
     var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
 }
 
 .ds-radio-group__legend {
-  margin-block-end: var(--ds-primitive-spacing-8, 8px);
+  margin-block-end: var(--ds-primitive-spacing-8);
   padding: 0;
-  color: var(--ds-semantic-text-style-content-color-typography-secondary);
-  font-size: var(--ds-primitive-typography-font-size-14, 14px);
-  font-weight: var(--ds-primitive-typography-font-weight-semi-bold, 600);
-  line-height: var(--ds-primitive-typography-line-height-20, 20px);
+  color: var(--ds-semantic-text-style-content-color-typography-primary);
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-semi-bold);
+  line-height: normal;
 }
 
 .ds-radio-group__options {
   display: flex;
   flex-direction: column;
-  gap: var(--ds-primitive-spacing-4, 4px);
+  gap: var(--ds-primitive-spacing-12);
+  align-items: flex-start;
 }
 
 .ds-radio-group--horizontal .ds-radio-group__options {
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: var(--ds-primitive-spacing-8, 8px) var(--ds-primitive-spacing-24, 24px);
+  flex-flow: row wrap;
+  gap: var(--ds-primitive-spacing-16);
 }
 
-.ds-radio-group--horizontal .ds-radio {
-  inline-size: auto;
-}
-
-@media (max-width: 420px) {
-  .ds-radio-group--horizontal .ds-radio-group__options {
-    flex-direction: column;
-    gap: var(--ds-primitive-spacing-4, 4px);
-  }
-
-  .ds-radio-group--horizontal .ds-radio {
-    inline-size: 100%;
-  }
-}
+/*
+ * Responsividade: o node do Figma não define variante mobile. O controle é
+ * fixo (24px + ripple de 32px), a linha inteira do label é clicável e
+ * label/hint quebram naturalmente em containers estreitos; grupos horizontais
+ * quebram linha com flex-wrap.
+ */

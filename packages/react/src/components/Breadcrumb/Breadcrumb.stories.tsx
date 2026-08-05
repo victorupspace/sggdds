@@ -3,7 +3,20 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Breadcrumb } from './Breadcrumb';
 import './Breadcrumb.stories.css';
 
-const defaultItems = [{ href: '#servicos', label: 'Unselected' }, { label: 'Selected' }];
+const figmaItems = [
+  { href: '#nivel-1', label: 'Opcao' },
+  { href: '#nivel-2', label: 'Opcao' },
+  { href: '#nivel-3', label: 'Opcao' },
+  { href: '#nivel-4', label: 'Opcao' },
+  { href: '#nivel-5', label: 'Opcao' },
+  { label: 'Opcao' },
+];
+
+const realItems = [
+  { href: '#servicos', label: 'Servicos' },
+  { href: '#cidadao', label: 'Cidadao' },
+  { label: 'Agendamento' },
+];
 
 const meta = {
   title: 'Web Components/Breadcrumb',
@@ -15,25 +28,18 @@ const meta = {
     docs: {
       description: {
         component: `
-Breadcrumbs sao navegacao secundaria que mostram a posicao atual da pessoa usuaria na hierarquia do site e oferecem acesso rapido aos niveis superiores.
+O Breadcrumb reproduz o layout do Figma (Web Components / Breadcrumbs): barra de largura total com fundo branco e bordas superior e inferior, botao de home (Icon Button Ghost de 32px com o icone vermelho da marca), separadores "/" e a trilha de niveis.
 
-Use quando a pagina faz parte de uma arquitetura com dois ou mais niveis e a pessoa precisa entender contexto, voltar para niveis pais ou comparar onde esta dentro do fluxo.
+Anatomia:
+- First block (showHome): botao circular de home seguido de separador.
+- Links: cada nivel em Body/Extra Small (Plus Jakarta Sans Medium 12, typography/secondary); a pagina atual usa Body/Extra Small Bold (SemiBold 12, typography/primary) e nao e link.
+- Separadores "/" em Plus Jakarta Sans Medium 14 com color/pure-black.
 
-Nao use Breadcrumb como navegacao primaria, menu global, stepper de progresso ou trilha de acoes executadas. Para fluxos lineares, use Stepper.
+Tokens: fundo color/white, bordas color/neutral/grey-200, paddings spacing/12 e spacing/40, gap spacing/8, padding vertical dos links [core]/spacing/4, radius do botao border/radius/radius-full e labels truncados em 330px como no Figma. O icone home usa brand/red (#ff161f), fill exato do vetor exportado.
 
-Responsividade:
-Este componente foi desenvolvido com comportamento responsivo nativo, adaptando espacamentos, alinhamento, largura, quebra de conteudo e areas de toque para diferentes tamanhos de tela. A responsividade e aplicada na implementacao do componente e nao depende de variacoes manuais no Storybook. Em hierarquias longas, o componente evita overflow horizontal da pagina com rolagem interna e pode colapsar niveis intermediarios por meio de maxVisibleItems.
+Responsividade: a barra e fluida (100%); labels truncam com reticencias (330px no desktop, 160px abaixo de 640px), o padding lateral reduz para spacing/16 no mobile e a trilha rola horizontalmente sem barra visivel quando nao cabe, mantendo todos os niveis alcancaveis.
 
-Tokens:
-Cores, foco, espacamento, iconografia, bordas, sombra do menu de overflow e tipografia usam variaveis CSS geradas pelos tokens do Figma. Como a camada semantica ainda esta em evolucao no projeto, o componente usa aliases internos semanticos apontando para os tokens disponiveis.
-
-Acessibilidade:
-- Renderiza nav com aria-label e lista ordenada.
-- O item atual usa aria-current="page" e nao e renderizado como link.
-- O icone de home e decorativo, mantendo nome acessivel via aria-label do link.
-- Links preservam navegacao por teclado e foco visivel.
-- O overflow de niveis intermediarios usa details/summary nativo e mantem os links acessiveis.
-- Evite rotulos genericos; prefira nomes de paginas curtos e reconheciveis.
+Acessibilidade: nav com aria-label e lista ordenada; a pagina atual usa aria-current="page" e nao e renderizada como link; o icone de home e decorativo com nome acessivel no proprio link; separadores usam aria-hidden; foco visivel com o focus ring do DS.
 `,
       },
     },
@@ -48,30 +54,21 @@ Acessibilidade:
       control: 'text',
       description: 'Classe CSS opcional aplicada ao elemento raiz.',
     },
-    collapseLabel: {
-      control: 'text',
-      description: 'Rotulo acessivel do controle que mostra niveis intermediarios.',
-    },
     homeHref: {
       control: 'text',
       description: 'Destino do link de inicio.',
     },
     homeLabel: {
       control: 'text',
-      description: 'Nome acessivel do item de inicio.',
+      description: 'Rotulo acessivel do botao de home.',
     },
     items: {
       control: 'object',
-      description: 'Lista de niveis do breadcrumb. Projetado para ate 8 itens visiveis.',
-    },
-    maxVisibleItems: {
-      control: 'select',
-      description: 'Quantidade maxima de itens visiveis antes de colapsar niveis intermediarios.',
-      options: [4, 5, 6, 7, 8],
+      description: 'Niveis da trilha; o ultimo (ou o marcado com current) e a pagina atual.',
     },
     showHome: {
       control: 'boolean',
-      description: 'Exibe ou remove o item inicial com icone de home.',
+      description: 'Exibe o bloco inicial com o botao de home (showFirstBlock no Figma).',
     },
   },
   tags: ['autodocs'],
@@ -83,75 +80,84 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    items: defaultItems,
+    items: figmaItems,
   },
   render: (args) => (
-    <div className="breadcrumb-story-surface">
-      <div className="breadcrumb-story-panel">
-        <Breadcrumb {...args} />
-      </div>
+    <div className="breadcrumb-story-shell">
+      <Breadcrumb {...args} />
     </div>
   ),
 };
 
-export const EightLevels: Story = {
+export const RealContent: Story = {
   args: {
-    showHome: false,
-    items: [
-      { href: '#level-1', label: 'Level 1' },
-      { href: '#level-2', label: 'Level 2' },
-      { href: '#level-3', label: 'Level 3' },
-      { href: '#level-4', label: 'Level 4' },
-      { href: '#level-5', label: 'Level 5' },
-      { href: '#level-6', label: 'Level 6' },
-      { href: '#level-7', label: 'Level 7' },
-      { label: 'Current' },
-    ],
+    items: realItems,
   },
   render: (args) => (
-    <div className="breadcrumb-story-surface">
-      <div className="breadcrumb-story-panel">
-        <Breadcrumb {...args} />
-      </div>
-    </div>
-  ),
-};
-
-export const Collapsed: Story = {
-  args: {
-    maxVisibleItems: 5,
-    items: [
-      { href: '#level-1', label: 'Level 1' },
-      { href: '#level-2', label: 'Level 2' },
-      { href: '#level-3', label: 'Level 3' },
-      { href: '#level-4', label: 'Level 4' },
-      { href: '#level-5', label: 'Level 5' },
-      { label: 'Current' },
-    ],
-  },
-  render: (args) => (
-    <div className="breadcrumb-story-surface">
-      <div className="breadcrumb-story-panel">
-        <Breadcrumb {...args} />
-      </div>
+    <div className="breadcrumb-story-shell">
+      <Breadcrumb {...args} />
     </div>
   ),
 };
 
 export const WithoutHome: Story = {
   args: {
+    items: realItems,
     showHome: false,
-    items: [
-      { href: '#level-1', label: 'Level 1' },
-      { href: '#level-2', label: 'Level 2' },
-      { label: 'Current' },
-    ],
   },
   render: (args) => (
-    <div className="breadcrumb-story-surface">
-      <div className="breadcrumb-story-panel">
-        <Breadcrumb {...args} />
-      </div>
+    <div className="breadcrumb-story-shell">
+      <Breadcrumb {...args} />
+    </div>
+  ),
+};
+
+export const LongLabels: Story = {
+  args: {
+    items: [
+      {
+        href: '#orgao',
+        label: 'Secretaria Municipal de Inovacao, Tecnologia e Transformacao Digital',
+      },
+      {
+        href: '#programa',
+        label: 'Programa de Modernizacao do Atendimento ao Cidadao em Todas as Regioes',
+      },
+      { label: 'Relatorio consolidado de indicadores de atendimento digital' },
+    ],
+  },
+  parameters: {
+    docs: {
+      description: {
+        story: 'Labels maiores que 330px sao truncados com reticencias, como no Figma.',
+      },
+    },
+  },
+  render: (args) => (
+    <div className="breadcrumb-story-shell">
+      <Breadcrumb {...args} />
+    </div>
+  ),
+};
+
+export const MobileWidth: Story = {
+  args: {
+    items: figmaItems,
+  },
+  parameters: {
+    componentCanvas: {
+      width: 375,
+    },
+    docs: {
+      description: {
+        story:
+          'Abaixo de 640px o padding lateral reduz para spacing/16, os labels truncam em 160px e a trilha rola horizontalmente quando nao cabe.',
+      },
+    },
+  },
+  render: (args) => (
+    <div className="breadcrumb-story-shell breadcrumb-story-shell--narrow">
+      <Breadcrumb {...args} />
     </div>
   ),
 };

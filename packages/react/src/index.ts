@@ -11,11 +11,7 @@ export type {
 export { Badge } from './components/Badge';
 export type { BadgeAppearance, BadgeProps, BadgeSize, BadgeVariant } from './components/Badge';
 export { Breadcrumb } from './components/Breadcrumb';
-export type {
-  BreadcrumbItem,
-  BreadcrumbMaxVisibleItems,
-  BreadcrumbProps,
-} from './components/Breadcrumb';
+export type { BreadcrumbItem, BreadcrumbProps } from './components/Breadcrumb';
 export { Button } from './components/Button';
 export type { ButtonProps, ButtonSize, ButtonVariant } from './components/Button';
 export { ButtonGov } from './components/ButtonGov';

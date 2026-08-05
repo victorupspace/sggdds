@@ -26,10 +26,9 @@ describe('Breadcrumb', () => {
   it('marks the last item as the current page by default', () => {
     render(<Breadcrumb items={items} />);
 
-    expect(screen.getByText('Agendamento').closest('.ds-breadcrumb__crumb')).toHaveAttribute(
-      'aria-current',
-      'page',
-    );
+    const current = screen.getByText('Agendamento').closest('.ds-breadcrumb__crumb');
+    expect(current).toHaveAttribute('aria-current', 'page');
+    expect(current?.tagName).toBe('SPAN');
   });
 
   it('honors an explicit current item', () => {
@@ -49,29 +48,34 @@ describe('Breadcrumb', () => {
     );
   });
 
-  it('collapses middle levels when the maximum visible amount is exceeded', () => {
-    render(
-      <Breadcrumb
-        maxVisibleItems={5}
-        items={[
-          { href: '#one', label: 'Level 1' },
-          { href: '#two', label: 'Level 2' },
-          { href: '#three', label: 'Level 3' },
-          { href: '#four', label: 'Level 4' },
-          { href: '#five', label: 'Level 5' },
-          { href: '#six', label: 'Level 6' },
-          { label: 'Current' },
-        ]}
-      />,
-    );
+  it('renders separators as decorative text', () => {
+    const { container } = render(<Breadcrumb items={items} />);
 
-    expect(screen.getByLabelText('Mostrar niveis intermediarios')).toBeInTheDocument();
-    expect(screen.getByText('Level 2')).toBeInTheDocument();
+    const separators = container.querySelectorAll('.ds-breadcrumb__separator');
+    expect(separators).toHaveLength(3);
+    separators.forEach((separator) => {
+      expect(separator).toHaveAttribute('aria-hidden', 'true');
+      expect(separator).toHaveTextContent('/');
+    });
+  });
+
+  it('keeps the home icon decorative', () => {
+    render(<Breadcrumb items={items} />);
+
+    const home = screen.getByRole('link', { name: 'Inicio' });
+    expect(home.querySelector('.ds-breadcrumb__home-icon')).toHaveAttribute('aria-hidden', 'true');
   });
 
   it('can hide the home item', () => {
-    render(<Breadcrumb showHome={false} items={items} />);
+    const { container } = render(<Breadcrumb showHome={false} items={items} />);
 
     expect(screen.queryByRole('link', { name: 'Inicio' })).not.toBeInTheDocument();
+    expect(container.querySelectorAll('.ds-breadcrumb__separator')).toHaveLength(2);
+  });
+
+  it('applies an additional className', () => {
+    render(<Breadcrumb className="custom-breadcrumb" items={items} />);
+
+    expect(screen.getByRole('navigation', { name: 'Breadcrumb' })).toHaveClass('custom-breadcrumb');
   });
 });

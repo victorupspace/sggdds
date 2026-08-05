@@ -1,43 +1,67 @@
+/*
+ * Layout do Figma: Web Components / Breadcrumbs (node 87:553).
+ * Cada propriedade referencia a mesma variable usada no Figma; os comentários
+ * indicam o nome original da variable na collection.
+ */
 .ds-breadcrumb {
-  --breadcrumb-foreground: var(--ds-semantic-text-style-content-color-typography-secondary);
-  --breadcrumb-muted: var(--ds-component-breadcrumbs-color-text-default);
-  --breadcrumb-hover: var(--ds-component-breadcrumbs-color-text-hover);
-  --breadcrumb-home: var(--ds-semantic-color-background-brand-primary-prominent);
-  --breadcrumb-focus-ring: var(--ds-semantic-color-background-brand-primary-secondary-default);
-  --breadcrumb-surface: var(--ds-semantic-color-background-neutral-default);
-  --breadcrumb-border: var(--ds-semantic-color-border-neutral-subtle);
-  --breadcrumb-shadow: var(--ds-semantic-shadow-floating);
-  --breadcrumb-font-size: var(--ds-primitive-typography-font-size-16);
-  --breadcrumb-line-height: var(--ds-primitive-typography-line-height-24);
-  --breadcrumb-item-gap: var(--ds-primitive-spacing-8);
-  --breadcrumb-touch-size: var(--ds-primitive-spacing-32);
-  --breadcrumb-icon-size: var(--ds-primitive-spacing-20);
+  /* color/white */
+  --breadcrumb-surface: var(--ds-primitive-color-white);
+  /* color/neutral/grey-200 */
+  --breadcrumb-border-color: var(--ds-primitive-color-neutral-grey-200);
+  /* text-style/content color/typography/secondary (links) */
+  --breadcrumb-link-color: var(--ds-semantic-text-style-content-color-typography-secondary);
+  /* text-style/content color/typography/primary (página atual) */
+  --breadcrumb-current-color: var(--ds-semantic-text-style-content-color-typography-primary);
+  /* breadcrumbs/color/text/hover — o node só define o estado Enabled; hover
+     usa o token T3 do componente como aproximação documentada */
+  --breadcrumb-link-hover-color: var(--ds-component-breadcrumbs-color-text-hover);
+  /* color/pure-black (separador "/") */
+  --breadcrumb-separator-color: var(--ds-primitive-color-pure-black);
+  /* brand/red (#ff161f, fill do vetor home exportado do Figma) */
+  --breadcrumb-home-color: var(--ds-brand-color-brand-red);
+  /* icon-button/color/background/ghost/hover (botão home é o Icon Button Ghost) */
+  --breadcrumb-home-hover-background: var(--ds-component-icon-button-color-background-ghost-hover);
+  /* icon-button/size/width-sm (botão de 32px) e Component sizing/24 (ícone) */
+  --breadcrumb-home-size: var(--ds-component-icon-button-size-width-sm);
+  --breadcrumb-home-icon-size: var(--ds-component-component-sizing-24);
+  /* spacing/12 e spacing/40 (padding da barra) */
+  --breadcrumb-padding-y: var(--ds-primitive-spacing-12);
+  --breadcrumb-padding-x: var(--ds-primitive-spacing-40);
+  /* spacing/8 (gap entre home, separadores e links) */
+  --breadcrumb-gap: var(--ds-primitive-spacing-8);
+  /* [core]/spacing/4 (padding vertical dos links) */
+  --breadcrumb-link-padding-y: var(--ds-primitive-spacing-4);
+  /* max-width de 330px literal no Figma (truncamento dos labels) */
+  --breadcrumb-label-max-width: 330px;
+  --breadcrumb-focus-ring: var(--ds-component-focus-ring-color-ring);
 
-  display: block;
   box-sizing: border-box;
   inline-size: 100%;
   max-inline-size: 100%;
-  color: var(--breadcrumb-foreground);
+  min-inline-size: 0;
+  padding: var(--breadcrumb-padding-y) var(--breadcrumb-padding-x);
+  border-block: var(--ds-primitive-border-width-border-sm) solid var(--breadcrumb-border-color);
+  background: var(--breadcrumb-surface);
   font-family:
     var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
 }
 
-.ds-breadcrumb *,
-.ds-breadcrumb *::before,
-.ds-breadcrumb *::after {
-  box-sizing: border-box;
-}
-
+/*
+ * Responsividade: o container de links usa overflow-clip no Figma; na web a
+ * lista rola horizontalmente (sem barra visível) para manter todos os níveis
+ * alcançáveis em telas estreitas.
+ */
 .ds-breadcrumb__list {
   display: flex;
-  max-inline-size: 100%;
   min-inline-size: 0;
+  max-inline-size: 100%;
+  gap: var(--breadcrumb-gap);
   align-items: center;
   padding: var(--ds-primitive-spacing-0);
   margin: var(--ds-primitive-spacing-0);
-  gap: var(--breadcrumb-item-gap);
   list-style: none;
-  overflow: visible;
+  overflow-x: auto;
+  scrollbar-width: none;
 }
 
 .ds-breadcrumb__list::-webkit-scrollbar {
@@ -45,148 +69,108 @@
 }
 
 .ds-breadcrumb__item {
-  position: relative;
-  display: inline-flex;
-  flex: 0 0 auto;
-  min-inline-size: 0;
+  display: flex;
+  flex: none;
+  gap: var(--breadcrumb-gap);
   align-items: center;
-  gap: var(--breadcrumb-item-gap);
 }
 
-.ds-breadcrumb__crumb,
-.ds-breadcrumb__overflow-trigger {
-  display: inline-flex;
-  min-inline-size: 0;
-  min-block-size: var(--breadcrumb-touch-size);
-  align-items: center;
-  border: 0;
-  border-radius: var(--ds-primitive-border-radius-radius-sm);
-  background: transparent;
-  color: var(--breadcrumb-muted);
-  font-size: var(--breadcrumb-font-size);
-  font-weight: var(--ds-component-breadcrumbs-typography-font-weight-default);
-  line-height: var(--breadcrumb-line-height);
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.ds-breadcrumb__crumb[href],
-.ds-breadcrumb__overflow-trigger {
-  cursor: pointer;
-}
-
-.ds-breadcrumb__crumb[href]:hover,
-.ds-breadcrumb__overflow-trigger:hover {
-  color: var(--breadcrumb-hover);
-}
-
-.ds-breadcrumb__crumb:focus-visible,
-.ds-breadcrumb__overflow-trigger:focus-visible {
-  outline: var(--ds-primitive-border-width-border-md) solid var(--breadcrumb-focus-ring);
-  outline-offset: var(--ds-primitive-spacing-4);
-}
-
-.ds-breadcrumb__crumb--current {
-  color: var(--breadcrumb-foreground);
-  font-weight: var(--ds-primitive-typography-font-weight-bold);
-  cursor: default;
-}
-
-.ds-breadcrumb__crumb--disabled {
-  color: var(--ds-component-breadcrumbs-color-text-disabled);
-  cursor: not-allowed;
-}
-
-.ds-breadcrumb__crumb--home {
-  color: var(--breadcrumb-home);
-}
-
-.ds-breadcrumb__home-icon,
-.ds-breadcrumb__separator,
-.ds-breadcrumb__overflow-trigger {
+.ds-breadcrumb__home {
   display: inline-grid;
-  flex: 0 0 auto;
+  box-sizing: border-box;
   place-items: center;
+  inline-size: var(--breadcrumb-home-size);
+  block-size: var(--breadcrumb-home-size);
+  /* border/radius/radius-full */
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  color: var(--breadcrumb-home-color);
+  transition: background-color 160ms ease;
 }
 
 .ds-breadcrumb__home-icon {
-  inline-size: var(--breadcrumb-icon-size);
-  block-size: var(--breadcrumb-icon-size);
+  display: inline-grid;
+  place-items: center;
+  inline-size: var(--breadcrumb-home-icon-size);
+  block-size: var(--breadcrumb-home-icon-size);
 }
 
-.ds-breadcrumb__separator {
-  inline-size: var(--ds-component-breadcrumbs-separator-size-icon-size);
-  block-size: var(--ds-component-breadcrumbs-separator-size-icon-size);
-  color: var(--breadcrumb-foreground);
-}
-
-.ds-breadcrumb__home-icon > svg,
-.ds-breadcrumb__separator > svg {
+.ds-breadcrumb__home-icon > svg {
   inline-size: 100%;
   block-size: 100%;
 }
 
+@media (hover: hover) {
+  .ds-breadcrumb__home:hover {
+    background: var(--breadcrumb-home-hover-background);
+  }
+}
+
+.ds-breadcrumb__separator {
+  flex: none;
+  color: var(--breadcrumb-separator-color);
+  /* Plus Jakarta Sans Medium 14 (separador "/" do Figma) */
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  line-height: normal;
+}
+
+.ds-breadcrumb__crumb {
+  display: inline-flex;
+  min-inline-size: 0;
+  align-items: center;
+  padding-block: var(--breadcrumb-link-padding-y);
+  color: var(--breadcrumb-link-color);
+  /* Body/Extra Small: Plus Jakarta Sans Medium 12 */
+  font-size: var(--ds-primitive-typography-font-size-12);
+  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  line-height: normal;
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
 .ds-breadcrumb__label {
   display: block;
-  max-inline-size: calc(var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-64));
+  max-inline-size: var(--breadcrumb-label-max-width);
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.ds-breadcrumb__overflow {
-  position: relative;
-  display: inline-flex;
+@media (hover: hover) {
+  a.ds-breadcrumb__crumb:hover {
+    color: var(--breadcrumb-link-hover-color);
+  }
 }
 
-.ds-breadcrumb__overflow > summary {
-  list-style: none;
+.ds-breadcrumb__crumb--current {
+  color: var(--breadcrumb-current-color);
+  /* Body/Extra Small Bold: Plus Jakarta Sans SemiBold 12 */
+  font-weight: var(--ds-primitive-typography-font-weight-semi-bold);
 }
 
-.ds-breadcrumb__overflow > summary::-webkit-details-marker {
-  display: none;
+.ds-breadcrumb__home:focus,
+.ds-breadcrumb__crumb:focus {
+  outline: var(--ds-primitive-border-width-border-none);
 }
 
-.ds-breadcrumb__overflow-trigger {
-  padding-inline: var(--ds-primitive-spacing-4);
+.ds-breadcrumb__home:focus-visible,
+.ds-breadcrumb__crumb:focus-visible {
+  outline: var(--ds-component-focus-ring-effect-width) solid var(--breadcrumb-focus-ring);
+  outline-offset: var(--ds-component-focus-ring-effect-offset);
 }
 
-.ds-breadcrumb__overflow-menu {
-  position: absolute;
-  z-index: 10;
-  inset-block-start: calc(100% + var(--ds-primitive-spacing-8));
-  inset-inline-start: 0;
-  display: grid;
-  min-inline-size: calc(var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-64));
-  padding: var(--ds-primitive-spacing-8);
-  border: var(--ds-primitive-border-width-border-sm) solid var(--breadcrumb-border);
-  border-radius: var(--ds-primitive-border-radius-radius-md);
-  background: var(--breadcrumb-surface);
-  box-shadow: var(--breadcrumb-shadow);
-  gap: var(--ds-primitive-spacing-4);
-}
-
-.ds-breadcrumb__crumb--menu-item {
-  inline-size: 100%;
-  justify-content: flex-start;
-  padding-inline: var(--ds-primitive-spacing-8);
+@media (prefers-reduced-motion: reduce) {
+  .ds-breadcrumb__home,
+  .ds-breadcrumb__crumb {
+    transition: none;
+  }
 }
 
 @media (max-width: 640px) {
   .ds-breadcrumb {
-    --breadcrumb-font-size: var(--ds-component-breadcrumbs-typography-font-size);
-    --breadcrumb-line-height: var(--ds-primitive-typography-line-height-20);
-    --breadcrumb-touch-size: var(--ds-primitive-spacing-40);
-    --breadcrumb-item-gap: var(--ds-component-breadcrumbs-spacing-gap);
-    --breadcrumb-icon-size: var(--ds-primitive-spacing-20);
-  }
-
-  .ds-breadcrumb__label {
-    max-inline-size: var(--ds-primitive-spacing-128);
-  }
-
-  .ds-breadcrumb__list {
-    overflow-x: auto;
-    scrollbar-width: none;
-    -webkit-overflow-scrolling: touch;
+    /* O node do Figma não define variante mobile; a barra reduz o padding
+       lateral para spacing/16 e os labels truncam mais cedo. */
+    --breadcrumb-padding-x: var(--ds-primitive-spacing-16);
+    --breadcrumb-label-max-width: 160px;
   }
 }

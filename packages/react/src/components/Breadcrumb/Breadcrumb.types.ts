@@ -6,18 +6,14 @@ export interface BreadcrumbItem {
   href?: string;
   ariaLabel?: string;
   current?: boolean;
-  disabled?: boolean;
 }
-
-export type BreadcrumbMaxVisibleItems = 4 | 5 | 6 | 7 | 8;
 
 export interface BreadcrumbProps {
   items: BreadcrumbItem[];
   ariaLabel?: string;
   className?: string;
+  /** Exibe o bloco inicial com o botão de home (`showFirstBlock` no Figma). */
   showHome?: boolean;
   homeHref?: string;
   homeLabel?: string;
-  maxVisibleItems?: BreadcrumbMaxVisibleItems;
-  collapseLabel?: string;
 }

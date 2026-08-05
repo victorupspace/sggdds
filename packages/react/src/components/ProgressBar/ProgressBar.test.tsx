@@ -16,6 +16,14 @@ describe('ProgressBar', () => {
     expect(screen.getByText('Helper text')).toBeInTheDocument();
   });
 
+  it('applies the variant class', () => {
+    const { container } = render(<ProgressBar label="Label" value={100} variant="success" />);
+
+    expect(container.querySelector('.ds-progress-bar')).toHaveClass(
+      'ds-progress-bar--variant-success',
+    );
+  });
+
   it('clamps values outside the configured range', () => {
     render(<ProgressBar label="Upload" max={10} min={0} value={15} />);
 
@@ -43,25 +51,20 @@ describe('ProgressBar', () => {
     );
   });
 
-  it('omits aria-valuenow in indeterminate mode', () => {
-    render(<ProgressBar label="Upload" mode="indeterminate" showValue={false} />);
+  it('omits aria-valuenow and value text in indeterminate mode', () => {
+    render(<ProgressBar label="Upload" mode="indeterminate" />);
 
     const progressBar = screen.getByRole('progressbar', { name: 'Upload' });
 
     expect(progressBar).not.toHaveAttribute('aria-valuenow');
     expect(progressBar).not.toHaveAttribute('aria-valuemin');
     expect(progressBar).not.toHaveAttribute('aria-valuemax');
+    expect(screen.queryByText('0%')).not.toBeInTheDocument();
   });
 
   it('can hide the value text', () => {
     render(<ProgressBar label="Upload" showValue={false} value={25} />);
 
     expect(screen.queryByText('25%')).not.toBeInTheDocument();
-  });
-
-  it('renders the status icon when requested', () => {
-    render(<ProgressBar label="Upload" showIcon value={100} variant="success" />);
-
-    expect(document.querySelector('.ds-progress-bar__icon')).toBeInTheDocument();
   });
 });

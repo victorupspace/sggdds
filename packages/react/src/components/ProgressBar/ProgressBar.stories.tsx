@@ -4,7 +4,7 @@ import { ProgressBar } from './ProgressBar';
 import './ProgressBar.stories.css';
 import type { ProgressBarVariant } from './ProgressBar.types';
 
-const variants: ProgressBarVariant[] = ['brand', 'neutral', 'success', 'error'];
+const variants: ProgressBarVariant[] = ['default', 'success', 'error', 'information', 'warning'];
 
 const meta = {
   title: 'Web Components/ProgressBar',
@@ -18,29 +18,35 @@ const meta = {
         component: `
 Progress Bar comunica o status de um processo em andamento, seja como valor mensuravel ou como indicacao de que uma tarefa esta acontecendo.
 
-Use para progresso de upload, etapas de processamento, carregamentos com duracao estimada e feedback de sucesso ou erro associado a uma acao.
+Layout reproduzido do Figma Web Components (nodes 95:23725, 40000030:6873 e 40000030:6888), incluindo os atomos Range e Progress Line.
 
-Nao use Progress Bar para mensagens independentes, estados que exigem acao imediata ou feedback temporario sem progresso. Nesses casos, use Alert, Toast ou Modal conforme o contexto.
+Anatomia:
+- Top content opcional com Label (Title/Small, Plus Jakarta Sans SemiBold 16) e porcentagem (Label/Large, Medium 16).
+- Progress Line com track de 8px (color/background/neutral/default-hover) e Range preenchido conforme o valor, ambos com border/radius/radius-full.
+- Helper text opcional (Label/Medium, Medium 14).
 
-Variantes:
-- Brand: progresso padrao usando o token de identidade disponivel.
-- Neutral: progresso sem enfase semantica.
-- Success: conclusao ou estado positivo.
-- Error: falha ou estado negativo.
+Variantes (prop style do Figma):
+- Default: Range em color/background/neutral/soft-black e textos em typography/primary.
+- Success: Range em color/background/sucess/default; label e helper text verdes.
+- Error: Range em color/background/danger/default; label e helper text vermelhos.
+- Information: Range em color/background/information/default; textos em typography/primary.
+- Warning: Range em color/background/warning/default; textos em typography/primary.
 
 Comportamento:
-- Determinate usa value, min e max para calcular a largura da barra e expor aria-valuenow.
-- Indeterminate remove aria-valuenow e exibe movimento continuo para processos sem duracao estimada.
-- Label, helper text, value label e icone sao opcionais.
+- Determinate usa value, min e max para calcular a largura do Range e expor aria-valuenow.
+- Indeterminate reproduz a variante Indeterminate do Progress Line: pilula de 40% da largura em movimento continuo, sem aria-valuenow.
+- Top content, porcentagem e helper text sao opcionais, como as props booleanas do componente no Figma.
 
 Tokens:
-Cores, track, foreground, icon, radius, spacing, sizing e typography usam variaveis CSS dos tokens importados do Figma. O destaque brand utiliza o token de identidade publicado no projeto para evitar valores hardcoded.
+Track, Range, radius, spacing e typography usam as mesmas variables do Figma (progress/track, progress/indicator, color/background/*, spacing/6, border/radius/radius-full).
+
+Responsividade:
+A barra e fluida e ocupa 100% do container; o label quebra linha quando necessario e a porcentagem permanece alinhada a direita.
 
 Acessibilidade:
-- Usa role="progressbar".
+- Usa role="progressbar" com aria-valuenow/min/max no modo determinate.
 - Associa label e helper text por aria-labelledby e aria-describedby.
 - Recebe ariaLabel quando nao ha label visual.
-- Icones sao decorativos e nao substituem o texto do estado.
 `,
       },
     },
@@ -51,21 +57,13 @@ Acessibilidade:
       control: 'text',
       description: 'Nome acessivel usado quando nao ha label visual.',
     },
-    barClassName: {
-      control: 'text',
-      description: 'Classe CSS opcional aplicada ao track.',
-    },
     className: {
       control: 'text',
       description: 'Classe CSS opcional aplicada ao container.',
     },
     helperText: {
       control: 'text',
-      description: 'Texto auxiliar ou mensagem de status exibida abaixo da barra.',
-    },
-    icon: {
-      control: false,
-      description: 'Icone customizado opcional exibido no canto direito.',
+      description: 'Texto auxiliar exibido abaixo da barra.',
     },
     id: {
       control: 'text',
@@ -73,7 +71,7 @@ Acessibilidade:
     },
     label: {
       control: 'text',
-      description: 'Rotulo do progresso.',
+      description: 'Rotulo do progresso exibido no top content.',
     },
     max: {
       control: 'number',
@@ -88,18 +86,9 @@ Acessibilidade:
       description: 'Modo de progresso.',
       options: ['determinate', 'indeterminate'],
     },
-    showIcon: {
-      control: 'boolean',
-      description: 'Exibe o icone de estado padrao ou o icone customizado.',
-    },
     showValue: {
       control: 'boolean',
-      description: 'Exibe ou oculta o valor textual.',
-    },
-    size: {
-      control: 'select',
-      description: 'Tamanho visual da barra.',
-      options: ['sm', 'md'],
+      description: 'Exibe ou oculta a porcentagem no top content.',
     },
     value: {
       control: { max: 100, min: 0, step: 1, type: 'range' },
@@ -111,7 +100,7 @@ Acessibilidade:
     },
     variant: {
       control: 'select',
-      description: 'Variante visual e semantica.',
+      description: 'Variante visual e semantica (prop style do Figma).',
       options: variants,
     },
   },
@@ -127,7 +116,7 @@ export const Default: Story = {
     helperText: 'Helper text',
     label: 'Label',
     value: 25,
-    variant: 'brand',
+    variant: 'default',
   },
   render: (args) => (
     <div className="progress-bar-story-shell">
@@ -136,27 +125,29 @@ export const Default: Story = {
   ),
 };
 
-export const States: Story = {
+export const Styles: Story = {
   render: () => (
     <div className="progress-bar-story-shell">
       <div className="progress-bar-story-grid">
-        <ProgressBar helperText="Helper text" label="Label" value={25} variant="brand" />
-        <ProgressBar
-          helperText="Success message"
-          label="Label"
-          showIcon
-          showValue={false}
-          value={100}
-          variant="success"
-        />
-        <ProgressBar
-          helperText="Error message"
-          label="Label"
-          showIcon
-          showValue={false}
-          value={100}
-          variant="error"
-        />
+        <ProgressBar helperText="Helper text" label="Label" value={25} variant="default" />
+        <ProgressBar helperText="Helper text" label="Label" value={100} variant="success" />
+        <ProgressBar helperText="Helper text" label="Label" value={100} variant="error" />
+        <ProgressBar helperText="Helper text" label="Label" value={25} variant="information" />
+        <ProgressBar helperText="Helper text" label="Label" value={25} variant="warning" />
+      </div>
+    </div>
+  ),
+};
+
+export const ProgressLine: Story = {
+  render: () => (
+    <div className="progress-bar-story-shell">
+      <div className="progress-bar-story-grid">
+        <ProgressBar ariaLabel="Progresso 0%" showValue={false} value={0} />
+        <ProgressBar ariaLabel="Progresso 25%" showValue={false} value={25} />
+        <ProgressBar ariaLabel="Progresso 50%" showValue={false} value={50} />
+        <ProgressBar ariaLabel="Progresso 75%" showValue={false} value={75} />
+        <ProgressBar ariaLabel="Progresso 100%" showValue={false} value={100} />
       </div>
     </div>
   ),
@@ -167,8 +158,6 @@ export const Indeterminate: Story = {
     helperText: 'Processando arquivos',
     label: 'Upload em andamento',
     mode: 'indeterminate',
-    showValue: false,
-    variant: 'brand',
   },
   render: (args) => (
     <div className="progress-bar-story-shell">
@@ -177,35 +166,10 @@ export const Indeterminate: Story = {
   ),
 };
 
-export const Compact: Story = {
-  render: () => (
-    <div className="progress-bar-story-shell">
-      <div className="progress-bar-story-compact">
-        <ProgressBar helperText="Helper text" label="Label" size="sm" value={25} />
-        <ProgressBar
-          helperText="Success message"
-          label="Label"
-          showIcon
-          size="sm"
-          value={100}
-          variant="success"
-        />
-        <ProgressBar
-          helperText="Error message"
-          label="Label"
-          showIcon
-          size="sm"
-          value={100}
-          variant="error"
-        />
-      </div>
-    </div>
-  ),
-};
-
-export const WithoutText: Story = {
+export const WithoutTopContent: Story = {
   args: {
     ariaLabel: 'Carregamento do relatorio',
+    helperText: 'Helper text',
     showValue: false,
     value: 60,
   },

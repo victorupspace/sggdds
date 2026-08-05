@@ -1,95 +1,89 @@
+/*
+ * Layout do Figma: Web Components / Progress Bar (nodes 95:23725, 40000030:6873
+ * e 40000030:6888). Cada propriedade referencia a mesma variable usada no
+ * Figma; os comentários indicam o nome original da variable.
+ */
 .ds-progress-bar {
-  --progress-bar-track-color: var(--ds-semantic-color-border-neutral-subtle);
-  --progress-bar-fill-color: var(--ds-semantic-color-background-brand-primary-secondary-default);
-  --progress-bar-label-color: var(--ds-primitive-color-neutral-grey-700);
-  --progress-bar-helper-color: var(--ds-semantic-text-style-content-color-typography-tertiary);
-  --progress-bar-value-color: var(--ds-primitive-color-neutral-grey-700);
-  --progress-bar-icon-color: var(--progress-bar-fill-color);
-  --progress-bar-icon-mark: var(--ds-semantic-color-background-neutral-default);
-  --progress-bar-height: var(--ds-primitive-spacing-8);
-  --progress-bar-width: 480px;
-  --progress-bar-gap: var(--ds-primitive-spacing-4);
+  /* color/background/neutral/default-hover (track do Progress Line) */
+  --progress-bar-track-color: var(--ds-component-progress-track-color-background);
+  /* color/background/neutral/soft-black (Range Neutral, estilo Default) */
+  --progress-bar-range-color: var(--ds-semantic-color-background-neutral-soft-black);
+  /* text-style/content-color/typography/primary */
+  --progress-bar-label-color: var(--ds-semantic-text-style-content-color-typography-primary);
+  --progress-bar-helper-color: var(--ds-semantic-text-style-content-color-typography-primary);
+  --progress-bar-value-color: var(--ds-semantic-text-style-content-color-typography-primary);
+  /* Altura de 8px do Progress Line (progress/track/size/height-lg) */
+  --progress-bar-track-height: var(--ds-component-progress-track-size-height-lg);
+  /* border/radius/radius-full */
   --progress-bar-radius: var(--ds-component-progress-track-border-radius);
+  /* spacing/6 entre top content, barra e helper text */
+  --progress-bar-gap: var(--ds-primitive-spacing-6);
 
-  display: grid;
+  display: flex;
   box-sizing: border-box;
-  inline-size: min(100%, var(--progress-bar-width));
-  min-inline-size: 0;
+  flex-direction: column;
   gap: var(--progress-bar-gap);
-  color: var(--progress-bar-label-color);
+  inline-size: 100%;
+  min-inline-size: 0;
   font-family:
     var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
 }
 
-.ds-progress-bar--variant-neutral {
-  --progress-bar-fill-color: var(--ds-semantic-text-style-content-color-typography-secondary);
-  --progress-bar-icon-color: var(--ds-primitive-color-neutral-grey-700);
-}
-
 .ds-progress-bar--variant-success {
-  --progress-bar-fill-color: var(--ds-component-progress-indicator-color-background-success);
-  --progress-bar-label-color: var(--ds-primitive-color-neutral-grey-700);
-  --progress-bar-helper-color: var(--ds-semantic-color-background-success-default);
-  --progress-bar-value-color: var(--ds-semantic-color-background-success-default);
+  /* progress/indicator/color/background/success (color/background/sucess/default) */
+  --progress-bar-range-color: var(--ds-component-progress-indicator-color-background-success);
+  /* text-style/content-color/typography/sucess (#00883D no Figma; a collection
+     exporta typography/success como green-400 #07622F — divergência reportada) */
+  --progress-bar-label-color: var(--ds-brand-color-utility-success-green-300);
+  --progress-bar-helper-color: var(--ds-brand-color-utility-success-green-300);
 }
 
 .ds-progress-bar--variant-error {
-  --progress-bar-fill-color: var(--ds-semantic-text-style-content-color-typography-danger);
-  --progress-bar-label-color: var(--ds-semantic-text-style-content-color-typography-danger);
-  --progress-bar-helper-color: var(--ds-semantic-text-style-content-color-typography-danger);
-  --progress-bar-value-color: var(--ds-semantic-text-style-content-color-typography-danger);
+  /* progress/indicator/color/background/error (color/background/danger/default) */
+  --progress-bar-range-color: var(--ds-component-progress-indicator-color-background-error);
+  /* text-style/content-color/typography/danger (#E52207 no Figma; a collection
+     exporta typography/danger como red-400 #B22929 — divergência reportada) */
+  --progress-bar-label-color: var(--ds-brand-color-utility-danger-red-300);
+  --progress-bar-helper-color: var(--ds-brand-color-utility-danger-red-300);
 }
 
-.ds-progress-bar--size-sm {
-  --progress-bar-height: var(--ds-component-progress-track-size-height-sm);
-  --progress-bar-gap: var(--ds-primitive-spacing-2);
+.ds-progress-bar--variant-information {
+  /* color/background/information/default */
+  --progress-bar-range-color: var(--ds-semantic-color-background-information-default);
 }
 
-.ds-progress-bar__header {
+.ds-progress-bar--variant-warning {
+  /* progress/indicator/color/background/warning (color/background/warning/default) */
+  --progress-bar-range-color: var(--ds-component-progress-indicator-color-background-warning);
+}
+
+/* Top content: Label (Title/Small) + porcentagem (Label/Large), gap spacing/6 */
+.ds-progress-bar__top-content {
   display: flex;
-  min-inline-size: 0;
-  gap: var(--ds-primitive-spacing-12);
-  align-items: end;
-  justify-content: space-between;
+  gap: var(--ds-primitive-spacing-6);
+  align-items: flex-start;
 }
 
 .ds-progress-bar__label {
+  flex: 1;
   min-inline-size: 0;
   overflow-wrap: anywhere;
   color: var(--progress-bar-label-color);
-  font-size: var(--ds-primitive-typography-font-size-18);
-  font-weight: var(--ds-primitive-typography-font-weight-bold);
-  line-height: var(--ds-primitive-typography-line-height-24);
-}
-
-.ds-progress-bar__meta {
-  display: inline-flex;
-  flex: 0 0 auto;
-  gap: var(--ds-primitive-spacing-8);
-  align-items: center;
-  justify-content: flex-end;
-  color: var(--progress-bar-value-color);
+  /* Title/Small: Plus Jakarta Sans SemiBold 16 */
+  font-size: var(--ds-primitive-typography-font-size-16);
+  font-weight: var(--ds-primitive-typography-font-weight-semi-bold);
+  line-height: normal;
 }
 
 .ds-progress-bar__value {
-  color: inherit;
+  flex: 0 0 auto;
+  color: var(--progress-bar-value-color);
+  /* Label/Large: Plus Jakarta Sans Medium 16 */
   font-size: var(--ds-primitive-typography-font-size-16);
-  font-weight: var(--ds-primitive-typography-font-weight-regular);
-  line-height: var(--ds-primitive-typography-line-height-20);
+  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  line-height: normal;
+  text-align: end;
   white-space: nowrap;
-}
-
-.ds-progress-bar__icon {
-  display: inline-grid;
-  place-items: center;
-  inline-size: var(--ds-primitive-spacing-24);
-  block-size: var(--ds-primitive-spacing-24);
-  color: var(--progress-bar-icon-color);
-}
-
-.ds-progress-bar__icon > svg {
-  inline-size: 100%;
-  block-size: 100%;
 }
 
 .ds-progress-bar__track {
@@ -97,50 +91,37 @@
   overflow: hidden;
   box-sizing: border-box;
   inline-size: 100%;
-  block-size: var(--progress-bar-height);
+  block-size: var(--progress-bar-track-height);
   border-radius: var(--progress-bar-radius);
   background: var(--progress-bar-track-color);
 }
 
-.ds-progress-bar__fill {
+.ds-progress-bar__range {
   position: absolute;
   inset-block: 0;
   inset-inline-start: 0;
   display: block;
   max-inline-size: 100%;
-  border-radius: inherit;
-  background: var(--progress-bar-fill-color);
+  /* progress/indicator/border-radius (border/radius/radius-full) */
+  border-radius: var(--ds-component-progress-indicator-border-radius);
+  background: var(--progress-bar-range-color);
   transition: inline-size 180ms ease;
 }
 
-.ds-progress-bar--mode-indeterminate .ds-progress-bar__fill {
+/* Progress Line Indeterminate do Figma: pílula central de 40% da largura */
+.ds-progress-bar--mode-indeterminate .ds-progress-bar__range {
   inline-size: 40%;
   animation: ds-progress-bar-indeterminate 1200ms ease-in-out infinite;
 }
 
 .ds-progress-bar__helper {
-  margin: 0;
+  margin: var(--ds-primitive-spacing-0);
   overflow-wrap: anywhere;
   color: var(--progress-bar-helper-color);
-  font-size: var(--ds-primitive-typography-font-size-16);
-  font-weight: var(--ds-primitive-typography-font-weight-regular);
-  line-height: var(--ds-primitive-typography-line-height-24);
-}
-
-.ds-progress-bar--size-sm .ds-progress-bar__label {
+  /* Label/Medium: Plus Jakarta Sans Medium 14 */
   font-size: var(--ds-primitive-typography-font-size-14);
-  line-height: var(--ds-primitive-typography-line-height-20);
-}
-
-.ds-progress-bar--size-sm .ds-progress-bar__value,
-.ds-progress-bar--size-sm .ds-progress-bar__helper {
-  font-size: var(--ds-primitive-typography-font-size-12);
-  line-height: var(--ds-primitive-typography-line-height-16);
-}
-
-.ds-progress-bar--size-sm .ds-progress-bar__icon {
-  inline-size: var(--ds-primitive-spacing-20);
-  block-size: var(--ds-primitive-spacing-20);
+  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  line-height: normal;
 }
 
 @keyframes ds-progress-bar-indeterminate {
@@ -158,32 +139,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ds-progress-bar__fill {
+  .ds-progress-bar__range {
     transition: none;
   }
 
-  .ds-progress-bar--mode-indeterminate .ds-progress-bar__fill {
+  .ds-progress-bar--mode-indeterminate .ds-progress-bar__range {
     animation-duration: 2400ms;
-  }
-}
-
-@media (max-width: 420px) {
-  .ds-progress-bar {
-    --progress-bar-width: 100%;
-  }
-
-  .ds-progress-bar__header {
-    gap: var(--ds-primitive-spacing-8);
-  }
-
-  .ds-progress-bar__label {
-    font-size: var(--ds-primitive-typography-font-size-16);
-    line-height: var(--ds-primitive-typography-line-height-22);
-  }
-
-  .ds-progress-bar__helper,
-  .ds-progress-bar__value {
-    font-size: var(--ds-primitive-typography-font-size-14);
-    line-height: var(--ds-primitive-typography-line-height-20);
   }
 }

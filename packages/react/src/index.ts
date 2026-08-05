@@ -113,7 +113,6 @@ export { ProgressBar } from './components/ProgressBar';
 export type {
   ProgressBarMode,
   ProgressBarProps,
-  ProgressBarSize,
   ProgressBarVariant,
 } from './components/ProgressBar';
 export { Loading, Spinner } from './components/Spinner';

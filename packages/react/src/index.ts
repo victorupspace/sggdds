@@ -110,8 +110,8 @@ export type {
   HeroProps,
   HeroVariant,
 } from './components/Hero';
-export { InfoCard } from './components/InfoCard';
-export type { InfoCardHeadingLevel, InfoCardProps } from './components/InfoCard';
+export { ActionCard } from './components/ActionCard';
+export type { ActionCardHeadingLevel, ActionCardProps } from './components/ActionCard';
 export { Link } from './components/Link';
 export type { LinkProps, LinkSize, LinkVariant } from './components/Link';
 export { ListItem } from './components/ListItem';

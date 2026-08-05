@@ -199,7 +199,7 @@ const COMPONENT_CATEGORIES: ComponentCategory[] = [
     description: 'Exibição de conteúdo e identidade',
     items: [
       { id: 'card', label: 'Card' },
-      { id: 'infocard', label: 'InfoCard' },
+      { id: 'action-card', label: 'Action Card' },
       { id: 'hero', label: 'Hero' },
       { id: 'badge', label: 'Badge' },
       { id: 'chip', label: 'Chip' },

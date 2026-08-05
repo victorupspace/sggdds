@@ -19,7 +19,7 @@ Componentes React sao adicionados aqui, um por vez, a partir de especificacoes a
 - `Footer`: organiza navegacao secundaria, informacoes legais, marca e redes sociais no fim da pagina.
 - `Header`: organiza identidade, navegacao primaria, utilitarios globais e acesso do usuario.
 - `Hero`: destaca a mensagem principal no topo da pagina com conteudo, CTA e media responsiva.
-- `InfoCard`: apresenta informacao contextual em card com icone, titulo, descricao e slot.
+- `ActionCard`: card acionavel com icone, titulo, badge e descricao, com estados default/hover/selected.
 - `Link`: navega para recursos internos ou externos em texto inline ou chamada independente.
 - `Pagination`: organiza listas longas em paginas numeradas com navegacao e metadados.
 - `Stepper`: comunica progresso atual em fluxos lineares de 2 a 10 etapas.

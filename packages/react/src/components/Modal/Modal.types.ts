@@ -1,25 +1,20 @@
-import type { ButtonHTMLAttributes, MouseEventHandler, ReactNode } from 'react';
+import type { ReactNode } from 'react';
 
-export type ModalSize = 'sm' | 'md' | 'lg' | 'full';
-
-export type ModalActionVariant = 'primary' | 'secondary' | 'tertiary';
-
-export interface ModalAction extends Omit<
-  ButtonHTMLAttributes<HTMLButtonElement>,
-  'children' | 'className' | 'type'
-> {
-  label: string;
-  variant?: ModalActionVariant;
-  onClick?: MouseEventHandler<HTMLButtonElement>;
-}
+/** `Size` no Figma: small (440px), medium (600px), large (960px) e extended (1200px). */
+export type ModalSize = 'small' | 'medium' | 'large' | 'extended';
 
 export interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   title: ReactNode;
-  subtitle?: ReactNode;
+  /** Slot opcional abaixo do título (Subheader Slot no Figma). */
+  subheader?: ReactNode;
+  /** Content Slot: conteúdo principal do modal. */
   children?: ReactNode;
-  actions?: ModalAction[];
+  /**
+   * Footer Slot: componha com os Buttons do DS (ação primária = secondary,
+   * dispensar = tertiary, como na documentação do Figma).
+   */
   footer?: ReactNode;
   size?: ModalSize;
   closeLabel?: string;

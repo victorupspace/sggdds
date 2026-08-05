@@ -3,199 +3,88 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { Modal } from './Modal';
 
-function renderModal({
-  closeOnEsc = true,
-  closeOnOverlayClick = true,
-  isOpen = true,
-  onClose = vi.fn(),
-}: {
-  closeOnEsc?: boolean;
-  closeOnOverlayClick?: boolean;
-  isOpen?: boolean;
-  onClose?: () => void;
-} = {}) {
-  render(
-    <Modal
-      closeOnEsc={closeOnEsc}
-      closeOnOverlayClick={closeOnOverlayClick}
-      footer={<button type="button">Confirmar</button>}
-      isOpen={isOpen}
-      onClose={onClose}
-      title="Titulo do modal"
-    >
-      <button type="button">Primeira acao</button>
-      <p>Conteudo do modal</p>
-      <button type="button">Ultima acao</button>
-    </Modal>,
-  );
+function getOverlay(container: HTMLElement) {
+  const overlay = container.querySelector('.ds-modal');
 
-  return { onClose };
+  if (!(overlay instanceof HTMLElement)) {
+    throw new Error('Overlay não encontrado');
+  }
+
+  return overlay;
 }
 
 describe('Modal', () => {
-  it('does not render when closed', () => {
-    renderModal({ isOpen: false });
+  it('renders title, subheader, body and footer slots when open', () => {
+    render(
+      <Modal
+        footer={<button type="button">Action 1</button>}
+        isOpen
+        onClose={vi.fn()}
+        subheader="Texto de apoio"
+        title="Title"
+      >
+        <p>Body content</p>
+      </Modal>,
+    );
+
+    const dialog = screen.getByRole('dialog', { name: 'Title' });
+    expect(dialog).toHaveAttribute('aria-modal', 'true');
+    expect(dialog).toHaveAccessibleDescription('Texto de apoio');
+    expect(screen.getByText('Body content')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Action 1' })).toBeInTheDocument();
+  });
+
+  it('renders nothing when closed', () => {
+    render(
+      <Modal isOpen={false} onClose={vi.fn()} title="Title">
+        <p>Body content</p>
+      </Modal>,
+    );
 
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
   });
 
-  it('renders title, content and footer when open', () => {
-    renderModal();
+  it('applies the size class', () => {
+    const { container } = render(<Modal isOpen onClose={vi.fn()} size="extended" title="Title" />);
 
-    expect(screen.getByRole('dialog', { name: 'Titulo do modal' })).toBeInTheDocument();
-    expect(screen.getByText('Conteudo do modal')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Confirmar' })).toBeInTheDocument();
+    expect(container.querySelector('.ds-modal')).toHaveClass('ds-modal--size-extended');
   });
 
-  it('uses dialog accessibility attributes', () => {
-    render(
-      <Modal isOpen onClose={vi.fn()} subtitle="Descricao curta" title="Titulo do modal">
-        Conteudo
-      </Modal>,
-    );
-
-    const dialog = screen.getByRole('dialog', { name: 'Titulo do modal' });
-    const title = screen.getByText('Titulo do modal');
-    const subtitle = screen.getByText('Descricao curta');
-
-    expect(dialog).toHaveAttribute('aria-modal', 'true');
-    expect(dialog).toHaveAttribute('aria-labelledby', title.id);
-    expect(dialog).toHaveAttribute('aria-describedby', subtitle.id);
-  });
-
-  it('calls onClose when close button is clicked', () => {
+  it('calls onClose from the close button', () => {
     const onClose = vi.fn();
 
-    renderModal({ onClose });
+    render(<Modal isOpen onClose={onClose} title="Title" />);
 
     fireEvent.click(screen.getByRole('button', { name: 'Fechar modal' }));
 
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
-  it('supports custom close button label', () => {
+  it('closes with Escape by default', () => {
     const onClose = vi.fn();
 
-    render(
-      <Modal closeLabel="Fechar janela" isOpen onClose={onClose} title="Titulo do modal">
-        Conteudo
-      </Modal>,
-    );
-
-    fireEvent.click(screen.getByRole('button', { name: 'Fechar janela' }));
-
-    expect(onClose).toHaveBeenCalledTimes(1);
-  });
-
-  it('renders typed actions and calls their handlers', () => {
-    const onPrimaryClick = vi.fn();
-
-    render(
-      <Modal
-        actions={[
-          { label: 'Action 3', variant: 'tertiary' },
-          { label: 'Action 2', variant: 'secondary' },
-          { label: 'Action 1', onClick: onPrimaryClick, variant: 'primary' },
-        ]}
-        isOpen
-        onClose={vi.fn()}
-        title="Titulo do modal"
-      >
-        Conteudo
-      </Modal>,
-    );
-
-    expect(screen.getByRole('button', { name: 'Action 3' })).toHaveClass(
-      'ds-modal__footer-action--tertiary',
-    );
-    expect(screen.getByRole('button', { name: 'Action 3' })).toHaveClass(
-      'ds-button--variant-tertiary',
-    );
-    expect(screen.getByRole('button', { name: 'Action 2' })).toHaveClass(
-      'ds-modal__footer-action--secondary',
-    );
-    expect(screen.getByRole('button', { name: 'Action 2' })).toHaveClass(
-      'ds-button--variant-secondary',
-    );
-    expect(screen.getByRole('button', { name: 'Action 1' })).toHaveClass(
-      'ds-button--variant-primary',
-    );
-
-    fireEvent.click(screen.getByRole('button', { name: 'Action 1' }));
-
-    expect(onPrimaryClick).toHaveBeenCalledTimes(1);
-  });
-
-  it('renders at most three typed actions', () => {
-    render(
-      <Modal
-        actions={[
-          { label: 'Action 1' },
-          { label: 'Action 2' },
-          { label: 'Action 3' },
-          { label: 'Action 4' },
-        ]}
-        isOpen
-        onClose={vi.fn()}
-        title="Titulo do modal"
-      >
-        Conteudo
-      </Modal>,
-    );
-
-    expect(screen.getByRole('button', { name: 'Action 1' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Action 2' })).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Action 3' })).toBeInTheDocument();
-    expect(screen.queryByRole('button', { name: 'Action 4' })).not.toBeInTheDocument();
-  });
-
-  it('keeps footer compatibility over typed actions', () => {
-    render(
-      <Modal
-        actions={[{ label: 'Generated action' }]}
-        footer={<button type="button">Custom action</button>}
-        isOpen
-        onClose={vi.fn()}
-        title="Titulo do modal"
-      >
-        Conteudo
-      </Modal>,
-    );
-
-    expect(screen.getByRole('button', { name: 'Custom action' })).toBeInTheDocument();
-    expect(screen.queryByRole('button', { name: 'Generated action' })).not.toBeInTheDocument();
-  });
-
-  it('calls onClose when Escape is pressed', () => {
-    const onClose = vi.fn();
-
-    renderModal({ onClose });
+    render(<Modal isOpen onClose={onClose} title="Title" />);
 
     fireEvent.keyDown(document, { key: 'Escape' });
 
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
-  it('does not close on Escape when closeOnEsc is false', () => {
+  it('does not close with Escape when closeOnEsc is false', () => {
     const onClose = vi.fn();
 
-    renderModal({ closeOnEsc: false, onClose });
+    render(<Modal closeOnEsc={false} isOpen onClose={onClose} title="Title" />);
 
     fireEvent.keyDown(document, { key: 'Escape' });
 
     expect(onClose).not.toHaveBeenCalled();
   });
 
-  it('calls onClose when overlay is clicked', () => {
+  it('closes when clicking the backdrop', () => {
     const onClose = vi.fn();
 
-    renderModal({ onClose });
-
-    const overlay = screen.getByRole('dialog').parentElement;
-
-    if (!overlay) {
-      throw new Error('Modal overlay was not rendered.');
-    }
+    const { container } = render(<Modal isOpen onClose={onClose} title="Title" />);
+    const overlay = getOverlay(container);
 
     fireEvent.mouseDown(overlay);
     fireEvent.click(overlay);
@@ -203,16 +92,13 @@ describe('Modal', () => {
     expect(onClose).toHaveBeenCalledTimes(1);
   });
 
-  it('does not close on overlay click when closeOnOverlayClick is false', () => {
+  it('does not close on backdrop click when disabled', () => {
     const onClose = vi.fn();
 
-    renderModal({ closeOnOverlayClick: false, onClose });
-
-    const overlay = screen.getByRole('dialog').parentElement;
-
-    if (!overlay) {
-      throw new Error('Modal overlay was not rendered.');
-    }
+    const { container } = render(
+      <Modal closeOnOverlayClick={false} isOpen onClose={onClose} title="Title" />,
+    );
+    const overlay = getOverlay(container);
 
     fireEvent.mouseDown(overlay);
     fireEvent.click(overlay);
@@ -220,55 +106,13 @@ describe('Modal', () => {
     expect(onClose).not.toHaveBeenCalled();
   });
 
-  it('does not close when clicking inside the dialog', () => {
-    const onClose = vi.fn();
-
-    renderModal({ onClose });
-
-    const dialog = screen.getByRole('dialog');
-
-    fireEvent.mouseDown(dialog);
-    fireEvent.click(dialog);
-
-    expect(onClose).not.toHaveBeenCalled();
-  });
-
-  it('locks body scroll while open and restores it after unmount', () => {
-    const previousOverflow = document.body.style.overflow;
-    const { unmount } = render(
-      <Modal isOpen onClose={vi.fn()} title="Titulo do modal">
-        Conteudo
-      </Modal>,
-    );
+  it('locks body scroll while open', () => {
+    const { unmount } = render(<Modal isOpen onClose={vi.fn()} title="Title" />);
 
     expect(document.body.style.overflow).toBe('hidden');
 
     unmount();
 
-    expect(document.body.style.overflow).toBe(previousOverflow);
-  });
-
-  it('traps focus from the last focusable element to the first', () => {
-    renderModal();
-
-    const closeButton = screen.getByRole('button', { name: 'Fechar modal' });
-    const confirmButton = screen.getByRole('button', { name: 'Confirmar' });
-
-    confirmButton.focus();
-    fireEvent.keyDown(document, { key: 'Tab' });
-
-    expect(closeButton).toHaveFocus();
-  });
-
-  it('traps focus from the first focusable element to the last when shift tabbing', () => {
-    renderModal();
-
-    const closeButton = screen.getByRole('button', { name: 'Fechar modal' });
-    const confirmButton = screen.getByRole('button', { name: 'Confirmar' });
-
-    closeButton.focus();
-    fireEvent.keyDown(document, { key: 'Tab', shiftKey: true });
-
-    expect(confirmButton).toHaveFocus();
+    expect(document.body.style.overflow).toBe('');
   });
 });

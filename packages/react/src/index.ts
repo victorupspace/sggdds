@@ -106,7 +106,7 @@ export type {
   MeganavTriggerVariant,
 } from './components/Meganav';
 export { Modal } from './components/Modal';
-export type { ModalAction, ModalActionVariant, ModalProps, ModalSize } from './components/Modal';
+export type { ModalProps, ModalSize } from './components/Modal';
 export { Pagination } from './components/Pagination';
 export type { PaginationLabels, PaginationProps } from './components/Pagination';
 export { ProgressBar } from './components/ProgressBar';

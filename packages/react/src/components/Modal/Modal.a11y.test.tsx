@@ -16,17 +16,19 @@ describe('Modal — accessibility', () => {
     expect(await axe(container)).toHaveNoViolations();
   });
 
-  it('has no violations with subtitle and actions', async () => {
+  it('has no violations with subheader and footer actions', async () => {
     const { container } = render(
       <Modal
         isOpen
         onClose={noop}
         title="Salvar alterações"
-        subtitle="Suas mudanças serão aplicadas imediatamente."
-        actions={[
-          { label: 'Cancelar', variant: 'secondary', onClick: noop },
-          { label: 'Salvar', variant: 'primary', onClick: noop },
-        ]}
+        subheader="Suas mudanças serão aplicadas imediatamente."
+        footer={
+          <>
+            <button type="button">Cancelar</button>
+            <button type="button">Salvar</button>
+          </>
+        }
       >
         <p>Confirme antes de prosseguir.</p>
       </Modal>,
@@ -43,15 +45,9 @@ describe('Modal — accessibility', () => {
     expect(await axe(container)).toHaveNoViolations();
   });
 
-  it('has no violations in large size with footer', async () => {
+  it('has no violations in extended size', async () => {
     const { container } = render(
-      <Modal
-        isOpen
-        onClose={noop}
-        title="Termos de uso"
-        size="lg"
-        footer={<small>Última atualização: 2026-05-18</small>}
-      >
+      <Modal isOpen onClose={noop} title="Termos de uso" size="extended">
         <p>Texto longo do termo de uso.</p>
       </Modal>,
     );

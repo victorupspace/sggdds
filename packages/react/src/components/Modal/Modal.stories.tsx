@@ -1,76 +1,58 @@
-import type { Meta, StoryObj } from '@storybook/react-vite';
-import { useState, type ReactNode } from 'react';
+import { useState } from 'react';
 
-import './Modal.stories.css';
+import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Button } from '../Button';
 import { Modal } from './Modal';
-import type { ModalAction, ModalSize } from './Modal.types';
+import type { ModalProps } from './Modal.types';
+import './Modal.stories.css';
 
-const sizes: ModalSize[] = ['sm', 'md', 'lg', 'full'];
+/* Footer padrão do Figma: ação primária = secondary, demais = tertiary */
+function DefaultFooter({ onClose }: { onClose: () => void }) {
+  return (
+    <>
+      <Button onClick={onClose} variant="tertiary">
+        Action 3
+      </Button>
+      <Button onClick={onClose} variant="tertiary">
+        Action 2
+      </Button>
+      <Button onClick={onClose} variant="secondary">
+        Action 1
+      </Button>
+    </>
+  );
+}
 
-const defaultActions: ModalAction[] = [
-  {
-    label: 'Action 3',
-    variant: 'tertiary',
-  },
-  {
-    label: 'Action 2',
-    variant: 'secondary',
-  },
-  {
-    label: 'Action 1',
-    variant: 'primary',
-  },
-];
-
-function ModalExample({
-  actions = defaultActions,
-  closeOnEsc = true,
-  closeOnOverlayClick = true,
-  content = <p>Body content</p>,
-  footer,
-  size = 'md',
-  subtitle = 'Subtitle or description',
-  title = 'Title',
-  triggerLabel = 'Abrir modal',
-}: {
-  actions?: ModalAction[];
-  closeOnEsc?: boolean;
-  closeOnOverlayClick?: boolean;
-  content?: ReactNode;
-  footer?: ReactNode;
-  size?: ModalSize;
-  subtitle?: string;
-  title?: string;
-  triggerLabel?: string;
-}) {
-  const [isOpen, setIsOpen] = useState(false);
+function ModalExample(args: ModalProps) {
+  const [isOpen, setIsOpen] = useState(args.isOpen);
 
   return (
-    <div className="ds-modal-storybook-shell">
+    <div className="modal-story-shell">
       <Button
         onClick={() => {
           setIsOpen(true);
         }}
+        variant="secondary"
       >
-        {triggerLabel}
+        Abrir modal
       </Button>
       <Modal
-        actions={actions}
-        closeOnEsc={closeOnEsc}
-        closeOnOverlayClick={closeOnOverlayClick}
-        footer={footer}
+        {...args}
+        footer={
+          args.footer ?? (
+            <DefaultFooter
+              onClose={() => {
+                setIsOpen(false);
+              }}
+            />
+          )
+        }
         isOpen={isOpen}
         onClose={() => {
           setIsOpen(false);
         }}
-        size={size}
-        subtitle={subtitle}
-        title={title}
-      >
-        {content}
-      </Modal>
+      />
     </div>
   );
 }
@@ -80,87 +62,70 @@ const meta = {
   component: Modal,
   parameters: {
     componentCanvas: {
-      width: 960,
+      width: 1024,
     },
     docs: {
       description: {
         component: `
-O Modal exibe uma janela centralizada sobre overlay para fluxos que exigem atencao imediata.
+O Modal reproduz o layout do Figma (Web Components / Modal): diálogo sobreposto com backdrop modal/backdrop (preto a 48%), container branco com radius de 16 (modal/container) e seções separadas por modal/body/spacing/gap.
+
+Tamanhos (Size no Figma): small (440px, confirmações), medium (600px, formulários), large (960px, conteúdo denso) e extended (1200px, visões de dados).
 
 Anatomia:
-- Overlay com escurecimento e blur.
-- Dialog com superficie elevada, header, area de conteudo e footer opcional.
-- Header com titulo obrigatorio, subtitle opcional e botao de fechar.
-- Corpo rolavel quando o conteudo ultrapassa a altura disponivel.
-- Footer opcional para ate tres acoes tipadas: tertiary, secondary e primary.
-- Tamanhos sm, md, lg e full para acomodar diferentes densidades de conteudo.
+- Botão de fechar: Icon Button Ghost de 40px no canto superior direito com o ícone close [outlined] exportado.
+- Header: título Title/Medium Sm (SemiBold 18, modal/header/color/text) com borda modal/header/color/border e Subheader Slot opcional.
+- Content Slot (children): corpo em Body/Medium com os paddings modal/body/spacing.
+- Footer Slot: componha com os Buttons do DS — ação primária = secondary, dispensar = tertiary, como na documentação do Figma (gap modal/footer/spacing/gap).
 
-Comportamento:
-- Foco inicial entra no modal e permanece preso enquanto aberto.
-- Escape fecha por padrao, configuravel com closeOnEsc.
-- Clique no overlay fecha por padrao, configuravel com closeOnOverlayClick.
-- Scroll do body fica bloqueado enquanto o modal esta aberto.
-- Ao fechar, o foco retorna para o elemento que estava ativo antes da abertura.
-- No mobile, o dialog ocupa a altura inteira da viewport no uso real do componente.
+Responsividade (Mobile=True no Figma): abaixo de 768px, small e medium viram bottom sheet ancorado na base com os botões do footer empilhados em largura total; large permanece centralizado.
 
-Use para confirmacoes, formularios curtos, detalhes contextuais ou decisoes que interrompem temporariamente a tarefa atual.
-
-Nao use para mensagens leves, feedback passivo, navegacao comum ou conteudo longo que funciona melhor como pagina dedicada. Em fluxos criticos, o titulo deve ser direto e as acoes do footer devem deixar claro o resultado da escolha.
-
-Responsividade:
-- Em desktop, o modal centraliza no overlay e respeita o tamanho selecionado.
-- Em telas pequenas, o dialog permanece como card responsivo e empilha as acoes em largura total.
-- Cada story expoe um gatilho para abrir o modal sob demanda, garantindo que a pagina de Docs role livremente e que cada exemplo seja inspecionado isoladamente.
+Acessibilidade: role dialog com aria-modal, aria-labelledby/describedby, focus trap, Escape e clique no backdrop fecham (configuráveis), scroll do body bloqueado e foco devolvido ao elemento de origem.
 `,
       },
     },
     layout: 'fullscreen',
   },
   argTypes: {
-    actions: {
-      control: false,
-      description: 'Lista de ate tres acoes tipadas renderizadas no footer.',
-    },
-    children: {
-      control: false,
-      description: 'Conteudo principal do modal.',
+    className: {
+      control: 'text',
+      description: 'Classe CSS opcional aplicada ao overlay.',
     },
     closeLabel: {
       control: 'text',
-      description: 'Rotulo acessivel do botao de fechar.',
+      description: 'Rótulo acessível do botão de fechar.',
     },
     closeOnEsc: {
       control: 'boolean',
-      description: 'Permite fechar com Escape.',
+      description: 'Fecha ao pressionar Escape.',
     },
     closeOnOverlayClick: {
       control: 'boolean',
-      description: 'Permite fechar ao clicar no overlay.',
+      description: 'Fecha ao clicar no backdrop.',
     },
     footer: {
       control: false,
-      description: 'Area opcional customizada. Quando informada, substitui actions.',
+      description: 'Footer Slot (componha com os Buttons do DS).',
     },
     isOpen: {
       control: 'boolean',
-      description: 'Controla a visibilidade.',
+      description: 'Controla a exibição do modal.',
     },
     onClose: {
       control: false,
-      description: 'Callback chamado ao solicitar fechamento.',
+      description: 'Callback chamado ao fechar.',
     },
     size: {
       control: 'select',
-      description: 'Tamanho visual do dialog.',
-      options: sizes,
+      description: 'Size no Figma: small, medium, large ou extended.',
+      options: ['small', 'medium', 'large', 'extended'],
+    },
+    subheader: {
+      control: 'text',
+      description: 'Subheader Slot opcional abaixo do título.',
     },
     title: {
       control: 'text',
-      description: 'Titulo acessivel do modal.',
-    },
-    subtitle: {
-      control: 'text',
-      description: 'Descricao curta conectada ao dialog por aria-describedby.',
+      description: 'Título do modal (conciso, descreve a ação).',
     },
   },
   tags: ['autodocs'],
@@ -168,148 +133,73 @@ Responsividade:
 
 export default meta;
 
-type Story = StoryObj<typeof ModalExample>;
+type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    actions: defaultActions,
-    closeOnEsc: true,
-    closeOnOverlayClick: true,
-    size: 'md',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Uso padrao para decisoes ou formularios curtos. Clique no gatilho para abrir; fecha por Escape, clique no overlay ou botao de fechar.',
-      },
-    },
+    children: <p>Body content</p>,
+    isOpen: true,
+    onClose: () => undefined,
+    title: 'Title',
   },
   render: (args) => <ModalExample {...args} />,
 };
 
-export const Small: Story = {
+export const Medium: Story = {
   args: {
-    actions: defaultActions.slice(1),
-    size: 'sm',
+    children: <p>Body content</p>,
+    isOpen: true,
+    onClose: () => undefined,
+    size: 'medium',
+    title: 'Title',
   },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Tamanho compacto para confirmacoes simples, mensagens objetivas ou fluxos com poucas opcoes.',
-      },
-    },
-  },
-  render: (args) => <ModalExample {...args} triggerLabel="Abrir modal pequeno" />,
+  render: (args) => <ModalExample {...args} />,
 };
 
 export const Large: Story = {
   args: {
-    actions: defaultActions,
-    size: 'lg',
+    children: <p>Body content</p>,
+    isOpen: true,
+    onClose: () => undefined,
+    size: 'large',
+    title: 'Title',
   },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Tamanho amplo para formularios com mais campos, revisoes de dados ou conteudo que precisa de mais largura.',
-      },
-    },
-  },
-  render: (args) => <ModalExample {...args} triggerLabel="Abrir modal grande" />,
+  render: (args) => <ModalExample {...args} />,
 };
 
-export const Full: Story = {
+export const Extended: Story = {
   args: {
-    actions: defaultActions,
-    size: 'full',
+    children: <p>Body content</p>,
+    isOpen: true,
+    onClose: () => undefined,
+    size: 'extended',
+    title: 'Title',
   },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Ocupa quase toda a largura disponivel em desktop. Use quando a tarefa exige leitura, comparacao ou edicao com maior area util.',
-      },
-    },
-  },
-  render: (args) => <ModalExample {...args} triggerLabel="Abrir modal full" />,
+  render: (args) => <ModalExample {...args} />,
 };
 
-export const Persistent: Story = {
+export const WithSubheader: Story = {
   args: {
-    actions: defaultActions,
-    closeOnEsc: false,
-    closeOnOverlayClick: false,
-    size: 'md',
+    children: <p>Confira os dados antes de confirmar o envio da solicitação.</p>,
+    isOpen: true,
+    onClose: () => undefined,
+    subheader: 'Suas mudanças serão aplicadas imediatamente.',
+    title: 'Salvar alterações',
   },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Modo persistente para decisoes que nao devem ser descartadas acidentalmente. Desativa fechamento por Escape e clique no overlay, mantendo fechamento apenas por acoes explicitas.',
-      },
-    },
-  },
-  render: (args) => <ModalExample {...args} triggerLabel="Abrir modal persistente" />,
+  render: (args) => <ModalExample {...args} />,
 };
 
-export const LongContent: Story = {
+export const WithoutFooter: Story = {
   args: {
-    actions: defaultActions,
-    size: 'md',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Conteudo longo valida area interna rolavel, header preservado e footer sempre acessivel para acoes.',
-      },
-    },
+    children: <p>Conteúdo informativo sem ações no rodapé.</p>,
+    footer: <span />,
+    isOpen: true,
+    onClose: () => undefined,
+    title: 'Detalhes do pedido',
   },
   render: (args) => (
-    <ModalExample
-      {...args}
-      triggerLabel="Abrir modal com conteudo longo"
-      content={
-        <div className="ds-modal-storybook-long-content">
-          <p>Body content</p>
-          <p>Body content</p>
-          <p>Body content</p>
-          <p>Body content</p>
-          <p>Body content</p>
-          <p>Body content</p>
-          <p>Body content</p>
-          <p>Body content</p>
-        </div>
-      }
-    />
-  ),
-};
-
-export const CustomFooter: Story = {
-  args: {
-    actions: [],
-    size: 'md',
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'Mantem compatibilidade com footer customizado para composicoes existentes que ja usam Button ou outros componentes do DS.',
-      },
-    },
-  },
-  render: (args) => (
-    <ModalExample
-      {...args}
-      triggerLabel="Abrir modal com footer customizado"
-      footer={
-        <>
-          <Button variant="tertiary">Cancelar</Button>
-          <Button>Confirmar</Button>
-        </>
-      }
-    />
+    <div className="modal-story-shell">
+      <Modal {...args} footer={undefined} />
+    </div>
   ),
 };

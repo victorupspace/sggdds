@@ -1,14 +1,8 @@
-.ds-modal-storybook-shell {
+.modal-story-shell {
   display: grid;
-  gap: var(--ds-primitive-spacing-16);
-  padding: var(--ds-primitive-spacing-0);
-}
-
-.ds-modal-storybook-long-content {
-  display: grid;
-  gap: var(--ds-primitive-spacing-16);
-}
-
-.ds-modal-storybook-long-content p {
-  margin: var(--ds-primitive-spacing-0);
+  box-sizing: border-box;
+  min-block-size: 480px;
+  place-items: start center;
+  padding: var(--ds-primitive-spacing-32);
+  background: var(--ds-primitive-color-neutral-grey-100);
 }

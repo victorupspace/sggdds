@@ -2,7 +2,6 @@ import './Modal.styles.css';
 
 import { useEffect, useId, useRef } from 'react';
 
-import { Button } from '../Button';
 import type { ModalProps } from './Modal.types';
 
 const focusableSelector = [
@@ -25,8 +24,19 @@ function getFocusableElements(container: HTMLElement | null) {
   );
 }
 
+/* close [outlined] — vetor exportado do Figma (Web Components / Modal, node 40000490:59311) */
+function CloseIcon() {
+  return (
+    <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M6.275 18.525L5.475 17.725L11.2 12L5.475 6.275L6.275 5.475L12 11.2L17.725 5.475L18.525 6.275L12.8 12L18.525 17.725L17.725 18.525L12 12.8L6.275 18.525Z"
+        fill="currentColor"
+      />
+    </svg>
+  );
+}
+
 export function Modal({
-  actions = [],
   children,
   className,
   closeLabel = 'Fechar modal',
@@ -35,17 +45,16 @@ export function Modal({
   footer,
   isOpen,
   onClose,
-  size = 'md',
-  subtitle,
+  size = 'small',
+  subheader,
   title,
 }: ModalProps) {
   const titleId = useId();
-  const subtitleId = useId();
+  const subheaderId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
   const previousActiveElementRef = useRef<HTMLElement | null>(null);
   const mouseDownStartedOnOverlayRef = useRef(false);
-  const renderedActions = actions.slice(0, 3);
 
   useEffect(() => {
     if (!isOpen || typeof document === 'undefined') {
@@ -124,34 +133,7 @@ export function Modal({
     return null;
   }
 
-  const rootClassName = [
-    'ds-modal',
-    `ds-modal--size-${size}`,
-    subtitle ? 'ds-modal--with-subtitle' : undefined,
-    !children ? 'ds-modal--without-body' : undefined,
-    !footer && renderedActions.length === 0 ? 'ds-modal--without-footer' : undefined,
-    className,
-  ]
-    .filter(Boolean)
-    .join(' ');
-  const footerContent =
-    footer ??
-    (renderedActions.length > 0 ? (
-      <>
-        {renderedActions.map(({ disabled, label, onClick, variant = 'primary' }, index) => (
-          <Button
-            className={`ds-modal__footer-action ds-modal__footer-action--${variant}`}
-            disabled={disabled}
-            key={`${label}-${String(index)}`}
-            onClick={onClick}
-            size="medium"
-            variant={variant}
-          >
-            {label}
-          </Button>
-        ))}
-      </>
-    ) : null);
+  const rootClassName = ['ds-modal', `ds-modal--size-${size}`, className].filter(Boolean).join(' ');
 
   return (
     <div
@@ -170,50 +152,37 @@ export function Modal({
       }}
     >
       <div
-        aria-describedby={subtitle ? subtitleId : undefined}
+        aria-describedby={subheader ? subheaderId : undefined}
         aria-labelledby={titleId}
         aria-modal="true"
         className="ds-modal__dialog"
         ref={dialogRef}
         role="dialog"
       >
+        <button
+          aria-label={closeLabel}
+          className="ds-modal__close"
+          onClick={onClose}
+          ref={closeButtonRef}
+          type="button"
+        >
+          <CloseIcon />
+        </button>
+
         <header className="ds-modal__header">
-          <div className="ds-modal__heading">
-            <h2 className="ds-modal__title" id={titleId}>
-              {title}
-            </h2>
-            {subtitle ? (
-              <p className="ds-modal__subtitle" id={subtitleId}>
-                {subtitle}
-              </p>
-            ) : null}
-          </div>
-          <button
-            aria-label={closeLabel}
-            className="ds-modal__close"
-            onClick={onClose}
-            ref={closeButtonRef}
-            type="button"
-          >
-            <svg
-              aria-hidden="true"
-              className="ds-modal__close-icon"
-              fill="none"
-              viewBox="0 0 20 20"
-            >
-              <path
-                d="m5 5 10 10M15 5 5 15"
-                stroke="currentColor"
-                strokeLinecap="round"
-                strokeWidth="2"
-              />
-            </svg>
-          </button>
+          <h2 className="ds-modal__title" id={titleId}>
+            {title}
+          </h2>
+          {subheader ? (
+            <div className="ds-modal__subheader" id={subheaderId}>
+              {subheader}
+            </div>
+          ) : null}
         </header>
 
-        <div className="ds-modal__body">{children}</div>
+        {children ? <div className="ds-modal__body">{children}</div> : null}
 
-        {footerContent ? <footer className="ds-modal__footer">{footerContent}</footer> : null}
+        {footer ? <footer className="ds-modal__footer">{footer}</footer> : null}
       </div>
     </div>
   );

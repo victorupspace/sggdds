@@ -16,8 +16,8 @@ describe('Header', () => {
     render(<Header navigationItems={navigationItems} />);
 
     expect(screen.getByLabelText('SP.GOV.BR')).toBeInTheDocument();
-    expect(screen.getByLabelText('Portal de Servicos ao Cidadao')).toBeInTheDocument();
-    expect(screen.getByRole('navigation', { name: 'Navegacao principal' })).toBeInTheDocument();
+    expect(screen.getByLabelText('Portal de Serviços ao Cidadão')).toBeInTheDocument();
+    expect(screen.getByRole('navigation', { name: 'Navegação principal' })).toBeInTheDocument();
     expect(screen.getByRole('link', { name: 'Servicos' })).toHaveAttribute('href', '#servicos');
   });
 
@@ -25,7 +25,7 @@ describe('Header', () => {
     render(<Header navigationItems={navigationItems} primaryLogo={null} secondaryLogo={null} />);
 
     expect(screen.queryByLabelText('SP.GOV.BR')).not.toBeInTheDocument();
-    expect(screen.queryByLabelText('Portal de Servicos ao Cidadao')).not.toBeInTheDocument();
+    expect(screen.queryByLabelText('Portal de Serviços ao Cidadão')).not.toBeInTheDocument();
   });
 
   it('renders custom logo slots', () => {
@@ -70,11 +70,46 @@ describe('Header', () => {
       />,
     );
 
-    fireEvent.click(screen.getByRole('button', { name: 'Buscar' }));
+    fireEvent.click(screen.getAllByRole('button', { name: 'Buscar' })[0]);
     fireEvent.click(screen.getByRole('button', { name: 'Entrar' }));
 
     expect(onSearch).toHaveBeenCalledTimes(1);
     expect(onAccount).toHaveBeenCalledTimes(1);
+  });
+
+  it('renders the user menu when logged in and opens the panel', () => {
+    const onLogout = vi.fn();
+
+    render(
+      <Header
+        navigationItems={navigationItems}
+        user={{
+          menuItems: [
+            { href: '#conta', label: 'Minha conta' },
+            { label: 'Sair', onClick: onLogout },
+          ],
+          name: 'Nome',
+        }}
+      />,
+    );
+
+    const trigger = screen.getByRole('button', { name: 'Nome' });
+    expect(trigger).toHaveAttribute('aria-haspopup', 'menu');
+
+    fireEvent.click(trigger);
+
+    expect(screen.getByRole('menu')).toBeInTheDocument();
+    expect(screen.getByRole('menuitem', { name: 'Minha conta' })).toHaveAttribute('href', '#conta');
+
+    fireEvent.click(screen.getByRole('menuitem', { name: 'Sair' }));
+    expect(onLogout).toHaveBeenCalledTimes(1);
+  });
+
+  it('does not render the gov.br action when a user is logged in', () => {
+    render(<Header navigationItems={navigationItems} user={{ name: 'Nome' }} />);
+
+    expect(screen.queryByRole('link', { name: 'Entrar com o gov.br' })).not.toBeInTheDocument();
+    expect(screen.queryByRole('button', { name: 'Entrar com o gov.br' })).not.toBeInTheDocument();
   });
 
   it('renders nested navigation groups with Meganav', () => {

@@ -77,6 +77,8 @@ export type {
   HeaderAction,
   HeaderNavigationItem,
   HeaderProps,
+  HeaderUser,
+  HeaderUserMenuItem,
   HeaderUtilityItem,
 } from './components/Header';
 export { Hero } from './components/Hero';

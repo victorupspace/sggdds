@@ -3,5 +3,7 @@ export type {
   HeaderAction,
   HeaderNavigationItem,
   HeaderProps,
+  HeaderUser,
+  HeaderUserMenuItem,
   HeaderUtilityItem,
 } from './Header.types';

@@ -1,24 +1,29 @@
+/*
+ * Layout do Figma: Web Components / Header (node 94:14266).
+ * Cada propriedade referencia a mesma variable usada no Figma; os comentários
+ * indicam o nome original da variable na collection.
+ */
 .ds-header {
-  --header-surface: var(--ds-semantic-color-background-neutral-default);
-  --header-page-background: var(--ds-semantic-color-background-neutral-disabled);
-  --header-foreground: var(--ds-semantic-text-style-content-color-typography-secondary);
-  --header-muted: var(--ds-semantic-text-style-content-color-typography-tertiary);
-  --header-border: var(--ds-semantic-color-border-neutral-subtle);
-  --header-hover: var(--ds-primitive-color-neutral-alpha-4);
-  --header-option-hover: var(--ds-semantic-text-style-content-color-typography-secondary);
-  --header-focus: var(--ds-semantic-color-background-brand-primary-secondary-default);
-  --header-container-width: calc(var(--ds-primitive-spacing-128) * 10);
-  --header-brand-block-size: calc(var(--ds-primitive-spacing-40) + var(--ds-primitive-spacing-24));
-  --header-nav-block-size: var(--ds-primitive-spacing-64);
-  --header-inline-padding: var(--ds-primitive-spacing-40);
-  --header-nav-gap: var(--ds-primitive-spacing-32);
-  --header-action-gap: var(--ds-primitive-spacing-16);
-  --header-icon-size: var(--ds-primitive-spacing-20);
+  /* navbar/color/background e navbar/color/border */
+  --header-surface: var(--ds-component-navbar-color-background);
+  --header-border-color: var(--ds-component-navbar-color-border);
+  /* text-style/content color/typography/primary */
+  --header-text-color: var(--ds-semantic-text-style-content-color-typography-primary);
+  /* Ícones utilitários: fill #262828 dos vetores exportados — aproximação com
+     color/icons/neutral/default-hover (#292929) */
+  --header-icon-color: var(--ds-semantic-color-icons-neutral-default-hover);
+  /* icon-button/color/background/ghost/hover (hover dos ícones) */
+  --header-icon-hover-background: var(--ds-component-icon-button-color-background-ghost-hover);
+  /* Barras de 80px do Figma (os tokens navbar/size trazem 56/48 do design
+     antigo — divergência anotada) */
+  --header-bar-height: 80px;
+  --header-focus-ring: var(--ds-component-focus-ring-color-ring);
 
-  display: block;
+  display: flex;
   box-sizing: border-box;
+  flex-direction: column;
   inline-size: 100%;
-  color: var(--header-foreground);
+  background: var(--header-surface);
   font-family:
     var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
 }
@@ -29,143 +34,40 @@
   box-sizing: border-box;
 }
 
-.ds-header__container {
-  inline-size: min(100%, var(--header-container-width));
-  margin-inline: auto;
-  background: var(--header-surface);
-}
-
-.ds-header__brand-row,
-.ds-header__navigation-row {
+/* Top content: logos SP.GOV.BR e Portal de serviços */
+.ds-header__top {
   display: flex;
-  min-inline-size: 0;
+  block-size: var(--header-bar-height);
   align-items: center;
-  padding-inline: var(--header-inline-padding);
-}
-
-.ds-header__brand-row {
-  min-block-size: var(--header-brand-block-size);
   justify-content: space-between;
-  gap: var(--ds-primitive-spacing-24);
-  border-block-end: var(--ds-primitive-border-width-border-sm) solid var(--header-border);
+  /* Component sizing/32 (padding-x) e spacing/20 (padding-y) */
+  padding: var(--ds-primitive-spacing-20) var(--ds-component-component-sizing-32);
+  border-block-end: var(--ds-primitive-border-width-border-sm) solid var(--header-border-color);
 }
 
-.ds-header__navigation-row {
-  min-block-size: var(--header-nav-block-size);
-  justify-content: space-between;
-  gap: var(--ds-primitive-spacing-24);
-}
-
-.ds-header__brand-slot {
+.ds-header__brand {
   display: inline-flex;
-  min-inline-size: 0;
   align-items: center;
-  color: inherit;
   text-decoration: none;
 }
 
-.ds-header__brand-slot:focus-visible,
-.ds-header__nav-link:focus-visible,
-.ds-header__nav-panel-link:focus-visible,
-.ds-header__utility-action:focus-visible,
-.ds-header__menu-button:focus-visible {
-  outline: var(--ds-primitive-border-width-border-md) solid var(--header-focus);
-  outline-offset: var(--ds-primitive-spacing-4);
-}
-
-.ds-header__brand-slot--primary {
-  justify-content: flex-start;
-}
-
-.ds-header__brand-slot--secondary {
-  justify-content: flex-end;
-  margin-inline-start: auto;
-}
-
-.ds-header-logo {
-  display: inline-flex;
-  min-inline-size: 0;
-  gap: var(--ds-primitive-spacing-8);
-  align-items: center;
-  color: var(--header-foreground);
-  font-size: var(--ds-primitive-typography-font-size-22);
-  font-weight: var(--ds-primitive-typography-font-weight-extra-bold);
-  line-height: var(--ds-primitive-typography-line-height-28);
-  white-space: nowrap;
-}
-
-.ds-header-logo__mark {
-  position: relative;
-  display: inline-flex;
-  flex: 0 0 auto;
-  inline-size: var(--ds-primitive-spacing-32);
-  block-size: var(--ds-primitive-spacing-20);
-}
-
-.ds-header-logo__mark > span:first-child {
-  inline-size: var(--ds-primitive-spacing-16);
-  block-size: var(--ds-primitive-spacing-16);
-  align-self: end;
-  border-radius: var(--ds-primitive-border-radius-radius-sm);
-  background: var(--header-foreground);
-}
-
-.ds-header-logo__mark > span:last-child {
-  inline-size: var(--ds-primitive-spacing-16);
-  block-size: var(--ds-primitive-spacing-20);
-  border-radius: var(--ds-primitive-border-radius-radius-sm)
-    var(--ds-primitive-border-radius-radius-lg) var(--ds-primitive-border-radius-radius-sm)
-    var(--ds-primitive-border-radius-radius-sm);
-  background: var(--ds-semantic-color-background-brand-primary-prominent);
-}
-
-.ds-header-logo__text {
-  min-inline-size: 0;
-  overflow-wrap: anywhere;
-}
-
-.ds-header-logo__image {
+.ds-header__logo-image {
   display: block;
-  inline-size: 140px;
-  max-inline-size: 100%;
-  block-size: 20px;
 }
 
-.ds-header-portal-brand {
-  display: grid;
-  min-inline-size: 0;
-  color: var(--header-foreground);
-  font-size: var(--ds-primitive-typography-font-size-16);
-  font-weight: var(--ds-primitive-typography-font-weight-regular);
-  line-height: var(--ds-primitive-typography-line-height-22);
-  text-align: start;
-}
-
-.ds-header-portal-brand strong {
-  font-weight: var(--ds-primitive-typography-font-weight-bold);
-}
-
-.ds-header__menu-button {
+.ds-header__mobile-actions {
   display: none;
-  flex: 0 0 auto;
-  place-items: center;
-  inline-size: var(--ds-primitive-spacing-48);
-  block-size: var(--ds-primitive-spacing-48);
-  padding: var(--ds-primitive-spacing-0);
-  border: 0;
-  border-radius: var(--ds-primitive-border-radius-radius-full);
-  background: transparent;
-  color: var(--header-foreground);
-  cursor: pointer;
 }
 
-.ds-header__menu-button:hover {
-  background: var(--header-hover);
-}
-
-.ds-header__menu-button > svg {
-  inline-size: var(--ds-primitive-spacing-24);
-  block-size: var(--ds-primitive-spacing-24);
+/* Bottom content: navegação + ações */
+.ds-header__bottom {
+  display: flex;
+  block-size: var(--header-bar-height);
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--ds-primitive-spacing-24);
+  /* spacing/32 (padding-x) e spacing/16 (padding-y) */
+  padding: var(--ds-primitive-spacing-16) var(--ds-primitive-spacing-32);
 }
 
 .ds-header__nav {
@@ -174,144 +76,38 @@
 
 .ds-header__nav-list {
   display: flex;
-  min-inline-size: 0;
-  padding: 0;
-  margin: 0;
-  gap: var(--header-nav-gap);
+  /* spacing/32 entre os Nav Items */
+  gap: var(--ds-primitive-spacing-32);
   align-items: center;
+  padding: var(--ds-primitive-spacing-0);
+  margin: var(--ds-primitive-spacing-0);
   list-style: none;
-}
-
-.ds-header__nav-item {
-  position: relative;
-  min-inline-size: 0;
-}
-
-.ds-header .ds-header__meganav {
-  --meganav-drawer-width: calc(var(--ds-primitive-spacing-128) * 3);
-  --meganav-drawer-padding: var(--ds-primitive-spacing-8);
-  --meganav-foreground: var(--header-foreground);
-  --meganav-foreground-strong: var(--header-foreground);
-  --meganav-icon: var(--header-foreground);
-  --meganav-muted: var(--header-muted);
-  --meganav-surface: var(--header-surface);
-  --meganav-surface-hover: var(--header-hover);
-  --meganav-border: var(--header-border);
-  --meganav-focus-ring: var(--header-focus);
-  --meganav-shadow: var(--ds-semantic-shadow-floating);
-
-  display: inline-flex;
-  block-size: var(--ds-primitive-spacing-40);
-  align-items: center;
 }
 
 .ds-header__nav-link {
   display: inline-flex;
-  min-block-size: var(--ds-primitive-spacing-40);
-  min-inline-size: 0;
+  block-size: 48px;
+  /* spacing/8 entre label e chevron */
   gap: var(--ds-primitive-spacing-8);
   align-items: center;
-  border: 0;
-  border-radius: var(--ds-primitive-border-radius-radius-sm);
-  background: transparent;
-  color: var(--header-foreground);
-  cursor: pointer;
-  font: inherit;
-  font-size: var(--ds-primitive-typography-font-size-16);
-  font-weight: var(--ds-primitive-typography-font-weight-medium);
-  line-height: var(--ds-primitive-typography-line-height-24);
+  color: var(--header-text-color);
+  /* Nav Item do Figma em Inter Regular 14 — normalizado para Plus Jakarta Sans
+     pela política de fonte única do Design System */
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: normal;
   text-decoration: none;
   white-space: nowrap;
 }
 
-.ds-header .ds-header__meganav .ds-meganav__trigger {
-  min-block-size: var(--ds-primitive-spacing-40);
-  padding: var(--ds-primitive-spacing-0);
-  gap: var(--ds-primitive-spacing-8);
-  align-items: center;
-  color: var(--header-foreground);
-  font-size: var(--ds-primitive-typography-font-size-16);
-  font-weight: var(--ds-primitive-typography-font-weight-medium);
-  line-height: var(--ds-primitive-typography-line-height-24);
-  white-space: nowrap;
-}
-
-.ds-header .ds-header__meganav .ds-meganav__trigger:hover,
-.ds-header .ds-header__meganav.ds-meganav--open .ds-meganav__trigger {
-  color: var(--header-option-hover);
-}
-
-.ds-header .ds-header__meganav .ds-meganav__trigger-label {
-  display: inline-flex;
-  align-items: center;
-  line-height: var(--ds-primitive-typography-line-height-24);
-}
-
-.ds-header .ds-header__meganav .ds-meganav__trigger-caret {
-  inline-size: var(--ds-primitive-spacing-16);
-  block-size: var(--ds-primitive-spacing-16);
-  font-size: var(--ds-primitive-typography-font-size-18);
-}
-
-.ds-header .ds-header__meganav .ds-header__meganav-drawer {
-  inset-block-start: calc(100% + var(--ds-primitive-spacing-8));
-  inline-size: min(var(--meganav-drawer-width), calc(100vw - var(--ds-primitive-spacing-32)));
-  min-inline-size: calc(var(--ds-primitive-spacing-128) * 2);
-  padding: var(--ds-primitive-spacing-8);
-  border-radius: var(--ds-primitive-border-radius-radius-md);
-}
-
-.ds-header .ds-header__meganav-drawer .ds-meganav__drawer-body {
-  gap: var(--ds-primitive-spacing-0);
-}
-
-.ds-header .ds-header__meganav-drawer .ds-meganav__list {
-  gap: var(--ds-primitive-spacing-2);
-}
-
-.ds-header .ds-header__meganav-drawer .ds-meganav__item-link {
-  grid-template-columns: var(--ds-primitive-spacing-20) minmax(0, 1fr);
-  min-block-size: var(--ds-primitive-spacing-40);
-  padding: var(--ds-primitive-spacing-10) var(--ds-primitive-spacing-12);
-  gap: var(--ds-primitive-spacing-8);
-  align-items: center;
-}
-
-.ds-header .ds-header__meganav-drawer .ds-meganav__icon {
-  inline-size: var(--ds-primitive-spacing-20);
-  block-size: var(--ds-primitive-spacing-20);
-  font-size: var(--ds-primitive-spacing-20);
-}
-
-.ds-header .ds-header__meganav-drawer .ds-meganav__item-copy {
-  gap: var(--ds-primitive-spacing-2);
-}
-
-.ds-header .ds-header__meganav-drawer .ds-meganav__item-label {
-  font-size: var(--ds-primitive-typography-font-size-14);
-  font-weight: var(--ds-primitive-typography-font-weight-semi-bold);
-  line-height: var(--ds-primitive-typography-line-height-20);
-}
-
-.ds-header .ds-header__meganav-drawer .ds-meganav__item-description {
-  font-size: var(--ds-primitive-typography-font-size-14);
-  line-height: var(--ds-primitive-typography-line-height-20);
-}
-
-.ds-header__nav-link:hover {
-  color: var(--header-option-hover);
-}
-
-.ds-header__nav-link[aria-current='page'] {
-  color: var(--header-foreground);
-}
-
 .ds-header__nav-icon {
   display: inline-grid;
-  flex: 0 0 auto;
+  flex: none;
   place-items: center;
-  inline-size: var(--ds-primitive-spacing-16);
-  block-size: var(--ds-primitive-spacing-16);
+  /* keyboard_arrow_down de 18px */
+  inline-size: 18px;
+  block-size: 18px;
+  color: var(--header-text-color);
 }
 
 .ds-header__nav-icon > svg {
@@ -319,91 +115,46 @@
   block-size: 100%;
 }
 
-.ds-header__nav-disclosure {
-  position: relative;
-}
-
-.ds-header__nav-disclosure > summary {
-  list-style: none;
-}
-
-.ds-header__nav-disclosure > summary::-webkit-details-marker {
-  display: none;
-}
-
-.ds-header__nav-disclosure[open] .ds-header__nav-icon {
-  transform: rotate(180deg);
-}
-
-.ds-header__nav-panel {
-  position: absolute;
-  z-index: 10;
-  inset-block-start: calc(100% + var(--ds-primitive-spacing-8));
-  inset-inline-start: 0;
-  display: grid;
-  min-inline-size: calc(var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-64));
-  padding: var(--ds-primitive-spacing-8);
-  border: var(--ds-primitive-border-width-border-sm) solid var(--header-border);
-  border-radius: var(--ds-primitive-border-radius-radius-md);
-  background: var(--header-surface);
-  box-shadow: var(--ds-semantic-shadow-floating);
-}
-
-.ds-header__nav-panel-link {
-  display: block;
-  padding: var(--ds-primitive-spacing-10) var(--ds-primitive-spacing-12);
-  border-radius: var(--ds-primitive-border-radius-radius-sm);
-  color: var(--header-foreground);
-  font-size: var(--ds-primitive-typography-font-size-14);
-  font-weight: var(--ds-primitive-typography-font-weight-medium);
-  line-height: var(--ds-primitive-typography-line-height-20);
-  text-decoration: none;
-}
-
-.ds-header__nav-panel-link:hover,
-.ds-header__nav-panel-link[aria-current='page'] {
-  background: var(--header-hover);
-  color: var(--header-option-hover);
-}
-
 .ds-header__actions {
-  display: inline-flex;
-  flex: 0 0 auto;
-  min-inline-size: 0;
-  gap: var(--header-action-gap);
+  display: flex;
+  /* spacing/24 entre ícones e conta */
+  gap: var(--ds-primitive-spacing-24);
   align-items: center;
-  justify-content: flex-end;
 }
 
 .ds-header__utility-list {
-  display: inline-flex;
-  gap: var(--ds-primitive-spacing-8);
+  display: flex;
+  /* spacing/4 entre os ícones */
+  gap: var(--ds-primitive-spacing-4);
   align-items: center;
 }
 
 .ds-header__utility-action {
   display: inline-grid;
   place-items: center;
-  inline-size: var(--ds-primitive-spacing-32);
-  block-size: var(--ds-primitive-spacing-32);
+  /* Botões de ícone de 40px com radius-full, como no Figma */
+  inline-size: var(--ds-component-component-sizing-40);
+  block-size: var(--ds-component-component-sizing-40);
   padding: var(--ds-primitive-spacing-0);
-  border: 0;
+  border: var(--ds-primitive-border-width-border-none);
   border-radius: var(--ds-primitive-border-radius-radius-full);
-  background: transparent;
-  color: var(--header-foreground);
+  background: none;
+  color: var(--header-icon-color);
   cursor: pointer;
-  text-decoration: none;
+  transition: background-color 120ms ease;
 }
 
-.ds-header__utility-action:hover {
-  background: var(--header-hover);
+@media (hover: hover) {
+  .ds-header__utility-action:hover {
+    background: var(--header-icon-hover-background);
+  }
 }
 
 .ds-header__utility-icon {
   display: inline-grid;
   place-items: center;
-  inline-size: var(--header-icon-size);
-  block-size: var(--header-icon-size);
+  inline-size: var(--ds-component-component-sizing-24);
+  block-size: var(--ds-component-component-sizing-24);
 }
 
 .ds-header__utility-icon > svg {
@@ -411,161 +162,212 @@
   block-size: 100%;
 }
 
-.ds-header__utility-label {
-  position: absolute;
-  inline-size: 1px;
-  block-size: 1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
+/* User Menu (account=Logged in): avatar + nome + seta */
+.ds-header__user-menu {
+  display: inline-flex;
+  block-size: 48px;
+  /* spacing/8 (gap) e spacing/4 (padding-x) */
+  gap: var(--ds-primitive-spacing-8);
+  align-items: center;
+  padding: var(--ds-primitive-spacing-0) var(--ds-primitive-spacing-4);
+  border: var(--ds-primitive-border-width-border-none);
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  background: none;
+  color: var(--header-text-color);
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.ds-header__user-avatar {
+  display: inline-flex;
+  flex: none;
+}
+
+.ds-header__user-name {
+  /* Nome em Inter Regular 16 no Figma — normalizado para Plus Jakarta Sans */
+  font-size: var(--ds-primitive-typography-font-size-16);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: normal;
   white-space: nowrap;
 }
 
-@media (max-width: 900px) {
-  .ds-header {
-    --header-inline-padding: var(--ds-primitive-spacing-24);
-    --header-nav-gap: var(--ds-primitive-spacing-20);
-    --header-action-gap: var(--ds-primitive-spacing-12);
+.ds-header__user-arrow {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  inline-size: var(--ds-component-component-sizing-32);
+  block-size: var(--ds-component-component-sizing-32);
+  color: var(--header-icon-color);
+}
+
+.ds-header__user-arrow > svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+/* Painel do User Menu aberto (largura total, como no Figma) */
+.ds-header__user-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-primitive-spacing-4);
+  padding: var(--ds-primitive-spacing-16) var(--ds-component-component-sizing-32);
+  border-block-start: var(--ds-primitive-border-width-border-sm) solid var(--header-border-color);
+  background: var(--header-surface);
+  /* Elevação do painel no Figma (0 4px 8px, Effect Style) */
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 8%);
+}
+
+.ds-header__user-panel-item {
+  display: flex;
+  padding: var(--ds-primitive-spacing-8);
+  border: var(--ds-primitive-border-width-border-none);
+  border-radius: var(--ds-primitive-border-radius-radius-sm);
+  background: none;
+  /* Itens do menu em Medium 14 com #333 literal no Figma */
+  color: #333333;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  line-height: normal;
+  text-align: start;
+  text-decoration: none;
+}
+
+@media (hover: hover) {
+  .ds-header__user-panel-item:hover {
+    /* color/state/hover — variable nova; literal documentado */
+    background: rgb(0 0 0 / 4%);
   }
 }
 
-@media (max-width: 720px) {
-  .ds-header {
-    --header-inline-padding: var(--ds-component-navbar-spacing-padding-x);
-  }
+.ds-header__menu-button {
+  display: inline-grid;
+  place-items: center;
+  inline-size: var(--ds-component-component-sizing-32);
+  block-size: var(--ds-component-component-sizing-32);
+  padding: var(--ds-primitive-spacing-0);
+  border: var(--ds-primitive-border-width-border-none);
+  border-radius: var(--ds-primitive-border-radius-radius-sm);
+  background: var(--header-border-color);
+  color: var(--ds-semantic-color-icons-neutral-black);
+  cursor: pointer;
+}
 
-  .ds-header__container {
-    inline-size: 100%;
-  }
+.ds-header__menu-button > svg {
+  inline-size: 100%;
+  block-size: 100%;
+}
 
-  .ds-header__brand-row {
-    min-block-size: auto;
-    padding-block: var(--ds-primitive-spacing-16);
-  }
+.ds-header__brand:focus,
+.ds-header__nav-link:focus,
+.ds-header__utility-action:focus,
+.ds-header__user-menu:focus,
+.ds-header__user-panel-item:focus,
+.ds-header__menu-button:focus {
+  outline: var(--ds-primitive-border-width-border-none);
+}
 
-  .ds-header__brand-slot--primary {
-    max-inline-size: 58%;
-  }
+.ds-header__brand:focus-visible,
+.ds-header__nav-link:focus-visible,
+.ds-header__utility-action:focus-visible,
+.ds-header__user-menu:focus-visible,
+.ds-header__user-panel-item:focus-visible,
+.ds-header__menu-button:focus-visible {
+  outline: var(--ds-component-focus-ring-effect-width) solid var(--header-focus-ring);
+  outline-offset: var(--ds-component-focus-ring-effect-offset);
+}
 
-  .ds-header__brand-slot--secondary {
-    display: none;
-  }
-
-  .ds-header__menu-button {
-    display: inline-grid;
-    margin-inline-start: auto;
-  }
-
-  .ds-header__navigation-row {
-    display: none;
-    align-items: stretch;
-    min-block-size: 0;
-    padding-block: var(--ds-primitive-spacing-16);
-    border-block-end: var(--ds-primitive-border-width-border-sm) solid var(--header-border);
-  }
-
-  .ds-header--menu-open .ds-header__navigation-row {
-    display: grid;
-  }
-
-  .ds-header__nav-list,
-  .ds-header__actions,
-  .ds-header__utility-list {
-    align-items: stretch;
-  }
-
-  .ds-header__nav-list,
-  .ds-header__actions {
-    display: grid;
-    gap: var(--ds-primitive-spacing-12);
-  }
-
-  .ds-header__nav-item,
-  .ds-header__meganav {
-    inline-size: 100%;
-  }
-
-  .ds-header .ds-header__meganav {
-    block-size: auto;
-  }
-
-  .ds-header__nav-link {
-    inline-size: 100%;
-    min-block-size: var(--ds-primitive-spacing-48);
-    justify-content: space-between;
-    padding-inline: var(--ds-primitive-spacing-12);
-    background: var(--ds-primitive-color-neutral-alpha-2);
-    white-space: normal;
-  }
-
-  .ds-header .ds-header__meganav .ds-meganav__trigger {
-    min-block-size: var(--ds-primitive-spacing-48);
-    padding-inline: var(--ds-primitive-spacing-12);
-    justify-content: space-between;
-    background: var(--ds-primitive-color-neutral-alpha-2);
-    white-space: normal;
-  }
-
-  .ds-header .ds-header__meganav .ds-meganav__trigger:hover,
-  .ds-header .ds-header__meganav.ds-meganav--open .ds-meganav__trigger {
-    background: var(--header-hover);
-  }
-
-  .ds-header .ds-header__meganav .ds-header__meganav-drawer {
-    inset-block: 0;
-    inset-inline: auto 0;
-    inline-size: min(100%, calc(var(--ds-primitive-spacing-128) * 4));
-    min-inline-size: 0;
-    padding: var(--ds-primitive-spacing-0);
-    border-radius: var(--ds-primitive-border-radius-radius-none);
-  }
-
-  .ds-header__nav-panel {
-    position: static;
-    min-inline-size: 0;
-    margin-block-start: var(--ds-primitive-spacing-8);
-    box-shadow: none;
-  }
-
-  .ds-header__utility-list {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: var(--ds-primitive-spacing-8);
-  }
-
+@media (prefers-reduced-motion: reduce) {
   .ds-header__utility-action {
-    inline-size: 100%;
-    min-block-size: var(--ds-primitive-spacing-48);
-    border: var(--ds-primitive-border-width-border-sm) solid var(--header-border);
-    border-radius: var(--ds-primitive-border-radius-radius-md);
-  }
-
-  .ds-header__account-action.ds-button-gov {
-    inline-size: 100%;
+    transition: none;
   }
 }
 
-@media (max-width: 420px) {
-  .ds-header-logo {
-    font-size: var(--ds-primitive-typography-font-size-18);
-    line-height: var(--ds-primitive-typography-line-height-24);
+/*
+ * Mobile (variante type=Mobile do Figma, 360px): duas linhas no topo —
+ * logo SP.GOV.BR e, abaixo, o selo do Portal com as ações condensadas.
+ * A navegação inferior abre pelo botão de menu.
+ */
+@media (max-width: 768px) {
+  .ds-header__top {
+    display: grid;
+    block-size: auto;
+    /* Component sizing/16 (padding-x) e /8 (padding-y), gap spacing/20 */
+    padding: var(--ds-component-component-sizing-8) var(--ds-component-component-sizing-16);
+    gap: var(--ds-primitive-spacing-20);
+    grid-template-areas:
+      'primary primary'
+      'secondary actions';
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
   }
 
-  .ds-header-logo__mark {
-    inline-size: var(--ds-primitive-spacing-24);
-    block-size: var(--ds-primitive-spacing-16);
+  .ds-header__brand--primary {
+    grid-area: primary;
   }
 
-  .ds-header-logo__mark > span:first-child,
-  .ds-header-logo__mark > span:last-child {
-    inline-size: var(--ds-primitive-spacing-12);
-    block-size: var(--ds-primitive-spacing-16);
+  .ds-header__brand--secondary {
+    grid-area: secondary;
   }
 
-  .ds-header-logo__image {
-    inline-size: 140px;
+  /* Logos menores no mobile (112x16 e 123x29 no Figma) */
+  .ds-header__logo-spgov img {
+    inline-size: 112px;
+    block-size: 16px;
   }
 
-  .ds-header__brand-slot--primary {
-    max-inline-size: calc(100% - var(--ds-primitive-spacing-64));
+  .ds-header__logo-portal img {
+    inline-size: 123px;
+    block-size: 29px;
+  }
+
+  .ds-header__mobile-actions {
+    display: flex;
+    grid-area: actions;
+    gap: var(--ds-primitive-spacing-4);
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .ds-header__mobile-avatar {
+    display: inline-flex;
+    margin-inline: var(--ds-primitive-spacing-12);
+  }
+
+  .ds-header__bottom {
+    display: none;
+  }
+
+  .ds-header--menu-open .ds-header__bottom {
+    display: flex;
+    block-size: auto;
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--ds-primitive-spacing-16);
+    border-block-start: var(--ds-primitive-border-width-border-sm) solid var(--header-border-color);
+  }
+
+  .ds-header--menu-open .ds-header__nav-list {
+    flex-direction: column;
+    align-items: stretch;
+    gap: var(--ds-primitive-spacing-0);
+  }
+
+  .ds-header--menu-open .ds-header__nav-link {
+    justify-content: space-between;
+  }
+
+  .ds-header--menu-open .ds-header__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ds-header--menu-open .ds-header__utility-list {
+    display: none;
+  }
+
+  .ds-header__user-panel {
+    padding-inline: var(--ds-component-component-sizing-16);
   }
 }

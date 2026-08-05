@@ -1,17 +1,56 @@
+import { useState } from 'react';
+
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Chip } from './Chip';
+import type { ChipVariant } from './Chip.types';
 import './Chip.stories.css';
 
-function FilterIcon() {
+const variants: ChipVariant[] = [
+  'support',
+  'action',
+  'information',
+  'warning',
+  'danger',
+  'success',
+];
+
+const variantLabels: Record<ChipVariant, string> = {
+  action: 'Action',
+  danger: 'Danger',
+  information: 'Information',
+  success: 'Success',
+  support: 'Support',
+  warning: 'Warning',
+};
+
+function InteractiveExample() {
+  const [selectedVariants, setSelectedVariants] = useState<ChipVariant[]>(['information']);
+
   return (
-    <svg aria-hidden="true" fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
-      <path d="M8 3v10M3 8h10" stroke="currentColor" strokeLinecap="round" strokeWidth="1.7" />
-    </svg>
+    <div className="chip-story-row">
+      {variants.map((variant) => {
+        const isSelected = selectedVariants.includes(variant);
+
+        return (
+          <Chip
+            key={variant}
+            onClick={() => {
+              setSelectedVariants((current) =>
+                isSelected ? current.filter((item) => item !== variant) : [...current, variant],
+              );
+            }}
+            selected={isSelected}
+            showLeadingIcon
+            variant={variant}
+          >
+            {variantLabels[variant]}
+          </Chip>
+        );
+      })}
+    </div>
   );
 }
-
-const noop = () => undefined;
 
 const meta = {
   title: 'Web Components/Chip',
@@ -23,22 +62,19 @@ const meta = {
     docs: {
       description: {
         component: `
-Chip representa uma informacao discreta adicionada a um campo, como filtro, busca, entidade ou tag selecionada.
+O Chip reproduz o layout do Figma (Web Components / Chip): pill compacta com radius-sm, padding de 6px, gap de 4px, texto Label/Small (Plus Jakarta Sans Medium 12) e ícones opcionais de 16px nos slots Leading/Trailing (glifo help por padrão).
 
-Use quando a pessoa precisa ver os filtros aplicados e remover cada entrada rapidamente. Nao use Chip como badge de status passivo, CTA primario ou item de navegacao; nesses casos use Badge, Button ou Link.
+Tipos (propriedade type no Figma):
+- Support e Action: borda neutral/subtle com texto typography/tertiary; hover em background/neutral/default; selecionado usa color/state/selected com borda color/border/strong.
+- Information, Warning, Danger e Success: fundo subtle da cor com texto na tipografia correspondente, hover em subtle-hover e selecionado com borda de 1.5px na cor do texto (danger escurece o texto para color/typography/danger no hover/selected).
 
-Responsividade:
-Este componente foi desenvolvido com comportamento responsivo nativo, adaptando espacamentos, largura, quebra de conteudo e area de toque para diferentes tamanhos de tela. A responsividade e aplicada na implementacao do componente e nao depende de variacoes manuais no Storybook. Em telas pequenas, o chip medium aumenta a area de toque do botao de remocao e mantem o label truncado para evitar overflow horizontal.
+Estados: Default, Hover (apenas quando interativo, via onClick), Selected (borda de 1.5px) e Disabled (fundo neutral/inverse, borda neutral/disabled e texto typography/disabled).
 
-Tokens:
-Cores, superficie, borda, radius, espacamento, tipografia, foco e estados usam variaveis CSS geradas pelos tokens do Figma. O estado selecionado usa tokens de informacao/identidade disponiveis na base atual.
+Tokens: as variables novas do Figma ainda ausentes nas collections exportadas (sizing/chip/*, color/state/selected, color/border/strong, color/typography/success e color/typography/danger) usam literais documentados no CSS.
 
-Acessibilidade:
-- O botao de remocao esta sempre presente.
-- O removeLabel permite nome acessivel especifico por item.
-- Estado disabled usa disabled nativo no botao e aria-disabled no container.
-- O foco visivel fica no controle de remocao, que e a acao interativa real.
-- O componente nao depende apenas de cor; a acao de remover tem icone e nome acessivel.
+Responsividade: o Chip e inline-flex com max-width de 100%; labels maiores que o container sao truncados com reticencias.
+
+Acessibilidade: com onClick o Chip vira um botao com aria-pressed refletindo selected e foco visivel com o focus ring do DS; sem onClick e um elemento estatico. Icones sao decorativos (aria-hidden).
 `,
       },
     },
@@ -55,33 +91,36 @@ Acessibilidade:
     },
     disabled: {
       control: 'boolean',
-      description: 'Desabilita a remocao e aplica estado visual desabilitado.',
+      description: 'Estado Disabled do Figma.',
     },
-    icon: {
+    leadingIcon: {
       control: false,
-      description: 'Icone opcional antes do label.',
+      description: 'Substitui o icone inicial (slot Leading Icon).',
     },
-    onRemove: {
+    onClick: {
       control: false,
-      description: 'Callback chamado ao acionar o botao de remocao.',
-    },
-    removeLabel: {
-      control: 'text',
-      description: 'Nome acessivel do botao de remocao.',
+      description: 'Torna o Chip interativo (botao com aria-pressed).',
     },
     selected: {
       control: 'boolean',
-      description: 'Aplica destaque visual para filtro ativo/selecionado.',
+      description: 'Estado Selected do Figma (borda de 1.5px).',
     },
-    size: {
-      control: 'select',
-      description: 'Densidade do chip.',
-      options: ['small', 'medium'],
+    showLeadingIcon: {
+      control: 'boolean',
+      description: 'Exibe o icone padrao help antes do texto.',
+    },
+    showTrailingIcon: {
+      control: 'boolean',
+      description: 'Exibe o icone padrao help apos o texto.',
+    },
+    trailingIcon: {
+      control: false,
+      description: 'Substitui o icone final (slot Trailing Icon).',
     },
     variant: {
       control: 'select',
-      description: 'Tom visual do chip.',
-      options: ['neutral', 'brand'],
+      description: 'Tipo do Chip (type no Figma).',
+      options: variants,
     },
   },
   tags: ['autodocs'],
@@ -94,92 +133,88 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     children: 'Label',
-    icon: <FilterIcon />,
-    onRemove: noop,
-    size: 'small',
+    showLeadingIcon: true,
+    variant: 'support',
   },
-  render: (args) => (
-    <div className="chip-story-surface">
-      <div className="chip-story-panel">
-        <Chip {...args} />
-      </div>
-    </div>
-  ),
 };
 
-export const Sizes: Story = {
-  args: {
-    children: 'Label',
-    onRemove: noop,
-  },
-  render: () => (
-    <div className="chip-story-surface">
-      <div className="chip-story-panel">
-        <Chip icon={<FilterIcon />} onRemove={noop} size="small">
-          Label
-        </Chip>
-        <Chip icon={<FilterIcon />} onRemove={noop} size="medium">
-          Label
-        </Chip>
-      </div>
-    </div>
-  ),
-};
-
-export const States: Story = {
+export const AllVariants: Story = {
   args: {
     children: 'Label',
   },
   render: () => (
-    <div className="chip-story-surface">
-      <div className="chip-story-panel chip-story-stack">
-        <Chip icon={<FilterIcon />} onRemove={noop}>
-          Default
+    <div className="chip-story-row">
+      {variants.map((variant) => (
+        <Chip key={variant} showLeadingIcon variant={variant}>
+          {variantLabels[variant]}
         </Chip>
-        <Chip icon={<FilterIcon />} onRemove={noop} selected>
-          Selected
-        </Chip>
-        <Chip disabled icon={<FilterIcon />} onRemove={noop}>
-          Disabled
-        </Chip>
-      </div>
+      ))}
     </div>
   ),
 };
 
-export const LongContent: Story = {
+export const Selected: Story = {
   args: {
-    children: 'Filtro aplicado com um nome muito longo para validar truncamento',
-    icon: <FilterIcon />,
-    onRemove: noop,
-    removeLabel: 'Remover filtro aplicado com nome longo',
+    children: 'Label',
   },
-  render: (args) => (
-    <div className="chip-story-surface">
-      <div className="chip-story-panel">
-        <Chip {...args} />
-      </div>
+  render: () => (
+    <div className="chip-story-row">
+      {variants.map((variant) => (
+        <Chip key={variant} selected showLeadingIcon variant={variant}>
+          {variantLabels[variant]}
+        </Chip>
+      ))}
     </div>
   ),
 };
 
-export const MobileResponsive: Story = {
+export const Disabled: Story = {
   args: {
-    children: 'Filtro aplicado',
-    icon: <FilterIcon />,
-    onRemove: noop,
-    size: 'medium',
+    children: 'Label',
+    disabled: true,
+    showLeadingIcon: true,
+  },
+};
+
+export const Interactive: Story = {
+  args: {
+    children: 'Label',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Com onClick o Chip vira um botao com aria-pressed e ganha os estados de hover e selecao do Figma.',
+      },
+    },
+  },
+  render: () => <InteractiveExample />,
+};
+
+export const WithTrailingIcon: Story = {
+  args: {
+    children: 'Label',
+    showLeadingIcon: true,
+    showTrailingIcon: true,
+    variant: 'information',
+  },
+};
+
+export const LongLabel: Story = {
+  args: {
+    children: 'Filtro com texto maior para validar truncamento',
+    showLeadingIcon: true,
+    variant: 'support',
   },
   parameters: {
     componentCanvas: {
-      width: 320,
+      width: 200,
+    },
+    docs: {
+      description: {
+        story:
+          'Em containers estreitos o label e truncado com reticencias, preservando o formato do chip.',
+      },
     },
   },
-  render: (args) => (
-    <div className="chip-story-surface">
-      <div className="chip-story-panel">
-        <Chip {...args} />
-      </div>
-    </div>
-  ),
 };

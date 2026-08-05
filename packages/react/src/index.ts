@@ -39,7 +39,7 @@ export type {
 export { Checkbox } from './components/Checkbox';
 export type { CheckboxProps, CheckboxState } from './components/Checkbox';
 export { Chip } from './components/Chip';
-export type { ChipProps, ChipSize, ChipVariant } from './components/Chip';
+export type { ChipProps, ChipVariant } from './components/Chip';
 export { Dropdown } from './components/Dropdown';
 export type {
   DropdownOption,

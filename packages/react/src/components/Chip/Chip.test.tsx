@@ -4,54 +4,94 @@ import { describe, expect, it, vi } from 'vitest';
 import { Chip } from './Chip';
 
 describe('Chip', () => {
-  it('renders label and removal action', () => {
-    render(<Chip onRemove={vi.fn()}>Categoria</Chip>);
+  it('renders the label as a static element by default', () => {
+    render(<Chip>Categoria</Chip>);
 
     expect(screen.getByText('Categoria')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Remover Categoria' })).toBeInTheDocument();
+    expect(screen.queryByRole('button')).not.toBeInTheDocument();
   });
 
-  it('calls onRemove when the removal action is clicked', () => {
-    const onRemove = vi.fn();
+  it('applies the variant class', () => {
+    render(<Chip variant="danger">Alerta</Chip>);
 
-    render(<Chip onRemove={onRemove}>Filtro</Chip>);
-
-    fireEvent.click(screen.getByRole('button', { name: 'Remover Filtro' }));
-
-    expect(onRemove).toHaveBeenCalledTimes(1);
+    expect(screen.getByText('Alerta').closest('.ds-chip')).toHaveClass('ds-chip--variant-danger');
   });
 
-  it('uses a custom accessible removal label', () => {
+  it('renders a button with aria-pressed when interactive', () => {
+    const onClick = vi.fn();
+
     render(
-      <Chip onRemove={vi.fn()} removeLabel="Remover filtro de cidade">
-        Sao Paulo
+      <Chip onClick={onClick} selected>
+        Filtro
       </Chip>,
     );
 
-    expect(screen.getByRole('button', { name: 'Remover filtro de cidade' })).toBeInTheDocument();
+    const button = screen.getByRole('button', { name: 'Filtro' });
+    expect(button).toHaveAttribute('aria-pressed', 'true');
+
+    fireEvent.click(button);
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 
-  it('disables the removal action', () => {
+  it('does not fire onClick when disabled', () => {
+    const onClick = vi.fn();
+
     render(
-      <Chip disabled onRemove={vi.fn()}>
+      <Chip disabled onClick={onClick}>
         Bloqueado
       </Chip>,
     );
 
-    expect(screen.getByRole('button', { name: 'Remover Bloqueado' })).toBeDisabled();
-    expect(screen.getByText('Bloqueado').closest('.ds-chip')).toHaveAttribute(
+    fireEvent.click(screen.getByRole('button', { name: 'Bloqueado' }));
+
+    expect(onClick).not.toHaveBeenCalled();
+    expect(screen.getByRole('button', { name: 'Bloqueado' })).toBeDisabled();
+  });
+
+  it('marks the static disabled chip with aria-disabled', () => {
+    render(<Chip disabled>Estatico</Chip>);
+
+    expect(screen.getByText('Estatico').closest('.ds-chip')).toHaveAttribute(
       'aria-disabled',
       'true',
     );
   });
 
-  it('renders selected state class', () => {
+  it('renders the default leading icon with showLeadingIcon', () => {
+    const { container } = render(<Chip showLeadingIcon>Label</Chip>);
+
+    expect(container.querySelector('.ds-chip__icon svg')).toBeInTheDocument();
+  });
+
+  it('renders custom leading and trailing icons', () => {
     render(
-      <Chip onRemove={vi.fn()} selected>
-        Ativo
+      <Chip
+        leadingIcon={<svg data-testid="leading" />}
+        trailingIcon={<svg data-testid="trailing" />}
+      >
+        Label
       </Chip>,
     );
 
+    expect(screen.getByTestId('leading')).toBeInTheDocument();
+    expect(screen.getByTestId('trailing')).toBeInTheDocument();
+  });
+
+  it('keeps icons decorative', () => {
+    const { container } = render(<Chip showLeadingIcon>Label</Chip>);
+
+    expect(container.querySelector('.ds-chip__icon')).toHaveAttribute('aria-hidden', 'true');
+  });
+
+  it('applies the selected class', () => {
+    render(<Chip selected>Ativo</Chip>);
+
     expect(screen.getByText('Ativo').closest('.ds-chip')).toHaveClass('ds-chip--selected');
+  });
+
+  it('applies an additional className', () => {
+    render(<Chip className="custom-chip">Label</Chip>);
+
+    expect(screen.getByText('Label').closest('.ds-chip')).toHaveClass('custom-chip');
   });
 });

@@ -18,17 +18,23 @@ export const Overview: Story = {
       language="XML"
       code={`<br.gov.sggd.designsystem.components.DSChip
       app:dsLabel="Selecionado"
-      app:dsChipVariant="brand"
+      app:dsChipVariant="information"
       app:dsSelected="true" />`}
     >
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-        <Chip>Neutral</Chip>
-        <Chip variant="brand" selected>
+        <Chip showLeadingIcon>Support</Chip>
+        <Chip selected showLeadingIcon variant="information">
           Selecionado
         </Chip>
-        <Chip size="small">Pequeno</Chip>
-        <Chip onRemove={() => undefined}>Removível</Chip>
-        <Chip disabled>Desabilitado</Chip>
+        <Chip showLeadingIcon variant="success">
+          Success
+        </Chip>
+        <Chip showLeadingIcon variant="danger">
+          Danger
+        </Chip>
+        <Chip disabled showLeadingIcon>
+          Desabilitado
+        </Chip>
       </div>
     </Showcase>
   ),

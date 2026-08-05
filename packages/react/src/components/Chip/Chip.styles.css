@@ -1,97 +1,125 @@
+/*
+ * Layout do Figma: Web Components / Chip (node 40000114:11143).
+ * Cada propriedade referencia a mesma variable usada no Figma; os comentários
+ * indicam o nome original da variable na collection.
+ */
 .ds-chip {
-  --chip-background: var(--ds-component-tag-color-background-neutral);
-  --chip-background-hover: var(--ds-primitive-color-neutral-alpha-4);
-  --chip-background-active: var(--ds-primitive-color-neutral-alpha-8);
-  --chip-border: var(--ds-component-tag-color-border-neutral);
-  --chip-border-hover: var(--ds-semantic-color-border-neutral-default);
-  --chip-foreground: var(--ds-semantic-text-style-content-color-typography-secondary);
-  --chip-muted: var(--ds-semantic-text-style-content-color-typography-tertiary);
-  --chip-focus-ring: var(--ds-semantic-color-background-brand-primary-secondary-default);
-  --chip-disabled-background: var(--ds-semantic-color-background-neutral-disabled);
-  --chip-disabled-border: var(--ds-semantic-color-border-neutral-subtle);
-  --chip-disabled-foreground: var(--ds-semantic-text-style-content-color-typography-disabled);
-  --chip-selected-background: var(--ds-semantic-color-background-information-subtle);
-  --chip-selected-border: var(--ds-semantic-color-background-brand-primary-secondary-default);
-  --chip-selected-foreground: var(--ds-semantic-text-style-content-color-typography-secondary);
-  --chip-block-size: var(--ds-component-tag-size-height-md);
-  --chip-padding-start: var(--ds-primitive-spacing-8);
-  --chip-padding-end: var(--ds-primitive-spacing-4);
-  --chip-gap: var(--ds-primitive-spacing-8);
-  --chip-icon-size: var(--ds-component-tag-size-icon-size-md);
-  --chip-remove-size: var(--ds-primitive-spacing-24);
-  --chip-font-size: var(--ds-component-tag-typography-font-size-md);
-  --chip-line-height: var(--ds-primitive-typography-line-height-20);
+  /* sizing/chip/gap (4px), padding-x e padding-y (6px) — variables novas do
+     Figma, ausentes nas collections exportadas; valores literais documentados */
+  --chip-gap: 4px;
+  --chip-padding-x: 6px;
+  --chip-padding-y: 6px;
+  --chip-background: transparent;
+  /* color/background/neutral/default (hover de Support/Action) */
+  --chip-hover-background: var(--ds-semantic-color-background-neutral-default);
+  /* color/state/selected — variable nova; literal documentado */
+  --chip-selected-background: rgb(0 0 0 / 16%);
+  /* color/border/neutral/subtle */
+  --chip-border-color: var(--ds-semantic-color-border-neutral-subtle);
+  --chip-border-width: var(--ds-primitive-border-width-border-sm);
+  /* color/border/strong (#bdbdbd) — variable nova; literal documentado */
+  --chip-selected-border-color: #bdbdbd;
+  /* text-style/content color/typography/tertiary (Support/Action) */
+  --chip-text-color: var(--ds-semantic-text-style-content-color-typography-tertiary);
+  --chip-hover-text-color: var(--chip-text-color);
+  --chip-focus-ring: var(--ds-component-focus-ring-color-ring);
 
   display: inline-flex;
   box-sizing: border-box;
   max-inline-size: 100%;
   min-inline-size: 0;
-  min-block-size: var(--chip-block-size);
-  padding-inline: var(--chip-padding-start) var(--chip-padding-end);
   gap: var(--chip-gap);
   align-items: center;
-  border: var(--ds-component-tag-border-width) solid var(--chip-border);
+  justify-content: center;
+  padding: var(--chip-padding-y) var(--chip-padding-x);
+  border: var(--chip-border-width) solid var(--chip-border-color);
+  /* border/radius/radius-sm */
   border-radius: var(--ds-primitive-border-radius-radius-sm);
+  margin: var(--ds-primitive-spacing-0);
+  appearance: none;
   background: var(--chip-background);
-  color: var(--chip-foreground);
+  color: var(--chip-text-color);
   font-family:
     var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
-  font-size: var(--chip-font-size);
-  font-weight: var(--ds-primitive-typography-font-weight-bold);
-  line-height: var(--chip-line-height);
-  vertical-align: middle;
+  /* Label/Small: Plus Jakarta Sans Medium 12 */
+  font-size: var(--ds-primitive-typography-font-size-12);
+  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  line-height: normal;
+  text-align: center;
   transition:
-    background-color 160ms ease,
-    border-color 160ms ease,
-    color 160ms ease;
+    background-color 120ms ease,
+    border-color 120ms ease,
+    color 120ms ease;
 }
 
-.ds-chip *,
-.ds-chip *::before,
-.ds-chip *::after {
-  box-sizing: border-box;
+/* Support e Action compartilham o mesmo visual no Figma; as variantes
+   coloridas não têm borda nos estados Default/Hover. */
+.ds-chip--variant-information {
+  /* color/background/information/subtle e subtle-hover */
+  --chip-background: var(--ds-semantic-color-background-information-subtle);
+  --chip-hover-background: var(--ds-semantic-color-background-information-subtle-hover);
+  --chip-selected-background: var(--ds-semantic-color-background-information-subtle-hover);
+  /* text-style/content color/typography/information */
+  --chip-text-color: var(--ds-semantic-text-style-content-color-typography-information);
+  --chip-selected-border-color: var(--ds-semantic-text-style-content-color-typography-information);
+  --chip-border-width: 0px;
 }
 
-.ds-chip--size-small {
-  --chip-block-size: var(--ds-component-tag-size-height-sm);
-  --chip-padding-start: var(--ds-component-tag-spacing-padding-x-sm);
-  --chip-padding-end: var(--ds-primitive-spacing-2);
-  --chip-gap: var(--ds-primitive-spacing-6);
-  --chip-icon-size: var(--ds-component-tag-size-icon-size-sm);
-  --chip-remove-size: var(--ds-primitive-spacing-20);
-  --chip-font-size: var(--ds-component-tag-typography-font-size-sm);
-  --chip-line-height: var(--ds-primitive-typography-line-height-16);
+.ds-chip--variant-success {
+  /* color/background/success/subtle e subtle-hover (o arquivo Figma resolve
+     #e0f4e3/#b7e2be; a collection exportada traz #e3f5e1/#b2d0bb) */
+  --chip-background: var(--ds-semantic-color-background-success-subtle);
+  --chip-hover-background: var(--ds-semantic-color-background-success-subtle-hover);
+  --chip-selected-background: var(--ds-semantic-color-background-success-subtle-hover);
+  /* color/typography/success (#1a612a) — variable nova; literal documentado */
+  --chip-text-color: #1a612a;
+  --chip-selected-border-color: #1a612a;
+  --chip-border-width: 0px;
 }
 
-.ds-chip--size-medium {
-  --chip-block-size: var(--ds-component-tag-size-height-md);
+.ds-chip--variant-warning {
+  /* color/background/warning/subtle e subtle-hover (o arquivo Figma resolve
+     #fff5c2/#ffdba6; a collection exportada traz #fff9dd/#ffdaa6) */
+  --chip-background: var(--ds-semantic-color-background-warning-subtle);
+  --chip-hover-background: var(--ds-semantic-color-background-warning-subtle-hover);
+  --chip-selected-background: var(--ds-semantic-color-background-warning-subtle-hover);
+  /* text-style/content color/typography/warning */
+  --chip-text-color: var(--ds-semantic-text-style-content-color-typography-warning);
+  --chip-selected-border-color: var(--ds-semantic-text-style-content-color-typography-warning);
+  --chip-border-width: 0px;
 }
 
-.ds-chip--variant-brand {
-  --chip-selected-background: var(--ds-semantic-color-background-information-subtle);
-  --chip-selected-border: var(--ds-semantic-color-background-brand-primary-secondary-default);
+.ds-chip--variant-danger {
+  /* color/background/danger/subtle e subtle-hover */
+  --chip-background: var(--ds-semantic-color-background-danger-subtle);
+  --chip-hover-background: var(--ds-semantic-color-background-danger-subtle-hover);
+  --chip-selected-background: var(--ds-semantic-color-background-danger-subtle-hover);
+  /* text-style/content color/typography/danger */
+  --chip-text-color: var(--ds-semantic-text-style-content-color-typography-danger);
+  /* color/typography/danger (#700000, hover/selected) — variable nova; literal */
+  --chip-hover-text-color: #700000;
+  --chip-selected-border-color: var(--ds-semantic-text-style-content-color-typography-danger);
+  --chip-border-width: 0px;
 }
 
-.ds-chip--selected {
-  border-color: var(--chip-selected-border);
-  background: var(--chip-selected-background);
-  color: var(--chip-selected-foreground);
+.ds-chip__icon {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  /* Ícones de 16px (literais no Figma; mesmo valor de Component sizing/16) */
+  inline-size: var(--ds-component-component-sizing-16);
+  block-size: var(--ds-component-component-sizing-16);
 }
 
-.ds-chip:not(.ds-chip--disabled):hover {
-  border-color: var(--chip-border-hover);
-  background: var(--chip-background-hover);
+.ds-chip__icon > svg {
+  inline-size: 100%;
+  block-size: 100%;
 }
 
-.ds-chip:not(.ds-chip--disabled):active {
-  background: var(--chip-background-active);
-}
-
-.ds-chip--selected:not(.ds-chip--disabled):hover {
-  border-color: var(--chip-selected-border);
-  background: var(--chip-selected-background);
-}
-
+/*
+ * Responsividade: o label usa nowrap no Figma; na web o excedente é truncado
+ * com reticências para não estourar containers estreitos.
+ */
 .ds-chip__label {
   min-inline-size: 0;
   overflow: hidden;
@@ -99,70 +127,47 @@
   white-space: nowrap;
 }
 
-.ds-chip__icon,
-.ds-chip__remove {
-  display: inline-grid;
-  flex: 0 0 auto;
-  place-items: center;
-}
-
-.ds-chip__icon {
-  inline-size: var(--chip-icon-size);
-  block-size: var(--chip-icon-size);
-  color: var(--chip-muted);
-}
-
-.ds-chip__icon > svg,
-.ds-chip__remove > svg {
-  inline-size: 100%;
-  block-size: 100%;
-}
-
-.ds-chip__remove {
-  inline-size: var(--chip-remove-size);
-  block-size: var(--chip-remove-size);
-  padding: var(--ds-primitive-spacing-0);
-  border: 0;
-  border-radius: var(--ds-primitive-border-radius-radius-sm);
-  background: transparent;
-  color: var(--chip-muted);
+.ds-chip--interactive {
   cursor: pointer;
 }
 
-.ds-chip__remove:hover:not(:disabled) {
-  background: var(--ds-primitive-color-neutral-alpha-8);
-  color: var(--chip-foreground);
+@media (hover: hover) {
+  .ds-chip--interactive:hover:not(:disabled) {
+    background: var(--chip-hover-background);
+    color: var(--chip-hover-text-color);
+  }
 }
 
-.ds-chip__remove:active:not(:disabled) {
-  background: var(--ds-primitive-color-neutral-alpha-12);
+.ds-chip--selected {
+  /* Selected: borda de 1.5px (literal no Figma) na cor da variante */
+  border: 1.5px solid var(--chip-selected-border-color);
+  background: var(--chip-selected-background);
+  color: var(--chip-hover-text-color);
 }
 
-.ds-chip__remove:focus-visible {
-  outline: var(--ds-primitive-border-width-border-md) solid var(--chip-focus-ring);
-  outline-offset: var(--ds-primitive-spacing-2);
+/* O component set não define foco; usa o focus ring padrão do DS */
+.ds-chip--interactive:focus {
+  outline: var(--ds-primitive-border-width-border-none);
+}
+
+.ds-chip--interactive:focus-visible {
+  outline: var(--ds-component-focus-ring-effect-width) solid var(--chip-focus-ring);
+  outline-offset: var(--ds-component-focus-ring-effect-offset);
 }
 
 .ds-chip--disabled {
-  border-color: var(--chip-disabled-border);
-  background: var(--chip-disabled-background);
-  color: var(--chip-disabled-foreground);
-}
-
-.ds-chip--disabled .ds-chip__icon,
-.ds-chip--disabled .ds-chip__remove {
-  color: var(--chip-disabled-foreground);
-}
-
-.ds-chip__remove:disabled {
+  /* Disabled (Support/Action no Figma): fundo color/background/neutral/inverse,
+     borda color/border/neutral/disabled e texto typography/disabled; aplicado
+     a todas as variantes por consistência */
+  border: var(--ds-primitive-border-width-border-sm) solid
+    var(--ds-semantic-color-border-neutral-disabled);
+  background: var(--ds-semantic-color-background-neutral-inverse);
+  color: var(--ds-semantic-text-style-content-color-typography-disabled);
   cursor: not-allowed;
 }
 
-@media (max-width: 420px) {
-  .ds-chip--size-medium {
-    --chip-block-size: var(--ds-primitive-spacing-40);
-    --chip-padding-start: var(--ds-primitive-spacing-12);
-    --chip-padding-end: var(--ds-primitive-spacing-6);
-    --chip-remove-size: calc(var(--ds-primitive-spacing-24) + var(--ds-primitive-spacing-4));
+@media (prefers-reduced-motion: reduce) {
+  .ds-chip {
+    transition: none;
   }
 }

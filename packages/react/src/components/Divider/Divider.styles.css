@@ -1,56 +1,83 @@
+/*
+ * Layout do Figma: Web Components / Divider (node 219:10474).
+ * Cada propriedade referencia a mesma variable usada no Figma; os comentários
+ * indicam o nome original da variable na collection.
+ */
 .ds-divider {
-  --divider-color: var(--ds-component-divider-color-background);
-  --divider-size: var(--ds-primitive-border-width-border-sm);
-  --divider-length: 100%;
+  /* color/neutral/grey-300 (estilo Default) */
+  --divider-color: var(--ds-primitive-color-neutral-grey-300);
+  /* color/neutral/grey-600 (label) */
+  --divider-label-color: var(--ds-primitive-color-neutral-grey-600);
+  /* Gap de 8px literal entre linhas e label no Figma */
+  --divider-gap: var(--ds-primitive-spacing-8);
 
-  display: block;
+  display: flex;
   box-sizing: border-box;
-  flex: 0 0 auto;
-  border: 0;
-  background: var(--divider-color);
+  gap: var(--divider-gap);
+  align-items: center;
+}
+
+.ds-divider--tone-darker {
+  /* color/neutral/grey-600 (estilo Darker) */
+  --divider-color: var(--ds-primitive-color-neutral-grey-600);
 }
 
 .ds-divider--tone-subtle {
-  --divider-color: var(--ds-semantic-color-border-neutral-subtle);
-}
-
-.ds-divider--tone-default {
-  --divider-color: var(--ds-component-divider-color-background);
-}
-
-.ds-divider--tone-strong {
-  --divider-color: var(--ds-semantic-text-style-content-color-typography-disabled);
-}
-
-.ds-divider--thickness-sm {
-  --divider-size: var(--ds-primitive-border-width-border-sm);
-}
-
-.ds-divider--thickness-md {
-  --divider-size: var(--ds-primitive-border-width-border-md);
-}
-
-.ds-divider--thickness-lg {
-  --divider-size: var(--ds-primitive-border-width-border-lg);
+  /* color/neutral/grey-100 (estilo Subtle) */
+  --divider-color: var(--ds-primitive-color-neutral-grey-100);
 }
 
 .ds-divider--orientation-horizontal {
-  inline-size: var(--divider-length);
+  inline-size: 100%;
   min-inline-size: 0;
-  block-size: var(--divider-size);
-  min-block-size: var(--divider-size);
 }
 
 .ds-divider--orientation-vertical {
-  inline-size: var(--divider-size);
-  min-inline-size: var(--divider-size);
-  block-size: var(--divider-length);
-  min-block-size: 100%;
+  flex-direction: column;
   align-self: stretch;
+  justify-content: center;
+  min-block-size: 100%;
 }
 
-@media (max-width: 420px) {
-  .ds-divider--orientation-horizontal {
-    inline-size: 100%;
-  }
+.ds-divider__line {
+  flex: 1;
+  background: var(--divider-color);
 }
+
+.ds-divider--orientation-horizontal .ds-divider__line {
+  block-size: 1px;
+  min-inline-size: 1px;
+  /* border/radius/radius-full (pontas arredondadas da linha horizontal) */
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+}
+
+.ds-divider--orientation-vertical .ds-divider__line {
+  inline-size: 1px;
+  min-block-size: 1px;
+}
+
+/* Segmento fixo de 100px antes do label no Figma (horizontal) */
+.ds-divider--orientation-horizontal .ds-divider__line--start {
+  flex: none;
+  inline-size: 100px;
+}
+
+.ds-divider__label {
+  flex: none;
+  color: var(--divider-label-color);
+  /* Label do Figma em Inter Regular 14 — normalizado para Plus Jakarta Sans
+     pela política de fonte única do Design System */
+  font-family:
+    var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
+  /* typography/font-size/sm (14) e typography/line-height/normal (20) */
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: var(--ds-primitive-typography-line-height-20);
+  text-align: center;
+  white-space: nowrap;
+}
+
+/*
+ * Responsividade: a linha horizontal ocupa 100% do container e a vertical
+ * estica no eixo do elemento pai; o node do Figma não define variante mobile.
+ */

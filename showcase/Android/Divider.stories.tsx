@@ -17,13 +17,12 @@ export const Overview: Story = {
       platform="Android"
       language="XML"
       code={`<br.gov.sggd.designsystem.components.DSDivider
-      app:dsThickness="md"
       app:dsTone="default" />`}
     >
       <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 20 }}>
-        <Divider thickness="sm" tone="subtle" />
-        <Divider thickness="md" tone="default" />
-        <Divider thickness="lg" tone="strong" />
+        <Divider tone="subtle" />
+        <Divider tone="default" />
+        <Divider tone="darker" />
       </div>
     </Showcase>
   ),

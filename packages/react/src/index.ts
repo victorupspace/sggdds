@@ -67,12 +67,7 @@ export type {
   DataTableTheme,
 } from './components/DataTable';
 export { Divider } from './components/Divider';
-export type {
-  DividerOrientation,
-  DividerProps,
-  DividerThickness,
-  DividerTone,
-} from './components/Divider';
+export type { DividerOrientation, DividerProps, DividerTone } from './components/Divider';
 export { Footer } from './components/Footer';
 export type { FooterLink, FooterProps, FooterSection, FooterSocialItem } from './components/Footer';
 export { FileUpload } from './components/FileUpload';

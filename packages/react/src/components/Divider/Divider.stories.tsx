@@ -13,20 +13,18 @@ const meta = {
     docs: {
       description: {
         component: `
-Divider cria separacao visual entre secoes, grupos ou elementos por meio de uma linha horizontal ou vertical.
+O Divider reproduz o layout do Figma (Web Components / Divider): linha de 1px com pontas arredondadas (radius-full na horizontal) e label central opcional.
 
-Use para estruturar conteudo, separar grupos de acoes, listas, areas de formulario e composicoes. Nao use Divider como decoracao sem relacao estrutural, nem para substituir espacamento quando a hierarquia ja estiver clara.
+Estilos (propriedade style no Figma):
+- default: color/neutral/grey-300.
+- darker: color/neutral/grey-600.
+- subtle: color/neutral/grey-100.
 
-Responsividade:
-Este componente foi desenvolvido com comportamento responsivo nativo. A orientacao horizontal ocupa 100% do container e a orientacao vertical estica no eixo do elemento pai, respeitando layouts flexiveis em mobile, tablet e desktop sem gerar overflow horizontal.
+Com label, a linha horizontal tem um segmento fixo de 100px antes do texto e o restante flexivel, como no Figma; na vertical os dois segmentos dividem o espaco. O label usa 14px com line-height 20 em color/neutral/grey-600 (o Figma usa Inter nesse texto; normalizado para Plus Jakarta Sans pela politica de fonte unica do DS).
 
-Tokens:
-Cores, espessuras e tamanhos usam variaveis CSS geradas pelos tokens do Figma. A espessura usa tokens de border width e os tons usam a escala neutral disponivel.
+Responsividade: a linha horizontal ocupa 100% do container e a vertical estica no eixo do elemento pai, sem overflow em nenhuma largura.
 
-Acessibilidade:
-- Por padrao, o divider e decorativo e usa aria-hidden.
-- Quando decorative=false, renderiza role="separator" e aria-orientation.
-- ariaLabel pode nomear separadores semanticos quando houver necessidade real para leitores de tela.
+Acessibilidade: por padrao o divider e decorativo (aria-hidden); com decorative=false ou com label renderiza role="separator" com aria-orientation, e o label permanece legivel por leitores de tela.
 `,
       },
     },
@@ -35,7 +33,7 @@ Acessibilidade:
   argTypes: {
     ariaLabel: {
       control: 'text',
-      description: 'Nome acessivel quando decorative=false.',
+      description: 'Nome acessivel quando o divider nao e decorativo.',
     },
     className: {
       control: 'text',
@@ -45,20 +43,19 @@ Acessibilidade:
       control: 'boolean',
       description: 'Define se o divider deve ser ignorado por tecnologias assistivas.',
     },
+    label: {
+      control: 'text',
+      description: 'Texto central opcional (showLabel/label no Figma).',
+    },
     orientation: {
       control: 'select',
       description: 'Orientacao da linha.',
       options: ['horizontal', 'vertical'],
     },
-    thickness: {
-      control: 'select',
-      description: 'Espessura baseada em tokens de borda.',
-      options: ['sm', 'md', 'lg'],
-    },
     tone: {
       control: 'select',
-      description: 'Intensidade visual do divisor.',
-      options: ['subtle', 'default', 'strong'],
+      description: 'Estilo da linha (style no Figma).',
+      options: ['default', 'darker', 'subtle'],
     },
   },
   tags: ['autodocs'],
@@ -69,11 +66,6 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: {
-    orientation: 'horizontal',
-    thickness: 'sm',
-    tone: 'default',
-  },
   render: (args) => (
     <div className="divider-story-surface">
       <div className="divider-story-panel">
@@ -84,72 +76,62 @@ export const Default: Story = {
 };
 
 export const Tones: Story = {
-  args: {},
   render: () => (
     <div className="divider-story-surface">
       <div className="divider-story-panel">
         <div className="divider-story-row">
-          <span>Subtle</span>
+          <span>default</span>
+          <Divider />
+        </div>
+        <div className="divider-story-row">
+          <span>darker</span>
+          <Divider tone="darker" />
+        </div>
+        <div className="divider-story-row">
+          <span>subtle</span>
           <Divider tone="subtle" />
-        </div>
-        <div className="divider-story-row">
-          <span>Default</span>
-          <Divider tone="default" />
-        </div>
-        <div className="divider-story-row">
-          <span>Strong</span>
-          <Divider tone="strong" />
         </div>
       </div>
     </div>
   ),
 };
 
-export const Thickness: Story = {
-  args: {},
-  render: () => (
+export const WithLabel: Story = {
+  args: {
+    label: 'Ou',
+  },
+  render: (args) => (
     <div className="divider-story-surface">
       <div className="divider-story-panel">
-        <Divider thickness="sm" />
-        <Divider thickness="md" />
-        <Divider thickness="lg" />
+        <Divider {...args} />
       </div>
     </div>
   ),
 };
 
 export const Vertical: Story = {
-  args: {
-    decorative: false,
-    orientation: 'vertical',
-  },
-  render: (args) => (
+  render: () => (
     <div className="divider-story-surface">
       <div className="divider-story-panel">
         <div className="divider-story-vertical">
-          <div className="divider-story-box">Grupo A</div>
-          <Divider {...args} ariaLabel="Separador entre grupos" />
-          <div className="divider-story-box">Grupo B</div>
+          <div className="divider-story-box">Conteudo A</div>
+          <Divider orientation="vertical" />
+          <div className="divider-story-box">Conteudo B</div>
         </div>
       </div>
     </div>
   ),
 };
 
-export const MobileResponsive: Story = {
-  args: {
-    orientation: 'horizontal',
-    tone: 'default',
-  },
-  parameters: {
-    componentCanvas: {
-      width: 320,
-    },
-  },
-  render: (args) => (
+export const VerticalWithLabel: Story = {
+  render: () => (
     <div className="divider-story-surface">
       <div className="divider-story-panel">
-        <Divider {...args} />
+        <div className="divider-story-vertical">
+          <div className="divider-story-box">Conteudo A</div>
+          <Divider label="Ou" orientation="vertical" />
+          <div className="divider-story-box">Conteudo B</div>
+        </div>
       </div>
     </div>
   ),

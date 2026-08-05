@@ -27,11 +27,18 @@ describe('Divider', () => {
     expect(divider).toHaveClass('ds-divider--orientation-vertical');
   });
 
-  it('applies tone and thickness classes', () => {
-    const { container } = render(<Divider thickness="lg" tone="strong" />);
-    const divider = container.querySelector('.ds-divider');
+  it('applies the tone class', () => {
+    const { container } = render(<Divider tone="darker" />);
 
-    expect(divider).toHaveClass('ds-divider--tone-strong');
-    expect(divider).toHaveClass('ds-divider--thickness-lg');
+    expect(container.querySelector('.ds-divider')).toHaveClass('ds-divider--tone-darker');
+  });
+
+  it('renders a readable label between two lines', () => {
+    const { container } = render(<Divider label="Ou" />);
+
+    expect(screen.getByText('Ou')).toBeInTheDocument();
+    expect(container.querySelectorAll('.ds-divider__line')).toHaveLength(2);
+    expect(container.querySelector('.ds-divider')).not.toHaveAttribute('aria-hidden');
+    expect(screen.getByRole('separator')).toBeInTheDocument();
   });
 });

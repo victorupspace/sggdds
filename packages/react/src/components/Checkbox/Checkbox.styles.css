@@ -1,38 +1,34 @@
+/*
+ * Layout do Figma: Web Components / Checkbox (node 4:4209).
+ * Cada propriedade referencia a mesma variable usada no Figma; os comentários
+ * indicam o nome original da variable na collection.
+ */
 .ds-checkbox {
-  --checkbox-control-size: var(--ds-primitive-spacing-24, 24px);
-  --checkbox-control-radius: var(--ds-component-checkbox-control-border-radius, 4px);
-  --checkbox-touch-size: 44px;
-  --checkbox-gap: var(--ds-primitive-spacing-4, 4px);
+  /* Component sizing/24 (controle) e border/radius/xs (4px, mesmo valor de radius-sm) */
+  --checkbox-control-size: var(--ds-component-component-sizing-24);
+  --checkbox-control-radius: var(--ds-primitive-border-radius-radius-sm);
+  /* Fills dos vetores exportados: color/pure-black (enabled e focused),
+     color/icons/neutral/default-hover (#292929, hover e pressed) e
+     color/icons/neutral/disabled (#a3a3a3, disabled) */
+  --checkbox-control-color: var(--ds-primitive-color-pure-black);
+  --checkbox-control-color-hover: var(--ds-semantic-color-icons-neutral-default-hover);
+  --checkbox-control-color-disabled: var(--ds-semantic-color-icons-neutral-disabled);
+  /* color/neutral-alpha/4% e /8% (ripple de hover e pressed) */
+  --checkbox-ripple-hover: var(--ds-primitive-color-neutral-alpha-4);
+  --checkbox-ripple-pressed: var(--ds-primitive-color-neutral-alpha-8);
+  /* text-style/content color/typography/secondary (label Label/Medium) */
   --checkbox-label-color: var(--ds-semantic-text-style-content-color-typography-secondary);
-  --checkbox-hint-color: var(--ds-semantic-text-style-content-color-typography-tertiary);
-  --checkbox-border-color: var(--ds-semantic-color-border-neutral-prominent);
-  --checkbox-background: var(--ds-semantic-color-background-neutral-default);
-  --checkbox-selected-background: var(--ds-semantic-color-background-neutral-soft-black);
-  --checkbox-selected-color: var(--ds-component-checkbox-control-color-icon-default);
-  --checkbox-hover-border-color: var(--ds-semantic-text-style-content-color-typography-secondary);
-  --checkbox-hover-background: var(--ds-primitive-color-neutral-alpha-4);
-  --checkbox-active-background: var(--ds-primitive-color-neutral-alpha-8);
-  --checkbox-disabled-background: var(--ds-semantic-color-background-neutral-disabled);
-  --checkbox-disabled-border-color: var(--ds-semantic-color-border-neutral-default);
-  --checkbox-disabled-indicator-color: var(
-    --ds-semantic-text-style-content-color-typography-disabled
-  );
-  --checkbox-disabled-label-color: var(--ds-component-checkbox-label-color-text-disabled);
-  --checkbox-disabled-hint-color: var(
-    --ds-semantic-text-style-content-color-typography-placeholder
-  );
-  --checkbox-focus-ring: var(--ds-component-focus-ring-color-ring);
+  /* color/pure-black (hint) */
+  --checkbox-hint-color: var(--ds-primitive-color-pure-black);
+  /* Component sizing/6 (gap entre controle e conteúdo) e /4 (label-hint) */
+  --checkbox-gap: var(--ds-component-component-sizing-6);
+  --checkbox-content-gap: var(--ds-component-component-sizing-4);
 
-  position: relative;
-  display: grid;
+  display: inline-flex;
   box-sizing: border-box;
-  inline-size: 100%;
   max-inline-size: 100%;
-  min-block-size: var(--checkbox-touch-size);
-  grid-template-columns: var(--checkbox-control-size) minmax(0, 1fr);
   gap: var(--checkbox-gap);
-  align-items: start;
-  padding-block: var(--ds-primitive-spacing-4, 4px);
+  align-items: center;
   color: var(--checkbox-label-color);
   cursor: pointer;
   font-family:
@@ -51,158 +47,154 @@
 }
 
 .ds-checkbox__control {
+  position: relative;
   display: inline-grid;
   box-sizing: border-box;
+  flex: none;
   place-items: center;
   inline-size: var(--checkbox-control-size);
   block-size: var(--checkbox-control-size);
-  border: var(--ds-component-checkbox-control-border-width, 2px) solid var(--checkbox-border-color);
   border-radius: var(--checkbox-control-radius);
-  background: var(--checkbox-background);
-  color: transparent;
+  color: var(--checkbox-control-color);
   transition:
-    border-color 160ms ease,
-    background-color 160ms ease,
-    box-shadow 160ms ease,
-    color 160ms ease;
+    color 120ms ease,
+    box-shadow 120ms ease;
 }
 
-.ds-checkbox__check,
-.ds-checkbox__mixed {
+/* Ripple de 32px (border/radius/full) atrás do controle, como no Figma */
+.ds-checkbox__control::before {
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: 50%;
+  inline-size: 32px;
+  block-size: 32px;
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  background: transparent;
+  content: '';
+  transform: translate(-50%, -50%);
+  transition: background-color 120ms ease;
+}
+
+.ds-checkbox__icon {
   grid-area: 1 / 1;
+  inline-size: 100%;
+  block-size: 100%;
   opacity: 0;
-  transform: scale(0.92);
-  transition:
-    opacity 120ms ease,
-    transform 120ms ease;
+  transition: opacity 120ms ease;
 }
 
-.ds-checkbox__check {
-  inline-size: 16px;
-  block-size: 16px;
+.ds-checkbox__icon--unchecked {
+  opacity: 1;
 }
 
-.ds-checkbox__mixed {
-  inline-size: 10px;
-  block-size: 1.5px;
-  border-radius: var(--ds-primitive-border-radius-radius-full, 999px);
-  background: currentColor;
+.ds-checkbox__input:checked + .ds-checkbox__control .ds-checkbox__icon--unchecked {
+  opacity: 0;
+}
+
+.ds-checkbox__input:checked + .ds-checkbox__control .ds-checkbox__icon--checked {
+  opacity: 1;
+}
+
+.ds-checkbox--indeterminate .ds-checkbox__control .ds-checkbox__icon--unchecked,
+.ds-checkbox--indeterminate
+  .ds-checkbox__input:checked
+  + .ds-checkbox__control
+  .ds-checkbox__icon--checked {
+  opacity: 0;
+}
+
+.ds-checkbox--indeterminate .ds-checkbox__control .ds-checkbox__icon--indeterminate {
+  opacity: 1;
+}
+
+@media (hover: hover) {
+  .ds-checkbox:not(.ds-checkbox--disabled, .ds-checkbox--readonly):hover .ds-checkbox__control {
+    color: var(--checkbox-control-color-hover);
+  }
+
+  .ds-checkbox:not(.ds-checkbox--disabled, .ds-checkbox--readonly):hover
+    .ds-checkbox__control::before {
+    background: var(--checkbox-ripple-hover);
+  }
+}
+
+.ds-checkbox:not(.ds-checkbox--disabled, .ds-checkbox--readonly):active .ds-checkbox__control {
+  color: var(--checkbox-control-color-hover);
+}
+
+.ds-checkbox:not(.ds-checkbox--disabled, .ds-checkbox--readonly):active
+  .ds-checkbox__control::before {
+  background: var(--checkbox-ripple-pressed);
+}
+
+/* Focus ring do Figma: anel duplo branco (84%) + #2c84d0 — cor sem variable
+   exposta na collection exportada, valor literal documentado */
+.ds-checkbox__input:focus-visible + .ds-checkbox__control {
+  box-shadow:
+    0 0 0 2px rgb(255 255 255 / 84%),
+    0 0 0 4px #2c84d0;
 }
 
 .ds-checkbox__content {
-  display: grid;
+  display: flex;
   min-inline-size: 0;
-  gap: var(--ds-primitive-spacing-4, 4px);
+  flex-direction: column;
+  gap: var(--checkbox-content-gap);
+  justify-content: center;
 }
 
 .ds-checkbox__label {
   overflow-wrap: anywhere;
   color: var(--checkbox-label-color);
-  font-size: var(--ds-primitive-typography-font-size-14, 14px);
-  font-weight: var(--ds-primitive-typography-font-weight-regular, 400);
-  line-height: var(--ds-primitive-typography-line-height-24, 24px);
+  /* Label/Medium: Plus Jakarta Sans Medium 14 */
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  line-height: normal;
 }
 
 .ds-checkbox__required {
-  margin-inline-start: var(--ds-primitive-spacing-2, 2px);
+  margin-inline-start: var(--ds-primitive-spacing-2);
 }
 
 .ds-checkbox__hint {
   overflow-wrap: anywhere;
   color: var(--checkbox-hint-color);
-  font-size: var(--ds-primitive-typography-font-size-10, 10px);
-  font-weight: var(--ds-primitive-typography-font-weight-regular, 400);
-  line-height: 100%;
-}
-
-.ds-checkbox:not(.ds-checkbox--disabled):hover .ds-checkbox__control {
-  border-color: var(--checkbox-hover-border-color);
-  background:
-    linear-gradient(var(--checkbox-hover-background), var(--checkbox-hover-background)),
-    var(--checkbox-background);
-}
-
-.ds-checkbox:not(.ds-checkbox--disabled):active .ds-checkbox__control {
-  background:
-    linear-gradient(var(--checkbox-active-background), var(--checkbox-active-background)),
-    var(--checkbox-background);
-}
-
-.ds-checkbox:not(.ds-checkbox--disabled):hover .ds-checkbox__input:checked + .ds-checkbox__control,
-.ds-checkbox:not(.ds-checkbox--disabled):hover.ds-checkbox--indeterminate .ds-checkbox__control {
-  border-color: var(--checkbox-selected-background);
-  background:
-    linear-gradient(var(--checkbox-hover-background), var(--checkbox-hover-background)),
-    var(--checkbox-selected-background);
-}
-
-.ds-checkbox:not(.ds-checkbox--disabled):active .ds-checkbox__input:checked + .ds-checkbox__control,
-.ds-checkbox:not(.ds-checkbox--disabled):active.ds-checkbox--indeterminate .ds-checkbox__control {
-  background:
-    linear-gradient(var(--checkbox-active-background), var(--checkbox-active-background)),
-    var(--checkbox-selected-background);
-}
-
-.ds-checkbox__input:checked + .ds-checkbox__control,
-.ds-checkbox--indeterminate .ds-checkbox__control {
-  border-color: var(--checkbox-selected-background);
-  background: var(--checkbox-selected-background);
-  color: var(--checkbox-selected-color);
-}
-
-.ds-checkbox__input:checked + .ds-checkbox__control .ds-checkbox__check {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.ds-checkbox--indeterminate .ds-checkbox__control .ds-checkbox__check {
-  opacity: 0;
-}
-
-.ds-checkbox--indeterminate .ds-checkbox__control .ds-checkbox__mixed {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.ds-checkbox__input:focus-visible + .ds-checkbox__control {
-  outline: var(--ds-component-checkbox-control-effect-focus-ring-width, 2px) solid
-    var(--checkbox-focus-ring);
-  outline-offset: var(--ds-primitive-spacing-4, 4px);
+  /* Plus Jakarta Sans Regular + Font-size/10 */
+  font-size: var(--ds-primitive-typography-font-size-10);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: normal;
 }
 
 .ds-checkbox--disabled {
-  --checkbox-label-color: var(--checkbox-disabled-label-color);
-  --checkbox-hint-color: var(--checkbox-disabled-hint-color);
+  /* Disabled no Figma: label em text-style/content color/typography/disabled
+     e hint em color/border/brand/disabled */
+  --checkbox-label-color: var(--ds-semantic-text-style-content-color-typography-disabled);
+  --checkbox-hint-color: var(--ds-semantic-color-border-brand-disabled);
+  --checkbox-control-color: var(--checkbox-control-color-disabled);
+
   cursor: not-allowed;
 }
 
-.ds-checkbox--disabled .ds-checkbox__control {
-  border-color: var(--checkbox-disabled-border-color);
-  background: var(--checkbox-disabled-background);
-  color: var(--checkbox-disabled-indicator-color);
+.ds-checkbox--readonly {
+  /* Ready Only no Figma: label em typography/primary e hint em
+     color/border/brand/disabled, sem estados de hover/pressed */
+  --checkbox-label-color: var(--ds-semantic-text-style-content-color-typography-primary);
+  --checkbox-hint-color: var(--ds-semantic-color-border-brand-disabled);
+
+  cursor: default;
 }
 
-.ds-checkbox--disabled .ds-checkbox__input:checked + .ds-checkbox__control,
-.ds-checkbox--disabled.ds-checkbox--indeterminate .ds-checkbox__control {
-  border-color: var(--checkbox-disabled-border-color);
-  background: var(--checkbox-disabled-background);
-  color: var(--checkbox-disabled-indicator-color);
-}
-
-@media (max-width: 420px) {
-  .ds-checkbox {
-    --checkbox-gap: var(--ds-primitive-spacing-4, 4px);
-    --checkbox-control-size: var(--ds-primitive-spacing-24, 24px);
-    --checkbox-touch-size: 48px;
-  }
-
-  .ds-checkbox__label {
-    font-size: var(--ds-primitive-typography-font-size-14, 14px);
-    line-height: var(--ds-primitive-typography-line-height-24, 24px);
-  }
-
-  .ds-checkbox__hint {
-    font-size: var(--ds-primitive-typography-font-size-10, 10px);
-    line-height: 100%;
+@media (prefers-reduced-motion: reduce) {
+  .ds-checkbox__control,
+  .ds-checkbox__control::before,
+  .ds-checkbox__icon {
+    transition: none;
   }
 }
+
+/*
+ * Responsividade: o node do Figma não define variante mobile. O controle é
+ * fixo (24px + ripple de 32px como área de resposta visual), a linha inteira
+ * do label é clicável e label/hint quebram naturalmente em containers
+ * estreitos.
+ */

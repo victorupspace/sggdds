@@ -9,6 +9,8 @@ export interface CheckboxProps {
   defaultChecked?: boolean;
   indeterminate?: boolean;
   disabled?: boolean;
+  /** Estado somente leitura (`Ready Only` no Figma): exibe o valor sem permitir alteração. */
+  readOnly?: boolean;
   required?: boolean;
   value?: string;
   onCheckedChange?: (checked: boolean) => void;

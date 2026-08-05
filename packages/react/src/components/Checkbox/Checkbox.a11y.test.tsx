@@ -36,4 +36,9 @@ describe('Checkbox — accessibility', () => {
     const { container } = render(<Checkbox label="Confirmo a leitura" required />);
     expect(await axe(container)).toHaveNoViolations();
   });
+
+  it('has no violations when read-only', async () => {
+    const { container } = render(<Checkbox defaultChecked label="Opção registrada" readOnly />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
 });

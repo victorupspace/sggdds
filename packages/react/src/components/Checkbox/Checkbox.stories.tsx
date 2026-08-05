@@ -54,33 +54,24 @@ const meta = {
     docs: {
       description: {
         component: `
-O Checkbox permite selecionar, desmarcar ou representar estado intermediario de uma opcao independente.
+O Checkbox reproduz o layout do Figma (Web Components / Checkbox): controle de 24px com os glifos exportados (Unselected, Selected e Intermediate), ripple de 32px nos estados hover/pressed, label Label/Medium (Plus Jakarta Sans Medium 14) e hint de 10px.
 
 Anatomia:
-- Input nativo type="checkbox".
-- Controle visual customizado.
-- Label obrigatorio.
-- Hint opcional associado por aria-describedby.
+- Input nativo type="checkbox" com controle visual customizado usando os vetores exatos do Figma; o check do estado selecionado e vazado no box preenchido.
+- Label em typography/secondary com gap de Component sizing/6 para o controle; hint em color/pure-black com gap de Component sizing/4.
 
-Use quando a pessoa puder selecionar uma ou mais opcoes independentes, ativar uma preferencia, escolher itens em lista ou representar selecao parcial de um grupo.
+Selecoes do component set: Unchecked, Checked, Indeterminate e Ready Only (prop readOnly, com label em typography/primary e sem estados de interacao).
 
-Nao use quando a pessoa deve escolher apenas uma opcao entre varias; nesse caso considere Radio. Nao use como navegacao, alerta, botao, switch de acao imediata ou bloco meramente informativo.
-
-Estados:
-- Unchecked: caixa vazia com borda.
-- Checked: caixa preenchida com check.
-- Indeterminate: caixa preenchida com traco horizontal e aria-checked="mixed".
-- Disabled: input nativo disabled, cursor desabilitado e contraste reduzido com tokens neutros.
+Estados: hover e pressed escurecem o glifo para color/icons/neutral/default-hover e exibem o ripple com color/neutral-alpha 4% e 8%; o foco por teclado usa o anel duplo do Figma (branco 84% + azul #2c84d0); disabled usa os tons neutros desabilitados (glifo #a3a3a3, label typography/disabled).
 
 Responsividade:
-- A label inteira e clicavel.
+- A label inteira e clicavel e o controle e fixo (24px).
 - Label e hint quebram linha naturalmente em containers estreitos.
-- Stories Desktop, Tablet e Mobile demonstram o comportamento em diferentes larguras.
 
 Acessibilidade:
 - Usa input nativo para preservar teclado, formularios e leitores de tela.
 - Tab move foco para o input e Space altera o estado quando habilitado.
-- O foco visivel aparece no controle customizado.
+- Indeterminate usa aria-checked="mixed" e readOnly usa aria-readonly.
 `,
       },
     },
@@ -126,6 +117,10 @@ Acessibilidade:
     onCheckedChange: {
       action: 'checked changed',
       description: 'Callback chamado ao alterar a selecao.',
+    },
+    readOnly: {
+      control: 'boolean',
+      description: 'Estado somente leitura (Ready Only no Figma).',
     },
     required: {
       control: 'boolean',
@@ -189,6 +184,23 @@ export const DisabledIndeterminate: Story = {
     hint: defaultHint,
     indeterminate: true,
     label: defaultLabel,
+  },
+};
+
+export const ReadOnly: Story = {
+  args: {
+    defaultChecked: true,
+    hint: defaultHint,
+    label: defaultLabel,
+    readOnly: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Ready Only no Figma: exibe o valor com label em typography/primary, sem estados de hover/pressed e sem permitir alteracao.',
+      },
+    },
   },
 };
 

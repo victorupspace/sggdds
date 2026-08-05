@@ -78,6 +78,19 @@ describe('Checkbox', () => {
     expect(handleCheckedChange).not.toHaveBeenCalled();
   });
 
+  it('does not toggle when readOnly', () => {
+    const handleCheckedChange = vi.fn();
+
+    render(<Checkbox label="Checkbox Label" onCheckedChange={handleCheckedChange} readOnly />);
+
+    const checkbox = screen.getByLabelText('Checkbox Label');
+    fireEvent.click(checkbox);
+
+    expect(handleCheckedChange).not.toHaveBeenCalled();
+    expect(checkbox).not.toBeChecked();
+    expect(checkbox).toHaveAttribute('aria-readonly', 'true');
+  });
+
   it('renders without hint', () => {
     render(<Checkbox label="Checkbox Label" />);
 

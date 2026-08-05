@@ -24,7 +24,7 @@ const config: StorybookConfig = {
   typescript: {
     reactDocgen: 'react-docgen-typescript',
   },
-  viteFinal: async (viteConfig) => ({
+  viteFinal: (viteConfig) => ({
     ...viteConfig,
     plugins: [
       ...(viteConfig.plugins ?? []),

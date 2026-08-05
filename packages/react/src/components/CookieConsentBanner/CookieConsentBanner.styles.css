@@ -2,16 +2,16 @@
 
 .ds-cookie-consent {
   --cookie-consent-surface: var(--ds-semantic-color-background-neutral-default);
-  --cookie-consent-page-overlay: var(--ds-semantic-color-background-neutral-overlay-subtle);
-  --cookie-consent-foreground: var(--ds-semantic-color-content-neutral-default);
-  --cookie-consent-foreground-strong: var(--ds-semantic-color-content-neutral-strongest);
-  --cookie-consent-muted: var(--ds-semantic-color-content-neutral-muted);
-  --cookie-consent-border: var(--ds-semantic-color-border-neutral-default);
-  --cookie-consent-focus-ring: var(--ds-semantic-color-focus-default);
+  --cookie-consent-page-overlay: var(--ds-primitive-color-neutral-alpha-12);
+  --cookie-consent-foreground: var(--ds-semantic-text-style-content-color-typography-secondary);
+  --cookie-consent-foreground-strong: var(--ds-primitive-color-neutral-grey-900);
+  --cookie-consent-muted: var(--ds-semantic-text-style-content-color-typography-tertiary);
+  --cookie-consent-border: var(--ds-component-cookie-banner-color-border);
+  --cookie-consent-focus-ring: var(--ds-component-focus-ring-color-ring);
   --cookie-consent-shadow: var(--ds-semantic-shadow-modal);
   --cookie-consent-manage-background: var(--ds-semantic-color-background-neutral-disabled);
-  --cookie-consent-manage-background-hover: var(--ds-semantic-color-background-neutral-hover);
-  --cookie-consent-manage-background-active: var(--ds-semantic-color-background-neutral-active);
+  --cookie-consent-manage-background-hover: var(--ds-primitive-color-neutral-alpha-4);
+  --cookie-consent-manage-background-active: var(--ds-primitive-color-neutral-alpha-8);
   --cookie-consent-inset: var(--ds-primitive-spacing-24);
   --cookie-consent-icon-size: var(--ds-primitive-spacing-64);
   --cookie-consent-max-width: calc(var(--ds-primitive-spacing-128) * 12);
@@ -28,7 +28,7 @@
   grid-template-columns: auto minmax(0, 1fr);
   gap: var(--ds-primitive-spacing-32);
   border: var(--ds-primitive-border-width-border-sm) solid var(--cookie-consent-border);
-  border-radius: var(--ds-semantic-radius-lg);
+  border-radius: var(--ds-component-cookie-banner-border-radius);
   background: var(--cookie-consent-surface);
   box-shadow: var(--cookie-consent-shadow);
   color: var(--cookie-consent-foreground);
@@ -181,7 +181,7 @@
 
 @media (max-width: 640px) {
   .ds-cookie-consent {
-    --cookie-consent-inset: var(--ds-primitive-spacing-16);
+    --cookie-consent-inset: var(--ds-component-cookie-banner-spacing-inset);
     --cookie-consent-icon-size: var(--ds-primitive-spacing-48);
 
     padding: var(--ds-primitive-spacing-24);

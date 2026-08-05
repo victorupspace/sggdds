@@ -66,7 +66,8 @@ function parseColor(input: unknown): Rgba | undefined {
   return undefined;
 }
 
-const toFixed3 = (value: number): string => clamp01(value).toFixed(3).replace(/0+$/, '').replace(/\.$/, '.0');
+const toFixed3 = (value: number): string =>
+  clamp01(value).toFixed(3).replace(/0+$/, '').replace(/\.$/, '.0');
 
 function toHex2(value: number): string {
   return Math.round(clamp01(value) * 255)
@@ -175,7 +176,12 @@ const swiftFormat: FormatFn = ({ dictionary, platform }) => {
   const fontWeights = byType(dictionary, 'fontWeight');
   const fontFamilies = byType(dictionary, 'fontFamily');
 
-  const section = (name: string, swiftType: string, tokens: TransformedToken[], render: (t: TransformedToken) => string) => {
+  const section = (
+    name: string,
+    swiftType: string,
+    tokens: TransformedToken[],
+    render: (t: TransformedToken) => string,
+  ) => {
     if (tokens.length === 0) {
       return '';
     }

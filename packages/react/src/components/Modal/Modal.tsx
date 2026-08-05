@@ -20,7 +20,8 @@ function getFocusableElements(container: HTMLElement | null) {
   }
 
   return Array.from(container.querySelectorAll<HTMLElement>(focusableSelector)).filter(
-    (element) => !element.hasAttribute('disabled') && element.getAttribute('aria-hidden') !== 'true',
+    (element) =>
+      !element.hasAttribute('disabled') && element.getAttribute('aria-hidden') !== 'true',
   );
 }
 
@@ -194,7 +195,12 @@ export function Modal({
             ref={closeButtonRef}
             type="button"
           >
-            <svg aria-hidden="true" className="ds-modal__close-icon" fill="none" viewBox="0 0 20 20">
+            <svg
+              aria-hidden="true"
+              className="ds-modal__close-icon"
+              fill="none"
+              viewBox="0 0 20 20"
+            >
               <path
                 d="m5 5 10 10M15 5 5 15"
                 stroke="currentColor"

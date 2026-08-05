@@ -1,14 +1,14 @@
 .ds-modal {
-  --modal-overlay-background: var(--ds-semantic-color-background-neutral-overlay);
+  --modal-overlay-background: var(--ds-primitive-color-neutral-alpha-60);
   --modal-surface-background: var(--ds-semantic-color-background-neutral-default);
   --modal-border-color: var(--ds-semantic-color-border-neutral-subtle);
-  --modal-text-color: var(--ds-semantic-color-content-neutral-default);
-  --modal-body-color: var(--ds-semantic-color-content-neutral-subtle);
-  --modal-muted-color: var(--ds-semantic-color-content-neutral-muted);
-  --modal-hover-background: var(--ds-semantic-color-background-neutral-hover);
-  --modal-active-background: var(--ds-semantic-color-background-neutral-active);
-  --modal-focus-ring: var(--ds-semantic-color-focus-default);
-  --modal-radius: var(--ds-semantic-radius-lg);
+  --modal-text-color: var(--ds-semantic-text-style-content-color-typography-secondary);
+  --modal-body-color: var(--ds-primitive-color-neutral-grey-700);
+  --modal-muted-color: var(--ds-semantic-text-style-content-color-typography-tertiary);
+  --modal-hover-background: var(--ds-primitive-color-neutral-alpha-4);
+  --modal-active-background: var(--ds-primitive-color-neutral-alpha-8);
+  --modal-focus-ring: var(--ds-component-focus-ring-color-ring);
+  --modal-radius: var(--ds-component-modal-container-border-radius);
   --modal-width: calc(var(--ds-primitive-spacing-128) * 5);
   --modal-padding: var(--ds-primitive-spacing-24);
 
@@ -50,7 +50,7 @@
   max-block-size: calc(100dvh - (var(--modal-padding) * 2));
   grid-template-rows: auto minmax(var(--ds-primitive-spacing-0), 1fr) auto;
   overflow: hidden;
-  border: var(--ds-primitive-border-width-border-sm) solid var(--modal-border-color);
+  border: var(--ds-component-modal-container-border-width) solid var(--modal-border-color);
   border-radius: var(--modal-radius);
   background: var(--modal-surface-background);
   box-shadow: var(--ds-semantic-shadow-modal);
@@ -102,7 +102,7 @@
   inline-size: var(--ds-primitive-spacing-40);
   block-size: var(--ds-primitive-spacing-40);
   border: var(--ds-primitive-border-width-border-none);
-  border-radius: var(--ds-semantic-radius-full);
+  border-radius: var(--ds-primitive-border-radius-radius-full);
   background: none;
   color: var(--modal-muted-color);
   cursor: pointer;
@@ -166,7 +166,8 @@
   gap: var(--ds-primitive-spacing-8);
   align-items: center;
   justify-content: flex-end;
-  padding: var(--ds-primitive-spacing-16) var(--ds-primitive-spacing-24);
+  padding: var(--ds-component-modal-footer-spacing-padding-y)
+    var(--ds-component-modal-footer-spacing-padding-x);
   background: var(--modal-surface-background);
 }
 
@@ -212,7 +213,7 @@
     block-size: auto;
     max-block-size: calc(100dvh - (var(--modal-padding) * 2));
     min-block-size: var(--ds-primitive-spacing-0);
-    border-radius: var(--ds-semantic-radius-lg);
+    border-radius: var(--ds-component-modal-container-border-radius);
   }
 
   .ds-modal__header {

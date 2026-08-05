@@ -49,12 +49,7 @@ describe('Modal', () => {
 
   it('uses dialog accessibility attributes', () => {
     render(
-      <Modal
-        isOpen
-        onClose={vi.fn()}
-        subtitle="Descricao curta"
-        title="Titulo do modal"
-      >
+      <Modal isOpen onClose={vi.fn()} subtitle="Descricao curta" title="Titulo do modal">
         Conteudo
       </Modal>,
     );
@@ -113,12 +108,18 @@ describe('Modal', () => {
     expect(screen.getByRole('button', { name: 'Action 3' })).toHaveClass(
       'ds-modal__footer-action--tertiary',
     );
-    expect(screen.getByRole('button', { name: 'Action 3' })).toHaveClass('ds-button--variant-tertiary');
+    expect(screen.getByRole('button', { name: 'Action 3' })).toHaveClass(
+      'ds-button--variant-tertiary',
+    );
     expect(screen.getByRole('button', { name: 'Action 2' })).toHaveClass(
       'ds-modal__footer-action--secondary',
     );
-    expect(screen.getByRole('button', { name: 'Action 2' })).toHaveClass('ds-button--variant-secondary');
-    expect(screen.getByRole('button', { name: 'Action 1' })).toHaveClass('ds-button--variant-primary');
+    expect(screen.getByRole('button', { name: 'Action 2' })).toHaveClass(
+      'ds-button--variant-secondary',
+    );
+    expect(screen.getByRole('button', { name: 'Action 1' })).toHaveClass(
+      'ds-button--variant-primary',
+    );
 
     fireEvent.click(screen.getByRole('button', { name: 'Action 1' }));
 

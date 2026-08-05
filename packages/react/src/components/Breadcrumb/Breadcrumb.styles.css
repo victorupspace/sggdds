@@ -1,9 +1,9 @@
 .ds-breadcrumb {
-  --breadcrumb-foreground: var(--ds-semantic-color-content-neutral-default);
-  --breadcrumb-muted: var(--ds-semantic-color-content-neutral-muted);
-  --breadcrumb-hover: var(--ds-semantic-color-content-neutral-strong);
-  --breadcrumb-home: var(--ds-semantic-color-action-brand-default);
-  --breadcrumb-focus-ring: var(--ds-semantic-color-action-primary-default);
+  --breadcrumb-foreground: var(--ds-semantic-text-style-content-color-typography-secondary);
+  --breadcrumb-muted: var(--ds-component-breadcrumbs-color-text-default);
+  --breadcrumb-hover: var(--ds-component-breadcrumbs-color-text-hover);
+  --breadcrumb-home: var(--ds-semantic-color-background-brand-primary-prominent);
+  --breadcrumb-focus-ring: var(--ds-semantic-color-background-brand-primary-secondary-default);
   --breadcrumb-surface: var(--ds-semantic-color-background-neutral-default);
   --breadcrumb-border: var(--ds-semantic-color-border-neutral-subtle);
   --breadcrumb-shadow: var(--ds-semantic-shadow-floating);
@@ -60,11 +60,11 @@
   min-block-size: var(--breadcrumb-touch-size);
   align-items: center;
   border: 0;
-  border-radius: var(--ds-semantic-radius-sm);
+  border-radius: var(--ds-primitive-border-radius-radius-sm);
   background: transparent;
   color: var(--breadcrumb-muted);
   font-size: var(--breadcrumb-font-size);
-  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  font-weight: var(--ds-component-breadcrumbs-typography-font-weight-default);
   line-height: var(--breadcrumb-line-height);
   text-decoration: none;
   white-space: nowrap;
@@ -93,7 +93,7 @@
 }
 
 .ds-breadcrumb__crumb--disabled {
-  color: var(--ds-semantic-color-content-neutral-disabled);
+  color: var(--ds-component-breadcrumbs-color-text-disabled);
   cursor: not-allowed;
 }
 
@@ -115,8 +115,8 @@
 }
 
 .ds-breadcrumb__separator {
-  inline-size: var(--ds-primitive-spacing-16);
-  block-size: var(--ds-primitive-spacing-16);
+  inline-size: var(--ds-component-breadcrumbs-separator-size-icon-size);
+  block-size: var(--ds-component-breadcrumbs-separator-size-icon-size);
   color: var(--breadcrumb-foreground);
 }
 
@@ -159,7 +159,7 @@
   min-inline-size: calc(var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-64));
   padding: var(--ds-primitive-spacing-8);
   border: var(--ds-primitive-border-width-border-sm) solid var(--breadcrumb-border);
-  border-radius: var(--ds-semantic-radius-md);
+  border-radius: var(--ds-primitive-border-radius-radius-md);
   background: var(--breadcrumb-surface);
   box-shadow: var(--breadcrumb-shadow);
   gap: var(--ds-primitive-spacing-4);
@@ -173,10 +173,10 @@
 
 @media (max-width: 640px) {
   .ds-breadcrumb {
-    --breadcrumb-font-size: var(--ds-primitive-typography-font-size-14);
+    --breadcrumb-font-size: var(--ds-component-breadcrumbs-typography-font-size);
     --breadcrumb-line-height: var(--ds-primitive-typography-line-height-20);
     --breadcrumb-touch-size: var(--ds-primitive-spacing-40);
-    --breadcrumb-item-gap: var(--ds-primitive-spacing-4);
+    --breadcrumb-item-gap: var(--ds-component-breadcrumbs-spacing-gap);
     --breadcrumb-icon-size: var(--ds-primitive-spacing-20);
   }
 

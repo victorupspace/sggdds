@@ -36,12 +36,7 @@ describe('Modal — accessibility', () => {
 
   it('has no violations with custom close label', async () => {
     const { container } = render(
-      <Modal
-        isOpen
-        onClose={noop}
-        title="Detalhes do pedido"
-        closeLabel="Fechar diálogo"
-      >
+      <Modal isOpen onClose={noop} title="Detalhes do pedido" closeLabel="Fechar diálogo">
         <p>Conteúdo do pedido.</p>
       </Modal>,
     );

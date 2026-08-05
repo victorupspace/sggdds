@@ -20,20 +20,13 @@ describe('Dropdown — accessibility', () => {
 
   it('has no violations in error state with errorText', async () => {
     const { container } = render(
-      <Dropdown
-        label="Estado"
-        options={options}
-        state="error"
-        errorText="Selecione um estado."
-      />,
+      <Dropdown label="Estado" options={options} state="error" errorText="Selecione um estado." />,
     );
     expect(await axe(container)).toHaveNoViolations();
   });
 
   it('has no violations when disabled', async () => {
-    const { container } = render(
-      <Dropdown label="Estado" options={options} disabled />,
-    );
+    const { container } = render(<Dropdown label="Estado" options={options} disabled />);
     expect(await axe(container)).toHaveNoViolations();
   });
 

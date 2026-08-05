@@ -55,7 +55,12 @@ function VerticalExample() {
   const [value, setValue] = useState('option-a');
 
   return (
-    <RadioGroup label="Selecione uma opcao" name="example-vertical" onChange={setValue} value={value}>
+    <RadioGroup
+      label="Selecione uma opcao"
+      name="example-vertical"
+      onChange={setValue}
+      value={value}
+    >
       <Radio description="Descricao complementar da opcao A." label="Opcao A" value="option-a" />
       <Radio description="Descricao complementar da opcao B." label="Opcao B" value="option-b" />
       <Radio description="Descricao complementar da opcao C." label="Opcao C" value="option-c" />
@@ -67,7 +72,13 @@ function HorizontalExample() {
   const [value, setValue] = useState('sim');
 
   return (
-    <RadioGroup label="Voce confirma?" name="example-horizontal" onChange={setValue} orientation="horizontal" value={value}>
+    <RadioGroup
+      label="Voce confirma?"
+      name="example-horizontal"
+      onChange={setValue}
+      orientation="horizontal"
+      value={value}
+    >
       <Radio label="Sim" value="sim" />
       <Radio label="Nao" value="nao" />
       <Radio label="Talvez" value="talvez" />
@@ -82,7 +93,12 @@ function WithDisabledExample() {
     <RadioGroup label="Plano de acesso" name="example-disabled" onChange={setValue} value={value}>
       <Radio label="Basico" value="basico" />
       <Radio label="Intermediario" value="intermediario" />
-      <Radio description="Disponivel apenas para contas verificadas." disabled label="Premium" value="premium" />
+      <Radio
+        description="Disponivel apenas para contas verificadas."
+        disabled
+        label="Premium"
+        value="premium"
+      />
     </RadioGroup>
   );
 }

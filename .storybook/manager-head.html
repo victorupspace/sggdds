@@ -45,10 +45,7 @@
       if (!search || search === '?') {
         newSearch = '?path=' + encodeURIComponent(INTRO_PATH);
       } else if (hasPath) {
-        newSearch = search.replace(
-          /([?&])path=[^&]*/,
-          '$1path=' + encodeURIComponent(INTRO_PATH),
-        );
+        newSearch = search.replace(/([?&])path=[^&]*/, '$1path=' + encodeURIComponent(INTRO_PATH));
       } else {
         newSearch = search + '&path=' + encodeURIComponent(INTRO_PATH);
       }

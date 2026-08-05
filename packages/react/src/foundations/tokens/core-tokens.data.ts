@@ -1,4 +1,4 @@
-import tokens from '@government/tokens/normalized/core-sggd.tokens.json';
+import tokens from '@government/tokens/normalized/global-core.tokens.json';
 
 export type TokenValue = string | number;
 

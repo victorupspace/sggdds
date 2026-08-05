@@ -40,11 +40,7 @@ describe('Hero', () => {
 
   it('renders children slot between description and actions', () => {
     render(
-      <Hero
-        action={{ label: 'CTA' }}
-        description="Descricao"
-        title="Titulo"
-      >
+      <Hero action={{ label: 'CTA' }} description="Descricao" title="Titulo">
         <div data-testid="custom-slot">Slot livre</div>
       </Hero>,
     );
@@ -99,9 +95,7 @@ describe('Hero', () => {
 
   it('treats deprecated variant "image" as dark with 1/1 aspect ratio', () => {
     const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
-    const { container } = render(
-      <Hero media={<div />} title="Image legado" variant="image" />,
-    );
+    const { container } = render(<Hero media={<div />} title="Image legado" variant="image" />);
     const hero = container.querySelector<HTMLElement>('.ds-hero');
 
     expect(hero).toHaveClass('ds-hero--variant-dark');
@@ -112,9 +106,7 @@ describe('Hero', () => {
   });
 
   it('applies the mediaAspectRatio prop via CSS custom property', () => {
-    const { container } = render(
-      <Hero media={<div />} mediaAspectRatio="16/9" title="Wide" />,
-    );
+    const { container } = render(<Hero media={<div />} mediaAspectRatio="16/9" title="Wide" />);
     const hero = container.querySelector<HTMLElement>('.ds-hero');
 
     expect(hero?.style.getPropertyValue('--hero-media-aspect-ratio')).toBe('16 / 9');

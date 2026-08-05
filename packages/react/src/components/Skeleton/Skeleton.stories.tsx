@@ -2,7 +2,12 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Skeleton } from './Skeleton';
 import './Skeleton.stories.css';
-import type { SkeletonAnimation, SkeletonRadius, SkeletonShape, SkeletonTone } from './Skeleton.types';
+import type {
+  SkeletonAnimation,
+  SkeletonRadius,
+  SkeletonShape,
+  SkeletonTone,
+} from './Skeleton.types';
 
 const animations: SkeletonAnimation[] = ['pulse', 'wave', 'none'];
 const radii: SkeletonRadius[] = ['none', 'sm', 'md', 'lg', 'full'];

@@ -1,0 +1,2161 @@
+{
+  "semantic": {
+    "color": {
+      "background": {
+        "brand": {
+          "primary": {
+            "default": {
+              "$extensions": {
+                "com.figma.aliasData": {
+                  "targetVariableId": "VariableID:d987e6d16d7cd939c7d2294ea43514d1ecf33acc/-1:-1",
+                  "targetVariableName": "color/brand/red-primary",
+                  "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                  "targetVariableSetName": "T1: Sampa Design System"
+                },
+                "com.figma.scopes": [
+                  "FRAME_FILL",
+                  "SHAPE_FILL"
+                ],
+                "com.figma.variableId": "VariableID:23:281",
+                "sggd.figmaResolvedValue": "#C50007"
+              },
+              "$type": "color",
+              "$value": "{brand.color.brand.red-primary}"
+            },
+            "default-hover": {
+              "$extensions": {
+                "com.figma.aliasData": {
+                  "targetVariableId": "VariableID:cbd970822b4c6b4b27f4e33fe13eaae294773a85/-1:-1",
+                  "targetVariableName": "color/identity/red-dark",
+                  "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                  "targetVariableSetName": "T1: Sampa Design System"
+                },
+                "com.figma.scopes": [
+                  "FRAME_FILL",
+                  "SHAPE_FILL"
+                ],
+                "com.figma.variableId": "VariableID:23:282",
+                "sggd.figmaResolvedValue": "#842519"
+              },
+              "$type": "color",
+              "$value": "{brand.color.identity.red-dark}"
+            },
+            "disabled": {
+              "$extensions": {
+                "com.figma.aliasData": {
+                  "targetVariableId": "VariableID:7e1ed0b394edd32f438433b95b70cbbdfa6d11f6/-1:-1",
+                  "targetVariableName": "color/neutral/grey-300",
+                  "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                  "targetVariableSetName": "Global: Core"
+                },
+                "com.figma.scopes": [
+                  "FRAME_FILL",
+                  "SHAPE_FILL"
+                ],
+                "com.figma.variableId": "VariableID:23:284",
+                "sggd.figmaResolvedValue": "#D4D4D4"
+              },
+              "$type": "color",
+              "$value": "{primitive.color.neutral.grey-300}"
+            },
+            "prominent": {
+              "$extensions": {
+                "com.figma.aliasData": {
+                  "targetVariableId": "VariableID:6d5544ef0a32772387575c1787f8dd3f693d1c7d/-1:-1",
+                  "targetVariableName": "color/brand/red",
+                  "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                  "targetVariableSetName": "T1: Sampa Design System"
+                },
+                "com.figma.scopes": [
+                  "FRAME_FILL",
+                  "SHAPE_FILL"
+                ],
+                "com.figma.variableId": "VariableID:23:283",
+                "sggd.figmaResolvedValue": "#FF161F"
+              },
+              "$type": "color",
+              "$value": "{brand.color.brand.red}"
+            },
+            "secondary": {
+              "default": {
+                "$extensions": {
+                  "com.figma.aliasData": {
+                    "targetVariableId": "VariableID:a2ac33c291e58ae7e67c735f3b07fd8faa1170fd/-1:-1",
+                    "targetVariableName": "color/identity/blue-primary",
+                    "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                    "targetVariableSetName": "T1: Sampa Design System"
+                  },
+                  "com.figma.scopes": [
+                    "FRAME_FILL",
+                    "SHAPE_FILL"
+                  ],
+                  "com.figma.variableId": "VariableID:40000031:20",
+                  "sggd.figmaResolvedValue": "#034EA2"
+                },
+                "$type": "color",
+                "$value": "{brand.color.identity.blue-primary}"
+              },
+              "default-hover": {
+                "$extensions": {
+                  "com.figma.aliasData": {
+                    "targetVariableId": "VariableID:cf33f43e6597080702b784b2e66e0c2981b45765/-1:-1",
+                    "targetVariableName": "color/identity/blue-darker",
+                    "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                    "targetVariableSetName": "T1: Sampa Design System"
+                  },
+                  "com.figma.scopes": [
+                    "FRAME_FILL",
+                    "SHAPE_FILL"
+                  ],
+                  "com.figma.variableId": "VariableID:40000031:21",
+                  "sggd.figmaResolvedValue": "#233254"
+                },
+                "$type": "color",
+                "$value": "{brand.color.identity.blue-darker}"
+              },
+              "prominent": {
+                "$extensions": {
+                  "com.figma.aliasData": {
+                    "targetVariableId": "VariableID:a049059517f8deb2d58c041b744511a91fbfbfb3/-1:-1",
+                    "targetVariableName": "color/identity/blue-dark",
+                    "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                    "targetVariableSetName": "T1: Sampa Design System"
+                  },
+                  "com.figma.scopes": [
+                    "FRAME_FILL",
+                    "SHAPE_FILL"
+                  ],
+                  "com.figma.variableId": "VariableID:40000031:22",
+                  "sggd.figmaResolvedValue": "#005992"
+                },
+                "$type": "color",
+                "$value": "{brand.color.identity.blue-dark}"
+              },
+              "subtle": {
+                "$extensions": {
+                  "com.figma.aliasData": {
+                    "targetVariableId": "VariableID:510da1616d3b5647849bfcfb538b4f66c2e8b031/-1:-1",
+                    "targetVariableName": "color/identity/blue-secondary",
+                    "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                    "targetVariableSetName": "T1: Sampa Design System"
+                  },
+                  "com.figma.scopes": [
+                    "FRAME_FILL",
+                    "SHAPE_FILL"
+                  ],
+                  "com.figma.variableId": "VariableID:40000031:23",
+                  "sggd.figmaResolvedValue": "#A1DDF7"
+                },
+                "$type": "color",
+                "$value": "{brand.color.identity.blue-secondary}"
+              }
+            },
+            "subtle": {
+              "$extensions": {
+                "com.figma.aliasData": {
+                  "targetVariableId": "VariableID:d123a1c519aa3f9377d78ce14e254ac3d577f9e5/-1:-1",
+                  "targetVariableName": "color/brand/red-subtle",
+                  "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                  "targetVariableSetName": "T1: Sampa Design System"
+                },
+                "com.figma.scopes": [
+                  "FRAME_FILL",
+                  "SHAPE_FILL"
+                ],
+                "com.figma.variableId": "VariableID:40000023:19",
+                "sggd.figmaResolvedValue": "#FFE3E4"
+              },
+              "$type": "color",
+              "$value": "{brand.color.brand.red-subtle}"
+            }
+          }
+        },
+        "danger": {
+          "default": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:5bd4a6098d283296e922eedf35b73255b3181e09/-1:-1",
+                "targetVariableName": "color/utility/danger/red-300",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:19:74",
+              "sggd.figmaResolvedValue": "#E52207"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.danger.red-300}"
+          },
+          "default-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:4128ff46dced8004a0919bb21bdabf709ac16d60/-1:-1",
+                "targetVariableName": "color/utility/danger/red-400",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:19:75",
+              "sggd.figmaResolvedValue": "#B22929"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.danger.red-400}"
+          },
+          "subtle": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:f3cc283b12e1fbe6e789b5985881f8fb40e02b5a/-1:-1",
+                "targetVariableName": "color/utility/danger/red-100",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:19:76",
+              "sggd.figmaResolvedValue": "#FFE5E5"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.danger.red-100}"
+          },
+          "subtle-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:e7b41f987ff7d6a4b6933d032a6e7f6d9d986d08/-1:-1",
+                "targetVariableName": "color/utility/danger/red-200",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:19:77",
+              "sggd.figmaResolvedValue": "#EB7B7B"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.danger.red-200}"
+          }
+        },
+        "information": {
+          "default": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:8e85bcbfb6160adb592aa1432128db7c63a2bd88/-1:-1",
+                "targetVariableName": "color/utility/info/blue-300",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:19:86",
+              "sggd.figmaResolvedValue": "#034EA2"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.info.blue-300}"
+          },
+          "default-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:900e5417b7c9dc13f08b7b14d72ac699ff8639b0/-1:-1",
+                "targetVariableName": "color/utility/info/blue-400",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:19:87",
+              "sggd.figmaResolvedValue": "#233254"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.info.blue-400}"
+          },
+          "subtle": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:bec3140aeeb1645288d5b77cfb61244724c22f92/-1:-1",
+                "targetVariableName": "color/utility/info/blue-100",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:19:88",
+              "sggd.figmaResolvedValue": "#E6F0FC"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.info.blue-100}"
+          },
+          "subtle-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:f0fded43523644ccd7ac77085965d90f6dc46fe7/-1:-1",
+                "targetVariableName": "color/utility/info/blue-200",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:19:89",
+              "sggd.figmaResolvedValue": "#ADD7FB"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.info.blue-200}"
+          }
+        },
+        "link": {
+          "default": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:42f80e5426d0b0cd8ce2249ce54f423ac3458107/-1:-1",
+                "targetVariableName": "color/identity/blue-link",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:66:19",
+              "sggd.figmaResolvedValue": "#2554ED"
+            },
+            "$type": "color",
+            "$value": "{brand.color.identity.blue-link}"
+          },
+          "hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:900e5417b7c9dc13f08b7b14d72ac699ff8639b0/-1:-1",
+                "targetVariableName": "color/utility/info/blue-400",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:40000073:36",
+              "sggd.figmaResolvedValue": "#233254"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.info.blue-400}"
+          }
+        },
+        "neutral": {
+          "black": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:babadb4132ea4d4f96c6fb087c1674431cddba98/-1:-1",
+                "targetVariableName": "color/pure-black",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:62:17",
+              "sggd.figmaResolvedValue": "#000000"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.pure-black}"
+          },
+          "default": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:5adeaa4375579185e2193332b2dfe8ee06c0a521/-1:-1",
+                "targetVariableName": "color/neutral/grey-100",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:19:68",
+              "sggd.figmaResolvedValue": "#F5F5F5"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.neutral.grey-100}"
+          },
+          "default-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:2743396f072ce1db438854ce4d80b15ea2a4b1ce/-1:-1",
+                "targetVariableName": "color/neutral/grey-200",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:19:69",
+              "sggd.figmaResolvedValue": "#E5E5E5"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.neutral.grey-200}"
+          },
+          "disabled": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:2743396f072ce1db438854ce4d80b15ea2a4b1ce/-1:-1",
+                "targetVariableName": "color/neutral/grey-200",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:40000073:31",
+              "sggd.figmaResolvedValue": "#E5E5E5"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.neutral.grey-200}"
+          },
+          "inverse": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:2743396f072ce1db438854ce4d80b15ea2a4b1ce/-1:-1",
+                "targetVariableName": "color/neutral/grey-200",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:40000054:2",
+              "sggd.figmaResolvedValue": "#E5E5E5"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.neutral.grey-200}"
+          },
+          "muted": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:2743396f072ce1db438854ce4d80b15ea2a4b1ce/-1:-1",
+                "targetVariableName": "color/neutral/grey-200",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:40000073:42",
+              "sggd.figmaResolvedValue": "#E5E5E5"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.neutral.grey-200}"
+          },
+          "soft-black": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:87fde7e8db01ecffae481975cac56fd0312eb54c/-1:-1",
+                "targetVariableName": "color/soft-black",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:62:18",
+              "sggd.figmaResolvedValue": "#292929"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.soft-black}"
+          },
+          "strong": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:052fb6a92062b58408b8fb5dfd8cefb75e27ef92/-1:-1",
+                "targetVariableName": "color/neutral/grey-900",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:40000073:28",
+              "sggd.figmaResolvedValue": "#262626"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.neutral.grey-900}"
+          },
+          "strong-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:babadb4132ea4d4f96c6fb087c1674431cddba98/-1:-1",
+                "targetVariableName": "color/pure-black",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:40000073:29",
+              "sggd.figmaResolvedValue": "#000000"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.pure-black}"
+          },
+          "subtle": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:aa8f75f4f3fb123c14401397b53f1b319c42990d/-1:-1",
+                "targetVariableName": "color/neutral/grey-50",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:40000073:33",
+              "sggd.figmaResolvedValue": "#FAFAFA"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.neutral.grey-50}"
+          },
+          "subtle-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:7e1ed0b394edd32f438433b95b70cbbdfa6d11f6/-1:-1",
+                "targetVariableName": "color/neutral/grey-300",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:40000073:30",
+              "sggd.figmaResolvedValue": "#D4D4D4"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.neutral.grey-300}"
+          },
+          "surface": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:5adeaa4375579185e2193332b2dfe8ee06c0a521/-1:-1",
+                "targetVariableName": "color/neutral/grey-100",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:40000073:34",
+              "sggd.figmaResolvedValue": "#F5F5F5"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.neutral.grey-100}"
+          },
+          "white": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:0b740b36d75095be51b0b817f5355bb248d04220/-1:-1",
+                "targetVariableName": "color/white",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:62:16",
+              "sggd.figmaResolvedValue": "#FFFFFF"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.white}"
+          }
+        },
+        "overlay": {
+          "default": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:babadb4132ea4d4f96c6fb087c1674431cddba98/-1:-1",
+                "targetVariableName": "color/pure-black",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:40000073:32",
+              "sggd.figmaResolvedValue": "#000000"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.pure-black}"
+          }
+        },
+        "success": {
+          "default": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:84733a19139399a337ce324ddee6504b094e6851/-1:-1",
+                "targetVariableName": "color/utility/sucess/green-300",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:19:78",
+              "sggd.figmaPath": "color/background/sucess/default",
+              "sggd.figmaResolvedValue": "#00883D"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.success.green-300}"
+          },
+          "default-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:1740ea7537f612138277e1a02e039453f722e7ca/-1:-1",
+                "targetVariableName": "color/utility/sucess/green-400",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:19:79",
+              "sggd.figmaPath": "color/background/sucess/default-hover",
+              "sggd.figmaResolvedValue": "#07622F"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.success.green-400}"
+          },
+          "subtle": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:81b410895cd22f987e0fecbd5befb0b0e46e32d7/-1:-1",
+                "targetVariableName": "color/utility/sucess/green-100",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:19:80",
+              "sggd.figmaPath": "color/background/sucess/subtle",
+              "sggd.figmaResolvedValue": "#E3F5E1"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.success.green-100}"
+          },
+          "subtle-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:de3942a115d395cb07320708d3663db2d6bc5fbc/-1:-1",
+                "targetVariableName": "color/utility/sucess/green-200",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:19:81",
+              "sggd.figmaPath": "color/background/sucess/subtle-hover",
+              "sggd.figmaResolvedValue": "#B2D0BB"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.success.green-200}"
+          }
+        },
+        "warning": {
+          "default": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:47135d07c19152b0cec1ea6b7dcfa47e920e1a38/-1:-1",
+                "targetVariableName": "color/utility/warning/yellow-300",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:19:82",
+              "sggd.figmaResolvedValue": "#FBB900"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.warning.yellow-300}"
+          },
+          "default-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:755ca0e6f934991fb76b07cf17e7c104cb7a0e42/-1:-1",
+                "targetVariableName": "color/utility/warning/yellow-400",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:19:83",
+              "sggd.figmaResolvedValue": "#C38900"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.warning.yellow-400}"
+          },
+          "subtle": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:3b2b92d45aa555b62559b36da6ea2253d507ba83/-1:-1",
+                "targetVariableName": "color/utility/warning/yellow-50",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:19:84",
+              "sggd.figmaResolvedValue": "#FFF9DD"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.warning.yellow-50}"
+          },
+          "subtle-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:9d1c20dcefa26ad4d1a1ec96ba26992cf2c4d0a9/-1:-1",
+                "targetVariableName": "color/utility/warning/yellow-150",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:19:85",
+              "sggd.figmaResolvedValue": "#FFDAA6"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.warning.yellow-150}"
+          }
+        }
+      },
+      "border": {
+        "brand": {
+          "default": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:d987e6d16d7cd939c7d2294ea43514d1ecf33acc/-1:-1",
+                "targetVariableName": "color/brand/red-primary",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:20:33",
+              "sggd.figmaResolvedValue": "#C50007"
+            },
+            "$type": "color",
+            "$value": "{brand.color.brand.red-primary}"
+          },
+          "default-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:cbd970822b4c6b4b27f4e33fe13eaae294773a85/-1:-1",
+                "targetVariableName": "color/identity/red-dark",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:20:34",
+              "sggd.figmaResolvedValue": "#842519"
+            },
+            "$type": "color",
+            "$value": "{brand.color.identity.red-dark}"
+          },
+          "disabled": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:eb9077b9f76d26c87cde6309cd866e63fd018115/-1:-1",
+                "targetVariableName": "color/neutral/grey-400",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:20:36",
+              "sggd.figmaResolvedValue": "#A3A3A3"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.neutral.grey-400}"
+          },
+          "prominent": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:5bd4a6098d283296e922eedf35b73255b3181e09/-1:-1",
+                "targetVariableName": "color/utility/danger/red-300",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:20:35",
+              "sggd.figmaResolvedValue": "#E52207"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.danger.red-300}"
+          }
+        },
+        "danger": {
+          "default": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:d987e6d16d7cd939c7d2294ea43514d1ecf33acc/-1:-1",
+                "targetVariableName": "color/brand/red-primary",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:20:15",
+              "sggd.figmaResolvedValue": "#C50007"
+            },
+            "$type": "color",
+            "$value": "{brand.color.brand.red-primary}"
+          },
+          "default-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:4128ff46dced8004a0919bb21bdabf709ac16d60/-1:-1",
+                "targetVariableName": "color/utility/danger/red-400",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:20:16",
+              "sggd.figmaResolvedValue": "#B22929"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.danger.red-400}"
+          },
+          "prominent": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:4128ff46dced8004a0919bb21bdabf709ac16d60/-1:-1",
+                "targetVariableName": "color/utility/danger/red-400",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:40000073:43",
+              "sggd.figmaResolvedValue": "#B22929"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.danger.red-400}"
+          },
+          "subtle": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:f3cc283b12e1fbe6e789b5985881f8fb40e02b5a/-1:-1",
+                "targetVariableName": "color/utility/danger/red-100",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:20:17",
+              "sggd.figmaResolvedValue": "#FFE5E5"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.danger.red-100}"
+          },
+          "subtle-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:e7b41f987ff7d6a4b6933d032a6e7f6d9d986d08/-1:-1",
+                "targetVariableName": "color/utility/danger/red-200",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:20:18",
+              "sggd.figmaResolvedValue": "#EB7B7B"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.danger.red-200}"
+          }
+        },
+        "focus": {
+          "default": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:42f80e5426d0b0cd8ce2249ce54f423ac3458107/-1:-1",
+                "targetVariableName": "color/identity/blue-link",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:40000073:35",
+              "sggd.figmaResolvedValue": "#2554ED"
+            },
+            "$type": "color",
+            "$value": "{brand.color.identity.blue-link}"
+          }
+        },
+        "information": {
+          "default": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:8e85bcbfb6160adb592aa1432128db7c63a2bd88/-1:-1",
+                "targetVariableName": "color/utility/info/blue-300",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:20:23",
+              "sggd.figmaResolvedValue": "#034EA2"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.info.blue-300}"
+          },
+          "default-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:900e5417b7c9dc13f08b7b14d72ac699ff8639b0/-1:-1",
+                "targetVariableName": "color/utility/info/blue-400",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:20:24",
+              "sggd.figmaResolvedValue": "#233254"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.info.blue-400}"
+          },
+          "prominent": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:900e5417b7c9dc13f08b7b14d72ac699ff8639b0/-1:-1",
+                "targetVariableName": "color/utility/info/blue-400",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:40000073:46",
+              "sggd.figmaResolvedValue": "#233254"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.info.blue-400}"
+          },
+          "subtle": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:bec3140aeeb1645288d5b77cfb61244724c22f92/-1:-1",
+                "targetVariableName": "color/utility/info/blue-100",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:20:25",
+              "sggd.figmaResolvedValue": "#E6F0FC"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.info.blue-100}"
+          },
+          "subtle-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:f0fded43523644ccd7ac77085965d90f6dc46fe7/-1:-1",
+                "targetVariableName": "color/utility/info/blue-200",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:20:26",
+              "sggd.figmaResolvedValue": "#ADD7FB"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.info.blue-200}"
+          }
+        },
+        "neutral": {
+          "default": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:5adeaa4375579185e2193332b2dfe8ee06c0a521/-1:-1",
+                "targetVariableName": "color/neutral/grey-100",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:20:13",
+              "sggd.figmaResolvedValue": "#F5F5F5"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.neutral.grey-100}"
+          },
+          "default-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:2743396f072ce1db438854ce4d80b15ea2a4b1ce/-1:-1",
+                "targetVariableName": "color/neutral/grey-200",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:20:14",
+              "sggd.figmaResolvedValue": "#E5E5E5"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.neutral.grey-200}"
+          },
+          "disabled": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:eb9077b9f76d26c87cde6309cd866e63fd018115/-1:-1",
+                "targetVariableName": "color/neutral/grey-400",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:20:32",
+              "sggd.figmaResolvedValue": "#A3A3A3"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.neutral.grey-400}"
+          },
+          "prominent": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:18d36de7480c56dc3083c6285df94558e2a2c865/-1:-1",
+                "targetVariableName": "color/neutral/grey-500",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:20:31",
+              "sggd.figmaResolvedValue": "#737373"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.neutral.grey-500}"
+          },
+          "subtle": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:7e1ed0b394edd32f438433b95b70cbbdfa6d11f6/-1:-1",
+                "targetVariableName": "color/neutral/grey-300",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:40000012:13",
+              "sggd.figmaResolvedValue": "#D4D4D4"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.neutral.grey-300}"
+          },
+          "subtle-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:eb9077b9f76d26c87cde6309cd866e63fd018115/-1:-1",
+                "targetVariableName": "color/neutral/grey-400",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:40000012:14",
+              "sggd.figmaResolvedValue": "#A3A3A3"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.neutral.grey-400}"
+          }
+        },
+        "success": {
+          "default": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:84733a19139399a337ce324ddee6504b094e6851/-1:-1",
+                "targetVariableName": "color/utility/sucess/green-300",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:20:19",
+              "sggd.figmaPath": "color/border/sucess/default",
+              "sggd.figmaResolvedValue": "#00883D"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.success.green-300}"
+          },
+          "default-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:1740ea7537f612138277e1a02e039453f722e7ca/-1:-1",
+                "targetVariableName": "color/utility/sucess/green-400",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:20:20",
+              "sggd.figmaPath": "color/border/sucess/default-hover",
+              "sggd.figmaResolvedValue": "#07622F"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.success.green-400}"
+          },
+          "prominent": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:1740ea7537f612138277e1a02e039453f722e7ca/-1:-1",
+                "targetVariableName": "color/utility/sucess/green-400",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:40000073:44",
+              "sggd.figmaPath": "color/border/sucess/prominent",
+              "sggd.figmaResolvedValue": "#07622F"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.success.green-400}"
+          },
+          "subtle": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:81b410895cd22f987e0fecbd5befb0b0e46e32d7/-1:-1",
+                "targetVariableName": "color/utility/sucess/green-100",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:20:21",
+              "sggd.figmaPath": "color/border/sucess/subtle",
+              "sggd.figmaResolvedValue": "#E3F5E1"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.success.green-100}"
+          },
+          "subtle-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:de3942a115d395cb07320708d3663db2d6bc5fbc/-1:-1",
+                "targetVariableName": "color/utility/sucess/green-200",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:20:22",
+              "sggd.figmaPath": "color/border/sucess/subtle-hover",
+              "sggd.figmaResolvedValue": "#B2D0BB"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.success.green-200}"
+          }
+        },
+        "warning": {
+          "default": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:47135d07c19152b0cec1ea6b7dcfa47e920e1a38/-1:-1",
+                "targetVariableName": "color/utility/warning/yellow-300",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:20:27",
+              "sggd.figmaResolvedValue": "#FBB900"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.warning.yellow-300}"
+          },
+          "default-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:755ca0e6f934991fb76b07cf17e7c104cb7a0e42/-1:-1",
+                "targetVariableName": "color/utility/warning/yellow-400",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:20:28",
+              "sggd.figmaResolvedValue": "#C38900"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.warning.yellow-400}"
+          },
+          "prominent": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:755ca0e6f934991fb76b07cf17e7c104cb7a0e42/-1:-1",
+                "targetVariableName": "color/utility/warning/yellow-400",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:40000073:45",
+              "sggd.figmaResolvedValue": "#C38900"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.warning.yellow-400}"
+          },
+          "subtle": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:3318d16516349789bb03cb41f99f34f1ba85c7ff/-1:-1",
+                "targetVariableName": "color/utility/warning/yellow-100",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:20:29",
+              "sggd.figmaResolvedValue": "#FFF5C2"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.warning.yellow-100}"
+          },
+          "subtle-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:3c869474975ceaa3ffde77dfb9585d909ff148de/-1:-1",
+                "targetVariableName": "color/utility/warning/yellow-200",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "STROKE"
+              ],
+              "com.figma.variableId": "VariableID:20:30",
+              "sggd.figmaResolvedValue": "#FFC572"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.warning.yellow-200}"
+          }
+        }
+      },
+      "icons": {
+        "brand": {
+          "default": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:d987e6d16d7cd939c7d2294ea43514d1ecf33acc/-1:-1",
+                "targetVariableName": "color/brand/red-primary",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:55:13",
+              "sggd.figmaResolvedValue": "#C50007"
+            },
+            "$type": "color",
+            "$value": "{brand.color.brand.red-primary}"
+          },
+          "default-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:cbd970822b4c6b4b27f4e33fe13eaae294773a85/-1:-1",
+                "targetVariableName": "color/identity/red-dark",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:55:14",
+              "sggd.figmaResolvedValue": "#842519"
+            },
+            "$type": "color",
+            "$value": "{brand.color.identity.red-dark}"
+          },
+          "disabled": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:18d36de7480c56dc3083c6285df94558e2a2c865/-1:-1",
+                "targetVariableName": "color/neutral/grey-500",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:55:16",
+              "sggd.figmaResolvedValue": "#737373"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.neutral.grey-500}"
+          },
+          "prominent": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:5bd4a6098d283296e922eedf35b73255b3181e09/-1:-1",
+                "targetVariableName": "color/utility/danger/red-300",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:55:15",
+              "sggd.figmaResolvedValue": "#E52207"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.danger.red-300}"
+          }
+        },
+        "danger": {
+          "default": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:5bd4a6098d283296e922eedf35b73255b3181e09/-1:-1",
+                "targetVariableName": "color/utility/danger/red-300",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:55:21",
+              "sggd.figmaResolvedValue": "#E52207"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.danger.red-300}"
+          },
+          "default-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:4128ff46dced8004a0919bb21bdabf709ac16d60/-1:-1",
+                "targetVariableName": "color/utility/danger/red-400",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:55:22",
+              "sggd.figmaResolvedValue": "#B22929"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.danger.red-400}"
+          },
+          "subtle": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:f3cc283b12e1fbe6e789b5985881f8fb40e02b5a/-1:-1",
+                "targetVariableName": "color/utility/danger/red-100",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:55:23",
+              "sggd.figmaResolvedValue": "#FFE5E5"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.danger.red-100}"
+          },
+          "subtle-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:e7b41f987ff7d6a4b6933d032a6e7f6d9d986d08/-1:-1",
+                "targetVariableName": "color/utility/danger/red-200",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:55:24",
+              "sggd.figmaResolvedValue": "#EB7B7B"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.danger.red-200}"
+          }
+        },
+        "information": {
+          "default": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:8e85bcbfb6160adb592aa1432128db7c63a2bd88/-1:-1",
+                "targetVariableName": "color/utility/info/blue-300",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:55:29",
+              "sggd.figmaResolvedValue": "#034EA2"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.info.blue-300}"
+          },
+          "default-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:900e5417b7c9dc13f08b7b14d72ac699ff8639b0/-1:-1",
+                "targetVariableName": "color/utility/info/blue-400",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:55:30",
+              "sggd.figmaResolvedValue": "#233254"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.info.blue-400}"
+          },
+          "subtle": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:bec3140aeeb1645288d5b77cfb61244724c22f92/-1:-1",
+                "targetVariableName": "color/utility/info/blue-100",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:55:31",
+              "sggd.figmaResolvedValue": "#E6F0FC"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.info.blue-100}"
+          },
+          "subtle-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:f0fded43523644ccd7ac77085965d90f6dc46fe7/-1:-1",
+                "targetVariableName": "color/utility/info/blue-200",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:55:32",
+              "sggd.figmaResolvedValue": "#ADD7FB"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.info.blue-200}"
+          }
+        },
+        "neutral": {
+          "black": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:babadb4132ea4d4f96c6fb087c1674431cddba98/-1:-1",
+                "targetVariableName": "color/pure-black",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:55:17",
+              "sggd.figmaResolvedValue": "#000000"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.pure-black}"
+          },
+          "default": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:b8953ae9ac559f137682dfb44c5c35e717f7238c/-1:-1",
+                "targetVariableName": "color/neutral/grey-600",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:40000073:40",
+              "sggd.figmaResolvedValue": "#505050"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.neutral.grey-600}"
+          },
+          "default-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:87fde7e8db01ecffae481975cac56fd0312eb54c/-1:-1",
+                "targetVariableName": "color/soft-black",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:55:18",
+              "sggd.figmaResolvedValue": "#292929"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.soft-black}"
+          },
+          "disabled": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:eb9077b9f76d26c87cde6309cd866e63fd018115/-1:-1",
+                "targetVariableName": "color/neutral/grey-400",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:55:20",
+              "sggd.figmaResolvedValue": "#A3A3A3"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.neutral.grey-400}"
+          },
+          "subtle": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:eb9077b9f76d26c87cde6309cd866e63fd018115/-1:-1",
+                "targetVariableName": "color/neutral/grey-400",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:40000073:41",
+              "sggd.figmaResolvedValue": "#A3A3A3"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.neutral.grey-400}"
+          },
+          "white": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:0b740b36d75095be51b0b817f5355bb248d04220/-1:-1",
+                "targetVariableName": "color/white",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:61:14",
+              "sggd.figmaResolvedValue": "#FFFFFF"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.white}"
+          }
+        },
+        "success": {
+          "default": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:84733a19139399a337ce324ddee6504b094e6851/-1:-1",
+                "targetVariableName": "color/utility/sucess/green-300",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:55:25",
+              "sggd.figmaPath": "color/icons/sucess/default",
+              "sggd.figmaResolvedValue": "#00883D"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.success.green-300}"
+          },
+          "default-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:1740ea7537f612138277e1a02e039453f722e7ca/-1:-1",
+                "targetVariableName": "color/utility/sucess/green-400",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:55:26",
+              "sggd.figmaPath": "color/icons/sucess/default-hover",
+              "sggd.figmaResolvedValue": "#07622F"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.success.green-400}"
+          },
+          "subtle": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:81b410895cd22f987e0fecbd5befb0b0e46e32d7/-1:-1",
+                "targetVariableName": "color/utility/sucess/green-100",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:55:27",
+              "sggd.figmaPath": "color/icons/sucess/subtle",
+              "sggd.figmaResolvedValue": "#E3F5E1"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.success.green-100}"
+          },
+          "subtle-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:de3942a115d395cb07320708d3663db2d6bc5fbc/-1:-1",
+                "targetVariableName": "color/utility/sucess/green-200",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:55:28",
+              "sggd.figmaPath": "color/icons/sucess/subtle-hover",
+              "sggd.figmaResolvedValue": "#B2D0BB"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.success.green-200}"
+          }
+        },
+        "warning": {
+          "default": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:47135d07c19152b0cec1ea6b7dcfa47e920e1a38/-1:-1",
+                "targetVariableName": "color/utility/warning/yellow-300",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:55:33",
+              "sggd.figmaResolvedValue": "#FBB900"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.warning.yellow-300}"
+          },
+          "default-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:755ca0e6f934991fb76b07cf17e7c104cb7a0e42/-1:-1",
+                "targetVariableName": "color/utility/warning/yellow-400",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:55:34",
+              "sggd.figmaResolvedValue": "#C38900"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.warning.yellow-400}"
+          },
+          "subtle": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:3318d16516349789bb03cb41f99f34f1ba85c7ff/-1:-1",
+                "targetVariableName": "color/utility/warning/yellow-100",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:55:35",
+              "sggd.figmaResolvedValue": "#FFF5C2"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.warning.yellow-100}"
+          },
+          "subtle-hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:3c869474975ceaa3ffde77dfb9585d909ff148de/-1:-1",
+                "targetVariableName": "color/utility/warning/yellow-200",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "FRAME_FILL",
+                "SHAPE_FILL"
+              ],
+              "com.figma.variableId": "VariableID:55:36",
+              "sggd.figmaResolvedValue": "#FFC572"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.warning.yellow-200}"
+          }
+        }
+      },
+      "text": {
+        "link": {
+          "default": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:42f80e5426d0b0cd8ce2249ce54f423ac3458107/-1:-1",
+                "targetVariableName": "color/identity/blue-link",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "TEXT_FILL"
+              ],
+              "com.figma.variableId": "VariableID:40000073:37",
+              "sggd.figmaResolvedValue": "#2554ED"
+            },
+            "$type": "color",
+            "$value": "{brand.color.identity.blue-link}"
+          },
+          "hover": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:900e5417b7c9dc13f08b7b14d72ac699ff8639b0/-1:-1",
+                "targetVariableName": "color/utility/info/blue-400",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "TEXT_FILL"
+              ],
+              "com.figma.variableId": "VariableID:40000073:38",
+              "sggd.figmaResolvedValue": "#233254"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.info.blue-400}"
+          },
+          "visited": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:cf33f43e6597080702b784b2e66e0c2981b45765/-1:-1",
+                "targetVariableName": "color/identity/blue-darker",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "TEXT_FILL"
+              ],
+              "com.figma.variableId": "VariableID:40000073:39",
+              "sggd.figmaResolvedValue": "#233254"
+            },
+            "$type": "color",
+            "$value": "{brand.color.identity.blue-darker}"
+          }
+        }
+      }
+    },
+    "shadow": {
+      "floating": {
+        "$type": "string",
+        "$value": "0 8px 16px rgba(24, 24, 24, 0.12)"
+      },
+      "modal": {
+        "$type": "string",
+        "$value": "0 20px 40px rgba(24, 24, 24, 0.24), 0 4px 12px rgba(24, 24, 24, 0.12)"
+      },
+      "overlay": {
+        "$type": "string",
+        "$value": "0 2px 4px -1px rgba(0, 0, 0, 0.24)"
+      },
+      "popover": {
+        "$type": "string",
+        "$value": "0 20px 40px rgba(24, 24, 24, 0.24)"
+      },
+      "raised": {
+        "$type": "string",
+        "$value": "0 8px 20px rgba(24, 24, 24, 0.24), 0 2px 6px rgba(24, 24, 24, 0.12)"
+      },
+      "switch-thumb": {
+        "$type": "string",
+        "$value": "0 1px 3px rgba(24, 24, 24, 0.24)"
+      }
+    },
+    "text-style": {
+      "content-color": {
+        "typography": {
+          "brand": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:6d5544ef0a32772387575c1787f8dd3f693d1c7d/-1:-1",
+                "targetVariableName": "color/brand/red",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "TEXT_FILL"
+              ],
+              "com.figma.variableId": "VariableID:40000022:18",
+              "sggd.figmaPath": "text style/content color/typography/brand",
+              "sggd.figmaResolvedValue": "#FF161F"
+            },
+            "$type": "color",
+            "$value": "{brand.color.brand.red}"
+          },
+          "danger": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:4128ff46dced8004a0919bb21bdabf709ac16d60/-1:-1",
+                "targetVariableName": "color/utility/danger/red-400",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "TEXT_FILL"
+              ],
+              "com.figma.variableId": "VariableID:52:47",
+              "sggd.figmaPath": "text style/content color/typography/danger",
+              "sggd.figmaResolvedValue": "#B22929"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.danger.red-400}"
+          },
+          "disabled": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:18d36de7480c56dc3083c6285df94558e2a2c865/-1:-1",
+                "targetVariableName": "color/neutral/grey-500",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "TEXT_FILL"
+              ],
+              "com.figma.variableId": "VariableID:52:46",
+              "sggd.figmaPath": "text style/content color/typography/disabled",
+              "sggd.figmaResolvedValue": "#737373"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.neutral.grey-500}"
+          },
+          "information": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:900e5417b7c9dc13f08b7b14d72ac699ff8639b0/-1:-1",
+                "targetVariableName": "color/utility/info/blue-400",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "TEXT_FILL"
+              ],
+              "com.figma.variableId": "VariableID:52:50",
+              "sggd.figmaPath": "text style/content color/typography/information",
+              "sggd.figmaResolvedValue": "#233254"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.info.blue-400}"
+          },
+          "inverse": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:0b740b36d75095be51b0b817f5355bb248d04220/-1:-1",
+                "targetVariableName": "color/white",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "TEXT_FILL"
+              ],
+              "com.figma.variableId": "VariableID:62:15",
+              "sggd.figmaPath": "text style/content color/typography/inverse",
+              "sggd.figmaResolvedValue": "#FFFFFF"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.white}"
+          },
+          "link": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:42f80e5426d0b0cd8ce2249ce54f423ac3458107/-1:-1",
+                "targetVariableName": "color/identity/blue-link",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "TEXT_FILL"
+              ],
+              "com.figma.variableId": "VariableID:40000073:50",
+              "sggd.figmaPath": "text style/content color/typography/link",
+              "sggd.figmaResolvedValue": "#2554ED"
+            },
+            "$type": "color",
+            "$value": "{brand.color.identity.blue-link}"
+          },
+          "on-brand": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:0b740b36d75095be51b0b817f5355bb248d04220/-1:-1",
+                "targetVariableName": "color/white",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "TEXT_FILL"
+              ],
+              "com.figma.variableId": "VariableID:40000073:47",
+              "sggd.figmaPath": "text style/content color/typography/on-brand",
+              "sggd.figmaResolvedValue": "#FFFFFF"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.white}"
+          },
+          "on-danger": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:0b740b36d75095be51b0b817f5355bb248d04220/-1:-1",
+                "targetVariableName": "color/white",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "TEXT_FILL"
+              ],
+              "com.figma.variableId": "VariableID:40000073:48",
+              "sggd.figmaPath": "text style/content color/typography/on-danger",
+              "sggd.figmaResolvedValue": "#FFFFFF"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.white}"
+          },
+          "on-success": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:0b740b36d75095be51b0b817f5355bb248d04220/-1:-1",
+                "targetVariableName": "color/white",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "TEXT_FILL"
+              ],
+              "com.figma.variableId": "VariableID:40000073:49",
+              "sggd.figmaPath": "text style/content color/typography/on-sucess",
+              "sggd.figmaResolvedValue": "#FFFFFF"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.white}"
+          },
+          "placeholder": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:eb9077b9f76d26c87cde6309cd866e63fd018115/-1:-1",
+                "targetVariableName": "color/neutral/grey-400",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "TEXT_FILL"
+              ],
+              "com.figma.variableId": "VariableID:59:13",
+              "sggd.figmaPath": "text style/content color/typography/placeholder",
+              "sggd.figmaResolvedValue": "#A3A3A3"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.neutral.grey-400}"
+          },
+          "primary": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:babadb4132ea4d4f96c6fb087c1674431cddba98/-1:-1",
+                "targetVariableName": "color/pure-black",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "TEXT_FILL"
+              ],
+              "com.figma.variableId": "VariableID:52:44",
+              "sggd.figmaPath": "text style/content color/typography/primary",
+              "sggd.figmaResolvedValue": "#000000"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.pure-black}"
+          },
+          "secondary": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:87fde7e8db01ecffae481975cac56fd0312eb54c/-1:-1",
+                "targetVariableName": "color/soft-black",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "TEXT_FILL"
+              ],
+              "com.figma.variableId": "VariableID:52:45",
+              "sggd.figmaPath": "text style/content color/typography/secondary",
+              "sggd.figmaResolvedValue": "#292929"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.soft-black}"
+          },
+          "success": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:1740ea7537f612138277e1a02e039453f722e7ca/-1:-1",
+                "targetVariableName": "color/utility/sucess/green-400",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "TEXT_FILL"
+              ],
+              "com.figma.variableId": "VariableID:52:48",
+              "sggd.figmaPath": "text style/content color/typography/sucess",
+              "sggd.figmaResolvedValue": "#07622F"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.success.green-400}"
+          },
+          "tertiary": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:b8953ae9ac559f137682dfb44c5c35e717f7238c/-1:-1",
+                "targetVariableName": "color/neutral/grey-600",
+                "targetVariableSetId": "VariableCollectionId:766bb761268ac8fd3811b008a124626b1bbcd7ff/-1:-1",
+                "targetVariableSetName": "Global: Core"
+              },
+              "com.figma.scopes": [
+                "TEXT_FILL"
+              ],
+              "com.figma.variableId": "VariableID:40000013:15",
+              "sggd.figmaPath": "text style/content color/typography/tertiary",
+              "sggd.figmaResolvedValue": "#505050"
+            },
+            "$type": "color",
+            "$value": "{primitive.color.neutral.grey-600}"
+          },
+          "warning": {
+            "$extensions": {
+              "com.figma.aliasData": {
+                "targetVariableId": "VariableID:755ca0e6f934991fb76b07cf17e7c104cb7a0e42/-1:-1",
+                "targetVariableName": "color/utility/warning/yellow-400",
+                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
+                "targetVariableSetName": "T1: Sampa Design System"
+              },
+              "com.figma.scopes": [
+                "TEXT_FILL"
+              ],
+              "com.figma.variableId": "VariableID:52:49",
+              "sggd.figmaPath": "text style/content color/typography/warning",
+              "sggd.figmaResolvedValue": "#C38900"
+            },
+            "$type": "color",
+            "$value": "{brand.color.utility.warning.yellow-400}"
+          }
+        }
+      }
+    }
+  }
+}

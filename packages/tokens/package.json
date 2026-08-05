@@ -10,6 +10,7 @@
   "files": [
     "dist",
     "src/raw",
+    "src/normalized",
     "LICENSE",
     "README.md"
   ],

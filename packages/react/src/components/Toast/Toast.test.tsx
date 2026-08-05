@@ -68,12 +68,7 @@ describe('Toast', () => {
     const onOpenChange = vi.fn();
 
     render(
-      <Toast
-        autoDismiss={false}
-        onDismiss={onDismiss}
-        onOpenChange={onOpenChange}
-        title="Title"
-      />,
+      <Toast autoDismiss={false} onDismiss={onDismiss} onOpenChange={onOpenChange} title="Title" />,
     );
 
     fireEvent.click(screen.getByRole('button', { name: 'Dispensar notificacao' }));
@@ -144,7 +139,9 @@ describe('Toast', () => {
   });
 
   it('supports disabled actions accessibly', () => {
-    render(<Toast actions={[{ disabled: true, label: 'Button' }]} autoDismiss={false} title="Title" />);
+    render(
+      <Toast actions={[{ disabled: true, label: 'Button' }]} autoDismiss={false} title="Title" />,
+    );
 
     expect(screen.getByRole('button', { name: 'Button' })).toBeDisabled();
   });

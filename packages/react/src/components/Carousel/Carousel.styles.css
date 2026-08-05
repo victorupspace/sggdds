@@ -1,14 +1,14 @@
 .ds-carousel {
   --carousel-surface: var(--ds-semantic-color-background-neutral-default);
-  --carousel-stage: var(--ds-semantic-color-background-neutral-elevated);
-  --carousel-hover: var(--ds-semantic-color-background-neutral-hover);
-  --carousel-active: var(--ds-semantic-color-background-neutral-active);
-  --carousel-foreground: var(--ds-semantic-color-content-neutral-default);
-  --carousel-muted: var(--ds-semantic-color-content-neutral-muted);
-  --carousel-disabled: var(--ds-semantic-color-content-neutral-disabled);
+  --carousel-stage: var(--ds-semantic-color-background-neutral-subtle);
+  --carousel-hover: var(--ds-primitive-color-neutral-alpha-4);
+  --carousel-active: var(--ds-primitive-color-neutral-alpha-8);
+  --carousel-foreground: var(--ds-semantic-text-style-content-color-typography-secondary);
+  --carousel-muted: var(--ds-semantic-text-style-content-color-typography-tertiary);
+  --carousel-disabled: var(--ds-semantic-text-style-content-color-typography-disabled);
   --carousel-border: var(--ds-semantic-color-border-neutral-subtle);
   --carousel-border-strong: var(--ds-semantic-color-border-neutral-default);
-  --carousel-focus-ring: var(--ds-semantic-color-focus-default);
+  --carousel-focus-ring: var(--ds-component-focus-ring-color-ring);
   --carousel-shadow: var(--ds-semantic-shadow-floating);
   --carousel-gap: var(--ds-primitive-spacing-24);
   --carousel-control-size: var(--ds-primitive-spacing-48);
@@ -46,7 +46,7 @@
   gap: var(--ds-primitive-spacing-16);
   align-items: center;
   border: var(--ds-primitive-border-width-border-sm) solid var(--carousel-border);
-  border-radius: var(--ds-semantic-radius-lg);
+  border-radius: var(--ds-primitive-border-radius-radius-lg);
   background: var(--carousel-stage);
 }
 
@@ -105,7 +105,7 @@
   padding: var(--ds-primitive-spacing-0);
   place-items: center;
   border: var(--ds-primitive-border-width-border-sm) solid var(--carousel-border);
-  border-radius: var(--ds-semantic-radius-full);
+  border-radius: var(--ds-component-carousel-arrow-border-radius);
   background: var(--carousel-surface);
   color: var(--carousel-foreground);
   cursor: pointer;
@@ -155,7 +155,7 @@
 .ds-carousel__indicators {
   display: inline-flex;
   flex-wrap: wrap;
-  gap: var(--ds-primitive-spacing-8);
+  gap: var(--ds-component-carousel-dot-spacing-gap);
   align-items: center;
   justify-content: center;
 }
@@ -167,7 +167,7 @@
   padding: var(--ds-primitive-spacing-0);
   place-items: center;
   border: 0;
-  border-radius: var(--ds-semantic-radius-full);
+  border-radius: var(--ds-component-carousel-dot-border-radius);
   background: transparent;
   color: var(--carousel-border-strong);
   cursor: pointer;
@@ -177,7 +177,7 @@
   display: block;
   inline-size: var(--carousel-indicator-size);
   block-size: var(--carousel-indicator-size);
-  border-radius: var(--ds-semantic-radius-full);
+  border-radius: var(--ds-component-carousel-dot-border-radius);
   background: currentColor;
   content: '';
   transition:
@@ -223,7 +223,7 @@
 
 @media (max-width: 900px) {
   .ds-carousel {
-    --carousel-gap: var(--ds-primitive-spacing-16);
+    --carousel-gap: var(--ds-component-carousel-slide-spacing-gap);
     --carousel-stage-padding: var(--ds-primitive-spacing-16);
   }
 

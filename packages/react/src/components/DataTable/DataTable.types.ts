@@ -50,8 +50,10 @@ export interface DataTableLabels {
   loading?: string;
 }
 
-export interface DataTableProps<TData>
-  extends Omit<HTMLAttributes<HTMLDivElement>, 'children' | 'onSelect' | 'title'> {
+export interface DataTableProps<TData> extends Omit<
+  HTMLAttributes<HTMLDivElement>,
+  'children' | 'onSelect' | 'title'
+> {
   columns: DataTableColumn<TData>[];
   data: TData[];
   keyField?: keyof TData | ((row: TData, rowIndex: number) => DataTableKey);

@@ -1,25 +1,25 @@
 .ds-chip {
-  --chip-background: var(--ds-semantic-color-background-neutral-default);
-  --chip-background-hover: var(--ds-semantic-color-background-neutral-hover);
-  --chip-background-active: var(--ds-semantic-color-background-neutral-active);
-  --chip-border: var(--ds-semantic-color-border-neutral-subtle);
+  --chip-background: var(--ds-component-tag-color-background-neutral);
+  --chip-background-hover: var(--ds-primitive-color-neutral-alpha-4);
+  --chip-background-active: var(--ds-primitive-color-neutral-alpha-8);
+  --chip-border: var(--ds-component-tag-color-border-neutral);
   --chip-border-hover: var(--ds-semantic-color-border-neutral-default);
-  --chip-foreground: var(--ds-semantic-color-content-neutral-default);
-  --chip-muted: var(--ds-semantic-color-content-neutral-muted);
-  --chip-focus-ring: var(--ds-semantic-color-action-primary-default);
+  --chip-foreground: var(--ds-semantic-text-style-content-color-typography-secondary);
+  --chip-muted: var(--ds-semantic-text-style-content-color-typography-tertiary);
+  --chip-focus-ring: var(--ds-semantic-color-background-brand-primary-secondary-default);
   --chip-disabled-background: var(--ds-semantic-color-background-neutral-disabled);
   --chip-disabled-border: var(--ds-semantic-color-border-neutral-subtle);
-  --chip-disabled-foreground: var(--ds-semantic-color-content-neutral-disabled);
+  --chip-disabled-foreground: var(--ds-semantic-text-style-content-color-typography-disabled);
   --chip-selected-background: var(--ds-semantic-color-background-information-subtle);
-  --chip-selected-border: var(--ds-semantic-color-action-primary-default);
-  --chip-selected-foreground: var(--ds-semantic-color-content-neutral-default);
-  --chip-block-size: var(--ds-primitive-spacing-32);
+  --chip-selected-border: var(--ds-semantic-color-background-brand-primary-secondary-default);
+  --chip-selected-foreground: var(--ds-semantic-text-style-content-color-typography-secondary);
+  --chip-block-size: var(--ds-component-tag-size-height-md);
   --chip-padding-start: var(--ds-primitive-spacing-8);
   --chip-padding-end: var(--ds-primitive-spacing-4);
   --chip-gap: var(--ds-primitive-spacing-8);
-  --chip-icon-size: var(--ds-primitive-spacing-16);
+  --chip-icon-size: var(--ds-component-tag-size-icon-size-md);
   --chip-remove-size: var(--ds-primitive-spacing-24);
-  --chip-font-size: var(--ds-primitive-typography-font-size-14);
+  --chip-font-size: var(--ds-component-tag-typography-font-size-md);
   --chip-line-height: var(--ds-primitive-typography-line-height-20);
 
   display: inline-flex;
@@ -30,8 +30,8 @@
   padding-inline: var(--chip-padding-start) var(--chip-padding-end);
   gap: var(--chip-gap);
   align-items: center;
-  border: var(--ds-primitive-border-width-border-sm) solid var(--chip-border);
-  border-radius: var(--ds-semantic-radius-sm);
+  border: var(--ds-component-tag-border-width) solid var(--chip-border);
+  border-radius: var(--ds-primitive-border-radius-radius-sm);
   background: var(--chip-background);
   color: var(--chip-foreground);
   font-family:
@@ -53,23 +53,23 @@
 }
 
 .ds-chip--size-small {
-  --chip-block-size: var(--ds-primitive-spacing-24);
-  --chip-padding-start: var(--ds-primitive-spacing-8);
+  --chip-block-size: var(--ds-component-tag-size-height-sm);
+  --chip-padding-start: var(--ds-component-tag-spacing-padding-x-sm);
   --chip-padding-end: var(--ds-primitive-spacing-2);
   --chip-gap: var(--ds-primitive-spacing-6);
-  --chip-icon-size: var(--ds-primitive-spacing-12);
+  --chip-icon-size: var(--ds-component-tag-size-icon-size-sm);
   --chip-remove-size: var(--ds-primitive-spacing-20);
-  --chip-font-size: var(--ds-primitive-typography-font-size-12);
+  --chip-font-size: var(--ds-component-tag-typography-font-size-sm);
   --chip-line-height: var(--ds-primitive-typography-line-height-16);
 }
 
 .ds-chip--size-medium {
-  --chip-block-size: var(--ds-primitive-spacing-32);
+  --chip-block-size: var(--ds-component-tag-size-height-md);
 }
 
 .ds-chip--variant-brand {
   --chip-selected-background: var(--ds-semantic-color-background-information-subtle);
-  --chip-selected-border: var(--ds-semantic-color-action-primary-default);
+  --chip-selected-border: var(--ds-semantic-color-background-brand-primary-secondary-default);
 }
 
 .ds-chip--selected {
@@ -123,19 +123,19 @@
   block-size: var(--chip-remove-size);
   padding: var(--ds-primitive-spacing-0);
   border: 0;
-  border-radius: var(--ds-semantic-radius-sm);
+  border-radius: var(--ds-primitive-border-radius-radius-sm);
   background: transparent;
   color: var(--chip-muted);
   cursor: pointer;
 }
 
 .ds-chip__remove:hover:not(:disabled) {
-  background: var(--ds-semantic-color-background-neutral-active);
+  background: var(--ds-primitive-color-neutral-alpha-8);
   color: var(--chip-foreground);
 }
 
 .ds-chip__remove:active:not(:disabled) {
-  background: var(--ds-semantic-color-background-neutral-overlay-subtle);
+  background: var(--ds-primitive-color-neutral-alpha-12);
 }
 
 .ds-chip__remove:focus-visible {

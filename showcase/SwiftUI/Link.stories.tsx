@@ -13,14 +13,22 @@ type Story = StoryObj;
 
 export const Overview: Story = {
   render: () => (
-      <Showcase platform="SwiftUI" language="Swift" code={`DSLink("Link padrão", url: URL(string: "https://gov.br"))
+    <Showcase
+      platform="SwiftUI"
+      language="Swift"
+      code={`DSLink("Link padrão", url: URL(string: "https://gov.br"))
   DSLink("Link neutro", variant: .neutral)
-  DSLink("Link externo", showExternalIcon: true)`}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start' }}>
-            <Link href="#">Link padrão</Link>
-            <Link href="#" variant="neutral">Link neutro</Link>
-            <Link href="#" external showExternalIcon>Link externo</Link>
-          </div>
-      </Showcase>
+  DSLink("Link externo", showExternalIcon: true)`}
+    >
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start' }}>
+        <Link href="#">Link padrão</Link>
+        <Link href="#" variant="neutral">
+          Link neutro
+        </Link>
+        <Link href="#" external showExternalIcon>
+          Link externo
+        </Link>
+      </div>
+    </Showcase>
   ),
 };

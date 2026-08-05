@@ -182,8 +182,22 @@ export const Compact: Story = {
     <div className="progress-bar-story-shell">
       <div className="progress-bar-story-compact">
         <ProgressBar helperText="Helper text" label="Label" size="sm" value={25} />
-        <ProgressBar helperText="Success message" label="Label" showIcon size="sm" value={100} variant="success" />
-        <ProgressBar helperText="Error message" label="Label" showIcon size="sm" value={100} variant="error" />
+        <ProgressBar
+          helperText="Success message"
+          label="Label"
+          showIcon
+          size="sm"
+          value={100}
+          variant="success"
+        />
+        <ProgressBar
+          helperText="Error message"
+          label="Label"
+          showIcon
+          size="sm"
+          value={100}
+          variant="error"
+        />
       </div>
     </div>
   ),

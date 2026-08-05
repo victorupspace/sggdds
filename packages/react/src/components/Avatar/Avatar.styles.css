@@ -1,11 +1,11 @@
 .ds-avatar {
-  --avatar-background: var(--ds-semantic-color-content-neutral-default);
+  --avatar-background: var(--ds-semantic-text-style-content-color-typography-secondary);
   --avatar-foreground: var(--ds-semantic-color-background-neutral-default);
-  --avatar-border-color: var(--ds-semantic-color-background-neutral-active);
+  --avatar-border-color: var(--ds-primitive-color-neutral-alpha-8);
   --avatar-disabled-background: var(--ds-semantic-color-border-neutral-default);
-  --avatar-disabled-foreground: var(--ds-semantic-color-content-neutral-muted);
+  --avatar-disabled-foreground: var(--ds-semantic-text-style-content-color-typography-tertiary);
   --avatar-size: var(--ds-primitive-spacing-40);
-  --avatar-font-size: var(--ds-primitive-typography-font-size-14);
+  --avatar-font-size: var(--ds-component-avatar-typography-font-size-md);
   --avatar-line-height: var(--ds-primitive-typography-line-height-16);
 
   display: inline-grid;
@@ -17,7 +17,7 @@
   place-items: center;
   overflow: hidden;
   border: var(--ds-primitive-border-width-border-sm) solid var(--avatar-border-color);
-  border-radius: var(--ds-semantic-radius-full);
+  border-radius: var(--ds-component-avatar-border-radius-circle);
   background: var(--avatar-background);
   color: var(--avatar-foreground);
   font-family:
@@ -38,19 +38,19 @@
 
 .ds-avatar--size-xsmall {
   --avatar-size: var(--ds-primitive-spacing-24);
-  --avatar-font-size: var(--ds-primitive-typography-font-size-10);
+  --avatar-font-size: var(--ds-component-avatar-typography-font-size-xs);
   --avatar-line-height: var(--ds-primitive-typography-line-height-12);
 }
 
 .ds-avatar--size-small {
   --avatar-size: var(--ds-primitive-spacing-32);
-  --avatar-font-size: var(--ds-primitive-typography-font-size-12);
+  --avatar-font-size: var(--ds-component-avatar-typography-font-size-sm);
   --avatar-line-height: var(--ds-primitive-typography-line-height-16);
 }
 
 .ds-avatar--size-medium {
   --avatar-size: var(--ds-primitive-spacing-40);
-  --avatar-font-size: var(--ds-primitive-typography-font-size-14);
+  --avatar-font-size: var(--ds-component-avatar-typography-font-size-md);
   --avatar-line-height: var(--ds-primitive-typography-line-height-16);
 }
 

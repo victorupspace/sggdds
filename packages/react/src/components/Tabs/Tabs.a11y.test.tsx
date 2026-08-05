@@ -12,9 +12,7 @@ const items = [
 
 describe('Tabs — accessibility', () => {
   it('has no violations on default render', async () => {
-    const { container } = render(
-      <Tabs items={items} ariaLabel="Configurações da conta" />,
-    );
+    const { container } = render(<Tabs items={items} ariaLabel="Configurações da conta" />);
     expect(await axe(container)).toHaveNoViolations();
   });
 
@@ -23,9 +21,7 @@ describe('Tabs — accessibility', () => {
       ...items,
       { id: 'billing', label: 'Faturamento', content: <p />, disabled: true },
     ];
-    const { container } = render(
-      <Tabs items={itemsWithDisabled} ariaLabel="Configurações" />,
-    );
+    const { container } = render(<Tabs items={itemsWithDisabled} ariaLabel="Configurações" />);
     expect(await axe(container)).toHaveNoViolations();
   });
 
@@ -38,11 +34,7 @@ describe('Tabs — accessibility', () => {
 
   it('has no violations with manual activation mode', async () => {
     const { container } = render(
-      <Tabs
-        items={items}
-        activationMode="manual"
-        ariaLabel="Configurações"
-      />,
+      <Tabs items={items} activationMode="manual" ariaLabel="Configurações" />,
     );
     expect(await axe(container)).toHaveNoViolations();
   });

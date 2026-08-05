@@ -381,11 +381,7 @@ export const Datepicker = forwardRef<HTMLInputElement, DatepickerProps>(function
 
           <div className="ds-datepicker__days" role="grid">
             {Array.from({ length: Math.ceil(days.length / 7) }, (_, weekIndex) => (
-              <div
-                className="ds-datepicker__week"
-                key={`week-${String(weekIndex)}`}
-                role="row"
-              >
+              <div className="ds-datepicker__week" key={`week-${String(weekIndex)}`} role="row">
                 {days.slice(weekIndex * 7, weekIndex * 7 + 7).map((day) => {
                   const isoValue = formatIsoDate(day);
                   const isOutsideMonth = day.getMonth() !== visibleMonth.getMonth();

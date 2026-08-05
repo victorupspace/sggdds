@@ -33,13 +33,13 @@ Este guia descreve apenas o que **está implementado hoje** no pacote `@governme
 
 ## 1. Pré-requisitos
 
-| Requisito       | Versão exigida          | Origem                                    |
-| --------------- | ----------------------- | ----------------------------------------- |
-| **Node.js**     | `>=22.12.0`             | `package.json → engines.node`             |
-| **pnpm**        | `>=10.24.0` (opcional)  | `package.json → engines.pnpm`             |
-| **React**       | `^19.0.0`               | `package.json → peerDependencies`         |
-| **React DOM**   | `^19.0.0`               | `package.json → peerDependencies`         |
-| **TypeScript** *(recomendado)* | `>=5.0`  | Para consumir tipos `.d.ts` distribuídos  |
+| Requisito                      | Versão exigida         | Origem                                   |
+| ------------------------------ | ---------------------- | ---------------------------------------- |
+| **Node.js**                    | `>=22.12.0`            | `package.json → engines.node`            |
+| **pnpm**                       | `>=10.24.0` (opcional) | `package.json → engines.pnpm`            |
+| **React**                      | `^19.0.0`              | `package.json → peerDependencies`        |
+| **React DOM**                  | `^19.0.0`              | `package.json → peerDependencies`        |
+| **TypeScript** _(recomendado)_ | `>=5.0`                | Para consumir tipos `.d.ts` distribuídos |
 
 O pacote é distribuído **somente como ESM** (`"type": "module"`). Bundlers modernos suportam nativamente. Para CommonJS puro, ver [Limitações](#15-limitações-conhecidas-e-pendências).
 
@@ -66,11 +66,11 @@ O pacote **não inclui React** como dependência direta — você precisa ter `r
 
 A biblioteca expõe três entradas relevantes para configuração inicial:
 
-| Entrada                                       | Conteúdo                                                       |
-| --------------------------------------------- | -------------------------------------------------------------- |
-| `@government/design-system/tokens.css`        | Variáveis CSS dos Design Tokens (cores, espaçamento, etc.)    |
-| `@government/design-system/styles.css`        | Estilos compilados de todos os componentes                     |
-| `@government/design-system/tokens.json`       | Tokens em JSON (para consumo programático)                     |
+| Entrada                                 | Conteúdo                                                   |
+| --------------------------------------- | ---------------------------------------------------------- |
+| `@government/design-system/tokens.css`  | Variáveis CSS dos Design Tokens (cores, espaçamento, etc.) |
+| `@government/design-system/styles.css`  | Estilos compilados de todos os componentes                 |
+| `@government/design-system/tokens.json` | Tokens em JSON (para consumo programático)                 |
 
 **Importe ambos os CSS uma única vez**, na raiz da aplicação, antes de qualquer estilo do produto. A ordem importa: tokens primeiro, estilos depois.
 
@@ -164,20 +164,16 @@ const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], display: 'swap' });
 Todos os componentes são exportados nominalmente do entrypoint raiz. Não há subpaths por componente neste momento.
 
 ```tsx
-import {
-  Alert,
-  Button,
-  Card,
-  Modal,
-  TextInput,
-} from '@government/design-system';
+import { Alert, Button, Card, Modal, TextInput } from '@government/design-system';
 
 export function PaginaExemplo() {
   return (
     <Card title="Acessar conta">
       <Alert variant="warning">Sua senha expira em 7 dias.</Alert>
       <TextInput label="E-mail" type="email" required />
-      <Button variant="primary" type="submit">Entrar</Button>
+      <Button variant="primary" type="submit">
+        Entrar
+      </Button>
     </Card>
   );
 }
@@ -185,12 +181,12 @@ export function PaginaExemplo() {
 
 ### Componentes disponíveis
 
-| Categoria       | Componentes |
-| --------------- | ----------- |
-| **Ação**        | `Button`, `ButtonGov`, `Link`, `BackToTop` |
-| **Formulário** | `TextInput`, `TextArea`, `Dropdown`, `Datepicker`, `Checkbox`, `Radio`, `Toggle`, `FileUpload` |
-| **Navegação**  | `Header`, `Footer`, `Breadcrumb`, `Tabs`, `Pagination`, `Stepper` |
-| **Feedback**    | `Alert`, `Toast`, `Tooltip`, `ProgressBar`, `Spinner`, `Skeleton` |
+| Categoria      | Componentes                                                                                        |
+| -------------- | -------------------------------------------------------------------------------------------------- |
+| **Ação**       | `Button`, `ButtonGov`, `Link`, `BackToTop`                                                         |
+| **Formulário** | `TextInput`, `TextArea`, `Dropdown`, `Datepicker`, `Checkbox`, `Radio`, `Toggle`, `FileUpload`     |
+| **Navegação**  | `Header`, `Footer`, `Breadcrumb`, `Tabs`, `Pagination`, `Stepper`                                  |
+| **Feedback**   | `Alert`, `Toast`, `Tooltip`, `ProgressBar`, `Spinner`, `Skeleton`                                  |
 | **Conteúdo**   | `Card`, `InfoCard`, `Hero`, `Badge`, `Chip`, `Avatar`, `Divider`, `Accordion`, `Modal`, `ListItem` |
 
 A lista canônica fica em `src/index.ts`. Para inspecionar props, abra a story do componente em **Web Components** na sidebar do Storybook ou veja os tipos exportados em `dist/src/index.d.ts`.
@@ -221,16 +217,16 @@ Os tokens são a fonte técnica de qualquer decisão visual. Eles existem como v
 --ds-{tier}-{category}-{subcategory}-{name}
 ```
 
-| Segmento     | Valores reais hoje                                                    |
-| ------------ | --------------------------------------------------------------------- |
-| `tier`       | `primitive`, `semantic` (component-level ainda não publicado)         |
-| `category`   | `color`, `spacing`, `border-radius`, `border-width`, `breakpoints`, `typography`, `shadow` |
+| Segmento   | Valores reais hoje                                                                         |
+| ---------- | ------------------------------------------------------------------------------------------ |
+| `tier`     | `primitive`, `semantic` (component-level ainda não publicado)                              |
+| `category` | `color`, `spacing`, `border-radius`, `border-width`, `breakpoints`, `typography`, `shadow` |
 
 ### Exemplos
 
 ```css
 .minha-cta {
-  background: var(--ds-primitive-color-brand-red);
+  background: var(--ds-brand-color-brand-red);
   color: var(--ds-primitive-color-white);
   padding: var(--ds-primitive-spacing-12) var(--ds-primitive-spacing-24);
   border-radius: var(--ds-primitive-border-radius-radius-md);
@@ -273,7 +269,7 @@ A personalização do Design System é feita **por sobrescrita de variáveis CSS
 ```css
 /* app.css — depois dos imports do DS */
 :root {
-  --ds-primitive-color-brand-red: #c81d25;
+  --ds-brand-color-brand-red: #c81d25;
   --ds-primitive-border-radius-radius-md: 10px;
 }
 ```
@@ -284,7 +280,7 @@ Todos os componentes refletem a mudança automaticamente, sem rebuild.
 
 ```css
 .tema-institucional {
-  --ds-primitive-color-brand-red: #0b4068;
+  --ds-brand-color-brand-red: #0b4068;
   --ds-primitive-color-soft-black: #1c1c1c;
 }
 ```
@@ -324,7 +320,7 @@ Cada componente aceita `className`. Use isso apenas para **margem, posicionament
 - Usar `!important` sobre classes do Design System.
 - Selecionar classes internas dos componentes (`.ds-button__icon`, etc.). Elas mudam sem aviso e não fazem parte da API pública.
 - Copiar CSS dos componentes para o seu app — você perde correções futuras.
-- Hardcodar valores que existem como token (`color: #ff161f` em vez de `var(--ds-primitive-color-brand-red)`).
+- Hardcodar valores que existem como token (`color: #ff161f` em vez de `var(--ds-brand-color-brand-red)`).
 
 ---
 
@@ -340,15 +336,15 @@ A maioria dos componentes (`Button`, `Alert`, `Card`, `Badge`, `Chip`, `TextInpu
 
 Componentes que dependem de side-effects do DOM ativam `window`/`document` somente após mount, mas exigem que **seu wrapper** seja Client Component em frameworks como Next.js App Router:
 
-| Componente   | Motivo                                            |
-| ------------ | ------------------------------------------------- |
-| `Modal`      | Foco trap, bloqueio de scroll do body             |
-| `RadioGroup` | Navegação por teclado entre inputs                |
-| `Tooltip`    | Posicionamento dinâmico                           |
-| `Dropdown`   | Listener de outside-click                         |
-| `Datepicker` | Estado de calendário                              |
-| `Toast`      | Portal e timers                                   |
-| `BackToTop`  | Listener de scroll                                |
+| Componente   | Motivo                                |
+| ------------ | ------------------------------------- |
+| `Modal`      | Foco trap, bloqueio de scroll do body |
+| `RadioGroup` | Navegação por teclado entre inputs    |
+| `Tooltip`    | Posicionamento dinâmico               |
+| `Dropdown`   | Listener de outside-click             |
+| `Datepicker` | Estado de calendário                  |
+| `Toast`      | Portal e timers                       |
+| `BackToTop`  | Listener de scroll                    |
 
 > **Recomendação:** envolva fluxos interativos em um Client Component no consumidor:
 >
@@ -361,14 +357,14 @@ Componentes que dependem de side-effects do DOM ativam `window`/`document` somen
 
 ### Frameworks suportados
 
-| Framework                  | Suporte               | Observação                                     |
-| -------------------------- | --------------------- | ---------------------------------------------- |
-| **Next.js 14+ App Router** | ✅ Total              | Use `"use client"` em wrappers interativos     |
-| **Next.js Pages Router**   | ✅ Total              | Sem ajustes adicionais                         |
-| **Remix**                  | ✅ Total              | Importe CSS via `links()`                      |
-| **Astro**                  | ✅ Total              | Use `client:load` em ilhas interativas         |
-| **Vite SPA**               | ✅ Total              | Funciona out-of-the-box                        |
-| **Create React App**       | ✅ Total              | Funciona out-of-the-box                        |
+| Framework                  | Suporte  | Observação                                 |
+| -------------------------- | -------- | ------------------------------------------ |
+| **Next.js 14+ App Router** | ✅ Total | Use `"use client"` em wrappers interativos |
+| **Next.js Pages Router**   | ✅ Total | Sem ajustes adicionais                     |
+| **Remix**                  | ✅ Total | Importe CSS via `links()`                  |
+| **Astro**                  | ✅ Total | Use `client:load` em ilhas interativas     |
+| **Vite SPA**               | ✅ Total | Funciona out-of-the-box                    |
+| **Create React App**       | ✅ Total | Funciona out-of-the-box                    |
 
 ---
 
@@ -434,31 +430,31 @@ Apenas uma cópia de `react` deve aparecer.
 
 A biblioteca segue **SemVer estrito** (`MAJOR.MINOR.PATCH`).
 
-| Tipo de mudança                                            | Bump  | Exemplo                                          |
-| ---------------------------------------------------------- | ----- | ------------------------------------------------ |
-| Remoção/renomeação de componente ou prop                 | MAJOR | `Button.variant: "primary"` removido             |
-| Mudança de comportamento padrão observável              | MAJOR | `Modal` passa a fechar com clique fora por padrão |
-| Mudança de naming de token CSS                            | MAJOR | `--ds-primitive-color-brand-red` → outro nome    |
-| Novo componente ou nova prop opcional                      | MINOR | Nova prop `Button.loading`                       |
-| Novo token CSS                                             | MINOR | Adição de `--ds-primitive-color-brand-blue`     |
-| Correção de bug visual ou comportamental sem mudar API   | PATCH | Ajuste de contraste no `Alert`                   |
-| Refator interno (CSS, estrutura de pastas)                | PATCH | Reorganização de classes internas                |
+| Tipo de mudança                                        | Bump  | Exemplo                                           |
+| ------------------------------------------------------ | ----- | ------------------------------------------------- |
+| Remoção/renomeação de componente ou prop               | MAJOR | `Button.variant: "primary"` removido              |
+| Mudança de comportamento padrão observável             | MAJOR | `Modal` passa a fechar com clique fora por padrão |
+| Mudança de naming de token CSS                         | MAJOR | `--ds-brand-color-brand-red` → outro nome         |
+| Novo componente ou nova prop opcional                  | MINOR | Nova prop `Button.loading`                        |
+| Novo token CSS                                         | MINOR | Adição de `--ds-primitive-color-brand-blue`       |
+| Correção de bug visual ou comportamental sem mudar API | PATCH | Ajuste de contraste no `Alert`                    |
+| Refator interno (CSS, estrutura de pastas)             | PATCH | Reorganização de classes internas                 |
 
 ### Superfície pública vs interna
 
-| Considerado **público** (segue SemVer)                                       |
-| ---------------------------------------------------------------------------- |
-| Componentes exportados em `src/index.ts`                                     |
-| Props e tipos exportados                                                     |
-| Variáveis CSS `--ds-*` documentadas em Foundations                          |
-| Caminhos de export (`tokens.css`, `styles.css`, `tokens.json`)              |
+| Considerado **público** (segue SemVer)                         |
+| -------------------------------------------------------------- |
+| Componentes exportados em `src/index.ts`                       |
+| Props e tipos exportados                                       |
+| Variáveis CSS `--ds-*` documentadas em Foundations             |
+| Caminhos de export (`tokens.css`, `styles.css`, `tokens.json`) |
 
-| Considerado **interno** (pode mudar a qualquer momento)                      |
-| ---------------------------------------------------------------------------- |
-| Nomes de classes CSS dos componentes (`.ds-button__icon`, etc.)              |
-| Estrutura de pastas em `src/`                                                |
-| Implementação interna de hooks e helpers                                   |
-| Variáveis CSS não documentadas                                              |
+| Considerado **interno** (pode mudar a qualquer momento)         |
+| --------------------------------------------------------------- |
+| Nomes de classes CSS dos componentes (`.ds-button__icon`, etc.) |
+| Estrutura de pastas em `src/`                                   |
+| Implementação interna de hooks e helpers                        |
+| Variáveis CSS não documentadas                                  |
 
 ### Pré-1.0
 
@@ -566,20 +562,20 @@ Enquanto não há suporte oficial, projetos que precisam de dark mode podem faze
 
 Itens **não cobertos** pela versão atual da biblioteca:
 
-| Tópico                                | Status     | Recomendação                                         |
-| ------------------------------------- | ---------- | ---------------------------------------------------- |
-| **Dark mode**                         | Pendente   | Implementar `[data-theme]` em `tokens.css`           |
-| **Distribuição self-hosted da fonte** | Pendente   | Empacotar Plus Jakarta Sans em `dist/fonts/`         |
-| **Build CJS**                         | Pendente   | Adicionar saída `cjs` no Vite lib (raro hoje)        |
-| **Subpath imports por componente**    | Pendente   | Expor `./button`, `./card`, etc. em `exports`        |
-| **CSS tree-shakeable por componente** | Pendente   | Avaliar build de CSS por chunk                       |
-| **CHANGELOG.md**                      | Pendente   | Adotar Changesets para automatizar                   |
-| **CI/CD**                             | Pendente   | GitHub Actions: lint, typecheck, test, build, publish |
-| **Versionamento automatizado**        | Pendente   | Changesets ou semantic-release                       |
-| **Visual regression testing**         | Pendente   | Chromatic, Loki ou Playwright snapshots              |
-| **A11y testing em CI**                | Pendente   | `@axe-core/playwright` ou `jest-axe`                 |
-| **API report / public surface**       | Pendente   | `@microsoft/api-extractor` + `attw`                  |
-| **i18n de textos internos**           | N/A        | Componentes não emitem texto fixo                    |
+| Tópico                                | Status   | Recomendação                                          |
+| ------------------------------------- | -------- | ----------------------------------------------------- |
+| **Dark mode**                         | Pendente | Implementar `[data-theme]` em `tokens.css`            |
+| **Distribuição self-hosted da fonte** | Pendente | Empacotar Plus Jakarta Sans em `dist/fonts/`          |
+| **Build CJS**                         | Pendente | Adicionar saída `cjs` no Vite lib (raro hoje)         |
+| **Subpath imports por componente**    | Pendente | Expor `./button`, `./card`, etc. em `exports`         |
+| **CSS tree-shakeable por componente** | Pendente | Avaliar build de CSS por chunk                        |
+| **CHANGELOG.md**                      | Pendente | Adotar Changesets para automatizar                    |
+| **CI/CD**                             | Pendente | GitHub Actions: lint, typecheck, test, build, publish |
+| **Versionamento automatizado**        | Pendente | Changesets ou semantic-release                        |
+| **Visual regression testing**         | Pendente | Chromatic, Loki ou Playwright snapshots               |
+| **A11y testing em CI**                | Pendente | `@axe-core/playwright` ou `jest-axe`                  |
+| **API report / public surface**       | Pendente | `@microsoft/api-extractor` + `attw`                   |
+| **i18n de textos internos**           | N/A      | Componentes não emitem texto fixo                     |
 
 ---
 

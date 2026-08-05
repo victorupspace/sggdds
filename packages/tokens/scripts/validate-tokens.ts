@@ -27,20 +27,7 @@ const allowedTokenTypes = new Set([
   'typography',
 ]);
 
-const allowedTopLevelGroups = new Set(['primitive', 'semantic', 'component']);
-const allowedFigmaCoreGroups = new Set([
-  'border',
-  'breakpoint',
-  'breakpoints',
-  'color',
-  'motion',
-  'opacity',
-  'radius',
-  'shadow',
-  'spacing',
-  'typography',
-  'z-index',
-]);
+const allowedTopLevelGroups = new Set(['primitive', 'brand', 'semantic', 'component']);
 
 interface ValidationResult {
   errors: string[];
@@ -103,6 +90,12 @@ function validateTokenNode(value: JsonValue, path: string[], errors: string[]): 
   }
 
   return Object.entries(value).reduce((count, [key, child]) => {
+    // Figma exports the base value of a stateful group as "$root"; the build
+    // hoists it to a "default" token, so validate it like any other token.
+    if (key === '$root') {
+      return count + validateTokenNode(child, [...path, key], errors);
+    }
+
     if (key.startsWith('$')) {
       return count;
     }
@@ -115,13 +108,16 @@ function validateTopLevelGroups(fileName: string, value: JsonObject, errors: str
   const groups = Object.keys(value).filter((key) => !key.startsWith('$'));
   const hasTierGroups = groups.some((group) => allowedTopLevelGroups.has(group));
 
-  for (const group of groups) {
-    const isAllowedTierGroup = allowedTopLevelGroups.has(group);
-    const isAllowedFigmaCoreGroup = !hasTierGroups && allowedFigmaCoreGroups.has(group);
+  if (!hasTierGroups) {
+    // Raw Figma collection exports (Global: Core, T1, T2, T3) use arbitrary
+    // top-level categories; the build wraps them in a tier from the file name.
+    return;
+  }
 
-    if (!isAllowedTierGroup && !isAllowedFigmaCoreGroup) {
+  for (const group of groups) {
+    if (!allowedTopLevelGroups.has(group)) {
       errors.push(
-        `${fileName}: top-level token group "${group}" must be a token tier or supported Figma core category.`,
+        `${fileName}: top-level token group "${group}" must be one of the token tiers (${[...allowedTopLevelGroups].join(', ')}).`,
       );
     }
   }

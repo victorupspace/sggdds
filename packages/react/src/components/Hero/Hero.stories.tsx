@@ -17,11 +17,21 @@ function ArrowRightIcon() {
   );
 }
 
-function PlaceholderMedia({ ratio = '3 / 2', tone = 'light' }: { ratio?: string; tone?: 'light' | 'dark' }) {
+function PlaceholderMedia({
+  ratio = '3 / 2',
+  tone = 'light',
+}: {
+  ratio?: string;
+  tone?: 'light' | 'dark';
+}) {
   return (
     <div
       aria-hidden="true"
-      className={tone === 'dark' ? 'hero-story-placeholder hero-story-placeholder--dark' : 'hero-story-placeholder'}
+      className={
+        tone === 'dark'
+          ? 'hero-story-placeholder hero-story-placeholder--dark'
+          : 'hero-story-placeholder'
+      }
     >
       {ratio}
     </div>

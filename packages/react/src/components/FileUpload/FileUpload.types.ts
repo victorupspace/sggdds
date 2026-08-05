@@ -15,11 +15,10 @@ export type FileUploadInteractionEvent =
   | DragEvent<HTMLElement>
   | MouseEvent<HTMLButtonElement>;
 
-export interface FileUploadProps
-  extends Omit<
-    InputHTMLAttributes<HTMLInputElement>,
-    'children' | 'className' | 'onChange' | 'type' | 'value'
-  > {
+export interface FileUploadProps extends Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  'children' | 'className' | 'onChange' | 'type' | 'value'
+> {
   label: string;
   helperText?: string;
   errorText?: string;

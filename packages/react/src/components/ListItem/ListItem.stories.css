@@ -15,7 +15,8 @@
 .list-item-story-surface {
   overflow: hidden;
   padding: var(--ds-primitive-spacing-24);
-  border: var(--ds-primitive-border-width-border-sm) solid var(--ds-primitive-color-neutral-grey-200);
+  border: var(--ds-primitive-border-width-border-sm) solid
+    var(--ds-primitive-color-neutral-grey-200);
   border-radius: var(--ds-primitive-border-radius-radius-md);
   background: var(--ds-primitive-color-white);
 }
@@ -31,7 +32,8 @@
   display: flex;
   gap: var(--ds-primitive-spacing-8);
   align-items: center;
-  border-bottom: var(--ds-primitive-border-width-border-sm) solid var(--ds-primitive-color-neutral-grey-200);
+  border-bottom: var(--ds-primitive-border-width-border-sm) solid
+    var(--ds-primitive-color-neutral-grey-200);
 }
 
 .list-item-story-tab {
@@ -61,8 +63,8 @@
   inline-size: var(--ds-primitive-spacing-24);
   block-size: var(--ds-primitive-spacing-24);
   border-radius: var(--ds-primitive-border-radius-radius-full);
-  background: var(--ds-primitive-color-utility-info-blue-100);
-  color: var(--ds-primitive-color-utility-info-blue-300);
+  background: var(--ds-brand-color-utility-info-blue-100);
+  color: var(--ds-brand-color-utility-info-blue-300);
 }
 
 .list-item-story-icon > svg {

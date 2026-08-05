@@ -1,17 +1,17 @@
 .ds-list-item {
   --list-item-surface: var(--ds-semantic-color-background-neutral-default);
-  --list-item-surface-hover: var(--ds-semantic-color-background-neutral-hover);
-  --list-item-surface-active: var(--ds-semantic-color-background-neutral-active);
+  --list-item-surface-hover: var(--ds-primitive-color-neutral-alpha-4);
+  --list-item-surface-active: var(--ds-primitive-color-neutral-alpha-8);
   --list-item-surface-selected: var(--ds-semantic-color-background-information-subtle);
   --list-item-border-color: var(--ds-semantic-color-border-neutral-subtle);
-  --list-item-title-color: var(--ds-semantic-color-content-neutral-default);
-  --list-item-description-color: var(--ds-semantic-color-content-neutral-disabled);
-  --list-item-icon-color: var(--ds-semantic-color-content-neutral-subtle);
-  --list-item-focus-ring: var(--ds-semantic-color-action-primary-default);
+  --list-item-title-color: var(--ds-semantic-text-style-content-color-typography-secondary);
+  --list-item-description-color: var(--ds-semantic-text-style-content-color-typography-disabled);
+  --list-item-icon-color: var(--ds-primitive-color-neutral-grey-700);
+  --list-item-focus-ring: var(--ds-semantic-color-background-brand-primary-secondary-default);
   --list-item-padding-block: var(--ds-primitive-spacing-20);
   --list-item-padding-inline: var(--ds-primitive-spacing-32);
   --list-item-gap: var(--ds-primitive-spacing-16);
-  --list-item-radius: var(--ds-semantic-radius-none);
+  --list-item-radius: var(--ds-primitive-border-radius-radius-none);
   --list-item-leading-size: var(--ds-primitive-spacing-24);
   --list-item-trailing-size: var(--ds-primitive-spacing-24);
 
@@ -25,11 +25,11 @@
 }
 
 .ds-list-item--radius-sm {
-  --list-item-radius: var(--ds-semantic-radius-sm);
+  --list-item-radius: var(--ds-primitive-border-radius-radius-sm);
 }
 
 .ds-list-item--radius-md {
-  --list-item-radius: var(--ds-semantic-radius-md);
+  --list-item-radius: var(--ds-primitive-border-radius-radius-md);
 }
 
 .ds-list-item--density-compact {
@@ -86,7 +86,7 @@
 
 .ds-list-item--selected {
   --list-item-surface: var(--list-item-surface-selected);
-  --list-item-icon-color: var(--ds-semantic-color-content-information-default);
+  --list-item-icon-color: var(--ds-semantic-text-style-content-color-typography-information);
 }
 
 .ds-list-item--interactive:not(.ds-list-item--disabled) .ds-list-item__control {
@@ -112,9 +112,9 @@
 }
 
 .ds-list-item--disabled {
-  --list-item-title-color: var(--ds-semantic-color-content-neutral-disabled);
-  --list-item-description-color: var(--ds-semantic-color-content-neutral-weak);
-  --list-item-icon-color: var(--ds-semantic-color-content-neutral-weak);
+  --list-item-title-color: var(--ds-semantic-text-style-content-color-typography-disabled);
+  --list-item-description-color: var(--ds-semantic-text-style-content-color-typography-placeholder);
+  --list-item-icon-color: var(--ds-semantic-text-style-content-color-typography-placeholder);
 
   cursor: not-allowed;
 }

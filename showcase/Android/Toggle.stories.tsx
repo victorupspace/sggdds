@@ -13,14 +13,18 @@ type Story = StoryObj;
 
 export const Overview: Story = {
   render: () => (
-      <Showcase platform="Android" language="XML" code={`<br.gov.sggd.designsystem.components.DSToggle
+    <Showcase
+      platform="Android"
+      language="XML"
+      code={`<br.gov.sggd.designsystem.components.DSToggle
       app:dsLabel="Notificações"
-      app:dsChecked="true" />`}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            <Toggle label="Notificações" defaultChecked />
-            <Toggle label="Modo escuro" hint="Aplica o tema escuro" />
-            <Toggle label="Desabilitado" disabled />
-          </div>
-      </Showcase>
+      app:dsChecked="true" />`}
+    >
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <Toggle label="Notificações" defaultChecked />
+        <Toggle label="Modo escuro" hint="Aplica o tema escuro" />
+        <Toggle label="Desabilitado" disabled />
+      </div>
+    </Showcase>
   ),
 };

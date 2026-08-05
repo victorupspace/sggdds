@@ -301,7 +301,9 @@ export function DataTable<TData>({
       return rowsWithKeys;
     }
 
-    const column = visibleColumns.find((item, index) => getColumnId(item, index) === activeSortColumnId);
+    const column = visibleColumns.find(
+      (item, index) => getColumnId(item, index) === activeSortColumnId,
+    );
 
     if (!column?.sortable) {
       return rowsWithKeys;
@@ -322,9 +324,13 @@ export function DataTable<TData>({
   const totalRows = paginationTotalRows ?? sortedRows.length;
   const firstPageRow = (currentPage - 1) * pageSize;
   const paginatedRows =
-    pagination && !paginationServer ? sortedRows.slice(firstPageRow, firstPageRow + pageSize) : sortedRows;
+    pagination && !paginationServer
+      ? sortedRows.slice(firstPageRow, firstPageRow + pageSize)
+      : sortedRows;
   const selectableVisibleRows = paginatedRows.filter((item) => !item.disabled);
-  const selectedVisibleCount = selectableVisibleRows.filter((item) => selectedKeys.has(item.key)).length;
+  const selectedVisibleCount = selectableVisibleRows.filter((item) =>
+    selectedKeys.has(item.key),
+  ).length;
   const allVisibleSelected =
     selectableVisibleRows.length > 0 && selectedVisibleCount === selectableVisibleRows.length;
   const someVisibleSelected = selectedVisibleCount > 0 && !allVisibleSelected;
@@ -344,7 +350,9 @@ export function DataTable<TData>({
   const tableColumnCount = visibleColumns.length + controlColumnCount;
 
   const emitSelectionChange = (nextKeys: Set<string>) => {
-    const selectedRowsState = rowsWithKeys.filter((item) => nextKeys.has(item.key)).map((item) => item.row);
+    const selectedRowsState = rowsWithKeys
+      .filter((item) => nextKeys.has(item.key))
+      .map((item) => item.row);
     const selectedRowKeysState = rowsWithKeys
       .filter((item) => nextKeys.has(item.key))
       .map((item) => getRowKey(item.row, item.index, keyField));
@@ -460,8 +468,12 @@ export function DataTable<TData>({
       <div className="ds-data-table__viewport">
         <table aria-label={mergedLabels.table} className="ds-data-table__table">
           <colgroup>
-            {expandableRows ? <col className="ds-data-table__col ds-data-table__col--control" /> : null}
-            {selectableRows ? <col className="ds-data-table__col ds-data-table__col--control" /> : null}
+            {expandableRows ? (
+              <col className="ds-data-table__col ds-data-table__col--control" />
+            ) : null}
+            {selectableRows ? (
+              <col className="ds-data-table__col ds-data-table__col--control" />
+            ) : null}
             {visibleColumns.map((column, index) => {
               const columnId = getColumnId(column, index);
               const columnClassName = [
@@ -483,7 +495,9 @@ export function DataTable<TData>({
           {persistTableHead || paginatedRows.length > 0 ? (
             <thead className="ds-data-table__head">
               <tr className="ds-data-table__row ds-data-table__row--head">
-                {expandableRows ? <th aria-label="Expandir" className="ds-data-table__control-cell" /> : null}
+                {expandableRows ? (
+                  <th aria-label="Expandir" className="ds-data-table__control-cell" />
+                ) : null}
                 {selectableRows ? (
                   <th className="ds-data-table__control-cell" scope="col">
                     <DataTableCheckbox
@@ -525,7 +539,10 @@ export function DataTable<TData>({
                     >
                       {column.sortable ? (
                         <Button
-                          ariaLabel={mergedLabels.sortColumn(getColumnLabel(column), isSorted ? activeSortDirection : 'asc')}
+                          ariaLabel={mergedLabels.sortColumn(
+                            getColumnLabel(column),
+                            isSorted ? activeSortDirection : 'asc',
+                          )}
                           className="ds-data-table__sort-button"
                           iconEnd={
                             <span className="ds-data-table__sort-icon">
@@ -621,7 +638,9 @@ export function DataTable<TData>({
                           column.right ? 'ds-data-table__cell--right' : undefined,
                           column.center ? 'ds-data-table__cell--center' : undefined,
                           column.wrap ? 'ds-data-table__cell--wrap' : undefined,
-                          column.hideBelow ? `ds-data-table__cell--hide-${column.hideBelow}` : undefined,
+                          column.hideBelow
+                            ? `ds-data-table__cell--hide-${column.hideBelow}`
+                            : undefined,
                           column.className,
                         ]
                           .filter(Boolean)

@@ -1,8 +1,8 @@
 .ds-hero {
-  --hero-surface: var(--ds-semantic-color-background-neutral-elevated);
-  --hero-foreground: var(--ds-semantic-color-content-neutral-default);
-  --hero-muted: var(--ds-semantic-color-content-neutral-muted);
-  --hero-eyebrow: var(--ds-semantic-color-content-neutral-muted);
+  --hero-surface: var(--ds-semantic-color-background-neutral-subtle);
+  --hero-foreground: var(--ds-semantic-text-style-content-color-typography-secondary);
+  --hero-muted: var(--ds-semantic-text-style-content-color-typography-tertiary);
+  --hero-eyebrow: var(--ds-semantic-text-style-content-color-typography-tertiary);
   --hero-media-surface: var(--ds-semantic-color-background-neutral-default);
   --hero-media-border: var(--ds-semantic-color-border-neutral-subtle);
   --hero-container-max-inline-size: var(--ds-primitive-breakpoints-values-bp-lg);
@@ -26,12 +26,12 @@
 }
 
 .ds-hero--variant-dark {
-  --hero-surface: var(--ds-semantic-color-background-neutral-knockout-default);
-  --hero-foreground: var(--ds-semantic-color-content-neutral-knockout-default);
+  --hero-surface: var(--ds-semantic-color-background-neutral-soft-black);
+  --hero-foreground: var(--ds-semantic-text-style-content-color-typography-inverse);
   --hero-muted: var(--ds-primitive-color-neutral-grey-300);
   --hero-eyebrow: var(--ds-primitive-color-neutral-grey-300);
-  --hero-media-surface: var(--ds-semantic-color-background-neutral-overlay-subtle);
-  --hero-media-border: var(--ds-semantic-color-background-neutral-overlay-strong);
+  --hero-media-surface: var(--ds-primitive-color-neutral-alpha-12);
+  --hero-media-border: var(--ds-primitive-color-neutral-alpha-48);
 }
 
 .ds-hero__container {
@@ -126,7 +126,7 @@
   aspect-ratio: var(--hero-media-aspect-ratio);
   overflow: hidden;
   border: var(--ds-primitive-border-width-border-sm) solid var(--hero-media-border);
-  border-radius: var(--ds-semantic-radius-md);
+  border-radius: var(--ds-primitive-border-radius-radius-md);
   background: var(--hero-media-surface);
 }
 
@@ -141,16 +141,16 @@
 
 .ds-hero--variant-dark .ds-button--variant-primary {
   --button-background: var(--ds-semantic-color-background-neutral-default);
-  --button-background-hover: var(--ds-semantic-color-background-neutral-elevated);
+  --button-background-hover: var(--ds-semantic-color-background-neutral-subtle);
   --button-background-active: var(--ds-semantic-color-background-neutral-disabled);
-  --button-foreground: var(--ds-semantic-color-content-neutral-default);
+  --button-foreground: var(--ds-semantic-text-style-content-color-typography-secondary);
   --button-border-color: var(--button-background);
 }
 
 .ds-hero--variant-dark .ds-button--variant-tertiary {
-  --button-background-hover: var(--ds-semantic-color-background-neutral-overlay-subtle);
-  --button-background-active: var(--ds-semantic-color-background-neutral-overlay-muted);
-  --button-foreground: var(--ds-semantic-color-content-neutral-knockout-default);
+  --button-background-hover: var(--ds-primitive-color-neutral-alpha-12);
+  --button-background-active: var(--ds-primitive-color-neutral-alpha-24);
+  --button-foreground: var(--ds-semantic-text-style-content-color-typography-inverse);
 }
 
 @media (max-width: 900px) {

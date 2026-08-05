@@ -13,14 +13,18 @@ type Story = StoryObj;
 
 export const Overview: Story = {
   render: () => (
-      <Showcase platform="SwiftUI" language="Swift" code={`DSSpinner(size: .sm)
+    <Showcase
+      platform="SwiftUI"
+      language="Swift"
+      code={`DSSpinner(size: .sm)
   DSSpinner(size: .md)
-  DSSpinner(size: .lg, label: "Carregando")`}>
-        <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
-            <Spinner size="sm" />
-            <Spinner size="md" />
-            <Spinner size="lg" label="Carregando" showLabel />
-          </div>
-      </Showcase>
+  DSSpinner(size: .lg, label: "Carregando")`}
+    >
+      <div style={{ display: 'flex', gap: 24, alignItems: 'center' }}>
+        <Spinner size="sm" />
+        <Spinner size="md" />
+        <Spinner size="lg" label="Carregando" showLabel />
+      </div>
+    </Showcase>
   ),
 };

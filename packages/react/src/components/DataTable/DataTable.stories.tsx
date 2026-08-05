@@ -164,7 +164,8 @@ const serviceRequestColumns: DataTableColumn<ServiceRequest>[] = [
     minWidth: 'calc(var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-32))',
     name: 'Valor',
     right: true,
-    selector: (row) => (row.estimatedValue > 0 ? currencyFormatter.format(row.estimatedValue) : 'Sem custo'),
+    selector: (row) =>
+      row.estimatedValue > 0 ? currencyFormatter.format(row.estimatedValue) : 'Sem custo',
     sortAccessor: (row) => row.estimatedValue,
     sortable: true,
   },
@@ -200,7 +201,9 @@ function DataTableExample(args: DataTableProps<ServiceRequest>) {
       data={serviceRequests}
       expandableRowsComponent={(row) => (
         <div className="data-table-story-expanded">
-          <strong>{row.protocol} - {row.service}</strong>
+          <strong>
+            {row.protocol} - {row.service}
+          </strong>
           <span>
             Solicitante: {row.requester}. Unidade responsavel: {row.department}. Prazo previsto:{' '}
             {row.deadline}. Valor estimado:{' '}
@@ -265,7 +268,9 @@ function InteractiveDataTable() {
       expandableRows
       expandableRowsComponent={(row) => (
         <div className="data-table-story-expanded">
-          <strong>{row.protocol} - {row.service}</strong>
+          <strong>
+            {row.protocol} - {row.service}
+          </strong>
           <span>
             Historico resumido do protocolo {row.protocol}: ultima atualizacao registrada para{' '}
             {row.department}, com prazo previsto para {row.deadline}.

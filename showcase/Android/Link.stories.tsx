@@ -13,14 +13,22 @@ type Story = StoryObj;
 
 export const Overview: Story = {
   render: () => (
-      <Showcase platform="Android" language="XML" code={`<br.gov.sggd.designsystem.components.DSLink
+    <Showcase
+      platform="Android"
+      language="XML"
+      code={`<br.gov.sggd.designsystem.components.DSLink
       android:text="Link externo"
-      app:dsLinkVariant="default" />`}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start' }}>
-            <Link href="#">Link padrão</Link>
-            <Link href="#" variant="neutral">Link neutro</Link>
-            <Link href="#" external showExternalIcon>Link externo</Link>
-          </div>
-      </Showcase>
+      app:dsLinkVariant="default" />`}
+    >
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 12, alignItems: 'flex-start' }}>
+        <Link href="#">Link padrão</Link>
+        <Link href="#" variant="neutral">
+          Link neutro
+        </Link>
+        <Link href="#" external showExternalIcon>
+          Link externo
+        </Link>
+      </div>
+    </Showcase>
   ),
 };

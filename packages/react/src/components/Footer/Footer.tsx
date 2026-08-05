@@ -119,7 +119,10 @@ function ThreadsIcon() {
 function LinkedinIcon() {
   return (
     <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <path d="M5 9h4v11H5V9Zm2-5a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm6 5h4v1.5c.7-1 1.8-1.8 3.3-1.8 2.4 0 3.7 1.6 3.7 4.5V20h-4v-6c0-1.3-.5-2-1.6-2-1 0-1.4.7-1.4 2v6h-4V9Z" fill="currentColor" />
+      <path
+        d="M5 9h4v11H5V9Zm2-5a2 2 0 1 1 0 4 2 2 0 0 1 0-4Zm6 5h4v1.5c.7-1 1.8-1.8 3.3-1.8 2.4 0 3.7 1.6 3.7 4.5V20h-4v-6c0-1.3-.5-2-1.6-2-1 0-1.4.7-1.4 2v6h-4V9Z"
+        fill="currentColor"
+      />
     </svg>
   );
 }
@@ -207,10 +210,7 @@ function FooterActionLink({
 function FooterSectionGroup({ section }: { section: FooterSection }) {
   const sectionId = useId();
   const [open, setOpen] = useState(section.defaultOpen ?? false);
-  const className = [
-    'ds-footer__section',
-    open ? 'ds-footer__section--open' : undefined,
-  ]
+  const className = ['ds-footer__section', open ? 'ds-footer__section--open' : undefined]
     .filter(Boolean)
     .join(' ');
 

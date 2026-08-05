@@ -4,6 +4,7 @@ storybook-static/
 coverage/
 playwright-report/
 test-results/
-src/foundations/tokens/build/*.json
-src/foundations/tokens/css/*.css
-src/foundations/tokens/normalized/**/*.tokens.json
+packages/tokens/src/raw/*.tokens.json
+packages/tokens/src/normalized/**/*.tokens.json
+platforms/ios/Sources/SGGDTokens/
+platforms/android/sggd-tokens/src/main/res/values/

@@ -12,21 +12,14 @@ describe('Datepicker — accessibility', () => {
 
   it('has no violations with helper text', async () => {
     const { container } = render(
-      <Datepicker
-        label="Data do evento"
-        helperText="Selecione uma data futura."
-      />,
+      <Datepicker label="Data do evento" helperText="Selecione uma data futura." />,
     );
     expect(await axe(container)).toHaveNoViolations();
   });
 
   it('has no violations in error state', async () => {
     const { container } = render(
-      <Datepicker
-        label="Data limite"
-        state="error"
-        errorText="Data obrigatória."
-      />,
+      <Datepicker label="Data limite" state="error" errorText="Data obrigatória." />,
     );
     expect(await axe(container)).toHaveNoViolations();
   });
@@ -40,11 +33,7 @@ describe('Datepicker — accessibility', () => {
 
   it('has no violations in open state', async () => {
     const { container } = render(
-      <Datepicker
-        label="Data do evento"
-        defaultOpen
-        defaultMonth="2026-05-01"
-      />,
+      <Datepicker label="Data do evento" defaultOpen defaultMonth="2026-05-01" />,
     );
     expect(await axe(container)).toHaveNoViolations();
   });

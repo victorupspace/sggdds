@@ -4,8 +4,10 @@ export type ToastVariant = 'brand' | 'neutral' | 'positive' | 'information' | 'n
 
 export type ToastRole = 'alert' | 'status';
 
-export interface ToastAction
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children' | 'className' | 'type'> {
+export interface ToastAction extends Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  'children' | 'className' | 'type'
+> {
   label: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }

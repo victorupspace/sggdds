@@ -3,12 +3,7 @@ import './Hero.styles.css';
 import type { CSSProperties, ElementType } from 'react';
 
 import { Button } from '../Button';
-import type {
-  HeroAction,
-  HeroMediaAspectRatio,
-  HeroProps,
-  HeroVariant,
-} from './Hero.types';
+import type { HeroAction, HeroMediaAspectRatio, HeroProps, HeroVariant } from './Hero.types';
 
 const headingElements: Record<NonNullable<HeroProps['headingLevel']>, ElementType> = {
   1: 'h1',
@@ -41,7 +36,13 @@ function resolveAspectRatio(
   return variant === 'image' ? '1/1' : '3/2';
 }
 
-function HeroActionButton({ action, variant }: { action: HeroAction; variant: 'primary' | 'tertiary' }) {
+function HeroActionButton({
+  action,
+  variant,
+}: {
+  action: HeroAction;
+  variant: 'primary' | 'tertiary';
+}) {
   return (
     <Button
       ariaLabel={action.ariaLabel}

@@ -17,16 +17,8 @@ function ToggleGroup({ narrow = false }: { narrow?: boolean }) {
       }}
     >
       <Toggle label="Notificações por e-mail" hint="Receba atualizações na sua caixa de entrada." />
-      <Toggle
-        defaultChecked
-        label="Modo silencioso"
-        hint="Alertas sonoros estão desativados."
-      />
-      <Toggle
-        disabled
-        label="Sincronização automática"
-        hint="Indisponível no plano atual."
-      />
+      <Toggle defaultChecked label="Modo silencioso" hint="Alertas sonoros estão desativados." />
+      <Toggle disabled label="Sincronização automática" hint="Indisponível no plano atual." />
     </div>
   );
 }

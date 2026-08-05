@@ -13,17 +13,21 @@ type Story = StoryObj;
 
 export const Overview: Story = {
   render: () => (
-      <Showcase platform="SwiftUI" language="Swift" code={`DSToast(title: "Salvo", message: "Suas alterações foram salvas.",
+    <Showcase
+      platform="SwiftUI"
+      language="Swift"
+      code={`DSToast(title: "Salvo", message: "Suas alterações foram salvas.",
           variant: .positive, onDismiss: { })
-  DSToast(title: "Atualização", message: "Nova versão disponível.", variant: .information)`}>
-        <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 12 }}>
-            <Toast variant="positive" title="Salvo" defaultOpen autoDismiss={false} dismissible>
-              Suas alterações foram salvas.
-            </Toast>
-            <Toast variant="information" title="Atualização" defaultOpen autoDismiss={false}>
-              Nova versão disponível.
-            </Toast>
-          </div>
-      </Showcase>
+  DSToast(title: "Atualização", message: "Nova versão disponível.", variant: .information)`}
+    >
+      <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: 12 }}>
+        <Toast variant="positive" title="Salvo" defaultOpen autoDismiss={false} dismissible>
+          Suas alterações foram salvas.
+        </Toast>
+        <Toast variant="information" title="Atualização" defaultOpen autoDismiss={false}>
+          Nova versão disponível.
+        </Toast>
+      </div>
+    </Showcase>
   ),
 };

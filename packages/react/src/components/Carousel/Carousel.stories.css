@@ -3,7 +3,7 @@
   min-block-size: calc(var(--ds-primitive-spacing-128) * 5);
   padding: var(--ds-primitive-spacing-48);
   place-items: center;
-  background: var(--ds-semantic-color-background-neutral-page);
+  background: var(--ds-semantic-color-background-neutral-surface);
 }
 
 .carousel-story-frame {
@@ -20,13 +20,13 @@
 .carousel-story-media > span {
   inline-size: var(--ds-primitive-spacing-64);
   block-size: var(--ds-primitive-spacing-64);
-  border-radius: var(--ds-semantic-radius-full);
+  border-radius: var(--ds-primitive-border-radius-radius-full);
   background: var(--ds-semantic-color-background-neutral-default);
   box-shadow: var(--ds-semantic-shadow-floating);
 }
 
 .carousel-story-media--brand {
-  background: var(--ds-semantic-color-background-brand-subtle);
+  background: var(--ds-semantic-color-background-brand-primary-subtle);
 }
 
 .carousel-story-media--info {

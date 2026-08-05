@@ -3,13 +3,7 @@ import './ListItem.styles.css';
 import type { ReactNode } from 'react';
 import type { ListItemProps } from './ListItem.types';
 
-function Slot({
-  children,
-  className,
-}: {
-  children: ReactNode;
-  className: string;
-}) {
+function Slot({ children, className }: { children: ReactNode; className: string }) {
   return (
     <span aria-hidden="true" className={className}>
       {children}

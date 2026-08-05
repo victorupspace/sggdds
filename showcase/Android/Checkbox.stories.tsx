@@ -13,15 +13,19 @@ type Story = StoryObj;
 
 export const Overview: Story = {
   render: () => (
-      <Showcase platform="Android" language="XML" code={`<br.gov.sggd.designsystem.components.DSCheckbox
+    <Showcase
+      platform="Android"
+      language="XML"
+      code={`<br.gov.sggd.designsystem.components.DSCheckbox
       app:dsLabel="Aceito os termos"
-      app:dsChecked="true" />`}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            <Checkbox label="Aceito os termos" defaultChecked />
-            <Checkbox label="Receber novidades" hint="Você pode cancelar a qualquer momento" />
-            <Checkbox label="Indeterminado" indeterminate />
-            <Checkbox label="Desabilitado" disabled />
-          </div>
-      </Showcase>
+      app:dsChecked="true" />`}
+    >
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+        <Checkbox label="Aceito os termos" defaultChecked />
+        <Checkbox label="Receber novidades" hint="Você pode cancelar a qualquer momento" />
+        <Checkbox label="Indeterminado" indeterminate />
+        <Checkbox label="Desabilitado" disabled />
+      </div>
+    </Showcase>
   ),
 };

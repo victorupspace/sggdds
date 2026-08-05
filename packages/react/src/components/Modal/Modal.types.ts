@@ -4,8 +4,10 @@ export type ModalSize = 'sm' | 'md' | 'lg' | 'full';
 
 export type ModalActionVariant = 'primary' | 'secondary' | 'tertiary';
 
-export interface ModalAction
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children' | 'className' | 'type'> {
+export interface ModalAction extends Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  'children' | 'className' | 'type'
+> {
   label: string;
   variant?: ModalActionVariant;
   onClick?: MouseEventHandler<HTMLButtonElement>;

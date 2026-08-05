@@ -68,7 +68,6 @@ function BadgeStack({
   );
 }
 
-
 const meta = {
   title: 'Web Components/Badge',
   component: Badge,
@@ -180,7 +179,6 @@ export const AllSizes: Story = {
     </div>
   ),
 };
-
 
 export const WithoutIcon: Story = {
   args: {

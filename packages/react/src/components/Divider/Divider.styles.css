@@ -1,5 +1,5 @@
 .ds-divider {
-  --divider-color: var(--ds-semantic-color-border-neutral-default);
+  --divider-color: var(--ds-component-divider-color-background);
   --divider-size: var(--ds-primitive-border-width-border-sm);
   --divider-length: 100%;
 
@@ -15,11 +15,11 @@
 }
 
 .ds-divider--tone-default {
-  --divider-color: var(--ds-semantic-color-border-neutral-default);
+  --divider-color: var(--ds-component-divider-color-background);
 }
 
 .ds-divider--tone-strong {
-  --divider-color: var(--ds-semantic-color-content-neutral-disabled);
+  --divider-color: var(--ds-semantic-text-style-content-color-typography-disabled);
 }
 
 .ds-divider--thickness-sm {

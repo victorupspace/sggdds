@@ -50,7 +50,9 @@ describe('DataTable', () => {
   });
 
   it('paginates data', () => {
-    render(<DataTable columns={columns} data={data} keyField="id" pagination paginationPerPage={2} />);
+    render(
+      <DataTable columns={columns} data={data} keyField="id" pagination paginationPerPage={2} />,
+    );
 
     expect(screen.getByText('Aria')).toBeInTheDocument();
     expect(screen.queryByText('Priya')).not.toBeInTheDocument();
@@ -101,6 +103,8 @@ describe('DataTable', () => {
     expect(screen.getByText('Detalhes de Aria')).toBeInTheDocument();
     expect(expandButton).toHaveAttribute('aria-expanded', 'true');
     expect(expandButton).toHaveAttribute('aria-controls');
-    expect(document.getElementById(expandButton.getAttribute('aria-controls') ?? '')).toBeInTheDocument();
+    expect(
+      document.getElementById(expandButton.getAttribute('aria-controls') ?? ''),
+    ).toBeInTheDocument();
   });
 });

@@ -1,16 +1,16 @@
 .ds-toast {
   --toast-surface: var(--ds-semantic-color-background-neutral-default);
-  --toast-border-color: var(--ds-semantic-color-border-neutral-strong);
-  --toast-foreground: var(--ds-semantic-color-content-neutral-default);
-  --toast-icon-color: var(--ds-semantic-color-icon-neutral-default);
-  --toast-icon-mark: var(--ds-semantic-color-icon-neutral-inverse);
+  --toast-border-color: var(--ds-semantic-color-border-neutral-prominent);
+  --toast-foreground: var(--ds-semantic-text-style-content-color-typography-secondary);
+  --toast-icon-color: var(--ds-semantic-color-icons-neutral-default);
+  --toast-icon-mark: var(--ds-semantic-color-icons-neutral-white);
   --toast-action-border-color: var(--ds-semantic-color-border-neutral-subtle);
-  --toast-action-hover: var(--ds-semantic-color-background-neutral-hover);
-  --toast-focus-ring: var(--ds-semantic-color-focus-default);
+  --toast-action-hover: var(--ds-primitive-color-neutral-alpha-4);
+  --toast-focus-ring: var(--ds-component-focus-ring-color-ring);
   --toast-width: 496px;
-  --toast-padding-block: var(--ds-primitive-spacing-12);
+  --toast-padding-block: var(--ds-component-toast-spacing-padding-y);
   --toast-padding-inline: var(--ds-primitive-spacing-12);
-  --toast-column-gap: var(--ds-primitive-spacing-12);
+  --toast-column-gap: var(--ds-component-toast-spacing-gap);
   --toast-action-gap: var(--ds-primitive-spacing-8);
   --toast-icon-size: var(--ds-primitive-spacing-20);
   --toast-dismiss-size: var(--ds-primitive-spacing-32);
@@ -25,7 +25,7 @@
   align-items: start;
   padding: var(--toast-padding-block) var(--toast-padding-inline);
   border: var(--ds-primitive-border-width-border-sm) solid var(--toast-border-color);
-  border-radius: var(--ds-semantic-radius-md);
+  border-radius: var(--ds-component-toast-border-radius);
   background: var(--toast-surface);
   box-shadow: var(--ds-semantic-shadow-raised);
   color: var(--toast-foreground);
@@ -36,43 +36,43 @@
 .ds-toast--variant-brand {
   --toast-surface: var(--ds-semantic-color-background-neutral-default);
   --toast-border-color: var(--ds-semantic-color-border-information-default);
-  --toast-icon-color: var(--ds-semantic-color-icon-information-default);
-  --toast-focus-ring: var(--ds-semantic-color-focus-default);
+  --toast-icon-color: var(--ds-semantic-color-icons-information-default);
+  --toast-focus-ring: var(--ds-component-focus-ring-color-ring);
 }
 
 .ds-toast--variant-positive {
-  --toast-surface: var(--ds-semantic-color-background-positive-subtle);
-  --toast-border-color: var(--ds-semantic-color-border-positive-default);
-  --toast-icon-color: var(--ds-semantic-color-icon-positive-default);
-  --toast-focus-ring: var(--ds-semantic-color-content-positive-default);
+  --toast-surface: var(--ds-component-toast-color-background-success);
+  --toast-border-color: var(--ds-semantic-color-border-success-default);
+  --toast-icon-color: var(--ds-component-toast-color-icon-success);
+  --toast-focus-ring: var(--ds-semantic-text-style-content-color-typography-success);
 }
 
 .ds-toast--variant-information {
-  --toast-surface: var(--ds-semantic-color-background-information-subtle);
+  --toast-surface: var(--ds-component-toast-color-background-info);
   --toast-border-color: var(--ds-semantic-color-border-information-default);
-  --toast-icon-color: var(--ds-semantic-color-icon-information-default);
-  --toast-focus-ring: var(--ds-semantic-color-content-information-default);
+  --toast-icon-color: var(--ds-component-toast-color-icon-info);
+  --toast-focus-ring: var(--ds-semantic-text-style-content-color-typography-information);
 }
 
 .ds-toast--variant-notice {
-  --toast-surface: var(--ds-semantic-color-background-notice-subtle);
-  --toast-border-color: var(--ds-semantic-color-border-notice-default);
-  --toast-icon-color: var(--ds-semantic-color-icon-notice-default);
-  --toast-focus-ring: var(--ds-semantic-color-content-notice-default);
+  --toast-surface: var(--ds-component-toast-color-background-warning);
+  --toast-border-color: var(--ds-semantic-color-border-warning-default);
+  --toast-icon-color: var(--ds-component-toast-color-icon-warning);
+  --toast-focus-ring: var(--ds-semantic-text-style-content-color-typography-warning);
 }
 
 .ds-toast--variant-negative {
-  --toast-surface: var(--ds-semantic-color-background-negative-subtle);
-  --toast-border-color: var(--ds-semantic-color-border-negative-default);
-  --toast-icon-color: var(--ds-semantic-color-icon-negative-default);
-  --toast-focus-ring: var(--ds-semantic-color-content-negative-default);
+  --toast-surface: var(--ds-component-toast-color-background-error);
+  --toast-border-color: var(--ds-semantic-color-border-danger-default);
+  --toast-icon-color: var(--ds-component-toast-color-icon-error);
+  --toast-focus-ring: var(--ds-semantic-text-style-content-color-typography-danger);
 }
 
 .ds-toast--variant-neutral {
   --toast-surface: var(--ds-semantic-color-background-neutral-default);
-  --toast-border-color: var(--ds-semantic-color-border-neutral-strong);
-  --toast-icon-color: var(--ds-semantic-color-icon-neutral-default);
-  --toast-focus-ring: var(--ds-semantic-color-content-neutral-default);
+  --toast-border-color: var(--ds-semantic-color-border-neutral-prominent);
+  --toast-icon-color: var(--ds-semantic-color-icons-neutral-default);
+  --toast-focus-ring: var(--ds-semantic-text-style-content-color-typography-secondary);
 }
 
 .ds-toast--without-icon {
@@ -134,7 +134,7 @@
 .ds-toast__dismiss {
   box-sizing: border-box;
   border: var(--ds-primitive-border-width-border-sm) solid transparent;
-  border-radius: var(--ds-semantic-radius-full);
+  border-radius: var(--ds-primitive-border-radius-radius-full);
   background: transparent;
   color: var(--toast-foreground);
   cursor: pointer;
@@ -165,7 +165,7 @@
   inline-size: var(--toast-dismiss-size);
   block-size: var(--toast-dismiss-size);
   padding: var(--ds-primitive-spacing-6);
-  border-radius: var(--ds-semantic-radius-sm);
+  border-radius: var(--ds-primitive-border-radius-radius-sm);
 }
 
 .ds-toast__dismiss > svg {
@@ -184,7 +184,7 @@
 
 .ds-toast__action:active,
 .ds-toast__dismiss:active {
-  background: var(--ds-semantic-color-background-neutral-active);
+  background: var(--ds-primitive-color-neutral-alpha-8);
 }
 
 .ds-toast__action:focus-visible,
@@ -194,7 +194,7 @@
 }
 
 .ds-toast__action:disabled {
-  color: var(--ds-semantic-color-content-neutral-disabled);
+  color: var(--ds-semantic-text-style-content-color-typography-disabled);
   cursor: not-allowed;
 }
 
@@ -260,7 +260,7 @@
 
   .ds-toast__title,
   .ds-toast__description {
-    font-size: var(--ds-primitive-typography-font-size-14);
+    font-size: var(--ds-component-toast-typography-font-size);
     line-height: var(--ds-primitive-typography-line-height-22);
   }
 }

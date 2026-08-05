@@ -1,0 +1,30 @@
+{
+  "semantic": {
+    "shadow": {
+      "floating": {
+        "$type": "string",
+        "$value": "0 8px 16px rgba(24, 24, 24, 0.12)"
+      },
+      "modal": {
+        "$type": "string",
+        "$value": "0 20px 40px rgba(24, 24, 24, 0.24), 0 4px 12px rgba(24, 24, 24, 0.12)"
+      },
+      "overlay": {
+        "$type": "string",
+        "$value": "0 2px 4px -1px rgba(0, 0, 0, 0.24)"
+      },
+      "popover": {
+        "$type": "string",
+        "$value": "0 20px 40px rgba(24, 24, 24, 0.24)"
+      },
+      "raised": {
+        "$type": "string",
+        "$value": "0 8px 20px rgba(24, 24, 24, 0.24), 0 2px 6px rgba(24, 24, 24, 0.12)"
+      },
+      "switch-thumb": {
+        "$type": "string",
+        "$value": "0 1px 3px rgba(24, 24, 24, 0.24)"
+      }
+    }
+  }
+}

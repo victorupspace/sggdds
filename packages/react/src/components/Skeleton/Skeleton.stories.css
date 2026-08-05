@@ -32,7 +32,8 @@
   gap: var(--ds-primitive-spacing-16);
   inline-size: min(100%, 360px);
   padding: var(--ds-primitive-spacing-24);
-  border: var(--ds-primitive-border-width-border-sm) solid var(--ds-primitive-color-neutral-grey-200);
+  border: var(--ds-primitive-border-width-border-sm) solid
+    var(--ds-primitive-color-neutral-grey-200);
   border-radius: var(--ds-primitive-border-radius-radius-md);
   background: var(--ds-primitive-color-white);
 }

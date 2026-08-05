@@ -55,15 +55,7 @@ function LockIcon({ size = 12 }: IconProps) {
         strokeWidth="1.8"
         strokeLinecap="round"
       />
-      <rect
-        x="4.5"
-        y="11"
-        width="15"
-        height="10"
-        rx="2"
-        stroke="currentColor"
-        strokeWidth="1.8"
-      />
+      <rect x="4.5" y="11" width="15" height="10" rx="2" stroke="currentColor" strokeWidth="1.8" />
     </svg>
   );
 }
@@ -123,7 +115,12 @@ function IconLayers({ size = 22 }: IconProps) {
         strokeWidth="1.6"
         strokeLinejoin="round"
       />
-      <path d="M3 13l9 5 9-5M3 18l9 5 9-5" stroke="currentColor" strokeWidth="1.6" strokeLinejoin="round" />
+      <path
+        d="M3 13l9 5 9-5M3 18l9 5 9-5"
+        stroke="currentColor"
+        strokeWidth="1.6"
+        strokeLinejoin="round"
+      />
     </svg>
   );
 }
@@ -215,10 +212,7 @@ const COMPONENT_CATEGORIES: ComponentCategory[] = [
   },
 ];
 
-const IMPLEMENTED_COMPONENTS = COMPONENT_CATEGORIES.reduce(
-  (acc, cat) => acc + cat.items.length,
-  0,
-);
+const IMPLEMENTED_COMPONENTS = COMPONENT_CATEGORIES.reduce((acc, cat) => acc + cat.items.length, 0);
 const TARGET_COMPONENTS = 68;
 
 export function IntroductionPage() {
@@ -237,9 +231,9 @@ export function IntroductionPage() {
               <span className="intro-grad">consistentes</span>, acessíveis e bonitas.
             </h1>
             <p className="intro-lede">
-              O Design System SGGD reúne fundamentos, tokens e componentes prontos para
-              acelerar a entrega de produtos React com identidade institucional, acessibilidade
-              AA e visual refinado — sem reinventar a roda a cada tela.
+              O Design System SGGD reúne fundamentos, tokens e componentes prontos para acelerar a
+              entrega de produtos React com identidade institucional, acessibilidade AA e visual
+              refinado — sem reinventar a roda a cada tela.
             </p>
             <div className="intro-cta-row">
               <a className="intro-btn intro-btn-primary" href={STORYBOOK_LINKS.foundationsOverview}>
@@ -384,9 +378,8 @@ export function IntroductionPage() {
                 <code>
                   <span className="tk-com">{`// 1. Importe os tokens uma vez na raiz da app`}</span>
                   {'\n'}
-                  <span className="tk-key">import</span> <span className="tk-str">
-                    {`'@sggd/design-system/tokens.css'`}
-                  </span>;{'\n'}
+                  <span className="tk-key">import</span>{' '}
+                  <span className="tk-str">{`'@sggd/design-system/tokens.css'`}</span>;{'\n'}
                   {'\n'}
                   <span className="tk-com">{`// 2. Importe os componentes que precisar`}</span>
                   {'\n'}
@@ -422,8 +415,8 @@ export function IntroductionPage() {
                 <div>
                   <h4>Carregue os tokens</h4>
                   <p>
-                    Um único <code>import</code> de <code>tokens.css</code> disponibiliza todas
-                    as variáveis CSS do DS para qualquer árvore de componentes.
+                    Um único <code>import</code> de <code>tokens.css</code> disponibiliza todas as
+                    variáveis CSS do DS para qualquer árvore de componentes.
                   </p>
                 </div>
               </div>
@@ -442,8 +435,8 @@ export function IntroductionPage() {
                 <div>
                   <h4>Personalize por tokens</h4>
                   <p>
-                    Customize a aparência substituindo variáveis CSS — nunca reescrevendo
-                    estilos internos. Garante consistência e atualizações sem quebra.
+                    Customize a aparência substituindo variáveis CSS — nunca reescrevendo estilos
+                    internos. Garante consistência e atualizações sem quebra.
                   </p>
                 </div>
               </div>
@@ -563,8 +556,8 @@ export function IntroductionPage() {
             <span className="intro-section-eyebrow">Guidelines</span>
             <h2>Personalize com intenção, não com força.</h2>
             <p className="intro-section-sub">
-              Estas práticas garantem que o DS continue consistente, atualizável e acessível
-              mesmo quando os times precisarem adaptar visual ou comportamento.
+              Estas práticas garantem que o DS continue consistente, atualizável e acessível mesmo
+              quando os times precisarem adaptar visual ou comportamento.
             </p>
           </div>
 
@@ -576,7 +569,7 @@ export function IntroductionPage() {
                   <CheckIcon />
                 </span>
                 <span>
-                  <strong>Use:</strong> <code>--ds-primitive-color-identity-blue-primary</code> para
+                  <strong>Use:</strong> <code>--ds-brand-color-identity-blue-primary</code> para
                   estabelecer a cor primária. Tokens são versionados e auditáveis.
                 </span>
               </div>
@@ -599,8 +592,8 @@ export function IntroductionPage() {
                 </span>
                 <span>
                   <strong>Use:</strong> redefinição de variáveis CSS em um wrapper (
-                  <code>:root</code> ou escopo) para alterar o visual de um componente inteiro
-                  sem tocar no código dele.
+                  <code>:root</code> ou escopo) para alterar o visual de um componente inteiro sem
+                  tocar no código dele.
                 </span>
               </div>
               <div className="intro-gcheck intro-gcheck-dont">

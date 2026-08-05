@@ -1,15 +1,15 @@
 .ds-progress-bar {
   --progress-bar-track-color: var(--ds-semantic-color-border-neutral-subtle);
-  --progress-bar-fill-color: var(--ds-semantic-color-action-primary-default);
-  --progress-bar-label-color: var(--ds-semantic-color-content-neutral-subtle);
-  --progress-bar-helper-color: var(--ds-semantic-color-content-neutral-muted);
-  --progress-bar-value-color: var(--ds-semantic-color-content-neutral-subtle);
+  --progress-bar-fill-color: var(--ds-semantic-color-background-brand-primary-secondary-default);
+  --progress-bar-label-color: var(--ds-primitive-color-neutral-grey-700);
+  --progress-bar-helper-color: var(--ds-semantic-text-style-content-color-typography-tertiary);
+  --progress-bar-value-color: var(--ds-primitive-color-neutral-grey-700);
   --progress-bar-icon-color: var(--progress-bar-fill-color);
   --progress-bar-icon-mark: var(--ds-semantic-color-background-neutral-default);
   --progress-bar-height: var(--ds-primitive-spacing-8);
   --progress-bar-width: 480px;
   --progress-bar-gap: var(--ds-primitive-spacing-4);
-  --progress-bar-radius: var(--ds-semantic-radius-full);
+  --progress-bar-radius: var(--ds-component-progress-track-border-radius);
 
   display: grid;
   box-sizing: border-box;
@@ -22,26 +22,26 @@
 }
 
 .ds-progress-bar--variant-neutral {
-  --progress-bar-fill-color: var(--ds-semantic-color-content-neutral-default);
-  --progress-bar-icon-color: var(--ds-semantic-color-content-neutral-subtle);
+  --progress-bar-fill-color: var(--ds-semantic-text-style-content-color-typography-secondary);
+  --progress-bar-icon-color: var(--ds-primitive-color-neutral-grey-700);
 }
 
 .ds-progress-bar--variant-success {
-  --progress-bar-fill-color: var(--ds-semantic-color-background-positive-default);
-  --progress-bar-label-color: var(--ds-semantic-color-content-neutral-subtle);
-  --progress-bar-helper-color: var(--ds-semantic-color-background-positive-default);
-  --progress-bar-value-color: var(--ds-semantic-color-background-positive-default);
+  --progress-bar-fill-color: var(--ds-component-progress-indicator-color-background-success);
+  --progress-bar-label-color: var(--ds-primitive-color-neutral-grey-700);
+  --progress-bar-helper-color: var(--ds-semantic-color-background-success-default);
+  --progress-bar-value-color: var(--ds-semantic-color-background-success-default);
 }
 
 .ds-progress-bar--variant-error {
-  --progress-bar-fill-color: var(--ds-semantic-color-content-negative-default);
-  --progress-bar-label-color: var(--ds-semantic-color-content-negative-default);
-  --progress-bar-helper-color: var(--ds-semantic-color-content-negative-default);
-  --progress-bar-value-color: var(--ds-semantic-color-content-negative-default);
+  --progress-bar-fill-color: var(--ds-semantic-text-style-content-color-typography-danger);
+  --progress-bar-label-color: var(--ds-semantic-text-style-content-color-typography-danger);
+  --progress-bar-helper-color: var(--ds-semantic-text-style-content-color-typography-danger);
+  --progress-bar-value-color: var(--ds-semantic-text-style-content-color-typography-danger);
 }
 
 .ds-progress-bar--size-sm {
-  --progress-bar-height: var(--ds-primitive-spacing-4);
+  --progress-bar-height: var(--ds-component-progress-track-size-height-sm);
   --progress-bar-gap: var(--ds-primitive-spacing-2);
 }
 

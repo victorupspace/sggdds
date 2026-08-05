@@ -25,8 +25,8 @@ Este componente foi desenvolvido com comportamento responsivo nativo. Em desktop
 Tokens:
 Cores, radius, espacamentos, foco e estados usam variaveis CSS geradas pelos tokens do Figma. A largura fixa de 250px vem da especificacao do componente e nao possui token equivalente na base atual.
 
-Excecao formal de tipografia:
-Este e o unico componente autorizado a nao usar Plus Jakarta Sans. A familia Open Sans e aplicada porque o CTA representa exclusivamente a marca gov.br e segue a especificacao institucional externa: "Entrar com o" usa Semibold 600 e "gov.br" usa Bold 700. Esta excecao nao deve ser replicada para outros componentes.
+Tipografia:
+Plus Jakarta Sans e a unica familia tipografica do Design System, inclusive neste componente. A hierarquia da marca gov.br e preservada pelos pesos: "Entrar com o" usa Semibold 600 e "gov.br" usa Bold 700.
 
 Acessibilidade:
 - Renderiza button nativo ou anchor quando href e informado.

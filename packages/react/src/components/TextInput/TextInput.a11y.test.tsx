@@ -12,31 +12,20 @@ describe('TextInput — accessibility', () => {
 
   it('has no violations with helper text', async () => {
     const { container } = render(
-      <TextInput
-        label="Senha"
-        type="password"
-        helperText="Mínimo de 8 caracteres."
-      />,
+      <TextInput label="Senha" type="password" helperText="Mínimo de 8 caracteres." />,
     );
     expect(await axe(container)).toHaveNoViolations();
   });
 
   it('has no violations in error state', async () => {
     const { container } = render(
-      <TextInput
-        label="CPF"
-        type="text"
-        state="error"
-        errorText="CPF inválido."
-      />,
+      <TextInput label="CPF" type="text" state="error" errorText="CPF inválido." />,
     );
     expect(await axe(container)).toHaveNoViolations();
   });
 
   it('has no violations when required', async () => {
-    const { container } = render(
-      <TextInput label="Nome completo" type="text" required />,
-    );
+    const { container } = render(<TextInput label="Nome completo" type="text" required />);
     expect(await axe(container)).toHaveNoViolations();
   });
 

@@ -1,12 +1,6 @@
 import './Tooltip.styles.css';
 
-import {
-  cloneElement,
-  useEffect,
-  useId,
-  useRef,
-  useState,
-} from 'react';
+import { cloneElement, useEffect, useId, useRef, useState } from 'react';
 
 import type { FocusEvent, KeyboardEvent, MouseEvent } from 'react';
 import type { TooltipProps } from './Tooltip.types';
@@ -135,12 +129,7 @@ export function Tooltip({
   return (
     <span className={rootClassName}>
       {triggerElement}
-      <span
-        aria-hidden={!currentOpen}
-        className={bubbleClassName}
-        id={tooltipId}
-        role="tooltip"
-      >
+      <span aria-hidden={!currentOpen} className={bubbleClassName} id={tooltipId} role="tooltip">
         <span className="ds-tooltip__content">{content}</span>
       </span>
     </span>

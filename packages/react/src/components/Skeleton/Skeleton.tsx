@@ -40,7 +40,8 @@ export function Skeleton({
   const safeLines = getSafeLines(lines);
   const isText = shape === 'text';
   const shouldRenderLines = isText && safeLines > 1;
-  const resolvedRadius = radius ?? (shape === 'circle' ? 'full' : shape === 'rounded' ? 'md' : 'sm');
+  const resolvedRadius =
+    radius ?? (shape === 'circle' ? 'full' : shape === 'rounded' ? 'md' : 'sm');
   const rootClassName = [
     'ds-skeleton',
     `ds-skeleton--shape-${shape}`,
@@ -70,12 +71,7 @@ export function Skeleton({
 
   if (shouldRenderLines) {
     return (
-      <span
-        {...restProps}
-        {...accessibilityProps}
-        className={rootClassName}
-        style={skeletonStyle}
-      >
+      <span {...restProps} {...accessibilityProps} className={rootClassName} style={skeletonStyle}>
         {Array.from({ length: safeLines }, (_, index) => (
           <span className="ds-skeleton__line" key={String(index)} />
         ))}
@@ -83,5 +79,7 @@ export function Skeleton({
     );
   }
 
-  return <span {...restProps} {...accessibilityProps} className={rootClassName} style={skeletonStyle} />;
+  return (
+    <span {...restProps} {...accessibilityProps} className={rootClassName} style={skeletonStyle} />
+  );
 }

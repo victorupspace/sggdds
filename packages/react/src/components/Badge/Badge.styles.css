@@ -1,20 +1,20 @@
 .ds-badge {
   --badge-bg: var(
-    --ds-semantic-color-background-neutral-knockout-default,
-    var(--ds-semantic-color-content-neutral-default)
+    --ds-semantic-color-background-neutral-soft-black,
+    var(--ds-semantic-text-style-content-color-typography-secondary)
   );
   --badge-color: var(
-    --ds-semantic-color-content-neutral-knockout-default,
+    --ds-semantic-text-style-content-color-typography-inverse,
     var(--ds-semantic-color-background-neutral-default)
   );
   --badge-gap: var(--ds-primitive-spacing-8, 8px);
   --badge-padding-inline: var(--ds-primitive-spacing-12, 12px);
   --badge-height: 32px;
-  --badge-font-size: var(--ds-primitive-typography-font-size-12, 12px);
-  --badge-font-weight: var(--ds-primitive-typography-font-weight-medium, 500);
+  --badge-font-size: var(--ds-component-badge-typography-font-size-md, 12px);
+  --badge-font-weight: var(--ds-component-badge-typography-font-weight, 500);
   --badge-line-height: var(--ds-primitive-typography-line-height-12, 12px);
-  --badge-radius: var(--ds-semantic-radius-full, 999px);
-  --badge-icon-size: 16px;
+  --badge-radius: var(--ds-component-badge-border-radius-md, 999px);
+  --badge-icon-size: var(--ds-component-badge-size-icon-size-md);
 
   display: inline-flex;
   box-sizing: border-box;
@@ -60,7 +60,7 @@
   --badge-padding-inline: var(--ds-primitive-spacing-10, 10px);
   --badge-gap: var(--ds-primitive-spacing-8, 8px);
   --badge-font-size: var(--ds-primitive-typography-font-size-12, 12px);
-  --badge-font-weight: var(--ds-primitive-typography-font-weight-medium, 500);
+  --badge-font-weight: var(--ds-component-badge-typography-font-weight, 500);
   --badge-line-height: var(--ds-primitive-typography-line-height-12, 12px);
   --badge-icon-size: 16px;
 }
@@ -69,10 +69,10 @@
   --badge-height: 32px;
   --badge-padding-inline: var(--ds-primitive-spacing-12, 12px);
   --badge-gap: var(--ds-primitive-spacing-8, 8px);
-  --badge-font-size: var(--ds-primitive-typography-font-size-12, 12px);
-  --badge-font-weight: var(--ds-primitive-typography-font-weight-medium, 500);
+  --badge-font-size: var(--ds-component-badge-typography-font-size-md, 12px);
+  --badge-font-weight: var(--ds-component-badge-typography-font-weight, 500);
   --badge-line-height: var(--ds-primitive-typography-line-height-12, 12px);
-  --badge-icon-size: 16px;
+  --badge-icon-size: var(--ds-component-badge-size-icon-size-md);
 }
 
 .ds-badge--size-large {
@@ -80,69 +80,69 @@
   --badge-padding-inline: var(--ds-primitive-spacing-16, 16px);
   --badge-gap: var(--ds-primitive-spacing-8, 8px);
   --badge-font-size: var(--ds-primitive-typography-font-size-12, 12px);
-  --badge-font-weight: var(--ds-primitive-typography-font-weight-medium, 500);
+  --badge-font-weight: var(--ds-component-badge-typography-font-weight, 500);
   --badge-line-height: var(--ds-primitive-typography-line-height-12, 12px);
   --badge-icon-size: 16px;
 }
 
 .ds-badge--variant-brand.ds-badge--appearance-solid {
-  --badge-bg: var(--ds-semantic-color-background-brand-default);
-  --badge-color: var(--ds-semantic-color-content-neutral-knockout-default);
+  --badge-bg: var(--ds-semantic-color-background-brand-primary-default);
+  --badge-color: var(--ds-semantic-text-style-content-color-typography-inverse);
 }
 
 .ds-badge--variant-neutral.ds-badge--appearance-solid {
-  --badge-bg: var(--ds-semantic-color-background-neutral-knockout-default);
-  --badge-color: var(--ds-semantic-color-content-neutral-knockout-default);
+  --badge-bg: var(--ds-semantic-color-background-neutral-soft-black);
+  --badge-color: var(--ds-semantic-text-style-content-color-typography-inverse);
 }
 
 .ds-badge--variant-information.ds-badge--appearance-solid {
   --badge-bg: var(--ds-semantic-color-background-information-default);
-  --badge-color: var(--ds-semantic-color-content-neutral-knockout-default);
+  --badge-color: var(--ds-semantic-text-style-content-color-typography-inverse);
 }
 
 .ds-badge--variant-positive.ds-badge--appearance-solid {
-  --badge-bg: var(--ds-semantic-color-background-positive-default);
-  --badge-color: var(--ds-semantic-color-content-neutral-knockout-default);
+  --badge-bg: var(--ds-semantic-color-background-success-default);
+  --badge-color: var(--ds-semantic-text-style-content-color-typography-inverse);
 }
 
 .ds-badge--variant-negative.ds-badge--appearance-solid {
-  --badge-bg: var(--ds-semantic-color-background-negative-default);
-  --badge-color: var(--ds-semantic-color-content-neutral-knockout-default);
+  --badge-bg: var(--ds-semantic-color-background-danger-default);
+  --badge-color: var(--ds-semantic-text-style-content-color-typography-inverse);
 }
 
 .ds-badge--variant-notice.ds-badge--appearance-solid {
-  --badge-bg: var(--ds-semantic-color-background-notice-default);
-  --badge-color: var(--ds-semantic-color-content-neutral-knockout-default);
+  --badge-bg: var(--ds-semantic-color-background-warning-default);
+  --badge-color: var(--ds-semantic-text-style-content-color-typography-inverse);
 }
 
 .ds-badge--variant-brand.ds-badge--appearance-subtle {
-  --badge-bg: var(--ds-semantic-color-background-brand-subtle);
-  --badge-color: var(--ds-semantic-color-content-brand-default);
+  --badge-bg: var(--ds-component-badge-color-background-brand);
+  --badge-color: var(--ds-component-badge-color-text-brand);
 }
 
 .ds-badge--variant-neutral.ds-badge--appearance-subtle {
   --badge-bg: var(--ds-semantic-color-background-neutral-subtle);
-  --badge-color: var(--ds-semantic-color-content-neutral-subtle);
+  --badge-color: var(--ds-primitive-color-neutral-grey-700);
 }
 
 .ds-badge--variant-information.ds-badge--appearance-subtle {
-  --badge-bg: var(--ds-semantic-color-background-information-subtle);
-  --badge-color: var(--ds-semantic-color-content-information-default);
+  --badge-bg: var(--ds-component-badge-color-background-info);
+  --badge-color: var(--ds-component-badge-color-text-info);
 }
 
 .ds-badge--variant-positive.ds-badge--appearance-subtle {
-  --badge-bg: var(--ds-semantic-color-background-positive-subtle);
-  --badge-color: var(--ds-semantic-color-content-positive-default);
+  --badge-bg: var(--ds-component-badge-color-background-success);
+  --badge-color: var(--ds-component-badge-color-text-success);
 }
 
 .ds-badge--variant-negative.ds-badge--appearance-subtle {
-  --badge-bg: var(--ds-semantic-color-background-negative-subtle);
-  --badge-color: var(--ds-semantic-color-content-negative-default);
+  --badge-bg: var(--ds-component-badge-color-background-error);
+  --badge-color: var(--ds-component-badge-color-text-error);
 }
 
 .ds-badge--variant-notice.ds-badge--appearance-subtle {
-  --badge-bg: var(--ds-semantic-color-background-notice-subtle);
-  --badge-color: var(--ds-semantic-color-content-notice-default);
+  --badge-bg: var(--ds-component-badge-color-background-warning);
+  --badge-color: var(--ds-component-badge-color-text-warning);
 }
 
 @media (max-width: 420px) {

@@ -115,13 +115,7 @@ function GridPreview({ spec }: { spec: GridSpec }) {
   );
 }
 
-function PracticeCard({
-  children,
-  title,
-}: {
-  children: React.ReactNode;
-  title: string;
-}) {
+function PracticeCard({ children, title }: { children: React.ReactNode; title: string }) {
   return (
     <article className="grids-practice-card">
       <h3>{title}</h3>
@@ -137,9 +131,9 @@ export function GridsPage() {
         <p className="grids-eyebrow">Foundations</p>
         <h1>Grids</h1>
         <p>
-          Grid e a fundacao de layout que organiza conteudo em colunas, gutters e margens.
-          Ele cria consistencia visual entre mobile, tablet e desktop sem transformar cada
-          pagina em um layout rigido.
+          Grid e a fundacao de layout que organiza conteudo em colunas, gutters e margens. Ele cria
+          consistencia visual entre mobile, tablet e desktop sem transformar cada pagina em um
+          layout rigido.
         </p>
       </header>
 
@@ -160,9 +154,8 @@ export function GridsPage() {
         />
         <div className="grids-definition">
           <p>
-            O grid e uma estrutura composta por colunas e espacamentos. Ele define onde os
-            elementos devem ser posicionados e mantem consistencia visual em diferentes
-            dispositivos.
+            O grid e uma estrutura composta por colunas e espacamentos. Ele define onde os elementos
+            devem ser posicionados e mantem consistencia visual em diferentes dispositivos.
           </p>
           <ul>
             <li>
@@ -201,14 +194,24 @@ export function GridsPage() {
           <PracticeCard title="Responsividade">
             <ul>
               <li>Projete mobile-first e expanda a composicao conforme o viewport cresce.</li>
-              <li>Use os tokens de breakpoint para trocar densidade, nao para esconder conteudo essencial.</li>
-              <li>Evite largura fixa em containers principais; prefira max-width, minmax e clamp.</li>
+              <li>
+                Use os tokens de breakpoint para trocar densidade, nao para esconder conteudo
+                essencial.
+              </li>
+              <li>
+                Evite largura fixa em containers principais; prefira max-width, minmax e clamp.
+              </li>
             </ul>
           </PracticeCard>
           <PracticeCard title="Composicao">
             <ul>
-              <li>Alinhe conteudos ao grid, mas permita que componentes internos tenham sua propria logica.</li>
-              <li>Mantenha gutters consistentes entre cards, formularios, listas e areas operacionais.</li>
+              <li>
+                Alinhe conteudos ao grid, mas permita que componentes internos tenham sua propria
+                logica.
+              </li>
+              <li>
+                Mantenha gutters consistentes entre cards, formularios, listas e areas operacionais.
+              </li>
               <li>Use margens externas para respiro; nao encoste conteudo na borda do viewport.</li>
             </ul>
           </PracticeCard>
@@ -216,7 +219,9 @@ export function GridsPage() {
             <ul>
               <li>Nao altere a ordem do DOM apenas para encaixar itens visualmente no grid.</li>
               <li>Garanta que zoom, texto maior e quebra de linha nao criem sobreposicao.</li>
-              <li>Evite grids densos demais em mobile; priorize leitura linear e toque confortavel.</li>
+              <li>
+                Evite grids densos demais em mobile; priorize leitura linear e toque confortavel.
+              </li>
             </ul>
           </PracticeCard>
         </div>

@@ -13,7 +13,12 @@ function UserIcon() {
     <span className="list-item-story-icon">
       <svg aria-hidden="true" fill="none" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
         <circle cx="10" cy="7" r="3" stroke="currentColor" strokeWidth="1.8" />
-        <path d="M4.8 16c.8-2.5 2.6-4 5.2-4s4.4 1.5 5.2 4" stroke="currentColor" strokeLinecap="round" strokeWidth="1.8" />
+        <path
+          d="M4.8 16c.8-2.5 2.6-4 5.2-4s4.4 1.5 5.2 4"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeWidth="1.8"
+        />
       </svg>
     </span>
   );

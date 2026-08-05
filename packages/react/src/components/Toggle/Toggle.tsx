@@ -22,11 +22,7 @@ export function Toggle({
   const labelId = `${inputId}-label`;
   const hintId = hint ? `${inputId}-hint` : undefined;
 
-  const rootClassName = [
-    'ds-toggle',
-    disabled ? 'ds-toggle--disabled' : null,
-    className,
-  ]
+  const rootClassName = ['ds-toggle', disabled ? 'ds-toggle--disabled' : null, className]
     .filter(Boolean)
     .join(' ');
 

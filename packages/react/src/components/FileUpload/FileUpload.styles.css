@@ -1,22 +1,30 @@
 .ds-file-upload {
-  --file-upload-label-color: var(--ds-semantic-color-content-neutral-default);
-  --file-upload-text-color: var(--ds-semantic-color-content-neutral-default);
-  --file-upload-muted-color: var(--ds-semantic-color-content-neutral-muted);
+  --file-upload-label-color: var(--ds-component-file-upload-color-text);
+  --file-upload-text-color: var(--ds-component-file-upload-color-text);
+  --file-upload-muted-color: var(--ds-component-file-upload-color-text-muted);
   --file-upload-background: var(--ds-semantic-color-background-neutral-default);
-  --file-upload-border-color: var(--ds-semantic-color-border-neutral-subtle);
-  --file-upload-border-hover-color: var(--ds-semantic-color-content-neutral-disabled);
-  --file-upload-focus-color: var(--ds-semantic-color-action-primary-default);
-  --file-upload-error-color: var(--ds-semantic-color-content-negative-default);
+  --file-upload-border-color: var(--ds-component-file-upload-color-border-default);
+  --file-upload-border-hover-color: var(--ds-semantic-text-style-content-color-typography-disabled);
+  --file-upload-focus-color: var(--ds-semantic-color-background-brand-primary-secondary-default);
+  --file-upload-error-color: var(--ds-semantic-text-style-content-color-typography-danger);
   --file-upload-disabled-background: var(--ds-semantic-color-background-neutral-disabled);
-  --file-upload-disabled-color: var(--ds-semantic-color-content-neutral-disabled);
-  --file-upload-action-primary-background: var(--ds-semantic-color-content-neutral-default);
-  --file-upload-action-primary-background-hover: var(--ds-semantic-color-content-neutral-strong);
+  --file-upload-disabled-color: var(--ds-semantic-text-style-content-color-typography-disabled);
+  --file-upload-action-primary-background: var(
+    --ds-semantic-text-style-content-color-typography-secondary
+  );
+  --file-upload-action-primary-background-hover: var(
+    --ds-semantic-text-style-content-color-typography-primary
+  );
   --file-upload-action-primary-color: var(--ds-semantic-color-background-neutral-default);
   --file-upload-action-secondary-background: var(--ds-semantic-color-background-neutral-default);
-  --file-upload-action-secondary-background-hover: var(--ds-semantic-color-background-neutral-disabled);
-  --file-upload-action-secondary-color: var(--ds-semantic-color-content-neutral-default);
+  --file-upload-action-secondary-background-hover: var(
+    --ds-semantic-color-background-neutral-disabled
+  );
+  --file-upload-action-secondary-color: var(
+    --ds-semantic-text-style-content-color-typography-secondary
+  );
   --file-upload-action-secondary-border: var(--ds-semantic-color-border-neutral-subtle);
-  --file-upload-gap: var(--ds-primitive-spacing-8);
+  --file-upload-gap: var(--ds-component-file-upload-spacing-gap);
   --file-upload-action-gap: var(--ds-primitive-spacing-8);
 
   display: grid;
@@ -78,7 +86,7 @@
   align-items: center;
   justify-content: center;
   border: var(--ds-primitive-border-width-border-sm) solid transparent;
-  border-radius: var(--ds-semantic-radius-full);
+  border-radius: var(--ds-primitive-border-radius-radius-full);
   cursor: pointer;
   font: inherit;
   font-size: var(--ds-primitive-typography-font-size-16);
@@ -122,7 +130,7 @@
 
 .ds-file-upload__action--tertiary:not(:disabled):hover {
   border-color: transparent;
-  background: var(--ds-semantic-color-background-neutral-hover);
+  background: var(--ds-primitive-color-neutral-alpha-4);
   color: var(--file-upload-action-secondary-color);
 }
 
@@ -132,9 +140,9 @@
 }
 
 .ds-file-upload__action:disabled {
-  border-color: var(--ds-semantic-color-border-neutral-subtle);
+  border-color: var(--ds-component-file-upload-color-border-default);
   background: var(--ds-semantic-color-background-neutral-disabled);
-  color: var(--ds-semantic-color-content-neutral-disabled);
+  color: var(--ds-semantic-text-style-content-color-typography-disabled);
   cursor: not-allowed;
 }
 
@@ -161,11 +169,12 @@
   display: grid;
   box-sizing: border-box;
   min-block-size: calc(var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-32));
-  padding: var(--ds-primitive-spacing-32) var(--ds-primitive-spacing-24);
+  padding: var(--ds-component-file-upload-spacing-padding-y)
+    var(--ds-component-file-upload-spacing-padding-x);
   gap: var(--ds-primitive-spacing-16);
   place-items: center;
-  border: var(--ds-primitive-border-width-border-md) dashed var(--file-upload-border-color);
-  border-radius: var(--ds-semantic-radius-lg);
+  border: var(--ds-component-file-upload-border-width) dashed var(--file-upload-border-color);
+  border-radius: var(--ds-component-file-upload-border-radius);
   background: var(--file-upload-background);
   color: var(--file-upload-text-color);
   cursor: pointer;
@@ -179,7 +188,7 @@
 .ds-file-upload__dropzone:hover,
 .ds-file-upload--dragging .ds-file-upload__dropzone {
   border-color: var(--file-upload-border-hover-color);
-  background: var(--ds-semantic-color-background-neutral-elevated);
+  background: var(--ds-semantic-color-background-neutral-subtle);
 }
 
 .ds-file-upload__dropzone:has(.ds-file-upload__input:focus-visible) {
@@ -195,7 +204,7 @@
   inline-size: var(--ds-primitive-spacing-48);
   block-size: var(--ds-primitive-spacing-48);
   border: var(--ds-primitive-border-width-border-sm) solid var(--file-upload-border-color);
-  border-radius: var(--ds-semantic-radius-md);
+  border-radius: var(--ds-primitive-border-radius-radius-md);
   color: var(--file-upload-muted-color);
 }
 
@@ -252,15 +261,17 @@
 .ds-file-upload__file-item {
   display: flex;
   min-inline-size: 0;
-  padding: var(--ds-primitive-spacing-8) var(--ds-primitive-spacing-12);
+  padding: var(--ds-component-file-upload-file-item-spacing-padding-y)
+    var(--ds-component-file-upload-file-item-spacing-padding-x);
   gap: var(--ds-primitive-spacing-12);
   align-items: center;
   justify-content: space-between;
-  border: var(--ds-primitive-border-width-border-sm) solid var(--ds-semantic-color-border-neutral-subtle);
-  border-radius: var(--ds-semantic-radius-md);
-  background: var(--ds-semantic-color-background-neutral-elevated);
+  border: var(--ds-primitive-border-width-border-sm) solid
+    var(--ds-semantic-color-border-neutral-subtle);
+  border-radius: var(--ds-component-file-upload-file-item-border-radius);
+  background: var(--ds-semantic-color-background-neutral-subtle);
   color: var(--file-upload-text-color);
-  font-size: var(--ds-primitive-typography-font-size-14);
+  font-size: var(--ds-component-file-upload-typography-font-size);
   font-weight: var(--ds-primitive-typography-font-weight-medium);
   line-height: var(--ds-primitive-typography-line-height-20);
 }

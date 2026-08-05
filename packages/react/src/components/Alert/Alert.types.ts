@@ -4,8 +4,10 @@ export type AlertVariant = 'information' | 'success' | 'warning' | 'error' | 'cr
 
 export type AlertRole = 'alert' | 'status' | 'note';
 
-export interface AlertAction
-  extends Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children' | 'className' | 'type'> {
+export interface AlertAction extends Omit<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  'children' | 'className' | 'type'
+> {
   label: string;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }

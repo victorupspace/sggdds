@@ -49,15 +49,7 @@ function ErrorIcon() {
 function ImageIcon() {
   return (
     <svg aria-hidden="true" fill="none" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-      <rect
-        height="14"
-        rx="2"
-        stroke="currentColor"
-        strokeWidth="1.8"
-        width="14"
-        x="3"
-        y="3"
-      />
+      <rect height="14" rx="2" stroke="currentColor" strokeWidth="1.8" width="14" x="3" y="3" />
       <path
         d="m5.8 14 3.3-3.4 2.1 2.1 1.2-1.3 1.8 2.6M7 7.3h.1"
         stroke="currentColor"
@@ -134,7 +126,9 @@ export function ProgressBar({
 
           {shouldShowValue || shouldShowIcon ? (
             <span className="ds-progress-bar__meta">
-              {shouldShowValue ? <span className="ds-progress-bar__value">{renderedValue}</span> : null}
+              {shouldShowValue ? (
+                <span className="ds-progress-bar__value">{renderedValue}</span>
+              ) : null}
               {shouldShowIcon ? (
                 <span aria-hidden="true" className="ds-progress-bar__icon">
                   {icon ?? defaultIcons[variant]}
@@ -152,7 +146,9 @@ export function ProgressBar({
         aria-valuemax={isDeterminate ? safeMax : undefined}
         aria-valuemin={isDeterminate ? safeMin : undefined}
         aria-valuenow={isDeterminate ? clamp(safeValue, safeMin, safeMax) : undefined}
-        aria-valuetext={isDeterminate && typeof renderedValue === 'string' ? renderedValue : undefined}
+        aria-valuetext={
+          isDeterminate && typeof renderedValue === 'string' ? renderedValue : undefined
+        }
         className={['ds-progress-bar__track', barClassName].filter(Boolean).join(' ')}
         role="progressbar"
       >

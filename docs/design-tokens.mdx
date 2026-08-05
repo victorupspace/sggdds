@@ -1,45 +1,83 @@
 import { Meta } from '@storybook/addon-docs/blocks';
+import {
+  tokenSummary,
+  totalTokenCount,
+} from '../packages/react/src/foundations/tokens/core-tokens.data';
 
 <Meta title="Documentation/Design Tokens" />
 
 # Design Tokens
 
-Os Core tokens SGGD foram importados do Figma e normalizados como tokens primitivos. O inventario visual esta disponivel em `Foundations/Core Tokens`.
+Os tokens do SGGD são importados das collections de variáveis do Figma e
+publicados no pacote `@government/tokens`. O inventário visual dos tokens
+primitivos está disponível em `Foundations`.
 
-Os tokens seguem uma estrategia em tres camadas:
+## Estratégia em quatro camadas
 
-- `primitive`: valores base, sem semantica de produto.
-- `semantic`: aliases orientados a uso, como texto, fundo, borda e feedback.
-- `component`: tokens especificos de componentes, permitidos apenas quando uma abstracao global nao for suficiente.
+Cada collection do Figma vira um tier, com prefixo próprio nas variáveis CSS:
 
-Component tokens ainda nao devem ser criados nesta etapa.
+| Tier        | Collection no Figma     | Prefixo CSS        | Conteúdo                                   |
+| ----------- | ----------------------- | ------------------ | ------------------------------------------ |
+| `primitive` | Global: Core            | `--ds-primitive-*` | Escalas brutas: cor, spacing, tipografia…  |
+| `brand`     | T1: Sampa Design System | `--ds-brand-*`     | Paletas de marca, identidade e utilitárias |
+| `semantic`  | T2: Semantics           | `--ds-semantic-*`  | Papéis de cor e estilos de texto           |
+| `component` | T3: Components          | `--ds-component-*` | Decisões por componente (button, input, …) |
 
-## Categorias previstas
+Os aliases criados no Figma são preservados como referências no CSS gerado —
+por exemplo, `--ds-component-button-color-background-primary-default` resolve
+para `var(--ds-semantic-color-background-brand-primary-default)`, que por sua
+vez resolve para `var(--ds-brand-color-brand-red-primary)`. Isso mantém a
+cadeia de decisão do Figma inspecionável em runtime e prepara o terreno para
+theming sem tocar nos componentes.
 
-`color`, `typography`, `spacing`, `radius`, `border`, `shadow`, `opacity`, `motion`, `z-index` e `breakpoint`.
+Os componentes React consomem o tier `component` sempre que a decisão
+equivalente existe na collection T3 com o mesmo valor; papéis ainda sem token
+de componente (ou com valor divergente aguardando alinhamento com o design)
+permanecem nos tiers `semantic`/`primitive`.
 
 ## Pipeline
 
-1. Coloque exports brutos do Figma em `src/foundations/tokens/raw`.
+1. Coloque os exports brutos do Figma em `packages/tokens/src/raw`
+   (ver o README daquele diretório para o mapeamento arquivo → collection).
 2. Execute `pnpm tokens:validate`.
 3. Execute `pnpm tokens:build`.
-4. Consuma as variaveis CSS geradas em `src/foundations/tokens/css/tokens.css`.
-5. Use `src/foundations/tokens/build/tokens.json` para consumo interno e integracoes futuras.
+4. Consuma as variáveis CSS geradas em `packages/tokens/dist/css/tokens.css`
+   (ou via `@government/design-system/tokens.css`).
+5. Use `packages/tokens/dist/json/tokens.json` para consumo programático.
 
-O Style Dictionary esta configurado para gerar CSS variables e JSON normalizado. Saidas Swift e Android serao adicionadas em `platforms/ios` e `platforms/android` quando essas entregas entrarem no escopo.
+O Style Dictionary também gera saídas nativas a cada build: Swift em
+`platforms/ios` e XML de resources em `platforms/android`.
 
-## Decisoes de normalizacao
+## Decisões de normalização
 
-- Tokens de cor importados do Figma mantem `sggd.figmaPath` quando o caminho de origem precisa ser rastreado.
-- Valores repetidos de marca e feedback foram preservados como aliases para evitar duplicacao de literais.
-- O grupo original `color.utility.sucess` foi normalizado para `color.utility.success`, mantendo `sggd.normalizedFrom` e o caminho original do Figma.
-- Tokens de tipografia presentes no export recebido foram analisados, mas nao foram importados nesta etapa porque o escopo solicitado foi a biblioteca de cores.
+- Chaves são normalizadas para kebab-case, espelhando os nomes de variáveis
+  CSS (`SemiBold` → `semi-bold`, `Component sizing` → `component-sizing`).
+- O valor base de grupos com estados (`$root` no export do Figma) vira o token
+  `default` do grupo.
+- O grupo `sucess` (grafia do Figma) é normalizado para `success`; o caminho
+  original é preservado em `sggd.figmaPath`.
+- Números com escopo de layout (`WIDTH_HEIGHT`, `GAP`, `FONT_SIZE`, …) viram
+  dimensões em `px`; durações de motion e opacidades permanecem numéricas.
+- Pesos de fonte nomeados (`SemiBold`) viram valores numéricos (`600`), com o
+  nome original em `sggd.figmaFontStyle`.
+- `aliasData` do Figma vira referência DTCG entre tiers; o valor resolvido do
+  export fica registrado em `sggd.figmaResolvedValue`.
+- As sombras `--ds-semantic-shadow-*` ainda não existem nas collections do
+  Figma e são mantidas em `src/raw/web-extras.tokens.json` até serem
+  incorporadas lá.
 
-## Core tokens atuais
+## Inventário atual
 
-- 143 tokens primitivos.
-- 55 tokens de cor.
-- 17 tokens de spacing.
-- 9 tokens de border/radius.
-- 4 breakpoints.
-- 58 tokens de tipografia.
+Os números abaixo são derivados do build (nunca escritos à mão):
+
+<ul>
+  <li>{totalTokenCount} tokens primitivos.</li>
+  {tokenSummary.map((entry) => (
+    <li key={entry.category}>
+      {entry.count} tokens de {entry.label.toLowerCase()}.
+    </li>
+  ))}
+</ul>
+
+Somam-se a eles os tiers `brand`, `semantic` e `component` — o total de
+variáveis CSS publicadas está em `packages/tokens/dist/css/tokens.css`.

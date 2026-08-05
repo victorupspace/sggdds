@@ -38,7 +38,10 @@ describe('ListItem', () => {
       </ul>,
     );
 
-    expect(screen.getByRole('link', { name: 'Abrir detalhes' })).toHaveAttribute('href', '/detalhes');
+    expect(screen.getByRole('link', { name: 'Abrir detalhes' })).toHaveAttribute(
+      'href',
+      '/detalhes',
+    );
   });
 
   it('renders a button when onClick is provided', () => {
@@ -96,7 +99,11 @@ describe('ListItem', () => {
   it('renders leading and trailing slots as decorative content', () => {
     render(
       <ul>
-        <ListItem leading={<span data-testid="leading">L</span>} title="Item" trailing={<span data-testid="trailing">T</span>} />
+        <ListItem
+          leading={<span data-testid="leading">L</span>}
+          title="Item"
+          trailing={<span data-testid="trailing">T</span>}
+        />
       </ul>,
     );
 

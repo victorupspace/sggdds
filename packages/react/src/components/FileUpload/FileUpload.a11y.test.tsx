@@ -6,9 +6,7 @@ import { FileUpload } from './FileUpload';
 
 describe('FileUpload — accessibility', () => {
   it('has no violations in button mode', async () => {
-    const { container } = render(
-      <FileUpload label="Enviar comprovante" mode="button" />,
-    );
+    const { container } = render(<FileUpload label="Enviar comprovante" mode="button" />);
     expect(await axe(container)).toHaveNoViolations();
   });
 
@@ -27,29 +25,20 @@ describe('FileUpload — accessibility', () => {
 
   it('has no violations with helper text', async () => {
     const { container } = render(
-      <FileUpload
-        label="Enviar foto"
-        helperText="Formato JPG ou PNG, até 2MB."
-      />,
+      <FileUpload label="Enviar foto" helperText="Formato JPG ou PNG, até 2MB." />,
     );
     expect(await axe(container)).toHaveNoViolations();
   });
 
   it('has no violations in error state', async () => {
     const { container } = render(
-      <FileUpload
-        label="Anexar comprovante"
-        state="error"
-        errorText="Arquivo obrigatório."
-      />,
+      <FileUpload label="Anexar comprovante" state="error" errorText="Arquivo obrigatório." />,
     );
     expect(await axe(container)).toHaveNoViolations();
   });
 
   it('has no violations when disabled', async () => {
-    const { container } = render(
-      <FileUpload label="Upload indisponível" disabled />,
-    );
+    const { container } = render(<FileUpload label="Upload indisponível" disabled />);
     expect(await axe(container)).toHaveNoViolations();
   });
 });

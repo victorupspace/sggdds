@@ -1,13 +1,13 @@
 .ds-tabs {
-  --tabs-foreground: var(--ds-semantic-color-content-neutral-default);
-  --tabs-muted: var(--ds-semantic-color-content-neutral-muted);
-  --tabs-disabled: var(--ds-semantic-color-content-neutral-weak);
-  --tabs-selected: var(--ds-semantic-color-action-primary-default);
+  --tabs-foreground: var(--ds-semantic-text-style-content-color-typography-secondary);
+  --tabs-muted: var(--ds-semantic-text-style-content-color-typography-tertiary);
+  --tabs-disabled: var(--ds-semantic-text-style-content-color-typography-placeholder);
+  --tabs-selected: var(--ds-semantic-color-background-brand-primary-secondary-default);
   --tabs-selected-foreground: var(--tabs-selected);
-  --tabs-hover: var(--ds-semantic-color-background-neutral-hover);
-  --tabs-active: var(--ds-semantic-color-background-neutral-active);
+  --tabs-hover: var(--ds-primitive-color-neutral-alpha-4);
+  --tabs-active: var(--ds-primitive-color-neutral-alpha-8);
   --tabs-border: var(--ds-semantic-color-border-neutral-default);
-  --tabs-focus-ring: var(--ds-semantic-color-action-primary-default);
+  --tabs-focus-ring: var(--ds-semantic-color-background-brand-primary-secondary-default);
   --tabs-tab-gap: var(--ds-primitive-spacing-8);
   --tabs-tab-padding-inline: var(--ds-primitive-spacing-16);
   --tabs-tab-padding-block: var(--ds-primitive-spacing-12);
@@ -59,9 +59,9 @@
   align-items: center;
   justify-content: center;
   border: 0;
-  border-radius: var(--ds-semantic-radius-sm)
-    var(--ds-semantic-radius-sm) var(--ds-semantic-radius-none)
-    var(--ds-semantic-radius-none);
+  border-radius: var(--ds-primitive-border-radius-radius-sm)
+    var(--ds-primitive-border-radius-radius-sm) var(--ds-primitive-border-radius-radius-none)
+    var(--ds-primitive-border-radius-radius-none);
   background: transparent;
   color: var(--tabs-muted);
   cursor: pointer;
@@ -140,7 +140,7 @@
   min-inline-size: var(--tabs-badge-size);
   block-size: var(--tabs-badge-size);
   padding-inline: var(--ds-primitive-spacing-6);
-  border-radius: var(--ds-semantic-radius-full);
+  border-radius: var(--ds-primitive-border-radius-radius-full);
   background: var(--tabs-selected);
   color: var(--ds-semantic-color-background-neutral-default);
   font-size: var(--ds-primitive-typography-font-size-14);

@@ -1,11 +1,11 @@
 .ds-tooltip {
-  --tooltip-surface: var(--ds-semantic-color-background-neutral-knockout-default);
-  --tooltip-foreground: var(--ds-semantic-color-content-neutral-inverse);
+  --tooltip-surface: var(--ds-component-tooltip-color-background);
+  --tooltip-foreground: var(--ds-component-tooltip-color-text);
   --tooltip-offset: var(--ds-primitive-spacing-8);
   --tooltip-arrow-size: var(--ds-primitive-spacing-8);
-  --tooltip-padding-block: var(--ds-primitive-spacing-4);
-  --tooltip-padding-inline: var(--ds-primitive-spacing-8);
-  --tooltip-radius: var(--ds-semantic-radius-sm);
+  --tooltip-padding-block: var(--ds-component-tooltip-spacing-padding-y);
+  --tooltip-padding-inline: var(--ds-component-tooltip-spacing-padding-x);
+  --tooltip-radius: var(--ds-component-tooltip-border-radius);
   --tooltip-max-inline-size: 240px;
 
   position: relative;
@@ -16,14 +16,17 @@
 
 .ds-tooltip--tone-light {
   --tooltip-surface: var(--ds-semantic-color-background-neutral-default);
-  --tooltip-foreground: var(--ds-semantic-color-content-neutral-default);
+  --tooltip-foreground: var(--ds-semantic-text-style-content-color-typography-secondary);
 }
 
 .ds-tooltip__bubble {
   position: absolute;
   z-index: 10;
   box-sizing: border-box;
-  max-inline-size: min(var(--tooltip-max-inline-size), calc(100vw - var(--ds-primitive-spacing-32)));
+  max-inline-size: min(
+    var(--tooltip-max-inline-size),
+    calc(100vw - var(--ds-primitive-spacing-32))
+  );
   padding: var(--tooltip-padding-block) var(--tooltip-padding-inline);
   border-radius: var(--tooltip-radius);
   background: var(--tooltip-surface);
@@ -31,9 +34,9 @@
   color: var(--tooltip-foreground);
   font-family:
     var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
-  font-size: var(--ds-primitive-typography-font-size-12);
+  font-size: var(--ds-component-tooltip-typography-font-size);
   font-weight: var(--ds-primitive-typography-font-weight-regular);
-  line-height: var(--ds-primitive-typography-line-height-16);
+  line-height: var(--ds-component-tooltip-typography-line-height);
   opacity: 0;
   overflow-wrap: anywhere;
   pointer-events: none;

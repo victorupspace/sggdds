@@ -8,8 +8,10 @@ export type ListItemRadius = 'none' | 'sm' | 'md';
 
 export type ListItemClickEvent = MouseEvent<HTMLAnchorElement> | MouseEvent<HTMLButtonElement>;
 
-export interface ListItemProps
-  extends Omit<HTMLAttributes<HTMLLIElement>, 'children' | 'onClick' | 'title'> {
+export interface ListItemProps extends Omit<
+  HTMLAttributes<HTMLLIElement>,
+  'children' | 'onClick' | 'title'
+> {
   ariaLabel?: string;
   description?: ReactNode;
   density?: ListItemDensity;

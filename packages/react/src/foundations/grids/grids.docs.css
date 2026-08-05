@@ -103,7 +103,7 @@
 .grids-breakpoint__measure::after {
   display: block;
   block-size: var(--ds-primitive-border-width-border-sm);
-  background: var(--ds-primitive-color-brand-red);
+  background: var(--ds-brand-color-brand-red);
   content: '';
 }
 
@@ -228,7 +228,7 @@
 .grids-preview__column {
   min-width: 0;
   height: 100%;
-  background: var(--ds-primitive-color-utility-danger-red-100);
+  background: var(--ds-brand-color-utility-danger-red-100);
   border-radius: var(--ds-primitive-border-radius-radius-sm);
 }
 

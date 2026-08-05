@@ -1,24 +1,26 @@
 .ds-card {
   --card-surface: var(--ds-semantic-color-background-neutral-default);
-  --card-surface-hover: var(--ds-semantic-color-background-neutral-hover-subtle);
-  --card-surface-active: var(--ds-semantic-color-background-neutral-hover);
-  --card-border: var(--ds-semantic-color-border-neutral-subtle);
+  --card-surface-hover: var(--ds-primitive-color-neutral-alpha-2);
+  --card-surface-active: var(--ds-primitive-color-neutral-alpha-4);
+  --card-border: var(--ds-component-card-color-border-outline);
   --card-divider: var(--ds-primitive-color-neutral-grey-300);
   --card-border-hover: var(--ds-semantic-color-border-neutral-default);
-  --card-text: var(--ds-semantic-color-content-neutral-strong);
-  --card-description: var(--ds-semantic-color-content-neutral-subtle);
-  --card-muted: var(--ds-semantic-color-content-neutral-muted);
-  --card-disabled-text: var(--ds-semantic-color-content-neutral-disabled);
+  --card-text: var(--ds-component-card-color-text);
+  --card-description: var(--ds-primitive-color-neutral-grey-700);
+  --card-muted: var(--ds-semantic-text-style-content-color-typography-tertiary);
+  --card-disabled-text: var(--ds-semantic-text-style-content-color-typography-disabled);
   --card-disabled-surface: var(--ds-semantic-color-background-neutral-disabled);
-  --card-focus-ring: var(--ds-semantic-color-action-primary-default);
-  --card-action-bg: var(--ds-semantic-color-action-primary-default);
-  --card-action-bg-hover: var(--ds-semantic-color-action-primary-hover);
-  --card-action-bg-active: var(--ds-semantic-color-action-primary-active);
+  --card-focus-ring: var(--ds-semantic-color-background-brand-primary-secondary-default);
+  --card-action-bg: var(--ds-semantic-color-background-brand-primary-secondary-default);
+  --card-action-bg-hover: var(--ds-semantic-color-background-brand-primary-secondary-prominent);
+  --card-action-bg-active: var(
+    --ds-semantic-color-background-brand-primary-secondary-default-hover
+  );
   --card-action-color: var(--ds-semantic-color-background-neutral-default);
   --card-action-disabled-bg: var(--ds-semantic-color-border-neutral-default);
-  --card-action-disabled-color: var(--ds-semantic-color-content-neutral-muted);
-  --card-media-surface: var(--ds-semantic-color-content-neutral-subtle);
-  --card-padding: var(--ds-primitive-spacing-24);
+  --card-action-disabled-color: var(--ds-semantic-text-style-content-color-typography-tertiary);
+  --card-media-surface: var(--ds-primitive-color-neutral-grey-700);
+  --card-padding: var(--ds-component-card-spacing-padding-lg);
   --card-gap: var(--ds-primitive-spacing-10);
   --card-content-gap: var(--ds-primitive-spacing-10);
   --card-copy-gap: var(--ds-primitive-spacing-10);
@@ -39,9 +41,9 @@
   --card-horizontal-media-block-size: calc(
     var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-80)
   );
-  --card-radius: var(--ds-semantic-radius-lg);
-  --card-inner-radius: var(--ds-semantic-radius-md);
-  --card-border-width: var(--ds-primitive-border-width-border-sm);
+  --card-radius: var(--ds-component-card-border-radius);
+  --card-inner-radius: var(--ds-primitive-border-radius-radius-md);
+  --card-border-width: var(--ds-component-card-border-width);
 
   display: grid;
   box-sizing: border-box;
@@ -63,39 +65,41 @@
 }
 
 .ds-card--tone-brand {
-  --card-focus-ring: var(--ds-semantic-color-action-brand-default);
-  --card-action-bg: var(--ds-semantic-color-action-brand-default);
-  --card-action-bg-hover: var(--ds-semantic-color-content-negative-default);
-  --card-action-bg-active: var(--ds-semantic-color-action-brand-active);
+  --card-focus-ring: var(--ds-semantic-color-background-brand-primary-prominent);
+  --card-action-bg: var(--ds-semantic-color-background-brand-primary-prominent);
+  --card-action-bg-hover: var(--ds-semantic-text-style-content-color-typography-danger);
+  --card-action-bg-active: var(--ds-semantic-color-background-brand-primary-default-hover);
 }
 
 .ds-card--tone-info {
-  --card-focus-ring: var(--ds-semantic-color-content-information-default);
-  --card-action-bg: var(--ds-semantic-color-content-information-default);
-  --card-action-bg-hover: var(--ds-semantic-color-action-primary-hover);
-  --card-action-bg-active: var(--ds-semantic-color-action-primary-active);
+  --card-focus-ring: var(--ds-semantic-text-style-content-color-typography-information);
+  --card-action-bg: var(--ds-semantic-text-style-content-color-typography-information);
+  --card-action-bg-hover: var(--ds-semantic-color-background-brand-primary-secondary-prominent);
+  --card-action-bg-active: var(
+    --ds-semantic-color-background-brand-primary-secondary-default-hover
+  );
 }
 
 .ds-card--tone-success {
-  --card-focus-ring: var(--ds-semantic-color-background-positive-default);
-  --card-action-bg: var(--ds-semantic-color-background-positive-default);
-  --card-action-bg-hover: var(--ds-semantic-color-content-positive-default);
-  --card-action-bg-active: var(--ds-semantic-color-content-positive-default);
+  --card-focus-ring: var(--ds-semantic-color-background-success-default);
+  --card-action-bg: var(--ds-semantic-color-background-success-default);
+  --card-action-bg-hover: var(--ds-semantic-text-style-content-color-typography-success);
+  --card-action-bg-active: var(--ds-semantic-text-style-content-color-typography-success);
 }
 
 .ds-card--tone-warning {
-  --card-focus-ring: var(--ds-semantic-color-content-notice-accent);
-  --card-action-bg: var(--ds-semantic-color-content-notice-accent);
-  --card-action-bg-hover: var(--ds-semantic-color-content-notice-default);
-  --card-action-bg-active: var(--ds-semantic-color-content-notice-default);
-  --card-action-color: var(--ds-semantic-color-content-neutral-strong);
+  --card-focus-ring: var(--ds-semantic-color-background-warning-default);
+  --card-action-bg: var(--ds-semantic-color-background-warning-default);
+  --card-action-bg-hover: var(--ds-semantic-text-style-content-color-typography-warning);
+  --card-action-bg-active: var(--ds-semantic-text-style-content-color-typography-warning);
+  --card-action-color: var(--ds-semantic-text-style-content-color-typography-primary);
 }
 
 .ds-card--tone-danger {
-  --card-focus-ring: var(--ds-semantic-color-content-negative-default);
-  --card-action-bg: var(--ds-semantic-color-content-negative-default);
-  --card-action-bg-hover: var(--ds-semantic-color-action-brand-active);
-  --card-action-bg-active: var(--ds-semantic-color-action-brand-active);
+  --card-focus-ring: var(--ds-semantic-text-style-content-color-typography-danger);
+  --card-action-bg: var(--ds-semantic-text-style-content-color-typography-danger);
+  --card-action-bg-hover: var(--ds-semantic-color-background-brand-primary-default-hover);
+  --card-action-bg-active: var(--ds-semantic-color-background-brand-primary-default-hover);
 }
 
 .ds-card:not(.ds-card--disabled):hover {
@@ -209,7 +213,7 @@
   --badge-font-size: var(--ds-primitive-typography-font-size-12);
   --badge-font-weight: var(--ds-primitive-typography-font-weight-medium);
   --badge-line-height: var(--ds-primitive-typography-line-height-12);
-  --badge-radius: var(--ds-semantic-radius-full);
+  --badge-radius: var(--ds-primitive-border-radius-radius-full);
   --badge-icon-size: var(--ds-primitive-spacing-16);
 
   min-inline-size: var(--ds-primitive-spacing-56);
@@ -237,8 +241,8 @@
   inset-block: 0;
   inset-inline-start: 0;
   inline-size: var(--ds-primitive-border-width-border-lg);
-  border-radius: var(--ds-semantic-radius-full);
-  background: var(--ds-primitive-color-utility-danger-red-300);
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  background: var(--ds-brand-color-utility-danger-red-300);
 }
 
 .ds-card__description {
@@ -345,7 +349,7 @@
     --card-footer-gap: var(--card-action-gap);
     --card-action-min-block-size: var(--ds-primitive-spacing-48);
     --card-action-padding: var(--ds-primitive-spacing-16);
-    --card-border-width: var(--ds-primitive-border-width-border-sm);
+    --card-border-width: var(--ds-component-card-border-width);
 
     inline-size: 100%;
     block-size: auto;
@@ -399,7 +403,7 @@
 
 @media (max-width: 420px) {
   .ds-card {
-    --card-padding: var(--ds-primitive-spacing-24);
+    --card-padding: var(--ds-component-card-spacing-padding-lg);
     --card-gap: var(--ds-primitive-spacing-10);
     --card-content-gap: var(--ds-primitive-spacing-10);
     --card-action-gap: var(--ds-primitive-spacing-8);

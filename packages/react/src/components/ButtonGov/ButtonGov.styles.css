@@ -1,19 +1,20 @@
 /*
- * Excecao formal de tipografia:
- * ButtonGov representa exclusivamente o CTA institucional gov.br e segue a
- * especificacao externa da marca gov.br, que exige Open Sans 600/700.
- * Os demais componentes devem continuar usando Plus Jakarta Sans via tokens.
+ * Tipografia: Plus Jakarta Sans e a unica familia do Design System, inclusive
+ * neste CTA institucional gov.br. A hierarquia da marca ("Entrar com o" 600 e
+ * "gov.br" 700) e mantida apenas pelos pesos.
  */
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700&display=swap');
-
 .ds-button-gov {
-  --button-gov-background: var(--ds-semantic-color-action-primary-default);
-  --button-gov-background-hover: var(--ds-semantic-color-action-primary-hover);
-  --button-gov-background-active: var(--ds-semantic-color-action-primary-active);
+  --button-gov-background: var(--ds-semantic-color-background-brand-primary-secondary-default);
+  --button-gov-background-hover: var(
+    --ds-semantic-color-background-brand-primary-secondary-prominent
+  );
+  --button-gov-background-active: var(
+    --ds-semantic-color-background-brand-primary-secondary-default-hover
+  );
   --button-gov-foreground: var(--ds-semantic-color-background-neutral-default);
-  --button-gov-focus-ring: var(--ds-semantic-color-content-neutral-default);
+  --button-gov-focus-ring: var(--ds-semantic-text-style-content-color-typography-secondary);
   --button-gov-disabled-background: var(--ds-semantic-color-background-neutral-disabled);
-  --button-gov-disabled-foreground: var(--ds-semantic-color-content-neutral-disabled);
+  --button-gov-disabled-foreground: var(--ds-semantic-text-style-content-color-typography-disabled);
   --button-gov-inline-size: 250px;
   --button-gov-block-size: var(--ds-primitive-spacing-48);
   --button-gov-icon-size: var(--ds-primitive-spacing-20);
@@ -29,11 +30,12 @@
   align-items: center;
   justify-content: center;
   border: var(--ds-primitive-border-width-border-sm) solid var(--button-gov-background);
-  border-radius: var(--ds-semantic-radius-full);
+  border-radius: var(--ds-primitive-border-radius-radius-full);
   background: var(--button-gov-background);
   color: var(--button-gov-foreground);
   cursor: pointer;
-  font-family: 'Open Sans', Arial, system-ui, sans-serif;
+  font-family:
+    var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
   font-size: var(--ds-primitive-typography-font-size-18);
   font-weight: 600;
   line-height: var(--ds-primitive-typography-line-height-24);
@@ -112,7 +114,7 @@
 .ds-button-gov__spinner {
   border: var(--ds-primitive-border-width-border-md) solid currentColor;
   border-inline-end-color: transparent;
-  border-radius: var(--ds-semantic-radius-full);
+  border-radius: var(--ds-primitive-border-radius-radius-full);
   animation: ds-button-gov-spinner 800ms linear infinite;
 }
 

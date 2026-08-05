@@ -1,23 +1,23 @@
 .ds-button {
-  --button-background: var(--ds-semantic-color-content-neutral-default);
-  --button-background-hover: var(--ds-semantic-color-content-neutral-strong);
-  --button-background-active: var(--ds-semantic-color-content-neutral-strong);
+  --button-background: var(--ds-semantic-text-style-content-color-typography-secondary);
+  --button-background-hover: var(--ds-semantic-text-style-content-color-typography-primary);
+  --button-background-active: var(--ds-semantic-text-style-content-color-typography-primary);
   --button-foreground: var(--ds-semantic-color-background-neutral-default);
   --button-border-color: var(--button-background);
-  --button-focus-ring: var(--ds-semantic-color-action-primary-default);
+  --button-focus-ring: var(--ds-semantic-color-background-brand-primary-secondary-default);
   --button-disabled-background: var(--ds-semantic-color-background-neutral-disabled);
-  --button-disabled-foreground: var(--ds-semantic-color-content-neutral-disabled);
+  --button-disabled-foreground: var(--ds-component-button-color-text-primary-disabled);
   --button-disabled-border-color: var(--ds-semantic-color-border-neutral-subtle);
   --button-padding-block: var(--ds-primitive-spacing-12);
-  --button-padding-inline: var(--ds-primitive-spacing-16);
-  --button-gap: var(--ds-primitive-spacing-8);
+  --button-padding-inline: var(--ds-component-button-spacing-padding-x-md);
+  --button-gap: var(--ds-component-button-spacing-gap-md);
   --button-icon-size: var(--ds-primitive-spacing-24);
   --button-min-block-size: calc(
     var(--button-icon-size) + var(--button-padding-block) + var(--button-padding-block)
   );
   --button-font-size: var(--ds-primitive-typography-font-size-12);
   --button-line-height: var(--ds-primitive-typography-line-height-16);
-  --button-border-width: var(--ds-primitive-border-width-border-sm);
+  --button-border-width: var(--ds-component-button-border-width);
 
   position: relative;
   display: inline-flex;
@@ -30,7 +30,7 @@
   align-items: center;
   justify-content: center;
   border: var(--button-border-width) solid var(--button-border-color);
-  border-radius: var(--ds-semantic-radius-full);
+  border-radius: var(--ds-primitive-border-radius-radius-full);
   background: var(--button-background);
   color: var(--button-foreground);
   cursor: pointer;
@@ -49,17 +49,17 @@
 }
 
 .ds-button--variant-secondary {
-  --button-background: var(--ds-semantic-color-action-brand-default);
-  --button-background-hover: var(--ds-semantic-color-content-negative-default);
-  --button-background-active: var(--ds-semantic-color-action-brand-active);
+  --button-background: var(--ds-semantic-color-background-brand-primary-prominent);
+  --button-background-hover: var(--ds-semantic-text-style-content-color-typography-danger);
+  --button-background-active: var(--ds-semantic-color-background-brand-primary-default-hover);
   --button-border-color: var(--button-background);
 }
 
 .ds-button--variant-tertiary {
   --button-background: transparent;
-  --button-background-hover: var(--ds-semantic-color-background-neutral-hover);
-  --button-background-active: var(--ds-semantic-color-background-neutral-active);
-  --button-foreground: var(--ds-semantic-color-content-neutral-default);
+  --button-background-hover: var(--ds-primitive-color-neutral-alpha-4);
+  --button-background-active: var(--ds-primitive-color-neutral-alpha-8);
+  --button-foreground: var(--ds-semantic-text-style-content-color-typography-secondary);
   --button-border-color: transparent;
 }
 
@@ -71,18 +71,18 @@
 
 .ds-button--size-medium {
   --button-padding-block: var(--ds-primitive-spacing-12);
-  --button-padding-inline: var(--ds-primitive-spacing-16);
-  --button-gap: var(--ds-primitive-spacing-8);
+  --button-padding-inline: var(--ds-component-button-spacing-padding-x-md);
+  --button-gap: var(--ds-component-button-spacing-gap-md);
   --button-icon-size: var(--ds-primitive-spacing-24);
   --button-font-size: var(--ds-primitive-typography-font-size-12);
   --button-line-height: var(--ds-primitive-typography-line-height-16);
 }
 
 .ds-button--size-large {
-  --button-padding-block: var(--ds-primitive-spacing-12);
+  --button-padding-block: var(--ds-component-button-spacing-padding-y-lg);
   --button-padding-inline: var(--ds-primitive-spacing-16);
-  --button-gap: var(--ds-primitive-spacing-8);
-  --button-icon-size: var(--ds-primitive-spacing-24);
+  --button-gap: var(--ds-component-button-spacing-gap-lg);
+  --button-icon-size: var(--ds-component-button-size-icon-size-lg);
   --button-font-size: var(--ds-primitive-typography-font-size-12);
   --button-line-height: var(--ds-primitive-typography-line-height-16);
 }
@@ -111,7 +111,7 @@
 }
 
 .ds-button:focus-visible {
-  outline: var(--ds-primitive-border-width-border-md) solid var(--button-focus-ring);
+  outline: var(--ds-component-button-effect-focus-ring-width) solid var(--button-focus-ring);
   outline-offset: var(--ds-primitive-spacing-4);
 }
 
@@ -150,7 +150,7 @@
 .ds-button__spinner {
   border: var(--ds-primitive-border-width-border-md) solid currentColor;
   border-inline-end-color: transparent;
-  border-radius: var(--ds-semantic-radius-full);
+  border-radius: var(--ds-primitive-border-radius-radius-full);
   animation: ds-button-spinner 800ms linear infinite;
 }
 

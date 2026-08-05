@@ -23,8 +23,24 @@ interface DeviceSpec {
 }
 
 const device: Record<Platform, DeviceSpec> = {
-  SwiftUI: { name: 'iPhone 17 Pro Max', width: 300, bezel: 12, radius: 56, screenRadius: 44, statusHeight: 44, screenMinHeight: 460 },
-  Android: { name: 'Samsung Galaxy S26', width: 300, bezel: 8, radius: 38, screenRadius: 32, statusHeight: 32, screenMinHeight: 470 },
+  SwiftUI: {
+    name: 'iPhone 17 Pro Max',
+    width: 300,
+    bezel: 12,
+    radius: 56,
+    screenRadius: 44,
+    statusHeight: 44,
+    screenMinHeight: 460,
+  },
+  Android: {
+    name: 'Samsung Galaxy S26',
+    width: 300,
+    bezel: 8,
+    radius: 38,
+    screenRadius: 32,
+    statusHeight: 32,
+    screenMinHeight: 470,
+  },
 };
 
 const platformAccent: Record<Platform, string> = {
@@ -47,10 +63,10 @@ export function NativeNote({ platform }: { platform: Platform }) {
         padding: '12px 16px',
       }}
     >
-      <strong>Referência visual gerada a partir dos tokens.</strong> Esta pré-visualização
-      é o rendering web compartilhado dentro de um frame de {device[platform].name} (apenas
-      estética). O componente {platform} foi construído para espelhá-la, mas este não é o
-      runtime {platform} — a fonte da verdade é o código nativo abaixo.
+      <strong>Referência visual gerada a partir dos tokens.</strong> Esta pré-visualização é o
+      rendering web compartilhado dentro de um frame de {device[platform].name} (apenas estética). O
+      componente {platform} foi construído para espelhá-la, mas este não é o runtime {platform} — a
+      fonte da verdade é o código nativo abaixo.
     </div>
   );
 }
@@ -183,8 +199,12 @@ const codeRules = (keywords: string): Rule[] => [
 ];
 
 const ruleSets: Record<Language, Rule[]> = {
-  Swift: codeRules('let|var|func|struct|class|enum|true|false|nil|self|in|if|else|return|public|private|init'),
-  Kotlin: codeRules('val|var|fun|object|class|true|false|null|apply|context|if|else|return|private|public'),
+  Swift: codeRules(
+    'let|var|func|struct|class|enum|true|false|nil|self|in|if|else|return|public|private|init',
+  ),
+  Kotlin: codeRules(
+    'val|var|fun|object|class|true|false|null|apply|context|if|else|return|private|public',
+  ),
   XML: [
     { type: 'comment', re: /<!--[\s\S]*?-->/y },
     { type: 'string', re: /"(?:[^"\\]|\\.)*"/y },

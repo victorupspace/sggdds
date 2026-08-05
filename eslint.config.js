@@ -58,7 +58,12 @@ export default tseslint.config(
     },
   },
   {
-    files: ['*.config.{js,ts}', '.storybook/**/*.ts', 'packages/*/scripts/**/*.ts', 'packages/*/style-dictionary.config.ts'],
+    files: [
+      '*.config.{js,ts}',
+      '.storybook/**/*.ts',
+      'packages/*/scripts/**/*.ts',
+      'packages/*/style-dictionary.config.ts',
+    ],
     rules: {
       '@typescript-eslint/no-unsafe-assignment': 'off',
       '@typescript-eslint/no-unsafe-call': 'off',

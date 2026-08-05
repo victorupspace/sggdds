@@ -3,7 +3,7 @@
   min-block-size: calc(var(--ds-primitive-spacing-128) * 4);
   padding: var(--ds-primitive-spacing-48);
   place-items: start center;
-  background: var(--ds-semantic-color-background-neutral-page);
+  background: var(--ds-semantic-color-background-neutral-surface);
 }
 
 .meganav-story-frame {
@@ -22,13 +22,13 @@
   justify-content: space-between;
   border: var(--ds-primitive-border-width-border-sm) solid
     var(--ds-semantic-color-border-neutral-subtle);
-  border-radius: var(--ds-semantic-radius-lg);
+  border-radius: var(--ds-primitive-border-radius-radius-lg);
   background: var(--ds-semantic-color-background-neutral-default);
   box-shadow: var(--ds-semantic-shadow-floating);
 }
 
 .meganav-story-brand {
-  color: var(--ds-semantic-color-content-neutral-strongest);
+  color: var(--ds-primitive-color-neutral-grey-900);
   font-family:
     var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
   font-size: var(--ds-primitive-typography-font-size-18);

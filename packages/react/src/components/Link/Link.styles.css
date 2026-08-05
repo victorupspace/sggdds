@@ -1,11 +1,11 @@
 .ds-link {
-  --link-color: var(--ds-semantic-color-action-primary-default);
-  --link-hover-color: var(--ds-semantic-color-action-primary-hover);
-  --link-active-color: var(--ds-semantic-color-action-primary-active);
-  --link-disabled-color: var(--ds-semantic-color-content-neutral-disabled);
-  --link-focus-ring: var(--ds-semantic-color-action-primary-default);
+  --link-color: var(--ds-semantic-color-background-brand-primary-secondary-default);
+  --link-hover-color: var(--ds-semantic-color-background-brand-primary-secondary-prominent);
+  --link-active-color: var(--ds-semantic-color-background-brand-primary-secondary-default-hover);
+  --link-disabled-color: var(--ds-semantic-text-style-content-color-typography-disabled);
+  --link-focus-ring: var(--ds-semantic-color-background-brand-primary-secondary-default);
   --link-gap: var(--ds-primitive-spacing-4);
-  --link-icon-size: var(--ds-primitive-spacing-16);
+  --link-icon-size: var(--ds-component-link-size-icon-size);
   --link-font-size: var(--ds-primitive-typography-font-size-16);
   --link-line-height: var(--ds-primitive-typography-line-height-24);
   --link-touch-size: var(--ds-primitive-spacing-24);
@@ -17,7 +17,7 @@
   min-block-size: var(--link-touch-size);
   gap: var(--link-gap);
   align-items: center;
-  border-radius: var(--ds-semantic-radius-sm);
+  border-radius: var(--ds-primitive-border-radius-radius-sm);
   color: var(--link-color);
   cursor: pointer;
   font-family:
@@ -35,17 +35,17 @@
 }
 
 .ds-link--variant-neutral {
-  --link-color: var(--ds-semantic-color-content-neutral-default);
-  --link-hover-color: var(--ds-semantic-color-content-neutral-strong);
-  --link-active-color: var(--ds-semantic-color-content-neutral-strong);
-  --link-focus-ring: var(--ds-semantic-color-content-neutral-default);
+  --link-color: var(--ds-semantic-text-style-content-color-typography-secondary);
+  --link-hover-color: var(--ds-semantic-text-style-content-color-typography-primary);
+  --link-active-color: var(--ds-semantic-text-style-content-color-typography-primary);
+  --link-focus-ring: var(--ds-semantic-text-style-content-color-typography-secondary);
 }
 
 .ds-link--variant-inverse {
   --link-color: var(--ds-semantic-color-background-neutral-default);
   --link-hover-color: var(--ds-semantic-color-background-neutral-disabled);
   --link-active-color: var(--ds-semantic-color-border-neutral-subtle);
-  --link-disabled-color: var(--ds-semantic-color-content-neutral-weak);
+  --link-disabled-color: var(--ds-semantic-text-style-content-color-typography-placeholder);
   --link-focus-ring: var(--ds-semantic-color-background-neutral-default);
 }
 
@@ -56,7 +56,7 @@
 }
 
 .ds-link--size-medium {
-  --link-icon-size: var(--ds-primitive-spacing-16);
+  --link-icon-size: var(--ds-component-link-size-icon-size);
   --link-font-size: var(--ds-primitive-typography-font-size-16);
   --link-line-height: var(--ds-primitive-typography-line-height-24);
 }
@@ -77,7 +77,7 @@
 }
 
 .ds-link:focus-visible {
-  outline: var(--ds-primitive-border-width-border-md) solid var(--link-focus-ring);
+  outline: var(--ds-component-link-effect-focus-ring-width) solid var(--link-focus-ring);
   outline-offset: var(--ds-primitive-spacing-4);
 }
 

@@ -175,7 +175,7 @@ export type {
   DesignToken,
   DesignTokenCategory,
   DesignTokenCollection,
-  DesignTokenMode,
+  DesignTokenExtensions,
   DesignTokenTier,
   DesignTokenType,
 } from './types/tokens';

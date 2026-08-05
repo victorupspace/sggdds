@@ -1,12 +1,12 @@
 .ds-header {
   --header-surface: var(--ds-semantic-color-background-neutral-default);
   --header-page-background: var(--ds-semantic-color-background-neutral-disabled);
-  --header-foreground: var(--ds-semantic-color-content-neutral-default);
-  --header-muted: var(--ds-semantic-color-content-neutral-muted);
+  --header-foreground: var(--ds-semantic-text-style-content-color-typography-secondary);
+  --header-muted: var(--ds-semantic-text-style-content-color-typography-tertiary);
   --header-border: var(--ds-semantic-color-border-neutral-subtle);
-  --header-hover: var(--ds-semantic-color-background-neutral-hover);
-  --header-option-hover: var(--ds-semantic-color-content-neutral-default);
-  --header-focus: var(--ds-semantic-color-action-primary-default);
+  --header-hover: var(--ds-primitive-color-neutral-alpha-4);
+  --header-option-hover: var(--ds-semantic-text-style-content-color-typography-secondary);
+  --header-focus: var(--ds-semantic-color-background-brand-primary-secondary-default);
   --header-container-width: calc(var(--ds-primitive-spacing-128) * 10);
   --header-brand-block-size: calc(var(--ds-primitive-spacing-40) + var(--ds-primitive-spacing-24));
   --header-nav-block-size: var(--ds-primitive-spacing-64);
@@ -106,16 +106,17 @@
   inline-size: var(--ds-primitive-spacing-16);
   block-size: var(--ds-primitive-spacing-16);
   align-self: end;
-  border-radius: var(--ds-semantic-radius-sm);
+  border-radius: var(--ds-primitive-border-radius-radius-sm);
   background: var(--header-foreground);
 }
 
 .ds-header-logo__mark > span:last-child {
   inline-size: var(--ds-primitive-spacing-16);
   block-size: var(--ds-primitive-spacing-20);
-  border-radius: var(--ds-semantic-radius-sm) var(--ds-semantic-radius-lg)
-    var(--ds-semantic-radius-sm) var(--ds-semantic-radius-sm);
-  background: var(--ds-semantic-color-action-brand-default);
+  border-radius: var(--ds-primitive-border-radius-radius-sm)
+    var(--ds-primitive-border-radius-radius-lg) var(--ds-primitive-border-radius-radius-sm)
+    var(--ds-primitive-border-radius-radius-sm);
+  background: var(--ds-semantic-color-background-brand-primary-prominent);
 }
 
 .ds-header-logo__text {
@@ -152,7 +153,7 @@
   block-size: var(--ds-primitive-spacing-48);
   padding: var(--ds-primitive-spacing-0);
   border: 0;
-  border-radius: var(--ds-semantic-radius-full);
+  border-radius: var(--ds-primitive-border-radius-radius-full);
   background: transparent;
   color: var(--header-foreground);
   cursor: pointer;
@@ -211,7 +212,7 @@
   gap: var(--ds-primitive-spacing-8);
   align-items: center;
   border: 0;
-  border-radius: var(--ds-semantic-radius-sm);
+  border-radius: var(--ds-primitive-border-radius-radius-sm);
   background: transparent;
   color: var(--header-foreground);
   cursor: pointer;
@@ -257,7 +258,7 @@
   inline-size: min(var(--meganav-drawer-width), calc(100vw - var(--ds-primitive-spacing-32)));
   min-inline-size: calc(var(--ds-primitive-spacing-128) * 2);
   padding: var(--ds-primitive-spacing-8);
-  border-radius: var(--ds-semantic-radius-md);
+  border-radius: var(--ds-primitive-border-radius-radius-md);
 }
 
 .ds-header .ds-header__meganav-drawer .ds-meganav__drawer-body {
@@ -343,7 +344,7 @@
   min-inline-size: calc(var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-64));
   padding: var(--ds-primitive-spacing-8);
   border: var(--ds-primitive-border-width-border-sm) solid var(--header-border);
-  border-radius: var(--ds-semantic-radius-md);
+  border-radius: var(--ds-primitive-border-radius-radius-md);
   background: var(--header-surface);
   box-shadow: var(--ds-semantic-shadow-floating);
 }
@@ -351,7 +352,7 @@
 .ds-header__nav-panel-link {
   display: block;
   padding: var(--ds-primitive-spacing-10) var(--ds-primitive-spacing-12);
-  border-radius: var(--ds-semantic-radius-sm);
+  border-radius: var(--ds-primitive-border-radius-radius-sm);
   color: var(--header-foreground);
   font-size: var(--ds-primitive-typography-font-size-14);
   font-weight: var(--ds-primitive-typography-font-weight-medium);
@@ -387,7 +388,7 @@
   block-size: var(--ds-primitive-spacing-32);
   padding: var(--ds-primitive-spacing-0);
   border: 0;
-  border-radius: var(--ds-semantic-radius-full);
+  border-radius: var(--ds-primitive-border-radius-radius-full);
   background: transparent;
   color: var(--header-foreground);
   cursor: pointer;
@@ -429,7 +430,7 @@
 
 @media (max-width: 720px) {
   .ds-header {
-    --header-inline-padding: var(--ds-primitive-spacing-16);
+    --header-inline-padding: var(--ds-component-navbar-spacing-padding-x);
   }
 
   .ds-header__container {
@@ -492,7 +493,7 @@
     min-block-size: var(--ds-primitive-spacing-48);
     justify-content: space-between;
     padding-inline: var(--ds-primitive-spacing-12);
-    background: var(--ds-semantic-color-background-neutral-hover-subtle);
+    background: var(--ds-primitive-color-neutral-alpha-2);
     white-space: normal;
   }
 
@@ -500,7 +501,7 @@
     min-block-size: var(--ds-primitive-spacing-48);
     padding-inline: var(--ds-primitive-spacing-12);
     justify-content: space-between;
-    background: var(--ds-semantic-color-background-neutral-hover-subtle);
+    background: var(--ds-primitive-color-neutral-alpha-2);
     white-space: normal;
   }
 
@@ -515,7 +516,7 @@
     inline-size: min(100%, calc(var(--ds-primitive-spacing-128) * 4));
     min-inline-size: 0;
     padding: var(--ds-primitive-spacing-0);
-    border-radius: var(--ds-semantic-radius-none);
+    border-radius: var(--ds-primitive-border-radius-radius-none);
   }
 
   .ds-header__nav-panel {
@@ -535,7 +536,7 @@
     inline-size: 100%;
     min-block-size: var(--ds-primitive-spacing-48);
     border: var(--ds-primitive-border-width-border-sm) solid var(--header-border);
-    border-radius: var(--ds-semantic-radius-md);
+    border-radius: var(--ds-primitive-border-radius-radius-md);
   }
 
   .ds-header__account-action.ds-button-gov {

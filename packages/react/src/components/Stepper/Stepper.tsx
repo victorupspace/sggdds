@@ -29,8 +29,7 @@ export function Stepper({
     currentStepIndex >= 0 ? normalizedSteps[currentStepIndex] : undefined;
   const nextStepData: StepperStep | undefined =
     currentStepIndex + 1 < totalSteps ? normalizedSteps[currentStepIndex + 1] : undefined;
-  const progressValue =
-    totalSteps > 1 ? ((safeCurrentStep - 1) / (totalSteps - 1)) * 100 : 0;
+  const progressValue = totalSteps > 1 ? ((safeCurrentStep - 1) / (totalSteps - 1)) * 100 : 0;
   const progressLabel =
     totalSteps > 0
       ? `${label}: etapa ${String(safeCurrentStep)} de ${String(totalSteps)}${

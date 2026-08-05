@@ -38,7 +38,7 @@
   inline-size: var(--ds-primitive-spacing-32);
   block-size: var(--ds-primitive-spacing-20);
   border-radius: var(--ds-primitive-border-radius-radius-sm);
-  background: var(--ds-primitive-color-brand-red);
+  background: var(--ds-brand-color-brand-red);
 }
 
 @media (max-width: 420px) {

@@ -22,7 +22,8 @@ const elevationLevels: ElevationLevel[] = [
   },
   {
     code: 'alpha-12 + alpha-8',
-    description: 'Elementos interativos destacados, menus e regioes temporarias de baixa interrupcao.',
+    description:
+      'Elementos interativos destacados, menus e regioes temporarias de baixa interrupcao.',
     level: 'Level 2',
     title: 'Floating',
   },
@@ -63,13 +64,7 @@ function ElevationCard({ item, index }: { index: number; item: ElevationLevel })
   );
 }
 
-function PracticeCard({
-  children,
-  title,
-}: {
-  children: React.ReactNode;
-  title: string;
-}) {
+function PracticeCard({ children, title }: { children: React.ReactNode; title: string }) {
   return (
     <article className="elevation-practice-card">
       <h3>{title}</h3>
@@ -86,8 +81,8 @@ export function ElevationShadowsPage() {
         <h1>Elevation / Shadows</h1>
         <p>
           Elevation organiza a percepcao de profundidade na interface. Shadows devem indicar
-          hierarquia, estado temporario ou sobreposicao, sem substituir spacing, bordas,
-          contraste ou estrutura semantica.
+          hierarquia, estado temporario ou sobreposicao, sem substituir spacing, bordas, contraste
+          ou estrutura semantica.
         </p>
       </header>
 
@@ -101,14 +96,13 @@ export function ElevationShadowsPage() {
           <article className="elevation-background-rule">
             <strong>O background oficial de paginas e #F5F5F5.</strong>
             <p>
-              Use sempre o token primitive color neutral grey 100 para o fundo global de
-              paginas, shells e areas principais. Esse valor reduz contraste excessivo,
-              separa superficies brancas com clareza e cria base consistente para elevation.
+              Use sempre o token primitive color neutral grey 100 para o fundo global de paginas,
+              shells e areas principais. Esse valor reduz contraste excessivo, separa superficies
+              brancas com clareza e cria base consistente para elevation.
             </p>
             <p>
-              Evite backgrounds brancos em pagina inteira. White deve ser reservado para
-              superficies internas, cards, modais, paineis e componentes que precisam se
-              destacar sobre o fundo.
+              Evite backgrounds brancos em pagina inteira. White deve ser reservado para superficies
+              internas, cards, modais, paineis e componentes que precisam se destacar sobre o fundo.
             </p>
           </article>
           <article className="elevation-token-card" aria-label="Token oficial de background">
@@ -159,9 +153,9 @@ export function ElevationShadowsPage() {
           <div className="elevation-background-rule">
             <strong>Use elevation para comunicar relacao espacial.</strong>
             <p>
-              A camada base e sempre grey-100. Superficies brancas carregam conteudo.
-              Overlays, menus e modais usam sombra mais forte porque interrompem ou flutuam
-              acima do fluxo principal.
+              A camada base e sempre grey-100. Superficies brancas carregam conteudo. Overlays,
+              menus e modais usam sombra mais forte porque interrompem ou flutuam acima do fluxo
+              principal.
             </p>
           </div>
         </div>

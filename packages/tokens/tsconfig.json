@@ -3,8 +3,5 @@
   "compilerOptions": {
     "types": ["node"]
   },
-  "include": [
-    "scripts/**/*.ts",
-    "style-dictionary.config.ts"
-  ]
+  "include": ["scripts/**/*.ts", "style-dictionary.config.ts"]
 }

@@ -11,9 +11,7 @@ describe('Toggle — accessibility', () => {
   });
 
   it('has no violations when checked', async () => {
-    const { container } = render(
-      <Toggle label="Notificações por e-mail" defaultChecked />,
-    );
+    const { container } = render(<Toggle label="Notificações por e-mail" defaultChecked />);
     expect(await axe(container)).toHaveNoViolations();
   });
 
@@ -28,9 +26,7 @@ describe('Toggle — accessibility', () => {
   });
 
   it('has no violations when disabled', async () => {
-    const { container } = render(
-      <Toggle label="Recurso indisponível" disabled />,
-    );
+    const { container } = render(<Toggle label="Recurso indisponível" disabled />);
     expect(await axe(container)).toHaveNoViolations();
   });
 });

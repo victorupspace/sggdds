@@ -167,11 +167,7 @@ export const AllVariants: Story = {
     <div className="alert-story-shell">
       <div className="alert-story-stack">
         {variants.map((variant) => (
-          <Alert
-            key={variant}
-            title="Title goes here"
-            variant={variant}
-          >
+          <Alert key={variant} title="Title goes here" variant={variant}>
             Brief description or user instructions go here
           </Alert>
         ))}

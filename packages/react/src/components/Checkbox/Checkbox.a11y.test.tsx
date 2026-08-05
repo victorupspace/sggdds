@@ -11,40 +11,29 @@ describe('Checkbox — accessibility', () => {
   });
 
   it('has no violations when checked', async () => {
-    const { container } = render(
-      <Checkbox label="Receber notificações" defaultChecked />,
-    );
+    const { container } = render(<Checkbox label="Receber notificações" defaultChecked />);
     expect(await axe(container)).toHaveNoViolations();
   });
 
   it('has no violations with hint text', async () => {
     const { container } = render(
-      <Checkbox
-        label="Termos de uso"
-        hint="Você pode revogar a qualquer momento."
-      />,
+      <Checkbox label="Termos de uso" hint="Você pode revogar a qualquer momento." />,
     );
     expect(await axe(container)).toHaveNoViolations();
   });
 
   it('has no violations when indeterminate', async () => {
-    const { container } = render(
-      <Checkbox label="Selecionar todos" indeterminate />,
-    );
+    const { container } = render(<Checkbox label="Selecionar todos" indeterminate />);
     expect(await axe(container)).toHaveNoViolations();
   });
 
   it('has no violations when disabled', async () => {
-    const { container } = render(
-      <Checkbox label="Opção bloqueada" disabled />,
-    );
+    const { container } = render(<Checkbox label="Opção bloqueada" disabled />);
     expect(await axe(container)).toHaveNoViolations();
   });
 
   it('has no violations when required', async () => {
-    const { container } = render(
-      <Checkbox label="Confirmo a leitura" required />,
-    );
+    const { container } = render(<Checkbox label="Confirmo a leitura" required />);
     expect(await axe(container)).toHaveNoViolations();
   });
 });

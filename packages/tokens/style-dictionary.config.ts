@@ -30,7 +30,11 @@ const config: Config = {
           destination: 'tokens.json',
           format: 'json',
           options: {
-            stripMeta: true,
+            // Keep only the DTCG payload consumers need; dropping `original`,
+            // `key` and Figma extensions keeps the artifact small and stable.
+            stripMeta: {
+              keep: ['$value', '$type', '$description'],
+            },
           },
         },
       ],

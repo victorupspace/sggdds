@@ -13,17 +13,23 @@ type Story = StoryObj;
 
 export const Overview: Story = {
   render: () => (
-      <Showcase platform="Android" language="XML" code={`<br.gov.sggd.designsystem.components.DSChip
+    <Showcase
+      platform="Android"
+      language="XML"
+      code={`<br.gov.sggd.designsystem.components.DSChip
       app:dsLabel="Selecionado"
       app:dsChipVariant="brand"
-      app:dsSelected="true" />`}>
-        <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-            <Chip>Neutral</Chip>
-            <Chip variant="brand" selected>Selecionado</Chip>
-            <Chip size="small">Pequeno</Chip>
-            <Chip onRemove={() => undefined}>Removível</Chip>
-            <Chip disabled>Desabilitado</Chip>
-          </div>
-      </Showcase>
+      app:dsSelected="true" />`}
+    >
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
+        <Chip>Neutral</Chip>
+        <Chip variant="brand" selected>
+          Selecionado
+        </Chip>
+        <Chip size="small">Pequeno</Chip>
+        <Chip onRemove={() => undefined}>Removível</Chip>
+        <Chip disabled>Desabilitado</Chip>
+      </div>
+    </Showcase>
   ),
 };

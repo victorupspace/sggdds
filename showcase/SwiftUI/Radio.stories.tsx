@@ -16,17 +16,21 @@ type Story = StoryObj;
 function Demo() {
   const [value, setValue] = useState('a');
   return (
-      <Showcase platform="SwiftUI" language="Swift" code={`DSRadioGroup(selection: $value, options: [
+    <Showcase
+      platform="SwiftUI"
+      language="Swift"
+      code={`DSRadioGroup(selection: $value, options: [
       .init(value: "a", label: "Opção A"),
       .init(value: "b", label: "Opção B", description: "Com descrição"),
       .init(value: "c", label: "Opção C", isDisabled: true),
-  ], label: "Escolha uma opção")`}>
-        <RadioGroup name="demo" value={value} onChange={setValue} label="Escolha uma opção">
-            <Radio value="a" label="Opção A" />
-            <Radio value="b" label="Opção B" description="Com descrição" />
-            <Radio value="c" label="Opção C" disabled />
-          </RadioGroup>
-      </Showcase>
+  ], label: "Escolha uma opção")`}
+    >
+      <RadioGroup name="demo" value={value} onChange={setValue} label="Escolha uma opção">
+        <Radio value="a" label="Opção A" />
+        <Radio value="b" label="Opção B" description="Com descrição" />
+        <Radio value="c" label="Opção C" disabled />
+      </RadioGroup>
+    </Showcase>
   );
 }
 

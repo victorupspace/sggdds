@@ -47,7 +47,7 @@ export function ActionCard({
   selected = false,
   title,
 }: ActionCardProps) {
-  const isInteractive = Boolean(href || onClick);
+  const isInteractive = Boolean(href) || Boolean(onClick);
   const rootClassName = [
     'ds-action-card',
     isInteractive ? 'ds-action-card--interactive' : undefined,

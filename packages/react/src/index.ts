@@ -1,5 +1,5 @@
 export { Alert } from './components/Alert';
-export type { AlertAction, AlertProps, AlertRole, AlertVariant } from './components/Alert';
+export type { AlertProps, AlertRole, AlertVariant } from './components/Alert';
 export { Avatar } from './components/Avatar';
 export type { AvatarProps, AvatarSize } from './components/Avatar';
 export { BackToTop } from './components/BackToTop';

@@ -2,26 +2,27 @@ import { useState } from 'react';
 
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
+import { Button } from '../Button';
 import { Alert } from './Alert';
 import './Alert.stories.css';
 import type { AlertProps, AlertVariant } from './Alert.types';
 
-const variants: AlertVariant[] = ['information', 'success', 'warning', 'error', 'critical'];
+const variants: AlertVariant[] = ['information', 'success', 'warning', 'error'];
 
 function ControlledAlert(args: AlertProps) {
   const [isVisible, setIsVisible] = useState(args.defaultVisible ?? true);
 
   if (!isVisible) {
     return (
-      <button
-        className="ds-alert__action"
+      <Button
         onClick={() => {
           setIsVisible(true);
         }}
-        type="button"
+        size="small"
+        variant="secondary"
       >
         Mostrar alerta
-      </button>
+      </Button>
     );
   }
 
@@ -42,49 +43,33 @@ const meta = {
   component: Alert,
   parameters: {
     componentCanvas: {
-      width: 800,
+      width: 480,
     },
     docs: {
       description: {
         component: `
-Alert e uma mensagem persistente e reativa exibida em resposta a um evento do sistema ou acao da pessoa usuaria. Ela permanece visivel ate que a condicao seja resolvida pela aplicacao ou a pessoa dispense explicitamente a mensagem.
+O Alert reproduz o layout do Figma (Web Components / Alert): card com borda de 1px, icone do tipo (24px), titulo Body/Small Bold, descricao Body/Small e botao de fechar opcional.
 
-Use para feedback contextual, erros de formulario ou pagina, alertas de sucesso persistentes, avisos de sistema e mensagens com uma ou duas acoes claras.
+Variantes (propriedade type no Figma):
+- Information: fundo information/subtle, borda information/default e icone azul.
+- Success: fundo sucess/subtle, borda sucess/default e icone verde.
+- Warning: fundo warning/subtle, borda warning/default e icone preto.
+- Error: fundo danger/subtle, borda brand/default e icone vermelho.
 
-Nao use como toast temporario, modal, tooltip, badge, banner promocional ou texto informativo estatico sem relacao com estado do sistema.
+Tokens: superficies e bordas usam color/background e color/border, textos usam text-style/content color/typography/primary, icones usam color/icons, espacamentos usam badge/spacing e accordion/content/spacing, o radius usa badge/border/radius/sm e os tamanhos usam Component sizing — as mesmas variables aplicadas no Figma.
 
-Variantes:
-- Information: feedback neutro ou instrucao contextual.
-- Success: confirmacao de conclusao ou estado positivo.
-- Warning: atencao, risco ou acao preventiva.
-- Error: falha recuperavel ou bloqueio que precisa de correcao.
-- Critical: erro destrutivo ou mensagem de alto impacto.
+Responsividade: o card e fluido (100% do container), os textos quebram automaticamente e icone e botao de fechar ficam fixos nas extremidades. O node do Figma nao define variante mobile; a story MobileWidth demonstra o comportamento em 328px.
 
-Responsividade:
-O Alert usa grid responsivo: icone, conteudo e dismiss ficam alinhados no topo; quando houver acoes, elas aparecem na linha seguinte ao texto e preservam area de toque adequada.
-
-Tokens:
-Cores de superficie, borda, texto, icone, feedback, radius, spacing, sizing, focus ring e typography usam variaveis CSS dos tokens do Figma. Como a camada semantica ainda nao cobre todos os casos no projeto, o componente cria aliases internos semanticos apontando para tokens disponiveis.
-
-Acessibilidade:
-- Usa role="status" por padrao para information, success e warning.
-- Usa role="alert" por padrao para error e critical.
-- O icone e decorativo e nao substitui titulo ou texto.
-- Acoes e dismiss sao botoes nativos com foco visivel.
-- O dismiss pode ser controlado por isVisible/onVisibleChange ou usado em modo nao controlado.
+Acessibilidade: role status por padrao (alert na variante error), icone decorativo com aria-hidden e botao de fechar com rotulo acessivel. A visibilidade pode ser controlada via isVisible/onVisibleChange ou nao controlada via defaultVisible.
 `,
       },
     },
     layout: 'fullscreen',
   },
   argTypes: {
-    actions: {
-      control: false,
-      description: 'Lista de ate duas acoes renderizadas como botoes de texto.',
-    },
     children: {
       control: 'text',
-      description: 'Texto de apoio ou conteudo complementar do alerta.',
+      description: 'Conteudo do Content Slot, exibido abaixo do titulo.',
     },
     className: {
       control: 'text',
@@ -96,15 +81,11 @@ Acessibilidade:
     },
     dismissible: {
       control: 'boolean',
-      description: 'Exibe o botao de dispensar.',
+      description: 'Exibe o botao de fechar (showCloseButton no Figma).',
     },
     dismissLabel: {
       control: 'text',
-      description: 'Rotulo acessivel do botao de dispensar.',
-    },
-    icon: {
-      control: false,
-      description: 'Icone customizado opcional. Quando omitido, usa o icone da variante.',
+      description: 'Rotulo acessivel do botao de fechar.',
     },
     isVisible: {
       control: false,
@@ -112,7 +93,7 @@ Acessibilidade:
     },
     onDismiss: {
       control: false,
-      description: 'Callback chamado ao acionar dismiss.',
+      description: 'Callback chamado ao acionar o botao de fechar.',
     },
     onVisibleChange: {
       control: false,
@@ -123,17 +104,13 @@ Acessibilidade:
       description: 'Role ARIA do alerta.',
       options: ['alert', 'status', 'note'],
     },
-    showIcon: {
-      control: 'boolean',
-      description: 'Exibe ou oculta o icone lider.',
-    },
     title: {
       control: 'text',
       description: 'Titulo curto e objetivo do alerta.',
     },
     variant: {
       control: 'select',
-      description: 'Estado semantico e visual do alerta.',
+      description: 'Tipo do alerta (type no Figma).',
       options: variants,
     },
   },
@@ -176,12 +153,10 @@ export const AllVariants: Story = {
   ),
 };
 
-export const WithTwoActions: Story = {
+export const WithoutDescription: Story = {
   args: {
-    actions: [{ label: 'Action 1' }, { label: 'Action 2' }],
-    children: 'Brief description or user instructions go here',
-    title: 'Title goes here',
-    variant: 'information',
+    title: 'Somente titulo, centralizado na altura minima do bloco de texto',
+    variant: 'success',
   },
   render: (args) => (
     <div className="alert-story-shell">
@@ -194,7 +169,6 @@ export const WithTwoActions: Story = {
 
 export const WithoutDismiss: Story = {
   args: {
-    actions: [{ label: 'Action 1' }],
     children: 'A aplicacao remove este alerta quando a condicao for resolvida.',
     dismissible: false,
     title: 'Mensagem persistente',
@@ -209,56 +183,44 @@ export const WithoutDismiss: Story = {
   ),
 };
 
-export const Critical: Story = {
+export const ErrorRole: Story = {
   args: {
-    children: 'Brief description or user instructions go here',
-    title: 'Title goes here',
-    variant: 'critical',
-  },
-  render: (args) => (
-    <div className="alert-story-shell">
-      <div className="alert-story-panel">
-        <ControlledAlert {...args} />
-      </div>
-    </div>
-  ),
-};
-
-export const ResponsiveContent: Story = {
-  args: {
-    children:
-      'Texto de apoio mais longo para validar quebra de linha, espaco entre acoes e ausencia de overflow horizontal em containers estreitos.',
-    title: 'Alerta com titulo longo para validar responsividade',
-    variant: 'information',
+    children: 'Corrija os campos destacados antes de continuar.',
+    title: 'Nao foi possivel enviar o formulario',
+    variant: 'error',
   },
   parameters: {
     docs: {
       description: {
         story:
-          'Demonstra como o Alert reorganiza conteudo, acoes e dismiss em largura reduzida mantendo legibilidade e foco acessivel.',
+          'A variante error usa role="alert" por padrao para leitura imediata por tecnologia assistiva.',
       },
     },
   },
   render: (args) => (
     <div className="alert-story-shell">
-      <div className="alert-story-narrow">
+      <div className="alert-story-panel">
         <ControlledAlert {...args} />
       </div>
     </div>
   ),
 };
 
-export const WithoutIcon: Story = {
+export const MobileWidth: Story = {
   args: {
-    actions: [{ label: 'Action 1' }],
-    children: 'Brief description or user instructions go here',
-    showIcon: false,
-    title: 'Title goes here',
-    variant: 'success',
+    children:
+      'Texto de apoio mais longo para validar quebra de linha e ausencia de overflow horizontal em containers estreitos.',
+    title: 'Alerta com titulo longo para validar responsividade',
+    variant: 'information',
+  },
+  parameters: {
+    componentCanvas: {
+      width: 328,
+    },
   },
   render: (args) => (
     <div className="alert-story-shell">
-      <div className="alert-story-panel">
+      <div className="alert-story-narrow">
         <ControlledAlert {...args} />
       </div>
     </div>

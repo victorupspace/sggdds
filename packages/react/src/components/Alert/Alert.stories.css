@@ -7,24 +7,25 @@
   background: var(--ds-primitive-color-neutral-grey-100);
 }
 
+/* Largura do exemplo no Figma (frame de 400px) */
 .alert-story-panel {
   display: grid;
   box-sizing: border-box;
-  inline-size: min(100%, 800px);
+  inline-size: min(100%, 400px);
   gap: var(--ds-primitive-spacing-24);
 }
 
 .alert-story-narrow {
   display: grid;
   box-sizing: border-box;
-  inline-size: min(100%, 360px);
+  inline-size: min(100%, 328px);
   gap: var(--ds-primitive-spacing-24);
 }
 
 .alert-story-stack {
   display: grid;
   box-sizing: border-box;
-  inline-size: min(100%, 800px);
+  inline-size: min(100%, 400px);
   gap: var(--ds-primitive-spacing-24);
 }
 

@@ -1,76 +1,92 @@
+/*
+ * Layout do Figma: Web Components / Alert (node 40000002:215).
+ * Cada propriedade referencia a mesma variable usada no Figma; os comentários
+ * indicam o nome original da variable na collection.
+ */
 .ds-alert {
-  --alert-surface: var(--ds-component-alert-color-background-info);
-  --alert-border-color: var(--ds-component-alert-color-border-info);
-  --alert-foreground: var(--ds-primitive-color-neutral-grey-800);
-  --alert-icon-color: var(--ds-semantic-text-style-content-color-typography-information);
-  --alert-icon-mark: var(--ds-semantic-color-background-neutral-default);
-  --alert-action-color: var(--ds-primitive-color-neutral-grey-900);
-  --alert-focus-ring: var(--ds-semantic-color-background-brand-primary-secondary-default);
-  --alert-padding-block: var(--ds-component-alert-spacing-padding-y-md);
-  --alert-padding-inline: var(--ds-component-alert-spacing-padding-x-md);
-  --alert-gap: var(--ds-primitive-spacing-8);
-  --alert-action-gap: var(--ds-primitive-spacing-8);
-  --alert-icon-size: var(--ds-component-alert-size-icon-size);
-  --alert-dismiss-size: var(--ds-primitive-spacing-32);
+  /* color/background/information/subtle */
+  --alert-surface: var(--ds-semantic-color-background-information-subtle);
+  /* color/border/information/default */
+  --alert-border-color: var(--ds-semantic-color-border-information-default);
+  /* color/icons/information/default (#034ea2, fill do vetor "error" exportado) */
+  --alert-icon-color: var(--ds-semantic-color-icons-information-default);
+  /* text-style/content color/typography/primary (título e descrição) */
+  --alert-text-color: var(--ds-semantic-text-style-content-color-typography-primary);
+  /* alert/close button/color/icon/default e hover */
+  --alert-dismiss-icon-color: var(--ds-component-alert-close-button-color-icon-default);
+  --alert-dismiss-icon-color-hover: var(--ds-component-alert-close-button-color-icon-hover);
+  /* badge/spacing/padding-x/md (gap entre ícone, conteúdo e botão de fechar) */
+  --alert-gap: var(--ds-component-badge-spacing-padding-x-md);
+  /* accordion/content/spacing/padding-x e padding-y */
+  --alert-padding-x: var(--ds-component-accordion-content-spacing-padding-x);
+  --alert-padding-y: var(--ds-component-accordion-content-spacing-padding-y);
+  /* border/width/border-sm */
+  --alert-border-width: var(--ds-primitive-border-width-border-sm);
+  /* badge/border/radius/sm */
+  --alert-radius: var(--ds-component-badge-border-radius-sm);
+  /* badge/spacing/gap (gap e padding-x do bloco de texto) */
+  --alert-text-gap: var(--ds-component-badge-spacing-gap);
+  --alert-text-padding-x: var(--ds-component-badge-spacing-gap);
+  /* Component sizing/24 (ícone da variante) */
+  --alert-icon-size: var(--ds-component-component-sizing-24);
+  /* Component sizing/32 (altura mínima do bloco de texto, 32px literal no Figma) */
+  --alert-text-min-height: var(--ds-component-component-sizing-32);
+  /* Component sizing/16 (ícone do botão de fechar) */
+  --alert-dismiss-icon-size: var(--ds-component-component-sizing-16);
+  /* badge/spacing/padding-x/md (padding do botão de fechar) */
+  --alert-dismiss-padding: var(--ds-component-badge-spacing-padding-x-md);
+  --alert-focus-ring: var(--ds-component-focus-ring-color-ring);
 
-  display: grid;
+  display: flex;
   box-sizing: border-box;
   inline-size: 100%;
   max-inline-size: 100%;
   min-inline-size: 0;
-  grid-template-columns: var(--alert-icon-size) minmax(0, 1fr) auto;
   gap: var(--alert-gap);
-  align-items: start;
-  padding: var(--alert-padding-block) var(--alert-padding-inline);
-  border: var(--ds-component-alert-border-width) solid var(--alert-border-color);
-  border-radius: var(--ds-primitive-border-radius-radius-sm);
+  align-items: flex-start;
+  overflow: hidden;
+  padding: var(--alert-padding-y) var(--alert-padding-x);
+  border: var(--alert-border-width) solid var(--alert-border-color);
+  border-radius: var(--alert-radius);
   background: var(--alert-surface);
-  color: var(--alert-foreground);
+  color: var(--alert-text-color);
   font-family:
     var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
 }
 
 .ds-alert--variant-success {
-  --alert-surface: var(--ds-component-alert-color-background-success);
-  --alert-border-color: var(--ds-component-alert-color-border-success);
-  --alert-icon-color: var(--ds-component-alert-color-icon-success);
-  --alert-focus-ring: var(--ds-semantic-text-style-content-color-typography-success);
+  /* color/background/sucess/subtle (typo do Figma normalizado para success) */
+  --alert-surface: var(--ds-semantic-color-background-success-subtle);
+  /* color/border/sucess/default */
+  --alert-border-color: var(--ds-semantic-color-border-success-default);
+  /* color/icons/sucess/default (#00883d, fill do vetor check_circle exportado) */
+  --alert-icon-color: var(--ds-semantic-color-icons-success-default);
 }
 
 .ds-alert--variant-warning {
-  --alert-surface: var(--ds-component-alert-color-background-warning);
-  --alert-border-color: var(--ds-component-alert-color-border-warning);
-  --alert-icon-color: var(--ds-semantic-text-style-content-color-typography-warning);
-  --alert-focus-ring: var(--ds-semantic-text-style-content-color-typography-warning);
+  /* color/background/warning/subtle */
+  --alert-surface: var(--ds-semantic-color-background-warning-subtle);
+  /* color/border/warning/default */
+  --alert-border-color: var(--ds-semantic-color-border-warning-default);
+  /* color/icons/neutral/black (#000000, fill do vetor emergency_home exportado) */
+  --alert-icon-color: var(--ds-semantic-color-icons-neutral-black);
 }
 
 .ds-alert--variant-error {
-  --alert-surface: var(--ds-component-alert-color-background-error);
-  --alert-border-color: var(--ds-component-alert-color-border-error);
-  --alert-icon-color: var(--ds-semantic-text-style-content-color-typography-danger);
-  --alert-focus-ring: var(--ds-semantic-text-style-content-color-typography-danger);
-}
-
-.ds-alert--variant-critical {
-  --alert-surface: var(--ds-semantic-color-background-brand-primary-default-hover);
-  --alert-border-color: var(--ds-semantic-color-background-brand-primary-default-hover);
-  --alert-foreground: var(--ds-semantic-color-background-neutral-default);
-  --alert-icon-color: var(--ds-semantic-color-background-neutral-default);
-  --alert-icon-mark: var(--ds-semantic-color-background-brand-primary-default-hover);
-  --alert-action-color: var(--ds-semantic-color-background-neutral-default);
-  --alert-focus-ring: var(--ds-semantic-color-background-neutral-default);
-}
-
-.ds-alert--without-icon {
-  grid-template-columns: minmax(0, 1fr) auto;
+  /* color/background/danger/subtle */
+  --alert-surface: var(--ds-semantic-color-background-danger-subtle);
+  /* color/border/brand/default (#c50007 — variable aplicada no tipo Error do Figma) */
+  --alert-border-color: var(--ds-semantic-color-border-brand-default);
+  /* color/icons/danger/default (#e52207, fill do vetor cancel exportado) */
+  --alert-icon-color: var(--ds-semantic-color-icons-danger-default);
 }
 
 .ds-alert__icon {
   display: inline-grid;
+  flex: none;
   place-items: center;
   inline-size: var(--alert-icon-size);
   block-size: var(--alert-icon-size);
-  margin-block-start: var(--ds-primitive-spacing-2);
   color: var(--alert-icon-color);
 }
 
@@ -79,143 +95,99 @@
   block-size: 100%;
 }
 
+/*
+ * "Content" + "Text Content" do Figma em um único bloco: coluna com gap e
+ * padding-x de badge/spacing/gap e altura mínima de 32px. A variante
+ * Information do Figma usa gap de 8px sem altura mínima; as demais usam o
+ * padrão abaixo, adotado aqui para as quatro variantes por consistência.
+ */
 .ds-alert__content {
-  display: grid;
+  display: flex;
   min-inline-size: 0;
-  gap: var(--alert-gap);
+  flex: 1;
+  flex-direction: column;
+  gap: var(--alert-text-gap);
+  justify-content: center;
+  min-block-size: var(--alert-text-min-height);
+  padding-inline: var(--alert-text-padding-x);
 }
 
 .ds-alert__title {
-  margin: 0;
+  margin: var(--ds-primitive-spacing-0);
   overflow-wrap: anywhere;
-  color: var(--alert-foreground);
-  font-size: var(--ds-component-alert-typography-font-size);
-  font-weight: var(--ds-primitive-typography-font-weight-bold);
-  line-height: var(--ds-primitive-typography-line-height-18);
+  /* Body/Small Bold: Plus Jakarta Sans SemiBold 14 */
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-semi-bold);
+  line-height: normal;
 }
 
 .ds-alert__description {
   min-inline-size: 0;
   overflow-wrap: anywhere;
-  color: var(--alert-foreground);
-  font-size: var(--ds-component-alert-typography-font-size);
-  font-weight: var(--ds-primitive-typography-font-weight-regular);
-  line-height: var(--ds-primitive-typography-line-height-22);
+  /* Body/Small: Plus Jakarta Sans Medium 14 */
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  line-height: normal;
 }
 
 .ds-alert__description :where(p) {
-  margin: 0;
-}
-
-.ds-alert__actions {
-  display: flex;
-  grid-column: 2 / 3;
-  min-inline-size: 0;
-  flex-wrap: wrap;
-  gap: var(--alert-action-gap);
-  align-items: center;
-  justify-content: flex-start;
-  margin-block-start: var(--alert-gap);
-}
-
-.ds-alert--without-icon .ds-alert__actions {
-  grid-column: 1 / 2;
-}
-
-.ds-alert__action,
-.ds-alert__dismiss {
-  box-sizing: border-box;
-  border: var(--ds-primitive-border-width-border-sm) solid transparent;
-  border-radius: var(--ds-primitive-border-radius-radius-sm);
-  background: transparent;
-  color: var(--alert-action-color);
-  cursor: pointer;
-  font-family: inherit;
-  transition:
-    background-color 160ms ease,
-    color 160ms ease,
-    border-color 160ms ease;
-}
-
-.ds-alert__action {
-  min-block-size: var(--ds-primitive-spacing-32);
-  padding: var(--ds-primitive-spacing-4) var(--ds-primitive-spacing-8);
-  font-size: var(--ds-primitive-typography-font-size-12);
-  font-weight: var(--ds-primitive-typography-font-weight-bold);
-  line-height: var(--ds-primitive-typography-line-height-16);
-  text-align: center;
+  margin: var(--ds-primitive-spacing-0);
 }
 
 .ds-alert__dismiss {
   display: inline-grid;
+  flex: none;
   place-items: center;
-  inline-size: var(--alert-dismiss-size);
-  block-size: var(--alert-dismiss-size);
-  padding: var(--ds-primitive-spacing-6);
-  color: var(--alert-foreground);
+  padding: var(--alert-dismiss-padding);
+  border: var(--ds-primitive-border-width-border-none);
+  /* border/radius/radius-full (container arredondado do Dismiss Icon Button) */
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  background: none;
+  color: var(--alert-dismiss-icon-color);
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
 }
 
 .ds-alert__dismiss > svg {
-  inline-size: var(--ds-primitive-spacing-16);
-  block-size: var(--ds-primitive-spacing-16);
+  inline-size: var(--alert-dismiss-icon-size);
+  block-size: var(--alert-dismiss-icon-size);
 }
 
-.ds-alert__action:hover,
-.ds-alert__dismiss:hover {
-  background: var(--ds-primitive-color-neutral-alpha-8);
+/*
+ * O node do Figma não define estados hover/active para o botão de fechar;
+ * usa alpha neutro e alert/close button/color/icon/hover como aproximação
+ * documentada.
+ */
+@media (hover: hover) {
+  .ds-alert__dismiss:hover {
+    background: var(--ds-primitive-color-neutral-alpha-8);
+    color: var(--alert-dismiss-icon-color-hover);
+  }
 }
 
-.ds-alert--variant-critical .ds-alert__action:hover,
-.ds-alert--variant-critical .ds-alert__dismiss:hover {
-  background: var(--ds-primitive-color-neutral-alpha-24);
-}
-
-.ds-alert__action:active,
 .ds-alert__dismiss:active {
   background: var(--ds-primitive-color-neutral-alpha-12);
 }
 
-.ds-alert__action:focus-visible,
+.ds-alert__dismiss:focus {
+  outline: var(--ds-primitive-border-width-border-none);
+}
+
 .ds-alert__dismiss:focus-visible {
-  outline: var(--ds-primitive-border-width-border-md) solid var(--alert-focus-ring);
-  outline-offset: var(--ds-primitive-spacing-2);
+  outline: var(--ds-component-focus-ring-effect-width) solid var(--alert-focus-ring);
+  outline-offset: var(--ds-component-focus-ring-effect-offset);
 }
 
-.ds-alert__action:disabled {
-  color: var(--ds-semantic-text-style-content-color-typography-disabled);
-  cursor: not-allowed;
-}
-
-.ds-alert__action:disabled:hover {
-  background: transparent;
-}
-
-@media (max-width: 640px) {
-  .ds-alert {
-    --alert-padding-inline: var(--ds-component-alert-spacing-padding-x-sm);
-  }
-
+@media (prefers-reduced-motion: reduce) {
   .ds-alert__dismiss {
-    grid-column: 3;
-    grid-row: 1;
+    transition: none;
   }
 }
 
-@media (max-width: 420px) {
-  .ds-alert {
-    --alert-padding-block: var(--ds-component-alert-spacing-padding-y-md);
-    --alert-padding-inline: var(--ds-component-alert-spacing-padding-x-sm);
-  }
-
-  .ds-alert__dismiss {
-    grid-column: 3;
-    grid-row: 1;
-    justify-self: end;
-    margin-inline-end: calc(-1 * var(--ds-primitive-spacing-6));
-    margin-block-start: calc(-1 * var(--ds-primitive-spacing-6));
-  }
-
-  .ds-alert--without-icon .ds-alert__dismiss {
-    grid-column: 2;
-  }
-}
+/*
+ * Responsividade: o node do Figma não define variante mobile para o Alert.
+ * O card é fluido (100% do container), os textos quebram com overflow-wrap e
+ * ícone/botão de fechar permanecem fixos nas extremidades em qualquer largura.
+ */

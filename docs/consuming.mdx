@@ -169,7 +169,9 @@ import { Alert, Button, Card, Modal, TextInput } from '@government/design-system
 export function PaginaExemplo() {
   return (
     <Card title="Acessar conta">
-      <Alert variant="warning">Sua senha expira em 7 dias.</Alert>
+      <Alert title="Atenção" variant="warning">
+        Sua senha expira em 7 dias.
+      </Alert>
       <TextInput label="E-mail" type="email" required />
       <Button variant="primary" type="submit">
         Entrar

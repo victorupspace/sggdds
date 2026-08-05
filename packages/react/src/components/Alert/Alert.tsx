@@ -5,15 +5,19 @@ import { useState } from 'react';
 import type { ReactNode } from 'react';
 import type { AlertProps, AlertVariant } from './Alert.types';
 
+/*
+ * Vetores exportados do Figma (Web Components / Alert, node 40000002:215).
+ * Os paths são idênticos aos assets do Figma; a cor vem do CSS via
+ * currentColor para acompanhar as variables de cada variante.
+ */
+
 function InformationIcon() {
   return (
-    <svg aria-hidden="true" fill="none" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="10" cy="10" fill="currentColor" r="9" />
+    <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      {/* error [Material Symbols] — node 40000325:4827 */}
       <path
-        d="M10 8.8v5M10 5.9v.2"
-        stroke="var(--alert-icon-mark)"
-        strokeLinecap="round"
-        strokeWidth="2"
+        d="M12.573 16.4962C12.7295 16.3397 12.8077 16.1487 12.8077 15.923C12.8077 15.6973 12.7295 15.5063 12.573 15.35C12.4167 15.1937 12.2257 15.1155 12 15.1155C11.7743 15.1155 11.5833 15.1937 11.427 15.35C11.2705 15.5063 11.1923 15.6973 11.1923 15.923C11.1923 16.1487 11.2705 16.3397 11.427 16.4962C11.5833 16.6526 11.7743 16.7307 12 16.7307C12.2257 16.7307 12.4167 16.6526 12.573 16.4962ZM11.25 13.077H12.75V7.077H11.25V13.077ZM12.0017 21.5C10.6877 21.5 9.45267 21.2507 8.2965 20.752C7.14033 20.2533 6.13467 19.5766 5.2795 18.7218C4.42433 17.8669 3.74725 16.8617 3.24825 15.706C2.74942 14.5503 2.5 13.3156 2.5 12.0017C2.5 10.6877 2.74933 9.45267 3.248 8.2965C3.74667 7.14033 4.42342 6.13467 5.27825 5.2795C6.13308 4.42433 7.13833 3.74725 8.294 3.24825C9.44967 2.74942 10.6844 2.5 11.9982 2.5C13.3122 2.5 14.5473 2.74933 15.7035 3.248C16.8597 3.74667 17.8653 4.42342 18.7205 5.27825C19.5757 6.13308 20.2528 7.13833 20.7518 8.294C21.2506 9.44967 21.5 10.6844 21.5 11.9982C21.5 13.3122 21.2507 14.5473 20.752 15.7035C20.2533 16.8597 19.5766 17.8653 18.7218 18.7205C17.8669 19.5757 16.8617 20.2528 15.706 20.7518C14.5503 21.2506 13.3156 21.5 12.0017 21.5ZM12 20C14.2333 20 16.125 19.225 17.675 17.675C19.225 16.125 20 14.2333 20 12C20 9.76667 19.225 7.875 17.675 6.325C16.125 4.775 14.2333 4 12 4C9.76667 4 7.875 4.775 6.325 6.325C4.775 7.875 4 9.76667 4 12C4 14.2333 4.775 16.125 6.325 17.675C7.875 19.225 9.76667 20 12 20Z"
+        fill="currentColor"
       />
     </svg>
   );
@@ -21,14 +25,11 @@ function InformationIcon() {
 
 function SuccessIcon() {
   return (
-    <svg aria-hidden="true" fill="none" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="10" cy="10" fill="currentColor" r="9" />
+    <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      {/* check_circle [Material Symbols] — node 40000325:4880 */}
       <path
-        d="m6.2 10 2.4 2.5 5.3-5.4"
-        stroke="var(--alert-icon-mark)"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
+        d="M10.5808 16.2538L17.3038 9.53075L16.25 8.477L10.5808 14.1463L7.73075 11.2963L6.677 12.35L10.5808 16.2538ZM12.0017 21.5C10.6877 21.5 9.45267 21.2507 8.2965 20.752C7.14033 20.2533 6.13467 19.5766 5.2795 18.7218C4.42433 17.8669 3.74725 16.8617 3.24825 15.706C2.74942 14.5503 2.5 13.3156 2.5 12.0017C2.5 10.6877 2.74933 9.45267 3.248 8.2965C3.74667 7.14033 4.42342 6.13467 5.27825 5.2795C6.13308 4.42433 7.13833 3.74725 8.294 3.24825C9.44967 2.74942 10.6844 2.5 11.9982 2.5C13.3122 2.5 14.5473 2.74933 15.7035 3.248C16.8597 3.74667 17.8653 4.42342 18.7205 5.27825C19.5757 6.13308 20.2528 7.13833 20.7518 8.294C21.2506 9.44967 21.5 10.6844 21.5 11.9982C21.5 13.3122 21.2507 14.5473 20.752 15.7035C20.2533 16.8597 19.5766 17.8653 18.7218 18.7205C17.8669 19.5757 16.8617 20.2528 15.706 20.7518C14.5503 21.2506 13.3156 21.5 12.0017 21.5ZM12 20C14.2333 20 16.125 19.225 17.675 17.675C19.225 16.125 20 14.2333 20 12C20 9.76667 19.225 7.875 17.675 6.325C16.125 4.775 14.2333 4 12 4C9.76667 4 7.875 4.775 6.325 6.325C4.775 7.875 4 9.76667 4 12C4 14.2333 4.775 16.125 6.325 17.675C7.875 19.225 9.76667 20 12 20Z"
+        fill="currentColor"
       />
     </svg>
   );
@@ -36,16 +37,11 @@ function SuccessIcon() {
 
 function WarningIcon() {
   return (
-    <svg aria-hidden="true" fill="none" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+    <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      {/* emergency_home [Material Symbols] — node 40000325:4895 */}
       <path
-        d="M8.6 3.1a1.6 1.6 0 0 1 2.8 0l7 12.2a1.6 1.6 0 0 1-1.4 2.4H3a1.6 1.6 0 0 1-1.4-2.4l7-12.2Z"
+        d="M11.3193 21.2645C11.1001 21.174 10.9001 21.0435 10.7193 20.873L3.127 13.2808C2.9565 13.0999 2.826 12.8999 2.7355 12.6808C2.64517 12.4616 2.6 12.2347 2.6 12C2.6 11.7653 2.64517 11.5358 2.7355 11.3115C2.826 11.0872 2.9565 10.8898 3.127 10.7193L10.7193 3.127C10.9001 2.94617 11.1001 2.81317 11.3193 2.728C11.5384 2.64267 11.7653 2.6 12 2.6C12.2347 2.6 12.4642 2.64267 12.6885 2.728C12.9128 2.81317 13.1103 2.94617 13.2808 3.127L20.873 10.7193C21.0538 10.8898 21.1868 11.0872 21.272 11.3115C21.3573 11.5358 21.4 11.7653 21.4 12C21.4 12.2347 21.3573 12.4616 21.272 12.6808C21.1868 12.8999 21.0538 13.0999 20.873 13.2808L13.2808 20.873C13.1103 21.0435 12.9128 21.174 12.6885 21.2645C12.4642 21.3548 12.2347 21.4 12 21.4C11.7653 21.4 11.5384 21.3548 11.3193 21.2645ZM12.2213 19.8038L19.8038 12.2213C19.8551 12.1699 19.8808 12.0962 19.8808 12C19.8808 11.9038 19.8551 11.8301 19.8038 11.7788L12.2213 4.19625C12.1699 4.14492 12.0962 4.11925 12 4.11925C11.9038 4.11925 11.8301 4.14492 11.7788 4.19625L4.19625 11.7788C4.14492 11.8301 4.11925 11.9038 4.11925 12C4.11925 12.0962 4.14492 12.1699 4.19625 12.2213L11.7788 19.8038C11.8301 19.8551 11.9038 19.8808 12 19.8808C12.0962 19.8808 12.1699 19.8551 12.2213 19.8038ZM11.25 13.0865H12.75V7.47125H11.25V13.0865ZM12.573 15.4673C12.7295 15.3109 12.8078 15.1199 12.8078 14.8943C12.8078 14.6686 12.7295 14.4776 12.573 14.3213C12.4167 14.1648 12.2257 14.0865 12 14.0865C11.7743 14.0865 11.5833 14.1648 11.427 14.3213C11.2705 14.4776 11.1923 14.6686 11.1923 14.8943C11.1923 15.1199 11.2705 15.3109 11.427 15.4673C11.5833 15.6238 11.7743 15.702 12 15.702C12.2257 15.702 12.4167 15.6238 12.573 15.4673Z"
         fill="currentColor"
-      />
-      <path
-        d="M10 7.4v4.1M10 14.4v.1"
-        stroke="var(--alert-icon-mark)"
-        strokeLinecap="round"
-        strokeWidth="2"
       />
     </svg>
   );
@@ -53,13 +49,11 @@ function WarningIcon() {
 
 function ErrorIcon() {
   return (
-    <svg aria-hidden="true" fill="none" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="10" cy="10" fill="currentColor" r="9" />
+    <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      {/* cancel [Material Symbols] — node 40000325:4910 */}
       <path
-        d="M10 5.8v5M10 14.1v.1"
-        stroke="var(--alert-icon-mark)"
-        strokeLinecap="round"
-        strokeWidth="2"
+        d="M8.4 16.6538L12 13.0537L15.6 16.6538L16.6538 15.6L13.0538 12L16.6538 8.4L15.6 7.34625L12 10.9462L8.4 7.34625L7.34625 8.4L10.9462 12L7.34625 15.6L8.4 16.6538ZM12.0017 21.5C10.6877 21.5 9.45267 21.2507 8.2965 20.752C7.14033 20.2533 6.13467 19.5766 5.2795 18.7218C4.42433 17.8669 3.74725 16.8617 3.24825 15.706C2.74942 14.5503 2.5 13.3156 2.5 12.0017C2.5 10.6877 2.74933 9.45267 3.248 8.2965C3.74667 7.14033 4.42342 6.13467 5.27825 5.2795C6.13308 4.42433 7.13833 3.74725 8.294 3.24825C9.44967 2.74942 10.6844 2.5 11.9982 2.5C13.3122 2.5 14.5473 2.74933 15.7035 3.248C16.8597 3.74667 17.8653 4.42342 18.7205 5.27825C19.5757 6.13308 20.2528 7.13833 20.7518 8.294C21.2506 9.44967 21.5 10.6844 21.5 11.9982C21.5 13.3122 21.2507 14.5473 20.752 15.7035C20.2533 16.8597 19.5766 17.8653 18.7218 18.7205C17.8669 19.5757 16.8617 20.2528 15.706 20.7518C14.5503 21.2506 13.3156 21.5 12.0017 21.5ZM12 20C14.2333 20 16.125 19.225 17.675 17.675C19.225 16.125 20 14.2333 20 12C20 9.76667 19.225 7.875 17.675 6.325C16.125 4.775 14.2333 4 12 4C9.76667 4 7.875 4.775 6.325 6.325C4.775 7.875 4 9.76667 4 12C4 14.2333 4.775 16.125 6.325 17.675C7.875 19.225 9.76667 20 12 20Z"
+        fill="currentColor"
       />
     </svg>
   );
@@ -67,14 +61,25 @@ function ErrorIcon() {
 
 function CloseIcon() {
   return (
-    <svg aria-hidden="true" fill="none" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-      <path d="m5 5 10 10M15 5 5 15" stroke="currentColor" strokeLinecap="round" strokeWidth="2" />
+    <svg aria-hidden="true" fill="none" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+      {/* Icons / General / Close — vetor com inset de 20.83% na caixa de 16px */}
+      <g fill="currentColor" transform="translate(3.33333 3.33333)">
+        <path
+          clipRule="evenodd"
+          d="M9.13807 0.195262C9.39842 0.455612 9.39842 0.877722 9.13807 1.13807L1.13807 9.13807C0.877722 9.39842 0.455612 9.39842 0.195262 9.13807C-0.0650874 8.87772 -0.0650874 8.45561 0.195262 8.19526L8.19526 0.195262C8.45561 -0.0650874 8.87772 -0.0650874 9.13807 0.195262Z"
+          fillRule="evenodd"
+        />
+        <path
+          clipRule="evenodd"
+          d="M0.195262 0.195262C0.455612 -0.0650874 0.877722 -0.0650874 1.13807 0.195262L9.13807 8.19526C9.39842 8.45561 9.39842 8.87772 9.13807 9.13807C8.87772 9.39842 8.45561 9.39842 8.19526 9.13807L0.195262 1.13807C-0.0650874 0.877722 -0.0650874 0.455612 0.195262 0.195262Z"
+          fillRule="evenodd"
+        />
+      </g>
     </svg>
   );
 }
 
-const defaultIcons: Record<AlertVariant, ReactNode> = {
-  critical: <ErrorIcon />,
+const variantIcons: Record<AlertVariant, ReactNode> = {
   error: <ErrorIcon />,
   information: <InformationIcon />,
   success: <SuccessIcon />,
@@ -82,41 +87,27 @@ const defaultIcons: Record<AlertVariant, ReactNode> = {
 };
 
 function getDefaultRole(variant: AlertVariant): AlertProps['role'] {
-  if (variant === 'error' || variant === 'critical') {
-    return 'alert';
-  }
-
-  return 'status';
+  return variant === 'error' ? 'alert' : 'status';
 }
 
 export function Alert({
-  actions = [],
   children,
   className,
   defaultVisible = true,
   dismissible = true,
   dismissLabel = 'Dispensar alerta',
-  icon,
   isVisible,
   onDismiss,
   onVisibleChange,
   role,
-  showIcon = true,
   title,
   variant = 'information',
 }: AlertProps) {
   const [uncontrolledVisible, setUncontrolledVisible] = useState(defaultVisible);
   const isControlled = isVisible !== undefined;
   const currentVisible = isVisible ?? uncontrolledVisible;
-  const renderedActions = actions.slice(0, 2);
-  const rootClassName = [
-    'ds-alert',
-    `ds-alert--variant-${variant}`,
-    !children ? 'ds-alert--without-description' : undefined,
-    renderedActions.length === 0 ? 'ds-alert--without-actions' : undefined,
-    !showIcon ? 'ds-alert--without-icon' : undefined,
-    className,
-  ]
+
+  const rootClassName = ['ds-alert', `ds-alert--variant-${variant}`, className]
     .filter(Boolean)
     .join(' ');
 
@@ -126,32 +117,14 @@ export function Alert({
 
   return (
     <section className={rootClassName} role={role ?? getDefaultRole(variant)}>
-      {showIcon ? (
-        <span aria-hidden="true" className="ds-alert__icon">
-          {icon ?? defaultIcons[variant]}
-        </span>
-      ) : null}
+      <span aria-hidden="true" className="ds-alert__icon">
+        {variantIcons[variant]}
+      </span>
 
       <div className="ds-alert__content">
         <p className="ds-alert__title">{title}</p>
         {children ? <div className="ds-alert__description">{children}</div> : null}
       </div>
-
-      {renderedActions.length > 0 ? (
-        <div className="ds-alert__actions">
-          {renderedActions.map(({ label, onClick, ...actionProps }, index) => (
-            <button
-              {...actionProps}
-              className="ds-alert__action"
-              key={`${label}-${String(index)}`}
-              onClick={onClick}
-              type="button"
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-      ) : null}
 
       {dismissible ? (
         <button

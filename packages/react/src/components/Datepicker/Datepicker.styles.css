@@ -1,33 +1,45 @@
+/*
+ * Layout do Figma: Web Components / Datepicker (node 40000266:9165).
+ * Cada propriedade referencia a mesma variable usada no Figma; os comentários
+ * indicam o nome original da variable na collection.
+ */
 .ds-datepicker {
-  --datepicker-label-color: var(--ds-semantic-text-style-content-color-typography-secondary);
-  --datepicker-text-color: var(--ds-semantic-text-style-content-color-typography-secondary);
-  --datepicker-placeholder-color: var(--ds-semantic-text-style-content-color-typography-disabled);
-  --datepicker-helper-color: var(--ds-semantic-text-style-content-color-typography-secondary);
-  --datepicker-background: var(--ds-semantic-color-background-neutral-default);
-  --datepicker-border-color: var(--ds-semantic-color-border-neutral-default);
-  --datepicker-hover-border-color: var(--ds-semantic-text-style-content-color-typography-secondary);
-  --datepicker-focus-color: var(--ds-component-focus-ring-color-ring);
-  --datepicker-error-color: var(--ds-component-date-picker-error-text-color-text);
-  --datepicker-success-color: var(--ds-semantic-text-style-content-color-typography-success);
-  --datepicker-disabled-background: var(--ds-semantic-color-background-neutral-disabled);
-  --datepicker-disabled-border-color: var(--ds-semantic-color-border-neutral-default);
-  --datepicker-disabled-color: var(--ds-component-date-picker-color-text-disabled);
-  --datepicker-selected-background: var(--ds-semantic-color-background-neutral-soft-black);
-  --datepicker-range-background: var(--ds-semantic-color-background-neutral-soft-black);
-  --datepicker-gap: var(--ds-primitive-spacing-8);
-  --datepicker-padding-inline-start: var(--ds-primitive-spacing-12);
-  --datepicker-padding-inline-end: var(--ds-primitive-spacing-8);
-  --datepicker-min-block-size: var(--ds-primitive-spacing-48);
-  --datepicker-icon-size: var(--ds-primitive-spacing-24);
-  --datepicker-icon-gap: var(--ds-primitive-spacing-8);
-  --datepicker-popover-width: calc(var(--ds-primitive-spacing-128) * 4);
+  /* color/background/neutral/white (superfícies; inverse usa neutral/default) */
+  --datepicker-surface: var(--ds-semantic-color-background-neutral-white);
+  /* text-style/content color/typography/primary */
+  --datepicker-text-color: var(--ds-semantic-text-style-content-color-typography-primary);
+  /* color/border/neutral/prominent (borda dos campos) */
+  --datepicker-field-border-color: var(--ds-semantic-color-border-neutral-prominent);
+  /* color/border/default (#e0e0e0 no Figma) — variable ausente nas collections
+     exportadas; usa color/border/neutral/subtle como aproximação documentada */
+  --datepicker-popup-border-color: var(--ds-semantic-color-border-neutral-subtle);
+  /* input/error-text/color/text (dias de fim de semana em vermelho) */
+  --datepicker-weekend-color: var(--ds-component-input-error-text-color-text);
+  /* text-style/content color/typography/disabled (dias fora do mês) */
+  --datepicker-muted-color: var(--ds-semantic-text-style-content-color-typography-disabled);
+  /* color/background/neutral/black + typography/inverse (dia selecionado) */
+  --datepicker-selected-background: var(--ds-semantic-color-background-neutral-black);
+  --datepicker-selected-color: var(--ds-semantic-text-style-content-color-typography-inverse);
+  /* color/background/neutral/default-hover (dias dentro do período) */
+  --datepicker-range-background: var(--ds-semantic-color-background-neutral-default-hover);
+  /* Component sizing/8 (gap raiz), /16 e /20 (padding do calendário) */
+  --datepicker-gap: var(--ds-component-component-sizing-8);
+  --datepicker-popup-padding-x: var(--ds-component-component-sizing-16);
+  --datepicker-popup-padding-y: var(--ds-component-component-sizing-20);
+  --datepicker-popup-gap: var(--ds-component-component-sizing-20);
+  /* elevation/level-2 (0 4px 8px 0) com elevation/color/default — variables
+     novas ausentes nas collections exportadas; literal documentado */
+  --datepicker-popup-shadow: 0 4px 8px 0 rgb(0 0 0 / 8%);
+  /* Component sizing/24 (células e ícone do calendário) e /20 (chevrons) */
+  --datepicker-cell-size: var(--ds-component-component-sizing-24);
+  --datepicker-chevron-size: var(--ds-component-component-sizing-20);
+  --datepicker-focus-ring: var(--ds-component-focus-ring-color-ring);
 
-  position: relative;
-  display: grid;
+  display: flex;
   box-sizing: border-box;
-  max-inline-size: 100%;
-  min-inline-size: 0;
+  flex-direction: column;
   gap: var(--datepicker-gap);
+  min-inline-size: 0;
   color: var(--datepicker-text-color);
   font-family:
     var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
@@ -35,104 +47,104 @@
 
 .ds-datepicker--full-width {
   inline-size: 100%;
+  max-inline-size: 100%;
+}
+
+.ds-datepicker--inverse {
+  /* background=Inverse: superfícies em color/background/neutral/default */
+  --datepicker-surface: var(--ds-semantic-color-background-neutral-default);
+}
+
+.ds-datepicker *,
+.ds-datepicker *::before,
+.ds-datepicker *::after {
+  box-sizing: border-box;
 }
 
 .ds-datepicker__label {
-  display: flex;
-  min-inline-size: 0;
-  gap: var(--ds-primitive-spacing-8);
-  align-items: center;
-  overflow-wrap: anywhere;
-  color: var(--datepicker-label-color);
-  font-size: var(--ds-primitive-typography-font-size-20);
-  font-weight: var(--ds-primitive-typography-font-weight-bold);
-  line-height: var(--ds-primitive-typography-line-height-28);
-}
-
-.ds-datepicker__required {
-  color: currentColor;
+  display: inline-flex;
+  gap: var(--ds-primitive-spacing-2);
+  color: var(--datepicker-text-color);
+  /* Label: Plus Jakarta Sans SemiBold + typography/font-size/sm (14) e
+     typography/line-height/normal (20) */
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-semi-bold);
+  line-height: var(--ds-primitive-typography-line-height-20);
 }
 
 .ds-datepicker__control {
   position: relative;
   display: flex;
-  box-sizing: border-box;
   min-inline-size: 0;
-  min-block-size: var(--datepicker-min-block-size);
+  flex: 1;
   align-items: center;
 }
 
+.ds-datepicker__control--single {
+  flex: none;
+  /* min-width de 160px do campo no Figma */
+  min-inline-size: 160px;
+  max-inline-size: 100%;
+}
+
 .ds-datepicker__field {
-  flex: 1 1 auto;
-  box-sizing: border-box;
   inline-size: 100%;
-  min-inline-size: 0;
-  min-block-size: var(--datepicker-min-block-size);
-  padding-inline: var(--datepicker-padding-inline-start)
-    calc(
-      var(--datepicker-padding-inline-end) + var(--datepicker-icon-size) +
-        var(--datepicker-icon-gap)
-    );
-  border: var(--ds-component-date-picker-border-width) solid var(--datepicker-border-color);
-  border-radius: var(--ds-component-date-picker-border-radius);
-  outline: 0;
-  background: var(--datepicker-background);
+  /* Campo de 40px com padding 12x8 e radius border/radius/radius-sm */
+  block-size: 40px;
+  padding: var(--ds-primitive-spacing-8) var(--ds-primitive-spacing-12);
+  /* border/width/thin (1px, mesmo valor de border/width/border-sm) */
+  border: var(--ds-primitive-border-width-border-sm) solid var(--datepicker-field-border-color);
+  border-radius: var(--ds-primitive-border-radius-radius-sm);
+  background: var(--datepicker-surface);
   color: var(--datepicker-text-color);
-  font: inherit;
-  font-size: var(--ds-primitive-typography-font-size-20);
-  font-weight: var(--ds-primitive-typography-font-weight-regular);
-  line-height: var(--ds-primitive-typography-line-height-28);
-  transition:
-    border-color 160ms ease,
-    box-shadow 160ms ease,
-    background-color 160ms ease;
+  cursor: pointer;
+  font-family: inherit;
+  /* Plus Jakarta Sans Medium + typography/font-size/sm (14) */
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  line-height: normal;
+}
+
+.ds-datepicker__control--single .ds-datepicker__field {
+  /* Espaço para o ícone calendar_month de 24px */
+  padding-inline-end: calc(
+    var(--ds-primitive-spacing-12) + var(--ds-component-component-sizing-24) +
+      var(--ds-primitive-spacing-8)
+  );
 }
 
 .ds-datepicker__field::placeholder {
-  color: var(--datepicker-placeholder-color);
+  color: var(--datepicker-text-color);
   opacity: 1;
 }
 
-.ds-datepicker:not(.ds-datepicker--disabled):not(.ds-datepicker--error)
-  .ds-datepicker__field:hover {
-  border-color: var(--datepicker-hover-border-color);
-}
-
 .ds-datepicker__field:focus {
-  border-color: var(--datepicker-focus-color);
-  outline: var(--ds-component-date-picker-effect-focus-ring-width) solid
-    var(--datepicker-focus-color);
-  outline-offset: var(--ds-primitive-spacing-2);
+  outline: var(--ds-primitive-border-width-border-none);
 }
 
-.ds-datepicker__field:disabled {
-  cursor: not-allowed;
+.ds-datepicker__field:focus-visible {
+  outline: var(--ds-component-focus-ring-effect-width) solid var(--datepicker-focus-ring);
+  outline-offset: var(--ds-component-focus-ring-effect-offset);
 }
 
 .ds-datepicker__icon-button {
   position: absolute;
-  inset-inline-end: var(--datepicker-padding-inline-end);
+  inset-inline-end: var(--ds-primitive-spacing-12);
   display: inline-grid;
-  box-sizing: border-box;
   place-items: center;
-  inline-size: var(--datepicker-icon-size);
-  block-size: var(--datepicker-icon-size);
+  inline-size: var(--ds-component-component-sizing-24);
+  block-size: var(--ds-component-component-sizing-24);
   padding: var(--ds-primitive-spacing-0);
-  border: 0;
-  border-radius: var(--ds-primitive-border-radius-radius-sm);
-  background: transparent;
-  color: currentColor;
+  border: var(--ds-primitive-border-width-border-none);
+  background: none;
+  /* color/icon/default (preto, fill do vetor calendar_month) */
+  color: var(--ds-semantic-color-icons-neutral-black);
   cursor: pointer;
 }
 
 .ds-datepicker__icon-button:focus-visible {
-  outline: var(--ds-component-date-picker-effect-focus-ring-width) solid
-    var(--datepicker-focus-color);
-  outline-offset: var(--ds-primitive-spacing-2);
-}
-
-.ds-datepicker__icon-button:disabled {
-  cursor: not-allowed;
+  outline: var(--ds-component-focus-ring-effect-width) solid var(--datepicker-focus-ring);
+  outline-offset: var(--ds-component-focus-ring-effect-offset);
 }
 
 .ds-datepicker__icon-button > svg {
@@ -140,333 +152,212 @@
   block-size: 100%;
 }
 
-.ds-datepicker__popover {
-  position: absolute;
-  z-index: 20;
-  inset-block-start: calc(100% + var(--ds-primitive-spacing-4));
-  inset-inline-start: 0;
-  display: grid;
-  box-sizing: border-box;
-  inline-size: min(calc(100vw - var(--ds-primitive-spacing-32)), var(--datepicker-popover-width));
-  gap: var(--ds-primitive-spacing-20);
-  padding: var(--ds-primitive-spacing-24);
-  border: var(--ds-primitive-border-width-border-sm) solid
-    var(--ds-semantic-color-border-neutral-subtle);
-  border-radius: var(--ds-primitive-border-radius-radius-lg);
-  background: var(--ds-semantic-color-background-neutral-default);
-  box-shadow: var(--ds-semantic-shadow-popover);
+.ds-datepicker__period {
+  display: flex;
+  min-inline-size: 0;
+  /* Period Input: gap de 8px entre campos e o "até" */
+  gap: var(--ds-primitive-spacing-8);
+  align-items: center;
 }
 
-.ds-datepicker__selected-title {
-  overflow-wrap: anywhere;
+.ds-datepicker__period-separator {
+  flex: none;
   color: var(--datepicker-text-color);
-  font-size: var(--ds-primitive-typography-font-size-28);
-  font-weight: var(--ds-primitive-typography-font-weight-bold);
-  line-height: var(--ds-primitive-typography-line-height-34);
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  line-height: normal;
+}
+
+.ds-datepicker__popover {
+  display: flex;
+  flex-direction: column;
+  gap: var(--datepicker-popup-gap);
+  inline-size: 100%;
+  padding: var(--datepicker-popup-padding-y) var(--datepicker-popup-padding-x);
+  border: var(--ds-primitive-border-width-border-sm) solid var(--datepicker-popup-border-color);
+  /* border/radius/radius-md */
+  border-radius: var(--ds-primitive-border-radius-radius-md);
+  background: var(--datepicker-surface);
+  box-shadow: var(--datepicker-popup-shadow);
+}
+
+.ds-datepicker__title {
+  color: var(--datepicker-text-color);
+  /* Título: Plus Jakarta Sans SemiBold + typography/font-size/lg (20) */
+  font-size: var(--ds-primitive-typography-font-size-20);
+  font-weight: var(--ds-primitive-typography-font-weight-semi-bold);
+  line-height: normal;
+  overflow-wrap: anywhere;
 }
 
 .ds-datepicker__month-header {
-  display: grid;
-  grid-template-columns: var(--ds-primitive-spacing-40) minmax(0, 1fr) var(
-      --ds-primitive-spacing-40
-    );
-  align-items: center;
+  display: flex;
+  /* Month Selector: centralizado com gap spacing/8 */
   gap: var(--ds-primitive-spacing-8);
+  align-items: center;
+  justify-content: center;
 }
 
 .ds-datepicker__month-title {
-  min-inline-size: 0;
-  text-align: center;
   color: var(--datepicker-text-color);
-  font-size: var(--ds-primitive-typography-font-size-20);
-  font-weight: var(--ds-primitive-typography-font-weight-bold);
-  line-height: var(--ds-primitive-typography-line-height-28);
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  line-height: normal;
 }
 
 .ds-datepicker__nav-button {
   display: inline-grid;
-  box-sizing: border-box;
   place-items: center;
-  inline-size: var(--ds-primitive-spacing-40);
-  block-size: var(--ds-primitive-spacing-40);
+  inline-size: var(--datepicker-chevron-size);
+  block-size: var(--datepicker-chevron-size);
   padding: var(--ds-primitive-spacing-0);
-  border: 0;
-  border-radius: var(--ds-primitive-border-radius-radius-full);
-  background: transparent;
-  color: currentColor;
+  border: var(--ds-primitive-border-width-border-none);
+  background: none;
+  color: var(--ds-semantic-color-icons-neutral-black);
   cursor: pointer;
-}
-
-.ds-datepicker__nav-button:hover {
-  background: var(--ds-semantic-color-background-neutral-disabled);
 }
 
 .ds-datepicker__nav-button:focus-visible {
-  outline: var(--ds-component-date-picker-effect-focus-ring-width) solid
-    var(--datepicker-focus-color);
-  outline-offset: var(--ds-primitive-spacing-2);
+  outline: var(--ds-component-focus-ring-effect-width) solid var(--datepicker-focus-ring);
+  outline-offset: var(--ds-component-focus-ring-effect-offset);
 }
 
 .ds-datepicker__nav-button > svg {
-  inline-size: var(--ds-primitive-spacing-24);
-  block-size: var(--ds-primitive-spacing-24);
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.ds-datepicker__calendar {
+  display: flex;
+  flex-direction: column;
+  /* Component sizing/8 entre o cabeçalho de dias e as semanas */
+  gap: var(--ds-component-component-sizing-8);
 }
 
 .ds-datepicker__weekdays {
-  display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: var(--ds-primitive-spacing-8);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--datepicker-text-color);
+  /* Dias da semana: Plus Jakarta Sans SemiBold 14 */
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-semi-bold);
+  line-height: normal;
+  text-align: center;
+}
+
+.ds-datepicker__weekdays > span {
+  inline-size: var(--datepicker-cell-size);
 }
 
 .ds-datepicker__days {
-  display: grid;
-  gap: var(--ds-primitive-spacing-8);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-component-component-sizing-8);
 }
 
 .ds-datepicker__week {
-  display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
-  gap: var(--ds-primitive-spacing-8);
-}
-
-.ds-datepicker__days > [role='row'] > [role='gridcell'] {
-  display: contents;
-}
-
-.ds-datepicker__weekdays {
-  color: var(--ds-semantic-text-style-content-color-typography-tertiary);
-  text-align: center;
-  font-size: var(--ds-primitive-typography-font-size-20);
-  font-weight: var(--ds-primitive-typography-font-weight-bold);
-  line-height: var(--ds-primitive-typography-line-height-28);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .ds-datepicker__day {
-  position: relative;
   display: inline-grid;
-  box-sizing: border-box;
   place-items: center;
-  min-inline-size: var(--ds-primitive-spacing-40);
-  min-block-size: var(--ds-primitive-spacing-40);
+  inline-size: var(--datepicker-cell-size);
+  block-size: var(--datepicker-cell-size);
   padding: var(--ds-primitive-spacing-0);
-  border: var(--ds-primitive-border-width-border-sm) solid transparent;
-  border-radius: var(--ds-primitive-border-radius-radius-full);
-  background: transparent;
+  border: var(--ds-primitive-border-width-border-none);
+  /* Células com border/radius/radius-sm */
+  border-radius: var(--ds-primitive-border-radius-radius-sm);
+  background: none;
   color: var(--datepicker-text-color);
-  font: inherit;
-  font-size: var(--ds-primitive-typography-font-size-20);
-  font-weight: var(--ds-primitive-typography-font-weight-regular);
-  line-height: var(--ds-primitive-typography-line-height-28);
   cursor: pointer;
+  /* Dias: Plus Jakarta Sans SemiBold 14 */
+  font-family: inherit;
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-semi-bold);
+  line-height: normal;
+  transition:
+    background-color 120ms ease,
+    color 120ms ease;
 }
 
-.ds-datepicker__day:hover {
-  background: var(--ds-semantic-color-background-neutral-disabled);
-}
-
-.ds-datepicker__day:focus-visible {
-  outline: var(--ds-primitive-border-width-border-md) solid var(--datepicker-focus-color);
-  outline-offset: var(--ds-primitive-spacing-2);
+.ds-datepicker__day--weekend {
+  color: var(--datepicker-weekend-color);
 }
 
 .ds-datepicker__day--outside {
-  color: var(--ds-semantic-text-style-content-color-typography-disabled);
-}
-
-.ds-datepicker__day--today {
-  border-color: var(--datepicker-focus-color);
+  color: var(--datepicker-muted-color);
 }
 
 .ds-datepicker__day--in-range {
-  border-radius: var(--ds-primitive-border-radius-radius-none);
   background: var(--datepicker-range-background);
-  color: var(--ds-semantic-color-background-neutral-default);
+}
+
+/* Hover não especificado no node; usa o mesmo tom do período como aproximação */
+@media (hover: hover) {
+  .ds-datepicker__day:hover:not(:disabled, .ds-datepicker__day--selected) {
+    background: var(--datepicker-range-background);
+  }
 }
 
 .ds-datepicker__day--selected {
   background: var(--datepicker-selected-background);
-  color: var(--ds-semantic-color-background-neutral-default);
-  font-weight: var(--ds-primitive-typography-font-weight-bold);
+  color: var(--datepicker-selected-color);
 }
 
 .ds-datepicker__day:disabled {
-  color: var(--ds-semantic-text-style-content-color-typography-placeholder);
+  color: var(--datepicker-muted-color);
   cursor: not-allowed;
-  text-decoration: line-through;
 }
 
-.ds-datepicker__metadata {
-  display: grid;
-  gap: var(--ds-primitive-spacing-8);
-  color: var(--ds-semantic-text-style-content-color-typography-tertiary);
-  font-size: var(--ds-primitive-typography-font-size-16);
-  line-height: var(--ds-primitive-typography-line-height-24);
-}
-
-.ds-datepicker__metadata-item {
-  display: flex;
-  min-inline-size: 0;
-  gap: var(--ds-primitive-spacing-8);
-  align-items: center;
-}
-
-.ds-datepicker__metadata-icon {
-  display: inline-grid;
-  place-items: center;
-  inline-size: var(--ds-primitive-spacing-20);
-  block-size: var(--ds-primitive-spacing-20);
-  border-radius: var(--ds-primitive-border-radius-radius-sm);
-  background: var(--ds-semantic-text-style-content-color-typography-disabled);
-  color: var(--ds-semantic-color-background-neutral-default);
-  font-size: var(--ds-primitive-typography-font-size-14);
-  line-height: var(--ds-primitive-typography-line-height-16);
-}
-
-.ds-datepicker__time-field {
-  display: grid;
-  gap: var(--ds-primitive-spacing-4);
-  color: inherit;
-}
-
-.ds-datepicker__time-input {
-  box-sizing: border-box;
-  inline-size: 100%;
-  min-block-size: var(--ds-primitive-spacing-40);
-  padding-inline: var(--ds-primitive-spacing-12);
-  border: var(--ds-primitive-border-width-border-sm) solid
-    var(--ds-semantic-color-border-neutral-default);
-  border-radius: var(--ds-primitive-border-radius-radius-sm);
-  background: var(--ds-semantic-color-background-neutral-default);
-  color: var(--datepicker-text-color);
-  font: inherit;
-}
-
-.ds-datepicker__time-input:focus {
-  outline: var(--ds-primitive-border-width-border-md) solid var(--datepicker-focus-color);
-  outline-offset: var(--ds-primitive-spacing-2);
+.ds-datepicker__day:focus-visible {
+  outline: var(--ds-component-focus-ring-effect-width) solid var(--datepicker-focus-ring);
+  outline-offset: var(--ds-component-focus-ring-effect-offset);
 }
 
 .ds-datepicker__footer {
   display: flex;
-  justify-content: flex-end;
-  gap: var(--ds-primitive-spacing-8);
+  align-items: center;
+  justify-content: space-between;
 }
 
 .ds-datepicker__message {
-  display: flex;
-  min-inline-size: 0;
-  gap: var(--ds-primitive-spacing-8);
-  align-items: center;
-  margin: 0;
-  overflow-wrap: anywhere;
-  color: var(--datepicker-helper-color);
-  font-size: var(--ds-primitive-typography-font-size-16);
-  font-weight: var(--ds-primitive-typography-font-weight-bold);
-  line-height: var(--ds-primitive-typography-line-height-20);
+  margin: var(--ds-primitive-spacing-0);
+  color: var(--datepicker-text-color);
+  font-size: var(--ds-primitive-typography-font-size-12);
+  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  line-height: normal;
 }
 
 .ds-datepicker__message--error {
-  color: var(--datepicker-error-color);
+  color: var(--ds-component-input-error-text-color-text);
 }
 
 .ds-datepicker__message--success {
-  color: var(--datepicker-success-color);
+  color: var(--ds-semantic-text-style-content-color-typography-success);
 }
 
-.ds-datepicker__message-icon {
-  display: inline-grid;
-  flex: 0 0 auto;
-  place-items: center;
-  inline-size: var(--ds-primitive-spacing-20);
-  block-size: var(--ds-primitive-spacing-20);
-  border: var(--ds-primitive-border-width-border-md) solid currentColor;
-  border-radius: var(--ds-primitive-border-radius-radius-full);
-  font-size: var(--ds-primitive-typography-font-size-12);
-  font-weight: var(--ds-primitive-typography-font-weight-bold);
-  line-height: var(--ds-primitive-typography-line-height-16);
-}
-
-.ds-datepicker--error {
-  --datepicker-label-color: var(--datepicker-error-color);
-  --datepicker-border-color: var(--datepicker-error-color);
-  --datepicker-focus-color: var(--datepicker-error-color);
-}
-
-.ds-datepicker--success {
-  --datepicker-border-color: var(--datepicker-success-color);
-}
-
-.ds-datepicker--disabled,
-.ds-datepicker--read-only {
-  --datepicker-label-color: var(--datepicker-disabled-color);
-  --datepicker-text-color: var(--datepicker-disabled-color);
-  --datepicker-placeholder-color: var(--datepicker-disabled-color);
-  --datepicker-helper-color: var(--datepicker-disabled-color);
-  --datepicker-background: var(--datepicker-disabled-background);
-  --datepicker-border-color: var(--datepicker-disabled-border-color);
-
+.ds-datepicker--disabled .ds-datepicker__field,
+.ds-datepicker--disabled .ds-datepicker__icon-button {
+  color: var(--datepicker-muted-color);
   cursor: not-allowed;
 }
 
-@media (max-width: 640px) {
-  .ds-datepicker {
-    --datepicker-popover-width: calc(100vw - var(--ds-primitive-spacing-32));
-  }
+.ds-datepicker--disabled .ds-datepicker__field {
+  border-color: var(--ds-semantic-color-border-neutral-disabled);
+}
 
-  .ds-datepicker__field {
-    font-size: var(--ds-primitive-typography-font-size-18);
-    line-height: var(--ds-primitive-typography-line-height-28);
-  }
-
-  .ds-datepicker__popover {
-    position: fixed;
-    inset-block-start: 50%;
-    inset-inline: var(--ds-primitive-spacing-16);
-    inline-size: auto;
-    max-block-size: calc(100vh - var(--ds-primitive-spacing-32));
-    overflow: auto;
-    transform: translateY(-50%);
+@media (prefers-reduced-motion: reduce) {
+  .ds-datepicker__day {
+    transition: none;
   }
 }
 
-@media (max-width: 420px) {
-  .ds-datepicker {
-    --datepicker-padding-inline-start: var(--ds-primitive-spacing-12);
-    --datepicker-padding-inline-end: var(--ds-primitive-spacing-8);
-  }
-
-  .ds-datepicker__popover {
-    gap: var(--ds-primitive-spacing-16);
-    padding: var(--ds-primitive-spacing-16);
-  }
-
-  .ds-datepicker__selected-title {
-    font-size: var(--ds-primitive-typography-font-size-24);
-    line-height: var(--ds-primitive-typography-line-height-30);
-  }
-
-  .ds-datepicker__month-title,
-  .ds-datepicker__weekdays,
-  .ds-datepicker__day {
-    font-size: var(--ds-primitive-typography-font-size-16);
-    line-height: var(--ds-primitive-typography-line-height-24);
-  }
-
-  .ds-datepicker__weekdays,
-  .ds-datepicker__days {
-    gap: var(--ds-primitive-spacing-4);
-  }
-
-  .ds-datepicker__day {
-    min-inline-size: var(--ds-primitive-spacing-32);
-    min-block-size: var(--ds-primitive-spacing-32);
-  }
-
-  .ds-datepicker__footer {
-    justify-content: stretch;
-  }
-
-  .ds-datepicker__footer .ds-button {
-    flex: 1 1 0;
-  }
-}
+/*
+ * Responsividade: o node do Figma não define variante mobile. O componente é
+ * fluido (100% do container, campos do período com flex 1) e o grid usa
+ * space-between, então o calendário se adapta a qualquer largura.
+ */

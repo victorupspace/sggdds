@@ -7,17 +7,17 @@ describe('Datepicker', () => {
   it('associates the visible label with the readonly input', () => {
     render(<Datepicker defaultMonth="2026-12-01" label="Data" />);
 
-    expect(screen.getByLabelText('Data')).toHaveAttribute('placeholder', 'MM/DD/YYYY');
+    expect(screen.getByLabelText('Data')).toHaveAttribute('placeholder', 'DD/MM/AAAA');
     expect(screen.getByLabelText('Data')).toHaveAttribute('readonly');
   });
 
   it('opens the calendar from the icon button', () => {
     render(<Datepicker defaultMonth="2026-12-01" label="Data" />);
 
-    fireEvent.click(screen.getByRole('button', { name: 'Open calendar' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Abrir calendário' }));
 
     expect(screen.getByRole('dialog')).toBeInTheDocument();
-    expect(screen.getByText('December 2026')).toBeInTheDocument();
+    expect(screen.getByText('Dezembro 2026')).toBeInTheDocument();
   });
 
   it('selects a single date and calls onValueChange', () => {
@@ -32,43 +32,45 @@ describe('Datepicker', () => {
       />,
     );
 
-    fireEvent.click(screen.getByRole('button', { name: 'Open calendar' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Tuesday, December 15, 2026' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Abrir calendário' }));
+    fireEvent.click(screen.getByRole('button', { name: 'terça-feira, 15 de dezembro de 2026' }));
 
     expect(onValueChange).toHaveBeenCalledWith('2026-12-15');
-    expect(screen.getByLabelText('Data')).toHaveValue('12/15/2026');
+    expect(screen.getByLabelText('Data')).toHaveValue('15/12/2026');
   });
 
   it('navigates between months', () => {
     render(<Datepicker defaultMonth="2026-12-01" label="Data" />);
 
-    fireEvent.click(screen.getByRole('button', { name: 'Open calendar' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Next month' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Abrir calendário' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Próximo mês' }));
 
-    expect(screen.getByText('January 2027')).toBeInTheDocument();
+    expect(screen.getByText('Janeiro 2027')).toBeInTheDocument();
   });
 
-  it('supports range selection', () => {
+  it('supports range selection with two fields', () => {
     const onRangeValueChange = vi.fn();
 
     render(
       <Datepicker
         defaultMonth="2026-12-01"
+        defaultOpen
         label="Periodo"
         mode="range"
         onRangeValueChange={onRangeValueChange}
       />,
     );
 
-    fireEvent.click(screen.getByRole('button', { name: 'Open calendar' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Thursday, December 17, 2026' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Saturday, December 26, 2026' }));
+    fireEvent.click(screen.getByRole('button', { name: 'quinta-feira, 17 de dezembro de 2026' }));
+    fireEvent.click(screen.getByRole('button', { name: 'sábado, 26 de dezembro de 2026' }));
 
     expect(onRangeValueChange).toHaveBeenLastCalledWith({
       end: '2026-12-26',
       start: '2026-12-17',
     });
-    expect(screen.getByLabelText('Periodo')).toHaveValue('12/17/2026 - 12/26/2026');
+    expect(screen.getByLabelText('Periodo')).toHaveValue('17/12/2026');
+    expect(screen.getByLabelText('Periodo (fim)')).toHaveValue('26/12/2026');
+    expect(screen.getByText('até')).toBeInTheDocument();
   });
 
   it('sets aria-invalid and describes the error message', () => {
@@ -90,7 +92,7 @@ describe('Datepicker', () => {
   it('does not open when disabled', () => {
     render(<Datepicker defaultMonth="2026-12-01" disabled label="Data" />);
 
-    fireEvent.click(screen.getByRole('button', { name: 'Open calendar' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Abrir calendário' }));
 
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
     expect(screen.getByLabelText('Data')).toBeDisabled();
@@ -99,8 +101,18 @@ describe('Datepicker', () => {
   it('closes the calendar with Escape', () => {
     render(<Datepicker defaultMonth="2026-12-01" defaultOpen label="Data" />);
 
-    fireEvent.keyDown(screen.getByText('December 2026'), { key: 'Escape' });
+    fireEvent.keyDown(screen.getByText('Dezembro 2026'), { key: 'Escape' });
 
     expect(screen.queryByRole('dialog')).not.toBeInTheDocument();
+  });
+
+  it('marks weekends with the weekend class', () => {
+    render(<Datepicker defaultMonth="2026-12-01" defaultOpen label="Data" />);
+
+    const saturday = screen.getByRole('button', { name: 'sábado, 5 de dezembro de 2026' });
+    const monday = screen.getByRole('button', { name: 'segunda-feira, 7 de dezembro de 2026' });
+
+    expect(saturday).toHaveClass('ds-datepicker__day--weekend');
+    expect(monday).not.toHaveClass('ds-datepicker__day--weekend');
   });
 });

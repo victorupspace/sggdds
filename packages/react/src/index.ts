@@ -49,6 +49,7 @@ export type {
 } from './components/Dropdown';
 export { Datepicker } from './components/Datepicker';
 export type {
+  DatepickerBackground,
   DatepickerMode,
   DatepickerProps,
   DatepickerRangeValue,

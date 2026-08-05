@@ -7,24 +7,16 @@
   background: var(--ds-primitive-color-neutral-grey-100);
 }
 
+/* Superfície branca para evidenciar a variante inverse */
+.datepicker-story-shell--white {
+  background: var(--ds-primitive-color-white);
+}
+
+/* Largura do exemplo no Figma (340px) */
 .datepicker-story-panel {
   display: grid;
   box-sizing: border-box;
-  inline-size: min(100%, 321px);
-  gap: var(--ds-primitive-spacing-24);
-}
-
-.datepicker-story-stack {
-  display: grid;
-  box-sizing: border-box;
-  inline-size: min(100%, 420px);
-  gap: var(--ds-primitive-spacing-32);
-}
-
-.datepicker-story-range {
-  display: grid;
-  box-sizing: border-box;
-  inline-size: min(100%, 520px);
+  inline-size: min(100%, 340px);
   gap: var(--ds-primitive-spacing-24);
 }
 
@@ -34,9 +26,7 @@
     padding: var(--ds-primitive-spacing-16);
   }
 
-  .datepicker-story-panel,
-  .datepicker-story-stack,
-  .datepicker-story-range {
+  .datepicker-story-panel {
     inline-size: 100%;
   }
 }

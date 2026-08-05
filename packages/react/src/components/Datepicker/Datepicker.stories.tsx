@@ -13,39 +13,36 @@ const meta = {
     docs: {
       description: {
         component: `
-O Datepicker permite selecionar uma data especifica, um intervalo de datas ou um horario associado a partir de um calendario em popover.
+O Datepicker reproduz o layout do Figma (Web Components / Datepicker): label SemiBold 14, campo de 40px com borda color/border/neutral/prominent e radius-sm, e calendario em card com radius-md, padding 16x20 e elevacao level-2.
 
-Use para agendamento de entregas, data de nascimento, filtros por periodo, reserva, disponibilidade e fluxos em que escolher datas visualmente reduz erro de digitacao.
+Selecoes (propriedade selection no Figma):
+- Single: um campo com o icone calendar_month de 24px.
+- Period (mode="range"): dois campos DD/MM/AAAA separados por "até".
 
-Nao use quando a pessoa precisa informar texto livre, data aproximada, recorrencia complexa ou uma lista muito extensa de periodos predefinidos. Nesses casos, escolha componentes mais especificos.
+Superficies (propriedade background no Figma): white (padrao) e inverse (campos e calendario em color/background/neutral/default).
 
-Estados:
-- Default: input com placeholder, helper e calendario fechado.
-- Focus: foco visivel no input, icone e dias do calendario.
-- Open: popover com navegacao mensal, dias de outros meses, hoje, selecao e acoes.
-- Error: label, borda, foco e mensagem com tokens de feedback.
-- Success: confirmacao visual para datas validas quando necessario.
-- Disabled e readOnly: bloqueiam abertura e edicao.
+Calendario:
+- Titulo SemiBold 20 e seletor de mes centralizado com os chevrons exportados do Figma.
+- Semana comeca na segunda-feira (S T Q Q S S D) e os fins de semana usam input/error-text/color/text, como no Figma.
+- Dias fora do mes usam typography/disabled; o dia selecionado usa color/background/neutral/black com texto inverse; o periodo usa color/background/neutral/default-hover.
+- Area de botoes com Cancelar (ghost) e Confirmar (secondary) compondo o Button do DS.
 
-Responsividade:
-Este componente foi refinado para web desktop e web mobile. Em desktop, o popover ancora abaixo do campo e respeita largura ampla para leitura do calendario. Em telas pequenas, o popover vira uma superficie fixa centralizada, com grid compacto, rolagem vertical segura e botoes de footer adaptados para toque.
+Tokens: espacamentos usam Component sizing (8/16/20/24), radius border/radius/radius-sm|md e a elevacao level-2 (variables novas ausentes nas collections exportadas) fica como literal documentado no CSS.
 
-Tokens:
-Cores, bordas, radius, espacamentos, sombras, tipografia, icones, estados e foco usam variaveis CSS geradas pelos tokens do Figma. Como a camada semantica ainda nao cobre todos os casos no projeto, o componente cria aliases internos semanticos apontando para tokens disponiveis.
+Responsividade: o componente e fluido (100% do container), os campos do periodo dividem o espaco com flex e o grid do calendario usa space-between, adaptando-se a qualquer largura sem overflow.
 
-Acessibilidade:
-- O campo usa input readonly com aria-haspopup="dialog", aria-expanded e aria-controls.
-- O popover usa role="dialog" e o calendario usa role="grid".
-- Cada dia e um button com aria-label completo e aria-selected.
-- Escape fecha o calendario.
-- Required, disabled e readOnly preservam semantica nativa.
-- O componente funciona por teclado, mouse e touch.
+Acessibilidade: input readonly com role combobox, aria-haspopup/expanded/controls, popover role dialog, grid de dias com aria-label completo em pt-BR e aria-selected, Escape fecha o calendario e o foco visivel usa o focus ring do DS.
 `,
       },
     },
     layout: 'fullscreen',
   },
   argTypes: {
+    background: {
+      control: 'inline-radio',
+      description: 'Superficie do componente (background no Figma).',
+      options: ['white', 'inverse'],
+    },
     className: {
       control: 'text',
       description: 'Classe CSS opcional aplicada ao wrapper.',
@@ -84,7 +81,7 @@ Acessibilidade:
     },
     mode: {
       control: 'select',
-      description: 'Modo de selecao.',
+      description: 'Selecao Single ou Period (range) do Figma.',
       options: ['single', 'range'],
     },
     onOpenChange: {
@@ -95,17 +92,13 @@ Acessibilidade:
       control: false,
       description: 'Callback chamado ao selecionar intervalo.',
     },
-    onTimeValueChange: {
-      control: false,
-      description: 'Callback chamado ao alterar horario.',
-    },
     onValueChange: {
       control: false,
       description: 'Callback chamado ao selecionar uma data unica.',
     },
     open: {
       control: 'boolean',
-      description: 'Controla a abertura do popover.',
+      description: 'Controla a abertura do calendario.',
     },
     placeholder: {
       control: 'text',
@@ -121,11 +114,7 @@ Acessibilidade:
     },
     showFooter: {
       control: 'boolean',
-      description: 'Exibe acoes Cancel e Apply no popover.',
-    },
-    showTime: {
-      control: 'boolean',
-      description: 'Exibe campo de horario dentro do popover.',
+      description: 'Exibe a area de botoes Cancelar/Confirmar (showButtonArea no Figma).',
     },
     state: {
       control: 'select',
@@ -150,11 +139,8 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    defaultMonth: '2026-12-01',
-    helperText: 'Helper Text',
+    defaultMonth: '2026-05-01',
     label: 'Label',
-    placeholder: 'MM/DD/YYYY',
-    required: true,
   },
   render: (args) => (
     <div className="datepicker-story-shell">
@@ -167,13 +153,10 @@ export const Default: Story = {
 
 export const Open: Story = {
   args: {
-    defaultMonth: '2026-12-01',
-    helperText: 'Helper Text',
+    defaultMonth: '2026-05-01',
     label: 'Label',
     open: true,
-    placeholder: 'MM/DD/YYYY',
-    required: true,
-    value: '2026-12-15',
+    value: '2026-05-11',
   },
   render: (args) => (
     <div className="datepicker-story-shell">
@@ -184,38 +167,44 @@ export const Open: Story = {
   ),
 };
 
-export const Range: Story = {
+export const Period: Story = {
   args: {
-    defaultMonth: '2026-12-01',
+    defaultMonth: '2026-05-01',
     defaultRangeValue: {
-      end: '2026-12-26',
-      start: '2026-12-17',
+      end: '2026-05-12',
+      start: '2026-05-10',
     },
-    helperText: 'Selecione inicio e fim do periodo.',
-    label: 'Periodo de entrega',
+    label: 'Label',
     mode: 'range',
     open: true,
-    showTime: true,
   },
   render: (args) => (
     <div className="datepicker-story-shell">
-      <div className="datepicker-story-range">
+      <div className="datepicker-story-panel">
         <Datepicker {...args} />
       </div>
     </div>
   ),
 };
 
-export const Success: Story = {
+export const Inverse: Story = {
   args: {
-    defaultMonth: '2026-12-01',
+    background: 'inverse',
+    defaultMonth: '2026-05-01',
     label: 'Label',
-    state: 'success',
-    successText: 'Success message',
-    value: '2026-12-31',
+    open: true,
+    value: '2026-05-11',
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Superficie inverse do Figma: campos e calendario usam color/background/neutral/default.',
+      },
+    },
   },
   render: (args) => (
-    <div className="datepicker-story-shell">
+    <div className="datepicker-story-shell datepicker-story-shell--white">
       <div className="datepicker-story-panel">
         <Datepicker {...args} />
       </div>
@@ -225,10 +214,9 @@ export const Success: Story = {
 
 export const Error: Story = {
   args: {
-    defaultMonth: '2026-12-01',
-    errorText: 'Error message',
+    defaultMonth: '2026-05-01',
+    errorText: 'Data obrigatoria.',
     label: 'Label',
-    placeholder: 'MM/DD/YYYY',
     required: true,
   },
   render: (args) => (
@@ -242,11 +230,11 @@ export const Error: Story = {
 
 export const Disabled: Story = {
   args: {
-    defaultMonth: '2026-12-01',
+    defaultMonth: '2026-05-01',
     disabled: true,
-    helperText: 'Campo indisponivel no momento',
+    helperText: 'Campo indisponivel no momento.',
     label: 'Label',
-    value: '2026-12-31',
+    value: '2026-05-11',
   },
   render: (args) => (
     <div className="datepicker-story-shell">
@@ -259,50 +247,16 @@ export const Disabled: Story = {
 
 export const ResponsiveContent: Story = {
   args: {
-    defaultMonth: '2026-12-01',
+    defaultMonth: '2026-05-01',
     helperText:
-      'Texto de apoio longo para validar quebra, legibilidade, popover e ausencia de overflow horizontal em telas pequenas.',
+      'Texto de apoio longo para validar quebra, legibilidade e ausencia de overflow horizontal em telas pequenas.',
     label: 'Label com conteudo longo para demonstrar responsividade nativa',
     open: true,
-    placeholder: 'MM/DD/YYYY',
   },
   render: (args) => (
     <div className="datepicker-story-shell">
       <div className="datepicker-story-panel">
         <Datepicker {...args} />
-      </div>
-    </div>
-  ),
-};
-
-export const States: Story = {
-  args: {
-    defaultMonth: '2026-12-01',
-    label: 'Label',
-  },
-  render: () => (
-    <div className="datepicker-story-shell">
-      <div className="datepicker-story-stack">
-        <Datepicker defaultMonth="2026-12-01" helperText="Helper Text" label="Default" />
-        <Datepicker
-          defaultMonth="2026-12-01"
-          helperText="Helper Text"
-          label="Selected"
-          value="2026-12-31"
-        />
-        <Datepicker
-          defaultMonth="2026-12-01"
-          errorText="Error message"
-          label="Error"
-          state="error"
-        />
-        <Datepicker
-          defaultMonth="2026-12-01"
-          label="Success"
-          state="success"
-          successText="Success message"
-          value="2026-12-31"
-        />
       </div>
     </div>
   ),

@@ -1,203 +1,319 @@
+/*
+ * Layout do Figma: Web Components / Stepper (node 40000045:5961), com o átomo
+ * Progress Line (40000030:6888). Cada propriedade referencia a mesma variable
+ * usada no Figma; os comentários indicam o nome original da variable. Valores
+ * sem variable exposta na collection exportada ficam como literais
+ * documentados.
+ */
 .ds-stepper {
-  --stepper-surface: var(--ds-semantic-color-background-neutral-subtle);
-  --stepper-text: var(--ds-semantic-text-style-content-color-typography-secondary);
-  --stepper-muted: var(--ds-semantic-text-style-content-color-typography-tertiary);
-  --stepper-track: var(--ds-semantic-color-border-neutral-subtle);
-  --stepper-active: var(--ds-semantic-text-style-content-color-typography-secondary);
-  --stepper-fill: var(--ds-semantic-color-background-neutral-soft-black);
-  --stepper-radius: var(--ds-primitive-border-radius-radius-lg);
-  --stepper-padding-block: var(--ds-primitive-spacing-16);
-  --stepper-padding-inline: var(--ds-primitive-spacing-20);
-  --stepper-number-size: var(--ds-component-stepper-step-marker-size-width);
-  --stepper-dot-size: var(--ds-primitive-spacing-8);
-  --stepper-bar-size: var(--ds-primitive-spacing-8);
+  /* color/background/neutral/default (#f5f5f5) */
+  --stepper-background: var(--ds-semantic-color-background-neutral-default);
+  /* border/width/border-sm + color/neutral/grey-200 */
+  --stepper-border: var(--ds-primitive-border-width-border-sm) solid
+    var(--ds-primitive-color-neutral-grey-200);
+  /* Radius de 12px do card — sem variable no Figma (entre radius-md 8 e lg 16) */
+  --stepper-radius: 12px;
+  /* Desktop: padding 20 e gap 12; mobile reduz para 16 e 10 */
+  --stepper-padding: var(--ds-primitive-spacing-20);
+  --stepper-gap: var(--ds-primitive-spacing-12);
+  /* color/neutral/grey-600 (#505050, linhas de apoio) */
+  --stepper-muted-color: var(--ds-primitive-color-neutral-grey-600);
+  /* text-style/content-color/typography/primary (círculo e título da etapa) */
+  --stepper-primary-color: var(--ds-semantic-text-style-content-color-typography-primary);
+  /* Círculo da etapa: 32px no desktop, 28px no mobile */
+  --stepper-circle-size: 32px;
 
-  inline-size: 100%;
-  min-inline-size: var(--ds-primitive-spacing-0);
+  display: flex;
   box-sizing: border-box;
-  padding: var(--stepper-padding-block) var(--stepper-padding-inline);
+  flex-direction: column;
+  gap: var(--stepper-gap);
+  inline-size: 100%;
+  min-inline-size: 0;
+  padding: var(--stepper-padding);
+  border: var(--stepper-border);
   border-radius: var(--stepper-radius);
-  background: var(--stepper-surface);
-  color: var(--stepper-text);
+  background: var(--stepper-background);
   font-family:
     var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
 }
 
-.ds-stepper__header {
+.ds-stepper *,
+.ds-stepper *::before,
+.ds-stepper *::after {
+  box-sizing: border-box;
+}
+
+.ds-stepper__top-row {
   display: flex;
-  gap: var(--ds-primitive-spacing-16);
+  gap: var(--ds-primitive-spacing-8);
   align-items: center;
   justify-content: space-between;
-}
-
-.ds-stepper__label,
-.ds-stepper__counter,
-.ds-stepper__next {
-  margin: var(--ds-primitive-spacing-0);
-  color: var(--stepper-muted);
-}
-
-.ds-stepper__label,
-.ds-stepper__counter {
-  font-size: var(--ds-primitive-typography-font-size-12);
-  font-weight: var(--ds-primitive-typography-font-weight-medium);
-  line-height: var(--ds-primitive-typography-line-height-16);
+  color: var(--stepper-muted-color);
 }
 
 .ds-stepper__label {
+  margin: var(--ds-primitive-spacing-0);
+  overflow: hidden;
+  /* Plus Jakarta Sans SemiBold 11 com tracking 0.66px (literais do Figma) */
+  font-size: 11px;
+  font-weight: var(--ds-primitive-typography-font-weight-semi-bold);
+  letter-spacing: 0.66px;
+  line-height: normal;
+  text-overflow: ellipsis;
   text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .ds-stepper__counter {
+  margin: var(--ds-primitive-spacing-0);
   flex: 0 0 auto;
-  font-variant-numeric: tabular-nums;
+  font-size: 11px;
+  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  line-height: normal;
+  white-space: nowrap;
 }
 
-.ds-stepper__current {
+.ds-stepper__step-row {
   display: flex;
-  min-inline-size: var(--ds-primitive-spacing-0);
-  gap: var(--ds-primitive-spacing-10);
+  gap: var(--ds-primitive-spacing-12);
   align-items: center;
-  margin-block-start: var(--ds-primitive-spacing-16);
 }
 
 .ds-stepper__number {
-  display: inline-grid;
+  display: inline-flex;
   flex: 0 0 auto;
-  place-items: center;
-  inline-size: var(--stepper-number-size);
-  block-size: var(--stepper-number-size);
-  border-radius: var(--ds-component-stepper-step-marker-border-radius);
-  background: var(--stepper-active);
-  color: var(--ds-component-stepper-step-marker-color-text-current);
-  font-size: var(--ds-primitive-typography-font-size-18);
-  font-weight: var(--ds-primitive-typography-font-weight-regular);
-  line-height: 1;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--stepper-circle-size);
+  block-size: var(--stepper-circle-size);
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  /* text-style/content-color/typography/primary (fundo do círculo) */
+  background: var(--stepper-primary-color);
+  color: var(--ds-primitive-color-white);
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-semi-bold);
+  line-height: normal;
 }
 
 .ds-stepper__title {
-  min-inline-size: var(--ds-primitive-spacing-0);
   margin: var(--ds-primitive-spacing-0);
-  overflow-wrap: anywhere;
-  color: var(--stepper-text);
-  font-size: var(--ds-primitive-typography-font-size-22);
-  font-weight: var(--ds-primitive-typography-font-weight-regular);
-  line-height: var(--ds-primitive-typography-line-height-28);
+  min-inline-size: 0;
+  overflow: hidden;
+  color: var(--stepper-primary-color);
+  font-size: var(--ds-primitive-typography-font-size-18);
+  font-weight: var(--ds-primitive-typography-font-weight-semi-bold);
+  line-height: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.ds-stepper__progress-group {
-  margin-block-start: var(--ds-primitive-spacing-16);
-}
-
+/* Progress Line do Figma: track 8px em color/background/neutral/default-hover */
 .ds-stepper__progress {
   position: relative;
   overflow: hidden;
   inline-size: 100%;
-  block-size: var(--stepper-bar-size);
-  border-radius: var(--ds-primitive-border-radius-radius-full);
-  background: var(--stepper-track);
+  block-size: var(--ds-component-progress-track-size-height-lg);
+  border-radius: var(--ds-component-progress-track-border-radius);
+  background: var(--ds-component-progress-track-color-background);
 }
 
 .ds-stepper__progress-fill {
   position: absolute;
   inset-block: 0;
   inset-inline-start: 0;
-  min-inline-size: var(--ds-primitive-spacing-0);
-  border-radius: inherit;
-  background: var(--stepper-fill);
-  transition: inline-size 240ms ease;
+  display: block;
+  max-inline-size: 100%;
+  border-radius: var(--ds-component-progress-track-border-radius);
+  /* color/background/neutral/black (Range) */
+  background: var(--ds-semantic-color-background-neutral-black);
+  transition: inline-size 180ms ease;
 }
 
-.ds-stepper__dots {
+.ds-stepper__next-row {
   display: flex;
-  justify-content: space-between;
-  inline-size: 100%;
-  margin: var(--ds-primitive-spacing-12) var(--ds-primitive-spacing-0) var(--ds-primitive-spacing-0);
-  padding: var(--ds-primitive-spacing-0);
-  list-style: none;
+  margin: var(--ds-primitive-spacing-0);
+  /* Gap de 3px do Figma entre prefixo e valor */
+  gap: 3px;
+  align-items: center;
+  min-inline-size: 0;
+  color: var(--stepper-muted-color);
+  font-size: var(--ds-primitive-typography-font-size-12);
+  line-height: normal;
 }
 
-.ds-stepper__dot-item {
-  display: flex;
-  min-inline-size: var(--stepper-dot-size);
+.ds-stepper__next-label {
+  flex: 0 0 auto;
+  font-weight: var(--ds-primitive-typography-font-weight-semi-bold);
 }
 
-.ds-stepper__dot-item:last-child {
-  justify-content: flex-end;
-}
-
-.ds-stepper__dot {
-  display: inline-block;
-  inline-size: var(--stepper-dot-size);
-  block-size: var(--stepper-dot-size);
-  border-radius: var(--ds-primitive-border-radius-radius-full);
-  background: var(--stepper-track);
-}
-
-.ds-stepper__dot--current,
-.ds-stepper__dot--completed {
-  background: var(--stepper-active);
-}
-
-.ds-stepper__next {
-  margin-block-start: var(--ds-primitive-spacing-16);
-  overflow-wrap: anywhere;
-  font-size: var(--ds-primitive-typography-font-size-14);
+.ds-stepper__next-value {
+  overflow: hidden;
   font-weight: var(--ds-primitive-typography-font-weight-regular);
-  line-height: var(--ds-primitive-typography-line-height-18);
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.ds-stepper__next strong {
-  color: var(--stepper-text);
-  font-weight: var(--ds-primitive-typography-font-weight-bold);
+/*
+ * Estado Completed do Figma: fundo #E9FDF3, borda rgb(224 224 224 / 80%)
+ * (color/border/default #E0E0E0 com 80%) e verde #1E7D47 — valores sem
+ * variable na collection exportada, literais documentados.
+ */
+.ds-stepper--completed {
+  --stepper-background: #e9fdf3;
+  --stepper-border: var(--ds-primitive-border-width-border-sm) solid rgb(224 224 224 / 80%);
+}
+
+.ds-stepper__completed-row {
+  display: flex;
+  gap: var(--ds-primitive-spacing-12);
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ds-stepper__completed-info {
+  display: flex;
+  gap: var(--ds-primitive-spacing-12);
+  align-items: center;
+  min-inline-size: 0;
+}
+
+.ds-stepper__check {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  /* Círculo do check: 38px no desktop, 34px no mobile (literais do Figma) */
+  inline-size: 38px;
+  block-size: 38px;
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  background: #1e7d47;
+  color: var(--ds-primitive-color-white);
+}
+
+.ds-stepper__check > svg {
+  inline-size: var(--ds-component-component-sizing-24);
+  block-size: var(--ds-component-component-sizing-24);
+}
+
+.ds-stepper__completed-text {
+  display: flex;
+  min-inline-size: 0;
+  flex-direction: column;
+  gap: 3px;
+  color: #1e7d47;
+}
+
+.ds-stepper__completed-title {
+  margin: var(--ds-primitive-spacing-0);
+  overflow: hidden;
+  /* Plus Jakarta Sans SemiBold 15 (13 no mobile) — literais do Figma */
+  font-size: 15px;
+  font-weight: var(--ds-primitive-typography-font-weight-semi-bold);
+  line-height: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ds-stepper__completed-description {
+  margin: var(--ds-primitive-spacing-0);
+  overflow: hidden;
+  font-size: var(--ds-primitive-typography-font-size-12);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: normal;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ds-stepper__restart {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  /* Botão Recomeçar do Figma: #181818, radius 8 (border/radius/radius-md),
+     padding 18x10 no desktop e 14x8 no mobile */
+  padding: 10px 18px;
+  border: var(--ds-primitive-border-width-border-none);
+  border-radius: var(--ds-primitive-border-radius-radius-md);
+  background: #181818;
+  color: var(--ds-primitive-color-white);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  line-height: normal;
+  transition: background-color 120ms ease;
+}
+
+@media (hover: hover) {
+  .ds-stepper__restart:hover {
+    background: var(--ds-primitive-color-neutral-grey-800);
+  }
+}
+
+.ds-stepper__restart:focus-visible {
+  outline: var(--ds-component-focus-ring-effect-width) solid
+    var(--ds-component-focus-ring-color-ring);
+  outline-offset: var(--ds-component-focus-ring-effect-offset);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ds-stepper__progress-fill {
+  .ds-stepper__progress-fill,
+  .ds-stepper__restart {
     transition: none;
   }
 }
 
-@media (max-width: 420px) {
+/*
+ * Mobile (variante Size=Mobile do Figma): padding 16, gaps 10, círculo 28px e
+ * tipografia reduzida.
+ */
+@media (max-width: 480px) {
   .ds-stepper {
-    --stepper-padding-block: var(--ds-primitive-spacing-8);
-    --stepper-padding-inline: var(--ds-primitive-spacing-10);
-    --stepper-number-size: var(--ds-primitive-spacing-24);
-    --stepper-dot-size: var(--ds-primitive-spacing-8);
-    --stepper-bar-size: var(--ds-primitive-spacing-6);
+    --stepper-padding: var(--ds-primitive-spacing-16);
+    --stepper-gap: var(--ds-primitive-spacing-10);
+    --stepper-circle-size: 28px;
   }
 
-  .ds-stepper__label,
+  .ds-stepper__label {
+    font-size: var(--ds-primitive-typography-font-size-10);
+    letter-spacing: 0.6px;
+  }
+
   .ds-stepper__counter {
     font-size: var(--ds-primitive-typography-font-size-10);
-    line-height: var(--ds-primitive-typography-line-height-12);
   }
 
-  .ds-stepper__current {
-    gap: var(--ds-component-stepper-spacing-gap);
-    margin-block-start: var(--ds-primitive-spacing-8);
+  .ds-stepper__step-row {
+    gap: var(--ds-primitive-spacing-10);
   }
 
   .ds-stepper__number {
-    font-size: var(--ds-primitive-typography-font-size-14);
+    font-size: var(--ds-primitive-typography-font-size-12);
   }
 
   .ds-stepper__title {
-    font-size: var(--ds-primitive-typography-font-size-16);
-    line-height: var(--ds-primitive-typography-line-height-20);
+    font-size: 15px;
   }
 
-  .ds-stepper__progress-group {
-    margin-block-start: var(--ds-primitive-spacing-8);
+  .ds-stepper__next-row {
+    font-size: 11px;
   }
 
-  .ds-stepper__dots {
-    margin-block-start: var(--ds-primitive-spacing-8);
+  .ds-stepper__check {
+    inline-size: 34px;
+    block-size: 34px;
   }
 
-  .ds-stepper__next {
-    margin-block-start: var(--ds-primitive-spacing-6);
+  .ds-stepper__completed-title {
+    font-size: 13px;
+  }
+
+  .ds-stepper__completed-description {
+    font-size: 11px;
+  }
+
+  .ds-stepper__restart {
+    padding: var(--ds-primitive-spacing-8) 14px;
     font-size: var(--ds-primitive-typography-font-size-12);
-    line-height: var(--ds-primitive-typography-line-height-14);
   }
 }

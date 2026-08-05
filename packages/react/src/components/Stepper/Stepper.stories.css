@@ -1,0 +1,17 @@
+.stepper-story-shell {
+  display: grid;
+  min-block-size: 100vh;
+  place-items: center;
+  padding: var(--ds-primitive-spacing-48);
+  background: var(--ds-primitive-color-white);
+}
+
+.stepper-story-shell > * {
+  max-inline-size: 600px;
+}
+
+@media (max-width: 640px) {
+  .stepper-story-shell {
+    padding: var(--ds-primitive-spacing-24);
+  }
+}

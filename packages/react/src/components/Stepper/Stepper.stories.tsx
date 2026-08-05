@@ -1,30 +1,25 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { Stepper } from './Stepper';
+import './Stepper.stories.css';
 import type { StepperStep } from './Stepper.types';
 
-const defaultSteps: StepperStep[] = [
+const threeSteps: StepperStep[] = [
   { id: 'web-version', label: 'Versão web' },
   { id: 'vehicle-data', label: 'Dados do veículo' },
   { id: 'review', label: 'Revisão' },
 ];
 
-const mobileSteps: StepperStep[] = [
-  { id: 'mobile-version', label: 'Versão mobile' },
-  { id: 'vehicle-data', label: 'Dados do veículo' },
-  { id: 'owner-data', label: 'Dados do proprietário' },
-  { id: 'review', label: 'Revisão' },
-];
-
-const fiveSteps: StepperStep[] = [
+const sixSteps: StepperStep[] = [
   { id: 'start', label: 'Início' },
   { id: 'profile', label: 'Dados pessoais' },
+  { id: 'address', label: 'Endereço' },
   { id: 'vehicle', label: 'Dados do veículo' },
   { id: 'attachments', label: 'Anexos' },
   { id: 'review', label: 'Revisão' },
 ];
 
-const tenSteps: StepperStep[] = Array.from({ length: 10 }, (_, index) => ({
+const twelveSteps: StepperStep[] = Array.from({ length: 12 }, (_, index) => ({
   id: `step-${String(index + 1)}`,
   label: `Etapa ${String(index + 1)}`,
 }));
@@ -34,27 +29,40 @@ const meta = {
   component: Stepper,
   parameters: {
     componentCanvas: {
-      width: 600,
+      width: 640,
     },
     docs: {
       description: {
         component: `
-O Stepper comunica o progresso atual de fluxos divididos em etapas. Use quando a pessoa precisa entender em que etapa esta, quantas etapas existem e qual sera a proxima etapa.
+O Stepper comunica o progresso atual de fluxos divididos em etapas, como um card de progresso.
 
-Use para fluxos lineares com 2 a 10 etapas. Nao use para navegacao global, abas independentes, breadcrumbs ou fluxos em que a pessoa possa pular livremente entre secoes sem ordem definida.
+Layout reproduzido do Figma Web Components (node 40000045:5961) com o atomo Progress Line (40000030:6888).
+
+Anatomia (estado In Progress):
+- Card com fundo color/background/neutral/default, borda border-sm em color/neutral/grey-200 e radius 12.
+- Top row: titulo em caixa alta (SemiBold 11, tracking 0.66px) e contador atual/total (Medium 11), ambos em grey-600.
+- Step row: circulo de 32px em typography/primary com o numero da etapa (SemiBold 14, branco) e o nome da etapa (SemiBold 18, typography/primary).
+- Progress Line: track de 8px em color/background/neutral/default-hover e Range em color/background/neutral/black, proporcional a etapa atual.
+- Next row: prefixo "Próxima:" (SemiBold 12) e nome da proxima etapa (Regular 12) em grey-600; some na ultima etapa.
+
+Estado Completed:
+- Card verde claro (#E9FDF3) com borda #E0E0E0 a 80%.
+- Circulo de 38px em #1E7D47 com o vetor check do Figma, titulo SemiBold 15 e descricao Regular 12 em #1E7D47.
+- Botao Recomeçar (#181818, radius 8) alinhado a direita, com onRestart.
 
 Regras:
 - currentStep e baseado em 1: currentStep={1} renderiza 1/total.
-- O componente limita a renderizacao a 10 steps para preservar legibilidade.
-- Etapas concluidas e a etapa atual ficam destacadas; etapas futuras permanecem neutras.
-- A barra usa progresso proporcional a etapa atual em relacao ao total.
-- O texto "PROGRESSO", o prefixo "Próxima:" e o estado final podem ser customizados.
+- A barra usa progresso proporcional: etapa atual dividida pelo total.
+- Textos do titulo, prefixo e estado Completed sao customizaveis.
+
+Responsividade (variante Size=Mobile do Figma, ate 480px):
+- Padding 16, gaps 10, circulo de 28px e tipografia reduzida.
+- O card e fluido e ocupa 100% do container.
 
 Acessibilidade:
-- A barra usa role="progressbar" com aria-valuemin, aria-valuemax e aria-valuenow.
-- O texto visivel comunica o contador e a etapa atual.
-- O dot atual usa aria-current="step".
-- A informacao nao depende exclusivamente de cor.
+- A barra usa role="progressbar" com aria-valuemin, aria-valuemax, aria-valuenow e aria-valuetext.
+- O contador e a etapa atual sao comunicados em texto visivel.
+- O botao Recomeçar e um button nativo com focus ring.
 `,
       },
     },
@@ -63,27 +71,43 @@ Acessibilidade:
   argTypes: {
     className: {
       control: 'text',
-      description: 'Classe CSS opcional aplicada ao elemento raiz.',
+      description: 'Classe CSS opcional aplicada ao container.',
     },
-    completedLabel: {
+    completed: {
+      control: 'boolean',
+      description: 'Exibe o estado Completed do Figma.',
+    },
+    completedDescription: {
       control: 'text',
-      description: 'Texto exibido quando a etapa atual e a ultima.',
+      description: 'Descricao do estado Completed.',
+    },
+    completedTitle: {
+      control: 'text',
+      description: 'Titulo do estado Completed.',
     },
     currentStep: {
-      control: { max: 10, min: 1, type: 'number' },
-      description: 'Etapa atual baseada em 1.',
+      control: { min: 1, step: 1, type: 'number' },
+      description: 'Etapa atual (baseada em 1).',
     },
     label: {
       control: 'text',
-      description: 'Rotulo superior do componente.',
+      description: 'Titulo do card exibido em caixa alta.',
     },
     nextLabel: {
       control: 'text',
-      description: 'Prefixo exibido antes do nome da proxima etapa.',
+      description: 'Prefixo da proxima etapa.',
+    },
+    onRestart: {
+      control: false,
+      description: 'Callback do botao Recomeçar no estado Completed.',
+    },
+    restartLabel: {
+      control: 'text',
+      description: 'Texto do botao do estado Completed.',
     },
     steps: {
-      control: 'object',
-      description: 'Lista de etapas. O componente renderiza no maximo 10.',
+      control: false,
+      description: 'Lista de etapas com id e label.',
     },
   },
   tags: ['autodocs'],
@@ -96,53 +120,60 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     currentStep: 1,
-    steps: defaultSteps,
+    steps: threeSteps,
   },
+  render: (args) => (
+    <div className="stepper-story-shell">
+      <Stepper {...args} />
+    </div>
+  ),
 };
 
-export const Mobile: Story = {
+export const SixSteps: Story = {
   args: {
-    currentStep: 1,
-    steps: mobileSteps,
+    currentStep: 2,
+    steps: sixSteps,
   },
-  parameters: {
-    componentCanvas: {
-      width: 328,
-    },
-    viewport: {
-      defaultViewport: 'mobile',
-    },
-  },
+  render: (args) => (
+    <div className="stepper-story-shell">
+      <Stepper {...args} />
+    </div>
+  ),
 };
 
-export const MiddleStep: Story = {
+export const TwelveSteps: Story = {
   args: {
-    currentStep: 3,
-    steps: fiveSteps,
+    currentStep: 5,
+    steps: twelveSteps,
   },
+  render: (args) => (
+    <div className="stepper-story-shell">
+      <Stepper {...args} />
+    </div>
+  ),
 };
 
 export const LastStep: Story = {
   args: {
-    completedLabel: 'Concluído',
     currentStep: 3,
-    steps: defaultSteps,
+    steps: threeSteps,
   },
+  render: (args) => (
+    <div className="stepper-story-shell">
+      <Stepper {...args} />
+    </div>
+  ),
 };
 
-export const TenSteps: Story = {
+export const Completed: Story = {
   args: {
-    currentStep: 6,
-    steps: tenSteps,
+    completed: true,
+    currentStep: 3,
+    steps: threeSteps,
   },
-};
-
-export const CustomLabels: Story = {
-  args: {
-    completedLabel: 'Fluxo finalizado',
-    currentStep: 2,
-    label: 'ANDAMENTO',
-    nextLabel: 'Depois:',
-    steps: fiveSteps,
-  },
+  render: (args) => (
+    <div className="stepper-story-shell">
+      <Stepper {...args} />
+    </div>
+  ),
 };

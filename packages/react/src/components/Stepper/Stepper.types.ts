@@ -8,6 +8,10 @@ export interface StepperProps {
   currentStep: number;
   label?: string;
   nextLabel?: string;
-  completedLabel?: string;
+  completed?: boolean;
+  completedTitle?: string;
+  completedDescription?: string;
+  restartLabel?: string;
+  onRestart?: () => void;
   className?: string;
 }

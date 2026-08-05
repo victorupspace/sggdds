@@ -1,5 +1,5 @@
-import { render, screen, within } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { fireEvent, render, screen } from '@testing-library/react';
+import { describe, expect, it, vi } from 'vitest';
 
 import { Stepper } from './Stepper';
 import type { StepperStep } from './Stepper.types';
@@ -14,7 +14,7 @@ describe('Stepper', () => {
   it('renders the default label', () => {
     render(<Stepper currentStep={1} steps={steps} />);
 
-    expect(screen.getByText('PROGRESSO')).toBeInTheDocument();
+    expect(screen.getByText('Progresso')).toBeInTheDocument();
   });
 
   it('renders the current and total counter', () => {
@@ -26,7 +26,7 @@ describe('Stepper', () => {
   it('renders the current step label', () => {
     render(<Stepper currentStep={1} steps={steps} />);
 
-    expect(screen.getByRole('heading', { name: 'Versão web' })).toBeInTheDocument();
+    expect(screen.getByText('Versão web')).toBeInTheDocument();
   });
 
   it('renders the next step', () => {
@@ -36,24 +36,11 @@ describe('Stepper', () => {
     expect(screen.getByText('Dados do veículo')).toBeInTheDocument();
   });
 
-  it('renders the completed label on the last step', () => {
-    render(<Stepper completedLabel="Finalizado" currentStep={3} steps={steps} />);
+  it('hides the next row on the last step', () => {
+    render(<Stepper currentStep={3} steps={steps} />);
 
-    expect(screen.getByText('Finalizado')).toBeInTheDocument();
+    expect(screen.getByText('3/3')).toBeInTheDocument();
     expect(screen.queryByText('Próxima:')).not.toBeInTheDocument();
-  });
-
-  it('limits rendering to ten steps defensively', () => {
-    const manySteps = Array.from({ length: 12 }, (_, index) => ({
-      id: `step-${String(index + 1)}`,
-      label: `Etapa ${String(index + 1)}`,
-    }));
-
-    render(<Stepper currentStep={12} steps={manySteps} />);
-
-    expect(screen.getByText('10/10')).toBeInTheDocument();
-    expect(screen.queryByText('Etapa 11')).not.toBeInTheDocument();
-    expect(within(screen.getByLabelText('Etapas')).getAllByRole('listitem')).toHaveLength(10);
   });
 
   it('sets basic progressbar accessibility attributes', () => {
@@ -64,6 +51,37 @@ describe('Stepper', () => {
     expect(progressbar).toHaveAttribute('aria-valuemin', '0');
     expect(progressbar).toHaveAttribute('aria-valuemax', '3');
     expect(progressbar).toHaveAttribute('aria-valuenow', '2');
-    expect(progressbar).toHaveAccessibleName('PROGRESSO: etapa 2 de 3, Dados do veículo');
+    expect(progressbar).toHaveAccessibleName('Progresso: etapa 2 de 3, Dados do veículo');
+  });
+
+  it('renders the completed state with restart action', () => {
+    const onRestart = vi.fn();
+
+    render(<Stepper completed currentStep={3} onRestart={onRestart} steps={steps} />);
+
+    expect(screen.getByText('Serviço concluído')).toBeInTheDocument();
+    expect(screen.getByText('Todas as etapas foram finalizadas')).toBeInTheDocument();
+    expect(screen.queryByRole('progressbar')).not.toBeInTheDocument();
+
+    fireEvent.click(screen.getByRole('button', { name: 'Recomeçar' }));
+
+    expect(onRestart).toHaveBeenCalledTimes(1);
+  });
+
+  it('customizes the completed texts', () => {
+    render(
+      <Stepper
+        completed
+        completedDescription="Processo encerrado com sucesso"
+        completedTitle="Tudo pronto"
+        currentStep={3}
+        restartLabel="Novo pedido"
+        steps={steps}
+      />,
+    );
+
+    expect(screen.getByText('Tudo pronto')).toBeInTheDocument();
+    expect(screen.getByText('Processo encerrado com sucesso')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Novo pedido' })).toBeInTheDocument();
   });
 });

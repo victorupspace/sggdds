@@ -16,11 +16,19 @@ export interface CarouselLabels {
   status?: (index: number, total: number) => string;
 }
 
+/**
+ * Superfície dos indicadores, espelhando o component set do Figma:
+ * `default` (superfícies claras), `darker` (sobre imagens ou fundos coloridos)
+ * e `on-dark` (superfícies escuras, com contêiner translúcido).
+ */
+export type CarouselIndicatorAppearance = 'default' | 'darker' | 'on-dark';
+
 export interface CarouselProps {
   items: CarouselCardItem[];
   className?: string;
   defaultIndex?: number;
   disabled?: boolean;
+  indicatorAppearance?: CarouselIndicatorAppearance;
   indicatorsLabel?: string;
   labels?: CarouselLabels;
   loop?: boolean;

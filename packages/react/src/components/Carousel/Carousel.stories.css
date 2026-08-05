@@ -6,6 +6,10 @@
   background: var(--ds-semantic-color-background-neutral-surface);
 }
 
+.carousel-story-shell--dark {
+  background: var(--ds-semantic-color-background-neutral-soft-black);
+}
+
 .carousel-story-frame {
   inline-size: min(100%, calc(var(--ds-primitive-spacing-128) * 10));
 }

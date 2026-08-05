@@ -19,7 +19,12 @@ export type { ButtonGovProps } from './components/ButtonGov';
 export { Card } from './components/Card';
 export type { CardHeadingLevel, CardOrientation, CardProps } from './components/Card';
 export { Carousel } from './components/Carousel';
-export type { CarouselCardItem, CarouselLabels, CarouselProps } from './components/Carousel';
+export type {
+  CarouselCardItem,
+  CarouselIndicatorAppearance,
+  CarouselLabels,
+  CarouselProps,
+} from './components/Carousel';
 export { CookieConsentBanner } from './components/CookieConsentBanner';
 export type {
   CookieConsentBannerPosition,

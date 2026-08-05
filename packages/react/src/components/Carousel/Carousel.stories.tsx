@@ -123,8 +123,9 @@ Nao use para listas longas, dados tabulares, feed infinito ou conteudos essencia
 
 Anatomia:
 - Area central com cards renderizados pelo componente Card existente.
-- Controles laterais de card anterior e proximo.
-- Indicadores clicaveis centralizados.
+- Setas de navegacao no formato Icon Button Ghost do Figma (32px, redondas, chevron exportado, hover ghost e 38% de opacidade quando desabilitadas).
+- Indicadores Dot Control do Figma: dot de 8px com area de toque de 4x8 e pill ativa de 20x8 em color/indicator/active.
+- indicatorAppearance espelha o component set: default (superficies claras), darker (sobre imagens) e on-dark (superficies escuras, com container translucido elevation/color/intense).
 - Status acessivel com aria-live.
 
 Responsividade:
@@ -152,6 +153,12 @@ Acessibilidade:
     disabled: {
       control: 'boolean',
       description: 'Desabilita controles e indicadores.',
+    },
+    indicatorAppearance: {
+      control: 'inline-radio',
+      description:
+        'Superficie dos indicadores (component set do Figma): default, darker ou on-dark.',
+      options: ['default', 'darker', 'on-dark'],
     },
     items: {
       control: false,
@@ -213,6 +220,29 @@ export const Loop: Story = {
     loop: true,
   },
   render: Default.render,
+};
+
+export const OnDarkIndicators: Story = {
+  args: {
+    indicatorAppearance: 'on-dark',
+    items,
+    loop: true,
+  },
+  parameters: {
+    docs: {
+      description: {
+        story:
+          'Variante On Dark do component set: dots brancos a 70% e pill ativa color/indicator/active-on-dark dentro do container translucido elevation/color/intense, para superficies escuras.',
+      },
+    },
+  },
+  render: (args) => (
+    <div className="carousel-story-shell carousel-story-shell--dark">
+      <div className="carousel-story-frame">
+        <Carousel {...args} />
+      </div>
+    </div>
+  ),
 };
 
 export const Mobile: Story = {

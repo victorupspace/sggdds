@@ -11,9 +11,22 @@
   --carousel-focus-ring: var(--ds-component-focus-ring-color-ring);
   --carousel-shadow: var(--ds-semantic-shadow-floating);
   --carousel-gap: var(--ds-primitive-spacing-24);
-  --carousel-control-size: var(--ds-primitive-spacing-48);
-  --carousel-icon-size: var(--ds-primitive-spacing-24);
-  --carousel-indicator-size: var(--ds-primitive-spacing-10);
+
+  /*
+   * Controles de navegação do Figma (Web Components / Carousel, node
+   * 95:19785): setas Icon Button Ghost Small e Dot Controls.
+   */
+  /* icon-button/size/width-sm (seta de 32px) e Component sizing/24 (ícone) */
+  --carousel-control-size: var(--ds-component-icon-button-size-width-sm);
+  --carousel-icon-size: var(--ds-component-component-sizing-24);
+  /* icon-button/color/icon/ghost/default e background/ghost/hover */
+  --carousel-control-color: var(--ds-component-icon-button-color-icon-ghost-default);
+  --carousel-control-hover-background: var(--ds-component-icon-button-color-background-ghost-hover);
+  /* Fill #4d4d4d do dot exportado (Default); a pill ativa usa
+     color/indicator/active (#c60008) — variable nova ausente nas collections
+     exportadas, valores literais documentados */
+  --carousel-indicator-color: #4d4d4d;
+  --carousel-indicator-active-color: #c60008;
   --carousel-stage-padding: var(--ds-primitive-spacing-24);
   --carousel-visible-items: 1;
   --carousel-item-size: calc(
@@ -104,20 +117,21 @@
   block-size: var(--carousel-control-size);
   padding: var(--ds-primitive-spacing-0);
   place-items: center;
-  border: var(--ds-primitive-border-width-border-sm) solid var(--carousel-border);
-  border-radius: var(--ds-component-carousel-arrow-border-radius);
-  background: var(--carousel-surface);
-  color: var(--carousel-foreground);
+  border: var(--ds-primitive-border-width-border-none);
+  /* border/radius/radius-full (seta redonda do Figma) */
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  background: none;
+  color: var(--carousel-control-color);
   cursor: pointer;
   transition:
     background-color 160ms ease,
-    border-color 160ms ease,
     color 160ms ease;
 }
 
-.ds-carousel__control:hover:not(:disabled) {
-  border-color: var(--carousel-border-strong);
-  background: var(--carousel-hover);
+@media (hover: hover) {
+  .ds-carousel__control:hover:not(:disabled) {
+    background: var(--carousel-control-hover-background);
+  }
 }
 
 .ds-carousel__control:active:not(:disabled) {
@@ -125,7 +139,8 @@
 }
 
 .ds-carousel__control:disabled {
-  color: var(--carousel-disabled);
+  /* Arrows Disabled: opacidade de 38% no Figma */
+  opacity: 0.38;
   cursor: not-allowed;
 }
 
@@ -155,48 +170,64 @@
 .ds-carousel__indicators {
   display: inline-flex;
   flex-wrap: wrap;
-  gap: var(--ds-component-carousel-dot-spacing-gap);
+  /* spacing/8 entre os Dot Controls */
+  gap: var(--ds-primitive-spacing-8);
   align-items: center;
   justify-content: center;
 }
 
 .ds-carousel__indicator {
-  display: inline-grid;
-  inline-size: var(--ds-primitive-spacing-24);
-  block-size: var(--ds-primitive-spacing-24);
-  padding: var(--ds-primitive-spacing-0);
-  place-items: center;
-  border: 0;
-  border-radius: var(--ds-component-carousel-dot-border-radius);
-  background: transparent;
-  color: var(--carousel-border-strong);
+  display: inline-flex;
+  align-items: center;
+  /* Dot Control: padding de Component sizing/8 (y) por /4 (x) */
+  padding: var(--ds-component-component-sizing-8) var(--ds-component-component-sizing-4);
+  border: var(--ds-primitive-border-width-border-none);
+  background: none;
   cursor: pointer;
 }
 
 .ds-carousel__indicator::before {
   display: block;
-  inline-size: var(--carousel-indicator-size);
-  block-size: var(--carousel-indicator-size);
-  border-radius: var(--ds-component-carousel-dot-border-radius);
-  background: currentColor;
+  /* Dot de 8px (vetor exportado do Figma) */
+  inline-size: var(--ds-component-component-sizing-8);
+  block-size: var(--ds-component-component-sizing-8);
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  background: var(--carousel-indicator-color);
   content: '';
   transition:
     inline-size 160ms ease,
     background-color 160ms ease;
 }
 
-.ds-carousel__indicator:hover:not(:disabled),
-.ds-carousel__indicator[aria-pressed='true'] {
-  color: var(--carousel-foreground);
-}
-
 .ds-carousel__indicator[aria-pressed='true']::before {
-  inline-size: var(--ds-primitive-spacing-24);
+  /* Selected: pill de 20x8 com color/indicator/active */
+  inline-size: 20px;
+  background: var(--carousel-indicator-active-color);
 }
 
 .ds-carousel__indicator:disabled {
-  color: var(--carousel-disabled);
+  opacity: 0.38;
   cursor: not-allowed;
+}
+
+.ds-carousel--indicators-darker {
+  /* Variante Darker: fill #333333 do dot exportado */
+  --carousel-indicator-color: #333333;
+}
+
+.ds-carousel--indicators-on-dark {
+  /* Variante On Dark: dot branco a 70% e pill color/indicator/active-on-dark
+     (#ed4c4c) — variables novas ausentes nas collections exportadas */
+  --carousel-indicator-color: rgb(255 255 255 / 70%);
+  --carousel-indicator-active-color: #ed4c4c;
+}
+
+.ds-carousel--indicators-on-dark .ds-carousel__indicators {
+  /* elevation/color/intense, sizing/chip/padding-x (6px) e border/radius/xs
+     (4px, mesmo valor de border/radius/radius-sm) */
+  padding-inline: 6px;
+  border-radius: var(--ds-primitive-border-radius-radius-sm);
+  background: rgb(0 0 0 / 20%);
 }
 
 .ds-carousel__indicator-label {
@@ -234,7 +265,6 @@
 
 @media (max-width: 640px) {
   .ds-carousel {
-    --carousel-control-size: var(--ds-primitive-spacing-40);
     --carousel-stage-padding: var(--ds-primitive-spacing-12);
     --carousel-gap: var(--ds-primitive-spacing-12);
   }

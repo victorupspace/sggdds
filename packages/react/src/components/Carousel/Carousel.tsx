@@ -40,6 +40,7 @@ function parseCssNumber(value: string, fallback: number) {
   return Number.isFinite(parsedValue) ? parsedValue : fallback;
 }
 
+/* Chevron do Icon Button Ghost exportado do Figma (node 95:19785) */
 function CarouselIcon({ direction }: { direction: 'next' | 'previous' }) {
   return (
     <svg
@@ -52,19 +53,15 @@ function CarouselIcon({ direction }: { direction: 'next' | 'previous' }) {
     >
       {direction === 'previous' ? (
         <path
-          d="m15 6-6 6 6 6"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2.25"
+          d="M6.14645 0.146447C6.34171 -0.0488155 6.65822 -0.0488155 6.85348 0.146447C7.0487 0.341712 7.04873 0.658228 6.85348 0.853478L1.20699 6.49996L6.85348 12.1464C7.0487 12.3417 7.04873 12.6582 6.85348 12.8535C6.65823 13.0487 6.34171 13.0487 6.14645 12.8535L0.146447 6.85348C-0.0488155 6.65822 -0.0488155 6.34171 0.146447 6.14645L6.14645 0.146447Z"
+          fill="currentColor"
+          transform="translate(8.5 5.5)"
         />
       ) : (
         <path
-          d="m9 6 6 6-6 6"
-          stroke="currentColor"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          strokeWidth="2.25"
+          d="M0.146447 0.146447C0.341709 -0.0488155 0.658216 -0.0488155 0.853478 0.146447L6.85348 6.14645C7.0487 6.34171 7.04873 6.65823 6.85348 6.85348L0.853478 12.8535C0.658228 13.0487 0.341712 13.0487 0.146447 12.8535C-0.0488153 12.6582 -0.0488153 12.3417 0.146447 12.1464L5.79293 6.49996L0.146447 0.853478C-0.0488155 0.658216 -0.0488155 0.341709 0.146447 0.146447Z"
+          fill="currentColor"
+          transform="translate(8.5 5.5)"
         />
       )}
     </svg>
@@ -75,6 +72,7 @@ export function Carousel({
   className,
   defaultIndex = 0,
   disabled = false,
+  indicatorAppearance = 'default',
   indicatorsLabel = 'Selecionar grupo de cards',
   items,
   labels,
@@ -106,6 +104,9 @@ export function Carousel({
   const rootClassName = [
     'ds-carousel',
     `ds-carousel--visible-${String(resolvedVisibleItems)}`,
+    indicatorAppearance !== 'default'
+      ? `ds-carousel--indicators-${indicatorAppearance}`
+      : undefined,
     disabled ? 'ds-carousel--disabled' : undefined,
     className,
   ]

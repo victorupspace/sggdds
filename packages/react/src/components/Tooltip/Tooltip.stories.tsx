@@ -35,8 +35,14 @@ Comportamento:
 - Suporta delay de abertura e fechamento.
 - Suporta posicionamentos top, right, bottom e left.
 
-Tokens:
-Surface, foreground, radius, spacing, typography, seta e sombra usam variaveis CSS dos tokens disponiveis. Como ainda nao ha token dedicado de shadow publicado, a sombra usa cores alpha e dimensoes tokenizadas.
+Layout reproduzido do Figma Web Components (node 108:35791) com o atomo Arrow.
+
+Anatomia:
+- Balao com padding 8x4 (Component sizing/8 e /4), radius 4 (border/radius/radius-sm), largura entre 40 e 200px e texto Body/Extra Small (Plus Jakarta Sans Medium 12) centralizado.
+- Tom dark (padrao): fundo color/background/neutral/black e texto typography/inverse.
+- Tom light (variante Knockout do Figma): fundo color/background/neutral/white e texto typography/primary.
+- Seta triangular de 8x4 do atomo Arrow, na cor da superficie, em qualquer um dos quatro lados.
+- Sombra do node (0 4px 4px 12% + 0 2px 2px 8%), sem variable na collection exportada.
 
 Acessibilidade:
 - O elemento flutuante usa role="tooltip".

@@ -1,12 +1,30 @@
+/*
+ * Layout do Figma: Web Components / Tooltip (node 108:35791) e átomo Arrow.
+ * Cada propriedade referencia a mesma variable usada no Figma; os comentários
+ * indicam o nome original da variable na collection.
+ */
 .ds-tooltip {
-  --tooltip-surface: var(--ds-component-tooltip-color-background);
-  --tooltip-foreground: var(--ds-component-tooltip-color-text);
-  --tooltip-offset: var(--ds-primitive-spacing-8);
-  --tooltip-arrow-size: var(--ds-primitive-spacing-8);
+  /* color/background/neutral/black (a collection exporta tooltip/color/background
+     como soft-black #292929; o node usa neutral/black — divergência reportada) */
+  --tooltip-surface: var(--ds-semantic-color-background-neutral-black);
+  /* text-style/content-color/typography/inverse */
+  --tooltip-foreground: var(--ds-semantic-text-style-content-color-typography-inverse);
+  /* tooltip/arrow: 8x4 (largura x altura) */
+  --tooltip-arrow-width: var(--ds-component-tooltip-arrow-size-width);
+  --tooltip-arrow-height: var(--ds-component-tooltip-arrow-size-height);
+  /* tooltip/offset/spacing/offset (4px) + altura da seta */
+  --tooltip-offset: calc(
+    var(--tooltip-arrow-height) + var(--ds-component-tooltip-offset-spacing-offset)
+  );
+  /* tooltip/spacing/padding-x (Component sizing/8) e padding-y (Component sizing/4) */
   --tooltip-padding-block: var(--ds-component-tooltip-spacing-padding-y);
   --tooltip-padding-inline: var(--ds-component-tooltip-spacing-padding-x);
+  /* tooltip/border-radius (border/radius/radius-sm, 4px) */
   --tooltip-radius: var(--ds-component-tooltip-border-radius);
-  --tooltip-max-inline-size: 240px;
+  /* Larguras do node: min 40 e max 200 (o token tooltip/size/max-width exporta
+     128px — divergência reportada) */
+  --tooltip-min-inline-size: 40px;
+  --tooltip-max-inline-size: 200px;
 
   position: relative;
   display: inline-flex;
@@ -14,15 +32,23 @@
   vertical-align: middle;
 }
 
+/* Variante Knockout do Figma: fundo branco e texto primary */
 .ds-tooltip--tone-light {
-  --tooltip-surface: var(--ds-semantic-color-background-neutral-default);
-  --tooltip-foreground: var(--ds-semantic-text-style-content-color-typography-secondary);
+  /* color/background/neutral/white */
+  --tooltip-surface: var(--ds-semantic-color-background-neutral-white);
+  /* text-style/content-color/typography/primary */
+  --tooltip-foreground: var(--ds-semantic-text-style-content-color-typography-primary);
 }
 
 .ds-tooltip__bubble {
   position: absolute;
   z-index: 10;
+  display: flex;
   box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  inline-size: max-content;
+  min-inline-size: var(--tooltip-min-inline-size);
   max-inline-size: min(
     var(--tooltip-max-inline-size),
     calc(100vw - var(--ds-primitive-spacing-32))
@@ -30,16 +56,22 @@
   padding: var(--tooltip-padding-block) var(--tooltip-padding-inline);
   border-radius: var(--tooltip-radius);
   background: var(--tooltip-surface);
-  box-shadow: var(--ds-semantic-shadow-floating);
+  /* Sombra do node (drop shadow 0 4 4 12% + 0 2 2 8%) — sem variable na
+     collection exportada, literal documentado */
+  box-shadow:
+    0 4px 4px rgb(0 0 0 / 12%),
+    0 2px 2px rgb(0 0 0 / 8%);
   color: var(--tooltip-foreground);
   font-family:
     var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
+  /* Body/Extra Small: Plus Jakarta Sans Medium 12 */
   font-size: var(--ds-component-tooltip-typography-font-size);
-  font-weight: var(--ds-primitive-typography-font-weight-regular);
-  line-height: var(--ds-component-tooltip-typography-line-height);
+  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  line-height: normal;
   opacity: 0;
   overflow-wrap: anywhere;
   pointer-events: none;
+  text-align: center;
   transition:
     opacity 120ms ease,
     visibility 120ms ease;
@@ -47,13 +79,12 @@
   white-space: normal;
 }
 
+/* Seta do Figma: triângulo de 8x4 (M4 0L0 4H8L4 0Z) desenhado com clip-path
+   na cor da superfície */
 .ds-tooltip__bubble::before {
   position: absolute;
-  inline-size: var(--tooltip-arrow-size);
-  block-size: var(--tooltip-arrow-size);
   background: var(--tooltip-surface);
   content: '';
-  transform: rotate(45deg);
 }
 
 .ds-tooltip__content {
@@ -74,8 +105,11 @@
 }
 
 .ds-tooltip--placement-top .ds-tooltip__bubble::before {
-  inset-block-end: calc(var(--tooltip-arrow-size) / -2);
-  inset-inline-start: calc(50% - (var(--tooltip-arrow-size) / 2));
+  inset-block-end: calc(var(--tooltip-arrow-height) * -1);
+  inset-inline-start: calc(50% - (var(--tooltip-arrow-width) / 2));
+  inline-size: var(--tooltip-arrow-width);
+  block-size: var(--tooltip-arrow-height);
+  clip-path: polygon(50% 100%, 0 0, 100% 0);
 }
 
 .ds-tooltip--placement-bottom .ds-tooltip__bubble {
@@ -85,8 +119,11 @@
 }
 
 .ds-tooltip--placement-bottom .ds-tooltip__bubble::before {
-  inset-block-start: calc(var(--tooltip-arrow-size) / -2);
-  inset-inline-start: calc(50% - (var(--tooltip-arrow-size) / 2));
+  inset-block-start: calc(var(--tooltip-arrow-height) * -1);
+  inset-inline-start: calc(50% - (var(--tooltip-arrow-width) / 2));
+  inline-size: var(--tooltip-arrow-width);
+  block-size: var(--tooltip-arrow-height);
+  clip-path: polygon(50% 0, 0 100%, 100% 100%);
 }
 
 .ds-tooltip--placement-left .ds-tooltip__bubble {
@@ -96,8 +133,11 @@
 }
 
 .ds-tooltip--placement-left .ds-tooltip__bubble::before {
-  inset-block-start: calc(50% - (var(--tooltip-arrow-size) / 2));
-  inset-inline-end: calc(var(--tooltip-arrow-size) / -2);
+  inset-block-start: calc(50% - (var(--tooltip-arrow-width) / 2));
+  inset-inline-end: calc(var(--tooltip-arrow-height) * -1);
+  inline-size: var(--tooltip-arrow-height);
+  block-size: var(--tooltip-arrow-width);
+  clip-path: polygon(100% 50%, 0 0, 0 100%);
 }
 
 .ds-tooltip--placement-right .ds-tooltip__bubble {
@@ -107,8 +147,11 @@
 }
 
 .ds-tooltip--placement-right .ds-tooltip__bubble::before {
-  inset-block-start: calc(50% - (var(--tooltip-arrow-size) / 2));
-  inset-inline-start: calc(var(--tooltip-arrow-size) / -2);
+  inset-block-start: calc(50% - (var(--tooltip-arrow-width) / 2));
+  inset-inline-start: calc(var(--tooltip-arrow-height) * -1);
+  inline-size: var(--tooltip-arrow-height);
+  block-size: var(--tooltip-arrow-width);
+  clip-path: polygon(0 50%, 100% 0, 100% 100%);
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -117,8 +160,8 @@
   }
 }
 
-@media (max-width: 420px) {
-  .ds-tooltip {
-    --tooltip-max-inline-size: 200px;
-  }
-}
+/*
+ * Responsividade: o node não define variante mobile. O balão limita a largura
+ * a 200px (ou à viewport menos 32px em telas estreitas) e o texto quebra
+ * linha naturalmente.
+ */

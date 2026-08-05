@@ -26,6 +26,19 @@ const config: StorybookConfig = {
   },
   viteFinal: (viteConfig) => ({
     ...viteConfig,
+    resolve: {
+      ...viteConfig.resolve,
+      alias: [
+        ...(Array.isArray(viteConfig.resolve?.alias) ? viteConfig.resolve.alias : []),
+        // Storybook always builds the library from source. Without this alias a
+        // production build resolves "@government/design-system" to the package's
+        // dist output, which does not exist on fresh CI/Vercel checkouts.
+        {
+          find: /^@government\/design-system$/,
+          replacement: resolve(configDir, '../packages/react/src/index.ts'),
+        },
+      ],
+    },
     plugins: [
       ...(viteConfig.plugins ?? []),
       {

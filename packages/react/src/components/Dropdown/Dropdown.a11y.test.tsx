@@ -12,9 +12,12 @@ const options = [
 
 describe('Dropdown — accessibility', () => {
   it('has no violations with label and options', async () => {
-    const { container } = render(
-      <Dropdown label="Estado" options={options} placeholder="Selecione" />,
-    );
+    const { container } = render(<Dropdown label="Estado" options={options} />);
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('has no violations with the listbox open', async () => {
+    const { container } = render(<Dropdown defaultOpen label="Estado" options={options} />);
     expect(await axe(container)).toHaveNoViolations();
   });
 

@@ -7,23 +7,18 @@
   background: var(--ds-primitive-color-neutral-grey-100);
 }
 
+/* Espaço extra para as stories com o menu aberto */
+.dropdown-story-shell--tall {
+  align-content: start;
+  min-block-size: 480px;
+}
+
+/* Largura do exemplo no Figma (220px) com folga para labels maiores */
 .dropdown-story-panel {
   display: grid;
   box-sizing: border-box;
-  inline-size: min(100%, 321px);
+  inline-size: min(100%, 220px);
   gap: var(--ds-primitive-spacing-24);
-}
-
-.dropdown-story-stack {
-  display: grid;
-  box-sizing: border-box;
-  inline-size: min(100%, 420px);
-  gap: var(--ds-primitive-spacing-24);
-}
-
-.dropdown-story-long {
-  box-sizing: border-box;
-  inline-size: min(100%, 560px);
 }
 
 @media (max-width: 420px) {
@@ -32,9 +27,7 @@
     padding: var(--ds-primitive-spacing-16);
   }
 
-  .dropdown-story-panel,
-  .dropdown-story-stack,
-  .dropdown-story-long {
+  .dropdown-story-panel {
     inline-size: 100%;
   }
 }

@@ -4,39 +4,88 @@ import { describe, expect, it, vi } from 'vitest';
 import { Dropdown } from './Dropdown';
 
 const options = [
-  { value: 'financeiro', label: 'Financeiro' },
-  { value: 'atendimento', label: 'Atendimento' },
-  { value: 'documentos', label: 'Documentos' },
+  { value: 'sao-paulo', label: 'São Paulo' },
+  { value: 'rio-de-janeiro', label: 'Rio de Janeiro' },
+  { value: 'belo-horizonte', label: 'Belo Horizonte' },
 ];
 
 describe('Dropdown', () => {
-  it('associates the visible label with the native select', () => {
-    render(<Dropdown label="Categoria" options={options} placeholder="Selecione" />);
+  it('associates the visible label with the trigger button', () => {
+    render(<Dropdown label="Cidade" options={options} />);
 
-    expect(screen.getByLabelText('Categoria')).toHaveValue('');
+    const trigger = screen.getByLabelText('Cidade');
+
+    expect(trigger).toHaveAttribute('aria-haspopup', 'listbox');
+    expect(trigger).toHaveTextContent('Selecione');
   });
 
-  it('renders the provided options', () => {
-    render(<Dropdown label="Categoria" options={options} />);
+  it('opens the listbox and renders the options', () => {
+    render(<Dropdown label="Cidade" options={options} />);
 
-    expect(screen.getByRole('option', { name: 'Financeiro' })).toHaveValue('financeiro');
-    expect(screen.getByRole('option', { name: 'Documentos' })).toHaveValue('documentos');
+    fireEvent.click(screen.getByLabelText('Cidade'));
+
+    expect(screen.getByRole('listbox')).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: 'São Paulo' })).toBeInTheDocument();
+    expect(screen.getByRole('option', { name: 'Belo Horizonte' })).toBeInTheDocument();
   });
 
-  it('marks the select as required', () => {
-    render(<Dropdown required label="Categoria" options={options} />);
+  it('selects an option on click and calls onValueChange', () => {
+    const onValueChange = vi.fn();
 
-    expect(screen.getByLabelText(/Categoria/)).toBeRequired();
+    render(<Dropdown label="Cidade" onValueChange={onValueChange} options={options} />);
+
+    fireEvent.click(screen.getByLabelText('Cidade'));
+    fireEvent.click(screen.getByRole('option', { name: 'Rio de Janeiro' }));
+
+    expect(onValueChange).toHaveBeenCalledWith('rio-de-janeiro');
+    expect(screen.getByLabelText('Cidade')).toHaveTextContent('Rio de Janeiro');
+    expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+  });
+
+  it('supports keyboard selection', () => {
+    const onValueChange = vi.fn();
+
+    render(<Dropdown label="Cidade" onValueChange={onValueChange} options={options} />);
+
+    fireEvent.click(screen.getByLabelText('Cidade'));
+
+    const listbox = screen.getByRole('listbox');
+    fireEvent.keyDown(listbox, { key: 'ArrowDown' });
+    fireEvent.keyDown(listbox, { key: 'Enter' });
+
+    expect(onValueChange).toHaveBeenCalledWith('rio-de-janeiro');
+  });
+
+  it('closes the listbox with Escape', () => {
+    render(<Dropdown defaultOpen label="Cidade" options={options} />);
+
+    fireEvent.keyDown(screen.getByRole('listbox'), { key: 'Escape' });
+
+    expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
+  });
+
+  it('does not select disabled options', () => {
+    const onValueChange = vi.fn();
+
+    render(
+      <Dropdown
+        label="Cidade"
+        onValueChange={onValueChange}
+        options={[...options, { value: 'bloqueado', label: 'Bloqueado', disabled: true }]}
+      />,
+    );
+
+    fireEvent.click(screen.getByLabelText('Cidade'));
+    fireEvent.click(screen.getByRole('option', { name: 'Bloqueado' }));
+
+    expect(onValueChange).not.toHaveBeenCalled();
+    expect(screen.getByRole('listbox')).toBeInTheDocument();
   });
 
   it('connects helper text with aria-describedby', () => {
-    render(<Dropdown helperText="Escolha uma categoria" label="Categoria" options={options} />);
+    render(<Dropdown helperText="Escolha uma cidade" label="Cidade" options={options} />);
 
-    const select = screen.getByLabelText('Categoria');
-    const helper = screen.getByText('Escolha uma categoria');
-
-    expect(select).toHaveAccessibleDescription('Escolha uma categoria');
-    expect(select).toHaveAttribute('aria-describedby', helper.closest('p')?.id);
+    expect(screen.getByLabelText('Cidade')).toHaveAccessibleDescription('Escolha uma cidade');
   });
 
   it('sets aria-invalid and describes the error message', () => {
@@ -44,51 +93,30 @@ describe('Dropdown', () => {
       <Dropdown
         errorText="Selecione uma opcao"
         helperText="Helper Text"
-        label="Categoria"
+        label="Cidade"
         options={options}
       />,
     );
 
-    const select = screen.getByLabelText('Categoria');
+    const trigger = screen.getByLabelText('Cidade');
 
-    expect(select).toHaveAttribute('aria-invalid', 'true');
-    expect(select).toHaveAccessibleDescription('Selecione uma opcao Helper Text');
+    expect(trigger).toHaveAttribute('aria-invalid', 'true');
+    expect(trigger).toHaveAccessibleDescription('Selecione uma opcao Helper Text');
   });
 
-  it('calls onChange and onValueChange when a value is selected', () => {
-    const onChange = vi.fn();
-    const onValueChange = vi.fn();
+  it('does not open when disabled', () => {
+    render(<Dropdown disabled label="Cidade" options={options} />);
 
-    render(
-      <Dropdown
-        label="Categoria"
-        onChange={onChange}
-        onValueChange={onValueChange}
-        options={options}
-        placeholder="Selecione"
-      />,
-    );
+    const trigger = screen.getByLabelText('Cidade');
+    fireEvent.click(trigger);
 
-    fireEvent.change(screen.getByLabelText('Categoria'), { target: { value: 'documentos' } });
-
-    expect(onChange).toHaveBeenCalledTimes(1);
-    expect(onValueChange).toHaveBeenCalledWith('documentos', expect.any(Object));
+    expect(trigger).toBeDisabled();
+    expect(screen.queryByRole('listbox')).not.toBeInTheDocument();
   });
 
-  it('supports disabled state accessibly', () => {
-    render(<Dropdown disabled label="Categoria" options={options} value="financeiro" />);
+  it('shows the controlled value', () => {
+    render(<Dropdown label="Cidade" options={options} value="belo-horizonte" />);
 
-    expect(screen.getByLabelText('Categoria')).toBeDisabled();
-  });
-
-  it('renders disabled options', () => {
-    render(
-      <Dropdown
-        label="Categoria"
-        options={[...options, { value: 'bloqueado', label: 'Bloqueado', disabled: true }]}
-      />,
-    );
-
-    expect(screen.getByRole('option', { name: 'Bloqueado' })).toBeDisabled();
+    expect(screen.getByLabelText('Cidade')).toHaveTextContent('Belo Horizonte');
   });
 });

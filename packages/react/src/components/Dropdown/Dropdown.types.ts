@@ -1,8 +1,4 @@
-import type { ChangeEvent, ChangeEventHandler, SelectHTMLAttributes } from 'react';
-
 export type DropdownState = 'default' | 'error';
-
-export type DropdownSize = 'medium' | 'large';
 
 export interface DropdownOption {
   value: string;
@@ -10,22 +6,21 @@ export interface DropdownOption {
   disabled?: boolean;
 }
 
-export interface DropdownProps extends Omit<
-  SelectHTMLAttributes<HTMLSelectElement>,
-  'children' | 'className' | 'defaultValue' | 'multiple' | 'onChange' | 'size' | 'value'
-> {
+export interface DropdownProps {
   label: string;
   options: DropdownOption[];
+  /** Texto exibido sem seleção ("Selecione" no Figma). */
   placeholder?: string;
   helperText?: string;
   errorText?: string;
   state?: DropdownState;
-  size?: DropdownSize;
+  disabled?: boolean;
+  required?: boolean;
   className?: string;
-  selectClassName?: string;
   fullWidth?: boolean;
-  defaultValue?: string;
   value?: string;
-  onChange?: ChangeEventHandler<HTMLSelectElement>;
-  onValueChange?: (value: string, event: ChangeEvent<HTMLSelectElement>) => void;
+  defaultValue?: string;
+  defaultOpen?: boolean;
+  id?: string;
+  onValueChange?: (value: string) => void;
 }

@@ -1,30 +1,40 @@
 import './Dropdown.styles.css';
 
-import { forwardRef, useId, useState } from 'react';
+import { forwardRef, useEffect, useId, useRef, useState } from 'react';
 
-import type { DropdownProps } from './Dropdown.types';
+import type { KeyboardEvent } from 'react';
+import type { DropdownOption, DropdownProps } from './Dropdown.types';
 
-function getSelectValue(value: string | undefined) {
-  return value ?? '';
-}
-
-function ChevronDownIcon() {
+/*
+ * Chevron do Figma (Web Components / Dropdown, node 108:26342): glifo
+ * arrow_back_ios_new exportado, rotacionado -90° via CSS para apontar para
+ * baixo; a cor vem via currentColor.
+ */
+function ChevronIcon() {
   return (
-    <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <svg aria-hidden="true" fill="none" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
       <path
-        d="m6 9 6 6 6-6"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
+        d="M13.3348 18.0496L5.28999 10.0048L13.3348 1.96L14.5175 3.14271L7.6552 10.0048L14.5175 16.8669L13.3348 18.0496Z"
+        fill="currentColor"
       />
     </svg>
   );
 }
 
-export const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(function Dropdown(
+function findEnabledIndex(options: DropdownOption[], start: number, step: number) {
+  for (let index = start; index >= 0 && index < options.length; index += step) {
+    if (!options[index].disabled) {
+      return index;
+    }
+  }
+
+  return -1;
+}
+
+export const Dropdown = forwardRef<HTMLButtonElement, DropdownProps>(function Dropdown(
   {
     className,
+    defaultOpen = false,
     defaultValue,
     disabled = false,
     errorText,
@@ -32,45 +42,129 @@ export const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(function Dr
     helperText,
     id,
     label,
-    onChange,
     onValueChange,
     options,
-    placeholder,
+    placeholder = 'Selecione',
     required = false,
-    selectClassName,
-    size = 'medium',
     state = 'default',
     value,
-    ...selectProps
   },
   ref,
 ) {
   const generatedId = useId();
-  const selectId = id ?? generatedId;
-  const helperId = helperText ? `${selectId}-helper` : undefined;
-  const errorId = errorText ? `${selectId}-error` : undefined;
-  const [uncontrolledValue, setUncontrolledValue] = useState(getSelectValue(defaultValue));
-  const currentValue = value !== undefined ? getSelectValue(value) : uncontrolledValue;
-  const isPlaceholderSelected = Boolean(placeholder) && currentValue === '';
+  const buttonId = id ?? generatedId;
+  const labelId = `${buttonId}-label`;
+  const listboxId = `${buttonId}-listbox`;
+  const helperId = helperText ? `${buttonId}-helper` : undefined;
+  const errorId = errorText ? `${buttonId}-error` : undefined;
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+  const [uncontrolledValue, setUncontrolledValue] = useState(defaultValue ?? '');
+  const [activeIndex, setActiveIndex] = useState(-1);
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+  const listboxRef = useRef<HTMLUListElement>(null);
+  const currentValue = value ?? uncontrolledValue;
+  const selectedOption = options.find((option) => option.value === currentValue);
   const isError = state === 'error' || Boolean(errorText);
   const describedBy =
     [isError ? errorId : undefined, helperId].filter(Boolean).join(' ') || undefined;
   const rootClassName = [
     'ds-dropdown',
-    `ds-dropdown--size-${size}`,
+    isOpen ? 'ds-dropdown--open' : undefined,
     isError ? 'ds-dropdown--error' : undefined,
     disabled ? 'ds-dropdown--disabled' : undefined,
     fullWidth ? 'ds-dropdown--full-width' : undefined,
-    isPlaceholderSelected ? 'ds-dropdown--placeholder' : undefined,
     className,
   ]
     .filter(Boolean)
     .join(' ');
-  const selectClassNames = ['ds-dropdown__field', selectClassName].filter(Boolean).join(' ');
+
+  useEffect(() => {
+    if (isOpen) {
+      listboxRef.current?.focus();
+    }
+  }, [isOpen]);
+
+  function setButtonRef(node: HTMLButtonElement | null) {
+    buttonRef.current = node;
+
+    if (typeof ref === 'function') {
+      ref(node);
+    } else if (ref) {
+      ref.current = node;
+    }
+  }
+
+  function openList() {
+    if (disabled) {
+      return;
+    }
+
+    const selectedIndex = options.findIndex(
+      (option) => option.value === currentValue && !option.disabled,
+    );
+
+    setActiveIndex(selectedIndex >= 0 ? selectedIndex : findEnabledIndex(options, 0, 1));
+    setIsOpen(true);
+  }
+
+  function closeList(refocus = true) {
+    setIsOpen(false);
+
+    if (refocus) {
+      buttonRef.current?.focus();
+    }
+  }
+
+  function selectOption(option: DropdownOption) {
+    if (option.disabled) {
+      return;
+    }
+
+    if (value === undefined) {
+      setUncontrolledValue(option.value);
+    }
+
+    onValueChange?.(option.value);
+    closeList();
+  }
+
+  function handleListKeyDown(event: KeyboardEvent<HTMLUListElement>) {
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      setActiveIndex((index) => {
+        const nextIndex = findEnabledIndex(options, index + 1, 1);
+        return nextIndex >= 0 ? nextIndex : index;
+      });
+    } else if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      setActiveIndex((index) => {
+        const nextIndex = findEnabledIndex(options, index - 1, -1);
+        return nextIndex >= 0 ? nextIndex : index;
+      });
+    } else if (event.key === 'Home') {
+      event.preventDefault();
+      setActiveIndex(findEnabledIndex(options, 0, 1));
+    } else if (event.key === 'End') {
+      event.preventDefault();
+      setActiveIndex(findEnabledIndex(options, options.length - 1, -1));
+    } else if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      const option = options[activeIndex] as DropdownOption | undefined;
+
+      if (option) {
+        selectOption(option);
+      }
+    } else if (event.key === 'Escape') {
+      event.preventDefault();
+      closeList();
+    } else if (event.key === 'Tab') {
+      setIsOpen(false);
+    }
+  }
 
   return (
     <div className={rootClassName}>
-      <label className="ds-dropdown__label" htmlFor={selectId}>
+      <label className="ds-dropdown__label" htmlFor={buttonId} id={labelId}>
         <span>{label}</span>
         {required ? (
           <span aria-hidden="true" className="ds-dropdown__required">
@@ -80,56 +174,104 @@ export const Dropdown = forwardRef<HTMLSelectElement, DropdownProps>(function Dr
       </label>
 
       <div className="ds-dropdown__control">
-        <select
-          {...selectProps}
+        <button
+          aria-controls={isOpen ? listboxId : undefined}
           aria-describedby={describedBy}
+          aria-expanded={isOpen}
+          aria-haspopup="listbox"
           aria-invalid={isError ? 'true' : undefined}
-          className={selectClassNames}
-          defaultValue={defaultValue ?? (placeholder ? '' : undefined)}
+          aria-required={required ? 'true' : undefined}
+          className="ds-dropdown__field"
           disabled={disabled}
-          id={selectId}
-          onChange={(event) => {
-            setUncontrolledValue(event.currentTarget.value);
-            onChange?.(event);
-            onValueChange?.(event.currentTarget.value, event);
+          id={buttonId}
+          onClick={() => {
+            if (isOpen) {
+              closeList();
+            } else {
+              openList();
+            }
           }}
-          ref={ref}
-          required={required}
-          value={value}
+          onKeyDown={(event) => {
+            if (event.key === 'ArrowDown' || event.key === 'ArrowUp') {
+              event.preventDefault();
+              openList();
+            }
+          }}
+          ref={setButtonRef}
+          type="button"
         >
-          {placeholder ? (
-            <option disabled hidden value="">
-              {placeholder}
-            </option>
-          ) : null}
-          {options.map((option) => (
-            <option disabled={option.disabled} key={option.value} value={option.value}>
-              {option.label}
-            </option>
-          ))}
-        </select>
-        <span aria-hidden="true" className="ds-dropdown__icon">
-          <ChevronDownIcon />
-        </span>
+          <span className="ds-dropdown__value">
+            {selectedOption ? selectedOption.label : placeholder}
+          </span>
+          <span aria-hidden="true" className="ds-dropdown__icon">
+            <ChevronIcon />
+          </span>
+        </button>
+
+        {isOpen ? (
+          <ul
+            aria-activedescendant={
+              activeIndex >= 0 ? `${buttonId}-option-${String(activeIndex)}` : undefined
+            }
+            aria-labelledby={labelId}
+            className="ds-dropdown__menu"
+            id={listboxId}
+            onBlur={(event) => {
+              if (!event.currentTarget.contains(event.relatedTarget)) {
+                setIsOpen(false);
+              }
+            }}
+            onKeyDown={handleListKeyDown}
+            ref={listboxRef}
+            role="listbox"
+            tabIndex={-1}
+          >
+            {options.map((option, index) => {
+              const optionClassName = [
+                'ds-dropdown__option',
+                index === activeIndex ? 'ds-dropdown__option--active' : undefined,
+                option.disabled ? 'ds-dropdown__option--disabled' : undefined,
+              ]
+                .filter(Boolean)
+                .join(' ');
+
+              return (
+                <li
+                  aria-disabled={option.disabled ? 'true' : undefined}
+                  aria-selected={option.value === currentValue}
+                  className={optionClassName}
+                  id={`${buttonId}-option-${String(index)}`}
+                  key={option.value}
+                  onClick={() => {
+                    selectOption(option);
+                  }}
+                  onMouseDown={(event) => {
+                    event.preventDefault();
+                  }}
+                  onMouseEnter={() => {
+                    if (!option.disabled) {
+                      setActiveIndex(index);
+                    }
+                  }}
+                  role="option"
+                >
+                  {option.label}
+                </li>
+              );
+            })}
+          </ul>
+        ) : null}
       </div>
 
       {isError && errorText ? (
         <p className="ds-dropdown__message ds-dropdown__message--error" id={errorId}>
-          <span aria-hidden="true" className="ds-dropdown__message-icon">
-            i
-          </span>
-          <span>{errorText}</span>
+          {errorText}
         </p>
       ) : null}
 
       {helperText ? (
         <p className="ds-dropdown__message" id={helperId}>
-          {!isError ? (
-            <span aria-hidden="true" className="ds-dropdown__message-icon">
-              i
-            </span>
-          ) : null}
-          <span>{helperText}</span>
+          {helperText}
         </p>
       ) : null}
     </div>

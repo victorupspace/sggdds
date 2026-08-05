@@ -3,11 +3,12 @@ import type { Meta, StoryObj } from '@storybook/react-vite';
 import { Dropdown } from './Dropdown';
 import './Dropdown.stories.css';
 
-const defaultOptions = [
-  { value: 'financeiro', label: 'Financeiro' },
-  { value: 'atendimento', label: 'Atendimento' },
-  { value: 'documentos', label: 'Documentos' },
-  { value: 'suporte', label: 'Suporte' },
+const cityOptions = [
+  { value: 'sao-paulo', label: 'São Paulo' },
+  { value: 'rio-de-janeiro', label: 'Rio de Janeiro' },
+  { value: 'belo-horizonte', label: 'Belo Horizonte' },
+  { value: 'curitiba', label: 'Curitiba' },
+  { value: 'porto-alegre', label: 'Porto Alegre' },
 ];
 
 const meta = {
@@ -15,36 +16,25 @@ const meta = {
   component: Dropdown,
   parameters: {
     componentCanvas: {
-      width: 420,
+      width: 480,
     },
     docs: {
       description: {
         component: `
-O Dropdown e um Select compacto para escolha unica entre multiplas opcoes. Ele e indicado quando o espaco e limitado ou quando a lista de alternativas e extensa demais para radio buttons.
+O Dropdown reproduz o layout do Figma (Web Components / Dropdown): label SemiBold 14, campo de 40px com borda color/border/neutral/prominent e radius-sm, chevron de 20px e menu sobreposto com as opções.
 
-Use para escolhas previsiveis de uma unica opcao, como categoria, estado, unidade, preferencia ou filtros simples.
+Estados do component set:
+- Default: campo com placeholder "Selecione" em typography/primary.
+- Focused: borda de 2px em color/border/focus (por teclado, via focus-visible).
+- Open: menu com fundo neutral/white, borda color/border/default, radius de 8px, elevação level-2 e opções com padding 12x10; a opção ativa usa color/state/hover.
+- Selected: campo exibindo o valor escolhido.
+- Disabled: fundo neutral/default-hover com textos e chevron em typography/disabled.
 
-Nao use para selecionar multiplos itens, buscar em listas muito grandes, executar acoes ou navegar entre paginas. Para listas muito longas com busca, use um componente dedicado quando existir.
+Tokens: as variables novas do Figma ainda ausentes nas collections exportadas (color/border/focus, border/width/focus, color/state/hover, elevation/level-2) usam literais documentados no CSS.
 
-Estados:
-- Default: borda neutra, placeholder opcional e helper text.
-- Focus: foco nativo com anel visivel usando tokens do DS.
-- Error: borda, foco e mensagem de erro usando tokens de feedback.
-- Disabled: comunica indisponibilidade e bloqueia selecao.
+Responsividade: o componente e fluido (100% do container, min-width 160), o valor trunca com reticencias e o menu abre sobreposto com rolagem interna quando a lista e longa.
 
-Responsividade:
-Este componente foi desenvolvido com comportamento responsivo nativo, adaptando largura, espacamento, quebra de rotulo/helper e area de toque para diferentes tamanhos de tela. A responsividade e aplicada na implementacao do componente e nao depende de variacoes manuais no Storybook.
-
-Tokens:
-Cores, bordas, radius, espacamentos, tipografia, icone e foco usam variaveis CSS geradas pelos tokens do Figma. Como a camada semantica ainda nao cobre todos os casos no projeto, o componente cria aliases internos semanticos apontando para tokens disponiveis.
-
-Acessibilidade:
-- Usa select nativo para preservar teclado, touch, leitores de tela e comportamento mobile do sistema operacional.
-- Label e associado ao select por htmlFor/id.
-- Helper e erro sao conectados por aria-describedby.
-- Erro usa aria-invalid.
-- Required e disabled usam atributos nativos.
-- O icone de seta e decorativo.
+Acessibilidade: o campo e um botao com aria-haspopup="listbox", aria-expanded e aria-controls; o menu usa role="listbox" com aria-activedescendant e opcoes role="option" com aria-selected; navegacao completa por teclado (setas, Home/End, Enter, Escape) e foco devolvido ao campo ao fechar.
 `,
       },
     },
@@ -55,9 +45,17 @@ Acessibilidade:
       control: 'text',
       description: 'Classe CSS opcional aplicada ao wrapper.',
     },
+    defaultOpen: {
+      control: 'boolean',
+      description: 'Abre o menu inicialmente (estado Open do Figma).',
+    },
+    defaultValue: {
+      control: 'text',
+      description: 'Valor inicial no modo nao controlado.',
+    },
     disabled: {
       control: 'boolean',
-      description: 'Desabilita o select usando atributo nativo.',
+      description: 'Estado Disabled do Figma.',
     },
     errorText: {
       control: 'text',
@@ -75,34 +73,21 @@ Acessibilidade:
       control: 'text',
       description: 'Rotulo visivel e acessivel do campo.',
     },
-    onChange: {
-      control: false,
-      description: 'Callback nativo de alteracao do select.',
-    },
     onValueChange: {
       control: false,
-      description: 'Callback simplificado que recebe value e event.',
+      description: 'Callback chamado ao selecionar uma opcao.',
     },
     options: {
-      control: 'object',
-      description: 'Lista de opcoes renderizadas como option nativo.',
+      control: false,
+      description: 'Lista de opcoes exibidas no menu.',
     },
     placeholder: {
       control: 'text',
-      description: 'Opcao temporaria desabilitada exibida quando nenhum valor foi selecionado.',
+      description: 'Texto exibido sem selecao ("Selecione" no Figma).',
     },
     required: {
       control: 'boolean',
-      description: 'Marca o campo como obrigatorio usando atributo nativo.',
-    },
-    selectClassName: {
-      control: 'text',
-      description: 'Classe CSS opcional aplicada ao select nativo.',
-    },
-    size: {
-      control: 'select',
-      description: 'Densidade visual do campo.',
-      options: ['medium', 'large'],
+      description: 'Marca o campo como obrigatorio (aria-required).',
     },
     state: {
       control: 'select',
@@ -111,7 +96,7 @@ Acessibilidade:
     },
     value: {
       control: 'text',
-      description: 'Valor controlado do select.',
+      description: 'Valor controlado.',
     },
   },
   tags: ['autodocs'],
@@ -123,14 +108,26 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    helperText: 'Helper Text',
     label: 'Label',
-    options: defaultOptions,
-    placeholder: 'Selecione uma opcao',
-    required: true,
+    options: cityOptions,
   },
   render: (args) => (
     <div className="dropdown-story-shell">
+      <div className="dropdown-story-panel">
+        <Dropdown {...args} />
+      </div>
+    </div>
+  ),
+};
+
+export const Open: Story = {
+  args: {
+    defaultOpen: true,
+    label: 'Label',
+    options: cityOptions,
+  },
+  render: (args) => (
+    <div className="dropdown-story-shell dropdown-story-shell--tall">
       <div className="dropdown-story-panel">
         <Dropdown {...args} />
       </div>
@@ -140,54 +137,9 @@ export const Default: Story = {
 
 export const Selected: Story = {
   args: {
-    helperText: 'Categoria selecionada',
+    defaultValue: 'sao-paulo',
     label: 'Label',
-    options: defaultOptions,
-    placeholder: 'Selecione uma opcao',
-    value: 'documentos',
-  },
-  render: (args) => (
-    <div className="dropdown-story-shell">
-      <div className="dropdown-story-panel">
-        <Dropdown {...args} />
-      </div>
-    </div>
-  ),
-};
-
-export const Focus: Story = {
-  args: {
-    autoFocus: true,
-    helperText: 'Campo em foco',
-    label: 'Label',
-    options: defaultOptions,
-    placeholder: 'Selecione uma opcao',
-    required: true,
-  },
-  parameters: {
-    docs: {
-      description: {
-        story:
-          'O estado de foco usa o select nativo com outline tokenizado e mantem o comportamento esperado de teclado e mobile.',
-      },
-    },
-  },
-  render: (args) => (
-    <div className="dropdown-story-shell">
-      <div className="dropdown-story-panel">
-        <Dropdown {...args} />
-      </div>
-    </div>
-  ),
-};
-
-export const Error: Story = {
-  args: {
-    errorText: 'Selecione uma opcao valida',
-    label: 'Label',
-    options: defaultOptions,
-    placeholder: 'Selecione uma opcao',
-    required: true,
+    options: cityOptions,
   },
   render: (args) => (
     <div className="dropdown-story-shell">
@@ -201,11 +153,8 @@ export const Error: Story = {
 export const Disabled: Story = {
   args: {
     disabled: true,
-    helperText: 'Campo indisponivel no momento',
     label: 'Label',
-    options: defaultOptions,
-    placeholder: 'Selecione uma opcao',
-    value: 'financeiro',
+    options: cityOptions,
   },
   render: (args) => (
     <div className="dropdown-story-shell">
@@ -216,55 +165,53 @@ export const Disabled: Story = {
   ),
 };
 
-export const ResponsiveContent: Story = {
+export const ErrorState: Story = {
   args: {
-    helperText:
-      'Texto de apoio longo para validar quebra, legibilidade e ausencia de overflow horizontal em telas pequenas.',
-    label: 'Label com conteudo longo para demonstrar responsividade nativa',
-    options: [
-      { value: 'a', label: 'Opcao com texto curto' },
-      { value: 'b', label: 'Opcao com conteudo mais longo para validar selecao' },
-      { value: 'c', label: 'Opcao indisponivel', disabled: true },
-    ],
-    placeholder: 'Placeholder com conteudo maior',
+    errorText: 'Selecione uma opcao.',
+    label: 'Label',
+    options: cityOptions,
+    required: true,
   },
   render: (args) => (
     <div className="dropdown-story-shell">
-      <div className="dropdown-story-long">
+      <div className="dropdown-story-panel">
         <Dropdown {...args} />
       </div>
     </div>
   ),
 };
 
-export const States: Story = {
+export const LongList: Story = {
   args: {
+    defaultOpen: true,
     label: 'Label',
-    options: defaultOptions,
-    placeholder: 'Selecione uma opcao',
+    options: [
+      ...cityOptions,
+      { value: 'recife', label: 'Recife' },
+      { value: 'salvador', label: 'Salvador' },
+      { value: 'fortaleza', label: 'Fortaleza' },
+      { value: 'manaus', label: 'Manaus' },
+      { value: 'brasilia', label: 'Brasília' },
+      { value: 'goiania', label: 'Goiânia' },
+      { value: 'belem', label: 'Belém' },
+      {
+        value: 'indisponivel',
+        label: 'Opção indisponível',
+        disabled: true,
+      },
+    ],
   },
-  render: () => (
-    <div className="dropdown-story-shell">
-      <div className="dropdown-story-stack">
-        <Dropdown
-          helperText="Helper Text"
-          label="Default"
-          options={defaultOptions}
-          placeholder="Selecione uma opcao"
-        />
-        <Dropdown
-          helperText="Selecionado"
-          label="Selected"
-          options={defaultOptions}
-          placeholder="Selecione uma opcao"
-          value="atendimento"
-        />
-        <Dropdown
-          errorText="Selecione uma opcao valida"
-          label="Error"
-          options={defaultOptions}
-          placeholder="Selecione uma opcao"
-        />
+  parameters: {
+    docs: {
+      description: {
+        story: 'Listas longas rolam dentro do menu, sem estourar a página.',
+      },
+    },
+  },
+  render: (args) => (
+    <div className="dropdown-story-shell dropdown-story-shell--tall">
+      <div className="dropdown-story-panel">
+        <Dropdown {...args} />
       </div>
     </div>
   ),

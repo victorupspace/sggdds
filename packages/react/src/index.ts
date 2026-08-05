@@ -41,12 +41,7 @@ export type { CheckboxProps, CheckboxState } from './components/Checkbox';
 export { Chip } from './components/Chip';
 export type { ChipProps, ChipVariant } from './components/Chip';
 export { Dropdown } from './components/Dropdown';
-export type {
-  DropdownOption,
-  DropdownProps,
-  DropdownSize,
-  DropdownState,
-} from './components/Dropdown';
+export type { DropdownOption, DropdownProps, DropdownState } from './components/Dropdown';
 export { Datepicker } from './components/Datepicker';
 export type {
   DatepickerBackground,

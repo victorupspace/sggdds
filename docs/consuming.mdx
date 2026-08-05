@@ -164,19 +164,25 @@ const jakarta = Plus_Jakarta_Sans({ subsets: ['latin'], display: 'swap' });
 Todos os componentes são exportados nominalmente do entrypoint raiz. Não há subpaths por componente neste momento.
 
 ```tsx
-import { Alert, Button, Card, Modal, TextInput } from '@government/design-system';
+import { Alert, Badge, Button, Card } from '@government/design-system';
 
 export function PaginaExemplo() {
   return (
-    <Card title="Acessar conta">
+    <main>
       <Alert title="Atenção" variant="warning">
         Sua senha expira em 7 dias.
       </Alert>
-      <TextInput label="E-mail" type="email" required />
-      <Button variant="primary" type="submit">
-        Entrar
-      </Button>
-    </Card>
+      <Card
+        badge={
+          <Badge appearance="subtle" size="small" variant="neutral">
+            Serviços
+          </Badge>
+        }
+        title="Agendamento online"
+        description="Agende atendimentos presenciais sem filas."
+        action={<Button variant="secondary">Agendar</Button>}
+      />
+    </main>
   );
 }
 ```
@@ -289,7 +295,7 @@ Todos os componentes refletem a mudança automaticamente, sem rebuild.
 
 ```tsx
 <section className="tema-institucional">
-  <Card title="Área institucional">…</Card>
+  <Card title="Área institucional" description="…" />
 </section>
 ```
 

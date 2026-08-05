@@ -3,78 +3,69 @@ import { describe, expect, it, vi } from 'vitest';
 
 import { Card } from './Card';
 
-const icon = (
-  <svg data-testid="card-icon" viewBox="0 0 20 20">
-    <path d="M5 10h10" />
-  </svg>
-);
-
 describe('Card', () => {
-  it('renders title, description, badge and actions', () => {
+  it('renders title, description, badge, media and action slots', () => {
     render(
       <Card
-        badge={{ icon, label: 'Badge' }}
+        action={<button type="button">Action</button>}
+        badge={<span>Badge</span>}
         description="Description"
-        primaryAction={{ label: 'Primary' }}
-        secondaryAction={{ href: '#secondary', label: 'Secondary' }}
-        title="Card Title"
+        media={<img alt="" src="placeholder.png" />}
+        title="Card title"
       />,
     );
 
     expect(screen.getByRole('article')).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Card Title' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Card title' })).toBeInTheDocument();
     expect(screen.getByText('Description')).toBeInTheDocument();
     expect(screen.getByText('Badge')).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: 'Primary' })).toBeInTheDocument();
-    expect(screen.getByRole('link', { name: 'Secondary' })).toHaveAttribute('href', '#secondary');
+    expect(screen.getByRole('button', { name: 'Action' })).toBeInTheDocument();
   });
 
   it('uses the configured heading level', () => {
-    render(<Card headingLevel={2} title="Card Title" />);
+    render(<Card headingLevel={2} title="Card title" />);
 
-    expect(screen.getByRole('heading', { level: 2, name: 'Card Title' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { level: 2, name: 'Card title' })).toBeInTheDocument();
   });
 
-  it('calls the primary action when clicked', () => {
+  it('keeps the title bar decorative', () => {
+    const { container } = render(<Card title="Card title" />);
+
+    expect(container.querySelector('.ds-card__title-bar')).toHaveAttribute('aria-hidden', 'true');
+  });
+
+  it('renders the divider by default and hides it with showDivider={false}', () => {
+    const { container, rerender } = render(<Card title="Card title" />);
+
+    expect(container.querySelector('.ds-card__divider')).toBeInTheDocument();
+
+    rerender(<Card showDivider={false} title="Card title" />);
+
+    expect(container.querySelector('.ds-card__divider')).not.toBeInTheDocument();
+  });
+
+  it('applies the orientation class', () => {
+    render(<Card orientation="horizontal" title="Card title" />);
+
+    expect(screen.getByRole('article')).toHaveClass('ds-card--orientation-horizontal');
+  });
+
+  it('forwards interaction to the action slot', () => {
     const onClick = vi.fn();
 
-    render(<Card primaryAction={{ label: 'Primary', onClick }} title="Card Title" />);
-
-    fireEvent.click(screen.getByRole('button', { name: 'Primary' }));
-
-    expect(onClick).toHaveBeenCalledTimes(1);
-  });
-
-  it('disables button and link actions when the card is disabled', () => {
     render(
       <Card
-        disabled
-        primaryAction={{ label: 'Primary' }}
-        secondaryAction={{ href: '#secondary', label: 'Secondary' }}
-        title="Card Title"
+        action={
+          <button onClick={onClick} type="button">
+            Action
+          </button>
+        }
+        title="Card title"
       />,
     );
 
-    expect(screen.getByRole('article')).toHaveAttribute('aria-disabled', 'true');
-    expect(screen.getByRole('button', { name: 'Primary' })).toBeDisabled();
-    expect(screen.getByText('Secondary').closest('a')).toHaveAttribute('aria-disabled', 'true');
-    expect(screen.getByText('Secondary').closest('a')).toHaveAttribute('tabIndex', '-1');
-  });
+    fireEvent.click(screen.getByRole('button', { name: 'Action' }));
 
-  it('applies orientation and tone classes', () => {
-    render(<Card orientation="horizontal" title="Card Title" tone="success" />);
-
-    expect(screen.getByRole('article')).toHaveClass('ds-card--orientation-horizontal');
-    expect(screen.getByRole('article')).toHaveClass('ds-card--tone-success');
-  });
-
-  it('renders custom supporting content', () => {
-    render(
-      <Card title="Card Title">
-        <p>Supporting content</p>
-      </Card>,
-    );
-
-    expect(screen.getByText('Supporting content')).toBeInTheDocument();
+    expect(onClick).toHaveBeenCalledTimes(1);
   });
 });

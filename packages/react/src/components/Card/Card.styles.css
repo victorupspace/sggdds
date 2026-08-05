@@ -1,431 +1,205 @@
+/*
+ * Layout do Figma: Web Components / Card (node 65:5556).
+ * Cada propriedade referencia a mesma variable usada no Figma; os comentários
+ * indicam o nome original da variable na collection.
+ */
 .ds-card {
-  --card-surface: var(--ds-semantic-color-background-neutral-default);
-  --card-surface-hover: var(--ds-primitive-color-neutral-alpha-2);
-  --card-surface-active: var(--ds-primitive-color-neutral-alpha-4);
-  --card-border: var(--ds-component-card-color-border-outline);
-  --card-divider: var(--ds-primitive-color-neutral-grey-300);
-  --card-border-hover: var(--ds-semantic-color-border-neutral-default);
-  --card-text: var(--ds-component-card-color-text);
-  --card-description: var(--ds-primitive-color-neutral-grey-700);
-  --card-muted: var(--ds-semantic-text-style-content-color-typography-tertiary);
-  --card-disabled-text: var(--ds-semantic-text-style-content-color-typography-disabled);
-  --card-disabled-surface: var(--ds-semantic-color-background-neutral-disabled);
-  --card-focus-ring: var(--ds-semantic-color-background-brand-primary-secondary-default);
-  --card-action-bg: var(--ds-semantic-color-background-brand-primary-secondary-default);
-  --card-action-bg-hover: var(--ds-semantic-color-background-brand-primary-secondary-prominent);
-  --card-action-bg-active: var(
-    --ds-semantic-color-background-brand-primary-secondary-default-hover
-  );
-  --card-action-color: var(--ds-semantic-color-background-neutral-default);
-  --card-action-disabled-bg: var(--ds-semantic-color-border-neutral-default);
-  --card-action-disabled-color: var(--ds-semantic-text-style-content-color-typography-tertiary);
-  --card-media-surface: var(--ds-primitive-color-neutral-grey-700);
-  --card-padding: var(--ds-component-card-spacing-padding-lg);
-  --card-gap: var(--ds-primitive-spacing-10);
-  --card-content-gap: var(--ds-primitive-spacing-10);
-  --card-copy-gap: var(--ds-primitive-spacing-10);
-  --card-footer-gap: var(--card-action-gap);
-  --card-action-gap: var(--ds-primitive-spacing-8);
-  --card-action-padding: var(--ds-primitive-spacing-16);
-  --card-action-min-block-size: var(--ds-primitive-spacing-48);
-  --card-horizontal-inline-size: calc(
-    var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-128) +
-      var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-16)
-  );
-  --card-horizontal-block-size: calc(
-    var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-128)
-  );
-  --card-horizontal-media-inline-size: calc(
-    var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-32) + var(--ds-primitive-spacing-4)
-  );
-  --card-horizontal-media-block-size: calc(
-    var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-80)
-  );
-  --card-radius: var(--ds-component-card-border-radius);
-  --card-inner-radius: var(--ds-primitive-border-radius-radius-md);
-  --card-border-width: var(--ds-component-card-border-width);
+  /* color/background/neutral/white */
+  --card-surface: var(--ds-semantic-color-background-neutral-white);
+  /* color/border/default (#e0e0e0 no Figma) — variable ausente nas collections
+     exportadas; usa color/border/neutral/subtle como aproximação documentada,
+     igual ao Action Card */
+  --card-border-color: var(--ds-semantic-color-border-neutral-subtle);
+  /* color/state/hover e color/state/pressed — variables novas do Figma,
+     ausentes nas collections exportadas; valores literais documentados */
+  --card-state-hover: rgba(0, 0, 0, 0.04);
+  --card-state-pressed: rgba(0, 0, 0, 0.12);
+  /* color/border/focus (#3366e5) — variable nova do Figma, ausente nas
+     collections exportadas; anel de 2px a 5px da borda, como no Figma */
+  --card-focus-ring: #3366e5;
+  /* text-style/content color/typography/primary */
+  --card-title-color: var(--ds-semantic-text-style-content-color-typography-primary);
+  /* text-style/content color/typography/tertiary */
+  --card-description-color: var(--ds-semantic-text-style-content-color-typography-tertiary);
+  /* color/background/brand/primary/default (barra do título; o vetor exportado
+     resolve #c60008 e a collection exportada traz #c50007) */
+  --card-title-bar-color: var(--ds-semantic-color-background-brand-primary-default);
+  /* color/neutral/grey-300 (divider) */
+  --card-divider-color: var(--ds-primitive-color-neutral-grey-300);
+  /* Component sizing/24 (padding) e /10 (gap do layout vertical) */
+  --card-padding: var(--ds-component-component-sizing-24);
+  --card-gap: var(--ds-component-component-sizing-10);
+  /* border/radius/radius-lg (card) e radius-md (mídia) */
+  --card-radius: var(--ds-primitive-border-radius-radius-lg);
+  --card-media-radius: var(--ds-primitive-border-radius-radius-md);
+  /* Elevations do Figma (Effect Styles, não são variables) */
+  --card-shadow: 0 2px 2px rgba(0, 0, 0, 0.08);
+  --card-shadow-hover: 0 4px 8px rgba(0, 0, 0, 0.12);
+  --card-shadow-pressed: 0 2px 4px rgba(0, 0, 0, 0.08);
+  /* Altura literal da mídia no layout vertical (180px no Figma) */
+  --card-media-block-size: 180px;
 
-  display: grid;
+  display: flex;
   box-sizing: border-box;
+  flex-direction: column;
+  gap: var(--card-gap);
   inline-size: 100%;
   max-inline-size: 100%;
   min-inline-size: 0;
-  gap: var(--card-gap);
   padding: var(--card-padding);
-  overflow: hidden;
-  border: var(--card-border-width) solid var(--card-border);
+  border: var(--ds-primitive-border-width-border-sm) solid var(--card-border-color);
   border-radius: var(--card-radius);
-  background: var(--card-surface);
-  color: var(--card-text);
+  background-color: var(--card-surface);
+  background-image: none;
+  box-shadow: var(--card-shadow);
+  color: var(--card-title-color);
   font-family:
     var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
   transition:
-    border-color 160ms ease,
+    box-shadow 160ms ease,
     background-color 160ms ease;
 }
 
-.ds-card--tone-brand {
-  --card-focus-ring: var(--ds-semantic-color-background-brand-primary-prominent);
-  --card-action-bg: var(--ds-semantic-color-background-brand-primary-prominent);
-  --card-action-bg-hover: var(--ds-semantic-text-style-content-color-typography-danger);
-  --card-action-bg-active: var(--ds-semantic-color-background-brand-primary-default-hover);
-}
-
-.ds-card--tone-info {
-  --card-focus-ring: var(--ds-semantic-text-style-content-color-typography-information);
-  --card-action-bg: var(--ds-semantic-text-style-content-color-typography-information);
-  --card-action-bg-hover: var(--ds-semantic-color-background-brand-primary-secondary-prominent);
-  --card-action-bg-active: var(
-    --ds-semantic-color-background-brand-primary-secondary-default-hover
-  );
-}
-
-.ds-card--tone-success {
-  --card-focus-ring: var(--ds-semantic-color-background-success-default);
-  --card-action-bg: var(--ds-semantic-color-background-success-default);
-  --card-action-bg-hover: var(--ds-semantic-text-style-content-color-typography-success);
-  --card-action-bg-active: var(--ds-semantic-text-style-content-color-typography-success);
-}
-
-.ds-card--tone-warning {
-  --card-focus-ring: var(--ds-semantic-color-background-warning-default);
-  --card-action-bg: var(--ds-semantic-color-background-warning-default);
-  --card-action-bg-hover: var(--ds-semantic-text-style-content-color-typography-warning);
-  --card-action-bg-active: var(--ds-semantic-text-style-content-color-typography-warning);
-  --card-action-color: var(--ds-semantic-text-style-content-color-typography-primary);
-}
-
-.ds-card--tone-danger {
-  --card-focus-ring: var(--ds-semantic-text-style-content-color-typography-danger);
-  --card-action-bg: var(--ds-semantic-text-style-content-color-typography-danger);
-  --card-action-bg-hover: var(--ds-semantic-color-background-brand-primary-default-hover);
-  --card-action-bg-active: var(--ds-semantic-color-background-brand-primary-default-hover);
-}
-
-.ds-card:not(.ds-card--disabled):hover {
-  border-color: var(--card-border-hover);
-  background:
-    linear-gradient(var(--card-surface-hover), var(--card-surface-hover)), var(--card-surface);
-}
-
-.ds-card:not(.ds-card--disabled):active {
-  background:
-    linear-gradient(var(--card-surface-active), var(--card-surface-active)), var(--card-surface);
-}
-
 .ds-card--orientation-horizontal {
-  --card-content-gap: var(--card-gap);
-  --card-copy-gap: var(--card-gap);
-  --card-footer-gap: var(--card-action-gap);
-  --card-action-min-block-size: var(--ds-primitive-spacing-32);
-  --card-action-padding: var(--ds-primitive-spacing-16);
-  --card-border-width: var(--ds-primitive-border-width-border-none);
+  /* Component sizing/12 (gap do layout horizontal) */
+  --card-gap: var(--ds-component-component-sizing-12);
 
-  inline-size: min(100%, var(--card-horizontal-inline-size));
-  block-size: var(--card-horizontal-block-size);
-  grid-template-columns:
-    var(--card-horizontal-media-inline-size)
-    minmax(0, var(--card-horizontal-media-inline-size));
-  align-items: start;
+  flex-direction: row;
+  align-items: stretch;
+  /* min-width de 400px do layout horizontal no Figma */
+  min-inline-size: 400px;
+}
+
+/*
+ * Estados do component set (Hover e Pressed): tinta de estado sobre a
+ * superfície branca e elevação correspondente, como no Figma.
+ */
+@media (hover: hover) {
+  .ds-card:hover {
+    background-image: linear-gradient(var(--card-state-hover), var(--card-state-hover));
+    box-shadow: var(--card-shadow-hover);
+  }
+}
+
+.ds-card:active {
+  background-image: linear-gradient(var(--card-state-pressed), var(--card-state-pressed));
+  box-shadow: var(--card-shadow-pressed);
+}
+
+/* Focus ring do Figma quando algum elemento interno recebe foco por teclado */
+.ds-card:has(:focus-visible) {
+  outline: 2px solid var(--card-focus-ring);
+  outline-offset: 3px;
 }
 
 .ds-card__media {
-  display: grid;
-  min-inline-size: 0;
+  flex: none;
+  block-size: var(--card-media-block-size);
   overflow: hidden;
-  border-radius: var(--card-inner-radius);
-  background: var(--card-media-surface);
-  color: var(--ds-semantic-color-background-neutral-default);
-}
-
-.ds-card--media-wide .ds-card__media {
-  aspect-ratio: 16 / 9;
-}
-
-.ds-card--media-square .ds-card__media,
-.ds-card--orientation-horizontal .ds-card__media {
-  aspect-ratio: 1;
+  border-radius: var(--card-media-radius);
 }
 
 .ds-card--orientation-horizontal .ds-card__media {
-  grid-column: 1;
-  grid-row: 1;
-  inline-size: var(--card-horizontal-media-inline-size);
-  block-size: var(--card-horizontal-media-block-size);
-  aspect-ratio: auto;
+  /* Mídia de 140px de largura ocupando a altura do card no Figma */
+  inline-size: 140px;
+  block-size: auto;
+  align-self: stretch;
 }
 
-.ds-card__media > :where(img, picture, video, svg, canvas) {
+.ds-card__media > * {
   display: block;
   inline-size: 100%;
   block-size: 100%;
   object-fit: cover;
 }
 
-.ds-card__content {
-  display: grid;
-  position: relative;
-  z-index: 1;
+.ds-card__body {
+  display: flex;
   min-inline-size: 0;
-  align-content: start;
-  gap: var(--card-content-gap);
-}
-
-.ds-card--orientation-horizontal .ds-card__content {
-  grid-column: 2;
-  grid-row: 1;
-  align-self: stretch;
-  block-size: 100%;
-}
-
-.ds-card--orientation-horizontal.ds-card--without-media {
-  block-size: auto;
-  grid-template-columns: minmax(0, 1fr);
-}
-
-.ds-card--orientation-horizontal.ds-card--without-media .ds-card__content {
-  grid-column: 1;
-}
-
-.ds-card--without-media .ds-card__content {
-  min-block-size: 100%;
-}
-
-.ds-card__badge,
-.ds-card__copy,
-.ds-card__slot,
-.ds-card__footer,
-.ds-card__actions {
-  min-inline-size: 0;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--card-gap);
+  align-items: stretch;
 }
 
 .ds-card__badge {
   display: flex;
+  align-self: flex-start;
+}
+
+.ds-card__title-row {
+  display: flex;
+  /* Gap de 11px literal entre a barra e o título no Figma */
+  gap: 11px;
   align-items: center;
 }
 
-.ds-card .ds-card__badge .ds-badge {
-  --badge-bg: var(--ds-primitive-color-neutral-grey-100);
-  --badge-color: var(--ds-primitive-color-soft-black);
-  --badge-height: var(--ds-primitive-spacing-20);
-  --badge-padding-inline: var(--ds-primitive-spacing-8);
-  --badge-gap: var(--ds-primitive-spacing-8);
-  --badge-font-size: var(--ds-primitive-typography-font-size-12);
-  --badge-font-weight: var(--ds-primitive-typography-font-weight-medium);
-  --badge-line-height: var(--ds-primitive-typography-line-height-12);
-  --badge-radius: var(--ds-primitive-border-radius-radius-full);
-  --badge-icon-size: var(--ds-primitive-spacing-16);
-
-  min-inline-size: var(--ds-primitive-spacing-56);
-}
-
-.ds-card__copy {
-  display: grid;
-  gap: var(--card-copy-gap);
+.ds-card__title-bar {
+  flex: none;
+  /* Divider do Figma: traço de 4px com pontas redondas e 25px de altura */
+  inline-size: 4px;
+  block-size: 25px;
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  background: var(--card-title-bar-color);
 }
 
 .ds-card__title {
-  position: relative;
-  margin: 0;
-  padding-inline-start: var(--ds-primitive-spacing-12);
+  min-inline-size: 0;
+  flex: 1;
+  margin: var(--ds-primitive-spacing-0);
   overflow-wrap: anywhere;
-  color: var(--card-text);
+  color: var(--card-title-color);
+  /* Title/Medium: Plus Jakarta Sans SemiBold 20 */
   font-size: var(--ds-primitive-typography-font-size-20);
   font-weight: var(--ds-primitive-typography-font-weight-semi-bold);
-  line-height: 1;
-}
-
-.ds-card__title::before {
-  content: '';
-  position: absolute;
-  inset-block: 0;
-  inset-inline-start: 0;
-  inline-size: var(--ds-primitive-border-width-border-lg);
-  border-radius: var(--ds-primitive-border-radius-radius-full);
-  background: var(--ds-brand-color-utility-danger-red-300);
+  line-height: normal;
 }
 
 .ds-card__description {
-  margin: 0;
+  margin: var(--ds-primitive-spacing-0);
   overflow-wrap: anywhere;
-  color: var(--card-description);
+  color: var(--card-description-color);
+  /* Body/Medium: Plus Jakarta Sans Medium 16 */
   font-size: var(--ds-primitive-typography-font-size-16);
   font-weight: var(--ds-primitive-typography-font-weight-medium);
-  line-height: 1;
-}
-
-.ds-card--orientation-horizontal .ds-card__title {
-  font-size: var(--ds-primitive-typography-font-size-20);
-  line-height: 1;
-}
-
-.ds-card--orientation-horizontal .ds-card__description {
-  font-size: var(--ds-primitive-typography-font-size-16);
-  line-height: 1;
-}
-
-.ds-card__slot {
-  display: grid;
-  gap: var(--ds-primitive-spacing-12);
-  overflow-wrap: anywhere;
-  color: var(--card-description);
-  font-size: var(--ds-primitive-typography-font-size-16);
-  line-height: var(--ds-primitive-typography-line-height-24);
-}
-
-.ds-card__slot :where(p) {
-  margin: 0;
-}
-
-.ds-card__footer {
-  display: grid;
-  gap: var(--card-footer-gap);
+  line-height: normal;
 }
 
 .ds-card__divider {
-  block-size: var(--ds-primitive-border-width-border-sm);
-  background: var(--card-divider);
-}
-
-.ds-card__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--card-action-gap);
-  align-items: center;
-}
-
-.ds-card--orientation-horizontal .ds-card__actions {
-  flex-direction: column;
-  align-items: stretch;
-}
-
-.ds-card__action.ds-button {
-  --button-min-block-size: var(--card-action-min-block-size);
-  --button-padding-block: var(--ds-primitive-spacing-12);
-  --button-padding-inline: var(--card-action-padding);
-  --button-gap: var(--ds-primitive-spacing-8);
-  --button-font-size: var(--ds-primitive-typography-font-size-14);
-  --button-line-height: 1;
-
-  font-weight: var(--ds-primitive-typography-font-weight-semi-bold);
-}
-
-.ds-card__action--primary.ds-button {
-  --button-background: var(--ds-primitive-color-neutral-grey-900);
-  --button-background-hover: var(--ds-primitive-color-pure-black);
-  --button-background-active: var(--ds-primitive-color-pure-black);
-  --button-border-color: var(--button-background);
-  --button-foreground: var(--ds-primitive-color-white);
-}
-
-.ds-card--orientation-horizontal .ds-card__action.ds-button {
-  --button-font-size: var(--ds-primitive-typography-font-size-14);
-  --button-line-height: 1;
-
   inline-size: 100%;
+  block-size: 1px;
+  border: var(--ds-primitive-border-width-border-none);
+  margin: var(--ds-primitive-spacing-0);
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  background: var(--card-divider-color);
 }
 
-.ds-card--orientation-horizontal .ds-card__action--secondary.ds-button {
-  --button-min-block-size: var(--ds-primitive-spacing-24);
+.ds-card__action {
+  display: flex;
+  align-self: flex-start;
 }
 
-.ds-card--disabled {
-  --card-text: var(--card-disabled-text);
-  --card-description: var(--card-disabled-text);
-  --card-media-surface: var(--card-disabled-surface);
-
-  background: var(--card-surface);
-  color: var(--card-disabled-text);
-}
-
-.ds-card--disabled .ds-card__media {
-  color: var(--card-disabled-text);
-}
-
-@media (max-width: 768px) {
-  .ds-card--orientation-horizontal {
-    --card-content-gap: var(--card-gap);
-    --card-copy-gap: var(--card-gap);
-    --card-footer-gap: var(--card-action-gap);
-    --card-action-min-block-size: var(--ds-primitive-spacing-48);
-    --card-action-padding: var(--ds-primitive-spacing-16);
-    --card-border-width: var(--ds-component-card-border-width);
-
-    inline-size: 100%;
-    block-size: auto;
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .ds-card--orientation-horizontal .ds-card__content,
-  .ds-card--orientation-horizontal .ds-card__media {
-    grid-column: auto;
-    grid-row: auto;
-  }
-
-  .ds-card--orientation-horizontal .ds-card__media {
-    inline-size: 100%;
-    block-size: auto;
-    aspect-ratio: 16 / 9;
-  }
-
-  .ds-card--orientation-horizontal .ds-card__content {
-    block-size: auto;
-  }
-
-  .ds-card--orientation-horizontal .ds-card__title {
-    font-size: var(--ds-primitive-typography-font-size-20);
-    line-height: 1;
-  }
-
-  .ds-card--orientation-horizontal .ds-card__description {
-    font-size: var(--ds-primitive-typography-font-size-16);
-    line-height: 1;
-  }
-
-  .ds-card--orientation-horizontal .ds-card__action {
-    inline-size: auto;
-  }
-
-  .ds-card--orientation-horizontal .ds-card__action.ds-button {
-    --button-font-size: var(--ds-primitive-typography-font-size-14);
-    --button-line-height: 1;
-  }
-
-  .ds-card--orientation-horizontal .ds-card__action--secondary.ds-button {
-    --button-min-block-size: var(--card-action-min-block-size);
-  }
-
-  .ds-card--orientation-horizontal .ds-card__actions {
-    flex-direction: row;
-    align-items: center;
-  }
-}
-
-@media (max-width: 420px) {
+@media (prefers-reduced-motion: reduce) {
   .ds-card {
-    --card-padding: var(--ds-component-card-spacing-padding-lg);
-    --card-gap: var(--ds-primitive-spacing-10);
-    --card-content-gap: var(--ds-primitive-spacing-10);
-    --card-action-gap: var(--ds-primitive-spacing-8);
-    --card-action-padding: var(--ds-primitive-spacing-16);
+    transition: none;
   }
+}
 
-  .ds-card__title {
-    font-size: var(--ds-primitive-typography-font-size-20);
-    line-height: 1;
-  }
+@media (max-width: 640px) {
+  /*
+   * O Figma não define variante mobile; abaixo de 640px o card horizontal
+   * empilha como o vertical (mídia no topo) para caber em telas estreitas.
+   */
+  .ds-card--orientation-horizontal {
+    --card-gap: var(--ds-component-component-sizing-10);
 
-  .ds-card__description {
-    font-size: var(--ds-primitive-typography-font-size-16);
-    line-height: 1;
-  }
-
-  .ds-card__actions {
     flex-direction: column;
-    align-items: stretch;
+    min-inline-size: 0;
   }
 
-  .ds-card__action {
+  .ds-card--orientation-horizontal .ds-card__media {
     inline-size: 100%;
+    block-size: var(--card-media-block-size);
+    align-self: auto;
   }
 }

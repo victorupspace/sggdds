@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
+import { Badge } from '../Badge';
+import { Button } from '../Button';
 import { Carousel } from './Carousel';
 import type { CarouselCardItem } from './Carousel.types';
 import './Carousel.stories.css';
@@ -14,57 +16,92 @@ function Media({ tone = 'neutral' }: { tone?: 'brand' | 'info' | 'neutral' }) {
 
 const items: CarouselCardItem[] = [
   {
+    action: (
+      <Button href="#servicos" variant="secondary">
+        Acessar
+      </Button>
+    ),
     ariaLabel: 'Destaque sobre servicos digitais',
-    badge: { label: 'Novo', variant: 'information' },
+    badge: (
+      <Badge appearance="subtle" size="small" variant="information">
+        Novo
+      </Badge>
+    ),
     description:
       'Acesse jornadas digitais organizadas por tema, com orientacoes claras para cada etapa.',
     id: 'servicos-digitais',
     media: <Media tone="info" />,
-    primaryAction: { href: '#servicos', label: 'Acessar' },
-    secondaryAction: { href: '#detalhes-servicos', label: 'Saiba mais' },
     title: 'Servicos digitais em destaque',
-    tone: 'info',
   },
   {
+    action: (
+      <Button href="#atendimento" variant="secondary">
+        Ver canais
+      </Button>
+    ),
     ariaLabel: 'Destaque sobre atendimento ao cidadao',
-    badge: { label: 'Atendimento', variant: 'neutral' },
+    badge: (
+      <Badge appearance="subtle" size="small" variant="neutral">
+        Atendimento
+      </Badge>
+    ),
     description:
       'Consulte canais oficiais, acompanhe protocolos e encontre suporte para suas solicitacoes.',
     id: 'atendimento',
     media: <Media />,
-    primaryAction: { href: '#atendimento', label: 'Ver canais' },
     title: 'Atendimento ao cidadao',
   },
   {
+    action: (
+      <Button href="#comunicados" variant="secondary">
+        Ler comunicado
+      </Button>
+    ),
     ariaLabel: 'Destaque sobre comunicados importantes',
-    badge: { label: 'Comunicado', variant: 'negative' },
+    badge: (
+      <Badge appearance="subtle" size="small" variant="negative">
+        Comunicado
+      </Badge>
+    ),
     description:
       'Fique por dentro de prazos, comunicados oficiais e mudancas em servicos essenciais.',
     id: 'comunicados',
     media: <Media tone="brand" />,
-    primaryAction: { href: '#comunicados', label: 'Ler comunicado' },
     title: 'Comunicados importantes',
-    tone: 'brand',
   },
   {
+    action: (
+      <Button href="#transparencia" variant="secondary">
+        Explorar
+      </Button>
+    ),
     ariaLabel: 'Destaque sobre dados e transparencia',
-    badge: { label: 'Transparencia', variant: 'positive' },
+    badge: (
+      <Badge appearance="subtle" size="small" variant="positive">
+        Transparencia
+      </Badge>
+    ),
     description: 'Explore informacoes publicas, paineis e indicadores para acompanhar a gestao.',
     id: 'transparencia',
     media: <Media tone="info" />,
-    primaryAction: { href: '#transparencia', label: 'Explorar' },
     title: 'Dados e transparencia',
-    tone: 'success',
   },
   {
+    action: (
+      <Button href="#agendamentos" variant="secondary">
+        Agendar
+      </Button>
+    ),
     ariaLabel: 'Destaque sobre agendamentos',
-    badge: { label: 'Agenda', variant: 'notice' },
+    badge: (
+      <Badge appearance="subtle" size="small" variant="notice">
+        Agenda
+      </Badge>
+    ),
     description: 'Encontre unidades de atendimento, horarios disponiveis e documentos necessarios.',
     id: 'agendamentos',
     media: <Media />,
-    primaryAction: { href: '#agendamentos', label: 'Agendar' },
     title: 'Agendamentos e unidades',
-    tone: 'warning',
   },
 ];
 

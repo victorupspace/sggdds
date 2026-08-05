@@ -1,47 +1,23 @@
 import type { ReactNode } from 'react';
 
-import type { BadgeAppearance, BadgeSize, BadgeVariant } from '../Badge';
-
 export type CardHeadingLevel = 2 | 3 | 4 | 5 | 6;
 
 export type CardOrientation = 'vertical' | 'horizontal';
 
-export type CardTone = 'neutral' | 'brand' | 'info' | 'success' | 'warning' | 'danger';
-
-export type CardMediaAspectRatio = 'wide' | 'square';
-
-export interface CardBadge {
-  label: ReactNode;
-  icon?: ReactNode;
-  variant?: BadgeVariant;
-  appearance?: BadgeAppearance;
-  size?: BadgeSize;
-}
-
-export interface CardAction {
-  label: ReactNode;
-  href?: string;
-  onClick?: () => void;
-  ariaLabel?: string;
-  disabled?: boolean;
-  icon?: ReactNode;
-  iconEnd?: ReactNode;
-  target?: string;
-  rel?: string;
-}
-
 export interface CardProps {
   title: ReactNode;
+  /** Texto de apoio abaixo do título (Body/Medium no Figma). */
   description?: ReactNode;
-  badge?: CardBadge;
+  /** Slot da badge acima do título (componha com o Badge do DS; `showBadge` no Figma). */
+  badge?: ReactNode;
+  /** Slot de mídia (imagem, vídeo etc.); `showImagePlaceholder` no Figma. */
   media?: ReactNode;
-  mediaAspectRatio?: CardMediaAspectRatio;
-  primaryAction?: CardAction;
-  secondaryAction?: CardAction;
-  children?: ReactNode;
+  /** Slot da ação (componha com o Button do DS; `showButton` no Figma). */
+  action?: ReactNode;
+  /** Linha divisória entre a descrição e a ação (`showDivider` no Figma). */
+  showDivider?: boolean;
   headingLevel?: CardHeadingLevel;
+  /** `type` no Figma: vertical (mídia no topo) ou horizontal (mídia à esquerda). */
   orientation?: CardOrientation;
-  tone?: CardTone;
-  disabled?: boolean;
   className?: string;
 }

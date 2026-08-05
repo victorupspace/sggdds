@@ -1,20 +1,31 @@
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
+import { Badge } from '../Badge';
+import { Button } from '../Button';
 import { Card } from './Card';
 import './Card.stories.css';
 
+/* Chevrons do Button no Figma (vetores exportados, caixa de 24px) */
 function ChevronLeftIcon() {
   return (
-    <svg aria-hidden="true" fill="none" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-      <path d="m12 5-5 5 5 5" stroke="currentColor" strokeLinecap="round" strokeWidth="2.2" />
+    <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M6.14645 0.146447C6.34171 -0.0488155 6.65822 -0.0488155 6.85348 0.146447C7.0487 0.341712 7.04873 0.658228 6.85348 0.853478L1.20699 6.49996L6.85348 12.1464C7.0487 12.3417 7.04873 12.6582 6.85348 12.8535C6.65823 13.0487 6.34171 13.0487 6.14645 12.8535L0.146447 6.85348C-0.0488155 6.65822 -0.0488155 6.34171 0.146447 6.14645L6.14645 0.146447Z"
+        fill="currentColor"
+        transform="translate(8.5 5.5)"
+      />
     </svg>
   );
 }
 
 function ChevronRightIcon() {
   return (
-    <svg aria-hidden="true" fill="none" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-      <path d="m8 5 5 5-5 5" stroke="currentColor" strokeLinecap="round" strokeWidth="2.2" />
+    <svg aria-hidden="true" fill="none" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M0.146447 0.146447C0.341709 -0.0488155 0.658216 -0.0488155 0.853478 0.146447L6.85348 6.14645C7.0487 6.34171 7.04873 6.65823 6.85348 6.85348L0.853478 12.8535C0.658228 13.0487 0.341712 13.0487 0.146447 12.8535C-0.0488153 12.6582 -0.0488153 12.3417 0.146447 12.1464L5.79293 6.49996L0.146447 0.853478C-0.0488155 0.658216 -0.0488155 0.341709 0.146447 0.146447Z"
+        fill="currentColor"
+        transform="translate(8.5 5.5)"
+      />
     </svg>
   );
 }
@@ -22,6 +33,18 @@ function ChevronRightIcon() {
 function MediaPlaceholder() {
   return <span aria-hidden="true" className="card-story-media" />;
 }
+
+const defaultBadge = (
+  <Badge appearance="subtle" showIcon size="small" variant="neutral">
+    Badge
+  </Badge>
+);
+
+const defaultAction = (
+  <Button iconEnd={<ChevronRightIcon />} iconStart={<ChevronLeftIcon />} variant="secondary">
+    Button
+  </Button>
+);
 
 const meta = {
   title: 'Web Components/Card',
@@ -33,45 +56,36 @@ const meta = {
     docs: {
       description: {
         component: `
-O Card e um componente versatil para destacar informacoes importantes e orientar a pessoa usuaria para um conteudo ou acao. Ele funciona como um signpost de interface, diferente de cards de produto, listagens densas ou itens transacionais.
+O Card reproduz o layout do Figma (Web Components / Card): container com borda, cantos radius-lg, padding de 24px e elevação sutil, composto por midia, badge, titulo com a barra da marca, descricao, divider e um slot de acao.
 
-Use quando precisar destacar uma chamada editorial, uma orientacao contextual, um proximo passo, um conteudo complementar ou um bloco de navegacao com acao clara.
+Anatomia (as propriedades show* do Figma viram presenca dos slots):
+- media: imagem no topo (vertical, 180px de altura) ou a esquerda (horizontal, 140px de largura), com radius-md.
+- badge: slot para o Badge do DS (no Figma, Neutral Subtle Small com icone).
+- Titulo Title/Medium (SemiBold 20) precedido pela barra vermelha da marca (4x25, brand/primary/default).
+- Descricao Body/Medium (Medium 16, typography/tertiary).
+- Divider de 1px (color/neutral/grey-300) controlado por showDivider.
+- action: slot para o Button do DS (no Figma, secondary com chevrons).
 
-Nao use como alerta critico, produto de catalogo, container generico sem hierarquia, tabela, modal ou lista extensa.
+Estados do component set: hover aplica a tinta color/state/hover com elevacao maior, pressed aplica color/state/pressed, e o focus ring do Figma (color/border/focus) aparece quando um elemento interno recebe foco por teclado.
 
-Anatomia:
-- Midia opcional.
-- Badge opcional usando o componente Badge existente.
-- Titulo obrigatorio com headingLevel configuravel.
-- Descricao opcional.
-- Slot via children para apoio textual curto.
-- Acao primaria e acao secundaria opcionais, renderizadas como button ou link conforme href.
+Tokens: superficies, borda, radius, espacamentos, cores de texto e divider usam as mesmas variables do Figma; as variables novas ainda ausentes nas collections exportadas (color/state/*, color/border/focus, color/border/default) usam valores literais documentados no CSS.
 
-Responsividade:
-Este componente foi desenvolvido com comportamento responsivo nativo, adaptando espacamentos, alinhamento, largura, quebra de conteudo e areas de toque para diferentes tamanhos de tela. A responsividade e aplicada na implementacao do componente e nao depende de variacoes manuais no Storybook.
+Responsividade: o card e fluido (100% do container); o layout horizontal usa min-width de 400px no desktop, como no Figma, e abaixo de 640px empilha como o vertical (midia no topo), sem overflow horizontal.
 
-Tokens:
-O componente usa as variaveis CSS geradas pelos tokens do Figma para cor, superficie, borda, raio, espacamento, tipografia, estados, foco e feedback. Como ainda nao ha tokens dedicados de elevation ou icon size, o Card evita sombra propria e deriva tamanhos de icone da escala de spacing.
-
-Acessibilidade:
-- A raiz usa article.
-- O titulo usa heading semantico configuravel.
-- Acoes possuem foco visivel, area minima de toque e suporte a teclado.
-- Links desabilitados recebem aria-disabled e saem da ordem de tabulacao.
-- Estado visual nao depende apenas de cor: disabled tambem muda interatividade e semantica.
+Acessibilidade: raiz article, heading configuravel via headingLevel, barra do titulo e divider decorativos (aria-hidden) e interacao concentrada nos slots (Button/links), sem elementos interativos aninhados.
 `,
       },
     },
     layout: 'fullscreen',
   },
   argTypes: {
+    action: {
+      control: false,
+      description: 'Slot da acao (componha com o Button do DS; showButton no Figma).',
+    },
     badge: {
       control: false,
-      description: 'Configuracao opcional do Badge exibido antes do titulo.',
-    },
-    children: {
-      control: false,
-      description: 'Slot opcional para conteudo curto de apoio.',
+      description: 'Slot da badge (componha com o Badge do DS; showBadge no Figma).',
     },
     className: {
       control: 'text',
@@ -81,10 +95,6 @@ Acessibilidade:
       control: 'text',
       description: 'Texto complementar abaixo do titulo.',
     },
-    disabled: {
-      control: 'boolean',
-      description: 'Desabilita as acoes e comunica aria-disabled no card.',
-    },
     headingLevel: {
       control: 'select',
       description: 'Nivel semantico do heading do titulo.',
@@ -92,34 +102,20 @@ Acessibilidade:
     },
     media: {
       control: false,
-      description: 'Slot opcional para imagem, video, SVG, canvas ou midia customizada.',
-    },
-    mediaAspectRatio: {
-      control: 'select',
-      description: 'Proporcao visual da area de midia.',
-      options: ['wide', 'square'],
+      description: 'Slot de midia (showImagePlaceholder no Figma).',
     },
     orientation: {
       control: 'radio',
-      description: 'Orientacao visual do card. Horizontal colapsa para vertical em telas menores.',
+      description: 'type no Figma. Horizontal empilha como vertical abaixo de 640px.',
       options: ['vertical', 'horizontal'],
     },
-    primaryAction: {
-      control: false,
-      description: 'Acao primaria. Renderiza link quando href existe; caso contrario, button.',
-    },
-    secondaryAction: {
-      control: false,
-      description: 'Acao secundaria. Renderiza link quando href existe; caso contrario, button.',
+    showDivider: {
+      control: 'boolean',
+      description: 'Exibe o divider entre a descricao e a acao (showDivider no Figma).',
     },
     title: {
       control: 'text',
       description: 'Titulo principal obrigatorio.',
-    },
-    tone: {
-      control: 'select',
-      description: 'Tom semantico aplicado nas acoes e foco.',
-      options: ['neutral', 'brand', 'info', 'success', 'warning', 'danger'],
     },
   },
   tags: ['autodocs'],
@@ -131,65 +127,57 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    badge: {
-      label: 'Badge',
-    },
+    action: defaultAction,
+    badge: defaultBadge,
     description: 'Description',
     media: <MediaPlaceholder />,
-    primaryAction: {
-      icon: <ChevronLeftIcon />,
-      iconEnd: <ChevronRightIcon />,
-      label: 'Label',
-    },
-    title: 'Card Title',
+    title: 'Card title',
   },
 };
 
 export const Horizontal: Story = {
   args: {
     ...Default.args,
-    badge: {
-      label: 'Badge',
-      size: 'small',
-    },
-    mediaAspectRatio: 'square',
     orientation: 'horizontal',
+  },
+  parameters: {
+    componentCanvas: {
+      width: 480,
+    },
+  },
+};
+
+export const WithoutMedia: Story = {
+  args: {
+    action: defaultAction,
+    badge: defaultBadge,
+    description: 'Description',
+    title: 'Card title',
+  },
+};
+
+export const WithoutDivider: Story = {
+  args: {
+    ...Default.args,
+    showDivider: false,
   },
 };
 
 export const LongContent: Story = {
   args: {
-    badge: {
-      label: 'Orientacao',
-    },
-    children:
-      'Use textos curtos, objetivos e com uma acao clara. Conteudos longos quebram linha sem gerar overflow horizontal.',
+    action: (
+      <Button iconEnd={<ChevronRightIcon />} variant="secondary">
+        Acessar conteudo
+      </Button>
+    ),
+    badge: (
+      <Badge appearance="subtle" showIcon size="small" variant="neutral">
+        Orientacao
+      </Badge>
+    ),
     description:
-      'Este exemplo valida titulo, descricao e slot com conteudo maior em telas pequenas, tablets e desktop.',
+      'Este exemplo valida titulo, descricao e acao com conteudo maior em telas pequenas, tablets e desktop, sem overflow horizontal.',
     media: <MediaPlaceholder />,
-    primaryAction: {
-      icon: <ChevronLeftIcon />,
-      label: 'Acessar conteudo',
-    },
-    secondaryAction: {
-      href: '#boas-praticas',
-      label: 'Ver boas praticas',
-    },
     title: 'Titulo maior para validar quebra de linha e hierarquia visual',
-  },
-};
-
-export const Disabled: Story = {
-  args: {
-    ...Default.args,
-    disabled: true,
-    primaryAction: {
-      icon: <ChevronLeftIcon />,
-      label: 'Indisponivel',
-    },
-    secondaryAction: {
-      href: '#disabled-link',
-      label: 'Link indisponivel',
-    },
   },
 };

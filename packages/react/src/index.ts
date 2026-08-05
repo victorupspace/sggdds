@@ -17,15 +17,7 @@ export type { ButtonProps, ButtonSize, ButtonVariant } from './components/Button
 export { ButtonGov } from './components/ButtonGov';
 export type { ButtonGovProps } from './components/ButtonGov';
 export { Card } from './components/Card';
-export type {
-  CardAction,
-  CardBadge,
-  CardHeadingLevel,
-  CardMediaAspectRatio,
-  CardOrientation,
-  CardProps,
-  CardTone,
-} from './components/Card';
+export type { CardHeadingLevel, CardOrientation, CardProps } from './components/Card';
 export { Carousel } from './components/Carousel';
 export type { CarouselCardItem, CarouselLabels, CarouselProps } from './components/Carousel';
 export { CookieConsentBanner } from './components/CookieConsentBanner';

@@ -1,10 +1,2 @@
 export { Card } from './Card';
-export type {
-  CardAction,
-  CardBadge,
-  CardHeadingLevel,
-  CardMediaAspectRatio,
-  CardOrientation,
-  CardProps,
-  CardTone,
-} from './Card.types';
+export type { CardHeadingLevel, CardOrientation, CardProps } from './Card.types';

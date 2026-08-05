@@ -11,37 +11,48 @@ concurrency:
 permissions:
   contents: write
   pull-requests: write
-  id-token: write
 
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    # Secrets are not available in `if:` expressions, so the token is exposed
+    # as job env and the publish step checks it before running.
+    env:
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - uses: pnpm/action-setup@v4
-        with:
-          version: 10.24.0
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version-file: '.nvmrc'
           cache: pnpm
           registry-url: 'https://registry.npmjs.org'
 
       - run: pnpm install --frozen-lockfile
 
+      - name: Skip publish (NPM_TOKEN not configured)
+        if: env.NPM_TOKEN == ''
+        run: |
+          echo "::notice::NPM_TOKEN secret is not configured; skipping version/publish." \
+            "Add the secret in Settings > Secrets and variables > Actions to enable releases."
+
       - name: Create Release Pull Request or Publish
+        if: env.NPM_TOKEN != ''
         id: changesets
         uses: changesets/action@v1
         with:
-          version: pnpm version
+          version: pnpm run version:packages
           publish: pnpm release
           commit: 'chore: release packages'
           title: 'chore: release packages'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # setup-node writes ~/.npmrc pointing at NODE_AUTH_TOKEN; without this
+          # mapping the npm publish step runs unauthenticated (ENEEDAUTH).
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

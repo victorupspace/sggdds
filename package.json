@@ -23,7 +23,7 @@
     "typecheck": "pnpm -r typecheck",
     "changeset": "changeset",
     "changeset:status": "changeset status",
-    "version": "changeset version",
+    "version:packages": "changeset version",
     "release": "pnpm build && changeset publish"
   },
   "devDependencies": {

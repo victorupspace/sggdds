@@ -1,37 +1,36 @@
+/*
+ * Layout do Figma: Web Components / File Upload (node 219:7828).
+ * Cada propriedade referencia a mesma variable usada no Figma; os comentários
+ * indicam o nome original da variable na collection.
+ */
 .ds-file-upload {
-  --file-upload-label-color: var(--ds-component-file-upload-color-text);
-  --file-upload-text-color: var(--ds-component-file-upload-color-text);
-  --file-upload-muted-color: var(--ds-component-file-upload-color-text-muted);
-  --file-upload-background: var(--ds-semantic-color-background-neutral-default);
-  --file-upload-border-color: var(--ds-component-file-upload-color-border-default);
-  --file-upload-border-hover-color: var(--ds-semantic-text-style-content-color-typography-disabled);
-  --file-upload-focus-color: var(--ds-semantic-color-background-brand-primary-secondary-default);
-  --file-upload-error-color: var(--ds-semantic-text-style-content-color-typography-danger);
-  --file-upload-disabled-background: var(--ds-semantic-color-background-neutral-disabled);
-  --file-upload-disabled-color: var(--ds-semantic-text-style-content-color-typography-disabled);
-  --file-upload-action-primary-background: var(
-    --ds-semantic-text-style-content-color-typography-secondary
-  );
-  --file-upload-action-primary-background-hover: var(
-    --ds-semantic-text-style-content-color-typography-primary
-  );
-  --file-upload-action-primary-color: var(--ds-semantic-color-background-neutral-default);
-  --file-upload-action-secondary-background: var(--ds-semantic-color-background-neutral-default);
-  --file-upload-action-secondary-background-hover: var(
-    --ds-semantic-color-background-neutral-disabled
-  );
-  --file-upload-action-secondary-color: var(
-    --ds-semantic-text-style-content-color-typography-secondary
-  );
-  --file-upload-action-secondary-border: var(--ds-semantic-color-border-neutral-subtle);
-  --file-upload-gap: var(--ds-component-file-upload-spacing-gap);
-  --file-upload-action-gap: var(--ds-primitive-spacing-8);
+  /* text-style/content color/typography/primary */
+  --file-upload-text-color: var(--ds-semantic-text-style-content-color-typography-primary);
+  /* text-style/content color/typography/tertiary (helper e apoio do dropzone) */
+  --file-upload-muted-color: var(--ds-semantic-text-style-content-color-typography-tertiary);
+  /* text-style/content color/typography/placeholder (status dos itens) */
+  --file-upload-status-color: var(--ds-semantic-text-style-content-color-typography-placeholder);
+  /* text-style/content color/typography/danger (textos de erro) */
+  --file-upload-danger-color: var(--ds-semantic-text-style-content-color-typography-danger);
+  /* color/background/neutral/default (dropzone e itens) */
+  --file-upload-surface: var(--ds-semantic-color-background-neutral-default);
+  /* color/border/neutral/subtle (borda do dropzone) */
+  --file-upload-border-color: var(--ds-semantic-color-border-neutral-subtle);
+  /* color/background/danger/subtle e color/border/danger/default (o arquivo
+     Figma resolve a borda para #e52207; a collection exportada traz #c50007) */
+  --file-upload-danger-surface: var(--ds-semantic-color-background-danger-subtle);
+  --file-upload-danger-border-color: var(--ds-semantic-color-border-danger-default);
+  /* color/icons/sucess/default (#00883d, fill do check_circle exportado) */
+  --file-upload-check-color: var(--ds-semantic-color-icons-success-default);
+  /* Component sizing/8 (gap da raiz e dos itens) */
+  --file-upload-gap: var(--ds-component-component-sizing-8);
 
-  display: grid;
+  display: flex;
   box-sizing: border-box;
-  max-inline-size: 100%;
-  min-inline-size: 0;
+  flex-direction: column;
   gap: var(--file-upload-gap);
+  align-items: flex-start;
+  min-inline-size: 0;
   color: var(--file-upload-text-color);
   font-family:
     var(--ds-primitive-typography-font-family-plus-jakarta-sans), Inter, system-ui, sans-serif;
@@ -39,22 +38,23 @@
 
 .ds-file-upload--full-width {
   inline-size: 100%;
+  max-inline-size: 100%;
+}
+
+.ds-file-upload *,
+.ds-file-upload *::before,
+.ds-file-upload *::after {
+  box-sizing: border-box;
 }
 
 .ds-file-upload__label {
-  display: flex;
-  min-inline-size: 0;
-  gap: var(--ds-primitive-spacing-6);
-  align-items: center;
-  overflow-wrap: anywhere;
-  color: var(--file-upload-label-color);
-  font-size: var(--ds-primitive-typography-font-size-20);
-  font-weight: var(--ds-primitive-typography-font-weight-bold);
-  line-height: var(--ds-primitive-typography-line-height-28);
-}
-
-.ds-file-upload__required {
-  color: currentColor;
+  display: inline-flex;
+  gap: var(--ds-primitive-spacing-2);
+  color: var(--file-upload-text-color);
+  /* Label/Medium: Plus Jakarta Sans Medium 14 */
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  line-height: normal;
 }
 
 .ds-file-upload__input {
@@ -68,276 +68,240 @@
   white-space: nowrap;
 }
 
-.ds-file-upload__actions {
-  display: flex;
-  min-inline-size: 0;
-  flex-wrap: wrap;
-  gap: var(--file-upload-action-gap);
-  align-items: flex-start;
+.ds-file-upload__helper {
+  margin: var(--ds-primitive-spacing-0);
+  color: var(--file-upload-muted-color);
+  /* Body/Extra Small: Plus Jakarta Sans Medium 12 */
+  font-size: var(--ds-primitive-typography-font-size-12);
+  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  line-height: normal;
+  overflow-wrap: anywhere;
 }
 
-.ds-file-upload__action {
-  display: inline-flex;
-  box-sizing: border-box;
-  min-inline-size: 0;
-  min-block-size: var(--ds-primitive-spacing-40);
-  padding: 0 var(--ds-primitive-spacing-16);
-  gap: var(--ds-primitive-spacing-8);
+.ds-file-upload__dropzone {
+  display: flex;
+  inline-size: 100%;
+  flex-direction: column;
+  /* Component sizing/10 (gap e padding-y) e /72 (padding-x) */
+  gap: var(--ds-component-component-sizing-10);
   align-items: center;
-  justify-content: center;
-  border: var(--ds-primitive-border-width-border-sm) solid transparent;
-  border-radius: var(--ds-primitive-border-radius-radius-full);
+  padding: var(--ds-component-component-sizing-10) var(--ds-component-component-sizing-72);
+  /* border/width/border-sm + color/border/neutral/subtle */
+  border: var(--ds-primitive-border-width-border-sm) solid var(--file-upload-border-color);
+  /* border/radius/radius-md */
+  border-radius: var(--ds-primitive-border-radius-radius-md);
+  background: var(--file-upload-surface);
   cursor: pointer;
-  font: inherit;
-  font-size: var(--ds-primitive-typography-font-size-16);
-  font-weight: var(--ds-primitive-typography-font-weight-bold);
-  line-height: var(--ds-primitive-typography-line-height-24);
   text-align: center;
   transition:
-    background-color 160ms ease,
-    border-color 160ms ease,
-    color 160ms ease;
+    background-color 120ms ease,
+    border-color 120ms ease;
 }
 
-.ds-file-upload__action--primary {
-  border-color: var(--file-upload-action-primary-background);
-  background: var(--file-upload-action-primary-background);
-  color: var(--file-upload-action-primary-color);
+.ds-file-upload--dragging .ds-file-upload__dropzone {
+  border-color: var(--ds-semantic-color-border-neutral-prominent);
 }
 
-.ds-file-upload__action--secondary {
-  border-color: var(--file-upload-action-secondary-border);
-  background: var(--file-upload-action-secondary-background);
-  color: var(--file-upload-action-secondary-color);
+.ds-file-upload--error .ds-file-upload__dropzone {
+  /* Estado Error: fundo danger/subtle com borda danger/default */
+  border-color: var(--file-upload-danger-border-color);
+  background: var(--file-upload-danger-surface);
 }
 
-.ds-file-upload__action--tertiary {
-  background: transparent;
-  color: var(--file-upload-action-secondary-color);
+.ds-file-upload__dropzone:focus-within {
+  outline: var(--ds-component-focus-ring-effect-width) solid
+    var(--ds-component-focus-ring-color-ring);
+  outline-offset: var(--ds-component-focus-ring-effect-offset);
 }
 
-.ds-file-upload__action:not(:disabled):hover {
-  border-color: var(--file-upload-action-primary-background-hover);
-  background: var(--file-upload-action-primary-background-hover);
-  color: var(--file-upload-action-primary-color);
+.ds-file-upload__dropzone-text {
+  inline-size: 100%;
+  color: var(--file-upload-text-color);
+  /* Body/Small: Plus Jakarta Sans Medium 14 */
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  line-height: normal;
+  overflow-wrap: anywhere;
 }
 
-.ds-file-upload__action--secondary:not(:disabled):hover {
-  border-color: var(--file-upload-action-secondary-border);
-  background: var(--file-upload-action-secondary-background-hover);
-  color: var(--file-upload-action-secondary-color);
+.ds-file-upload__dropzone-hint {
+  inline-size: 100%;
+  color: var(--file-upload-muted-color);
+  /* Disclaimer/Medium: Plus Jakarta Sans Regular + Font-size/10 */
+  font-size: var(--ds-primitive-typography-font-size-10);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: normal;
+  overflow-wrap: anywhere;
 }
 
-.ds-file-upload__action--tertiary:not(:disabled):hover {
-  border-color: transparent;
-  background: var(--ds-primitive-color-neutral-alpha-4);
-  color: var(--file-upload-action-secondary-color);
+.ds-file-upload__dropzone-feedback {
+  inline-size: 100%;
+  color: var(--file-upload-danger-color);
+  font-size: var(--ds-primitive-typography-font-size-10);
+  font-weight: var(--ds-primitive-typography-font-weight-regular);
+  line-height: normal;
+  overflow-wrap: anywhere;
 }
 
-.ds-file-upload__action:focus-visible {
-  outline: var(--ds-primitive-border-width-border-md) solid var(--file-upload-focus-color);
-  outline-offset: var(--ds-primitive-spacing-4);
+.ds-file-upload__items {
+  display: flex;
+  inline-size: 100%;
+  flex-direction: column;
+  gap: var(--file-upload-gap);
+  padding: var(--ds-primitive-spacing-0);
+  margin: var(--ds-primitive-spacing-0);
+  list-style: none;
 }
 
-.ds-file-upload__action:disabled {
-  border-color: var(--ds-component-file-upload-color-border-default);
-  background: var(--ds-semantic-color-background-neutral-disabled);
-  color: var(--ds-semantic-text-style-content-color-typography-disabled);
-  cursor: not-allowed;
+.ds-file-upload__item {
+  display: flex;
+  inline-size: 100%;
+  /* Upload Item: padding e gap de Component sizing/8, radius de 8px */
+  gap: var(--ds-component-component-sizing-8);
+  align-items: center;
+  padding: var(--ds-component-component-sizing-8);
+  border-radius: var(--ds-primitive-border-radius-radius-md);
+  background: var(--file-upload-surface);
 }
 
-.ds-file-upload__action--tertiary:disabled {
-  border-color: transparent;
-  background: transparent;
+.ds-file-upload__item--error {
+  /* Upload Item de falha: fundo danger/subtle e borda danger/default */
+  border: var(--ds-primitive-border-width-border-sm) solid var(--file-upload-danger-border-color);
+  background: var(--file-upload-danger-surface);
+  color: var(--file-upload-danger-color);
 }
 
-.ds-file-upload__action-icon {
+.ds-file-upload__item--error .ds-file-upload__item-name {
+  color: var(--file-upload-danger-color);
+}
+
+.ds-file-upload__item-icon {
   display: inline-grid;
-  flex: 0 0 auto;
+  flex: none;
   place-items: center;
-  inline-size: var(--ds-primitive-spacing-20);
-  block-size: var(--ds-primitive-spacing-20);
+  inline-size: var(--ds-component-component-sizing-24);
+  block-size: var(--ds-component-component-sizing-24);
+  color: var(--file-upload-text-color);
 }
 
-.ds-file-upload__action-icon > svg {
+.ds-file-upload__item--error .ds-file-upload__item-icon {
+  /* Fill #e52207 do vetor cards_stack de erro (color/icons/danger/default) */
+  color: var(--ds-semantic-color-icons-danger-default);
+}
+
+.ds-file-upload__item-icon > svg,
+.ds-file-upload__item-check > svg,
+.ds-file-upload__item-remove > svg {
   inline-size: 100%;
   block-size: 100%;
 }
 
-.ds-file-upload__dropzone {
-  position: relative;
-  display: grid;
-  box-sizing: border-box;
-  min-block-size: calc(var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-32));
-  padding: var(--ds-component-file-upload-spacing-padding-y)
-    var(--ds-component-file-upload-spacing-padding-x);
-  gap: var(--ds-primitive-spacing-16);
-  place-items: center;
-  border: var(--ds-component-file-upload-border-width) dashed var(--file-upload-border-color);
-  border-radius: var(--ds-component-file-upload-border-radius);
-  background: var(--file-upload-background);
-  color: var(--file-upload-text-color);
-  cursor: pointer;
-  text-align: center;
-  transition:
-    background-color 160ms ease,
-    border-color 160ms ease,
-    color 160ms ease;
-}
-
-.ds-file-upload__dropzone:hover,
-.ds-file-upload--dragging .ds-file-upload__dropzone {
-  border-color: var(--file-upload-border-hover-color);
-  background: var(--ds-semantic-color-background-neutral-subtle);
-}
-
-.ds-file-upload__dropzone:has(.ds-file-upload__input:focus-visible) {
-  border-color: var(--file-upload-focus-color);
-  outline: var(--ds-primitive-border-width-border-md) solid var(--file-upload-focus-color);
-  outline-offset: var(--ds-primitive-spacing-2);
-}
-
-.ds-file-upload__dropzone-icon {
-  display: inline-grid;
-  box-sizing: border-box;
-  place-items: center;
-  inline-size: var(--ds-primitive-spacing-48);
-  block-size: var(--ds-primitive-spacing-48);
-  border: var(--ds-primitive-border-width-border-sm) solid var(--file-upload-border-color);
-  border-radius: var(--ds-primitive-border-radius-radius-md);
-  color: var(--file-upload-muted-color);
-}
-
-.ds-file-upload__dropzone-icon > svg {
-  inline-size: var(--ds-primitive-spacing-24);
-  block-size: var(--ds-primitive-spacing-24);
-}
-
-.ds-file-upload__dropzone-text {
-  display: grid;
-  gap: var(--ds-primitive-spacing-4);
-  color: var(--file-upload-text-color);
-  font-size: var(--ds-primitive-typography-font-size-28);
-  font-weight: var(--ds-primitive-typography-font-weight-regular);
-  line-height: var(--ds-primitive-typography-line-height-38);
-}
-
-.ds-file-upload__dropzone-action {
-  justify-self: center;
-  text-decoration: underline;
-  text-decoration-thickness: var(--ds-primitive-border-width-border-sm);
-  text-underline-offset: var(--ds-primitive-spacing-4);
-}
-
-.ds-file-upload__dropzone-hint {
-  color: var(--file-upload-muted-color);
-  font-size: var(--ds-primitive-typography-font-size-24);
-  font-weight: var(--ds-primitive-typography-font-weight-regular);
-  line-height: var(--ds-primitive-typography-line-height-32);
-}
-
-.ds-file-upload__message {
-  margin: 0;
-  overflow-wrap: anywhere;
-  color: var(--file-upload-muted-color);
-  font-size: var(--ds-primitive-typography-font-size-16);
-  font-weight: var(--ds-primitive-typography-font-weight-bold);
-  line-height: var(--ds-primitive-typography-line-height-24);
-}
-
-.ds-file-upload__message--error {
-  color: var(--file-upload-error-color);
-}
-
-.ds-file-upload__file-list {
-  display: grid;
-  min-inline-size: 0;
-  margin: 0;
-  padding: 0;
-  gap: var(--ds-primitive-spacing-8);
-  list-style: none;
-}
-
-.ds-file-upload__file-item {
+.ds-file-upload__item-info {
   display: flex;
   min-inline-size: 0;
-  padding: var(--ds-component-file-upload-file-item-spacing-padding-y)
-    var(--ds-component-file-upload-file-item-spacing-padding-x);
-  gap: var(--ds-primitive-spacing-12);
-  align-items: center;
-  justify-content: space-between;
-  border: var(--ds-primitive-border-width-border-sm) solid
-    var(--ds-semantic-color-border-neutral-subtle);
-  border-radius: var(--ds-component-file-upload-file-item-border-radius);
-  background: var(--ds-semantic-color-background-neutral-subtle);
-  color: var(--file-upload-text-color);
-  font-size: var(--ds-component-file-upload-typography-font-size);
-  font-weight: var(--ds-primitive-typography-font-weight-medium);
-  line-height: var(--ds-primitive-typography-line-height-20);
+  flex: 1;
+  flex-direction: column;
+  /* Component sizing/2 entre nome e status */
+  gap: var(--ds-component-component-sizing-2);
+  justify-content: center;
 }
 
-.ds-file-upload__file-name {
+.ds-file-upload__item-name {
+  display: flex;
   min-inline-size: 0;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  align-items: center;
+  color: var(--file-upload-text-color);
+  /* Body/Small: Plus Jakarta Sans Medium 14 */
+  font-size: var(--ds-primitive-typography-font-size-14);
+  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  line-height: normal;
   white-space: nowrap;
 }
 
-.ds-file-upload__file-size {
-  flex: 0 0 auto;
-  color: var(--file-upload-muted-color);
+.ds-file-upload__item-basename {
+  min-inline-size: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.ds-file-upload--error {
-  --file-upload-border-color: var(--file-upload-error-color);
-  --file-upload-border-hover-color: var(--file-upload-error-color);
-  --file-upload-focus-color: var(--file-upload-error-color);
+.ds-file-upload__item-extension {
+  flex: none;
 }
 
-.ds-file-upload--disabled {
-  --file-upload-label-color: var(--file-upload-disabled-color);
-  --file-upload-text-color: var(--file-upload-disabled-color);
-  --file-upload-muted-color: var(--file-upload-disabled-color);
-  --file-upload-background: var(--file-upload-disabled-background);
-  --file-upload-border-color: var(--ds-semantic-color-border-neutral-default);
+.ds-file-upload__item-status {
+  display: flex;
+  /* Component sizing/4 entre tamanho, bullet e status */
+  gap: var(--ds-component-component-sizing-4);
+  align-items: center;
+  color: var(--file-upload-status-color);
+  /* Body/Extra Small: Plus Jakarta Sans Medium 12 */
+  font-size: var(--ds-primitive-typography-font-size-12);
+  font-weight: var(--ds-primitive-typography-font-weight-medium);
+  line-height: normal;
+  white-space: nowrap;
+}
 
+/* Bullet de ~3px do Figma entre tamanho e status */
+.ds-file-upload__item-bullet {
+  inline-size: 3px;
+  block-size: 3px;
+  border-radius: var(--ds-primitive-border-radius-radius-full);
+  background: currentColor;
+}
+
+.ds-file-upload__item-check {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  inline-size: var(--ds-component-component-sizing-24);
+  block-size: var(--ds-component-component-sizing-24);
+  color: var(--file-upload-check-color);
+}
+
+.ds-file-upload__item-remove {
+  display: inline-grid;
+  flex: none;
+  place-items: center;
+  inline-size: var(--ds-component-component-sizing-24);
+  block-size: var(--ds-component-component-sizing-24);
+  padding: var(--ds-primitive-spacing-0);
+  border: var(--ds-primitive-border-width-border-none);
+  background: none;
+  color: var(--file-upload-text-color);
+  cursor: pointer;
+}
+
+.ds-file-upload__item-remove:focus-visible {
+  outline: var(--ds-component-focus-ring-effect-width) solid
+    var(--ds-component-focus-ring-color-ring);
+  outline-offset: var(--ds-component-focus-ring-effect-offset);
+}
+
+.ds-file-upload__item-remove:disabled {
+  color: var(--ds-semantic-text-style-content-color-typography-disabled);
   cursor: not-allowed;
+}
+
+.ds-file-upload--disabled .ds-file-upload__label,
+.ds-file-upload--disabled .ds-file-upload__helper {
+  color: var(--ds-semantic-text-style-content-color-typography-disabled);
 }
 
 .ds-file-upload--disabled .ds-file-upload__dropzone {
+  color: var(--ds-semantic-text-style-content-color-typography-disabled);
   cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ds-file-upload__dropzone {
+    transition: none;
+  }
 }
 
 @media (max-width: 640px) {
   .ds-file-upload__dropzone {
-    min-block-size: var(--ds-primitive-spacing-128);
-    padding: var(--ds-primitive-spacing-24) var(--ds-primitive-spacing-16);
-  }
-
-  .ds-file-upload__dropzone-text {
-    font-size: var(--ds-primitive-typography-font-size-20);
-    line-height: var(--ds-primitive-typography-line-height-28);
-  }
-
-  .ds-file-upload__dropzone-hint {
-    font-size: var(--ds-primitive-typography-font-size-16);
-    line-height: var(--ds-primitive-typography-line-height-24);
-  }
-}
-
-@media (max-width: 420px) {
-  .ds-file-upload__actions {
-    align-items: stretch;
-  }
-
-  .ds-file-upload__action {
-    flex: 1 1 100%;
-    min-block-size: var(--ds-primitive-spacing-48);
-  }
-
-  .ds-file-upload__file-item {
-    align-items: flex-start;
-    flex-direction: column;
-    gap: var(--ds-primitive-spacing-4);
+    /* O node do Figma não define variante mobile; o padding lateral de 72px
+       reduz para Component sizing/16 em telas estreitas */
+    padding-inline: var(--ds-component-component-sizing-16);
   }
 }

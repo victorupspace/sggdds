@@ -14,6 +14,12 @@ describe('FileUpload', () => {
     expect(screen.getByLabelText('Documento')).toHaveAttribute('type', 'file');
   });
 
+  it('renders the attach button with the Figma label', () => {
+    render(<FileUpload label="Documento" />);
+
+    expect(screen.getByRole('button', { name: 'Anexar arquivos' })).toBeInTheDocument();
+  });
+
   it('marks the input as required', () => {
     render(<FileUpload required label="Anexo" />);
 
@@ -23,9 +29,7 @@ describe('FileUpload', () => {
   it('connects helper text with aria-describedby', () => {
     render(<FileUpload helperText="Envie apenas PDF" label="Comprovante" />);
 
-    const input = screen.getByLabelText('Comprovante');
-
-    expect(input).toHaveAccessibleDescription('Envie apenas PDF');
+    expect(screen.getByLabelText('Comprovante')).toHaveAccessibleDescription('Envie apenas PDF');
   });
 
   it('sets aria-invalid and describes the error message', () => {
@@ -48,7 +52,8 @@ describe('FileUpload', () => {
 
     expect(onChange).toHaveBeenCalledTimes(1);
     expect(onFilesChange).toHaveBeenCalledWith([file], expect.any(Object));
-    expect(screen.getByText('documento.pdf')).toBeInTheDocument();
+    expect(screen.getByText('documento')).toBeInTheDocument();
+    expect(screen.getByText('.pdf')).toBeInTheDocument();
   });
 
   it('limits dropped files to one when multiple is false', () => {
@@ -58,7 +63,7 @@ describe('FileUpload', () => {
 
     render(<FileUpload label="Documento" mode="dropzone" onFilesChange={onFilesChange} />);
 
-    fireEvent.drop(screen.getByText(/Drag and drop files here/).closest('label') as HTMLElement, {
+    fireEvent.drop(screen.getByText(/Arraste arquivos aqui/).closest('label') as HTMLElement, {
       dataTransfer: {
         files: [firstFile, secondFile],
       },
@@ -67,8 +72,8 @@ describe('FileUpload', () => {
     expect(onFilesChange).toHaveBeenCalledWith([firstFile], expect.any(Object));
   });
 
-  it('clears selected files', () => {
-    const onClear = vi.fn();
+  it('removes a file from the list', () => {
+    const onFileRemove = vi.fn();
     const onFilesChange = vi.fn();
     const file = createFile();
 
@@ -76,36 +81,48 @@ describe('FileUpload', () => {
       <FileUpload
         defaultFiles={[file]}
         label="Documento"
-        onClear={onClear}
+        onFileRemove={onFileRemove}
         onFilesChange={onFilesChange}
       />,
     );
 
-    fireEvent.click(screen.getByRole('button', { name: /Clear Files/ }));
+    fireEvent.click(screen.getByRole('button', { name: 'Remover documento.pdf' }));
 
-    expect(onClear).toHaveBeenCalledTimes(1);
+    expect(onFileRemove).toHaveBeenCalledWith(file, 0, expect.any(Object));
     expect(onFilesChange).toHaveBeenLastCalledWith([], expect.any(Object));
-    expect(screen.queryByText('documento.pdf')).not.toBeInTheDocument();
+    expect(screen.queryByText('documento')).not.toBeInTheDocument();
   });
 
-  it('calls onValidate with selected files', () => {
-    const onValidate = vi.fn();
-    const file = createFile();
+  it('shows the item status label', () => {
+    render(<FileUpload defaultFiles={[createFile()]} label="Documento" />);
 
+    expect(screen.getByText('Carregado')).toBeInTheDocument();
+  });
+
+  it('renders the error upload item in button mode', () => {
+    render(<FileUpload errorText="O upload falhou." label="Documento" state="error" />);
+
+    expect(screen.getByText('O upload falhou.')).toBeInTheDocument();
+  });
+
+  it('renders the dropzone feedback in error state', () => {
     render(
-      <FileUpload defaultFiles={[file]} label="Documento" onValidate={onValidate} showValidate />,
+      <FileUpload
+        errorText="Arquivo não suportado"
+        label="Documento"
+        mode="dropzone"
+        state="error"
+      />,
     );
 
-    fireEvent.click(screen.getByRole('button', { name: /Validate/ }));
-
-    expect(onValidate).toHaveBeenCalledWith([file], expect.any(Object));
+    expect(screen.getByText('Arquivo não suportado')).toBeInTheDocument();
+    expect(screen.queryByText(/PDF, CSV ou XLSX/)).not.toBeInTheDocument();
   });
 
-  it('disables the native input and visible actions', () => {
-    render(<FileUpload disabled label="Documento" showValidate />);
+  it('disables the native input and the attach button', () => {
+    render(<FileUpload disabled label="Documento" />);
 
     expect(screen.getByLabelText('Documento')).toBeDisabled();
-    expect(screen.getByRole('button', { name: /Upload Files/ })).toBeDisabled();
-    expect(screen.getByRole('button', { name: /Validate/ })).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Anexar arquivos' })).toBeDisabled();
   });
 });

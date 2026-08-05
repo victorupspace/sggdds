@@ -7,25 +7,12 @@
   background: var(--ds-primitive-color-neutral-grey-100);
 }
 
+/* Largura do exemplo no Figma (340px) */
 .file-upload-story-panel {
   display: grid;
   box-sizing: border-box;
-  inline-size: min(100%, 760px);
-  gap: var(--ds-primitive-spacing-32);
-}
-
-.file-upload-story-compact {
-  display: grid;
-  box-sizing: border-box;
-  inline-size: min(100%, 560px);
+  inline-size: min(100%, 340px);
   gap: var(--ds-primitive-spacing-24);
-}
-
-.file-upload-story-stack {
-  display: grid;
-  box-sizing: border-box;
-  inline-size: min(100%, 760px);
-  gap: var(--ds-primitive-spacing-32);
 }
 
 @media (max-width: 420px) {
@@ -34,9 +21,7 @@
     padding: var(--ds-primitive-spacing-16);
   }
 
-  .file-upload-story-panel,
-  .file-upload-story-compact,
-  .file-upload-story-stack {
+  .file-upload-story-panel {
     inline-size: 100%;
   }
 }

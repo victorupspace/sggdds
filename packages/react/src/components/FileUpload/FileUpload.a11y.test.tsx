@@ -16,10 +16,15 @@ describe('FileUpload — accessibility', () => {
         label="Anexar documentos"
         mode="dropzone"
         dropzoneText="Arraste e solte arquivos aqui"
-        dropzoneActionText="ou selecione do dispositivo"
         dropzoneHint="PDF, PNG ou JPG até 5MB"
       />,
     );
+    expect(await axe(container)).toHaveNoViolations();
+  });
+
+  it('has no violations with uploaded items', async () => {
+    const file = new File(['abc'], 'documento.pdf', { type: 'application/pdf' });
+    const { container } = render(<FileUpload defaultFiles={[file]} label="Comprovante" />);
     expect(await axe(container)).toHaveNoViolations();
   });
 

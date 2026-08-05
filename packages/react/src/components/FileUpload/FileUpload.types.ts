@@ -6,6 +6,7 @@ import type {
   MouseEvent,
 } from 'react';
 
+/** `type` no Figma: button ("Clique para selecionar arquivos") ou dropzone ("Arrastar arquivos"). */
 export type FileUploadMode = 'button' | 'dropzone';
 
 export type FileUploadState = 'default' | 'error';
@@ -21,6 +22,7 @@ export interface FileUploadProps extends Omit<
 > {
   label: string;
   helperText?: string;
+  /** Mensagem de erro; no modo button vira o Upload Item de falha do Figma. */
   errorText?: string;
   state?: FileUploadState;
   mode?: FileUploadMode;
@@ -30,16 +32,15 @@ export interface FileUploadProps extends Omit<
   files?: File[];
   defaultFiles?: File[];
   showFileList?: boolean;
+  /** Rótulo do botão ("Anexar arquivos" no Figma). */
   uploadLabel?: string;
-  validateLabel?: string;
-  clearLabel?: string;
-  showValidate?: boolean;
-  showClear?: boolean;
+  /** Instrução do dropzone. */
   dropzoneText?: string;
-  dropzoneActionText?: string;
+  /** Texto de apoio do dropzone (formatos e limite). */
   dropzoneHint?: string;
+  /** Status exibido nos itens carregados. */
+  itemStatusLabel?: string;
   onChange?: ChangeEventHandler<HTMLInputElement>;
   onFilesChange?: (files: File[], event: FileUploadInteractionEvent) => void;
-  onValidate?: (files: File[], event: MouseEvent<HTMLButtonElement>) => void;
-  onClear?: (event: MouseEvent<HTMLButtonElement>) => void;
+  onFileRemove?: (file: File, index: number, event: MouseEvent<HTMLButtonElement>) => void;
 }

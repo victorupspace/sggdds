@@ -1,165 +1,99 @@
-import { useState } from 'react';
-
 import type { Meta, StoryObj } from '@storybook/react-vite';
 
 import { FileUpload } from './FileUpload';
 import './FileUpload.stories.css';
-import type { FileUploadProps } from './FileUpload.types';
 
-function ControlledFileUpload(args: FileUploadProps) {
-  const [files, setFiles] = useState<File[]>(args.defaultFiles ?? []);
-
-  return (
-    <FileUpload
-      {...args}
-      files={files}
-      onClear={(event) => {
-        args.onClear?.(event);
-      }}
-      onFilesChange={(nextFiles, event) => {
-        setFiles(nextFiles);
-        args.onFilesChange?.(nextFiles, event);
-      }}
-    />
-  );
+function createFile(name: string, sizeKb: number) {
+  return new File(['a'.repeat(sizeKb * 1024)], name, { type: 'application/octet-stream' });
 }
 
+const sampleFiles = [createFile('Documento.csv', 100), createFile('Comprovante.pdf', 100)];
+
 const meta = {
-  title: 'Web Components/FileUpload',
+  title: 'Web Components/File Upload',
   component: FileUpload,
   parameters: {
     componentCanvas: {
-      width: 760,
+      width: 420,
     },
     docs: {
       description: {
         component: `
-FileUpload permite selecionar arquivos por botao ou por uma area de drag and drop, mantendo o input file nativo como fonte semantica da interacao.
+O File Upload reproduz o layout do Figma (Web Components / File Upload): label Label/Medium, dois tipos de acionamento e a lista de Upload Items.
 
-Use para anexos, documentos, comprovantes, imagens e fluxos em que a pessoa precisa enviar um ou mais arquivos.
+Tipos (propriedade type no Figma):
+- button ("Clique para selecionar arquivos"): botao "Anexar arquivos" compondo o Button secondary do DS com o icone upload exportado.
+- dropzone ("Arrastar arquivos"): area com fundo neutral/default, borda neutral/subtle, radius-md, padding Component sizing 72x10, instrucao Body/Small e texto de apoio Disclaimer/Medium (10px).
 
-Nao use para botoes genericos, campos de texto, links de download ou upload com processamento especifico que exija uma experiencia dedicada.
+Upload Items: fundo neutral/default com radius 8, icone cards_stack de 24px, nome Body/Small com extensao preservada e truncamento, linha de status (tamanho • status) em Body/Extra Small com typography/placeholder, check_circle verde (icons/sucess/default) e botao de remover close_small.
 
-Modos:
-- Button: exibe controles de upload, validacao opcional e limpeza.
-- Dropzone: exibe uma area ampla para arrastar arquivos ou clicar para abrir o seletor nativo.
+Estado Error: no dropzone o container vira danger/subtle com borda danger/default e o feedback em typography/danger; no modo button o erro aparece como o Upload Item de falha do Figma (danger/subtle + cards_stack vermelho).
 
-Estados:
-- Default: superficie neutra, borda pontilhada no dropzone e acoes disponiveis conforme selecao.
-- Dragging: realca a area de drop enquanto arquivos estao sobre o componente.
-- Error: borda e mensagem de erro usando tokens de feedback.
-- Disabled: bloqueia selecao, drop, validacao e limpeza.
+Responsividade: o componente e fluido (100% do container), nomes de arquivo truncam preservando a extensao e o padding lateral de 72px do dropzone reduz para 16px abaixo de 640px.
 
-Responsividade:
-As acoes quebram linha em larguras menores e passam a ocupar a largura total no mobile. O dropzone reduz tipografia e espacamento para preservar legibilidade sem overflow horizontal.
-
-Tokens:
-Cores, superficies, bordas, radius, espacamentos, tipografia, foco e estados usam variaveis CSS geradas pelos tokens do Figma. Como a camada semantica ainda nao cobre todos os casos no projeto, o componente cria aliases internos semanticos apontando para tokens disponiveis.
-
-Acessibilidade:
-- Usa input nativo type="file".
-- Rotulo visivel e conectado por aria-labelledby.
-- Helper, erro e lista de arquivos sao conectados por aria-describedby.
-- Botoes usam button nativo e foco visivel.
-- Dropzone aceita clique, teclado pelo input nativo e drag and drop.
+Acessibilidade: input file nativo conectado por aria-labelledby/aria-describedby, dropzone como label com foco visivel via focus-within, lista com aria-live e botoes de remover com rotulo especifico por arquivo.
 `,
       },
     },
     layout: 'fullscreen',
   },
   argTypes: {
-    accept: {
-      control: 'text',
-      description: 'Lista de tipos aceitos pelo input nativo.',
-    },
     className: {
       control: 'text',
       description: 'Classe CSS opcional aplicada ao wrapper.',
     },
-    clearLabel: {
-      control: 'text',
-      description: 'Texto do botao de limpar arquivos.',
-    },
-    disabled: {
-      control: 'boolean',
-      description: 'Desabilita selecao, drop e acoes.',
-    },
-    dropzoneActionText: {
-      control: 'text',
-      description: 'Trecho acionavel do texto do dropzone.',
-    },
     dropzoneHint: {
       control: 'text',
-      description: 'Texto de apoio dentro do dropzone.',
+      description: 'Texto de apoio do dropzone (formatos e limite).',
     },
     dropzoneText: {
       control: 'text',
-      description: 'Texto principal do dropzone.',
+      description: 'Instrucao do dropzone.',
     },
     errorText: {
       control: 'text',
-      description: 'Mensagem de erro conectada por aria-describedby.',
+      description: 'Mensagem de erro (Upload Item de falha no modo button).',
     },
     files: {
       control: false,
-      description: 'Lista controlada de arquivos selecionados.',
+      description: 'Arquivos controlados.',
     },
     fullWidth: {
       control: 'boolean',
-      description: 'Faz o componente ocupar toda a largura disponivel.',
+      description: 'Faz o componente ocupar 100% da largura do container.',
     },
     helperText: {
       control: 'text',
-      description: 'Texto de apoio abaixo dos controles.',
+      description: 'Texto de apoio abaixo do acionador.',
     },
-    inputClassName: {
+    itemStatusLabel: {
       control: 'text',
-      description: 'Classe CSS opcional aplicada ao input nativo.',
+      description: 'Status exibido nos itens carregados.',
     },
     label: {
       control: 'text',
-      description: 'Rotulo visivel do componente.',
+      description: 'Rotulo visivel e acessivel do campo.',
     },
     mode: {
-      control: 'select',
-      description: 'Modo visual do upload.',
+      control: 'inline-radio',
+      description: 'Tipo do Figma: button ou dropzone.',
       options: ['button', 'dropzone'],
     },
     multiple: {
       control: 'boolean',
-      description: 'Permite selecionar multiplos arquivos.',
+      description: 'Permite selecionar mais de um arquivo.',
     },
-    onChange: {
+    onFileRemove: {
       control: false,
-      description: 'Callback nativo de alteracao do input file.',
-    },
-    onClear: {
-      control: false,
-      description: 'Callback chamado ao limpar arquivos.',
+      description: 'Callback chamado ao remover um arquivo.',
     },
     onFilesChange: {
       control: false,
-      description: 'Callback simplificado com a lista de arquivos.',
-    },
-    onValidate: {
-      control: false,
-      description: 'Callback chamado pelo botao de validacao.',
-    },
-    required: {
-      control: 'boolean',
-      description: 'Marca o input nativo como obrigatorio.',
-    },
-    showClear: {
-      control: 'boolean',
-      description: 'Exibe o botao de limpar no modo button.',
+      description: 'Callback chamado quando a selecao muda.',
     },
     showFileList: {
       control: 'boolean',
-      description: 'Exibe a lista de arquivos selecionados.',
-    },
-    showValidate: {
-      control: 'boolean',
-      description: 'Exibe o botao de validacao no modo button.',
+      description: 'Exibe a lista de Upload Items.',
     },
     state: {
       control: 'select',
@@ -168,11 +102,7 @@ Acessibilidade:
     },
     uploadLabel: {
       control: 'text',
-      description: 'Texto da acao principal de upload.',
-    },
-    validateLabel: {
-      control: 'text',
-      description: 'Texto do botao de validacao.',
+      description: 'Rotulo do botao (Anexar arquivos no Figma).',
     },
   },
   tags: ['autodocs'],
@@ -182,77 +112,67 @@ export default meta;
 
 type Story = StoryObj<typeof meta>;
 
-export const ButtonType: Story = {
+export const Default: Story = {
   args: {
-    accept: '.svg,.png,.jpg,.jpeg,.gif',
+    defaultFiles: sampleFiles,
     helperText: 'Helper text',
     label: 'Label',
-    mode: 'button',
     multiple: true,
-    required: true,
-    showValidate: true,
-  },
-  render: (args) => (
-    <div className="file-upload-story-shell">
-      <div className="file-upload-story-compact">
-        <ControlledFileUpload {...args} />
-      </div>
-    </div>
-  ),
-};
-
-export const DragAndDropType: Story = {
-  args: {
-    accept: '.svg,.png,.jpg,.jpeg,.gif',
-    label: 'Label',
-    mode: 'dropzone',
-    multiple: true,
-    required: true,
-    showClear: false,
   },
   render: (args) => (
     <div className="file-upload-story-shell">
       <div className="file-upload-story-panel">
-        <ControlledFileUpload {...args} />
+        <FileUpload {...args} />
       </div>
     </div>
   ),
 };
 
-export const WithSelectedFiles: Story = {
+export const Dropzone: Story = {
   args: {
-    accept: '.pdf,.png,.jpg',
-    defaultFiles: [
-      new File(['documento'], 'comprovante.pdf', { type: 'application/pdf' }),
-      new File(['imagem'], 'foto-documento.jpg', { type: 'image/jpeg' }),
-    ],
-    helperText: 'Revise os arquivos antes de validar.',
-    label: 'Documentos',
-    mode: 'button',
+    defaultFiles: sampleFiles,
+    helperText: 'Helper text',
+    label: 'Label',
+    mode: 'dropzone',
     multiple: true,
-    showValidate: true,
   },
   render: (args) => (
     <div className="file-upload-story-shell">
-      <div className="file-upload-story-compact">
-        <ControlledFileUpload {...args} />
+      <div className="file-upload-story-panel">
+        <FileUpload {...args} />
       </div>
     </div>
   ),
 };
 
-export const Error: Story = {
+export const ButtonError: Story = {
   args: {
-    errorText: 'Formato de arquivo nao permitido.',
-    label: 'Documento obrigatorio',
-    mode: 'dropzone',
-    required: true,
+    errorText: 'O upload falhou. O arquivo é muito grande.',
+    helperText: 'Helper text',
+    label: 'Label',
     state: 'error',
   },
   render: (args) => (
     <div className="file-upload-story-shell">
       <div className="file-upload-story-panel">
-        <ControlledFileUpload {...args} />
+        <FileUpload {...args} />
+      </div>
+    </div>
+  ),
+};
+
+export const DropzoneError: Story = {
+  args: {
+    errorText: 'Arquivo não suportado',
+    helperText: 'Helper text',
+    label: 'Label',
+    mode: 'dropzone',
+    state: 'error',
+  },
+  render: (args) => (
+    <div className="file-upload-story-shell">
+      <div className="file-upload-story-panel">
+        <FileUpload {...args} />
       </div>
     </div>
   ),
@@ -261,66 +181,37 @@ export const Error: Story = {
 export const Disabled: Story = {
   args: {
     disabled: true,
-    helperText: 'Upload indisponivel no momento.',
+    helperText: 'Envio indisponivel no momento.',
     label: 'Label',
-    mode: 'button',
-    showValidate: true,
+    mode: 'dropzone',
   },
   render: (args) => (
     <div className="file-upload-story-shell">
-      <div className="file-upload-story-compact">
-        <ControlledFileUpload {...args} />
+      <div className="file-upload-story-panel">
+        <FileUpload {...args} />
       </div>
     </div>
   ),
 };
 
-export const ResponsiveContent: Story = {
+export const LongFileNames: Story = {
   args: {
-    dropzoneHint:
-      'Arquivos em SVG, PNG, JPG, GIF ou PDF com ate 10 MB por arquivo e nomes legiveis.',
-    label: 'Label com conteudo longo para validar responsividade do componente',
-    mode: 'dropzone',
-    multiple: true,
+    defaultFiles: [
+      createFile('Relatorio-consolidado-de-indicadores-de-atendimento-digital-2026.xlsx', 512),
+    ],
+    label: 'Label',
   },
   parameters: {
     docs: {
       description: {
-        story:
-          'Demonstra quebra de texto no label, no corpo do dropzone e na mensagem de apoio sem gerar overflow horizontal.',
+        story: 'Nomes longos truncam com reticencias preservando a extensao, como no Figma.',
       },
     },
   },
   render: (args) => (
     <div className="file-upload-story-shell">
       <div className="file-upload-story-panel">
-        <ControlledFileUpload {...args} />
-      </div>
-    </div>
-  ),
-};
-
-export const States: Story = {
-  args: {
-    label: 'Label',
-  },
-  render: () => (
-    <div className="file-upload-story-shell">
-      <div className="file-upload-story-stack">
-        <ControlledFileUpload
-          helperText="Helper text"
-          label="Button type"
-          mode="button"
-          showValidate
-        />
-        <ControlledFileUpload label="Drag and drop type" mode="dropzone" />
-        <ControlledFileUpload
-          errorText="Selecione um arquivo valido."
-          label="Error"
-          mode="dropzone"
-          state="error"
-        />
-        <ControlledFileUpload disabled helperText="Upload indisponivel." label="Disabled" />
+        <FileUpload {...args} />
       </div>
     </div>
   ),

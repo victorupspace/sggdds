@@ -20,18 +20,36 @@ const plusJakarta = Plus_Jakarta_Sans({
   variable: '--fonte-plus-jakarta',
 });
 
+/**
+ * Endereço público da Wiki, usado como base para canonical e Open Graph.
+ *
+ * A Vercel expõe VERCEL_PROJECT_PRODUCTION_URL no build — sempre o domínio de
+ * produção, mesmo em deploy de preview, que é o que canonical e OG pedem.
+ * Assim o nome do projeto na Vercel pode mudar sem exigir alteração de código.
+ * O valor fixo no fim é só para build local.
+ */
+const URL_PUBLICA =
+  process.env.NEXT_PUBLIC_URL_WIKI ??
+  (process.env.VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
+    : 'https://wiki-sampads.vercel.app');
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://wiki-sampads.vercel.app'),
+  metadataBase: new URL(URL_PUBLICA),
   title: {
     default: 'Sampa Design System',
     template: '%s · Sampa Design System',
   },
   description:
     'Documentação oficial do Sampa Design System — Governo do Estado de São Paulo, Prodesp. Fundamentos, componentes, padrões e recursos para designers e pessoas desenvolvedoras.',
+  // Relativo de propósito: o Next resolve por rota contra metadataBase, então
+  // cada página ganha o próprio canonical sem repetir a URL em lugar nenhum.
+  alternates: { canonical: './' },
   openGraph: {
     type: 'website',
     locale: 'pt_BR',
     siteName: 'Sampa Design System',
+    url: './',
   },
 };
 

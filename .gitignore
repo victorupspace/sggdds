@@ -16,3 +16,4 @@ platforms/ios/Sources/SGGDTokens/DSTokens.swift
 platforms/android/sggd-tokens/src/main/res/values/ds_*.xml
 *.tsbuildinfo
 .gstack/
+.next/

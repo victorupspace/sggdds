@@ -24,10 +24,11 @@ export default function PaginaAcessibilidade() {
   const comTeclado = componentes.filter(
     (c) => c.accessibility.keyboardInteractions.length > 0,
   );
-  const semTeclado = componentes.filter((c) => c.accessibility.keyboardInteractions.length === 0);
+  const percentualTeclado = Math.round((comTeclado.length / total) * 100);
   const comMovimentoReduzido = componentes.filter((c) =>
     c.responsive.some((r) => r.query.includes('prefers-reduced-motion')),
   );
+  const percentualMovimento = Math.round((comMovimentoReduzido.length / total) * 100);
 
   const valor = (nome: string) => tokens.find((t) => t.cssVar === nome)?.valorResolvido ?? '';
 
@@ -124,36 +125,27 @@ export default function PaginaAcessibilidade() {
       <h2 id="cobertura">Onde o sistema está hoje</h2>
       <div className="wiki-numeros">
         <div className="wiki-numero">
-          <span className="wiki-numero__valor">
-            {comAxe.length}/{total}
-          </span>
-          <span className="wiki-numero__rotulo">componentes com teste axe ({percentual}%)</span>
+          <span className="wiki-numero__valor">{percentual}%</span>
+          <span className="wiki-numero__rotulo">dos componentes com teste axe</span>
         </div>
         <div className="wiki-numero">
           <span className="wiki-numero__valor">{asseracoes}</span>
           <span className="wiki-numero__rotulo">casos de teste nos arquivos a11y</span>
         </div>
         <div className="wiki-numero">
-          <span className="wiki-numero__valor">
-            {comTeclado.length}/{total}
-          </span>
+          <span className="wiki-numero__valor">{percentualTeclado}%</span>
           <span className="wiki-numero__rotulo">com comportamento de teclado documentado</span>
         </div>
         <div className="wiki-numero">
-          <span className="wiki-numero__valor">
-            {comMovimentoReduzido.length}/{total}
-          </span>
+          <span className="wiki-numero__valor">{percentualMovimento}%</span>
           <span className="wiki-numero__rotulo">respeitam movimento reduzido</span>
         </div>
       </div>
       <p>
         A cobertura de teste automatizado é medida pela presença de um arquivo{' '}
         <code>*.a11y.test.tsx</code> (vitest + axe) no componente. Hoje{' '}
-        <strong>
-          {comAxe.length} dos {total}
-        </strong>{' '}
-        têm esse arquivo — {percentual}%. Os {semAxe.length} restantes não têm nenhuma verificação
-        automática de acessibilidade.
+        <strong>{percentual}% dos componentes</strong> têm esse arquivo. Os demais não têm nenhuma
+        verificação automática de acessibilidade.
       </p>
 
       <h3 id="com-teste">Componentes com teste axe</h3>
@@ -290,8 +282,8 @@ export default function PaginaAcessibilidade() {
 
       <h3 id="inventario-foco">O que os componentes realmente usam</h3>
       <p>
-        Levantamento feito sobre as custom properties de foco declaradas no CSS dos {total}{' '}
-        componentes. São <strong>{origensOrdenadas.length} origens de cor diferentes</strong> para o
+        Levantamento feito sobre as custom properties de foco declaradas no CSS dos componentes
+        publicados. São <strong>{origensOrdenadas.length} origens de cor diferentes</strong> para o
         mesmo elemento de interface:
       </p>
       <Tabela
@@ -338,9 +330,8 @@ export default function PaginaAcessibilidade() {
       <h2 id="teclado">Navegação por teclado</h2>
       <p>
         Tudo o que funciona com mouse tem que funcionar com teclado — e na mesma ordem em que a
-        pessoa lê a tela. {comTeclado.length} dos {total} componentes têm o comportamento de teclado
-        documentado no catálogo; os outros {semTeclado.length} não expõem interação própria ou não
-        foram documentados.
+        pessoa lê a tela. {percentualTeclado}% dos componentes têm o comportamento de teclado
+        documentado no catálogo; os demais não expõem interação própria ou não foram documentados.
       </p>
       <Tabela
         cabecalho={['Tecla', 'Comportamento esperado']}
@@ -481,7 +472,7 @@ export default function PaginaAcessibilidade() {
         está pedindo explicitamente para não ver isso.
       </p>
       <p>
-        {comMovimentoReduzido.length} dos {total} componentes já declaram{' '}
+        {percentualMovimento}% dos componentes já declaram{' '}
         <code>@media (prefers-reduced-motion: reduce)</code> no próprio CSS. Faça o mesmo em toda
         animação que você escrever:
       </p>

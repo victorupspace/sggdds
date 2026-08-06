@@ -210,7 +210,7 @@ export default function PaginaPremissasEObjetivos() {
       porque:
         'O sistema só evita retrabalho se a peça de que a equipe precisa já existir no dia em que ela precisa.',
       medida: 'Componentes de catálogo do Figma com implementação em código.',
-      hoje: `${pares.length} de 36 componentes de catálogo têm par em código; ${componentes.length} componentes React publicados.`,
+      hoje: `${pares.length} de 36 componentes de catálogo têm par em código.`,
     },
     {
       objetivo: 'Eliminar valor literal da interface',
@@ -224,7 +224,7 @@ export default function PaginaPremissasEObjetivos() {
       porque:
         'Verificação manual não escala e não sobrevive a prazo apertado. O que não é testado a cada mudança regride.',
       medida: 'Percentual de componentes com teste automatizado de acessibilidade no CI.',
-      hoje: `${comAxe} de ${componentes.length} componentes (${percentualAxe}%).`,
+      hoje: `${percentualAxe}% dos componentes.`,
     },
     {
       objetivo: 'Tornar o sistema instalável sem intervenção humana',

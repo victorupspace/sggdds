@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { Trilha } from '@/components/Trilha';
-import { listarComponentes } from '@/lib/dados';
 
 export const metadata: Metadata = {
   title: 'Filtros',
@@ -11,8 +10,6 @@ export const metadata: Metadata = {
 };
 
 export default function PaginaPadraoFiltros() {
-  const componentes = listarComponentes();
-
   return (
     <div className="wiki-prosa">
       <Trilha
@@ -30,8 +27,8 @@ export default function PaginaPadraoFiltros() {
       <div className="wiki-aviso">
         <p className="wiki-aviso__titulo">Não existe componente de filtro no sistema</p>
         <p>
-          Nenhum dos {componentes.length} componentes é uma barra de filtros, um painel lateral
-          (drawer) ou uma lista de filtros aplicados. Este padrão é uma composição de componentes que
+          Nenhum componente do sistema é uma barra de filtros, um painel lateral (drawer) ou uma
+          lista de filtros aplicados. Este padrão é uma composição de componentes que
           já existem. Toda a página é conteúdo novo, escrito para esta Wiki, e precisa de validação
           do time antes de virar norma.
         </p>
@@ -590,8 +587,8 @@ export default function PaginaPadraoFiltros() {
       </ul>
       <p className="wiki-pendente">
         ⚠️ <strong>PENDENTE:</strong> não existe teste axe automatizado para Chip, Dropdown e
-        Datepicker — fonte: arquivos de teste do repositório. 13 dos {componentes.length} componentes
-        têm teste axe. Enquanto isso, a verificação deste padrão é manual. Registrado em{' '}
+        Datepicker — fonte: arquivos de teste do repositório. Apenas 13 componentes têm teste axe.
+        Enquanto isso, a verificação deste padrão é manual. Registrado em{' '}
         <code>LACUNAS.md</code>.
       </p>
 

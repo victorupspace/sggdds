@@ -103,6 +103,7 @@ export default function PaginaMotion() {
       efeito: c.responsive.find((r) => r.query.includes('prefers-reduced-motion'))?.effect ?? null,
     }))
     .filter((c): c is { nome: string; efeito: string } => c.efeito !== null);
+  const percentualGuarda = Math.round((comGuarda.length / componentes.length) * 100);
 
   return (
     <div className="wiki-prosa">
@@ -147,10 +148,8 @@ export default function PaginaMotion() {
           <span className="wiki-numero__rotulo">tokens de easing</span>
         </div>
         <div className="wiki-numero">
-          <span className="wiki-numero__valor">
-            {comGuarda.length}/{componentes.length}
-          </span>
-          <span className="wiki-numero__rotulo">componentes com movimento reduzido</span>
+          <span className="wiki-numero__valor">{percentualGuarda}%</span>
+          <span className="wiki-numero__rotulo">dos componentes respeitam movimento reduzido</span>
         </div>
       </div>
       <p>
@@ -352,8 +351,8 @@ export default function PaginaMotion() {
         explícito da pessoa.
       </p>
       <p>
-        Hoje <strong>{comGuarda.length} dos {componentes.length} componentes</strong> declaram a
-        regra. O sistema usa duas estratégias, e a escolha entre elas não é arbitrária:
+        Hoje <strong>{percentualGuarda}% dos componentes</strong> declaram a regra. O sistema usa
+        duas estratégias, e a escolha entre elas não é arbitrária:
       </p>
       <ul>
         <li>

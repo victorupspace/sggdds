@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { Trilha } from '@/components/Trilha';
-import { listarComponentes, listarTokens } from '@/lib/dados';
+import { listarTokens } from '@/lib/dados';
 
 export const metadata: Metadata = {
   title: 'Instalação',
@@ -14,7 +14,6 @@ const PACOTE = '@government/design-system';
 const PACOTE_TOKENS = '@government/tokens';
 
 export default function PaginaInstalacao() {
-  const componentes = listarComponentes();
   const tokens = listarTokens();
 
   return (
@@ -23,9 +22,9 @@ export default function PaginaInstalacao() {
 
       <h1>Instalação</h1>
       <p className="wiki-prosa__resumo">
-        O Sampa Design System é distribuído como um pacote React com {componentes.length}{' '}
-        componentes e {tokens.length.toLocaleString('pt-BR')} tokens. Esta página descreve a
-        instalação definitiva e, enquanto o pacote não é publicado, o caminho que funciona hoje.
+        O Sampa Design System é distribuído como um pacote React com os componentes e{' '}
+        {tokens.length.toLocaleString('pt-BR')} tokens. Esta página descreve a instalação definitiva
+        e, enquanto o pacote não é publicado, o caminho que funciona hoje.
       </p>
 
       <div className="wiki-aviso">

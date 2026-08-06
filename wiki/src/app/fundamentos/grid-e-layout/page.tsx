@@ -332,9 +332,8 @@ export default function PaginaGridELayout() {
 
       <h2 id="uso-real">Onde cada largura é usada hoje</h2>
       <p>
-        Levantado dos {componentes.length} componentes publicados. {comMedia} deles têm pelo menos
-        uma regra <code>@media</code> de largura; os demais são responsivos por fluxo, sem ponto de
-        quebra.
+        Levantado dos componentes publicados. {comMedia} deles têm pelo menos uma regra{' '}
+        <code>@media</code> de largura; os demais são responsivos por fluxo, sem ponto de quebra.
       </p>
       <div className="wiki-tabela-rolagem" tabIndex={0}>
         <table className="wiki-tabela">

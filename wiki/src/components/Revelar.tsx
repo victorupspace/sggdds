@@ -24,6 +24,7 @@ export function Revelar({
   intervalo = 0.05,
   seletor = '[data-revelar]',
   aoCarregar = false,
+  deslocamento = 24,
 }: {
   children: ReactNode;
   className?: string;
@@ -32,6 +33,15 @@ export function Revelar({
   seletor?: string;
   /** true para revelar no carregamento (herói); false para revelar ao rolar. */
   aoCarregar?: boolean;
+  /**
+   * Deslocamento vertical inicial, em pixels.
+   *
+   * Use 0 em fileiras de cartões de mesma altura: com deslocamento, cada cartão
+   * chega ao lugar num instante diferente e, no meio da animação, a fileira
+   * aparece escalonada. Quem olha nesse momento não vê movimento, vê
+   * desalinhamento. Sem deslocamento, o alinhamento nunca se rompe.
+   */
+  deslocamento?: number;
 }) {
   const escopo = useRef<HTMLDivElement>(null);
 
@@ -44,7 +54,7 @@ export function Revelar({
 
       const animacao = gsap.from(alvos, {
         opacity: 0,
-        y: 24,
+        y: deslocamento,
         duration: 0.5,
         ease: 'power2.out',
         stagger: intervalo,

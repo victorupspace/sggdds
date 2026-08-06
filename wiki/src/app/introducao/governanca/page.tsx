@@ -17,9 +17,10 @@ export default function PaginaGovernanca() {
   const componentes = listarComponentes();
   const tokens = listarTokens();
 
-  const total = componentes.length;
   const comAxe = componentes.filter((c) => c.tests.a11yFile !== null);
   const comUnitario = componentes.filter((c) => c.tests.unitFile !== null);
+  const percentualAxe = Math.round((comAxe.length / componentes.length) * 100);
+  const percentualUnitario = Math.round((comUnitario.length / componentes.length) * 100);
   const casosUnitarios = componentes.reduce((soma, c) => soma + (c.tests.unitCount ?? 0), 0);
   const casosAxe = componentes.reduce((soma, c) => soma + (c.tests.a11yCount ?? 0), 0);
   const stories = componentes.reduce((soma, c) => soma + c.stories.length, 0);
@@ -63,10 +64,8 @@ export default function PaginaGovernanca() {
           <span className="wiki-numero__rotulo">versões publicadas no npm</span>
         </div>
         <div className="wiki-numero">
-          <span className="wiki-numero__valor">
-            {total}/{total}
-          </span>
-          <span className="wiki-numero__rotulo">componentes sem status oficial</span>
+          <span className="wiki-numero__valor">100%</span>
+          <span className="wiki-numero__rotulo">dos componentes sem status oficial</span>
         </div>
       </div>
 
@@ -136,7 +135,7 @@ export default function PaginaGovernanca() {
 
       <p>
         Vale separar duas coisas que costumam ser confundidas. O <strong>produto</strong> existe:
-        são {total} componentes React, {tokens.length.toLocaleString('pt-BR')} tokens, {stories}{' '}
+        são os componentes React, {tokens.length.toLocaleString('pt-BR')} tokens, {stories}{' '}
         stories publicadas no Storybook e {casosUnitarios} casos de teste unitário. O que falta é a{' '}
         <strong>camada de contrato</strong> em volta dele — versão, histórico, promessa de
         estabilidade e alguém responsável por sustentar essa promessa. Sem essa camada, um produto
@@ -419,9 +418,9 @@ pnpm release            # constrói e publica no npm`}</code>
       <p>
         Quem vai adotar um componente precisa saber o quanto pode confiar nele. Esta Wiki publica
         quatro estados possíveis — <code>estável</code>, <code>beta</code>, <code>em revisão</code> e{' '}
-        <code>depreciado</code> — e hoje marca <strong>os {total} componentes como em revisão</strong>
-        , porque não existe nenhum critério publicado que permita chamar qualquer um deles de
-        estável.
+        <code>depreciado</code> — e hoje marca{' '}
+        <strong>todos os componentes como em revisão</strong>, porque não existe nenhum critério
+        publicado que permita chamar qualquer um deles de estável.
       </p>
       <p className="wiki-pendente">
         ⚠️ <strong>PENDENTE:</strong> não há critério definido para um componente sair de{' '}
@@ -448,19 +447,19 @@ pnpm release            # constrói e publica no npm`}</code>
           ],
           [
             'Teste unitário',
-            `${comUnitario.length}/${total} componentes com arquivo de teste, ${casosUnitarios} casos`,
+            `${percentualUnitario}% dos componentes com arquivo de teste, ${casosUnitarios} casos`,
             <span key="b2">
               a suíte é bloqueante, mas <strong>não há mínimo de cobertura exigido</strong>
             </span>,
           ],
           [
             'Teste de acessibilidade (axe)',
-            `${comAxe.length}/${total} componentes, ${casosAxe} casos`,
+            `${percentualAxe}% dos componentes, ${casosAxe} casos`,
             <strong key="b3">não</strong>,
           ],
           [
             'Story no Storybook',
-            `${stories} stories, todos os ${total} componentes cobertos`,
+            `${stories} stories, todos os componentes cobertos`,
             <strong key="b4">não</strong>,
           ],
           [

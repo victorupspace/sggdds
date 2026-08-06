@@ -40,9 +40,9 @@ export default function CatalogoComponentes() {
 
       <h1>Componentes</h1>
       <p className="wiki-prosa__resumo">
-        {componentes.length} componentes com implementação em React, documentados a partir do
-        código-fonte e da biblioteca do Figma. Cada página traz três abas: visão geral de uso,
-        diretrizes de design e referência técnica.
+        Componentes com implementação em React, documentados a partir do código-fonte e da
+        biblioteca do Figma. Cada página traz três abas: visão geral de uso, diretrizes de design e
+        referência técnica.
       </p>
 
       {categorias.map((categoria) => (

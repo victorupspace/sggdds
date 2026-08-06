@@ -69,7 +69,6 @@ export default function PaginaFluxoDeCriacao() {
   const pares = listarParesFigma();
   const slugsComFigma = new Set(pares.map((p) => p.codeSlug).filter(Boolean));
   const semFigma = componentes.filter((c) => !slugsComFigma.has(c.slug));
-  const comFigma = componentes.length - semFigma.length;
 
   return (
     <div className="wiki-prosa">
@@ -140,16 +139,15 @@ export default function PaginaFluxoDeCriacao() {
 
       <h2 id="ja-existe">2. Verificar se a peça já existe</h2>
       <p>
-        Antes de desenhar qualquer coisa, procure. O sistema publica {componentes.length}{' '}
-        componentes em código e 58 componentes na biblioteca do Figma — 36 de catálogo e 22 partes
-        internas de componentes maiores. Boa parte do que parece novo é uma composição de peças que
-        já estão lá.
+        Antes de desenhar qualquer coisa, procure. O sistema publica seus componentes em código e 58
+        componentes na biblioteca do Figma — 36 de catálogo e 22 partes internas de componentes
+        maiores. Boa parte do que parece novo é uma composição de peças que já estão lá.
       </p>
       <div className="wiki-cartoes">
         <Link className="wiki-cartao" href="/componentes/visao-geral">
           <span className="wiki-cartao__titulo">Catálogo de componentes</span>
           <span className="wiki-cartao__descricao">
-            Os {componentes.length} componentes, com anatomia, estados, props e par no Figma.
+            Os componentes, com anatomia, estados, props e par no Figma.
           </span>
         </Link>
         <Link className="wiki-cartao" href="/padroes/visao-geral">
@@ -187,8 +185,8 @@ export default function PaginaFluxoDeCriacao() {
       <div className="wiki-aviso">
         <p className="wiki-aviso__titulo">Figma e código não estão sincronizados</p>
         <p>
-          Dos {componentes.length} componentes em código, <strong>{comFigma}</strong> têm par
-          identificado na biblioteca do Figma e <strong>{semFigma.length}</strong> não têm nenhum:{' '}
+          Nem todos os componentes em código têm par identificado na biblioteca do Figma —{' '}
+          <strong>{semFigma.length}</strong> não têm nenhum:{' '}
           {semFigma.map((c) => c.name).join(', ')}. No sentido inverso, o componente de catálogo{' '}
           <strong>Star Rating</strong> está publicado no Figma e não existe em código. Antes de
           desenhar com uma peça, confirme na página do componente se ela existe dos dois lados — o
@@ -483,8 +481,8 @@ export default function PaginaFluxoDeCriacao() {
         </li>
         <li>
           <strong>A acessibilidade é verificada de novo</strong> a cada mudança de estrutura. Hoje 13
-          dos {componentes.length} componentes têm teste automatizado de acessibilidade — os outros
-          dependem inteiramente de revisão manual.
+          componentes têm teste automatizado de acessibilidade — os outros dependem inteiramente de
+          revisão manual.
         </li>
       </ul>
 

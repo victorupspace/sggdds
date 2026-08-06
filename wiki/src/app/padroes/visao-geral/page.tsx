@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { Trilha } from '@/components/Trilha';
-import { listarComponentes } from '@/lib/dados';
 
 export const metadata: Metadata = {
   title: 'Padrões',
@@ -91,8 +90,6 @@ const CAMADAS: { camada: string; pergunta: string; exemplo: string; onde: string
 ];
 
 export default function PaginaVisaoGeralPadroes() {
-  const componentes = listarComponentes();
-
   return (
     <div className="wiki-prosa">
       <Trilha passos={[{ titulo: 'Padrões' }]} />
@@ -101,8 +98,7 @@ export default function PaginaVisaoGeralPadroes() {
       <p className="wiki-prosa__resumo">
         Um padrão é a resposta documentada para uma situação que se repete em serviços do Estado:
         preencher um formulário, procurar alguma coisa, corrigir um erro. Ele não entrega código
-        novo — organiza os {componentes.length} componentes que já existem numa sequência que
-        funciona.
+        novo — organiza os componentes que já existem numa sequência que funciona.
       </p>
       <p className="wiki-selo wiki-selo--rascunho">rascunho para validação</p>
 

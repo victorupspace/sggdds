@@ -329,8 +329,8 @@ export default function PaginaElevacaoESombra() {
 
       <h2 id="uso-real">Quem usa cada token hoje</h2>
       <p>
-        Levantado dos {componentes.length} componentes publicados. {comSombraTokenizada} deles
-        consomem algum token de sombra.
+        Levantado dos componentes publicados. {comSombraTokenizada} deles consomem algum token de
+        sombra.
       </p>
       <div className="wiki-tabela-rolagem" tabIndex={0}>
         <table className="wiki-tabela">

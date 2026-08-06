@@ -19,9 +19,7 @@ export default function PaginaFaq() {
   const componentes = listarComponentes();
   const tokens = listarTokens();
 
-  const total = componentes.length;
   const comAxe = componentes.filter((c) => c.tests.a11yFile !== null).length;
-  const comUnitario = componentes.filter((c) => c.tests.unitFile !== null).length;
   const stories = componentes.reduce((soma, c) => soma + c.stories.length, 0);
   const semFigma = componentes.filter((c) => figmaDoComponente(c.slug) === null);
 
@@ -57,7 +55,7 @@ export default function PaginaFaq() {
         <p>
           É o conjunto de decisões de design e a implementação delas para os serviços digitais do
           Governo do Estado de São Paulo. Na prática, três coisas: {tokens.length.toLocaleString('pt-BR')}{' '}
-          design tokens (cor, tipografia, espaçamento, raio), {total} componentes React construídos
+          design tokens (cor, tipografia, espaçamento, raio), os componentes React construídos
           sobre esses tokens, e as bibliotecas correspondentes no Figma. O objetivo é que dois
           serviços diferentes do Estado se pareçam, se comportem e sejam acessíveis do mesmo jeito,
           sem que cada equipe precise redecidir tudo do zero.
@@ -88,7 +86,7 @@ export default function PaginaFaq() {
         <p>Pronto e verificável hoje:</p>
         <ul>
           <li>
-            {total} componentes React implementados, com {stories} exemplos publicados no Storybook.
+            Componentes React implementados, com {stories} exemplos publicados no Storybook.
           </li>
           <li>
             {tokens.length.toLocaleString('pt-BR')} tokens gerados a partir das variables do Figma,
@@ -96,8 +94,8 @@ export default function PaginaFaq() {
           </li>
           <li>2.193 ícones na biblioteca do Figma.</li>
           <li>
-            {comUnitario} de {total} componentes com teste unitário e {comAxe} de {total} com teste
-            automatizado de acessibilidade.
+            Todos os componentes com teste unitário e {comAxe} deles com teste automatizado de
+            acessibilidade.
           </li>
         </ul>
         <p>Não está pronto:</p>
@@ -207,7 +205,7 @@ export default function PaginaFaq() {
         <summary>Como sei se o componente que preciso já existe?</summary>
         <p>
           Comece pelo <Link href="/componentes/visao-geral">catálogo de componentes</Link>, que
-          lista os {total} componentes por categoria com um resumo do que cada um resolve. Se a
+          lista os componentes por categoria com um resumo do que cada um resolve. Se a
           dúvida for de comportamento, abra o exemplo no{' '}
           <a href={STORYBOOK} rel="noreferrer noopener" target="_blank">
             Storybook ↗
@@ -218,7 +216,7 @@ export default function PaginaFaq() {
       </details>
 
       <details>
-        <summary>Por que o Figma publica 58 itens e a Wiki lista {total} componentes?</summary>
+        <summary>Por que o Figma publica 58 itens e a Wiki não lista todos eles?</summary>
         <p>
           Porque nem tudo que está publicado no Figma é um componente do sistema. Parte dos 58 itens
           são peças internas de outro componente, átomos de composição ou elementos sem par em
@@ -509,13 +507,11 @@ describe('MinhaTela — acessibilidade', () => {
 });`}</code>
         </pre>
         <p>
-          Duas coisas importam mais que rodar o teste. A primeira: hoje{' '}
-          <strong>
-            {comAxe} dos {total} componentes
-          </strong>{' '}
-          têm teste axe, e a suíte não bloqueia nada no processo de release — passar não significa
-          que o componente foi auditado. A segunda: verificação automática pega uma fração das
-          barreiras reais. Teste com teclado, com zoom de 200% e com leitor de tela também. O
+          Duas coisas importam mais que rodar o teste. A primeira: hoje apenas{' '}
+          <strong>{comAxe} componentes</strong> têm teste axe, e a suíte não bloqueia nada no
+          processo de release — passar não significa que o componente foi auditado. A segunda:
+          verificação automática pega uma fração das barreiras reais. Teste com teclado, com zoom
+          de 200% e com leitor de tela também. O
           checklist está em <Link href="/fundamentos/acessibilidade">Acessibilidade</Link>.
         </p>
       </details>
@@ -955,7 +951,7 @@ pnpm lint            # roda o ESLint`}</code>
         <Link className="wiki-cartao" href="/componentes/visao-geral">
           <span className="wiki-cartao__titulo">Componentes</span>
           <span className="wiki-cartao__descricao">
-            Os {total} componentes implementados, com API, estados e exemplos.
+            Os componentes implementados, com API, estados e exemplos.
           </span>
         </Link>
       </div>

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { Trilha } from '@/components/Trilha';
-import { listarComponentes, listarTokens } from '@/lib/dados';
+import { listarTokens } from '@/lib/dados';
 
 export const metadata: Metadata = {
   title: 'Glossário',
@@ -11,7 +11,6 @@ export const metadata: Metadata = {
 };
 
 export default function PaginaGlossario() {
-  const componentes = listarComponentes();
   const tokens = listarTokens();
 
   const porCamada = (camada: string) => tokens.filter((t) => t.camada === camada).length;
@@ -140,9 +139,9 @@ export default function PaginaGlossario() {
               <th scope="row">Componente</th>
               <td>
                 Uma peça de interface pronta, com comportamento, estados e acessibilidade já
-                resolvidos: botão, campo de texto, modal. São {componentes.length} em React e 58 no
-                Figma — a diferença são partes internas e átomos publicados no Figma que não viram
-                componente de catálogo.
+                resolvidos: botão, campo de texto, modal. São implementados em React, e o Figma
+                publica 58 itens — a diferença são partes internas e átomos publicados no Figma que
+                não viram componente de catálogo.
               </td>
               <td>
                 <Link href="/componentes/visao-geral">Componentes</Link>
@@ -372,8 +371,8 @@ export default function PaginaGlossario() {
               <th scope="row">axe</th>
               <td>
                 Motor que verifica acessibilidade automaticamente e aponta o que está errado no HTML
-                gerado. Roda nos testes de 13 dos {componentes.length} componentes e dentro do
-                Storybook. Encontra parte dos problemas — nunca todos.
+                gerado. Roda nos testes de 13 componentes e dentro do Storybook; os demais ainda não
+                têm esse teste. Encontra parte dos problemas — nunca todos.
               </td>
               <td>
                 <Link href="/recursos/ferramentas">Ferramentas</Link>

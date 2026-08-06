@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { Trilha } from '@/components/Trilha';
-import { listarComponentes } from '@/lib/dados';
 
 export const metadata: Metadata = {
   title: 'Templates',
@@ -109,8 +108,6 @@ const MOLDURA: [
 ];
 
 export default function PaginaVisaoGeralTemplates() {
-  const componentes = listarComponentes();
-
   return (
     <div className="wiki-prosa">
       <Trilha passos={[{ titulo: 'Templates' }]} />
@@ -118,9 +115,8 @@ export default function PaginaVisaoGeralTemplates() {
       <h1>Templates</h1>
       <p className="wiki-prosa__resumo">
         Um template é o arranjo de uma página inteira: quais regiões existem, em que ordem elas
-        aparecem e quais dos {componentes.length} componentes entram em cada uma. Ele não entrega
-        código novo — mostra como os padrões já documentados se encaixam numa tela real, do
-        cabeçalho ao rodapé.
+        aparecem e quais componentes entram em cada uma. Ele não entrega código novo — mostra como
+        os padrões já documentados se encaixam numa tela real, do cabeçalho ao rodapé.
       </p>
       <p className="wiki-selo wiki-selo--rascunho">rascunho para validação</p>
 
@@ -341,8 +337,8 @@ export default function PaginaVisaoGeralTemplates() {
           ordem em que ela é lida.
         </li>
         <li>
-          <strong>Cobertura automatizada é parcial.</strong> Dos {componentes.length} componentes,
-          13 têm teste axe. Nenhum componente de moldura — Header, Footer, Breadcrumb, BackToTop —
+          <strong>Cobertura automatizada é parcial.</strong> Apenas 13 componentes têm teste axe; os
+          demais ainda não. Nenhum componente de moldura — Header, Footer, Breadcrumb, BackToTop —
           tem, com exceção de CookieConsentBanner e Meganav. Ver{' '}
           <Link href="/fundamentos/acessibilidade">Acessibilidade</Link>.
         </li>

@@ -30,7 +30,7 @@ export default function PaginaPadraoEstadosVazios() {
       <div className="wiki-aviso">
         <p className="wiki-aviso__titulo">Não existe componente de estado vazio no sistema</p>
         <p>
-          Nenhum dos 38 componentes do Sampa Design System é um estado vazio. O que existe hoje é o{' '}
+          Nenhum componente do Sampa Design System é um estado vazio. O que existe hoje é o{' '}
           <code>noDataComponent</code> do <Link href="/componentes/data-table">DataTable</Link>, que
           aceita qualquer nó e, sem valor, mostra o texto padrão{' '}
           <code>Nenhum dado encontrado</code>. Este padrão descreve como montar os estados vazios

@@ -268,10 +268,6 @@ export default function PaginaComoUsar() {
 
       <div className="wiki-numeros">
         <div className="wiki-numero">
-          <span className="wiki-numero__valor">{componentes.length}</span>
-          <span className="wiki-numero__rotulo">componentes prontos para usar</span>
-        </div>
-        <div className="wiki-numero">
           <span className="wiki-numero__valor">{tokens.length.toLocaleString('pt-BR')}</span>
           <span className="wiki-numero__rotulo">tokens publicados</span>
         </div>
@@ -360,7 +356,7 @@ export default function PaginaComoUsar() {
         >
           <span className="wiki-cartao__titulo">Storybook publicado ↗</span>
           <span className="wiki-cartao__descricao">
-            Os {componentes.length} componentes React rodando, com {exemplos} exemplos interativos.
+            Os componentes React rodando, com {exemplos} exemplos interativos.
           </span>
         </a>
       </div>
@@ -454,9 +450,9 @@ export default function PaginaComoUsar() {
           permissão para digitar um número.
         </li>
         <li>
-          <strong>Procure antes de criar.</strong> São {componentes.length} componentes e{' '}
-          {tokens.length.toLocaleString('pt-BR')} tokens. A chance de o seu problema já ter solução é
-          alta, e o custo de uma peça duplicada é permanente.
+          <strong>Procure antes de criar.</strong> Há um catálogo de componentes e{' '}
+          {tokens.length.toLocaleString('pt-BR')} tokens publicados. A chance de o seu problema já
+          ter solução é alta, e o custo de uma peça duplicada é permanente.
         </li>
         <li>
           <strong>Acessibilidade é requisito, não etapa final.</strong> Serviço público não escolhe

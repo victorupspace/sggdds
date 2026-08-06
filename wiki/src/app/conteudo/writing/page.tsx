@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { Trilha } from '@/components/Trilha';
-import { listarComponentes } from '@/lib/dados';
 
 export const metadata: Metadata = {
   title: 'Padrões de escrita',
@@ -520,8 +519,6 @@ function TabelaPares({ legenda, pares }: { legenda: string; pares: ParEscrita[] 
 }
 
 export default function PaginaPadroesDeEscrita() {
-  const componentes = listarComponentes();
-
   return (
     <div className="wiki-prosa">
       <Trilha
@@ -1046,9 +1043,9 @@ export default function PaginaPadroesDeEscrita() {
       <h2 id="textos-do-componente">Textos que já vêm no componente</h2>
       <p>
         Parte do texto da interface não é escrita pelo produto: já vem pronta no código, como valor
-        padrão de uma prop. A tabela reúne textos padrão encontrados entre os {componentes.length}{' '}
-        componentes do sistema. Antes de escrever, confira o que já existe — e, se precisar mudar,
-        mude pela prop, nunca por CSS nem por um texto solto ao lado.
+        padrão de uma prop. A tabela reúne textos padrão encontrados entre os componentes do
+        sistema. Antes de escrever, confira o que já existe — e, se precisar mudar, mude pela prop,
+        nunca por CSS nem por um texto solto ao lado.
       </p>
       <div className="wiki-tabela-rolagem" tabIndex={0}>
         <table className="wiki-tabela">

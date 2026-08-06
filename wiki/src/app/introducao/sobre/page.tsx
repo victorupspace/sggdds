@@ -156,8 +156,8 @@ export default function PaginaSobre() {
           cor, medida ou fonte é escrita à mão.
         </li>
         <li>
-          <strong>Componentes</strong> — {componentes.length} peças implementadas em React, com
-          estados, comportamento de teclado e semântica de acessibilidade já resolvidos por dentro.
+          <strong>Componentes</strong> — peças implementadas em React, com estados, comportamento de
+          teclado e semântica de acessibilidade já resolvidos por dentro.
         </li>
         <li>
           <strong>Padrões</strong> — o modo combinado de resolver situações que se repetem em
@@ -205,10 +205,6 @@ export default function PaginaSobre() {
           <span className="wiki-numero__rotulo">design tokens</span>
         </div>
         <div className="wiki-numero">
-          <span className="wiki-numero__valor">{componentes.length}</span>
-          <span className="wiki-numero__rotulo">componentes em React</span>
-        </div>
-        <div className="wiki-numero">
           <span className="wiki-numero__valor">{stories}</span>
           <span className="wiki-numero__rotulo">exemplos no Storybook</span>
         </div>
@@ -218,12 +214,15 @@ export default function PaginaSobre() {
         </div>
       </div>
       <p>
-        Os {componentes.length} componentes estão distribuídos em{' '}
-        {categoriasOrdenadas.length} categorias:{' '}
-        {categoriasOrdenadas.map(([nome, quantidade], indice) => (
+        Os componentes estão distribuídos em {categoriasOrdenadas.length} categorias, da que reúne
+        mais peças para a que reúne menos:{' '}
+        {/* Sem a quantidade por categoria: somá-las devolveria o total de
+            componentes, que esta documentação deixou de informar. A ordem
+            preserva a noção de tamanho relativo. */}
+        {categoriasOrdenadas.map(([nome], indice) => (
           <span key={nome}>
             {indice > 0 ? ', ' : ''}
-            <strong>{nome}</strong> ({quantidade})
+            <strong>{nome}</strong>
           </span>
         ))}
         . O catálogo completo, com API, estados e tokens de cada um, está em{' '}
@@ -342,8 +341,8 @@ export default function PaginaSobre() {
         <code>INCONSISTENCIAS.md</code>; ela nunca escolhe uma em silêncio.
       </p>
       <p>
-        Hoje {pares.length} dos {componentes.length} componentes em React têm par identificado na
-        biblioteca do Figma. A biblioteca publica 58 componentes: 36 de catálogo e 22 partes
+        Hoje {pares.length} componentes em React têm par identificado na biblioteca do Figma; os
+        demais ainda não. A biblioteca publica 58 componentes: 36 de catálogo e 22 partes
         internas — átomos como <code>. Checkbox Control</code> ou <code>. Table Header Row</code>,
         que não viram página própria e aparecem como anatomia do componente pai.
       </p>
@@ -355,7 +354,7 @@ export default function PaginaSobre() {
       </p>
       <ul>
         <li>
-          {componentes.length} componentes implementados, com {stories} exemplos publicados e{' '}
+          Componentes implementados em React, com {stories} exemplos publicados e{' '}
           {comTesteUnitario} arquivos de teste unitário.
         </li>
         <li>
@@ -370,9 +369,9 @@ export default function PaginaSobre() {
       <p>O que ainda não está resolvido, e afeta quem constrói agora:</p>
       <ul>
         <li>
-          <strong>Acessibilidade verificada em parte do catálogo:</strong> {comAxe} dos{' '}
-          {componentes.length} componentes têm teste automatizado de acessibilidade ({percentualAxe}
-          %). Ver <Link href="/fundamentos/acessibilidade">Acessibilidade</Link>.
+          <strong>Acessibilidade verificada em parte do catálogo:</strong> {percentualAxe}% dos
+          componentes têm teste automatizado de acessibilidade. Ver{' '}
+          <Link href="/fundamentos/acessibilidade">Acessibilidade</Link>.
         </li>
         <li>
           <strong>Distribuição não publicada:</strong> os pacotes{' '}
@@ -458,7 +457,7 @@ export default function PaginaSobre() {
         <Link className="wiki-cartao" href="/componentes/visao-geral">
           <span className="wiki-cartao__titulo">Componentes</span>
           <span className="wiki-cartao__descricao">
-            {componentes.length} componentes com API, estados, tokens, exemplos e erros comuns.
+            Cada componente com API, estados, tokens, exemplos e erros comuns.
           </span>
         </Link>
       </div>

@@ -24,18 +24,11 @@ export default function Home() {
   const numeros: { valor: string; rotulo: string; href: string; icone: NomeDeIcone; acento: Acento }[] =
     [
       {
-        valor: String(componentes.length),
-        rotulo: 'componentes',
-        href: '/componentes/visao-geral',
-        icone: 'componentes',
-        acento: 'vermelho',
-      },
-      {
         valor: tokens.length.toLocaleString('pt-BR'),
         rotulo: 'design tokens',
         href: '/fundamentos/tokens',
         icone: 'tokens',
-        acento: 'azul',
+        acento: 'vermelho',
       },
       {
         valor: '2.193',
@@ -204,7 +197,7 @@ export default function Home() {
       </Revelar>
 
       {/* ── Números ───────────────────────────────────────────────────── */}
-      <Revelar className="wiki-home__numeros" intervalo={0.05}>
+      <Revelar className="wiki-home__numeros" deslocamento={0} intervalo={0.05}>
         {numeros.map((n) => (
           <Link
             className={`wiki-home__numero wiki-home__numero--${n.acento}`}
@@ -232,7 +225,7 @@ export default function Home() {
           </p>
         </header>
 
-        <Revelar className="wiki-home__trilhas" intervalo={0.06}>
+        <Revelar className="wiki-home__trilhas" deslocamento={0} intervalo={0.06}>
           {trilhas.map((t) => (
             <Link
               className={`wiki-home__trilha wiki-home__trilha--${t.acento}`}
@@ -261,7 +254,7 @@ export default function Home() {
       <section className="wiki-home__secao wiki-home__secao--vitrine">
         <header className="wiki-home__secao-cabecalho">
           <h2 className="wiki-home__secao-titulo" id="componentes">
-            {componentes.length} componentes documentados
+            Componentes documentados
           </h2>
           <p className="wiki-home__secao-apoio">
             Cada página traz três abas: quando usar, diretrizes de design e referência técnica — com
@@ -269,7 +262,7 @@ export default function Home() {
           </p>
         </header>
 
-        <Revelar className="wiki-home__destaques" intervalo={0.05}>
+        <Revelar className="wiki-home__destaques" deslocamento={0} intervalo={0.05}>
           {destaques.map((c) => (
             <Link
               className="wiki-home__destaque"
@@ -306,7 +299,7 @@ export default function Home() {
           </p>
         </header>
 
-        <Revelar className="wiki-home__estado" intervalo={0.06}>
+        <Revelar className="wiki-home__estado" deslocamento={0} intervalo={0.06}>
           {estado.map((e) => (
             <div className={`wiki-home__estado-item wiki-home__estado-item--${e.acento}`} data-revelar key={e.titulo}>
               <span className="wiki-home__estado-icone">

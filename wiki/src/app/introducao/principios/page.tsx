@@ -287,8 +287,8 @@ export default function PaginaPrincipios() {
       <h2 id="ancoragem">De onde estes princípios saem</h2>
       <p>
         Eles não são abstratos: descrevem tensões reais deste sistema hoje. O primeiro existe porque{' '}
-        {comAxe} dos {componentes.length} componentes têm teste automatizado de acessibilidade (
-        {percentualAxe}%) — o restante depende de revisão humana. O sexto existe porque os{' '}
+        {percentualAxe}% dos componentes têm teste automatizado de acessibilidade — o restante
+        depende de revisão humana. O sexto existe porque os{' '}
         {tokens.length.toLocaleString('pt-BR')} tokens só têm valor se ninguém contorná-los. O sétimo
         existe porque partes do sistema ainda divergem entre si, e essa divergência precisa ficar
         visível para ser resolvida.

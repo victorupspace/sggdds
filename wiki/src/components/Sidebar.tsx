@@ -94,8 +94,11 @@ export function Sidebar({ grupos }: { grupos: GrupoNav[] }) {
               <summary className="wiki-sidebar__titulo">
                 <span className="wiki-sidebar__seta" aria-hidden="true" />
                 <span className="wiki-sidebar__titulo-texto">{grupo.titulo}</span>
+                {/* A contagem por categoria revelava quantos componentes o
+                    sistema tem. Sobra só a marca da categoria que contém a
+                    página atual, quando ela está recolhida. */}
                 <span className="wiki-sidebar__contagem">
-                  {temPaginaAtual && !aberto ? '•' : grupo.itens.length}
+                  {temPaginaAtual && !aberto ? '•' : ''}
                 </span>
               </summary>
 

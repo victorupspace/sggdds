@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { Trilha } from '@/components/Trilha';
-import { listarComponentes, listarTokens, metaTokens } from '@/lib/dados';
+import { listarTokens, metaTokens } from '@/lib/dados';
 import { NAV_ESTATICA } from '@/lib/nav';
 
 export const metadata: Metadata = {
@@ -82,7 +82,6 @@ const DECISOES_ABERTAS: { fundamento: string; emAberto: string }[] = [
 
 export default function PaginaFundamentos() {
   const tokens = listarTokens();
-  const componentes = listarComponentes();
   const meta = metaTokens() as {
     colecoes: { arquivo: string; camada: string; tokenCount: number }[];
   };
@@ -125,8 +124,8 @@ export default function PaginaFundamentos() {
         Componente é consequência, não ponto de partida. O botão do sistema não tem uma altura
         própria: ele tem a altura que a escala de espaçamento define. Não tem uma cor própria: usa a
         cor semântica de marca. Não tem um raio próprio: usa um degrau da escala de raio. Trocar um
-        fundamento propaga para os {componentes.length} componentes de uma vez; trocar componente
-        por componente não propaga para lugar nenhum.
+        fundamento propaga para todos os componentes de uma vez; trocar componente por componente
+        não propaga para lugar nenhum.
       </p>
       <p>
         Ler os fundamentos antes também evita o erro mais caro do sistema, que é inventar um valor
@@ -148,10 +147,6 @@ export default function PaginaFundamentos() {
         <div className="wiki-numero">
           <span className="wiki-numero__valor">{camadas}</span>
           <span className="wiki-numero__rotulo">camadas de token</span>
-        </div>
-        <div className="wiki-numero">
-          <span className="wiki-numero__valor">{componentes.length}</span>
-          <span className="wiki-numero__rotulo">componentes em React</span>
         </div>
       </div>
       <p>

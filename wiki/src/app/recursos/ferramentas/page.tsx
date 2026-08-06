@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 import { Trilha } from '@/components/Trilha';
-import { listarComponentes, listarTokens } from '@/lib/dados';
+import { listarTokens } from '@/lib/dados';
 
 export const metadata: Metadata = {
   title: 'Ferramentas',
@@ -16,7 +16,6 @@ const STORYBOOK = 'https://sggdds.vercel.app';
 const REPO = 'https://github.com/victorupspace/sggdds';
 
 export default function PaginaFerramentas() {
-  const componentes = listarComponentes();
   const tokens = listarTokens();
 
   return (
@@ -85,8 +84,7 @@ export default function PaginaFerramentas() {
         <a className="wiki-cartao" href={STORYBOOK} rel="noreferrer noopener" target="_blank">
           <span className="wiki-cartao__titulo">Storybook ↗</span>
           <span className="wiki-cartao__descricao">
-            Os {componentes.length} componentes React rodando, com controles e painel de
-            acessibilidade.
+            Os componentes React rodando, com controles e painel de acessibilidade.
           </span>
         </a>
         <a className="wiki-cartao" href={REPO} rel="noreferrer noopener" target="_blank">
@@ -106,8 +104,8 @@ export default function PaginaFerramentas() {
       <h3 id="figma-web-components">Web Components</h3>
       <p>
         A biblioteca de componentes e ícones. Tem <strong>2.251 itens publicados</strong>: 58
-        componentes e 2.193 ícones. Os 58 não correspondem um a um aos {componentes.length}{' '}
-        componentes React — parte deles é peça interna de outro componente, como{' '}
+        componentes e 2.193 ícones. Os 58 não correspondem um a um aos componentes React — parte
+        deles é peça interna de outro componente, como{' '}
         <code>. Table Row</code> ou <code>. Checkbox Control</code>, e não vira componente de
         catálogo. Quatro componentes do código (<code>back-to-top</code>, <code>list-item</code>,{' '}
         <code>meganav</code> e <code>skeleton</code>) não têm par publicado no Figma.
@@ -292,7 +290,7 @@ export default function PaginaFerramentas() {
                 <code>packages/react</code>
               </td>
               <td>
-                Os {componentes.length} componentes. Um diretório por componente, com o{' '}
+                Os componentes. Um diretório por componente, com o{' '}
                 <code>.tsx</code>, os tipos, o CSS, as stories e os testes lado a lado. É o pacote{' '}
                 <code>@government/design-system</code>, ainda não publicado no npm — ver{' '}
                 <Link href="/recursos/instalacao">Instalação</Link>.
@@ -404,15 +402,14 @@ corepack pnpm build`}</code>
       <h3 id="a11y-axe">axe — verificação automática</h3>
       <p>
         O axe roda em dois lugares: dentro do Storybook, no painel de acessibilidade, e nos testes do
-        repositório. Hoje <strong>13 dos {componentes.length} componentes</strong> têm arquivo de
-        teste de acessibilidade — <code>Button</code>, <code>Carousel</code>, <code>Checkbox</code>,{' '}
+        repositório. Hoje <strong>13 componentes</strong> têm arquivo de teste de acessibilidade —{' '}
+        <code>Button</code>, <code>Carousel</code>, <code>Checkbox</code>,{' '}
         <code>CookieConsentBanner</code>, <code>Datepicker</code>, <code>Dropdown</code>,{' '}
         <code>FileUpload</code>, <code>Meganav</code>, <code>Modal</code>, <code>Radio</code>,{' '}
-        <code>Tabs</code>, <code>TextInput</code> e <code>Toggle</code>. Os outros {componentes.length - 13}{' '}
-        não têm.
+        <code>Tabs</code>, <code>TextInput</code> e <code>Toggle</code>. Os demais não têm.
       </p>
       <div className="wiki-aviso">
-        <p className="wiki-aviso__titulo">O que a cobertura de 13 em {componentes.length} significa</p>
+        <p className="wiki-aviso__titulo">O que a cobertura de 13 componentes significa</p>
         <p>
           Significa que, para os outros componentes, ninguém pode afirmar conformidade com base em
           teste automatizado. Não significa que eles sejam inacessíveis — significa que não foram
@@ -473,8 +470,7 @@ corepack pnpm build`}</code>
           partir de duas letras.
         </li>
         <li>
-          A lateral esquerda tem a árvore completa: fundamentos, os {componentes.length} componentes,
-          padrões e recursos.
+          A lateral esquerda tem a árvore completa: fundamentos, os componentes, padrões e recursos.
         </li>
         <li>
           A lateral direita tem o índice da página aberta — útil nas páginas longas de fundamento e

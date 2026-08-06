@@ -17,8 +17,8 @@ export default function PaginaContribua() {
   const componentes = listarComponentes();
   const paresFigma = listarParesFigma();
 
-  const total = componentes.length;
   const comAxe = componentes.filter((c) => c.tests.a11yFile !== null);
+  const percentualAxe = Math.round((comAxe.length / componentes.length) * 100);
   const casosUnitarios = componentes.reduce((soma, c) => soma + (c.tests.unitCount ?? 0), 0);
   const stories = componentes.reduce((soma, c) => soma + c.stories.length, 0);
 
@@ -44,7 +44,7 @@ export default function PaginaContribua() {
         <a className="wiki-cartao" href={REPO} rel="noreferrer noopener" target="_blank">
           <span className="wiki-cartao__titulo">Repositório ↗</span>
           <span className="wiki-cartao__descricao">
-            Código dos {total} componentes, tokens, workflows de CI e release.
+            Código dos componentes, tokens, workflows de CI e release.
           </span>
         </a>
         <a
@@ -67,7 +67,7 @@ export default function PaginaContribua() {
       </p>
       <ol>
         <li>
-          <strong>Procure no catálogo.</strong> São {total} componentes em{' '}
+          <strong>Procure no catálogo.</strong> Os componentes publicados estão em{' '}
           <Link href="/componentes/visao-geral">Componentes</Link>. Busque pelo problema
           (&quot;escolher uma data&quot;), não pelo nome que você imaginou.
         </li>
@@ -232,8 +232,8 @@ Referências
       <p>
         Antes de propor um item novo, olhe as lacunas que já estão mapeadas — fechá-las costuma ter
         retorno maior do que abrir uma frente nova. A biblioteca do Figma tem 58 componentes
-        publicados e o código tem {total}; o cruzamento entre os dois rendeu {paresFigma.length}{' '}
-        pares. Sobram duas listas curtas:
+        publicados; o cruzamento com o código rendeu {paresFigma.length} pares. Sobram duas listas
+        curtas:
       </p>
       <ul>
         <li>
@@ -371,10 +371,10 @@ Referências
 
       <h3 id="entregavel-testes">3. Testes</h3>
       <p>
-        A régua de hoje: <strong>{total} dos {total} componentes</strong> têm arquivo de teste
-        unitário, somando {casosUnitarios} casos; <strong>{comAxe.length} dos {total}</strong> têm
-        arquivo de teste de acessibilidade. Contribuição nova entrega os dois — a segunda métrica só
-        melhora se cada entrada nova já vier com o arquivo.
+        A régua de hoje: <strong>todos os componentes</strong> têm arquivo de teste unitário,
+        somando {casosUnitarios} casos; <strong>{percentualAxe}% deles</strong> têm arquivo de teste
+        de acessibilidade. Contribuição nova entrega os dois — a segunda métrica só melhora se cada
+        entrada nova já vier com o arquivo.
       </p>
       <ul>
         <li>

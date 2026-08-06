@@ -71,6 +71,7 @@ export default function PaginaFluxoDeDesenvolvimento() {
   const comUnit = componentes.filter((c) => c.tests.unitFile !== null);
   const comAxe = componentes.filter((c) => c.tests.a11yFile !== null);
   const semAxe = componentes.filter((c) => c.tests.a11yFile === null);
+  const percentualUnit = Math.round((comUnit.length / componentes.length) * 100);
   const percentualAxe = Math.round((comAxe.length / componentes.length) * 100);
   const casosUnit = comUnit.reduce((soma, c) => soma + (c.tests.unitCount ?? 0), 0);
   const casosAxe = comAxe.reduce((soma, c) => soma + (c.tests.a11yCount ?? 0), 0);
@@ -104,8 +105,8 @@ export default function PaginaFluxoDeDesenvolvimento() {
       </p>
       <ol>
         <li>
-          <strong>O componente já existe?</strong> São {componentes.length} componentes publicados.
-          Procure pela função no <Link href="/componentes/visao-geral">catálogo</Link> antes de
+          <strong>O componente já existe?</strong> Procure pela função no{' '}
+          <Link href="/componentes/visao-geral">catálogo</Link> de componentes publicados antes de
           construir qualquer controle.
         </li>
         <li>
@@ -265,9 +266,8 @@ export function PaginaDoServico() {
       <p>
         <strong>Nenhum arquivo do pacote declara <code>&apos;use client&apos;</code>.</strong> Em
         frameworks com Server Components — Next.js App Router, por exemplo — a diretiva é
-        responsabilidade de quem consome. {COMPONENTES_COM_HOOK.length} dos {componentes.length}{' '}
-        componentes usam hooks do React no próprio código e, portanto, só funcionam em um arquivo
-        marcado como cliente:
+        responsabilidade de quem consome. {COMPONENTES_COM_HOOK.length} componentes usam hooks do
+        React no próprio código e, portanto, só funcionam em um arquivo marcado como cliente:
       </p>
       <ul className="wiki-lista-tokens">
         {COMPONENTES_COM_HOOK.map((nome) => (
@@ -325,8 +325,8 @@ export function ConfirmacaoDeAgendamento() {
       <h2 id="storybook">4. Verificar contra o Storybook</h2>
       <p>
         O Storybook publicado é a referência de comportamento real. São {exemplos} exemplos
-        interativos cobrindo os {componentes.length} componentes, com controles de props e o painel
-        de acessibilidade ligado.
+        interativos cobrindo os componentes publicados, com controles de props e o painel de
+        acessibilidade ligado.
       </p>
       <div className="wiki-cartoes">
         <a className="wiki-cartao" href={STORYBOOK} rel="noreferrer noopener" target="_blank">
@@ -373,9 +373,7 @@ export function ConfirmacaoDeAgendamento() {
       </p>
       <div className="wiki-numeros">
         <div className="wiki-numero">
-          <span className="wiki-numero__valor">
-            {comUnit.length}/{componentes.length}
-          </span>
+          <span className="wiki-numero__valor">{percentualUnit}%</span>
           <span className="wiki-numero__rotulo">componentes com teste unitário</span>
         </div>
         <div className="wiki-numero">
@@ -383,10 +381,8 @@ export function ConfirmacaoDeAgendamento() {
           <span className="wiki-numero__rotulo">casos de teste unitário</span>
         </div>
         <div className="wiki-numero">
-          <span className="wiki-numero__valor">
-            {comAxe.length}/{componentes.length}
-          </span>
-          <span className="wiki-numero__rotulo">com teste axe ({percentualAxe}%)</span>
+          <span className="wiki-numero__valor">{percentualAxe}%</span>
+          <span className="wiki-numero__rotulo">componentes com teste axe</span>
         </div>
         <div className="wiki-numero">
           <span className="wiki-numero__valor">{casosAxe}</span>
@@ -394,9 +390,9 @@ export function ConfirmacaoDeAgendamento() {
         </div>
       </div>
       <p>
-        Todo componente tem teste unitário. Só {comAxe.length} têm teste de acessibilidade — os
-        outros {semAxe.length} não têm nenhuma verificação automática. Se você escreve um componente
-        ou uma composição no seu produto, escreva os dois arquivos.
+        Todo componente tem teste unitário. Só {percentualAxe}% têm teste de acessibilidade — os
+        demais não têm nenhuma verificação automática. Se você escreve um componente ou uma
+        composição no seu produto, escreva os dois arquivos.
       </p>
       <pre className="wiki-codigo" tabIndex={0}>
         <code>{`// MeuFormulario.a11y.test.tsx
@@ -494,7 +490,7 @@ describe('MeuFormulario — acessibilidade', () => {
         <code>react/jsx-runtime</code> são externals, e o pacote declara{' '}
         <code>&quot;sideEffects&quot;: [&quot;*.css&quot;]</code>, então o bundler elimina o
         componente que você não importa. O CSS não: <code>styles.css</code> é consolidado e traz o
-        estilo dos {componentes.length} componentes, importe você um ou todos.
+        estilo do catálogo inteiro, importe você um componente ou todos.
       </p>
 
       <h2 id="limites">O que ainda não existe</h2>
@@ -547,7 +543,7 @@ describe('MeuFormulario — acessibilidade', () => {
           o CSS distribuído mede <strong>240,6 KB</strong> (27,4 KB gzip), não os valores citados lá.
           O documento também lista CI/CD e teste de acessibilidade como pendentes, quando ambos
           existem — <code>.github/workflows/ci.yml</code> roda lint, typecheck, test e build, e{' '}
-          {comAxe.length} componentes têm teste axe. Em caso de divergência, vale o repositório.
+          {percentualAxe}% dos componentes têm teste axe. Em caso de divergência, vale o repositório.
         </p>
       </div>
 
@@ -562,8 +558,8 @@ describe('MeuFormulario — acessibilidade', () => {
       </p>
       <p className="wiki-pendente">
         ⚠️ <strong>PENDENTE:</strong> não existe meta de cobertura de teste de acessibilidade, nem
-        critério que bloqueie a publicação de um componente sem teste axe. Hoje {semAxe.length} dos{' '}
-        {componentes.length} componentes não têm nenhum — fonte: time. Registrado em{' '}
+        critério que bloqueie a publicação de um componente sem teste axe. Hoje {semAxe.length}{' '}
+        componentes não têm nenhum — fonte: time. Registrado em{' '}
         <code>LACUNAS.md</code>.
       </p>
       <p className="wiki-pendente">

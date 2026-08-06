@@ -1,0 +1,190 @@
+{
+  "slug": "divider",
+  "name": "Divider",
+  "storybookTitle": "Web Components/Divider",
+  "sourceDir": "packages/react/src/components/Divider",
+  "exports": ["Divider"],
+  "typeExports": ["DividerOrientation", "DividerProps", "DividerTone"],
+  "oneLiner": "O Divider reproduz o layout do Figma (Web Components / Divider): linha de 1px com pontas arredondadas (radius-full na horizontal) e label central opcional.",
+  "docsDescription": "O Divider reproduz o layout do Figma (Web Components / Divider): linha de 1px com pontas arredondadas (radius-full na horizontal) e label central opcional.\n\nEstilos (propriedade style no Figma):\n- default: color/neutral/grey-300.\n- darker: color/neutral/grey-600.\n- subtle: color/neutral/grey-100.\n\nCom label, a linha horizontal tem um segmento fixo de 100px antes do texto e o restante flexivel, como no Figma; na vertical os dois segmentos dividem o espaco. O label usa 14px com line-height 20 em color/neutral/grey-600 (o Figma usa Inter nesse texto; normalizado para Plus Jakarta Sans pela politica de fonte unica do DS).\n\nResponsividade: a linha horizontal ocupa 100% do container e a vertical estica no eixo do elemento pai, sem overflow em nenhuma largura.\n\nAcessibilidade: por padrao o divider e decorativo (aria-hidden); com decorative=false ou com label renderiza role=\"separator\" com aria-orientation, e o label permanece legivel por leitores de tela.",
+  "props": [
+    {
+      "name": "ariaLabel",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Nome acessivel quando o divider nao e decorativo.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao divider.",
+      "source": "ambos"
+    },
+    {
+      "name": "decorative",
+      "type": "boolean",
+      "values": null,
+      "default": "true",
+      "required": false,
+      "description": "Define se o divider deve ser ignorado por tecnologias assistivas. Só tem efeito quando não há label.",
+      "source": "ambos"
+    },
+    {
+      "name": "label",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Texto opcional entre as linhas (`showLabel`/`label` no Figma, ex.: \"Ou\").",
+      "source": "ambos"
+    },
+    {
+      "name": "orientation",
+      "type": "DividerOrientation",
+      "values": ["horizontal", "vertical"],
+      "default": "'horizontal'",
+      "required": false,
+      "description": "Orientacao da linha.",
+      "source": "ambos"
+    },
+    {
+      "name": "tone",
+      "type": "DividerTone",
+      "values": ["default", "darker", "subtle"],
+      "default": "'default'",
+      "required": false,
+      "description": "Estilo da linha (style no Figma).",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [],
+  "slots": [
+    {
+      "name": "label",
+      "type": "ReactNode",
+      "description": "Conteúdo renderizado em .ds-divider__label entre os dois segmentos de linha. Quando presente, o divider deixa de ser decorativo e passa a expor role=\"separator\"."
+    }
+  ],
+  "cssClasses": [
+    "ds-divider",
+    "ds-divider--orientation-horizontal",
+    "ds-divider--orientation-vertical",
+    "ds-divider--tone-default",
+    "ds-divider--tone-darker",
+    "ds-divider--tone-subtle",
+    "ds-divider--with-label",
+    "ds-divider__line",
+    "ds-divider__line--start",
+    "ds-divider__label"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--divider-color",
+      "value": "var(--ds-primitive-color-neutral-grey-300)",
+      "comment": "color/neutral/grey-300 (estilo Default). Em --tone-darker vira grey-600 e em --tone-subtle vira grey-100."
+    },
+    {
+      "name": "--divider-label-color",
+      "value": "var(--ds-primitive-color-neutral-grey-600)",
+      "comment": "color/neutral/grey-600 (label)"
+    },
+    {
+      "name": "--divider-gap",
+      "value": "var(--ds-primitive-spacing-8)",
+      "comment": "Gap de 8px literal entre linhas e label no Figma"
+    }
+  ],
+  "tokensUsed": [
+    "--ds-primitive-border-radius-radius-full",
+    "--ds-primitive-color-neutral-grey-100",
+    "--ds-primitive-color-neutral-grey-300",
+    "--ds-primitive-color-neutral-grey-600",
+    "--ds-primitive-spacing-8",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-typography-font-size-14",
+    "--ds-primitive-typography-font-weight-regular",
+    "--ds-primitive-typography-line-height-20"
+  ],
+  "stories": [
+    {
+      "id": "web-components-divider--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-divider--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-divider--default&viewMode=story"
+    },
+    {
+      "id": "web-components-divider--tones",
+      "name": "Tones",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-divider--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-divider--tones&viewMode=story"
+    },
+    {
+      "id": "web-components-divider--with-label",
+      "name": "With Label",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-divider--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-divider--with-label&viewMode=story"
+    },
+    {
+      "id": "web-components-divider--vertical",
+      "name": "Vertical",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-divider--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-divider--vertical&viewMode=story"
+    },
+    {
+      "id": "web-components-divider--vertical-with-label",
+      "name": "Vertical With Label",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-divider--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-divider--vertical-with-label&viewMode=story"
+    }
+  ],
+  "variants": [
+    {
+      "prop": "tone",
+      "values": ["default", "darker", "subtle"]
+    },
+    {
+      "prop": "orientation",
+      "values": ["horizontal", "vertical"]
+    }
+  ],
+  "states": [],
+  "responsive": [],
+  "accessibility": {
+    "roles": ["separator"],
+    "ariaAttributes": ["aria-hidden", "aria-label", "aria-orientation"],
+    "keyboardInteractions": [],
+    "notes": [
+      "Por padrão (decorative=true e sem label) a raiz recebe apenas aria-hidden=\"true\" e nenhum role.",
+      "Com decorative=false ou com label, a raiz recebe role=\"separator\", aria-orientation com o valor de orientation e aria-label vindo de ariaLabel.",
+      "Os segmentos de linha (.ds-divider__line) são sempre aria-hidden=\"true\"; o label permanece legível por leitores de tela.",
+      "Não há interação de teclado — o componente não é focável."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Divider/Divider.test.tsx",
+    "unitCount": 5,
+    "a11yFile": null,
+    "a11yCount": null
+  },
+  "figmaReferences": [
+    {
+      "node": "219:10474",
+      "note": "Web Components / Divider — citado no cabeçalho de Divider.styles.css."
+    }
+  ],
+  "pendencias": [
+    "Não existe arquivo .a11y.test.tsx para o Divider.",
+    "O CSS não define nenhum @media nem nenhum estado interativo (hover, focus, disabled) — o componente é puramente estático.",
+    "A classe ds-divider--tone-default é aplicada no TSX, mas não tem regra própria no CSS (os valores default ficam no bloco base .ds-divider).",
+    "A classe ds-divider--with-label é aplicada quando há label, mas não tem nenhuma regra em Divider.styles.css.",
+    "O segmento de 100px antes do label (linha horizontal) é um literal do Figma, sem token --ds-* correspondente; na orientação vertical não existe regra equivalente e os dois segmentos dividem o espaço.",
+    "O CSS registra que o node do Figma não define variante mobile, então não há comportamento responsivo específico documentado.",
+    "Quando decorative=false e ariaLabel não é informado, o separator fica sem nome acessível — o código não define fallback."
+  ]
+}

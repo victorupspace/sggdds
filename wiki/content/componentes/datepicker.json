@@ -1,0 +1,175 @@
+{
+  "slug": "datepicker",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Formulários",
+  "resumo": "Campo de formulário que abre um calendário para escolher uma data ou um período. O campo não é digitável: a data entra pelo calendário e aparece no formato DD/MM/AAAA.",
+  "quandoUsar": [
+    "Escolher o dia do atendimento presencial em um agendamento, quando só uma janela de datas está disponível.",
+    "Filtrar uma consulta por período, como protocolos abertos entre duas datas, usando o modo de intervalo.",
+    "Quando a decisão depende de ver o calendário — saber em que dia da semana cai a data ou quanto falta para o prazo.",
+    "Quando a escolha precisa ficar limitada a um intervalo válido, definido por data mínima e data máxima.",
+    "Quando a data escolhida precisa continuar visível no campo enquanto a pessoa preenche o resto do formulário."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Data que a pessoa sabe de cor e digita mais rápido do que navega, como data de nascimento.",
+      "alternativa": "Text Input"
+    },
+    {
+      "texto": "Escolha de mês, de ano ou de horário a partir de uma lista fechada.",
+      "alternativa": "Dropdown"
+    },
+    {
+      "texto": "Poucas datas pré-definidas pelo serviço, como três dias liberados para a próxima semana.",
+      "alternativa": "Radio"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Rótulo",
+      "descricao": "Nome do campo, sempre visível e exigido pelo componente. Recebe um asterisco decorativo quando a resposta é obrigatória."
+    },
+    {
+      "numero": 2,
+      "parte": "Campo",
+      "descricao": "Caixa somente leitura que mostra a data escolhida ou o formato DD/MM/AAAA. No modo de intervalo são dois campos."
+    },
+    {
+      "numero": 3,
+      "parte": "Botão de calendário",
+      "descricao": "Ícone ao lado do valor que abre e fecha o calendário."
+    },
+    {
+      "numero": 4,
+      "parte": "Separador \"até\"",
+      "descricao": "Texto entre os dois campos no modo de intervalo. É decorativo."
+    },
+    {
+      "numero": 5,
+      "parte": "Calendário",
+      "descricao": "Cartão que abre abaixo do campo, com título, navegação entre meses e a grade de dias."
+    },
+    {
+      "numero": 6,
+      "parte": "Grade de dias",
+      "descricao": "Semana começando na segunda-feira, com destaque para o dia selecionado, para os dias do período e cor diferente para fins de semana e dias de outro mês."
+    },
+    {
+      "numero": 7,
+      "parte": "Rodapé do calendário",
+      "descricao": "Área com os botões Cancelar e Confirmar. Pode ser desligada por showFooter."
+    },
+    {
+      "numero": 8,
+      "parte": "Mensagem",
+      "descricao": "Texto abaixo do campo, de apoio, de erro ou de sucesso, conectado ao campo para leitores de tela."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "Não existe variante específica para celular: o componente é fluido e ocupa 100% da largura do container por padrão. No modo de intervalo, os dois campos dividem o espaço disponível, e a grade do calendário distribui os dias na largura que houver, sem estouro. O destaque ao passar o ponteiro sobre os dias só aparece em dispositivos com mouse, e a transição de cores é removida quando a pessoa configura o sistema para reduzir animações.",
+  "dosDonts": [
+    {
+      "faca": "Limite a escolha com data mínima e data máxima correspondentes à janela realmente atendida.",
+      "naoFaca": "Deixar o calendário aceitar qualquer data e reprovar a escolha só depois do envio.",
+      "porque": "Datas fora do intervalo já são renderizadas como botões desabilitados; validar apenas no envio faz a pessoa perder o preenchimento e voltar sem entender o motivo."
+    },
+    {
+      "faca": "Mantenha o rótulo visível dizendo qual data está sendo pedida, como \"Data do atendimento\".",
+      "naoFaca": "Usar o formato DD/MM/AAAA como se fosse o nome do campo.",
+      "porque": "O rótulo é o que liga o campo ao leitor de tela e continua visível depois do preenchimento; o texto de exemplo some assim que a data é escolhida."
+    },
+    {
+      "faca": "Use o modo de intervalo quando as duas datas formam um período único.",
+      "naoFaca": "Colocar dois campos de data única lado a lado para representar início e fim.",
+      "porque": "No modo de intervalo o componente já impede que o fim seja anterior ao início e destaca os dias entre as duas datas; com dois campos separados essa regra vira trabalho manual de validação."
+    }
+  ],
+  "conteudoEEscrita": [
+    "O rótulo nomeia a data, não o formato: \"Data do agendamento\", \"Data de emissão\".",
+    "Use o texto de apoio para explicar a regra do serviço, como \"Escolha uma data entre amanhã e 30 dias\".",
+    "A mensagem de erro diz o que fazer: \"Escolha uma data a partir de amanhã\", não \"Campo inválido\".",
+    "Mantenha DD/MM/AAAA como texto de exemplo do campo. Ele ensina o formato usado no serviço.",
+    "No modo de intervalo, escreva o rótulo como período (\"Período da consulta\"), já que ele cobre os dois campos."
+  ],
+  "hierarquia": [
+    "O campo segue a ordem do formulário: rótulo acima, campo no meio, mensagem abaixo. Não separe a mensagem do campo com outros elementos.",
+    "O calendário abre dentro do próprio bloco do campo, empurrando o conteúdo seguinte. Reserve espaço abaixo e evite colocar o componente dentro de áreas com rolagem própria.",
+    "O campo tem a mesma altura dos demais campos do formulário, o que mantém o alinhamento da coluna quando ele aparece ao lado de um campo de texto ou de um seletor.",
+    "Quando o calendário está aberto, ele é o elemento mais destacado da tela por causa da elevação. Evite abri-lo por padrão em formulários longos."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Text Input",
+      "slug": "text-input",
+      "relacao": "Compartilham a mesma estrutura de rótulo, texto de apoio e mensagem de erro. Use os dois no mesmo formulário sem mudar o padrão de leitura."
+    },
+    {
+      "componente": "Button",
+      "slug": "button",
+      "relacao": "Os botões Cancelar e Confirmar do rodapé do calendário são o Button do design system."
+    },
+    {
+      "componente": "Dropdown",
+      "slug": "dropdown",
+      "relacao": "Em filtros de consulta, o período costuma vir acompanhado de um seletor de situação ou de unidade, na mesma linha."
+    },
+    {
+      "componente": "Stepper",
+      "slug": "stepper",
+      "relacao": "Em agendamentos com etapas, a escolha da data costuma ocupar uma etapa inteira, com o Datepicker como único campo da tela."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Escolha do dia do atendimento",
+      "contexto": "Agendamento de atendimento presencial em uma unidade do Poupatempo, com agenda aberta apenas para os próximos dias.",
+      "comoFica": "Campo único com rótulo \"Data do atendimento\", data mínima no primeiro dia disponível e data máxima no último. Os dias fora dessa janela aparecem desabilitados no calendário. O texto de apoio explica a regra, e a etapa seguinte só libera o horário depois que a data é escolhida."
+    },
+    {
+      "titulo": "Consulta de protocolos por período",
+      "contexto": "Área logada em que a pessoa quer ver as solicitações que abriu entre duas datas.",
+      "comoFica": "Modo de intervalo com rótulo \"Período da consulta\": dois campos separados pela palavra \"até\". A pessoa clica na data inicial e depois na final; os dias entre as duas ficam destacados. O resultado abaixo é atualizado com os protocolos daquele período."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Esperar que a pessoa digite a data no campo.",
+      "consequencia": "O campo é somente leitura: digitar não funciona e as teclas apenas abrem o calendário, o que dá a impressão de campo travado.",
+      "correcao": "Se a digitação for essencial para a tarefa, use um campo de texto com máscara. Se o calendário for necessário, deixe claro no texto de apoio que a data é escolhida no calendário."
+    },
+    {
+      "erro": "Usar o estado de sucesso sem informar a mensagem de sucesso.",
+      "consequencia": "Nada muda na tela: o estado sozinho não produz efeito visual, e a confirmação esperada não aparece.",
+      "correcao": "Sempre acompanhe o estado de sucesso de um texto de sucesso, que é o que aparece e é anunciado."
+    },
+    {
+      "erro": "Colocar o componente dentro de um container com rolagem ou corte de conteúdo.",
+      "consequencia": "O calendário é renderizado dentro do próprio bloco, sem reposicionamento automático, e pode aparecer cortado ou empurrar o layout de forma inesperada.",
+      "correcao": "Garanta espaço abaixo do campo ou revise o container. Teste o componente aberto, e não só fechado."
+    },
+    {
+      "erro": "Tratar o botão Confirmar como o momento em que a data é registrada.",
+      "consequencia": "O valor já foi emitido no clique do dia; Confirmar apenas fecha o calendário. Fluxos que só reagem ao Confirmar perdem eventos.",
+      "correcao": "Reaja à mudança de valor, não ao fechamento. Lembre também que Cancelar restaura o valor inicial informado ao componente."
+    }
+  ],
+  "notasImplementacao": [
+    "O campo é somente leitura e se apresenta como combobox que abre um diálogo: expõe estado de aberto e aponta para o calendário quando ele está visível.",
+    "Teclado: Enter, Espaço e seta para baixo abrem o calendário; Escape fecha. A navegação entre dias é feita por Tab, na ordem do DOM.",
+    "Não há navegação por setas dentro da grade de dias, foco inicial no dia selecionado, trap de foco no calendário nem devolução automática do foco ao campo ao fechar.",
+    "Os valores entram e saem no formato AAAA-MM-DD, mesmo com a exibição em DD/MM/AAAA.",
+    "No modo de intervalo, apenas o primeiro campo recebe id, ref, obrigatoriedade e demais atributos nativos; o segundo é identificado por um rótulo acessível derivado do primeiro.",
+    "Os fins de semana usam a cor de texto de erro do campo, herdada do Figma. É uma escolha de estilo, não um indicador de problema — não use essa cor como sinal de indisponibilidade.",
+    "A mensagem de erro liga o estado inválido automaticamente; a de sucesso só produz efeito quando o texto é informado.",
+    "Algumas classes aplicadas no código (aberto, erro, sucesso, somente leitura e obrigatório) ainda não têm regra de estilo própria.",
+    "A elevação do calendário e a cor da borda estão como literais no CSS, por ausência das variables correspondentes nas collections exportadas."
+  ],
+  "pendentes": [
+    "Não há orientação para bloquear datas específicas, como feriados ou dias com agenda cheia: a API só oferece data mínima e data máxima, sem lista de datas indisponíveis.",
+    "Não existe prop de idioma: os textos do calendário e a leitura das datas são fixos em português, o que não pôde ser configurado nem documentado de outra forma.",
+    "O node do Figma não define variante para telas pequenas, então não há comportamento responsivo específico a documentar além da fluidez do CSS.",
+    "O campo de tamanhos ficou vazio porque o componente não expõe prop de tamanho."
+  ]
+}

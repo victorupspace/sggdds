@@ -1,0 +1,257 @@
+{
+  "slug": "badge",
+  "name": "Badge",
+  "storybookTitle": "Web Components/Badge",
+  "sourceDir": "packages/react/src/components/Badge",
+  "exports": ["Badge"],
+  "typeExports": ["BadgeAppearance", "BadgeProps", "BadgeSize", "BadgeVariant"],
+  "oneLiner": "O Badge reproduz o layout do Figma (Web Components / Badge Standard): pill compacta com icone opcional (14px) e texto curto.",
+  "docsDescription": "O Badge reproduz o layout do Figma (Web Components / Badge Standard): pill compacta com icone opcional (14px) e texto curto.\n\nPropriedades espelhadas do Figma:\n- variant = type: brand, neutral, information, positive, negative e notice.\n- appearance = style: solid e subtle.\n- size: small (22px), medium (24px) e large (28px).\n- showIcon = icon: exibe o icone padrao percent; icon substitui o glifo (slot Icon Swap).\n\nTokens: alturas seguem sizing/badge/height-sm|md|lg, espacamentos usam Component sizing (gap 4, padding 10/0), o radius usa border/radius/radius-full, fundos usam color/background por tipo (negative e notice solid usam os tons default-hover, como no Figma), textos usam text-style/content color/typography e o texto do notice subtle usa o literal #936700 do Figma (sem variable na collection).\n\nTipografia: Disclaimer/Medium (Regular 10) no small e Body/Extra Small (Medium 12) no medium e large, sempre em Plus Jakarta Sans.\n\nResponsividade: o Badge e inline-flex com max-width de 100%; labels maiores que o container sao truncados com reticencias, mantendo a pill integra em qualquer largura.\n\nAcessibilidade: o icone e decorativo (aria-hidden) e a informacao deve estar no texto. Nao use o Badge como botao ou link.",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Conteudo curto renderizado no Badge.",
+      "source": "ambos"
+    },
+    {
+      "name": "variant",
+      "type": "BadgeVariant",
+      "values": ["brand", "neutral", "information", "positive", "negative", "notice"],
+      "default": "'brand'",
+      "required": false,
+      "description": "Tipo semantico do Badge (type no Figma).",
+      "source": "ambos"
+    },
+    {
+      "name": "appearance",
+      "type": "BadgeAppearance",
+      "values": ["solid", "subtle"],
+      "default": "'solid'",
+      "required": false,
+      "description": "Estilo visual do Badge (style no Figma).",
+      "source": "ambos"
+    },
+    {
+      "name": "size",
+      "type": "BadgeSize",
+      "values": ["small", "medium", "large"],
+      "default": "'small'",
+      "required": false,
+      "description": "Tamanho do Badge: small (22px), medium (24px) e large (28px).",
+      "source": "ambos"
+    },
+    {
+      "name": "showIcon",
+      "type": "boolean",
+      "values": ["true", "false"],
+      "default": "false",
+      "required": false,
+      "description": "Exibe o icone padrao percent (propriedade icon no Figma).",
+      "source": "ambos"
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "ReactNode que substitui o icone padrao (slot Icon Swap). Implica exibicao, mesmo com showIcon=false.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao elemento raiz.",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [],
+  "slots": [
+    { "name": "children", "type": "ReactNode", "description": "Conteudo curto do Badge, renderizado em <span class=\"ds-badge__label\">." },
+    { "name": "icon", "type": "ReactNode", "description": "Slot Icon Swap do Figma: substitui o icone percent padrao. Renderizado em <span class=\"ds-badge__icon\" aria-hidden=\"true\">." }
+  ],
+  "cssClasses": [
+    "ds-badge",
+    "ds-badge--variant-brand",
+    "ds-badge--variant-neutral",
+    "ds-badge--variant-information",
+    "ds-badge--variant-positive",
+    "ds-badge--variant-negative",
+    "ds-badge--variant-notice",
+    "ds-badge--appearance-solid",
+    "ds-badge--appearance-subtle",
+    "ds-badge--size-small",
+    "ds-badge--size-medium",
+    "ds-badge--size-large",
+    "ds-badge__icon",
+    "ds-badge__label"
+  ],
+  "cssCustomProperties": [
+    { "name": "--badge-background", "value": "var(--ds-semantic-color-background-brand-primary-default)", "comment": "color/background/brand/primary/default (Figma resolve #c60008; a collection exportada ainda traz #c50007 — divergência anotada para o time de design)" },
+    { "name": "--badge-text-color", "value": "var(--ds-semantic-text-style-content-color-typography-inverse)", "comment": "text-style/content color/typography/inverse" },
+    { "name": "--badge-icon-color", "value": "var(--badge-text-color)", "comment": "Por padrão o ícone acompanha a cor do texto (fills dos vetores exportados)" },
+    { "name": "--badge-gap", "value": "var(--ds-component-component-sizing-4)", "comment": "Component sizing/4 (gap entre ícone e texto)" },
+    { "name": "--badge-padding-x", "value": "var(--ds-component-component-sizing-10)", "comment": "Component sizing/10 e /0 (padding do container)" },
+    { "name": "--badge-padding-y", "value": "var(--ds-component-component-sizing-0)", "comment": null },
+    { "name": "--badge-radius", "value": "var(--ds-primitive-border-radius-radius-full)", "comment": "border/radius/radius-full" },
+    { "name": "--badge-height", "value": "22px", "comment": "sizing/badge/height-sm (22px) — grupo novo do Figma, ainda ausente nas collections exportadas; valor literal documentado" },
+    { "name": "--badge-icon-size", "value": "14px", "comment": "Icon Swap: 14px literal no Figma em todos os tamanhos" },
+    { "name": "--badge-font-size", "value": "var(--ds-primitive-typography-font-size-10)", "comment": "Disclaimer/Medium: Plus Jakarta Sans Regular + Font-size/10" },
+    { "name": "--badge-font-weight", "value": "var(--ds-primitive-typography-font-weight-regular)", "comment": null },
+    { "name": "--badge-height", "value": "22px", "comment": "Override em .ds-badge--size-small — sizing/badge/height-sm (22px)" },
+    { "name": "--badge-font-size", "value": "var(--ds-primitive-typography-font-size-10)", "comment": "Override em .ds-badge--size-small — Disclaimer/Medium: Plus Jakarta Sans Regular + Font-size/10" },
+    { "name": "--badge-font-weight", "value": "var(--ds-primitive-typography-font-weight-regular)", "comment": "Override em .ds-badge--size-small" },
+    { "name": "--badge-height", "value": "24px", "comment": "Override em .ds-badge--size-medium — sizing/badge/height-md (24px)" },
+    { "name": "--badge-font-size", "value": "var(--ds-primitive-typography-font-size-12)", "comment": "Override em .ds-badge--size-medium — Body/Extra Small: Plus Jakarta Sans Medium 12" },
+    { "name": "--badge-font-weight", "value": "var(--ds-primitive-typography-font-weight-medium)", "comment": "Override em .ds-badge--size-medium" },
+    { "name": "--badge-height", "value": "28px", "comment": "Override em .ds-badge--size-large — sizing/badge/height-lg (28px)" },
+    { "name": "--badge-font-size", "value": "var(--ds-primitive-typography-font-size-12)", "comment": "Override em .ds-badge--size-large — Body/Extra Small: Plus Jakarta Sans Medium 12" },
+    { "name": "--badge-font-weight", "value": "var(--ds-primitive-typography-font-weight-medium)", "comment": "Override em .ds-badge--size-large" },
+    { "name": "--badge-background", "value": "var(--ds-semantic-color-background-brand-primary-default)", "comment": "Override em .ds-badge--variant-brand.ds-badge--appearance-solid — color/background/brand/primary/default" },
+    { "name": "--badge-text-color", "value": "var(--ds-semantic-text-style-content-color-typography-inverse)", "comment": "Override em .ds-badge--variant-brand.ds-badge--appearance-solid" },
+    { "name": "--badge-background", "value": "var(--ds-semantic-color-background-neutral-soft-black)", "comment": "Override em .ds-badge--variant-neutral.ds-badge--appearance-solid — color/background/neutral/soft-black" },
+    { "name": "--badge-text-color", "value": "var(--ds-semantic-text-style-content-color-typography-inverse)", "comment": "Override em .ds-badge--variant-neutral.ds-badge--appearance-solid" },
+    { "name": "--badge-background", "value": "var(--ds-semantic-color-background-information-default)", "comment": "Override em .ds-badge--variant-information.ds-badge--appearance-solid — color/background/information/default" },
+    { "name": "--badge-text-color", "value": "var(--ds-semantic-text-style-content-color-typography-inverse)", "comment": "Override em .ds-badge--variant-information.ds-badge--appearance-solid" },
+    { "name": "--badge-background", "value": "var(--ds-semantic-color-background-success-default)", "comment": "Override em .ds-badge--variant-positive.ds-badge--appearance-solid — color/background/sucess/default (typo do Figma normalizado para success)" },
+    { "name": "--badge-text-color", "value": "var(--ds-semantic-text-style-content-color-typography-inverse)", "comment": "Override em .ds-badge--variant-positive.ds-badge--appearance-solid" },
+    { "name": "--badge-background", "value": "var(--ds-semantic-color-background-danger-default-hover)", "comment": "Override em .ds-badge--variant-negative.ds-badge--appearance-solid — color/background/danger/default-hover (#b22929 — variable aplicada no Figma)" },
+    { "name": "--badge-text-color", "value": "var(--ds-semantic-text-style-content-color-typography-inverse)", "comment": "Override em .ds-badge--variant-negative.ds-badge--appearance-solid" },
+    { "name": "--badge-background", "value": "var(--ds-semantic-color-background-warning-default-hover)", "comment": "Override em .ds-badge--variant-notice.ds-badge--appearance-solid — color/background/warning/default-hover (#c38900 — variable aplicada no Figma)" },
+    { "name": "--badge-text-color", "value": "var(--ds-semantic-text-style-content-color-typography-inverse)", "comment": "Override em .ds-badge--variant-notice.ds-badge--appearance-solid" },
+    { "name": "--badge-background", "value": "var(--ds-semantic-color-background-brand-primary-subtle)", "comment": "Override em .ds-badge--variant-brand.ds-badge--appearance-subtle — color/background/brand/primary/subtle" },
+    { "name": "--badge-text-color", "value": "var(--ds-semantic-text-style-content-color-typography-danger)", "comment": "Override em .ds-badge--variant-brand.ds-badge--appearance-subtle — text-style/content color/typography/danger (#b22929, cor aplicada no Figma)" },
+    { "name": "--badge-icon-color", "value": "var(--ds-semantic-color-background-brand-primary-default)", "comment": "Override em .ds-badge--variant-brand.ds-badge--appearance-subtle — color/background/brand/primary/default (#c60008, fill do vetor exportado)" },
+    { "name": "--badge-background", "value": "var(--ds-semantic-color-background-neutral-default-hover)", "comment": "Override em .ds-badge--variant-neutral.ds-badge--appearance-subtle — color/background/neutral/default-hover" },
+    { "name": "--badge-text-color", "value": "var(--ds-semantic-text-style-content-color-typography-primary)", "comment": "Override em .ds-badge--variant-neutral.ds-badge--appearance-subtle — text-style/content color/typography/primary" },
+    { "name": "--badge-background", "value": "var(--ds-semantic-color-background-information-subtle)", "comment": "Override em .ds-badge--variant-information.ds-badge--appearance-subtle — color/background/information/subtle" },
+    { "name": "--badge-text-color", "value": "var(--ds-semantic-text-style-content-color-typography-information)", "comment": "Override em .ds-badge--variant-information.ds-badge--appearance-subtle — text-style/content color/typography/information" },
+    { "name": "--badge-background", "value": "var(--ds-semantic-color-background-success-subtle)", "comment": "Override em .ds-badge--variant-positive.ds-badge--appearance-subtle — color/background/sucess/subtle" },
+    { "name": "--badge-text-color", "value": "var(--ds-semantic-text-style-content-color-typography-success)", "comment": "Override em .ds-badge--variant-positive.ds-badge--appearance-subtle — text-style/content color/typography/sucess" },
+    { "name": "--badge-background", "value": "var(--ds-semantic-color-background-danger-subtle)", "comment": "Override em .ds-badge--variant-negative.ds-badge--appearance-subtle — color/background/danger/subtle" },
+    { "name": "--badge-text-color", "value": "var(--ds-semantic-text-style-content-color-typography-danger)", "comment": "Override em .ds-badge--variant-negative.ds-badge--appearance-subtle — text-style/content color/typography/danger" },
+    { "name": "--badge-background", "value": "var(--ds-semantic-color-background-warning-subtle)", "comment": "Override em .ds-badge--variant-notice.ds-badge--appearance-subtle — color/background/warning/subtle" },
+    { "name": "--badge-text-color", "value": "#936700", "comment": "Override em .ds-badge--variant-notice.ds-badge--appearance-subtle — #936700 literal no Figma, não há variable para este texto na collection" },
+    { "name": "--badge-icon-color", "value": "var(--ds-semantic-text-style-content-color-typography-warning)", "comment": "Override em .ds-badge--variant-notice.ds-badge--appearance-subtle — text-style/content color/typography/warning (#c38900, fill do vetor exportado)" }
+  ],
+  "tokensUsed": [
+    "--ds-semantic-color-background-brand-primary-default",
+    "--ds-semantic-text-style-content-color-typography-inverse",
+    "--ds-component-component-sizing-4",
+    "--ds-component-component-sizing-10",
+    "--ds-component-component-sizing-0",
+    "--ds-primitive-border-radius-radius-full",
+    "--ds-primitive-typography-font-size-10",
+    "--ds-primitive-typography-font-weight-regular",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-typography-font-size-12",
+    "--ds-primitive-typography-font-weight-medium",
+    "--ds-semantic-color-background-neutral-soft-black",
+    "--ds-semantic-color-background-information-default",
+    "--ds-semantic-color-background-success-default",
+    "--ds-semantic-color-background-danger-default-hover",
+    "--ds-semantic-color-background-warning-default-hover",
+    "--ds-semantic-color-background-brand-primary-subtle",
+    "--ds-semantic-text-style-content-color-typography-danger",
+    "--ds-semantic-color-background-neutral-default-hover",
+    "--ds-semantic-text-style-content-color-typography-primary",
+    "--ds-semantic-color-background-information-subtle",
+    "--ds-semantic-text-style-content-color-typography-information",
+    "--ds-semantic-color-background-success-subtle",
+    "--ds-semantic-text-style-content-color-typography-success",
+    "--ds-semantic-color-background-danger-subtle",
+    "--ds-semantic-color-background-warning-subtle",
+    "--ds-semantic-text-style-content-color-typography-warning"
+  ],
+  "stories": [
+    {
+      "id": "web-components-badge--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-badge--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-badge--default&viewMode=story"
+    },
+    {
+      "id": "web-components-badge--all-variants-solid",
+      "name": "All Variants Solid",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-badge--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-badge--all-variants-solid&viewMode=story"
+    },
+    {
+      "id": "web-components-badge--all-variants-subtle",
+      "name": "All Variants Subtle",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-badge--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-badge--all-variants-subtle&viewMode=story"
+    },
+    {
+      "id": "web-components-badge--all-sizes",
+      "name": "All Sizes",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-badge--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-badge--all-sizes&viewMode=story"
+    },
+    {
+      "id": "web-components-badge--without-icon",
+      "name": "Without Icon",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-badge--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-badge--without-icon&viewMode=story"
+    },
+    {
+      "id": "web-components-badge--custom-icon",
+      "name": "Custom Icon",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-badge--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-badge--custom-icon&viewMode=story"
+    },
+    {
+      "id": "web-components-badge--long-label",
+      "name": "Long Label",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-badge--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-badge--long-label&viewMode=story"
+    }
+  ],
+  "variants": [
+    { "prop": "variant", "values": ["brand", "neutral", "information", "positive", "negative", "notice"] },
+    { "prop": "appearance", "values": ["solid", "subtle"] },
+    { "prop": "size", "values": ["small", "medium", "large"] }
+  ],
+  "states": [],
+  "responsive": [],
+  "accessibility": {
+    "roles": [],
+    "ariaAttributes": ["aria-hidden"],
+    "keyboardInteractions": [
+      "Nenhuma: o Badge nao e focavel nem interativo (raiz e um <span>, sem tabIndex nem handlers)."
+    ],
+    "notes": [
+      "O icone e decorativo: o wrapper <span class=\"ds-badge__icon\"> recebe aria-hidden=\"true\" e o SVG padrao (percent) tambem tem aria-hidden=\"true\".",
+      "A informacao deve estar no texto (children); nao ha aria-label nem role no elemento raiz.",
+      "Segundo a documentacao das stories: nao use o Badge como botao ou link.",
+      "O label usa text-overflow: ellipsis com white-space: nowrap — o texto e truncado visualmente em containers estreitos, mas permanece integro no DOM para tecnologia assistiva."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Badge/Badge.test.tsx",
+    "unitCount": 11,
+    "a11yFile": null,
+    "a11yCount": null
+  },
+  "figmaReferences": [
+    { "node": "38:1035", "note": "Layout do Figma: Web Components / Badge Standard (comentario no topo de Badge.styles.css)." },
+    { "node": "38:1035", "note": "Icone padrao do slot Icon Swap no Figma (Web Components / Badge Standard): glifo percent exportado, com a cor controlada por CSS via currentColor (comentario em Badge.tsx)." }
+  ],
+  "pendencias": [
+    "Nao existe arquivo Badge.a11y.test.tsx.",
+    "Nao ha nenhum @media no Badge.styles.css — a responsividade e feita por max-inline-size: 100% e truncamento do label, entao \"responsive\" fica vazio.",
+    "Nao ha estados interativos no CSS (sem :hover, :focus-visible, :active ou :disabled) — \"states\" fica vazio, coerente com a orientacao de nao usar o Badge como botao ou link.",
+    "As alturas (22px, 24px, 28px) e o tamanho do icone (14px) sao valores literais: o grupo sizing/badge/height-sm|md|lg do Figma ainda nao existe nas collections exportadas (registrado em comentario no CSS).",
+    "A cor do texto de notice + subtle e o literal #936700, sem variable correspondente na collection.",
+    "Divergencia anotada no codigo: color/background/brand/primary/default resolve #c60008 no Figma, mas a collection exportada traz #c50007.",
+    "Os valores concretos dos tokens --ds-* nao estao neste diretorio; ficam em packages/tokens.",
+    "Os parametros parameters.componentCanvas.width (560 no meta, 180 na story LongLabel) nao tem campo correspondente no schema."
+  ]
+}

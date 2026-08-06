@@ -1,0 +1,170 @@
+{
+  "slug": "meganav",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Navegação",
+  "resumo": "O Meganav é o menu principal do site. Um botão abre uma gaveta com os grandes caminhos do portal: links com descrição, grupos de assuntos e uma área opcional de destaque.",
+  "quandoUsar": [
+    "Reunir as áreas do portal quando o nome do link sozinho não explica o destino e cada item precisa de uma linha de descrição.",
+    "Agrupar jornadas longas por assunto — documentos, veículos, saúde — usando os grupos internos da própria gaveta.",
+    "Oferecer um único ponto de entrada para a navegação global no celular, onde a gaveta ocupa a lateral ou a tela inteira.",
+    "Destacar um serviço de temporada, como o período de matrícula ou uma campanha de vacinação, na área de destaque, sem tirar espaço da lista de links.",
+    "Mostrar em qual área a pessoa está, marcando o item correspondente como atual."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Quando o menu tem duas ou três opções que cabem direto na barra do topo.",
+      "alternativa": "header"
+    },
+    {
+      "texto": "Quando a pessoa precisa escolher uma opção dentro de um formulário, como o município de atendimento.",
+      "alternativa": "dropdown"
+    },
+    {
+      "texto": "Quando a navegação é entre seções do mesmo conteúdo, sem sair da página.",
+      "alternativa": "tabs"
+    },
+    {
+      "texto": "Quando o objetivo é mostrar o caminho percorrido até a página atual.",
+      "alternativa": "breadcrumb"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Trigger",
+      "descricao": "Botão que abre e fecha a gaveta. Reúne símbolo, texto e uma seta que gira quando a gaveta está aberta."
+    },
+    {
+      "numero": 2,
+      "parte": "Véu (scrim)",
+      "descricao": "Camada escura sobre o conteúdo da página no celular, que dá foco à gaveta e fecha o menu ao ser tocada."
+    },
+    {
+      "numero": 3,
+      "parte": "Gaveta",
+      "descricao": "Painel que guarda toda a navegação. No desktop abre ancorada ao trigger; em telas estreitas vira um painel lateral."
+    },
+    {
+      "numero": 4,
+      "parte": "Cabeçalho da gaveta",
+      "descricao": "Faixa com o título do menu e o botão de fechar, fixa no topo quando a gaveta vira painel lateral."
+    },
+    {
+      "numero": 5,
+      "parte": "Corpo da gaveta",
+      "descricao": "Área de conteúdo que organiza a navegação em colunas e ganha um arranjo próprio quando existe área de destaque."
+    },
+    {
+      "numero": 6,
+      "parte": "Item de navegação",
+      "descricao": "Link com rótulo, descrição opcional e ícone. É ele que recebe a marcação de página atual."
+    },
+    {
+      "numero": 7,
+      "parte": "Grupo interno",
+      "descricao": "Lista aninhada abaixo de um item, para desdobrar um assunto em destinos mais específicos."
+    },
+    {
+      "numero": 8,
+      "parte": "Área de destaque (featured)",
+      "descricao": "Bloco complementar opcional com imagem, chapéu, título, descrição e ações, usado para chamadas editoriais."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "Até 900px a gaveta encolhe a largura e o recuo interno. Abaixo de 720px ela deixa de ser um painel ancorado e vira uma gaveta lateral fixa, com véu sobre a página, cabeçalho fixo com título e botão de fechar, conteúdo em coluna única e a área de destaque sangrando até as bordas. Abaixo de 420px a gaveta ocupa 100% da largura e os textos dos itens diminuem. Quando a pessoa pede menos animação no sistema, a seta do trigger deixa de girar.",
+  "dosDonts": [
+    {
+      "faca": "Use o trigger na variante navigation quando o Meganav vive dentro do Header.",
+      "naoFaca": "Manter a variante button dentro do Header.",
+      "porque": "A variante button foi desenhada para o trigger solto na página. Dentro do cabeçalho ela ganha peso de ação e concorre com os botões de conta e busca."
+    },
+    {
+      "faca": "Dê um destino ou uma ação a todo item que a pessoa pode acionar.",
+      "naoFaca": "Deixar itens sem destino e sem ação parecendo links.",
+      "porque": "Sem os dois, o item vira um bloco estático que não recebe foco pelo teclado e não responde ao clique. A pessoa tenta e não entende por que nada acontece."
+    },
+    {
+      "faca": "Use a área de destaque para uma chamada por vez, com um caminho que ainda não está na lista.",
+      "naoFaca": "Repetir na área de destaque um link que já aparece na lista ao lado.",
+      "porque": "O destaque ocupa o espaço de vários links. Repetir conteúdo gasta a atenção da pessoa sem oferecer caminho novo."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Rótulo do item: de duas a quatro palavras, com o nome do destino e sem verbo. \"Serviços digitais\", não \"Clique aqui para ver os serviços digitais\".",
+    "Descrição do item: uma frase curta dizendo o que a pessoa encontra lá. Se não houver nada útil a dizer, deixe sem descrição em vez de repetir o rótulo.",
+    "Texto do trigger: use uma palavra estável em todo o portal, como \"Menu\". Trocar esse rótulo entre páginas faz a pessoa procurar o menu de novo a cada tela.",
+    "Título da gaveta no celular: repita o mesmo nome que aparece no trigger, para o cabeçalho confirmar onde a pessoa entrou.",
+    "Chapéu da área de destaque: uma ou duas palavras de categoria, com maiúscula só na primeira letra. O título do destaque leva o verbo da ação."
+  ],
+  "hierarquia": [
+    "O trigger fica na barra do topo, como primeiro elemento da navegação global, antes das ações de conta e busca.",
+    "Dentro da gaveta, a lista de links tem prioridade. A área de destaque é apoio: fica ao lado no desktop e abaixo dos links no celular.",
+    "Os grupos internos entram um nível abaixo do item que os agrupa. Não crie um terceiro nível: o componente prevê apenas uma lista aninhada.",
+    "Quando a gaveta abre, ela é o único conteúdo em foco no celular, porque o véu escurece a página atrás."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Header",
+      "slug": "header",
+      "relacao": "O trigger na variante navigation foi feito para viver dentro do Header. Fora dele, use a variante button."
+    },
+    {
+      "componente": "Breadcrumb",
+      "slug": "breadcrumb",
+      "relacao": "O Meganav leva a pessoa até a área; o Breadcrumb mostra em que ponto dela a pessoa parou."
+    },
+    {
+      "componente": "Footer",
+      "slug": "footer",
+      "relacao": "Repita no Footer os mesmos grupos de links do Meganav, para quem chega ao fim da página sem voltar ao topo."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Menu principal de um portal de serviços do Estado",
+      "contexto": "A pessoa entrou na página inicial e ainda não sabe se o que precisa está em serviços, notícias ou tutoriais.",
+      "comoFica": "O trigger fica no Header, na variante navigation. A gaveta abre com três itens, cada um com rótulo e uma linha de descrição do que existe naquela área. Dentro de \"Serviços digitais\", um grupo interno lista os assuntos mais procurados. A área de destaque traz a campanha do mês, com título, uma frase e uma ação."
+    },
+    {
+      "titulo": "Navegação no celular durante um agendamento",
+      "contexto": "A pessoa está no meio do agendamento e quer conferir a lista de documentos exigidos, sem perder o que já preencheu.",
+      "comoFica": "Abaixo de 720px a gaveta ocupa a lateral da tela, com véu por cima do formulário e um cabeçalho fixo com o título do menu e o botão de fechar. Os links ficam em coluna única. Ao tocar em um link a gaveta fecha sozinha e a navegação acontece."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Cadastrar itens sem destino e sem ação achando que eles vão funcionar como links.",
+      "consequencia": "O item é renderizado como um bloco estático: não entra na ordem de tabulação e o clique não faz nada.",
+      "correcao": "Informe o destino do link ou a ação. Se o item existe só para nomear um grupo, deixe claro no texto que ele é um título e não um caminho."
+    },
+    {
+      "erro": "Colocar dentro da gaveta um controle que não navega, como um filtro ou um botão de aplicar.",
+      "consequencia": "Qualquer clique em link ou botão dentro da gaveta fecha a gaveta. A pessoa perde a tela antes de ver o efeito do que apertou.",
+      "correcao": "Mantenha na gaveta apenas links e ações que levam a pessoa para outro lugar."
+    },
+    {
+      "erro": "Tratar a gaveta como um diálogo que exige decisão.",
+      "consequencia": "Não há prisão de foco nem devolução do foco ao trigger depois de fechar. Quem navega por teclado pode sair da gaveta sem perceber que ela continua aberta.",
+      "correcao": "Use o Meganav só para navegação. Quando a pessoa precisa decidir algo antes de continuar, use o Modal."
+    },
+    {
+      "erro": "Não marcar como atual o item da área em que a pessoa está.",
+      "consequencia": "A gaveta abre igual em todas as páginas. Quem usa leitor de tela não recebe a indicação de página atual e quem enxerga não tem referência de posição.",
+      "correcao": "Marque o item correspondente à área da página como atual sempre que a rota mudar."
+    }
+  ],
+  "notasImplementacao": [
+    "O conteúdo da gaveta só é montado no DOM quando ela está aberta. Nada dentro dela é carregado antes do primeiro clique no trigger.",
+    "A gaveta fecha ao pressionar Escape, ao apontar para fora da raiz do componente e ao clicar em qualquer link ou botão interno.",
+    "Não há prisão de foco nem devolução explícita do foco ao trigger depois do fechamento. Trigger, botão de fechar e links seguem a ordem natural de Tab.",
+    "Links que abrem em nova aba recebem rel de segurança automaticamente quando rel não é informado.",
+    "O componente funciona controlado, com o estado de abertura vindo de fora e o retorno pelo callback de mudança, ou não controlado, com o estado inicial definido na montagem."
+  ],
+  "pendentes": [
+    "O campo de tamanhos ficou vazio porque o componente não expõe prop de tamanho: a largura da gaveta é definida por tokens e por largura de tela.",
+    "Várias props não têm descrição no código (rótulo de fechar, título no celular, rótulo acessível do trigger, ícone do trigger e as classes extras). Por isso não foi possível documentar com precisão o que aparece quando elas não são informadas, como o título da gaveta no celular.",
+    "Não há definição de comportamento para dois Meganavs no mesmo cabeçalho — se abrir um deve fechar o outro. Falta o time decidir.",
+    "O código não cita nenhum node do Figma, então não foi possível apontar o frame de origem deste componente."
+  ]
+}

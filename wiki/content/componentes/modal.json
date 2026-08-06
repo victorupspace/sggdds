@@ -1,0 +1,174 @@
+{
+  "slug": "modal",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Feedback",
+  "resumo": "O Modal é uma janela que aparece sobre a página, escurece o fundo e concentra a atenção em uma decisão ou em uma tarefa curta. A pessoa só volta ao conteúdo depois de confirmar ou fechar.",
+  "quandoUsar": [
+    "Pedir confirmação antes de uma ação sem volta, como cancelar um agendamento já marcado no Poupatempo.",
+    "Coletar poucos dados sem tirar a pessoa da tela, como o motivo do cancelamento ou uma nova data de preferência.",
+    "Mostrar o detalhe de um item da lista de protocolos sem perder o filtro e a página em que a pessoa estava.",
+    "Apresentar um termo de uso ou uma declaração que precisa ser lida antes de a pessoa seguir com a emissão do documento.",
+    "Exibir uma visão de dados densa, como o histórico completo de movimentações de um processo, usando o tamanho estendido."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Para avisar algo que não interrompe a tarefa, como a confirmação de que os dados foram salvos.",
+      "alternativa": "toast"
+    },
+    {
+      "texto": "Para alertar sobre uma condição da própria página, como um prazo que está vencendo.",
+      "alternativa": "alert"
+    },
+    {
+      "texto": "Para explicar o que significa um campo do formulário.",
+      "alternativa": "tooltip"
+    },
+    {
+      "texto": "Para um cadastro longo, com várias etapas e documentos a anexar.",
+      "alternativa": "stepper"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Fundo (backdrop)",
+      "descricao": "Camada preta translúcida que cobre a página, tira o contraste do conteúdo atrás e fecha o modal ao clique, quando essa opção está ligada."
+    },
+    {
+      "numero": 2,
+      "parte": "Caixa de diálogo",
+      "descricao": "Container branco com cantos arredondados que guarda todas as seções e limita a largura conforme o tamanho escolhido."
+    },
+    {
+      "numero": 3,
+      "parte": "Botão de fechar",
+      "descricao": "Botão de ícone no canto superior direito, com rótulo acessível próprio. É a saída sempre disponível."
+    },
+    {
+      "numero": 4,
+      "parte": "Cabeçalho",
+      "descricao": "Faixa superior com o título e uma borda que a separa do conteúdo."
+    },
+    {
+      "numero": 5,
+      "parte": "Título",
+      "descricao": "Texto obrigatório que nomeia o diálogo. É ele que leitores de tela anunciam quando o modal abre."
+    },
+    {
+      "numero": 6,
+      "parte": "Subtítulo",
+      "descricao": "Linha de contexto opcional abaixo do título, usada como descrição acessível do diálogo quando existe."
+    },
+    {
+      "numero": 7,
+      "parte": "Conteúdo",
+      "descricao": "Corpo do modal, onde entram o texto, o formulário ou a tabela."
+    },
+    {
+      "numero": 8,
+      "parte": "Rodapé",
+      "descricao": "Área opcional das ações, montada com os botões do design system."
+    }
+  ],
+  "tamanhos": "São quatro tamanhos, definidos pela largura máxima da caixa: small (440px) para confirmações, medium (600px) para formulários curtos, large (960px) para conteúdo denso e extended (1200px) para visões de dados. Abaixo de 768px todos ficam limitados a 440px: small e medium se ancoram na base da tela como folha inferior, e apenas large e extended continuam centralizados.",
+  "responsivo": "Abaixo de 768px o modal muda de comportamento. Os tamanhos small e medium se ancoram na base da tela e viram uma folha inferior; large e extended continuam centralizados, com respiro nas laterais. A caixa fica limitada a 440px e o rodapé passa a empilhar os botões em largura total, na ordem invertida em relação ao código.",
+  "dosDonts": [
+    {
+      "faca": "Escreva o título com o verbo da ação em jogo: \"Cancelar agendamento\".",
+      "naoFaca": "Usar títulos genéricos como \"Atenção\", \"Aviso\" ou \"Confirmação\".",
+      "porque": "O título é o nome acessível do diálogo. Quem usa leitor de tela ouve só ele no momento em que o modal abre e precisa entender do que se trata."
+    },
+    {
+      "faca": "Monte o rodapé com dois botões: a ação principal e a de dispensar, seguindo a distribuição definida no Figma (principal em secondary, dispensar em tertiary).",
+      "naoFaca": "Colocar três ou mais botões no rodapé.",
+      "porque": "Abaixo de 768px os botões empilham em largura total. Três opções viram uma pilha alta e a decisão fica mais difícil justamente na tela menor."
+    },
+    {
+      "faca": "Mantenha as saídas por Escape e por clique no fundo ligadas, que é o padrão do componente.",
+      "naoFaca": "Desligar as duas para forçar a pessoa a escolher uma das ações.",
+      "porque": "Prender a pessoa no diálogo não melhora a decisão e quebra o comportamento que ela espera de qualquer janela. Se a ação é obrigatória, diga isso no texto."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Título: até cinco palavras, com o verbo da ação. Sem ponto final.",
+    "Subtítulo: uma linha de contexto que a pessoa não consegue deduzir do título, como a data ou o número do protocolo afetado.",
+    "Conteúdo: diga o que muda depois de confirmar e o que não tem volta. Se a ação apaga algo, escreva isso com todas as letras.",
+    "Botões: rotule com a ação, não com \"Sim\" e \"Não\". \"Cancelar agendamento\" e \"Manter agendamento\" evitam a confusão clássica entre cancelar o serviço e cancelar o diálogo.",
+    "Rótulo do botão de fechar: mantenha o padrão \"Fechar modal\" ou adapte dizendo o que fecha. Ele não aparece na tela, só é lido por tecnologia assistiva."
+  ],
+  "hierarquia": [
+    "Enquanto o modal está aberto, ele é o único elemento ativo: o fundo escurece, o scroll da página fica bloqueado e o foco do teclado circula apenas dentro do diálogo.",
+    "Um modal por vez. Se a tarefa exige uma segunda decisão, resolva na mesma janela ou leve para uma página própria.",
+    "O título tem o maior peso do diálogo; o subtítulo é apoio e o conteúdo vem em corpo de texto comum.",
+    "No celular o rodapé inverte a ordem dos botões. Confira qual ação fica no topo da pilha antes de publicar."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Button",
+      "slug": "button",
+      "relacao": "O rodapé é um espaço livre: componha com os Buttons do design system, com a ação principal na variante secondary e a de dispensar na tertiary."
+    },
+    {
+      "componente": "Text Input",
+      "slug": "text-input",
+      "relacao": "Formulários curtos dentro do modal usam os campos do design system. O primeiro campo focável recebe o foco quando o modal abre."
+    },
+    {
+      "componente": "Alert",
+      "slug": "alert",
+      "relacao": "Quando o envio feito dentro do modal falha, mostre um Alert no conteúdo em vez de fechar a janela e perder o que a pessoa digitou."
+    },
+    {
+      "componente": "Toast",
+      "slug": "toast",
+      "relacao": "Depois de confirmar e fechar o modal, use um Toast na página para confirmar o resultado da ação."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Cancelamento de agendamento",
+      "contexto": "A pessoa tem um atendimento marcado e apertou \"Cancelar\" na lista de agendamentos.",
+      "comoFica": "Modal no tamanho small. O título é \"Cancelar agendamento\" e o subtítulo repete a data e a unidade escolhidas. O conteúdo avisa que a vaga volta para a agenda e que será preciso agendar de novo. No rodapé, \"Cancelar agendamento\" como ação principal e \"Manter agendamento\" como dispensar. No celular, o diálogo sobe da base da tela com os botões em largura total."
+    },
+    {
+      "titulo": "Detalhe de uma movimentação de processo",
+      "contexto": "A pessoa consulta o andamento de um protocolo e quer ver o histórico completo sem perder o filtro aplicado na lista.",
+      "comoFica": "Modal no tamanho extended, com o número do protocolo no título e a tabela de movimentações no conteúdo. Sem rodapé: a única saída é o botão de fechar, o Escape ou o clique no fundo. Ao fechar, o foco volta para o botão que abriu o modal e a lista continua exatamente como estava."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Renderizar o Modal dentro de um container que corta o conteúdo ou cria um novo contexto de empilhamento.",
+      "consequencia": "O componente não usa portal: o markup fica onde o Modal aparece na árvore. Dentro de um bloco com corte de overflow ou transformação, o diálogo pode aparecer cortado ou atrás de outros elementos.",
+      "correcao": "Monte o Modal no nível mais alto possível da árvore da página, fora de containers com corte ou transformação."
+    },
+    {
+      "erro": "Abrir um segundo modal a partir de um que já está aberto.",
+      "consequencia": "Não há comportamento definido para modais empilhados. As prisões de foco concorrem entre si e o bloqueio do scroll da página pode não ser restaurado ao fechar.",
+      "correcao": "Feche o primeiro antes de abrir o segundo, ou resolva a tarefa inteira em um único diálogo."
+    },
+    {
+      "erro": "Colocar um formulário longo no tamanho small.",
+      "consequencia": "A caixa de 440px empurra os campos para um scroll interno e o rodapé fica distante do último campo, o que faz a pessoa achar que não há como enviar.",
+      "correcao": "Use medium para formulários curtos. Se ainda não couber, leve o formulário para uma página própria."
+    },
+    {
+      "erro": "Usar o modal para uma explicação que a pessoa precisa consultar enquanto preenche o formulário.",
+      "consequencia": "O modal cobre a tela e bloqueia o scroll da página. A pessoa fecha para ver o campo, esquece a instrução e reabre o diálogo várias vezes.",
+      "correcao": "Leve a explicação para o Tooltip ou para um texto de apoio no próprio campo."
+    }
+  ],
+  "notasImplementacao": [
+    "Quando o modal está fechado, o componente não renderiza nada.",
+    "O foco vai para o primeiro elemento focável do diálogo ao abrir e volta para o elemento que estava ativo antes, no fechamento. Tab e Shift+Tab circulam apenas dentro do diálogo.",
+    "O scroll do body é bloqueado enquanto o modal está aberto e o valor anterior é restaurado na limpeza.",
+    "O clique no fundo só fecha quando o gesto começou no próprio fundo, o que evita fechar por engano ao arrastar uma seleção de dentro do diálogo.",
+    "O título é sempre renderizado como cabeçalho de segundo nível. Considere isso na estrutura de cabeçalhos da página."
+  ],
+  "pendentes": [
+    "Não há orientação oficial sobre modais empilhados nem sobre o uso de portal. É uma decisão de arquitetura que o time ainda precisa tomar.",
+    "A cor do fundo escurecido está escrita direto no CSS, sem token correspondente, e a posição do botão de fechar usa valores fixos. Falta alinhar esses pontos com a coleção de tokens antes de documentá-los como regra.",
+    "Não foi possível documentar limites de altura ou comportamento de scroll interno do conteúdo, porque essa informação não está descrita na API extraída."
+  ]
+}

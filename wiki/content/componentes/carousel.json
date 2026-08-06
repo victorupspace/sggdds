@@ -1,0 +1,160 @@
+{
+  "slug": "carousel",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Conteúdo",
+  "resumo": "Área que mostra um grupo pequeno de cards por vez e permite avançar entre eles por setas, por indicadores ou pelo teclado. Serve para apresentar uma sequência curta de conteúdos relacionados sem ocupar a página inteira.",
+  "quandoUsar": [
+    "Para destacar de três a cinco campanhas ou comunicados na página inicial de um portal, sem empurrar o resto do conteúdo para baixo.",
+    "Para apresentar os serviços em destaque do momento, quando a lista completa fica em outra página.",
+    "Para mostrar um conjunto pequeno de conteúdos relacionados, como orientações de um mesmo assunto, em que a pessoa pode ver um, dois ou todos.",
+    "Para reunir cards em uma área estreita da página, quando a grade completa não caberia sem quebrar a leitura."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Para listar todos os serviços de um órgão: a pessoa precisa ver e comparar o conjunto de uma vez.",
+      "alternativa": "Card"
+    },
+    {
+      "texto": "Para dados que se comparam em colunas, como protocolos, datas e situações.",
+      "alternativa": "Data Table"
+    },
+    {
+      "texto": "Para informação que todo mundo precisa ler, como prazo que vence ou instabilidade no serviço: dentro do carrossel ela pode nunca ser vista.",
+      "alternativa": "Alert"
+    },
+    {
+      "texto": "Para as etapas de um processo, que têm ordem obrigatória e progresso.",
+      "alternativa": "Stepper"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Região",
+      "descricao": "Container que agrupa tudo e é anunciado como carrossel pelos leitores de tela, com nome definido nos rótulos do componente."
+    },
+    {
+      "numero": 2,
+      "parte": "Setas de navegação",
+      "descricao": "Botões redondos de anterior e próximo, ligados por showControls. Ficam desabilitados no início e no fim quando o loop está desligado."
+    },
+    {
+      "numero": 3,
+      "parte": "Área de exibição",
+      "descricao": "Janela que mostra o grupo atual de cards e recebe foco pelo teclado para permitir a navegação por setas."
+    },
+    {
+      "numero": 4,
+      "parte": "Cards",
+      "descricao": "Cada item da lista é renderizado com o componente Card e anunciado como um slide dentro da região."
+    },
+    {
+      "numero": 5,
+      "parte": "Indicadores",
+      "descricao": "Pontos clicáveis abaixo do conteúdo, ligados por showIndicators. O grupo atual vira uma pílula alongada e é anunciado como selecionado."
+    },
+    {
+      "numero": 6,
+      "parte": "Status",
+      "descricao": "Texto invisível na tela que anuncia \"Grupo X de Y\" a cada mudança, para quem usa leitor de tela."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "A quantidade de cards visíveis é definida em visibleItems, mas o componente reduz esse número sozinho quando a largura disponível não comporta cards legíveis. Até 900px o espaçamento e o respiro interno diminuem. Até 640px as setas saem das laterais e vão para baixo do conteúdo, uma à esquerda e outra à direita, e cada card passa a ocupar a largura toda. Até 420px o espaçamento encolhe mais e os cards internos ganham espaçamento e tipografia próprios para telas pequenas. Com redução de movimento ativada, a transição entre grupos e a animação dos indicadores são desligadas.",
+  "dosDonts": [
+    {
+      "faca": "Mantenha o loop desligado, como vem por padrão, em conjuntos curtos.",
+      "naoFaca": "Ligar o loop achando que facilita a navegação.",
+      "porque": "Sem loop, as setas ficam desabilitadas no primeiro e no último grupo, e isso informa onde a pessoa está na sequência. Com loop, o conjunto não tem começo nem fim visível e é fácil ver o mesmo card duas vezes sem perceber."
+    },
+    {
+      "faca": "Escolha a aparência dos indicadores conforme o fundo: a padrão em superfícies claras, a mais escura sobre imagens e a de fundo escuro em faixas escuras.",
+      "naoFaca": "Manter a aparência padrão sobre uma imagem ou faixa escura.",
+      "porque": "Os pontos padrão são cinza-escuro. Sobre fundo escuro eles somem, e a pessoa perde a única indicação de quantos grupos existem."
+    },
+    {
+      "faca": "Mantenha as setas e os indicadores visíveis.",
+      "naoFaca": "Desligar os dois e esperar que a pessoa descubra sozinha que o conteúdo anda.",
+      "porque": "Sem setas e sem indicadores, sobra apenas a navegação por teclado com a área de exibição em foco. Quem usa mouse ou toque fica sem nenhum controle visível."
+    }
+  ],
+  "conteudoEEscrita": [
+    "O texto visível vem dos cards: título curto, descrição de uma a duas linhas e um rótulo de ação com verbo mais objeto.",
+    "Ajuste os rótulos acessíveis quando o conteúdo não for genérico. Se os itens são comunicados, o slide deve ser anunciado como \"Comunicado 1 de 4\", não como \"Card 1 de 4\".",
+    "Escreva o rótulo do grupo de indicadores dizendo o que eles selecionam, no lugar do texto padrão, quando o carrossel tiver um assunto específico.",
+    "Não escreva instruções de gesto dentro dos cards, como \"arraste para o lado\": a navegação documentada é por setas, indicadores e teclado.",
+    "Mantenha títulos com tamanho parecido entre os cards. Um título muito mais longo que os outros desequilibra a altura do grupo inteiro."
+  ],
+  "hierarquia": [
+    "Ocupa um bloco de largura total, depois do conteúdo de abertura da página e antes das listas completas.",
+    "Nunca deve ser o único caminho para um serviço: o mesmo conteúdo precisa existir em uma página ou lista navegável.",
+    "Use poucos itens. Quanto mais grupos, mais indicadores, e mais fácil é a pessoa desistir antes do fim.",
+    "Em telas pequenas os controles ficam abaixo do conteúdo — deixe espaço livre ali para que não colidam com o próximo bloco da página."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Card",
+      "slug": "card",
+      "relacao": "Cada item da lista vira um Card completo, com as mesmas partes e o mesmo comportamento do componente isolado."
+    },
+    {
+      "componente": "Badge",
+      "slug": "badge",
+      "relacao": "O marcador de cada card aceita um Badge, útil para diferenciar categorias dentro da mesma sequência."
+    },
+    {
+      "componente": "Button",
+      "slug": "button",
+      "relacao": "A ação de cada card é um Button; ele é o elemento que leva ao serviço, enquanto setas e indicadores só mudam o que está visível."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Campanhas em destaque na página inicial de um portal",
+      "contexto": "Quatro campanhas ativas que mudam ao longo do ano, todas com imagem, título curto e um caminho para a página completa.",
+      "comoFica": "Um card por vez no desktop, com setas nas laterais e quatro indicadores abaixo. O loop fica desligado, então a seta de avançar desabilita no último card e a pessoa percebe que chegou ao fim. No celular, as setas descem para baixo do card."
+    },
+    {
+      "titulo": "Serviços em destaque sobre uma faixa escura",
+      "contexto": "Bloco de destaque com fundo escuro que reúne três serviços prioritários de uma secretaria.",
+      "comoFica": "Os indicadores usam a aparência para fundo escuro, e cada card traz um marcador de categoria e um botão com o nome do serviço. O status invisível anuncia \"Grupo 2 de 3\" a cada mudança, para quem usa leitor de tela."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Colocar dez ou mais itens no carrossel.",
+      "consequencia": "A fileira de indicadores fica ilegível e o conteúdo do fim praticamente nunca é alcançado.",
+      "correcao": "Reduza a sequência a poucos itens e leve o restante para uma página de listagem."
+    },
+    {
+      "erro": "Passar itens sem identificador válido na lista.",
+      "consequencia": "Esses itens são descartados sem aviso; se todos forem descartados, o carrossel inteiro deixa de ser exibido e a página fica com um vazio.",
+      "correcao": "Garanta um identificador único e preenchido para cada item antes de montar a lista."
+    },
+    {
+      "erro": "Usar o modo controlado, informando o índice selecionado, e não atualizar esse valor quando o índice muda.",
+      "consequencia": "As setas e os indicadores respondem ao clique, mas o conteúdo não anda: o componente devolve a mudança e espera que a aplicação decida.",
+      "correcao": "Ou use o modo não controlado com índice inicial, ou atualize o estado da aplicação a cada mudança de índice."
+    },
+    {
+      "erro": "Ativar o estado desabilitado para \"apenas esconder os controles\".",
+      "consequencia": "Além das setas e dos indicadores, a área de exibição sai da ordem de tabulação e deixa de responder ao ponteiro: o conteúdo fica visível, porém inalcançável.",
+      "correcao": "Para tirar só os controles, desligue setas e indicadores. Reserve o estado desabilitado para quando o bloco inteiro não deve ser usado."
+    }
+  ],
+  "notasImplementacao": [
+    "A raiz é anunciada como carrossel e cada item como slide; o grupo atual também é anunciado por um texto invisível, atualizado a cada mudança.",
+    "Setas e indicadores são botões nativos. Setas para a esquerda e para a direita mudam de grupo, e as teclas Home e End vão para o primeiro e o último.",
+    "Sem loop, as setas ficam desabilitadas nos extremos; com loop, o índice circula do último para o primeiro.",
+    "A quantidade de cards visíveis é reduzida automaticamente conforme a largura disponível, então o valor informado é um máximo, não uma garantia.",
+    "As cores dos indicadores, a opacidade dos controles desabilitados e o fundo da variante para superfícies escuras são valores fixos no código: as variáveis correspondentes ainda não existem nas coleções exportadas.",
+    "O teste automatizado de acessibilidade cobre apenas a composição básica com três cards; indicadores em fundo escuro, estado desabilitado e navegação por teclado não estão cobertos."
+  ],
+  "pendentes": [
+    "Não há rotação automática no componente, então não foi possível documentar tempo de exibição, pausa ao passar o cursor ou controle de play e pause.",
+    "Não foi possível orientar sobre gesto de arrastar ou deslizar em telas de toque: o material extraído não descreve esse comportamento.",
+    "Não há número máximo de itens definido oficialmente; a recomendação de manter a sequência curta é editorial e precisa ser confirmada pelo time.",
+    "Não foi possível documentar o efeito de informar mais de um card visível por grupo em telas largas, porque só o caso de um card por vez tem regra de estilo correspondente no código."
+  ]
+}

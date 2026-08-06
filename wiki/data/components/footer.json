@@ -1,0 +1,380 @@
+{
+  "slug": "footer",
+  "name": "Footer",
+  "storybookTitle": "Web Components/Footer",
+  "sourceDir": "packages/react/src/components/Footer",
+  "exports": [
+    "Footer"
+  ],
+  "typeExports": [
+    "FooterLink",
+    "FooterProps",
+    "FooterSection",
+    "FooterSocialItem"
+  ],
+  "oneLiner": "Footer e um organismo de fechamento de pagina para navegacao secundaria, links legais, afiliacao de marca, redes sociais e informacoes institucionais.",
+  "docsDescription": "Footer e um organismo de fechamento de pagina para navegacao secundaria, links legais, afiliacao de marca, redes sociais e informacoes institucionais.\n\nUse no fim de websites, portais de servico e experiencias que precisam reforcar confianca, navegacao auxiliar e canais oficiais. Nao use dentro de cards, modais ou regioes internas que nao representam o rodape global da pagina.\n\nResponsividade:\nEste componente foi desenvolvido com comportamento responsivo nativo, adaptando espacamentos, alinhamento, largura, quebra de conteudo e areas de toque para diferentes tamanhos de tela. A responsividade e aplicada na implementacao do componente e nao depende de variacoes manuais no Storybook. No desktop, as secoes ficam em colunas abertas; no mobile, viram grupos expansiveis com controles de 48px, marca centralizada, redes sociais com quebra de linha e copyright centralizado sem overflow horizontal.\n\nTokens:\nCores, superficies, bordas, espacamentos, tipografia, foco e estados usam variaveis CSS geradas pelos tokens do Figma. Como a camada semantica ainda nao cobre todos os casos no projeto, o componente cria aliases internos semanticos apontando para tokens disponiveis.\n\nAcessibilidade:\n- Usa elemento semantico footer.\n- A navegacao de rodape e redes sociais usam nav com aria-label.\n- Links atuais podem usar aria-current.\n- Itens desabilitados usam disabled/aria-disabled.\n- Secoes mobile usam botao com aria-expanded e aria-controls.\n- Redes sociais possuem nomes acessiveis, mesmo quando exibem apenas icone.\n- Estados de foco sao visiveis para teclado.\n\nConfiguracao:\nsections, socialItems, legalLinks e brand sao configuraveis. Passe brand null para remover a marca ou um ReactNode para trocar a identidade sem alterar a estrutura.",
+  "props": [
+    {
+      "name": "brand",
+      "type": "ReactNode | null",
+      "values": null,
+      "default": "<DefaultBrand /> (logo .GOV.BR interno) quando a prop e undefined",
+      "required": false,
+      "description": "Slot configuravel para marca do rodape. Passe null para ocultar.",
+      "source": "ambos"
+    },
+    {
+      "name": "brandHref",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "URL opcional da marca. Com href a marca vira <a>, sem href vira <div>.",
+      "source": "ambos"
+    },
+    {
+      "name": "brandAriaLabel",
+      "type": "string",
+      "values": null,
+      "default": "'SP.GOV.BR'",
+      "required": false,
+      "description": "Nome acessivel da marca.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao footer.",
+      "source": "ambos"
+    },
+    {
+      "name": "copyright",
+      "type": "ReactNode",
+      "values": null,
+      "default": "'Governo do Estado de Sao Paulo - Copyright 2026 - Todos os direitos reservados'",
+      "required": false,
+      "description": "Texto ou node de copyright.",
+      "source": "ambos"
+    },
+    {
+      "name": "legalLinks",
+      "type": "FooterLink[]",
+      "values": null,
+      "default": "[]",
+      "required": false,
+      "description": "Links legais exibidos proximo ao copyright.",
+      "source": "ambos"
+    },
+    {
+      "name": "navAriaLabel",
+      "type": "string",
+      "values": null,
+      "default": "'Navegacao de rodape'",
+      "required": false,
+      "description": "Rotulo acessivel da navegacao de rodape.",
+      "source": "ambos"
+    },
+    {
+      "name": "sections",
+      "type": "FooterSection[]",
+      "values": null,
+      "default": "defaultSections (Servicos com defaultOpen, Informacoes, Governo, Suporte)",
+      "required": false,
+      "description": "Lista de grupos de links do rodape. Lista vazia remove o <nav> de navegacao.",
+      "source": "ambos"
+    },
+    {
+      "name": "socialAriaLabel",
+      "type": "string",
+      "values": null,
+      "default": "'Redes sociais'",
+      "required": false,
+      "description": "Rotulo acessivel da area de redes sociais.",
+      "source": "ambos"
+    },
+    {
+      "name": "socialItems",
+      "type": "FooterSocialItem[]",
+      "values": null,
+      "default": "defaultSocialItems (Facebook, Instagram, X, YouTube, TikTok, Threads, LinkedIn)",
+      "required": false,
+      "description": "Lista de redes sociais com label, href e icone opcional. Lista vazia remove o <nav> de redes sociais.",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "FooterLink.onClick",
+      "signature": "MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>",
+      "description": "Handler por item de link, valido para sections[].links[] e legalLinks[]. Aplicado tanto na renderizacao como <a> quanto como <button>."
+    },
+    {
+      "name": "FooterSocialItem.onClick",
+      "signature": "MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>",
+      "description": "Handler por item de rede social. Sem href, o item e renderizado como <button> e so o onClick e acionado."
+    }
+  ],
+  "slots": [
+    {
+      "name": "brand",
+      "type": "ReactNode | null",
+      "description": "Marca do rodape; undefined usa o logo .GOV.BR interno, null remove a marca."
+    },
+    {
+      "name": "copyright",
+      "type": "ReactNode",
+      "description": "Conteudo do paragrafo de copyright."
+    },
+    {
+      "name": "socialItems[].icon",
+      "type": "ReactNode",
+      "description": "Icone de cada rede social; sem icone o componente exibe as duas primeiras letras do label."
+    }
+  ],
+  "cssClasses": [
+    "ds-footer",
+    "ds-footer__container",
+    "ds-footer__nav",
+    "ds-footer__sections",
+    "ds-footer__section",
+    "ds-footer__section--open",
+    "ds-footer__section-heading",
+    "ds-footer__section-title",
+    "ds-footer__section-toggle",
+    "ds-footer__section-list",
+    "ds-footer__section-item",
+    "ds-footer__link",
+    "ds-footer__divider",
+    "ds-footer__identity-row",
+    "ds-footer__brand",
+    "ds-footer-logo",
+    "ds-footer-logo__mark",
+    "ds-footer-logo__text",
+    "ds-footer__social-nav",
+    "ds-footer__social-list",
+    "ds-footer__social-item",
+    "ds-footer__social-link",
+    "ds-footer__social-icon",
+    "ds-footer__social-label",
+    "ds-footer__legal-row",
+    "ds-footer__copyright",
+    "ds-footer__legal-list",
+    "ds-footer__legal-item",
+    "ds-footer__legal-link"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--footer-surface",
+      "value": "var(--ds-semantic-text-style-content-color-typography-primary)",
+      "comment": null
+    },
+    {
+      "name": "--footer-foreground",
+      "value": "var(--ds-semantic-color-background-neutral-default)",
+      "comment": null
+    },
+    {
+      "name": "--footer-muted",
+      "value": "var(--ds-semantic-color-border-neutral-subtle)",
+      "comment": null
+    },
+    {
+      "name": "--footer-subtle",
+      "value": "var(--ds-semantic-text-style-content-color-typography-placeholder)",
+      "comment": null
+    },
+    {
+      "name": "--footer-border",
+      "value": "var(--ds-primitive-color-neutral-grey-800)",
+      "comment": null
+    },
+    {
+      "name": "--footer-hover",
+      "value": "var(--ds-primitive-color-neutral-grey-900)",
+      "comment": null
+    },
+    {
+      "name": "--footer-focus",
+      "value": "var(--ds-semantic-color-background-brand-primary-secondary-subtle)",
+      "comment": null
+    },
+    {
+      "name": "--footer-brand-accent",
+      "value": "var(--ds-semantic-color-background-brand-primary-prominent)",
+      "comment": null
+    },
+    {
+      "name": "--footer-container-width",
+      "value": "calc(var(--ds-primitive-spacing-128) * 15)",
+      "comment": null
+    },
+    {
+      "name": "--footer-inline-padding",
+      "value": "var(--ds-primitive-spacing-80)",
+      "comment": "Reduz para spacing-48 (<=1200px), spacing-24 (<=720px) e spacing-16 (<=420px)"
+    },
+    {
+      "name": "--footer-block-padding",
+      "value": "var(--ds-primitive-spacing-80)",
+      "comment": "Reduz para spacing-40 abaixo de 720px"
+    },
+    {
+      "name": "--footer-section-gap",
+      "value": "var(--ds-primitive-spacing-64)",
+      "comment": "Reduz para spacing-40 abaixo de 1200px"
+    },
+    {
+      "name": "--footer-link-gap",
+      "value": "var(--ds-primitive-spacing-20)",
+      "comment": null
+    },
+    {
+      "name": "--footer-social-size",
+      "value": "var(--ds-primitive-spacing-48)",
+      "comment": null
+    }
+  ],
+  "tokensUsed": [
+    "--ds-semantic-text-style-content-color-typography-primary",
+    "--ds-semantic-color-background-neutral-default",
+    "--ds-semantic-color-border-neutral-subtle",
+    "--ds-semantic-text-style-content-color-typography-placeholder",
+    "--ds-primitive-color-neutral-grey-800",
+    "--ds-primitive-color-neutral-grey-900",
+    "--ds-semantic-color-background-brand-primary-secondary-subtle",
+    "--ds-semantic-color-background-brand-primary-prominent",
+    "--ds-primitive-spacing-128",
+    "--ds-primitive-spacing-80",
+    "--ds-primitive-spacing-64",
+    "--ds-primitive-spacing-20",
+    "--ds-primitive-spacing-48",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-component-footer-spacing-padding-y",
+    "--ds-primitive-spacing-16",
+    "--ds-primitive-spacing-0",
+    "--ds-primitive-typography-font-size-24",
+    "--ds-primitive-typography-font-weight-bold",
+    "--ds-primitive-typography-line-height-32",
+    "--ds-primitive-border-radius-radius-full",
+    "--ds-primitive-spacing-32",
+    "--ds-primitive-typography-font-size-18",
+    "--ds-primitive-typography-font-weight-regular",
+    "--ds-primitive-typography-line-height-28",
+    "--ds-primitive-spacing-4",
+    "--ds-primitive-border-width-border-md",
+    "--ds-primitive-border-width-border-sm",
+    "--ds-primitive-typography-font-size-40",
+    "--ds-primitive-typography-font-weight-extra-bold",
+    "--ds-primitive-typography-line-height-46",
+    "--ds-primitive-spacing-40",
+    "--ds-primitive-spacing-8",
+    "--ds-primitive-spacing-24",
+    "--ds-primitive-border-radius-radius-sm",
+    "--ds-primitive-border-radius-radius-lg",
+    "--ds-primitive-typography-line-height-24",
+    "--ds-primitive-typography-font-size-16",
+    "--ds-primitive-typography-font-size-14",
+    "--ds-primitive-typography-line-height-20",
+    "--ds-primitive-typography-font-size-20",
+    "--ds-primitive-typography-line-height-30",
+    "--ds-primitive-typography-font-size-38",
+    "--ds-primitive-typography-line-height-44",
+    "--ds-primitive-typography-font-size-30",
+    "--ds-primitive-typography-line-height-38",
+    "--ds-primitive-spacing-12"
+  ],
+  "stories": [
+    {
+      "id": "web-components-footer--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-footer--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-footer--default&viewMode=story"
+    },
+    {
+      "id": "web-components-footer--with-legal-links",
+      "name": "With Legal Links",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-footer--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-footer--with-legal-links&viewMode=story"
+    },
+    {
+      "id": "web-components-footer--custom-brand",
+      "name": "Custom Brand",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-footer--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-footer--custom-brand&viewMode=story"
+    },
+    {
+      "id": "web-components-footer--mobile-responsive",
+      "name": "Mobile Responsive",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-footer--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-footer--mobile-responsive&viewMode=story"
+    }
+  ],
+  "variants": [],
+  "states": [
+    "hover (links, botao de secao e links sociais: sublinhado/cor no link, fundo --footer-hover nos botoes circulares)",
+    "focus-visible (outline border-md na cor --footer-focus com offset spacing-4 em brand, links, toggle e social)",
+    "disabled (item com disabled=true vira <button disabled> com aria-disabled; cor --footer-subtle, opacity .72 e cursor not-allowed)",
+    "current ([aria-current='page'] recebe o mesmo tratamento visual do hover)",
+    "secao aberta/fechada (ds-footer__section--open controla a exibicao da lista abaixo de 720px)"
+  ],
+  "responsive": [
+    {
+      "query": "@media (max-width: 1200px)",
+      "effect": "Colunas das secoes passam de 4 para 2; --footer-inline-padding vira spacing-48 e --footer-section-gap vira spacing-40."
+    },
+    {
+      "query": "@media (max-width: 720px)",
+      "effect": "Secoes viram acordeoes de coluna unica: aparece o botao toggle de 48px, a lista so aparece com ds-footer__section--open, cada secao ganha borda inferior, o divisor some, identity-row e legal-row viram grid centralizado, redes sociais e links legais quebram linha, tipografia de link/copyright aumenta e paddings caem para spacing-24/40."
+    },
+    {
+      "query": "@media (max-width: 420px)",
+      "effect": "--footer-inline-padding vira spacing-16, gap do container vira spacing-32, logo reduz para font-size-30/line-height-38 com marca menor e gap das redes sociais vira spacing-12."
+    }
+  ],
+  "accessibility": {
+    "roles": [
+      "contentinfo (<footer> raiz)",
+      "navigation (<nav> da navegacao de rodape e <nav> de redes sociais)",
+      "list / listitem (<ul>/<li> de secoes, redes sociais e links legais)",
+      "heading nivel 2 (<h2> do titulo de cada secao)",
+      "link (<a> com href) / button (itens sem href ou desabilitados, e o toggle da secao)"
+    ],
+    "ariaAttributes": [
+      "aria-label (nav de rodape, nav de redes sociais, marca, itens de link/social e toggle 'Expandir|Recolher <titulo>')",
+      "aria-labelledby (<section> apontando para o id do <h2>)",
+      "aria-controls e aria-expanded no botao toggle da secao",
+      "aria-current=\"page\" quando o item tem current: true",
+      "aria-disabled=\"true\" quando o item tem disabled: true",
+      "aria-hidden=\"true\" no divisor, nos icones SVG e no logo padrao"
+    ],
+    "keyboardInteractions": [
+      "Toggle de secao: <button type=\"button\"> nativo, acionado por Enter/Espaco, alternando aria-expanded.",
+      "Links e botoes de item: navegaveis por Tab, com outline visivel em :focus-visible.",
+      "Nao ha handler de teclado customizado (onKeyDown) no componente."
+    ],
+    "notes": [
+      "O rotulo textual de cada rede social existe no DOM em .ds-footer__social-label, escondido visualmente por clip/position absolute.",
+      "Itens com external: true recebem target=\"_blank\" e rel=\"noopener noreferrer\".",
+      "Itens sem href (ou desabilitados) sao renderizados como <button type=\"button\"> em vez de <a>.",
+      "O botao toggle so e exibido abaixo de 720px (display: none no desktop), mas continua no DOM e acessivel a leitores de tela em qualquer largura."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Footer/Footer.test.tsx",
+    "unitCount": 5,
+    "a11yFile": null,
+    "a11yCount": null
+  },
+  "figmaReferences": [],
+  "pendencias": [
+    "Nao ha arquivo Footer.a11y.test.tsx; a cobertura de acessibilidade automatizada (axe) esta ausente.",
+    "Nenhum node-id do Figma e citado no codigo do Footer (a doc so menciona 'tokens do Figma' de forma generica).",
+    "O estado aberto/fechado das secoes e interno (useState com defaultOpen); nao ha prop controlada nem callback de abertura/fechamento.",
+    "O componente nao expoe FooterProps.children nem slots adicionais alem de brand/copyright/icon, entao blocos institucionais extras nao tem ponto de extensao documentado.",
+    "O CSS usa --ds-component-footer-spacing-padding-y no padding inferior do container, mas esse token nao tem fallback nem esta refletido nos aliases internos; o valor final depende da collection de tokens."
+  ]
+}

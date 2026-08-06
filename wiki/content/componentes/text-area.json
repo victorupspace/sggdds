@@ -1,0 +1,162 @@
+{
+  "slug": "text-area",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Formulários",
+  "resumo": "Campo de digitação com várias linhas, usado quando a resposta é um texto livre e pode ser longa. Reúne no mesmo bloco o rótulo, o texto de apoio, a mensagem de erro e o contador de caracteres.",
+  "quandoUsar": [
+    "Quando a pessoa precisa justificar um pedido por escrito, como a justificativa de um recurso administrativo.",
+    "Quando o serviço pede o relato do que aconteceu, como a descrição de uma ocorrência ou de um problema no atendimento.",
+    "Quando existe um campo de observações complementares que o servidor vai ler depois, em um agendamento ou solicitação.",
+    "Quando a resposta tem limite de caracteres definido por regra do serviço e a pessoa precisa acompanhar quanto já escreveu.",
+    "Quando o formulário é de ouvidoria, manifestação ou pedido de informação, em que o texto é o conteúdo principal do envio."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Para respostas curtas de uma linha, como nome, e-mail, telefone ou número de protocolo.",
+      "alternativa": "TextInput"
+    },
+    {
+      "texto": "Quando a resposta é uma escolha entre opções já definidas pelo serviço, como o motivo da solicitação.",
+      "alternativa": "Dropdown"
+    },
+    {
+      "texto": "Quando a pessoa precisa enviar um documento digitalizado ou uma foto em vez de digitar.",
+      "alternativa": "FileUpload"
+    },
+    {
+      "texto": "Quando o dado pedido é uma data, mesmo que a pessoa consiga digitá-la.",
+      "alternativa": "Datepicker"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Rótulo",
+      "descricao": "Nome do campo, sempre visível e exigido pelo componente. Recebe um asterisco decorativo quando a resposta é obrigatória."
+    },
+    {
+      "numero": 2,
+      "parte": "Área de digitação",
+      "descricao": "Caixa de texto com várias linhas. Abre com 4 linhas por padrão e, também por padrão, pode ser esticada verticalmente pela pessoa."
+    },
+    {
+      "numero": 3,
+      "parte": "Bloco de apoio",
+      "descricao": "Faixa abaixo da caixa que reúne, na mesma linha, as mensagens e o contador."
+    },
+    {
+      "numero": 4,
+      "parte": "Mensagem de apoio ou de erro",
+      "descricao": "Texto que orienta o preenchimento. Quando há erro, a mensagem de erro aparece e o campo passa para o estado de erro."
+    },
+    {
+      "numero": 5,
+      "parte": "Contador de caracteres",
+      "descricao": "Aparece por padrão. Com limite definido, mostra o formato atual/limite; sem limite, mostra apenas quantos caracteres já foram digitados."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "Em telas de até 640 pixels, a caixa fica com altura mínima menor, os espaçamentos internos diminuem e rótulo, texto, mensagem e contador usam tipografia menor. Em telas de até 420 pixels, o bloco de apoio passa a ocupar uma coluna só e o contador é alinhado à direita, abaixo da mensagem.",
+  "dosDonts": [
+    {
+      "faca": "Defina o limite de caracteres (maxLength) sempre que o serviço tiver um limite real de texto.",
+      "naoFaca": "Deixar o limite apenas na validação do sistema, sem informar o campo.",
+      "porque": "Sem maxLength, o contador mostra só o total digitado, sem referência de quanto ainda cabe. A pessoa escreve o relato inteiro e só descobre o corte depois de enviar."
+    },
+    {
+      "faca": "Sempre escreva a mensagem de erro (errorText) dizendo o que precisa ser corrigido.",
+      "naoFaca": "Colocar o campo em estado de erro apenas mudando a prop state.",
+      "porque": "O estado de erro pinta a borda e marca o campo como inválido para leitores de tela, mas sem mensagem a pessoa vê que errou e não descobre o que fazer."
+    },
+    {
+      "faca": "Ajuste o número de linhas (rows) ao tamanho da resposta que o serviço espera de verdade.",
+      "naoFaca": "Combinar uma caixa baixa com resize igual a none em campos de relato longo.",
+      "porque": "Com o redimensionamento bloqueado e poucas linhas visíveis, a pessoa revisa um texto de vários parágrafos por uma janela de quatro linhas e erros passam despercebidos."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Escreva o rótulo como um substantivo curto que nomeia o conteúdo: \"Descrição da ocorrência\", e não \"Descreva aqui a sua ocorrência\".",
+    "Use o texto de apoio para dizer o que deve constar na resposta, por exemplo o que a pessoa precisa informar para o pedido ser analisado. Não repita o rótulo.",
+    "Não use o placeholder para explicar o preenchimento: ele desaparece assim que a pessoa começa a digitar. Instruções ficam no texto de apoio.",
+    "Escreva a mensagem de erro dizendo a correção, não o diagnóstico: \"Descreva o ocorrido com pelo menos 20 caracteres\" funciona melhor que \"Campo inválido\".",
+    "Escreva o rótulo com a primeira letra maiúscula e o resto em minúsculas, sem ponto final."
+  ],
+  "hierarquia": [
+    "Por padrão o campo ocupa toda a largura do container. Mantenha-o alinhado à mesma coluna dos demais campos do formulário.",
+    "É o campo mais alto da tela e puxa a atenção. Coloque-o depois dos campos curtos de identificação, perto do fim do formulário.",
+    "Rótulo em cima, bloco de apoio embaixo: não separe essas partes do campo nem coloque outro elemento entre elas.",
+    "Evite mais de um campo de texto longo por etapa. Se houver dois relatos diferentes, quebre em etapas com o Stepper."
+  ],
+  "combinacoes": [
+    {
+      "componente": "TextInput",
+      "slug": "text-input",
+      "relacao": "Os campos curtos de identificação vêm antes; o campo de texto longo fecha o bloco de perguntas."
+    },
+    {
+      "componente": "FileUpload",
+      "slug": "file-upload",
+      "relacao": "Aparece logo depois quando a justificativa escrita precisa vir acompanhada de um comprovante."
+    },
+    {
+      "componente": "Alert",
+      "slug": "alert",
+      "relacao": "Quando o envio falha, o Alert no topo resume os erros e a mensagem de erro do campo indica a correção específica."
+    },
+    {
+      "componente": "Button",
+      "slug": "button",
+      "relacao": "O botão de envio fica abaixo do campo e só deve ser acionado depois que a validação do texto passa."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Justificativa de recurso de multa",
+      "contexto": "No serviço de defesa prévia do Detran-SP, a pessoa já informou a placa e o número do auto de infração e precisa explicar por escrito o motivo do recurso.",
+      "comoFica": "Rótulo \"Motivo do recurso\", marcado como obrigatório. Texto de apoio explicando que a análise considera apenas o que estiver escrito no campo. Limite de caracteres definido, com o contador mostrando atual/limite abaixo, à direita."
+    },
+    {
+      "titulo": "Relato na ouvidoria sobre um atendimento",
+      "contexto": "Depois de escolher a unidade e a data do atendimento no Poupatempo, a pessoa descreve o que aconteceu para registrar a manifestação.",
+      "comoFica": "Rótulo \"Descrição da manifestação\", campo aberto com mais linhas que o padrão, redimensionamento vertical liberado e texto de apoio pedindo datas, nomes e o que foi solicitado no balcão. Se a pessoa enviar em branco, a mensagem de erro aparece abaixo e o campo entra em estado de erro."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Manter o contador ligado sem definir o limite de caracteres.",
+      "consequencia": "O contador exibe apenas o total digitado, sem referência. A pessoa vê um número crescendo e não sabe se está perto de algum limite.",
+      "correcao": "Defina maxLength quando existir limite, ou desligue o contador (showCounter) quando o texto for realmente livre."
+    },
+    {
+      "erro": "Colocar o campo em estado de erro sem preencher a mensagem de erro.",
+      "consequencia": "O campo é anunciado como inválido para leitores de tela e fica com a borda de erro, mas ninguém descobre o que corrigir.",
+      "correcao": "Preencha errorText. A simples presença dessa mensagem já ativa o estado de erro, sem precisar mexer na prop state."
+    },
+    {
+      "erro": "Usar o campo desabilitado para indicar que ele só será liberado depois.",
+      "consequencia": "O campo desabilitado não recebe foco por teclado e passa despercebido para quem usa leitor de tela; a pessoa não entende que existe uma etapa anterior.",
+      "correcao": "Mantenha o campo habilitado e explique a condição no texto de apoio, ou só exiba o campo quando a condição for atendida."
+    },
+    {
+      "erro": "Usar o campo de texto longo para dados estruturados, como CPF, data ou endereço completo.",
+      "consequencia": "O texto chega ao servidor em formato livre, o servidor precisa interpretar manualmente e a taxa de erro no atendimento aumenta.",
+      "correcao": "Quebre em campos próprios: TextInput para dados curtos e Datepicker para datas."
+    }
+  ],
+  "notasImplementacao": [
+    "O componente usa o elemento textarea nativo, com rótulo ligado ao campo por htmlFor/id. Quando o id não é informado, ele é gerado automaticamente e reaproveitado nos identificadores do texto de apoio, do erro e do contador.",
+    "As mensagens são ligadas ao campo por aria-describedby, nesta ordem: erro (quando existe), texto de apoio e contador.",
+    "O campo é marcado como inválido (aria-invalid) em três situações: estado de erro, presença de mensagem de erro ou valor que ultrapassa o limite de caracteres.",
+    "O contador é atualizado de forma discreta para leitores de tela (aria-live polite), sem interromper a digitação.",
+    "O asterisco de campo obrigatório é apenas visual (aria-hidden). A obrigatoriedade é comunicada pelo atributo required nativo, que precisa ser informado.",
+    "O anel de foco usa :focus e não :focus-visible, então ele aparece também quando a pessoa clica com o mouse ou toca na tela. Considere isso antes de reportar como defeito visual.",
+    "Não existe tratamento visual próprio para o modo somente leitura: o CSS cobre apenas os estados de erro e desabilitado.",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual."
+  ],
+  "pendentes": [
+    "Tamanhos: o componente não tem prop de tamanho (size). A densidade do campo só muda pelo número de linhas iniciais e pelas regras de tela pequena, então não há variação de tamanho a documentar.",
+    "Limites de caracteres recomendados por tipo de serviço: o JSON extraído não traz nenhum valor de referência e definir um número aqui seria invenção. Cada serviço precisa derivar o limite da própria regra de negócio.",
+    "Comportamento em formulários de consulta (somente leitura): não existe estado visual de readOnly no CSS, apenas desabilitado. Falta o time definir como exibir respostas já enviadas."
+  ]
+}

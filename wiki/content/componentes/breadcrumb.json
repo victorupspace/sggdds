@@ -1,0 +1,161 @@
+{
+  "slug": "breadcrumb",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Navegação",
+  "resumo": "Barra que mostra o caminho percorrido até a página atual, nível a nível, e permite voltar a qualquer nível anterior com um clique. O último nível é a página em que a pessoa está e não é clicável.",
+  "quandoUsar": [
+    "Quando a página está a dois ou mais níveis de distância do início do portal, como a ficha de um serviço dentro de uma área temática.",
+    "Quando a pessoa costuma chegar direto por busca, e-mail ou link compartilhado e precisa entender em que parte do portal caiu.",
+    "Quando a página de detalhe de um item (um protocolo, uma unidade de atendimento, uma certidão) exige um caminho de volta para a lista de origem.",
+    "Quando o portal tem muitas seções e o menu principal sozinho não mostra onde a pessoa está.",
+    "Quando é preciso oferecer uma saída sem depender do botão de voltar do navegador, que pode ter sido perdido em fluxos com várias telas."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Em páginas de primeiro nível, como a home do portal ou uma landing de campanha, onde não existe caminho anterior para mostrar.",
+      "alternativa": "Header"
+    },
+    {
+      "texto": "Para indicar em que etapa de um formulário dividido em passos a pessoa está: a trilha mostra onde a página fica no portal, não o progresso da tarefa.",
+      "alternativa": "Stepper"
+    },
+    {
+      "texto": "Para navegar entre páginas de uma lista de resultados (página 1, 2, 3).",
+      "alternativa": "Pagination"
+    },
+    {
+      "texto": "Para alternar entre visões do mesmo conteúdo, como \"Em andamento\" e \"Concluídos\" do mesmo protocolo.",
+      "alternativa": "Tabs"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Barra",
+      "descricao": "Faixa de largura total, com fundo branco e uma linha fina acima e abaixo, que separa a trilha do restante da página."
+    },
+    {
+      "numero": 2,
+      "parte": "Botão de início",
+      "descricao": "Botão redondo com o ícone de casa no começo da trilha, ligado por showHome. Leva ao endereço definido em homeHref e tem o nome acessível definido em homeLabel."
+    },
+    {
+      "numero": 3,
+      "parte": "Separador",
+      "descricao": "Barra inclinada entre um nível e outro. É decorativa e não é lida por leitores de tela."
+    },
+    {
+      "numero": 4,
+      "parte": "Nível anterior",
+      "descricao": "Cada item da trilha que tem href vira um link, em texto menor e cor secundária."
+    },
+    {
+      "numero": 5,
+      "parte": "Nível atual",
+      "descricao": "Último nível ou o item marcado com current. Aparece em cor primária e peso mais forte, não é link e é anunciado como página atual."
+    },
+    {
+      "numero": 6,
+      "parte": "Rótulo",
+      "descricao": "Texto de cada nível. Tem largura máxima e corta com reticências quando o texto é longo."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "A barra ocupa 100% da largura disponível. Em telas de até 640px o espaçamento lateral diminui e os rótulos passam a cortar mais cedo (160px, contra 330px no desktop). Quando a trilha inteira não cabe, a lista rola na horizontal, sem barra de rolagem visível, de forma que todos os níveis continuam alcançáveis. Com redução de movimento ativada, as transições de cor do botão de início e dos links são desligadas.",
+  "dosDonts": [
+    {
+      "faca": "Deixe o nível atual sem href, ou marque-o com current.",
+      "naoFaca": "Manter href no nível atual esperando que ele funcione como link para a própria página.",
+      "porque": "O componente nunca renderiza o nível atual como link, mesmo quando o href existe. O endereço fica ali sem efeito e cria uma expectativa que a interface não cumpre."
+    },
+    {
+      "faca": "Use rótulos curtos e iguais ao título da página correspondente.",
+      "naoFaca": "Escrever frases inteiras no rótulo, como \"Emissão de certidão de nascimento e casamento\".",
+      "porque": "Os rótulos têm largura máxima e cortam com reticências — 330px no desktop e 160px abaixo de 640px. Texto longo vira uma sequência de reticências e a pessoa perde a referência do caminho."
+    },
+    {
+      "faca": "Ofereça sempre um caminho de volta ao início: mantenha showHome ligado ou informe o primeiro nível do serviço na lista.",
+      "naoFaca": "Desligar showHome e começar a trilha em um nível intermediário.",
+      "porque": "Sem o bloco inicial e sem o primeiro nível, a trilha mostra apenas parte do caminho e a pessoa não consegue voltar ao topo do serviço pela própria barra."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Repita no rótulo exatamente o título da página de destino. Se a página se chama \"Agendamento\", o nível não pode se chamar \"Agende aqui\".",
+    "Prefira rótulos de uma a três palavras. Quanto mais níveis a trilha tiver, mais curto cada rótulo precisa ser.",
+    "Use maiúscula apenas na primeira palavra e em nomes próprios: \"Emissão de certidão\", não \"Emissão De Certidão\".",
+    "Não escreva \"Você está em\", \"Home\" ou \"Página inicial > \" dentro dos rótulos: o caminho já é anunciado como navegação e o botão de início já cumpre esse papel.",
+    "Quando o rótulo visível é uma sigla, informe o nome por extenso no ariaLabel daquele item, para quem usa leitor de tela."
+  ],
+  "hierarquia": [
+    "Fica logo abaixo do cabeçalho do site e acima do título da página, ocupando toda a largura.",
+    "Tem peso visual baixo de propósito: níveis anteriores em cinza e texto pequeno, para não competir com o título principal.",
+    "Só o nível atual ganha destaque, com cor mais escura e peso mais forte — é a âncora de leitura da barra.",
+    "Use uma única trilha por página. Repetir o caminho no rodapé duplica a navegação sem ganho."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Header",
+      "slug": "header",
+      "relacao": "A trilha fica imediatamente abaixo do cabeçalho e mostra o caminho que o menu principal não consegue exibir."
+    },
+    {
+      "componente": "Hero",
+      "slug": "hero",
+      "relacao": "Quando a página abre com um bloco de destaque, o Breadcrumb vem antes dele, para que o caminho seja lido antes do conteúdo."
+    },
+    {
+      "componente": "Stepper",
+      "slug": "stepper",
+      "relacao": "Em serviços com etapas os dois convivem: o Breadcrumb diz onde o serviço fica no portal e o Stepper diz em que passo a pessoa está."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Detalhe de um protocolo aberto por link de e-mail",
+      "contexto": "A pessoa recebe um aviso por e-mail e cai direto na página de detalhe de um protocolo, sem ter passado pela home nem pela lista.",
+      "comoFica": "A barra mostra o botão de início, depois \"Serviços\", \"Meus protocolos\" e, por último e sem link, \"Detalhe do protocolo\". Um clique em \"Meus protocolos\" leva à lista completa, e a pessoa entende que existe uma área de acompanhamento no portal."
+    },
+    {
+      "titulo": "Escolha de unidade em um agendamento do Poupatempo",
+      "contexto": "O agendamento está organizado por tipo de atendimento e a pessoa desceu três níveis até chegar na escolha da unidade.",
+      "comoFica": "A trilha fica \"início > Agendamento > RG > Escolher unidade\", com o último nível em destaque. No celular, os rótulos cortam com reticências e a barra rola na horizontal, então nenhum nível desaparece."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Informar href no item que representa a página atual.",
+      "consequencia": "O link não é criado e o endereço fica sem uso; quem revisa o conteúdo acha que a trilha está quebrada.",
+      "correcao": "Deixe o item atual sem href e marque-o com current, ou confie no comportamento padrão, que trata o último item como página atual."
+    },
+    {
+      "erro": "Manter showHome ligado e ainda incluir um primeiro item chamado \"Início\" na lista.",
+      "consequencia": "A barra mostra dois caminhos para a mesma página, um como ícone e outro como texto, e a trilha fica maior sem necessidade.",
+      "correcao": "Escolha um dos dois: mantenha o botão de início e comece a lista no primeiro nível real, ou desligue showHome e use o item de texto."
+    },
+    {
+      "erro": "Escrever rótulos longos porque o texto cabe na tela do desktop.",
+      "consequencia": "Abaixo de 640px o corte é bem mais agressivo e vários níveis viram texto cortado, deixando a trilha ilegível justamente onde ela mais ajuda.",
+      "correcao": "Teste a trilha em tela estreita e encurte os rótulos até que cada nível continue reconhecível."
+    },
+    {
+      "erro": "Usar a trilha para representar as etapas já preenchidas de um formulário.",
+      "consequencia": "A pessoa clica em um nível anterior esperando voltar à etapa e sai do fluxo, perdendo o que preencheu.",
+      "correcao": "Use o Stepper para etapas e reserve o Breadcrumb para a posição da página dentro do portal."
+    }
+  ],
+  "notasImplementacao": [
+    "O nível atual nunca é renderizado como link, mesmo que o item tenha href. A regra é do próprio componente.",
+    "Se nenhum item for marcado com current, o último item da lista é tratado como página atual.",
+    "O ícone de início e os separadores são decorativos. O nome acessível do botão de início vem de homeLabel, e o da barra inteira vem de ariaLabel (padrão \"Breadcrumb\").",
+    "O anel de foco aparece apenas na navegação por teclado; o foco por clique não desenha contorno.",
+    "Em telas estreitas a lista rola na horizontal para manter todos os níveis alcançáveis, sem barra de rolagem visível.",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual.",
+    "O comportamento de hover e o ponto de quebra de 640px foram definidos no código, sem referência correspondente no Figma."
+  ],
+  "pendentes": [
+    "Não há orientação oficial sobre o número máximo de níveis da trilha: o componente aceita qualquer quantidade e o material extraído não define limite nem regra de encurtamento do meio do caminho.",
+    "Não foi possível documentar o que acontece quando mais de um item é marcado com current: o comportamento não está descrito no material extraído.",
+    "Não há definição de comportamento em páginas com mais de uma hierarquia possível (o mesmo serviço acessível por duas áreas do portal); a escolha do caminho a exibir depende de decisão editorial de cada produto."
+  ]
+}

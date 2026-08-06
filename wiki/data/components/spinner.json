@@ -1,0 +1,230 @@
+{
+  "slug": "spinner",
+  "name": "Spinner",
+  "storybookTitle": "Web Components/Spinner",
+  "sourceDir": "packages/react/src/components/Spinner",
+  "exports": ["Spinner", "Loading"],
+  "typeExports": ["SpinnerProps", "SpinnerSize", "SpinnerVariant"],
+  "oneLiner": "Indicador de progresso indeterminado para comunicar que uma acao esta em processamento ou que dados estao sendo carregados.",
+  "docsDescription": "Spinner e um indicador de progresso indeterminado para comunicar que uma acao esta em processamento ou que dados estao sendo carregados.\n\nUse quando nao houver percentual de conclusao disponivel, em carregamentos curtos, acoes assincronas e estados temporarios de espera.\n\nNao use Spinner para progresso mensuravel. Quando houver valor, use ProgressBar.\n\nComportamento:\n- Fica centralizado na viewport por padrao em desktop e mobile, atendendo ao uso como loading principal.\n- Use centered={false} para casos inline dentro de botoes, cards ou regioes menores.\n- O componente tambem e exportado como Loading para usos em que esse nome seja mais natural no produto.\n\nTokens:\nCores, sizing, border width, radius, spacing e typography usam variaveis CSS dos tokens importados do Figma.\n\nAcessibilidade:\n- Usa role=\"status\", aria-live=\"polite\" e aria-busy=\"true\".\n- O elemento visual e decorativo.\n- A prop ariaLabel define o nome acessivel quando o label visual nao e exibido.\n- Respeita prefers-reduced-motion reduzindo a velocidade da animacao.",
+  "props": [
+    {
+      "name": "ariaLabel",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Nome acessivel do indicador de carregamento.",
+      "source": "ambos"
+    },
+    {
+      "name": "centered",
+      "type": "boolean",
+      "values": null,
+      "default": "true",
+      "required": false,
+      "description": "Centraliza o spinner na viewport em desktop e mobile.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao container.",
+      "source": "ambos"
+    },
+    {
+      "name": "label",
+      "type": "ReactNode",
+      "values": null,
+      "default": "'Carregando'",
+      "required": false,
+      "description": "Texto associado ao estado de carregamento.",
+      "source": "ambos"
+    },
+    {
+      "name": "showLabel",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Exibe o label abaixo do spinner.",
+      "source": "ambos"
+    },
+    {
+      "name": "size",
+      "type": "SpinnerSize",
+      "values": ["sm", "md", "lg"],
+      "default": "'md'",
+      "required": false,
+      "description": "Tamanho visual do spinner.",
+      "source": "ambos"
+    },
+    {
+      "name": "variant",
+      "type": "SpinnerVariant",
+      "values": ["brand", "neutral", "inverse"],
+      "default": "'neutral'",
+      "required": false,
+      "description": "Variante visual.",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [],
+  "slots": [
+    {
+      "name": "label",
+      "type": "ReactNode",
+      "description": "Texto associado ao estado de carregamento; renderizado em .ds-spinner__label apenas quando showLabel e true."
+    }
+  ],
+  "cssClasses": [
+    "ds-spinner",
+    "ds-spinner--size-sm",
+    "ds-spinner--size-md",
+    "ds-spinner--size-lg",
+    "ds-spinner--variant-brand",
+    "ds-spinner--variant-neutral",
+    "ds-spinner--variant-inverse",
+    "ds-spinner--centered",
+    "ds-spinner--inline",
+    "ds-spinner--with-label",
+    "ds-spinner__circle",
+    "ds-spinner__label"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--spinner-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-secondary)",
+      "comment": "Cor do arco ativo; sobrescrita em --variant-brand, --variant-neutral e --variant-inverse."
+    },
+    {
+      "name": "--spinner-track-color",
+      "value": "var(--ds-primitive-color-neutral-alpha-12)",
+      "comment": "Cor da trilha do circulo; --variant-inverse usa --ds-primitive-color-neutral-alpha-24."
+    },
+    {
+      "name": "--spinner-label-color",
+      "value": "var(--ds-primitive-color-neutral-grey-700)",
+      "comment": "Cor do label; sobrescrita por cada variante."
+    },
+    {
+      "name": "--spinner-size",
+      "value": "var(--ds-primitive-spacing-32)",
+      "comment": "Diametro do circulo; sm = spacing-20, md = spacing-32, lg = spacing-48."
+    },
+    {
+      "name": "--spinner-stroke",
+      "value": "var(--ds-primitive-border-width-border-lg)",
+      "comment": "Espessura da borda; sm = --ds-component-progress-spinner-border-width-sm, lg = --ds-component-progress-spinner-border-width-lg."
+    },
+    {
+      "name": "--spinner-gap",
+      "value": "var(--ds-primitive-spacing-8)",
+      "comment": "Gap entre circulo e label; sm = spacing-6, lg = spacing-12."
+    }
+  ],
+  "tokensUsed": [
+    "--ds-component-progress-spinner-border-width-lg",
+    "--ds-component-progress-spinner-border-width-sm",
+    "--ds-primitive-border-radius-radius-full",
+    "--ds-primitive-border-width-border-lg",
+    "--ds-primitive-color-neutral-alpha-12",
+    "--ds-primitive-color-neutral-alpha-24",
+    "--ds-primitive-color-neutral-grey-700",
+    "--ds-primitive-spacing-0",
+    "--ds-primitive-spacing-6",
+    "--ds-primitive-spacing-8",
+    "--ds-primitive-spacing-12",
+    "--ds-primitive-spacing-20",
+    "--ds-primitive-spacing-32",
+    "--ds-primitive-spacing-48",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-typography-font-size-12",
+    "--ds-primitive-typography-font-size-14",
+    "--ds-primitive-typography-font-size-16",
+    "--ds-primitive-typography-font-weight-medium",
+    "--ds-primitive-typography-line-height-16",
+    "--ds-primitive-typography-line-height-20",
+    "--ds-primitive-typography-line-height-24",
+    "--ds-semantic-color-background-brand-primary-secondary-default",
+    "--ds-semantic-color-background-neutral-default",
+    "--ds-semantic-text-style-content-color-typography-secondary"
+  ],
+  "stories": [
+    {
+      "id": "web-components-spinner--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-spinner--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-spinner--default&viewMode=story"
+    },
+    {
+      "id": "web-components-spinner--with-label",
+      "name": "With Label",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-spinner--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-spinner--with-label&viewMode=story"
+    },
+    {
+      "id": "web-components-spinner--sizes",
+      "name": "Sizes",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-spinner--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-spinner--sizes&viewMode=story"
+    },
+    {
+      "id": "web-components-spinner--variants",
+      "name": "Variants",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-spinner--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-spinner--variants&viewMode=story"
+    },
+    {
+      "id": "web-components-spinner--inline-with-label",
+      "name": "Inline With Label",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-spinner--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-spinner--inline-with-label&viewMode=story"
+    }
+  ],
+  "variants": [
+    { "prop": "size", "values": ["sm", "md", "lg"] },
+    { "prop": "variant", "values": ["brand", "neutral", "inverse"] },
+    { "prop": "centered", "values": ["true", "false"] },
+    { "prop": "showLabel", "values": ["true", "false"] }
+  ],
+  "states": ["loading"],
+  "responsive": [
+    {
+      "query": "@media (prefers-reduced-motion: reduce)",
+      "effect": "A animacao de rotacao de .ds-spinner__circle passa de 800ms para 1600ms."
+    },
+    {
+      "query": "@media (max-width: 640px)",
+      "effect": "O modo centered usa min-block-size: 100svh (em vez de 100dvh) com place-items: center, e o label mantem max-inline-size: calc(100vw - var(--ds-primitive-spacing-48))."
+    }
+  ],
+  "accessibility": {
+    "roles": ["status"],
+    "ariaAttributes": ["aria-busy", "aria-label", "aria-live", "aria-hidden"],
+    "keyboardInteractions": [],
+    "notes": [
+      "O container raiz usa role=\"status\", aria-live=\"polite\" e aria-busy=\"true\" fixos no TSX.",
+      "O nome acessivel vem de ariaLabel; sem ariaLabel, usa label quando ele for string; caso contrario, usa o fallback 'Carregando'.",
+      "O circulo visual (.ds-spinner__circle) tem aria-hidden=\"true\" por ser decorativo.",
+      "No modo centered o overlay tem pointer-events: none, nao bloqueando interacao com o conteudo abaixo.",
+      "A animacao respeita prefers-reduced-motion: reduce, dobrando a duracao do ciclo."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Spinner/Spinner.test.tsx",
+    "unitCount": 7,
+    "a11yFile": null,
+    "a11yCount": null
+  },
+  "figmaReferences": [],
+  "pendencias": [
+    "Nenhum node-id do Figma e citado no codigo do Spinner; a doc apenas menciona que os tokens vieram do Figma.",
+    "Nao existe arquivo Spinner.a11y.test.tsx (sem cobertura automatizada de axe).",
+    "parameters.componentCanvas.width = 360 e definido no meta, mas o codigo nao documenta o efeito desse parametro.",
+    "Nao ha interacao de teclado nem estados de hover/focus/disabled no componente; a lista de estados reflete apenas o aria-busy fixo."
+  ]
+}

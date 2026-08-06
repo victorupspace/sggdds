@@ -1,0 +1,415 @@
+{
+  "slug": "toggle",
+  "name": "Toggle",
+  "storybookTitle": "Web Components/Toggle",
+  "sourceDir": "packages/react/src/components/Toggle",
+  "exports": [
+    "Toggle"
+  ],
+  "typeExports": [
+    "ToggleProps"
+  ],
+  "oneLiner": "O Toggle ativa ou desativa uma configuracao com efeito imediato.",
+  "docsDescription": "O Toggle ativa ou desativa uma configuracao com efeito imediato.\n\nAnatomia:\n- Input nativo type=\"checkbox\" com role=\"switch\".\n- Trilho com thumb deslizante.\n- Label obrigatoria.\n- Hint opcional associado por aria-describedby.\n\nUse quando a acao tiver efeito imediato, como ativar notificacoes, habilitar um modo ou ligar um recurso.\n\nNao use quando a selecao precisar de confirmacao antes de ser aplicada; nesse caso prefira Checkbox com botao de submit.\n\nEstados:\n- Off: trilho cinza, thumb a esquerda.\n- On: trilho preto, thumb a direita.\n- Disabled: trilho e thumb em tons neutros, cursor desabilitado.\n\nAcessibilidade:\n- Usa input nativo com role=\"switch\" para leitores de tela.\n- Tab move foco para o input e Space alterna o estado.\n- Foco visivel aparece no trilho.",
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Texto principal do Toggle.",
+      "source": "ambos"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "ID opcional. Quando ausente, useId gera um ID seguro.",
+      "source": "ambos"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Nome para integracao com formularios.",
+      "source": "ambos"
+    },
+    {
+      "name": "hint",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Texto auxiliar associado por aria-describedby.",
+      "source": "ambos"
+    },
+    {
+      "name": "checked",
+      "type": "boolean",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Estado ativado para uso controlado.",
+      "source": "ambos"
+    },
+    {
+      "name": "defaultChecked",
+      "type": "boolean",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Estado inicial para uso nao controlado.",
+      "source": "ambos"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Desabilita o input nativo.",
+      "source": "ambos"
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Marca o input como obrigatorio.",
+      "source": "ambos"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Valor enviado em formularios.",
+      "source": "ambos"
+    },
+    {
+      "name": "onCheckedChange",
+      "type": "(checked: boolean) => void",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Callback chamado ao alternar o estado.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao elemento raiz.",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onCheckedChange",
+      "signature": "(checked: boolean) => void",
+      "description": "Callback chamado ao alternar o estado. Recebe event.currentTarget.checked do input nativo; nao e chamado quando disabled e true."
+    }
+  ],
+  "slots": [],
+  "cssClasses": [
+    "ds-toggle",
+    "ds-toggle--disabled",
+    "ds-toggle__input",
+    "ds-toggle__track",
+    "ds-toggle__thumb",
+    "ds-toggle__content",
+    "ds-toggle__label",
+    "ds-toggle__required",
+    "ds-toggle__hint"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--toggle-track-width",
+      "value": "44px",
+      "comment": null
+    },
+    {
+      "name": "--toggle-track-height",
+      "value": "24px",
+      "comment": null
+    },
+    {
+      "name": "--toggle-thumb-size",
+      "value": "18px",
+      "comment": null
+    },
+    {
+      "name": "--toggle-thumb-offset",
+      "value": "3px",
+      "comment": null
+    },
+    {
+      "name": "--toggle-touch-size",
+      "value": "44px",
+      "comment": null
+    },
+    {
+      "name": "--toggle-gap",
+      "value": "var(--ds-primitive-spacing-12, 12px)",
+      "comment": null
+    },
+    {
+      "name": "--toggle-label-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-secondary)",
+      "comment": null
+    },
+    {
+      "name": "--toggle-hint-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-tertiary)",
+      "comment": null
+    },
+    {
+      "name": "--toggle-track-off",
+      "value": "var(--ds-semantic-text-style-content-color-typography-placeholder)",
+      "comment": null
+    },
+    {
+      "name": "--toggle-track-on",
+      "value": "var(--ds-semantic-color-background-neutral-soft-black)",
+      "comment": null
+    },
+    {
+      "name": "--toggle-thumb-color",
+      "value": "var(--ds-semantic-color-background-neutral-default)",
+      "comment": null
+    },
+    {
+      "name": "--toggle-hover-track-off",
+      "value": "var(--ds-semantic-color-border-neutral-prominent)",
+      "comment": null
+    },
+    {
+      "name": "--toggle-hover-track-on",
+      "value": "var(--ds-semantic-text-style-content-color-typography-secondary)",
+      "comment": null
+    },
+    {
+      "name": "--toggle-focus-ring",
+      "value": "var(--ds-component-focus-ring-color-ring)",
+      "comment": null
+    },
+    {
+      "name": "--toggle-disabled-track",
+      "value": "var(--ds-semantic-color-border-neutral-default)",
+      "comment": null
+    },
+    {
+      "name": "--toggle-disabled-thumb",
+      "value": "var(--ds-component-switch-thumb-color-background-disabled)",
+      "comment": null
+    },
+    {
+      "name": "--toggle-disabled-label-color",
+      "value": "var(--ds-component-switch-label-color-text-disabled)",
+      "comment": null
+    },
+    {
+      "name": "--toggle-disabled-hint-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-placeholder)",
+      "comment": null
+    },
+    {
+      "name": "--toggle-label-color",
+      "value": "var(--toggle-disabled-label-color)",
+      "comment": "Redefinido em .ds-toggle--disabled"
+    },
+    {
+      "name": "--toggle-hint-color",
+      "value": "var(--toggle-disabled-hint-color)",
+      "comment": "Redefinido em .ds-toggle--disabled"
+    },
+    {
+      "name": "--toggle-track-width",
+      "value": "40px",
+      "comment": "Redefinido em @media (max-width: 420px)"
+    },
+    {
+      "name": "--toggle-track-height",
+      "value": "22px",
+      "comment": "Redefinido em @media (max-width: 420px)"
+    },
+    {
+      "name": "--toggle-thumb-size",
+      "value": "16px",
+      "comment": "Redefinido em @media (max-width: 420px)"
+    },
+    {
+      "name": "--toggle-thumb-offset",
+      "value": "3px",
+      "comment": "Redefinido em @media (max-width: 420px)"
+    },
+    {
+      "name": "--toggle-touch-size",
+      "value": "48px",
+      "comment": "Redefinido em @media (max-width: 420px)"
+    },
+    {
+      "name": "--toggle-gap",
+      "value": "var(--ds-primitive-spacing-10, 10px)",
+      "comment": "Redefinido em @media (max-width: 420px)"
+    }
+  ],
+  "tokensUsed": [
+    "--ds-primitive-spacing-12",
+    "--ds-semantic-text-style-content-color-typography-secondary",
+    "--ds-semantic-text-style-content-color-typography-tertiary",
+    "--ds-semantic-text-style-content-color-typography-placeholder",
+    "--ds-semantic-color-background-neutral-soft-black",
+    "--ds-semantic-color-background-neutral-default",
+    "--ds-semantic-color-border-neutral-prominent",
+    "--ds-component-focus-ring-color-ring",
+    "--ds-semantic-color-border-neutral-default",
+    "--ds-component-switch-thumb-color-background-disabled",
+    "--ds-component-switch-label-color-text-disabled",
+    "--ds-primitive-spacing-4",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-spacing-2",
+    "--ds-component-switch-track-border-radius",
+    "--ds-primitive-border-radius-radius-full",
+    "--ds-semantic-shadow-switch-thumb",
+    "--ds-primitive-typography-font-size-16",
+    "--ds-primitive-typography-font-weight-bold",
+    "--ds-primitive-typography-line-height-24",
+    "--ds-primitive-typography-font-size-14",
+    "--ds-primitive-typography-font-weight-medium",
+    "--ds-primitive-typography-line-height-20",
+    "--ds-component-switch-control-effect-focus-ring-width",
+    "--ds-primitive-spacing-10",
+    "--ds-primitive-typography-line-height-22"
+  ],
+  "stories": [
+    {
+      "id": "web-components-toggle--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-toggle--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-toggle--default&viewMode=story"
+    },
+    {
+      "id": "web-components-toggle--on",
+      "name": "On",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-toggle--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-toggle--on&viewMode=story"
+    },
+    {
+      "id": "web-components-toggle--disabled-off",
+      "name": "Disabled Off",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-toggle--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-toggle--disabled-off&viewMode=story"
+    },
+    {
+      "id": "web-components-toggle--disabled-on",
+      "name": "Disabled On",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-toggle--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-toggle--disabled-on&viewMode=story"
+    },
+    {
+      "id": "web-components-toggle--without-hint",
+      "name": "Without Hint",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-toggle--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-toggle--without-hint&viewMode=story"
+    },
+    {
+      "id": "web-components-toggle--required",
+      "name": "Required",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-toggle--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-toggle--required&viewMode=story"
+    },
+    {
+      "id": "web-components-toggle--long-label",
+      "name": "Long Label",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-toggle--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-toggle--long-label&viewMode=story"
+    },
+    {
+      "id": "web-components-toggle--controlled",
+      "name": "Controlled",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-toggle--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-toggle--controlled&viewMode=story"
+    },
+    {
+      "id": "web-components-toggle--grouped-states",
+      "name": "Grouped States",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-toggle--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-toggle--grouped-states&viewMode=story"
+    },
+    {
+      "id": "web-components-toggle--grouped-states-mobile",
+      "name": "Grouped States Mobile",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-toggle--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-toggle--grouped-states-mobile&viewMode=story"
+    },
+    {
+      "id": "web-components-toggle--accessibility",
+      "name": "Accessibility",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-toggle--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-toggle--accessibility&viewMode=story"
+    }
+  ],
+  "variants": [],
+  "states": [
+    "checked (.ds-toggle__input:checked + .ds-toggle__track: trilho em --toggle-track-on e thumb deslocado para a direita)",
+    "hover (.ds-toggle:not(.ds-toggle--disabled):hover: trilho em --toggle-hover-track-off / --toggle-hover-track-on quando checked)",
+    "focus-visible (.ds-toggle__input:focus-visible + .ds-toggle__track: outline no trilho com --toggle-focus-ring)",
+    "disabled (classe .ds-toggle--disabled + atributo disabled no input: trilho, thumb, label e hint neutros, cursor not-allowed, sem box-shadow no thumb)",
+    "disabled + checked (.ds-toggle--disabled .ds-toggle__input:checked + .ds-toggle__track mantem --toggle-disabled-track)",
+    "required (renderiza span.ds-toggle__required com asterisco aria-hidden e aplica required no input)"
+  ],
+  "responsive": [
+    {
+      "query": "@media (max-width: 420px)",
+      "effect": "Reduz o trilho para 40x22px, o thumb para 16px, aumenta a area de toque minima para 48px, troca o gap para --ds-primitive-spacing-10 e ajusta a line-height da label para --ds-primitive-typography-line-height-22 (hint mantem 14/20)."
+    }
+  ],
+  "accessibility": {
+    "roles": [
+      "switch"
+    ],
+    "ariaAttributes": [
+      "aria-describedby",
+      "aria-labelledby",
+      "aria-hidden"
+    ],
+    "keyboardInteractions": [
+      "Tab move o foco para o input nativo (o input e visualmente escondido por clip, mas permanece focavel).",
+      "Space alterna o estado (comportamento nativo do input type=\"checkbox\"; nao ha handler de teclado no TSX)."
+    ],
+    "notes": [
+      "O componente usa input type=\"checkbox\" nativo com role=\"switch\".",
+      "A raiz e um <label htmlFor={inputId}>, entao clicar em qualquer parte (trilho, label ou hint) alterna o controle.",
+      "aria-labelledby aponta para o span com id `${inputId}-label`; aria-describedby so e definido quando ha hint (`${inputId}-hint`).",
+      "O trilho e o thumb sao aria-hidden=\"true\".",
+      "O asterisco de campo obrigatorio e aria-hidden=\"true\"; a semantica vem do atributo required no input.",
+      "onCheckedChange nao e disparado quando disabled e true (guard explicito no onChange).",
+      "Toggle.a11y.test.tsx roda axe em 4 cenarios (com label, checked, com hint e disabled) sem violacoes."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Toggle/Toggle.test.tsx",
+    "unitCount": 10,
+    "a11yFile": "packages/react/src/components/Toggle/Toggle.a11y.test.tsx",
+    "a11yCount": 4
+  },
+  "figmaReferences": [],
+  "pendencias": [
+    "Nenhum node-id do Figma e citado no codigo do Toggle (TSX, CSS ou stories), portanto figmaReferences esta vazio.",
+    "Nao ha variantes de tamanho ou de cor expostas por prop: o componente nao possui props enumeradas (variants vazio).",
+    "O valor final dos tokens --ds-* nao foi resolvido aqui; apenas os nomes consumidos via var() no Toggle.styles.css foram extraidos.",
+    "Os fallbacks literais presentes no CSS (ex: 12px, 999px, 700) nao foram checados contra a collection de tokens.",
+    "A dimensao 44px do trilho e a area de toque de 44/48px sao literais no CSS, sem token correspondente.",
+    "Nao ha teste automatizado cobrindo hover, focus-visible ou o comportamento controlado via prop checked sem onCheckedChange."
+  ]
+}

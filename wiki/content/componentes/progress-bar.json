@@ -1,0 +1,170 @@
+{
+  "slug": "progress-bar",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Feedback",
+  "resumo": "A Progress Bar mostra o andamento de um processo. Ela pode indicar quanto já foi concluído, com porcentagem, ou apenas sinalizar que algo está em curso, quando não há como medir.",
+  "quandoUsar": [
+    "Acompanhar o envio de um documento anexado a um protocolo, com a porcentagem já enviada.",
+    "Mostrar quanto falta para concluir um cadastro longo, quando o número de etapas ou de campos preenchidos é conhecido.",
+    "Sinalizar que a emissão de uma certidão está em processamento no órgão, sem previsão de porcentagem, usando o modo indeterminado.",
+    "Confirmar que o envio terminou, trocando a variante para sucesso e ajustando o texto de apoio.",
+    "Sinalizar que o envio falhou, com a variante de erro e um texto de apoio dizendo o que a pessoa deve fazer."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Para uma espera curta e sem etapa definida, como o tempo entre apertar um botão e receber a resposta.",
+      "alternativa": "spinner"
+    },
+    {
+      "texto": "Enquanto o conteúdo da página ainda está sendo carregado e o layout precisa ser prefigurado.",
+      "alternativa": "skeleton"
+    },
+    {
+      "texto": "Para mostrar em que etapa nomeada de um serviço a pessoa está: dados, documentos, revisão e envio.",
+      "alternativa": "stepper"
+    },
+    {
+      "texto": "Para uma mensagem de erro que exige leitura e uma ação de correção.",
+      "alternativa": "alert"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Container",
+      "descricao": "Bloco que empilha rótulo, barra e texto de apoio, e que define a variante visual aplicada."
+    },
+    {
+      "numero": 2,
+      "parte": "Conteúdo superior",
+      "descricao": "Linha opcional acima da barra, que reúne o rótulo à esquerda e o valor à direita."
+    },
+    {
+      "numero": 3,
+      "parte": "Rótulo",
+      "descricao": "Texto que diz o que está progredindo. Quando existe, é ele que dá nome acessível à barra."
+    },
+    {
+      "numero": 4,
+      "parte": "Valor",
+      "descricao": "Porcentagem calculada pelo componente e arredondada, exibida à direita do rótulo. Pode ser substituída por um texto próprio."
+    },
+    {
+      "numero": 5,
+      "parte": "Trilho",
+      "descricao": "Faixa de fundo com cantos totalmente arredondados, que representa o total do processo."
+    },
+    {
+      "numero": 6,
+      "parte": "Preenchimento",
+      "descricao": "Faixa colorida sobre o trilho. No modo determinado, cresce conforme o valor; no indeterminado, é uma pílula que se move em laço contínuo."
+    },
+    {
+      "numero": 7,
+      "parte": "Texto de apoio",
+      "descricao": "Linha opcional abaixo da barra, usada para instrução ou resultado. Quando existe, vira a descrição acessível da barra."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "A barra é fluida e ocupa toda a largura do container onde é colocada. O rótulo quebra linha quando precisa e a porcentagem continua alinhada à direita. Não há mudança de comportamento por faixa de largura de tela. Quando a pessoa configura o sistema para reduzir animações, a transição de crescimento é removida e o movimento do modo indeterminado fica mais lento.",
+  "dosDonts": [
+    {
+      "faca": "Use o modo indeterminado sempre que não for possível calcular o progresso real.",
+      "naoFaca": "Fingir progresso com valores fixos, subindo para 10%, 50% e 90% enquanto espera a resposta do servidor.",
+      "porque": "Uma barra parada em 90% é lida como falha, mesmo quando o processo está correndo. O modo indeterminado diz a verdade: algo está acontecendo e não dá para medir."
+    },
+    {
+      "faca": "Guarde as variantes de sucesso e de erro para o fim do processo, quando o resultado já é conhecido.",
+      "naoFaca": "Usar a variante de erro para avisar que o envio está demorando.",
+      "porque": "O vermelho é lido como falha mesmo quando o texto diz outra coisa, e a pessoa pode abandonar um envio que ainda daria certo."
+    },
+    {
+      "faca": "Escreva um rótulo que nomeie o processo, como \"Enviando comprovante de residência\".",
+      "naoFaca": "Deixar a barra sem rótulo e sem nome acessível específico.",
+      "porque": "Sem rótulo, o leitor de tela anuncia apenas \"Progresso\" e a pessoa não descobre qual processo está rodando, principalmente quando há mais de uma barra na tela."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Rótulo: uma frase curta, com verbo no gerúndio enquanto o processo corre (\"Enviando documento\") e no particípio quando termina (\"Documento enviado\").",
+    "Texto de apoio: diga o que a pessoa deve fazer (\"Não feche esta página\") ou o que aconteceu (\"Arquivo maior que o tamanho permitido\"). Uma frase, com ponto final.",
+    "Não repita a porcentagem no rótulo: ela já aparece à direita quando a exibição de valor está ligada.",
+    "Se precisar de um texto próprio no lugar da porcentagem, escreva-o como texto simples e não como elemento montado, porque só o texto simples vira a leitura acessível do valor.",
+    "No modo indeterminado não prometa tempo no texto de apoio. Se você não consegue medir o progresso, também não consegue estimar quanto falta."
+  ],
+  "hierarquia": [
+    "A barra fica junto do elemento a que se refere — o arquivo enviado, o formulário em envio — e não no topo da página, longe do contexto.",
+    "O rótulo tem o maior peso visual do conjunto; o valor vem em peso médio e o texto de apoio é o menor dos três.",
+    "Use uma barra por processo. Se há vários arquivos sendo enviados, mostre uma barra por arquivo em vez de uma barra que soma tudo.",
+    "A barra não recebe foco nem responde ao clique. Ela informa, não é um controle."
+  ],
+  "combinacoes": [
+    {
+      "componente": "File Upload",
+      "slug": "file-upload",
+      "relacao": "Cada arquivo em envio ganha uma Progress Bar com o nome do arquivo no rótulo, logo abaixo da área de upload."
+    },
+    {
+      "componente": "Spinner",
+      "slug": "spinner",
+      "relacao": "Para esperas curtas e sem valor mensurável, o Spinner ocupa menos espaço. A Progress Bar é para processos que a pessoa acompanha por algum tempo."
+    },
+    {
+      "componente": "Stepper",
+      "slug": "stepper",
+      "relacao": "O Stepper diz em qual etapa do serviço a pessoa está; a Progress Bar mostra o andamento dentro de uma dessas etapas."
+    },
+    {
+      "componente": "Alert",
+      "slug": "alert",
+      "relacao": "Quando o processo falha, a variante de erro muda a cor da barra, mas quem explica o motivo e oferece a saída é o Alert."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Envio de documentos em um protocolo",
+      "contexto": "A pessoa anexou o comprovante de residência para completar um pedido já aberto.",
+      "comoFica": "Uma barra no modo determinado abaixo do arquivo selecionado. O rótulo traz \"Enviando comprovante de residência\", a porcentagem aparece à direita e o texto de apoio pede que a página não seja fechada. Ao terminar, a variante muda para sucesso, o rótulo passa a \"Comprovante enviado\" e o texto de apoio confirma o recebimento."
+    },
+    {
+      "titulo": "Emissão de certidão em processamento",
+      "contexto": "A pessoa pediu a emissão de uma certidão e o sistema não consegue estimar quanto tempo o órgão vai levar.",
+      "comoFica": "Uma barra no modo indeterminado, com o rótulo \"Emitindo certidão\" e o texto de apoio explicando que a pessoa receberá um aviso quando o documento estiver pronto. A porcentagem não aparece e a barra não anuncia valor para leitores de tela, apenas que há um processo em andamento."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Ligar a exibição de valor no modo indeterminado esperando ver a porcentagem.",
+      "consequencia": "A exibição de valor só tem efeito no modo determinado. No indeterminado o número não aparece e os atributos de valor mínimo, máximo e atual não são expostos.",
+      "correcao": "Se a porcentagem é necessária, calcule o valor real e use o modo determinado."
+    },
+    {
+      "erro": "Passar o texto do valor como elemento montado em vez de texto simples.",
+      "consequencia": "A leitura acessível do valor só é preenchida quando o texto é simples. Com um elemento, leitores de tela voltam a anunciar apenas o número cru.",
+      "correcao": "Use texto simples no rótulo do valor e deixe o estilo para o CSS do componente."
+    },
+    {
+      "erro": "Enviar valores fora do intervalo definido por mínimo e máximo.",
+      "consequencia": "O valor é limitado ao intervalo. A barra fica parada no extremo enquanto o número na aplicação continua mudando, e ninguém percebe o erro de cálculo.",
+      "correcao": "Ajuste mínimo e máximo ao intervalo real do processo antes de atualizar o valor."
+    },
+    {
+      "erro": "Contar com as variantes de informação e de aviso para transmitir a mensagem.",
+      "consequencia": "Nessas duas variantes só a cor do preenchimento muda: rótulo e texto de apoio continuam na cor padrão, então a mudança passa despercebida.",
+      "correcao": "Escreva no rótulo ou no texto de apoio o que está acontecendo. A cor é reforço, nunca a única pista."
+    }
+  ],
+  "notasImplementacao": [
+    "A função de barra de progresso fica no trilho, com valor mínimo, máximo e atual expostos apenas no modo determinado.",
+    "O valor atual é limitado ao intervalo entre mínimo e máximo antes de ser exposto para tecnologia assistiva.",
+    "Rótulo e texto de apoio são associados à barra por identificadores derivados do id informado ou gerados automaticamente. Informe um id fixo se precisar referenciar esses elementos de fora.",
+    "O componente não recebe foco nem tem atalhos de teclado.",
+    "Há uma divergência registrada no CSS entre as cores de texto de sucesso e de erro definidas no Figma e as exportadas na coleção de tokens. O código usa uma aproximação até a definição final.",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual."
+  ],
+  "pendentes": [
+    "O campo de tamanhos ficou vazio porque o componente não expõe prop de tamanho: a altura do trilho é fixa por token.",
+    "A divergência de cor entre o Figma e a coleção de tokens para os textos de sucesso e de erro segue aberta, então a orientação de cor pode mudar.",
+    "Não há definição sobre com que frequência o valor deve ser atualizado nem sobre tempo mínimo de exibição da barra. Falta o time definir para evitar barras que piscam em processos rápidos."
+  ]
+}

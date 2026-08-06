@@ -1,0 +1,442 @@
+{
+  "slug": "text-input",
+  "name": "TextInput",
+  "storybookTitle": "Web Components/TextInput",
+  "sourceDir": "packages/react/src/components/TextInput",
+  "exports": ["TextInput"],
+  "typeExports": ["TextInputProps", "TextInputSize", "TextInputState", "TextInputType"],
+  "oneLiner": "Campo atomico para entrada de dados alfanumericos em uma unica linha, com rotulo, icones decorativos, texto de apoio e estados de validacao.",
+  "docsDescription": "O TextInput e o campo atomico para entrada de dados alfanumericos em uma unica linha. Ele fornece rotulo, placeholder, suporte a icones decorativos, texto de apoio e estados de validacao sem separar a experiencia visual da semantica HTML nativa.\n\nUse para campos curtos como nome, email, busca, telefone, URL, codigos e informacoes de formulario que cabem em uma linha.\n\nNao use para textos longos, selecoes complexas, upload de arquivo ou acoes. Para conteudo multilinha, use um textarea dedicado quando ele existir no Design System.\n\nEstados:\n- Default: borda neutra e helper opcional.\n- Focus: foco nativo com anel visivel usando tokens do DS.\n- Error: borda, foco e mensagem de erro usando tokens de feedback.\n- Disabled: comunica indisponibilidade e bloqueia edicao.\n\nVariacoes:\n- Search Field: entrada de busca de linha unica com icone decorativo e type=\"search\".\n- Form Label: demonstracao da anatomia de label, obrigatoriedade e texto de apoio para formularios.\n\nResponsividade:\nEste componente foi desenvolvido com comportamento responsivo nativo, adaptando largura, espacamento, quebra de rotulo/helper e area de toque para diferentes tamanhos de tela. A responsividade e aplicada na implementacao do componente e nao depende de variacoes manuais no Storybook.\n\nTokens:\nCores, bordas, radius, espacamentos, tipografia e foco usam variaveis CSS geradas pelos tokens do Figma. Como a camada semantica ainda nao cobre todos os casos no projeto, o componente cria aliases internos semanticos apontando para tokens disponiveis.\n\nAcessibilidade:\n- Usa label nativo associado ao input por htmlFor/id.\n- Mensagens de apoio e erro sao conectadas por aria-describedby.\n- Erro usa aria-invalid.\n- Icones sao decorativos por padrao.\n- Required e disabled usam atributos nativos.\n- O foco permanece visivel para teclado, mouse e touch.",
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Rotulo visivel e acessivel do campo.",
+      "source": "ambos"
+    },
+    {
+      "name": "helperText",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Texto de apoio abaixo do campo.",
+      "source": "ambos"
+    },
+    {
+      "name": "errorText",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Mensagem de erro conectada por aria-describedby. A simples presenca de errorText ja ativa o estado de erro.",
+      "source": "ambos"
+    },
+    {
+      "name": "state",
+      "type": "TextInputState",
+      "values": ["default", "error"],
+      "default": "'default'",
+      "required": false,
+      "description": "Estado visual controlado.",
+      "source": "ambos"
+    },
+    {
+      "name": "size",
+      "type": "TextInputSize",
+      "values": ["medium", "large"],
+      "default": "'medium'",
+      "required": false,
+      "description": "Densidade visual do campo (altura minima e paddings).",
+      "source": "ambos"
+    },
+    {
+      "name": "type",
+      "type": "TextInputType",
+      "values": ["email", "password", "search", "tel", "text", "url"],
+      "default": "'text'",
+      "required": false,
+      "description": "Tipo nativo permitido para entrada de linha unica.",
+      "source": "ambos"
+    },
+    {
+      "name": "iconStart",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Icone decorativo no inicio do campo.",
+      "source": "ambos"
+    },
+    {
+      "name": "iconEnd",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Icone decorativo ao final do campo.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao wrapper.",
+      "source": "ambos"
+    },
+    {
+      "name": "inputClassName",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao input nativo.",
+      "source": "ambos"
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "values": null,
+      "default": "true",
+      "required": false,
+      "description": "Faz o componente ocupar 100% da largura do container.",
+      "source": "ambos"
+    },
+    {
+      "name": "onChange",
+      "type": "ChangeEventHandler<HTMLInputElement>",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Callback nativo de alteracao do input.",
+      "source": "ambos"
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: string, event: ChangeEvent<HTMLInputElement>) => void",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Callback simplificado que recebe value e event.",
+      "source": "ambos"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Desabilita o campo usando atributo nativo. Herdado de InputHTMLAttributes, com default aplicado no componente.",
+      "source": "ambos"
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Marca o campo como obrigatorio usando atributo nativo e exibe o asterisco (aria-hidden) no label.",
+      "source": "ambos"
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Texto temporario exibido quando o campo esta vazio.",
+      "source": "ambos"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "values": null,
+      "default": "useId()",
+      "required": false,
+      "description": "Id do input; quando ausente, e gerado com useId e reaproveitado nos ids de helper e erro.",
+      "source": "types.ts"
+    },
+    {
+      "name": "...inputProps",
+      "type": "Omit<InputHTMLAttributes<HTMLInputElement>, 'children' | 'className' | 'onChange' | 'size' | 'type'>",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Demais atributos nativos do input sao repassados diretamente ao elemento (ex.: name, value, defaultValue, autoFocus, readOnly, maxLength).",
+      "source": "types.ts"
+    },
+    {
+      "name": "ref",
+      "type": "Ref<HTMLInputElement>",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "O componente usa forwardRef e encaminha a ref para o <input> nativo.",
+      "source": "types.ts"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onChange",
+      "signature": "(event: ChangeEvent<HTMLInputElement>) => void",
+      "description": "Callback nativo do input, chamado antes de onValueChange."
+    },
+    {
+      "name": "onValueChange",
+      "signature": "(value: string, event: ChangeEvent<HTMLInputElement>) => void",
+      "description": "Callback simplificado com o valor ja extraido de event.currentTarget.value."
+    }
+  ],
+  "slots": [
+    {
+      "name": "iconStart",
+      "type": "ReactNode",
+      "description": "Icone decorativo antes do input; embrulhado em <span aria-hidden=\"true\" class=\"ds-text-input__icon\">."
+    },
+    {
+      "name": "iconEnd",
+      "type": "ReactNode",
+      "description": "Icone decorativo depois do input; embrulhado em <span aria-hidden=\"true\" class=\"ds-text-input__icon\">."
+    }
+  ],
+  "cssClasses": [
+    "ds-text-input",
+    "ds-text-input--size-medium",
+    "ds-text-input--size-large",
+    "ds-text-input--error",
+    "ds-text-input--disabled",
+    "ds-text-input--full-width",
+    "ds-text-input__label",
+    "ds-text-input__required",
+    "ds-text-input__control",
+    "ds-text-input__icon",
+    "ds-text-input__field",
+    "ds-text-input__message",
+    "ds-text-input__message--error",
+    "ds-text-input__message-icon"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--text-input-label-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-secondary)",
+      "comment": "Cor do label; em --disabled aponta para --text-input-disabled-color."
+    },
+    {
+      "name": "--text-input-text-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-secondary)",
+      "comment": "Cor do texto digitado e do controle; em --disabled aponta para --text-input-disabled-color."
+    },
+    {
+      "name": "--text-input-placeholder-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-disabled)",
+      "comment": "Cor do ::placeholder (opacity 1); em --disabled aponta para --text-input-disabled-color."
+    },
+    {
+      "name": "--text-input-helper-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-secondary)",
+      "comment": "Cor da mensagem de apoio; em --disabled aponta para --text-input-disabled-color."
+    },
+    {
+      "name": "--text-input-background",
+      "value": "var(--ds-semantic-color-background-neutral-default)",
+      "comment": "Fundo do controle; em --disabled usa --text-input-disabled-background."
+    },
+    {
+      "name": "--text-input-border-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-disabled)",
+      "comment": "Borda do controle; em --error vira --text-input-error-color e em --disabled vira --text-input-disabled-border-color."
+    },
+    {
+      "name": "--text-input-hover-border-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-secondary)",
+      "comment": "Borda no hover da raiz, aplicada apenas quando nao ha --disabled nem --error."
+    },
+    {
+      "name": "--text-input-focus-color",
+      "value": "var(--ds-semantic-color-background-brand-primary-secondary-default)",
+      "comment": "Borda e outline em :focus-within; em --error vira --text-input-error-color."
+    },
+    {
+      "name": "--text-input-error-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-danger)",
+      "comment": "Cor do asterisco de obrigatorio, da borda em erro e da mensagem de erro."
+    },
+    {
+      "name": "--text-input-disabled-background",
+      "value": "var(--ds-semantic-color-background-neutral-disabled)",
+      "comment": "Fundo usado no estado desabilitado."
+    },
+    {
+      "name": "--text-input-disabled-border-color",
+      "value": "var(--ds-semantic-color-border-neutral-default)",
+      "comment": "Borda usada no estado desabilitado."
+    },
+    {
+      "name": "--text-input-disabled-color",
+      "value": "var(--ds-component-input-color-text-disabled)",
+      "comment": "Cor de texto/label/helper no estado desabilitado."
+    },
+    {
+      "name": "--text-input-gap",
+      "value": "var(--ds-primitive-spacing-8)",
+      "comment": "Gap vertical entre label, controle e mensagens."
+    },
+    {
+      "name": "--text-input-control-gap",
+      "value": "var(--ds-component-input-spacing-gap)",
+      "comment": "Gap entre icones e input dentro do controle."
+    },
+    {
+      "name": "--text-input-padding-block",
+      "value": "var(--ds-component-input-spacing-padding-y-md)",
+      "comment": "Padding vertical do controle; em --size-large e em ate 420px vira --ds-primitive-spacing-8."
+    },
+    {
+      "name": "--text-input-padding-inline",
+      "value": "var(--ds-component-input-spacing-padding-x-md)",
+      "comment": "Padding horizontal do controle; em --size-large e em ate 420px vira --ds-primitive-spacing-12."
+    },
+    {
+      "name": "--text-input-min-block-size",
+      "value": "var(--ds-primitive-spacing-48)",
+      "comment": "Altura minima do controle; --size-large usa calc(spacing-48 + spacing-8) e ate 420px volta para spacing-48."
+    },
+    {
+      "name": "--text-input-icon-size",
+      "value": "var(--ds-component-input-size-icon-size)",
+      "comment": "Tamanho dos icones decorativos (start/end)."
+    }
+  ],
+  "tokensUsed": [
+    "--ds-component-input-color-text-disabled",
+    "--ds-component-input-label-typography-font-size",
+    "--ds-component-input-size-icon-size",
+    "--ds-component-input-spacing-gap",
+    "--ds-component-input-spacing-padding-x-md",
+    "--ds-component-input-spacing-padding-y-md",
+    "--ds-primitive-border-radius-radius-full",
+    "--ds-primitive-border-radius-radius-sm",
+    "--ds-primitive-border-width-border-md",
+    "--ds-primitive-border-width-border-sm",
+    "--ds-primitive-spacing-2",
+    "--ds-primitive-spacing-4",
+    "--ds-primitive-spacing-8",
+    "--ds-primitive-spacing-12",
+    "--ds-primitive-spacing-16",
+    "--ds-primitive-spacing-48",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-typography-font-size-12",
+    "--ds-primitive-typography-font-size-14",
+    "--ds-primitive-typography-font-weight-bold",
+    "--ds-primitive-typography-font-weight-regular",
+    "--ds-primitive-typography-line-height-16",
+    "--ds-semantic-color-background-brand-primary-secondary-default",
+    "--ds-semantic-color-background-neutral-default",
+    "--ds-semantic-color-background-neutral-disabled",
+    "--ds-semantic-color-border-neutral-default",
+    "--ds-semantic-text-style-content-color-typography-danger",
+    "--ds-semantic-text-style-content-color-typography-disabled",
+    "--ds-semantic-text-style-content-color-typography-secondary"
+  ],
+  "stories": [
+    {
+      "id": "web-components-textinput--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-textinput--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-textinput--default&viewMode=story"
+    },
+    {
+      "id": "web-components-textinput--search-field",
+      "name": "Search Field",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-textinput--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-textinput--search-field&viewMode=story"
+    },
+    {
+      "id": "web-components-textinput--form-label",
+      "name": "Form Label",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-textinput--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-textinput--form-label&viewMode=story"
+    },
+    {
+      "id": "web-components-textinput--focus",
+      "name": "Focus",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-textinput--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-textinput--focus&viewMode=story"
+    },
+    {
+      "id": "web-components-textinput--error",
+      "name": "Error",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-textinput--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-textinput--error&viewMode=story"
+    },
+    {
+      "id": "web-components-textinput--disabled",
+      "name": "Disabled",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-textinput--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-textinput--disabled&viewMode=story"
+    },
+    {
+      "id": "web-components-textinput--responsive-content",
+      "name": "Responsive Content",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-textinput--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-textinput--responsive-content&viewMode=story"
+    },
+    {
+      "id": "web-components-textinput--states",
+      "name": "States",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-textinput--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-textinput--states&viewMode=story"
+    }
+  ],
+  "variants": [
+    { "prop": "size", "values": ["medium", "large"] },
+    { "prop": "state", "values": ["default", "error"] },
+    { "prop": "type", "values": ["email", "password", "search", "tel", "text", "url"] },
+    { "prop": "fullWidth", "values": ["true", "false"] }
+  ],
+  "states": ["hover", "focus-within", "error", "disabled", "placeholder"],
+  "responsive": [
+    {
+      "query": "@media (max-width: 420px)",
+      "effect": "A raiz volta a min-block-size spacing-48 e usa padding block/inline spacing-8/spacing-12 (inclusive na variante large); o input mantem font-size-14 com line-height 100%."
+    }
+  ],
+  "accessibility": {
+    "roles": [],
+    "ariaAttributes": ["aria-describedby", "aria-invalid", "aria-hidden"],
+    "keyboardInteractions": [
+      "Tab: foca o <input> nativo (elemento desabilitado nao recebe foco); o anel de foco e desenhado no wrapper .ds-text-input__control via :focus-within.",
+      "Digitacao e atalhos seguem o comportamento nativo do input do tipo escolhido."
+    ],
+    "notes": [
+      "Usa <input> nativo com <label htmlFor> apontando para o id (proprio ou gerado via useId).",
+      "aria-describedby concatena o id do erro (apenas quando ha erro) e o id do helper, nessa ordem.",
+      "aria-invalid=\"true\" e aplicado quando state === 'error' ou quando ha errorText.",
+      "iconStart e iconEnd sao decorativos: ficam dentro de span com aria-hidden=\"true\".",
+      "O marcador de campo obrigatorio (*) tem aria-hidden=\"true\"; a obrigatoriedade e comunicada pelo required nativo.",
+      "O icone 'i' das mensagens (.ds-text-input__message-icon) tambem tem aria-hidden=\"true\"; ele so aparece no helper quando nao ha erro.",
+      "O foco usa :focus-within (nao :focus-visible), entao o anel aparece tambem em clique de mouse/touch, conforme descrito na doc."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/TextInput/TextInput.test.tsx",
+    "unitCount": 7,
+    "a11yFile": "packages/react/src/components/TextInput/TextInput.a11y.test.tsx",
+    "a11yCount": 5
+  },
+  "figmaReferences": [],
+  "pendencias": [
+    "Nenhum node-id do Figma e citado no codigo do TextInput; a doc apenas informa que os tokens vieram do Figma.",
+    "A doc registra que a camada semantica de tokens nao cobre todos os casos e que o componente cria aliases internos (--text-input-*) apontando para tokens disponiveis.",
+    "O icone das mensagens e o caractere literal 'i' estilizado com borda circular, e nao um asset/icone do Design System.",
+    "Props nativas (placeholder, name, value, readOnly etc.) sao herdadas de InputHTMLAttributes e nao estao todas listadas em argTypes.",
+    "Nao ha estado readonly com tratamento visual proprio no CSS, apenas hover, focus-within, error e disabled.",
+    "parameters.componentCanvas.width = 420 e definido no meta, mas o codigo nao documenta o efeito desse parametro.",
+    "As stories Search Field e Form Label sao variacoes de uso (args), nao variantes de API."
+  ]
+}

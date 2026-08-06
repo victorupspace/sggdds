@@ -1,0 +1,411 @@
+{
+  "slug": "header",
+  "name": "Header",
+  "storybookTitle": "Web Components/Header",
+  "sourceDir": "packages/react/src/components/Header",
+  "exports": [
+    "Header"
+  ],
+  "typeExports": [
+    "HeaderAction",
+    "HeaderNavigationItem",
+    "HeaderProps",
+    "HeaderUser",
+    "HeaderUserMenuItem",
+    "HeaderUtilityItem"
+  ],
+  "oneLiner": "O Header reproduz o layout do Figma (Web Components / Header): duas barras de 80px com fundo navbar/color/background e divisor navbar/color/border.",
+  "docsDescription": "O Header reproduz o layout do Figma (Web Components / Header): duas barras de 80px com fundo navbar/color/background e divisor navbar/color/border.\n\nAnatomia:\n- Top content: logo SP.GOV.BR a esquerda e o selo Portal de Servicos ao Cidadao a direita (assets exatos do Figma, ambos com slots customizaveis).\n- Bottom content: Nav Items (14px com o chevron keyboard_arrow_down de 18px, gap spacing/32; itens com children abrem o Meganav) e, a direita, os icones utilitarios search/translate/accessibility_new (botoes de 40px com radius-full e os glifos exportados) mais a area de conta.\n- Conta (propriedade account do Figma): deslogado exibe o botao gov.br (ButtonGov do DS); com a prop user exibe o User Menu (Avatar do DS + nome + seta) que abre o painel de largura total com Minha conta/Configuracoes/Sair.\n\nTokens: navbar/color/background e navbar/color/border, espacamentos spacing/4|8|16|20|24|32 e Component sizing, radius-full nos controles circulares e o focus ring do DS. Os textos do Figma em Inter foram normalizados para Plus Jakarta Sans pela politica de fonte unica.\n\nResponsividade (variante type=Mobile do Figma): abaixo de 768px o topo vira duas linhas — logo SP.GOV.BR e, abaixo, o selo do Portal com os icones, avatar e o botao de menu — e a navegacao abre pelo menu, empilhada.\n\nAcessibilidade: header semantico com nav e aria-label, menu do usuario com aria-haspopup/expanded e role menu, icones com rotulos acessiveis e foco visivel em todos os controles.",
+  "props": [
+    {
+      "name": "primaryLogo",
+      "type": "ReactNode",
+      "values": null,
+      "default": "<DefaultPrimaryLogo /> (assets/logo-spgov-default.png, 140x20) quando a prop e undefined",
+      "required": false,
+      "description": "Slot do logo SP.GOV.BR. Passe null para ocultar.",
+      "source": "ambos"
+    },
+    {
+      "name": "primaryLogoHref",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Com href o slot primario vira <a>, sem href vira <div>.",
+      "source": "types.ts"
+    },
+    {
+      "name": "primaryLogoAriaLabel",
+      "type": "string",
+      "values": null,
+      "default": "'SP.GOV.BR'",
+      "required": false,
+      "description": "Nome acessivel do slot do logo primario.",
+      "source": "types.ts"
+    },
+    {
+      "name": "secondaryLogo",
+      "type": "ReactNode",
+      "values": null,
+      "default": "<DefaultSecondaryLogo /> (assets/logo-portal-de-servicos.png, 160x38) quando a prop e undefined",
+      "required": false,
+      "description": "Slot do selo Portal de Serviços. Passe null para ocultar.",
+      "source": "ambos"
+    },
+    {
+      "name": "secondaryLogoHref",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Com href o slot secundario vira <a>, sem href vira <div>.",
+      "source": "types.ts"
+    },
+    {
+      "name": "secondaryLogoAriaLabel",
+      "type": "string",
+      "values": null,
+      "default": "'Portal de Serviços ao Cidadão'",
+      "required": false,
+      "description": "Nome acessivel do slot do selo secundario.",
+      "source": "types.ts"
+    },
+    {
+      "name": "navigationItems",
+      "type": "HeaderNavigationItem[]",
+      "values": null,
+      "default": "defaultNavigationItems (4 itens 'Option' com href #option-1..4)",
+      "required": false,
+      "description": "Itens de navegação; itens com children abrem o Meganav.",
+      "source": "ambos"
+    },
+    {
+      "name": "utilityItems",
+      "type": "HeaderUtilityItem[]",
+      "values": null,
+      "default": "defaultUtilityItems (Buscar, Traduzir, Acessibilidade com os glifos search/translate/accessibility_new)",
+      "required": false,
+      "description": "Ícones utilitários (search, translate, accessibility_new). A mesma lista e renderizada em ds-header__mobile-actions e em ds-header__utility-list.",
+      "source": "ambos"
+    },
+    {
+      "name": "accountAction",
+      "type": "HeaderAction | null",
+      "values": null,
+      "default": "{ label: 'Entrar com o gov.br' }",
+      "required": false,
+      "description": "Ação de conta deslogada (botão gov.br). Ignorado quando user esta definido; null remove a acao.",
+      "source": "ambos"
+    },
+    {
+      "name": "user",
+      "type": "HeaderUser | null",
+      "values": null,
+      "default": "null",
+      "required": false,
+      "description": "Usuário logado (account=Logged in no Figma): exibe o User Menu no lugar do botao gov.br.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao header.",
+      "source": "ambos"
+    },
+    {
+      "name": "navAriaLabel",
+      "type": "string",
+      "values": null,
+      "default": "'Navegação principal'",
+      "required": false,
+      "description": "Nome acessivel do <nav> da barra inferior.",
+      "source": "types.ts"
+    },
+    {
+      "name": "menuButtonLabel",
+      "type": "string",
+      "values": null,
+      "default": "'Abrir menu principal'",
+      "required": false,
+      "description": "Rotulo do botao de menu quando fechado; aberto o aria-label vira 'Fechar menu principal' (valor fixo no codigo).",
+      "source": "types.ts"
+    },
+    {
+      "name": "defaultMenuOpen",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Estado inicial do menu mobile no modo nao controlado.",
+      "source": "types.ts"
+    },
+    {
+      "name": "menuOpen",
+      "type": "boolean",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Estado controlado do menu mobile (isMenuOpen = menuOpen ?? estado interno).",
+      "source": "types.ts"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onMenuOpenChange",
+      "signature": "(open: boolean) => void",
+      "description": "Callback do menu mobile, disparado no clique do botao de menu junto com a atualizacao do estado interno."
+    },
+    {
+      "name": "HeaderUtilityItem.onClick",
+      "signature": "MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>",
+      "description": "Handler de cada icone utilitario; sem href o item e renderizado como <button type=\"button\">."
+    },
+    {
+      "name": "HeaderAction.onClick",
+      "signature": "MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>",
+      "description": "Handler da acao de conta deslogada, repassado ao ButtonGov."
+    },
+    {
+      "name": "HeaderUserMenuItem.onClick",
+      "signature": "MouseEventHandler<HTMLAnchorElement | HTMLButtonElement>",
+      "description": "Handler de cada item do painel do User Menu (role=\"menuitem\")."
+    }
+  ],
+  "slots": [
+    {
+      "name": "primaryLogo",
+      "type": "ReactNode",
+      "description": "Logo SP.GOV.BR; undefined usa a imagem padrao, null remove o slot."
+    },
+    {
+      "name": "secondaryLogo",
+      "type": "ReactNode",
+      "description": "Selo Portal de Serviços; undefined usa a imagem padrao, null remove o slot."
+    },
+    {
+      "name": "user.avatar",
+      "type": "ReactNode",
+      "description": "Avatar do usuario logado; sem valor compoe <Avatar name={user.name} size=\"small\" /> do DS."
+    },
+    {
+      "name": "utilityItems[].icon",
+      "type": "ReactNode",
+      "description": "Glifo de cada acao utilitaria, envolvido por span aria-hidden."
+    },
+    {
+      "name": "accountAction.icon",
+      "type": "ReactNode",
+      "description": "Icone repassado ao ButtonGov da acao de conta."
+    }
+  ],
+  "cssClasses": [
+    "ds-header",
+    "ds-header--menu-open",
+    "ds-header--user-menu-open",
+    "ds-header__top",
+    "ds-header__brand",
+    "ds-header__brand--primary",
+    "ds-header__brand--secondary",
+    "ds-header__logo-spgov",
+    "ds-header__logo-portal",
+    "ds-header__logo-image",
+    "ds-header__mobile-actions",
+    "ds-header__mobile-avatar",
+    "ds-header__menu-button",
+    "ds-header__bottom",
+    "ds-header__nav",
+    "ds-header__nav-list",
+    "ds-header__nav-item",
+    "ds-header__nav-link",
+    "ds-header__nav-icon",
+    "ds-header__meganav",
+    "ds-header__meganav-drawer",
+    "ds-header__actions",
+    "ds-header__utility-list",
+    "ds-header__utility-action",
+    "ds-header__utility-icon",
+    "ds-header__user-menu",
+    "ds-header__user-avatar",
+    "ds-header__user-name",
+    "ds-header__user-arrow",
+    "ds-header__user-panel",
+    "ds-header__user-panel-item",
+    "ds-header__account-action"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--header-surface",
+      "value": "var(--ds-component-navbar-color-background)",
+      "comment": "navbar/color/background e navbar/color/border"
+    },
+    {
+      "name": "--header-border-color",
+      "value": "var(--ds-component-navbar-color-border)",
+      "comment": "navbar/color/background e navbar/color/border"
+    },
+    {
+      "name": "--header-text-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-primary)",
+      "comment": "text-style/content color/typography/primary"
+    },
+    {
+      "name": "--header-icon-color",
+      "value": "var(--ds-semantic-color-icons-neutral-default-hover)",
+      "comment": "Ícones utilitários: fill #262828 dos vetores exportados — aproximação com color/icons/neutral/default-hover (#292929)"
+    },
+    {
+      "name": "--header-icon-hover-background",
+      "value": "var(--ds-component-icon-button-color-background-ghost-hover)",
+      "comment": "icon-button/color/background/ghost/hover (hover dos ícones)"
+    },
+    {
+      "name": "--header-bar-height",
+      "value": "80px",
+      "comment": "Barras de 80px do Figma (os tokens navbar/size trazem 56/48 do design antigo — divergência anotada)"
+    },
+    {
+      "name": "--header-focus-ring",
+      "value": "var(--ds-component-focus-ring-color-ring)",
+      "comment": null
+    }
+  ],
+  "tokensUsed": [
+    "--ds-component-navbar-color-background",
+    "--ds-component-navbar-color-border",
+    "--ds-semantic-text-style-content-color-typography-primary",
+    "--ds-semantic-color-icons-neutral-default-hover",
+    "--ds-component-icon-button-color-background-ghost-hover",
+    "--ds-component-focus-ring-color-ring",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-spacing-20",
+    "--ds-component-component-sizing-32",
+    "--ds-primitive-border-width-border-sm",
+    "--ds-primitive-spacing-24",
+    "--ds-primitive-spacing-16",
+    "--ds-primitive-spacing-32",
+    "--ds-primitive-spacing-0",
+    "--ds-primitive-spacing-8",
+    "--ds-primitive-typography-font-size-14",
+    "--ds-primitive-typography-font-weight-regular",
+    "--ds-primitive-spacing-4",
+    "--ds-component-component-sizing-40",
+    "--ds-primitive-border-width-border-none",
+    "--ds-primitive-border-radius-radius-full",
+    "--ds-component-component-sizing-24",
+    "--ds-primitive-typography-font-size-16",
+    "--ds-primitive-border-radius-radius-sm",
+    "--ds-primitive-typography-font-weight-medium",
+    "--ds-semantic-color-icons-neutral-black",
+    "--ds-component-focus-ring-effect-width",
+    "--ds-component-focus-ring-effect-offset",
+    "--ds-component-component-sizing-8",
+    "--ds-component-component-sizing-16",
+    "--ds-primitive-spacing-12"
+  ],
+  "stories": [
+    {
+      "id": "web-components-header--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-header--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-header--default&viewMode=story"
+    },
+    {
+      "id": "web-components-header--logged-in",
+      "name": "Logged In",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-header--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-header--logged-in&viewMode=story"
+    },
+    {
+      "id": "web-components-header--with-meganav",
+      "name": "With Meganav",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-header--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-header--with-meganav&viewMode=story"
+    }
+  ],
+  "variants": [],
+  "states": [
+    "hover (fundo icon-button/ghost/hover nos icones utilitarios e rgb(0 0 0 / 4%) nos itens do painel do usuario, ambos dentro de @media (hover: hover))",
+    "focus-visible (outline do focus ring do DS em brand, nav-link, utility-action, user-menu, user-panel-item e menu-button; :focus tem o outline removido)",
+    "menu aberto (ds-header--menu-open exibe a barra inferior empilhada abaixo de 768px)",
+    "user menu aberto (o painel role=\"menu\" e montado; a classe ds-header--user-menu-open e aplicada no TSX)",
+    "current (aria-current=\"page\" no nav-link quando item.current e true)"
+  ],
+  "responsive": [
+    {
+      "query": "@media (hover: hover)",
+      "effect": "Aplica o fundo de hover (--header-icon-hover-background) nos botoes de icone utilitario."
+    },
+    {
+      "query": "@media (hover: hover)",
+      "effect": "Aplica o fundo de hover rgb(0 0 0 / 4%) nos itens do painel do User Menu (literal documentado como color/state/hover)."
+    },
+    {
+      "query": "@media (prefers-reduced-motion: reduce)",
+      "effect": "Remove a transition de background-color dos botoes de icone utilitario."
+    },
+    {
+      "query": "@media (max-width: 768px)",
+      "effect": "Variante Mobile: o topo vira grid de duas linhas (logo primario / selo + acoes), logos reduzem para 112x16 e 123x29, ds-header__mobile-actions aparece, a barra inferior some e so reaparece empilhada com ds-header--menu-open (a lista de icones utilitarios e ocultada), e o painel do usuario usa padding-inline de Component sizing/16."
+    }
+  ],
+  "accessibility": {
+    "roles": [
+      "banner (<header> raiz)",
+      "navigation (<nav> da barra inferior)",
+      "list / listitem (<ul>/<li> dos nav items)",
+      "link (<a> dos nav items, logos com href e itens do menu com href)",
+      "button (menu mobile, icones utilitarios sem href e gatilho do User Menu)",
+      "menu (role=\"menu\" explicito no painel do usuario)",
+      "menuitem (role=\"menuitem\" explicito em cada item do painel)"
+    ],
+    "ariaAttributes": [
+      "aria-label (nav, logos, icones utilitarios, botao de menu e itens de menu)",
+      "aria-controls e aria-expanded no botao de menu mobile (aponta para ds-header__bottom)",
+      "aria-expanded, aria-haspopup=\"menu\" e aria-controls (apenas quando aberto) no gatilho do User Menu",
+      "aria-current=\"page\" nos nav items marcados como current",
+      "aria-hidden=\"true\" nos icones, nos logos padrao e no avatar mobile"
+    ],
+    "keyboardInteractions": [
+      "Botao de menu mobile: <button type=\"button\">, Enter/Espaco alternam aria-expanded e a exibicao da navegacao.",
+      "Gatilho do User Menu: <button type=\"button\">, Enter/Espaco abrem/fecham o painel role=\"menu\".",
+      "Nav items com children delegam a interacao de teclado ao componente Meganav do DS.",
+      "Nao ha handler de teclado customizado no Header (sem Escape, sem navegacao por setas, sem focus trap)."
+    ],
+    "notes": [
+      "O painel do usuario usa role=\"menu\"/role=\"menuitem\" mas nao implementa o padrao ARIA de navegacao por setas nem fechamento por Escape ou clique fora.",
+      "O titulo (title) e o aria-label dos icones utilitarios usam o mesmo texto de item.label.",
+      "Os icones utilitarios sao renderizados duas vezes no DOM (barra mobile e barra inferior), entao leitores de tela encontram dois controles com o mesmo nome — o teste unitario usa getAllByRole para lidar com isso.",
+      "O avatar mobile e puramente decorativo (aria-hidden)."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Header/Header.test.tsx",
+    "unitCount": 8,
+    "a11yFile": null,
+    "a11yCount": null
+  },
+  "figmaReferences": [
+    {
+      "node": "94:14266",
+      "note": "Header.styles.css: 'Layout do Figma: Web Components / Header (node 94:14266)'."
+    },
+    {
+      "node": "94:14266",
+      "note": "Header.tsx: 'Vetores exportados do Figma (Web Components / Header, node 94:14266); a cor vem do CSS via currentColor'."
+    }
+  ],
+  "pendencias": [
+    "A classe ds-header--user-menu-open e aplicada no TSX mas nao possui nenhuma regra em Header.styles.css; o efeito visual pretendido nao pode ser determinado pelo codigo.",
+    "aria-current=\"page\" e definido nos nav items, mas nao existe estilo [aria-current] no CSS — o item atual nao tem distincao visual.",
+    "Nao ha arquivo Header.a11y.test.tsx (sem cobertura axe).",
+    "O painel do User Menu nao tem fechamento por Escape/clique externo nem gerenciamento de foco; o padrao ARIA de menu esta incompleto.",
+    "menuOpen e tratado como controlado na leitura (menuOpen ?? interno), mas updateMenuOpen sempre grava no estado interno — o comportamento em modo totalmente controlado nao esta explicitado no codigo nem em testes.",
+    "--header-bar-height usa o literal 80px porque os tokens navbar/size trazem 56/48; a divergencia com o Figma continua em aberto.",
+    "O item do painel do usuario usa a cor literal #333333 e o hover rgb(0 0 0 / 4%), sem token correspondente na collection.",
+    "Os textos originais em Inter foram normalizados para Plus Jakarta Sans; a equivalencia tipografica com o Figma nao pode ser verificada pelo codigo."
+  ]
+}

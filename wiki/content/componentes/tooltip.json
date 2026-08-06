@@ -1,0 +1,160 @@
+{
+  "slug": "tooltip",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Feedback",
+  "resumo": "Balão pequeno com uma frase curta que explica um elemento da interface. Aparece quando o ponteiro passa sobre o elemento ou quando ele recebe foco pelo teclado, e some em seguida.",
+  "quandoUsar": [
+    "Para dizer o que faz um botão que só tem ícone, como imprimir ou baixar um comprovante na barra de ações de uma lista.",
+    "Para mostrar por extenso uma sigla ou um título de coluna abreviado em uma tabela de acompanhamento de processos.",
+    "Para explicar o significado de um marcador de situação, como um ícone que indica que a solicitação está em análise.",
+    "Para complementar um controle compacto cujo rótulo precisou ser encurtado por falta de espaço.",
+    "Para dar o nome completo de um item que aparece truncado, quando o texto inteiro não cabe na linha."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Quando a informação é necessária para preencher o campo, como o formato esperado ou onde encontrar o número no documento.",
+      "alternativa": "TextInput"
+    },
+    {
+      "texto": "Quando a mensagem é um erro, um aviso de prazo ou uma pendência que a pessoa precisa resolver.",
+      "alternativa": "Alert"
+    },
+    {
+      "texto": "Quando a explicação tem vários parágrafos, como as regras completas de um serviço.",
+      "alternativa": "Accordion"
+    },
+    {
+      "texto": "Quando o conteúdo precisa ter link, botão ou qualquer coisa clicável dentro dele.",
+      "alternativa": "Modal"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Elemento acionador",
+      "descricao": "O elemento da página que abre o balão. Precisa ser interativo e alcançável pelo teclado, como um botão ou um link — o componente não torna focável um elemento que já não seja."
+    },
+    {
+      "numero": 2,
+      "parte": "Balão",
+      "descricao": "Caixa flutuante que aparece ao lado do elemento acionador. Nunca recebe foco e não pode ser clicada."
+    },
+    {
+      "numero": 3,
+      "parte": "Texto",
+      "descricao": "A microcopy dentro do balão, centralizada e com largura limitada."
+    },
+    {
+      "numero": 4,
+      "parte": "Seta",
+      "descricao": "Triângulo pequeno que aponta para o elemento acionador, no lado definido pelo posicionamento escolhido."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "O componente não declara nenhuma regra por largura de tela: a única regra condicional do CSS desliga a transição de aparecimento do balão quando a pessoa configura o sistema para reduzir movimento. A largura do balão é limitada pelo próprio layout, entre 40px e 200px, em qualquer tela.",
+  "dosDonts": [
+    {
+      "faca": "Coloque o balão em um elemento que já é interativo, como um botão ou um link.",
+      "naoFaca": "Envolver um ícone solto, um texto ou um container qualquer.",
+      "porque": "O componente não acrescenta foco nem papel ao elemento acionador. Em um elemento não interativo, o balão só abre com o mouse e quem navega por teclado nunca vê a explicação."
+    },
+    {
+      "faca": "Repita em texto visível qualquer informação necessária para concluir a tarefa.",
+      "naoFaca": "Deixar uma instrução importante existindo apenas dentro do balão.",
+      "porque": "O balão não abre por toque. Em celular e tablet, que é como boa parte das pessoas acessa serviços públicos, essa informação simplesmente não existe."
+    },
+    {
+      "faca": "Escreva uma frase curta, que caiba em uma ou duas linhas.",
+      "naoFaca": "Escrever instruções longas ou colocar mais de uma ideia no mesmo balão.",
+      "porque": "O balão tem largura limitada e o texto é centralizado. Texto comprido vira um bloco estreito e difícil de ler, que ainda por cima cobre o conteúdo em volta."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Escreva uma frase curta e sem ponto final. Se precisar de duas frases, a informação não é para o balão.",
+    "Quando o balão explica uma ação, comece pelo verbo no infinitivo: \"Baixar comprovante\", \"Imprimir protocolo\".",
+    "Não repita literalmente um texto que já está visível ao lado. Se o rótulo já diz tudo, o balão só atrapalha.",
+    "Não coloque dados que a pessoa precise copiar, anotar ou ler devagar, como um número de protocolo. O balão some assim que o ponteiro sai.",
+    "Use apenas a primeira letra maiúscula, sem caixa alta e sem abreviações que exijam outra explicação."
+  ],
+  "hierarquia": [
+    "É o elemento de menor peso da interface: ele complementa e nunca conduz a tarefa. Se a pessoa precisa dele para avançar, o conteúdo está no lugar errado.",
+    "Aparece flutuando acima do conteúdo, por padrão acima do elemento acionador. Escolha o lado com espaço livre, porque não existe reposicionamento automático quando o balão encosta na borda da tela.",
+    "Um balão por elemento acionador. Vários ícones seguidos, cada um com o seu balão, transformam a leitura em uma sequência de interrupções.",
+    "Em tabelas e listas densas, prefira um cabeçalho por extenso a espalhar balões por todas as colunas abreviadas."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Button",
+      "slug": "button",
+      "relacao": "É o acionador mais comum: botões só com ícone, que precisam de um nome visível ao passar o ponteiro ou ao receber foco."
+    },
+    {
+      "componente": "DataTable",
+      "slug": "data-table",
+      "relacao": "Explica cabeçalhos abreviados e as ações por linha, onde não há espaço para rótulos por extenso."
+    },
+    {
+      "componente": "Badge",
+      "slug": "badge",
+      "relacao": "Dá o significado completo de um marcador de situação abreviado, desde que a mesma informação também exista em texto na página."
+    },
+    {
+      "componente": "Link",
+      "slug": "link",
+      "relacao": "Complementa um link cujo texto foi encurtado, dizendo para onde ele leva."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Ações por linha na lista de protocolos",
+      "contexto": "A pessoa acompanha vários protocolos em uma tabela e cada linha tem botões só com ícone para baixar o comprovante e para imprimir.",
+      "comoFica": "Cada botão recebe um balão com o nome da ação: \"Baixar comprovante\" e \"Imprimir protocolo\". O balão abre ao passar o ponteiro e também quando o botão recebe foco pelo teclado, e fecha com a tecla Escape."
+    },
+    {
+      "titulo": "Marcador de situação de uma solicitação",
+      "contexto": "Na consulta de uma solicitação no Detran-SP, a situação aparece abreviada ao lado do número do processo.",
+      "comoFica": "O marcador de situação recebe um balão com a frase por extenso do que aquele estado significa. A mesma explicação também aparece em texto no detalhe da solicitação, porque no celular o balão não abre por toque."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Usar como acionador um elemento que não é interativo, como um ícone dentro de um container comum.",
+      "consequencia": "O elemento nunca recebe foco, então o balão só abre com o mouse. Quem navega por teclado ou usa leitor de tela não tem acesso ao conteúdo.",
+      "correcao": "Use um botão ou outro elemento naturalmente focável como acionador."
+    },
+    {
+      "erro": "Colocar link ou botão dentro do texto do balão.",
+      "consequencia": "O balão não recebe foco e ignora cliques. O link fica visível e inalcançável, para qualquer forma de navegação.",
+      "correcao": "Leve a ação para a página ou para um Modal, e deixe no balão apenas a frase explicativa."
+    },
+    {
+      "erro": "Confiar no balão para informação essencial em telas de celular.",
+      "consequencia": "Não existe abertura por toque. A informação fica invisível justamente no dispositivo mais usado para acessar serviços públicos.",
+      "correcao": "Mostre a informação essencial em texto permanente e use o balão só como reforço no computador."
+    },
+    {
+      "erro": "Fixar o posicionamento sem considerar onde o elemento fica na tela.",
+      "consequencia": "Perto da borda, o balão pode ficar cortado ou sair da área visível, porque não há reposicionamento automático.",
+      "correcao": "Escolha o lado com espaço livre a partir da posição real do elemento na página e verifique nas larguras de tela mais estreitas."
+    }
+  ],
+  "notasImplementacao": [
+    "O balão é anunciado com papel de dica (role tooltip) e é ligado ao elemento acionador apenas enquanto está aberto. Uma descrição já existente no elemento é preservada e somada, não substituída.",
+    "O balão nunca recebe foco e ignora eventos de ponteiro. Ele não pode conter nada interativo.",
+    "Abre por passagem do ponteiro e por foco. Fecha quando o ponteiro sai, quando o foco sai e quando a pessoa pressiona Escape com o foco no acionador.",
+    "Há um pequeno atraso antes de abrir e antes de fechar, ambos ajustáveis. Os temporizadores são limpos quando o componente sai da tela.",
+    "Quando o componente está desabilitado, o balão não abre e a ligação com o elemento acionador não é criada.",
+    "Os tratadores de evento originais do elemento acionador são preservados e executados antes da lógica do balão.",
+    "Não há detecção de colisão com a borda nem troca automática de lado: a posição vem apenas da prop de posicionamento.",
+    "Não há nenhum tratamento de toque. O componente escuta apenas ponteiro e foco.",
+    "A transição de aparecimento é removida quando a pessoa configura o sistema para reduzir movimento.",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual.",
+    "O JSON extraído registra duas divergências entre o Figma e os valores usados no código: a cor de fundo (preto do node contra o preto suave da coleção de tokens) e a largura máxima (200 pixels no código contra 128 pixels no token). Confirme com o time antes de tratar qualquer um dos dois como referência."
+  ],
+  "pendentes": [
+    "Tamanhos: o componente não tem prop de tamanho (size). As larguras mínima e máxima do balão vêm do layout, não de uma variação escolhível.",
+    "Comportamento em celular: como não existe regra de tela pequena nem abertura por toque, falta o time definir o que fazer com esse conteúdo no celular; qualquer regra escrita aqui seria invenção.",
+    "Quando usar o tom claro em vez do escuro: os dois tons existem na API, mas nem o código nem a documentação atual dizem em que fundo ou situação escolher cada um."
+  ]
+}

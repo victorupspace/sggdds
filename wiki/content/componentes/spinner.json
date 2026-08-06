@@ -1,0 +1,156 @@
+{
+  "slug": "spinner",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Feedback",
+  "resumo": "O Spinner é um círculo em rotação que avisa que algo está sendo processado quando não há como dizer quanto falta. O mesmo componente também é exportado com o nome Loading.",
+  "quandoUsar": [
+    "Enquanto o sistema valida o CPF informado ou consulta uma base externa, depois que a pessoa clica em continuar.",
+    "Ao abrir a primeira tela de um serviço, cobrindo o intervalo entre o clique no menu e a chegada dos dados.",
+    "Dentro do botão que envia um agendamento, para mostrar que o pedido foi recebido e que a resposta está a caminho.",
+    "Em uma consulta de protocolo cujo tempo de resposta é desconhecido e costuma ser de poucos segundos.",
+    "Ao recarregar uma área da tela depois de aplicar um filtro, quando o conteúdo anterior é substituído por completo."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "O processo tem percentual conhecido, como o envio de um documento em anexo.",
+      "alternativa": "progress-bar"
+    },
+    {
+      "texto": "É preciso preservar a estrutura da página enquanto uma lista ou um cartão carrega.",
+      "alternativa": "skeleton"
+    },
+    {
+      "texto": "O processamento terminou e a pessoa precisa saber o resultado.",
+      "alternativa": "toast"
+    },
+    {
+      "texto": "A espera é longa, a análise depende de outro órgão e a pessoa pode sair da página e voltar depois.",
+      "alternativa": "alert"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Container",
+      "descricao": "Área que agrupa o indicador e o texto, define o tamanho, a variante de cor e o modo de posicionamento. É ela que anuncia o carregamento para leitores de tela."
+    },
+    {
+      "numero": 2,
+      "parte": "Círculo",
+      "descricao": "Arco em rotação sobre uma trilha mais clara. É apenas visual: não carrega significado para leitores de tela."
+    },
+    {
+      "numero": 3,
+      "parte": "Rótulo",
+      "descricao": "Texto abaixo do círculo, exibido somente quando a exibição do rótulo é ativada. O padrão é \"Carregando\"."
+    },
+    {
+      "numero": 4,
+      "parte": "Modo de posicionamento",
+      "descricao": "Centralizado na área visível do navegador (padrão) ou em linha, dentro de um botão, cartão ou bloco menor."
+    }
+  ],
+  "tamanhos": "São três tamanhos. O pequeno cabe em espaços apertados, como dentro de um botão ou ao lado de um campo. O médio é o padrão e serve para blocos e cartões. O grande é para carregamento de tela inteira. O tamanho muda o diâmetro do círculo, a espessura do traço e o espaço até o rótulo.",
+  "responsivo": "Em telas de até 640 pixels o modo centralizado usa a altura realmente visível do navegador, o que evita que a barra de endereço do celular corte o indicador, e o rótulo fica limitado à largura da tela para não estourar. Quando a pessoa configura o sistema para reduzir animações, a rotação fica duas vezes mais lenta em vez de parar.",
+  "dosDonts": [
+    {
+      "faca": "Desligue a centralização quando o spinner ficar dentro de um botão, cartão ou área pequena.",
+      "naoFaca": "Manter o modo centralizado, que é o padrão, em um spinner que deveria ser inline.",
+      "porque": "No modo centralizado o componente se ancora na área visível do navegador inteira. Dentro de um cartão, isso joga o indicador para o meio da tela, longe da ação."
+    },
+    {
+      "faca": "Mostre um único indicador por espera.",
+      "naoFaca": "Exibir o spinner central e mais um dentro do botão para a mesma ação.",
+      "porque": "Dois indicadores sugerem dois processos, e cada container é anunciado como uma região de status para quem usa leitor de tela."
+    },
+    {
+      "faca": "Desabilite o botão que disparou a ação enquanto o spinner estiver visível.",
+      "naoFaca": "Contar que o spinner centralizado impede novos cliques na tela.",
+      "porque": "O modo centralizado não bloqueia a interação com o conteúdo abaixo — o clique passa direto pelo indicador."
+    }
+  ],
+  "conteudoEEscrita": [
+    "O rótulo padrão é \"Carregando\". Troque por algo específico sempre que ajudar: \"Consultando seu protocolo\".",
+    "Uma linha, sem ponto final. Em telas pequenas o rótulo é limitado à largura da tela, então frases longas quebram mal.",
+    "Não prometa tempo — \"Aguarde 5 segundos\" — porque o componente não conhece a duração da espera.",
+    "Quando o rótulo não é exibido na tela, informe o nome acessível com o mesmo texto, para quem usa leitor de tela.",
+    "Descreva o que a pessoa está esperando, não o que o sistema está fazendo por dentro: \"Buscando unidades disponíveis\", não \"Processando requisição\"."
+  ],
+  "hierarquia": [
+    "No modo centralizado o spinner ocupa o centro da área visível e é o único elemento em destaque. Não coloque avisos concorrendo ao lado dele.",
+    "No modo em linha, posicione o spinner junto do elemento que ele descreve: dentro do botão, ao lado do texto, ou no topo da área que está sendo atualizada.",
+    "Reserve o tamanho grande para espera de tela inteira. Os tamanhos pequeno e médio são para partes da interface e não devem representar o carregamento principal.",
+    "Use a variante inversa apenas sobre fundos escuros. A variante de marca serve quando o carregamento faz parte da identidade da tela, e a neutra atende o restante dos casos."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Button",
+      "slug": "button",
+      "relacao": "Coloque um spinner pequeno, em linha, dentro do botão enquanto o envio é processado, e mantenha o botão desabilitado nesse período."
+    },
+    {
+      "componente": "Skeleton",
+      "slug": "skeleton",
+      "relacao": "O Skeleton segura a estrutura do conteúdo que vai chegar; o Spinner cobre a ação em andamento. Para a mesma espera, escolha um dos dois."
+    },
+    {
+      "componente": "Modal",
+      "slug": "modal",
+      "relacao": "Dentro de um Modal que ainda está carregando dados, use o spinner em linha na área de conteúdo, e não o modo centralizado na tela."
+    },
+    {
+      "componente": "Toast",
+      "slug": "toast",
+      "relacao": "Quando a espera termina, confirme o resultado com um Toast em vez de apenas remover o spinner da tela."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Consulta de protocolo",
+      "contexto": "A pessoa digita o número do protocolo e clica em consultar. A resposta depende de um sistema externo e pode levar alguns segundos.",
+      "comoFica": "O botão fica desabilitado com um spinner pequeno em linha ao lado do texto. A área de resultado exibe um spinner médio com rótulo visível: \"Consultando seu protocolo\"."
+    },
+    {
+      "titulo": "Abertura da tela de agendamento",
+      "contexto": "Ao entrar no agendamento do Poupatempo, o sistema busca unidades e horários disponíveis antes de exibir qualquer coisa.",
+      "comoFica": "Um spinner grande centralizado ocupa a tela, com o rótulo \"Carregando unidades disponíveis\". Como o modo centralizado não bloqueia cliques, os controles da tela ficam desabilitados até a resposta chegar."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Exibir o spinner sem desabilitar a ação que o disparou.",
+      "consequencia": "A pessoa clica de novo e o pedido é enviado duas vezes. Em agendamento e protocolo, isso vira duplicidade de solicitação.",
+      "correcao": "Desabilite o botão enquanto o carregamento estiver ativo. O modo centralizado não impede cliques no conteúdo."
+    },
+    {
+      "erro": "Passar um rótulo montado com ícone e texto, em vez de texto simples, sem informar o nome acessível.",
+      "consequencia": "O nome acessível cai para o texto genérico padrão e a informação específica se perde para quem usa leitor de tela.",
+      "correcao": "Sempre que o rótulo não for um texto simples, informe o nome acessível descrevendo a espera."
+    },
+    {
+      "erro": "Deixar o spinner na tela quando a consulta falha.",
+      "consequencia": "A pessoa espera indefinidamente por algo que não vai chegar e não recebe orientação de próximo passo.",
+      "correcao": "Ao receber erro, troque o spinner por uma mensagem que diga o que aconteceu e o que fazer agora."
+    },
+    {
+      "erro": "Usar o spinner em um processo que tem percentual conhecido.",
+      "consequencia": "A pessoa perde a noção de quanto falta em esperas longas e tende a abandonar a página ou repetir a ação.",
+      "correcao": "Quando existir valor de progresso, use a barra de progresso."
+    }
+  ],
+  "notasImplementacao": [
+    "O container já é anunciado como região de status, com leitura educada e indicação de ocupado. Não repita esses atributos no elemento em volta.",
+    "O círculo é decorativo. Todo o significado vem do rótulo ou do nome acessível.",
+    "A ordem do nome acessível é esta: primeiro o valor informado em ariaLabel; se ele não existir, o rótulo, desde que seja texto simples; em último caso, o texto padrão \"Carregando\".",
+    "No modo centralizado a camada sobre a tela não captura cliques e não bloqueia a interação com o conteúdo abaixo. O bloqueio precisa ser feito pela tela.",
+    "O mesmo componente é exportado como Spinner e como Loading. Escolha um nome e mantenha o padrão dentro do produto.",
+    "Com a preferência de menos movimento ativada, o ciclo de rotação passa de 800 para 1600 milissegundos, sem parar.",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual."
+  ],
+  "pendentes": [
+    "O componente não tem estado de erro nem de tempo esgotado, então a orientação sobre o que fazer quando a espera falha depende da tela, não do Spinner.",
+    "O código não cita nenhum node do Figma, então não foi possível descrever o desenho de referência nem as diferenças com a implementação.",
+    "Não existe regra definida sobre quando usar a variante de marca e quando usar a neutra: a escolha depende de definição de uso pelo time."
+  ]
+}

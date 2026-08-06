@@ -1,0 +1,317 @@
+{
+  "slug": "hero",
+  "name": "Hero",
+  "storybookTitle": "Web Components/Hero",
+  "sourceDir": "packages/react/src/components/Hero",
+  "exports": [
+    "Hero"
+  ],
+  "typeExports": [
+    "HeroHeadingLevel",
+    "HeroProps",
+    "HeroVariant"
+  ],
+  "oneLiner": "O Hero reproduz o layout do Figma (Web Components / Hero): seção de destaque com fundo color/white e altura mínima de 280px.",
+  "docsDescription": "O Hero reproduz o layout do Figma (Web Components / Hero): seção de destaque com fundo color/white e altura mínima de 280px.\n\nVariantes (propriedade type no Figma):\n- default: conteúdo à esquerda (máximo de 600px) e slot livre à direita para imagens, ilustrações ou componentes.\n- center: coluna única centralizada, com o slot abaixo — ideal para mensagens de impacto sem mídia.\n\nAnatomia: badge opcional (componha com o Badge do DS — Neutral Solid Small no Figma), título Display - Sm (Plus Jakarta Sans Regular 40 em color/soft-black), descrições Body/Medium (Medium 16 em color/neutral/grey-600) e slot de CTAs (componha com o Button do DS; máximo de 2, um primário e um secundário).\n\nTokens: paddings e gaps usam Component sizing (16/20/24/40/64) e spacing (10/16), exatamente como as variables do Figma.\n\nResponsividade: abaixo de 768px o layout default empilha o conteúdo sobre o slot e o padding lateral reduz para Component sizing/16; os CTAs quebram automaticamente.\n\nDiretrizes do Figma: use como primeiro bloco da página, títulos de até 8 palavras, no máximo 2 CTAs e imagens de alta qualidade (16:9 ou 4:3) no slot da variante default.",
+  "props": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Título principal (até 8 palavras). Renderizado no elemento definido por headingLevel.",
+      "source": "ambos"
+    },
+    {
+      "name": "description",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Descrição principal (até 2 linhas). Corresponde a 'Show Hero Body Text' no Figma.",
+      "source": "ambos"
+    },
+    {
+      "name": "secondDescription",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Segunda descrição opcional ('Show Hero Second Body' no Figma).",
+      "source": "ambos"
+    },
+    {
+      "name": "badge",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Slot da badge acima do título (componha com o Badge do DS).",
+      "source": "ambos"
+    },
+    {
+      "name": "actions",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Slot dos CTAs (componha com o Button do DS; máximo de 2, um primário e um secundário).",
+      "source": "ambos"
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Slot Right content para imagens, ilustrações ou componentes.",
+      "source": "ambos"
+    },
+    {
+      "name": "variant",
+      "type": "HeroVariant",
+      "values": [
+        "default",
+        "center"
+      ],
+      "default": "'default'",
+      "required": false,
+      "description": "type no Figma: default (slot à direita) ou center.",
+      "source": "ambos"
+    },
+    {
+      "name": "headingLevel",
+      "type": "HeroHeadingLevel",
+      "values": [
+        "1",
+        "2",
+        "3"
+      ],
+      "default": "1",
+      "required": false,
+      "description": "Nível semântico do título (H1 por padrão); mapeado para h1/h2/h3.",
+      "source": "ambos"
+    },
+    {
+      "name": "ariaLabel",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Nome acessível opcional da section.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada à section.",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [],
+  "slots": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "description": "Título principal; obrigatorio."
+    },
+    {
+      "name": "description",
+      "type": "ReactNode",
+      "description": "Paragrafo principal (.ds-hero__description); omitido quando falsy."
+    },
+    {
+      "name": "secondDescription",
+      "type": "ReactNode",
+      "description": "Segundo paragrafo opcional, com a mesma classe do primeiro."
+    },
+    {
+      "name": "badge",
+      "type": "ReactNode",
+      "description": "Conteudo do bloco .ds-hero__badge acima do titulo."
+    },
+    {
+      "name": "actions",
+      "type": "ReactNode",
+      "description": "Conteudo do bloco .ds-hero__actions (CTAs)."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "description": "Right content: renderizado em .ds-hero__slot ao lado (default) ou abaixo (center)."
+    }
+  ],
+  "cssClasses": [
+    "ds-hero",
+    "ds-hero--variant-default",
+    "ds-hero--variant-center",
+    "ds-hero__content",
+    "ds-hero__badge",
+    "ds-hero__heading",
+    "ds-hero__title",
+    "ds-hero__body",
+    "ds-hero__description",
+    "ds-hero__actions",
+    "ds-hero__slot"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--hero-surface",
+      "value": "var(--ds-primitive-color-white)",
+      "comment": "color/white"
+    },
+    {
+      "name": "--hero-title-color",
+      "value": "var(--ds-primitive-color-soft-black)",
+      "comment": "color/soft-black (título)"
+    },
+    {
+      "name": "--hero-description-color",
+      "value": "var(--ds-primitive-color-neutral-grey-600)",
+      "comment": "color/neutral/grey-600 (descrições)"
+    },
+    {
+      "name": "--hero-padding-block",
+      "value": "var(--ds-component-component-sizing-24)",
+      "comment": "Component sizing/24 (padding-y e gaps), /40 e /64 (padding-x do Default)"
+    },
+    {
+      "name": "--hero-padding-start",
+      "value": "var(--ds-component-component-sizing-40)",
+      "comment": "Component sizing/24 (padding-y e gaps), /40 e /64 (padding-x do Default). Redefinido para Component sizing/16 em .ds-hero--variant-center e abaixo de 768px"
+    },
+    {
+      "name": "--hero-padding-end",
+      "value": "var(--ds-component-component-sizing-64)",
+      "comment": "Component sizing/24 (padding-y e gaps), /40 e /64 (padding-x do Default). Redefinido para Component sizing/16 abaixo de 768px"
+    },
+    {
+      "name": "--hero-content-gap",
+      "value": "var(--ds-component-component-sizing-24)",
+      "comment": "Component sizing/24 (padding-y e gaps), /40 e /64 (padding-x do Default)"
+    },
+    {
+      "name": "--hero-body-gap",
+      "value": "var(--ds-component-component-sizing-20)",
+      "comment": "Component sizing/20 (gap entre descrições e CTAs)"
+    },
+    {
+      "name": "--hero-actions-gap",
+      "value": "var(--ds-primitive-spacing-16)",
+      "comment": "spacing/16 (gap entre os CTAs)"
+    },
+    {
+      "name": "--hero-content-max-inline-size",
+      "value": "600px",
+      "comment": "Largura máxima do conteúdo (600px no Figma)"
+    }
+  ],
+  "tokensUsed": [
+    "--ds-primitive-color-white",
+    "--ds-primitive-color-soft-black",
+    "--ds-primitive-color-neutral-grey-600",
+    "--ds-component-component-sizing-24",
+    "--ds-component-component-sizing-40",
+    "--ds-component-component-sizing-64",
+    "--ds-component-component-sizing-20",
+    "--ds-primitive-spacing-16",
+    "--ds-primitive-spacing-10",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-component-component-sizing-16",
+    "--ds-primitive-spacing-0",
+    "--ds-primitive-typography-font-size-40",
+    "--ds-primitive-typography-font-weight-regular",
+    "--ds-primitive-typography-font-size-16",
+    "--ds-primitive-typography-font-weight-medium"
+  ],
+  "stories": [
+    {
+      "id": "web-components-hero--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-hero--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-hero--default&viewMode=story"
+    },
+    {
+      "id": "web-components-hero--center",
+      "name": "Center",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-hero--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-hero--center&viewMode=story"
+    },
+    {
+      "id": "web-components-hero--with-media",
+      "name": "With Media",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-hero--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-hero--with-media&viewMode=story"
+    },
+    {
+      "id": "web-components-hero--minimal",
+      "name": "Minimal",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-hero--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-hero--minimal&viewMode=story"
+    }
+  ],
+  "variants": [
+    {
+      "prop": "variant",
+      "values": [
+        "default",
+        "center"
+      ]
+    },
+    {
+      "prop": "headingLevel",
+      "values": [
+        "1",
+        "2",
+        "3"
+      ]
+    }
+  ],
+  "states": [],
+  "responsive": [
+    {
+      "query": "@media (max-width: 768px)",
+      "effect": "O node do Figma nao define variante mobile: abaixo de 768px o .ds-hero passa a flex-direction column com align-items flex-start (center continua centralizado), --hero-padding-start e --hero-padding-end viram Component sizing/16 e o slot ocupa 100% (flex: none, min-inline-size 0)."
+    }
+  ],
+  "accessibility": {
+    "roles": [
+      "region (o <section> so expoe role region quando ariaLabel e informado)",
+      "heading (h1, h2 ou h3 conforme headingLevel)"
+    ],
+    "ariaAttributes": [
+      "aria-label opcional no <section> (prop ariaLabel)"
+    ],
+    "keyboardInteractions": [
+      "O Hero nao possui controles interativos proprios; a interacao por teclado depende dos componentes passados em badge, actions e children."
+    ],
+    "notes": [
+      "headingLevel apenas troca a tag (h1/h2/h3) — cabe a quem consome garantir a ordem correta de headings na pagina.",
+      "Sem ariaLabel o <section> nao e anunciado como landmark region.",
+      "As descricoes sao renderizadas como <p> dentro de .ds-hero__body."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Hero/Hero.test.tsx",
+    "unitCount": 5,
+    "a11yFile": null,
+    "a11yCount": null
+  },
+  "figmaReferences": [
+    {
+      "node": "99:26800",
+      "note": "Hero.styles.css: 'Layout do Figma: Web Components / Hero (node 99:26800)'."
+    }
+  ],
+  "pendencias": [
+    "Nao ha arquivo Hero.a11y.test.tsx (sem cobertura axe).",
+    "O CSS nao define nenhum estado interativo (sem :hover, :focus-visible, disabled) — o array de estados fica vazio por decisao do proprio componente.",
+    "As diretrizes 'maximo de 2 CTAs' e 'titulo de ate 8 palavras' sao documentais: o codigo nao valida nem limita o conteudo dos slots.",
+    "--hero-content-max-inline-size (600px) e min-block-size (280px) e min-inline-size do slot (300px) sao literais sem token correspondente na collection.",
+    "Nao existe variante mobile no node do Figma; o breakpoint de 768px foi definido na implementacao."
+  ]
+}

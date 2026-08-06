@@ -1,0 +1,171 @@
+{
+  "slug": "radio",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Formulários",
+  "resumo": "O Radio permite escolher exatamente uma opção entre alternativas que se excluem. O RadioGroup reúne as opções, guarda qual está selecionada e cuida da navegação por teclado.",
+  "quandoUsar": [
+    "Perguntar como a pessoa quer receber um documento emitido — retirar em uma unidade ou receber em formato digital — quando só uma resposta é possível.",
+    "Definir o perfil de quem está solicitando (titular, procurador, representante legal) antes de abrir o formulário correspondente, porque a resposta muda os documentos exigidos.",
+    "Escolher o tipo de atendimento em um agendamento (primeira via, segunda via, renovação), com poucas alternativas visíveis ao mesmo tempo.",
+    "Confirmar a forma de contato preferida para avisos sobre o protocolo, com um texto de apoio curto explicando cada opção.",
+    "Selecionar entre duas ou três unidades de atendimento já filtradas, quando a pessoa precisa comparar as alternativas lado a lado antes de decidir."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "A pergunta aceita mais de uma resposta ao mesmo tempo, como escolher quais documentos serão anexados.",
+      "alternativa": "checkbox"
+    },
+    {
+      "texto": "A escolha é do tipo ligado/desligado sobre uma única preferência, como receber avisos por e-mail.",
+      "alternativa": "toggle"
+    },
+    {
+      "texto": "A lista tem dezenas de opções, como escolher o município ou o serviço dentro de um catálogo grande.",
+      "alternativa": "dropdown"
+    },
+    {
+      "texto": "Cada alternativa leva a um fluxo ou a uma página diferente, em vez de registrar uma resposta no formulário.",
+      "alternativa": "action-card"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Grupo",
+      "descricao": "Elemento que envolve todas as opções, guarda o valor selecionado e concentra a navegação por teclado."
+    },
+    {
+      "numero": 2,
+      "parte": "Legenda do grupo",
+      "descricao": "Pergunta ou instrução exibida acima das opções. Aparece quando a propriedade label do RadioGroup é preenchida."
+    },
+    {
+      "numero": 3,
+      "parte": "Lista de opções",
+      "descricao": "Área que organiza os itens em coluna (vertical) ou em linha (horizontal), conforme a orientação escolhida."
+    },
+    {
+      "numero": 4,
+      "parte": "Controle",
+      "descricao": "Círculo de 24px que muda de ícone entre não selecionado e selecionado, com realce de toque no hover e no clique."
+    },
+    {
+      "numero": 5,
+      "parte": "Rótulo",
+      "descricao": "Texto obrigatório de cada opção. Toda a linha é clicável, incluindo o rótulo e o texto de apoio."
+    },
+    {
+      "numero": 6,
+      "parte": "Texto de apoio",
+      "descricao": "Frase opcional abaixo do rótulo, menor, ligada à opção para leitores de tela."
+    },
+    {
+      "numero": 7,
+      "parte": "Campo nativo",
+      "descricao": "Campo de formulário do próprio navegador, visualmente escondido mas presente na página, responsável pelo comportamento padrão do rádio."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "Não há mudança de layout por largura de tela. Na orientação horizontal as opções quebram para a linha de baixo quando não cabem, e a orientação vertical é a recomendada para listas longas ou com texto de apoio. Em telas de toque, sem cursor, o realce de passagem do mouse não aparece — o retorno visual vem no toque. Quando a pessoa configura o sistema para reduzir animações, as transições do controle são removidas.",
+  "dosDonts": [
+    {
+      "faca": "Preencha a label do RadioGroup com a pergunta que as opções respondem, como \"Como você quer receber a certidão?\".",
+      "naoFaca": "Deixar o grupo sem label e confiar que o parágrafo acima da lista explica a pergunta.",
+      "porque": "A label do grupo vira a legenda do conjunto. Sem ela, quem usa leitor de tela ouve as opções soltas e não sabe o que está respondendo."
+    },
+    {
+      "faca": "Use a orientação vertical sempre que as opções tiverem texto de apoio ou rótulos com mais de três palavras.",
+      "naoFaca": "Usar a orientação horizontal com rótulos longos ou com texto de apoio.",
+      "porque": "Na horizontal os itens ficam lado a lado e quebram em linhas irregulares, o que dificulta ligar cada texto de apoio ao seu rótulo."
+    },
+    {
+      "faca": "Ofereça uma opção explícita de recusa ou de indiferença quando ela existir, como \"Não se aplica\".",
+      "naoFaca": "Contar que a pessoa vai conseguir desmarcar a opção depois de escolhê-la.",
+      "porque": "Depois de selecionar, não existe caminho de volta ao estado sem resposta: quem se arrepende precisa de outra opção para marcar."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Escreva a label do grupo como pergunta direta ou instrução curta, sem ponto final: \"Como você quer receber o documento?\".",
+    "Rótulos curtos, de preferência até cinco palavras, com maiúscula apenas na primeira letra e sem ponto final.",
+    "Mantenha o paralelismo entre as opções: ou todas começam com verbo (\"Retirar presencialmente\", \"Receber por e-mail\"), ou todas são substantivos.",
+    "Use o texto de apoio para tirar a dúvida que o rótulo deixa — prazo, custo, exigência — em uma frase. Ele não repete o rótulo.",
+    "Não coloque no texto de apoio a informação decisiva da escolha: ele é menor e pode não ser lido. O que muda a decisão vai no rótulo."
+  ],
+  "hierarquia": [
+    "Posicione o grupo no ponto do formulário em que a pergunta precisa ser respondida. Se a resposta muda os campos seguintes, ela vem antes deles.",
+    "Alinhe o grupo à esquerda, na mesma coluna dos demais campos, para que a leitura do formulário siga uma linha só.",
+    "O rótulo tem mais peso visual que o texto de apoio. Use esse contraste: rótulo para a escolha, apoio para o detalhe.",
+    "Mantenha o número de opções pequeno o suficiente para caber sem rolagem. Listas longas cansam a leitura e pedem outro componente."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Text Input",
+      "slug": "text-input",
+      "relacao": "Quando uma opção como \"Outro\" exige detalhe, mostre o campo de texto logo abaixo dela e só depois que ela for selecionada."
+    },
+    {
+      "componente": "Checkbox",
+      "slug": "checkbox",
+      "relacao": "No mesmo formulário, use Checkbox para perguntas que aceitam várias respostas. O contraste entre os dois ensina o que é exclusivo e o que não é."
+    },
+    {
+      "componente": "Alert",
+      "slug": "alert",
+      "relacao": "Quando a escolha muda prazo, custo ou documentos exigidos, explique a consequência em um Alert abaixo do grupo, depois da seleção."
+    },
+    {
+      "componente": "Button",
+      "slug": "button",
+      "relacao": "O botão que confirma ou avança a etapa fica abaixo do grupo, nunca ao lado das opções."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Forma de retirada da certidão",
+      "contexto": "No fim do pedido de segunda via, a pessoa precisa dizer se retira o documento em uma unidade do Poupatempo ou recebe a versão digital.",
+      "comoFica": "Um RadioGroup vertical com a label \"Como você quer receber a certidão?\" e duas opções: \"Retirar presencialmente\", com texto de apoio informando o prazo de retirada, e \"Receber em formato digital\". Nenhuma opção vem marcada, porque a resposta é obrigatória e não há padrão seguro. O botão de avançar fica abaixo do grupo."
+    },
+    {
+      "titulo": "Perfil de quem está solicitando",
+      "contexto": "Um serviço do Detran-SP precisa saber se quem preenche é o próprio titular ou alguém em nome dele, porque os documentos exigidos mudam.",
+      "comoFica": "Um RadioGroup vertical com a label \"Quem está fazendo esta solicitação?\" e três opções: \"Sou o titular\", \"Sou procurador\" e \"Sou representante legal\". Ao marcar procurador, aparece abaixo do grupo um Alert com os documentos adicionais necessários."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Usar o Radio sozinho, fora de um RadioGroup.",
+      "consequencia": "As opções não compartilham nome nem estado: elas não se comportam como um grupo exclusivo e a seleção não funciona.",
+      "correcao": "Envolva sempre as opções em um RadioGroup com name, value e onChange preenchidos."
+    },
+    {
+      "erro": "Colocar uma div de layout ou outro componente entre o RadioGroup e as opções.",
+      "consequencia": "O grupo só entrega estado às opções que são filhas diretas. Opções aninhadas ficam sem funcionamento, mesmo aparecendo na tela.",
+      "correcao": "Deixe as opções como filhas diretas do grupo e resolva o layout pela orientação ou por CSS no próprio grupo."
+    },
+    {
+      "erro": "Renderizar todas as opções em modo somente leitura para exibir a resposta já registrada.",
+      "consequencia": "Nesse modo o controle desaparece da tela. A pessoa vê uma lista de textos sem marca nenhuma e não descobre qual foi a resposta.",
+      "correcao": "No modo somente leitura, exiba apenas a opção escolhida. Para bloquear a edição sem esconder o controle, use o estado desabilitado."
+    },
+    {
+      "erro": "Passar um valor ao grupo que não corresponde a nenhuma opção da lista.",
+      "consequencia": "O grupo abre sem nada marcado e a pessoa pode achar que já respondeu, enviando o formulário incompleto.",
+      "correcao": "Garanta que o valor do grupo seja exatamente igual ao valor de uma das opções, inclusive maiúsculas e acentos."
+    }
+  ],
+  "notasImplementacao": [
+    "A navegação por setas seleciona a opção ao mover o foco. Nas listas verticais funcionam as setas para cima e para baixo; nas horizontais, esquerda e direita. A navegação pula opções desabilitadas e dá a volta no início e no fim da lista.",
+    "Cada item é montado como um rótulo de formulário, então o clique em qualquer ponto da linha — controle, rótulo ou texto de apoio — seleciona a opção.",
+    "No modo somente leitura o campo continua presente na página e acessível a leitores de tela; apenas o controle visual é escondido e o clique é cancelado.",
+    "O grupo só entrega estado a filhos que sejam do tipo Radio; qualquer outro elemento passa direto, sem receber nome nem seleção.",
+    "A cor do anel de foco está escrita como valor literal no CSS porque ainda não existe variável exportada para ela na coleção de tokens.",
+    "Não existe variante para telas pequenas definida no Figma para este componente, e o CSS não tem regras por largura de tela.",
+    "As propriedades ainda não têm descrição no Storybook: a referência de uso é esta documentação."
+  ],
+  "pendentes": [
+    "O campo de tamanhos ficou vazio porque o componente não expõe prop de tamanho: o controle tem dimensão fixa.",
+    "O componente não tem estado de erro nem propriedade de validação, então não foi possível orientar como sinalizar uma resposta obrigatória não preenchida.",
+    "Não existem stories nem testes dedicados ao RadioGroup, o que impede orientar sobre grupos com opções carregadas dinamicamente."
+  ]
+}

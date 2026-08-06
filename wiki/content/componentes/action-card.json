@@ -1,0 +1,158 @@
+{
+  "slug": "action-card",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Conteúdo",
+  "resumo": "O Action Card é um card inteiro clicável, com ícone, título e descrição curta. Serve para a pessoa escolher entre caminhos equivalentes ou entrar em um serviço a partir de uma lista de atalhos.",
+  "quandoUsar": [
+    "Na entrada de um serviço, para a pessoa escolher entre caminhos de mesmo peso: primeira via, segunda via ou atualização de dados.",
+    "Na página inicial de uma área logada, como atalho para os serviços mais usados pela pessoa.",
+    "Quando é preciso escolher o canal antes de ver o formulário, como atendimento presencial ou online.",
+    "Quando a escolha precisa continuar marcada na tela até a pessoa confirmar, usando selected."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Quando o bloco apresenta informação e não leva a lugar nenhum.",
+      "alternativa": "card"
+    },
+    {
+      "texto": "Quando as opções são a resposta de uma pergunta do formulário e precisam ser enviadas com os demais dados.",
+      "alternativa": "radio"
+    },
+    {
+      "texto": "Quando a ação é secundária e cabe em uma linha, como \"Ver todos os serviços\".",
+      "alternativa": "button"
+    },
+    {
+      "texto": "Quando as opções formam a navegação principal do site.",
+      "alternativa": "meganav"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Card",
+      "descricao": "Superfície branca com borda, cantos arredondados e sombra. Vira botão, link ou bloco estático conforme as props informadas."
+    },
+    {
+      "numero": 2,
+      "parte": "Cabeçalho",
+      "descricao": "Linha superior que reúne o círculo do ícone e o título."
+    },
+    {
+      "numero": 3,
+      "parte": "Círculo do ícone",
+      "descricao": "Círculo preto de 56px com o ícone dentro. É decorativo e recebe aria-hidden."
+    },
+    {
+      "numero": 4,
+      "parte": "Título",
+      "descricao": "Texto principal do card. É a única informação obrigatória."
+    },
+    {
+      "numero": 5,
+      "parte": "Badge",
+      "descricao": "Marcação opcional entre o cabeçalho e a descrição."
+    },
+    {
+      "numero": 6,
+      "parte": "Descrição",
+      "descricao": "Texto de apoio opcional, abaixo do cabeçalho, explicando o que acontece ao escolher."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "O card ocupa 100% da largura do container e quebra o texto sem estourar a caixa, então quem controla a largura é a grade em volta. O realce de hover só aparece em dispositivos com ponteiro, para o card não ficar preso no estado destacado depois do toque no celular. Com movimento reduzido ativo, a transição de fundo, borda e sombra é removida.",
+  "dosDonts": [
+    {
+      "faca": "Escolha um único modo por card: href quando a escolha leva a outra página, onClick quando a ação acontece na mesma tela.",
+      "naoFaca": "Passar href e onClick esperando que o clique execute apenas a função.",
+      "porque": "href tem precedência: o card vira link e navega, mesmo com onClick definido."
+    },
+    {
+      "faca": "Use selected para mostrar qual opção da grade está escolhida.",
+      "naoFaca": "Usar selected em um card estático, sem onClick nem href.",
+      "porque": "Sem modo interativo a borda muda, mas não há aria-pressed nem aria-current: quem usa leitor de tela não recebe a informação de seleção."
+    },
+    {
+      "faca": "Mantenha ícone, título e descrição no mesmo nível de detalhe em todos os cards da mesma grade.",
+      "naoFaca": "Deixar uns cards com descrição e outros sem, lado a lado.",
+      "porque": "Alturas diferentes fazem a leitura pular e sugerem que algumas opções valem mais do que outras."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Título curto, começando por verbo quando for uma ação: \"Agendar atendimento\", \"Consultar protocolo\".",
+    "Descrição de uma frase, com até cerca de 90 caracteres, dizendo o que acontece ao escolher aquele caminho.",
+    "Não repita no início da descrição as mesmas palavras do título.",
+    "Escreva o título com a primeira letra maiúscula e o resto em minúsculas, sem ponto final.",
+    "Badge com uma palavra (\"Novo\", \"Indisponível\") e em poucos cards — se todos têm badge, nenhum se destaca."
+  ],
+  "hierarquia": [
+    "Quando os cards são a escolha principal da página, coloque-os logo abaixo do título e de uma linha de explicação. Quando são atalhos, deixe-os depois do conteúdo principal.",
+    "Em grade, mantenha poucas colunas em telas grandes: muitas colunas transformam a escolha em varredura visual.",
+    "O peso visual vem do círculo preto do ícone. Evite colocar a grade de Action Cards colada em um Hero com imagem forte, porque os dois disputam o olhar."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Badge",
+      "slug": "badge",
+      "relacao": "A prop badge recebe uma Badge entre o cabeçalho e a descrição, para marcar situações como \"Novo\" ou \"Em manutenção\"."
+    },
+    {
+      "componente": "Card",
+      "slug": "card",
+      "relacao": "Card é para blocos de leitura e Action Card para blocos que levam a algum lugar; misturar os dois na mesma grade confunde o que é clicável."
+    },
+    {
+      "componente": "Stepper",
+      "slug": "stepper",
+      "relacao": "Em fluxos com etapas, o Action Card costuma ser a escolha da primeira etapa, com o Stepper acima mostrando em que ponto a pessoa está."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Escolha do canal de atendimento",
+      "contexto": "Antes de abrir o formulário, o serviço pergunta se a pessoa quer ser atendida presencialmente em uma unidade do Poupatempo ou concluir tudo online.",
+      "comoFica": "Dois Action Cards lado a lado, cada um com ícone, título começando por verbo e uma frase de descrição. O card escolhido recebe selected e a pessoa confirma em um botão abaixo da grade."
+    },
+    {
+      "titulo": "Atalhos da área logada de um serviço estadual",
+      "contexto": "Depois de entrar com a conta gov.br, a pessoa vê a página inicial do serviço e precisa chegar rápido às tarefas mais comuns.",
+      "comoFica": "Uma grade de Action Cards com href, um para cada tarefa: consultar protocolo, emitir segunda via e atualizar cadastro. Um heading acima da grade descreve o conjunto, já que nos modos botão e link o título do card não entra na estrutura de títulos da página."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Usar o Action Card sem onClick e sem href achando que ele continua clicável.",
+      "consequencia": "O componente vira um bloco estático: não recebe foco, não responde ao Enter e quem navega por teclado não consegue acioná-lo.",
+      "correcao": "Informe href para navegação ou onClick para ação na própria tela."
+    },
+    {
+      "erro": "Contar com headingLevel nos modos botão e link.",
+      "consequencia": "Nesses modos o título é um span e não entra na lista de títulos da página; quem navega por headings passa direto pelos cards.",
+      "correcao": "Use headingLevel apenas no modo estático e, nas grades interativas, coloque um heading real acima do conjunto."
+    },
+    {
+      "erro": "Escrever títulos longos com quebras de linha manuais.",
+      "consequencia": "O título preserva as quebras informadas, e o card fica com altura diferente dos vizinhos da mesma grade.",
+      "correcao": "Use um título curto e deixe a quebra automática cuidar do resto."
+    },
+    {
+      "erro": "Esperar um estado desabilitado para serviços fora do ar.",
+      "consequencia": "Não existe disabled no componente: o card continua clicável e leva a pessoa a uma tela que não funciona.",
+      "correcao": "Retire o card da grade enquanto o serviço estiver indisponível ou avise a indisponibilidade antes do clique, com uma Badge e a explicação na página de destino."
+    }
+  ],
+  "notasImplementacao": [
+    "href tem precedência sobre onClick: com href o card é renderizado como <a> e o onClick continua sendo repassado ao link.",
+    "No modo botão, aria-pressed está sempre presente (true ou false). No modo link, aria-current só aparece quando selected é true.",
+    "Não existe estado disabled, nem como prop nem no CSS.",
+    "O título usa white-space: pre-wrap, então quebras de linha escritas no texto são preservadas na tela.",
+    "A borda padrão usa border/neutral/subtle porque a variável color/border/default do Figma ainda não existe nas coleções exportadas.",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual."
+  ],
+  "pendentes": [
+    "O campo de tamanhos ficou vazio porque o componente não expõe prop de tamanho.",
+    "Não foi possível documentar um estado de indisponibilidade: o componente não tem disabled, nem prop, nem tratamento visual.",
+    "Não há no JSON extraído orientação sobre quantidade de colunas ou de cards por grade; a recomendação de manter poucas colunas é editorial e precisa de validação do time de design."
+  ]
+}

@@ -1,0 +1,157 @@
+{
+  "slug": "chip",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Conteúdo",
+  "resumo": "Etiqueta pequena e arredondada que mostra um texto curto, com ícone opcional antes ou depois. Serve para rotular a situação de um item ou, quando recebe onClick, para ligar e desligar um filtro.",
+  "quandoUsar": [
+    "Mostrar a situação de cada protocolo em uma lista de solicitações — por exemplo, \"Em análise\", \"Deferido\" ou \"Indeferido\" —, usando a cor da variante para diferenciar.",
+    "Oferecer filtros rápidos acima de uma lista de resultados: com onClick e selected, a pessoa liga e desliga cada filtro sem abrir formulário nem recarregar a página.",
+    "Exibir quais filtros já estão aplicados em uma busca de unidades de atendimento, para que a pessoa entenda por que a lista está curta.",
+    "Rotular a modalidade de um serviço dentro de um card (\"Presencial\", \"Online\", \"Agendamento obrigatório\") sem competir com o título.",
+    "Marcar uma característica secundária de um item de lista, como a categoria de um documento, em texto de 12px que não disputa atenção com o conteúdo principal."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Para disparar a ação principal da página, como confirmar um agendamento ou enviar uma solicitação.",
+      "alternativa": "Button"
+    },
+    {
+      "texto": "Para explicar um problema de preenchimento ou um aviso que a pessoa precisa ler antes de continuar.",
+      "alternativa": "Alert"
+    },
+    {
+      "texto": "Para levar a pessoa a outra página ou a outro serviço.",
+      "alternativa": "Link"
+    },
+    {
+      "texto": "Para rotular status em telas onde nada é clicável e o rótulo nunca muda de estado.",
+      "alternativa": "Badge"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Corpo do chip",
+      "descricao": "Pílula que envolve todo o conteúdo. É um elemento estático por padrão e vira botão quando recebe onClick."
+    },
+    {
+      "numero": 2,
+      "parte": "Ícone inicial",
+      "descricao": "Ícone opcional de 16px antes do texto, ligado por showLeadingIcon ou substituído por leadingIcon. É decorativo."
+    },
+    {
+      "numero": 3,
+      "parte": "Rótulo",
+      "descricao": "Texto do chip, enviado por children. É o único conteúdo obrigatório."
+    },
+    {
+      "numero": 4,
+      "parte": "Ícone final",
+      "descricao": "Ícone opcional de 16px depois do texto, ligado por showTrailingIcon ou substituído por trailingIcon. Também é decorativo."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "O chip acompanha o espaço disponível: ele tem largura máxima de 100% do container e rótulos maiores do que esse espaço são cortados com reticências. O destaque de hover só aparece em dispositivos com ponteiro (mouse), e a transição de cores é removida quando a pessoa configura o sistema para reduzir animações.",
+  "dosDonts": [
+    {
+      "faca": "Use a variante danger apenas para situações realmente negativas, como \"Indeferido\" ou \"Prazo vencido\".",
+      "naoFaca": "Usar danger só para destacar um chip que você considera importante.",
+      "porque": "A cor vermelha é lida como falha antes de o texto ser lido; o significado da cor vence o significado da palavra."
+    },
+    {
+      "faca": "Passe onClick somente quando o clique realmente muda alguma coisa, como aplicar ou remover um filtro.",
+      "naoFaca": "Usar a prop selected em um chip sem onClick.",
+      "porque": "Sem onClick o chip é um elemento estático: não tem hover, não vira botão e não expõe aria-pressed, então a aparência de selecionado não é anunciada nem alterável."
+    },
+    {
+      "faca": "Mantenha o rótulo entre uma e três palavras.",
+      "naoFaca": "Escrever uma frase inteira dentro do chip.",
+      "porque": "O rótulo é truncado com reticências quando passa da largura do container, e a informação some justamente no fim da frase."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Use de uma a três palavras. O chip é um rótulo, não uma explicação.",
+    "Escreva o rótulo com a primeira letra maiúscula e o resto em minúsculas, sem ponto final: \"Em análise\", não \"EM ANÁLISE\".",
+    "Em filtros, escreva o nome do filtro e não a instrução: \"Presencial\", não \"Filtrar por presencial\".",
+    "Não repita dentro do chip a palavra que já está no título do grupo. Se o grupo se chama \"Modalidade\", o chip é \"Online\", não \"Modalidade online\".",
+    "Evite siglas sem contexto. Se a sigla for inevitável, garanta que ela apareça por extenso em algum lugar visível da mesma tela."
+  ],
+  "hierarquia": [
+    "O chip é o elemento de menor peso visual do bloco: texto de 12px. Se ele estiver chamando mais atenção que o título ou que o dado principal, revise a variante escolhida.",
+    "Chips de filtro ficam entre o título da lista e a própria lista, na ordem em que a pessoa lê antes de examinar os resultados.",
+    "Chips de status ficam junto do dado que descrevem — na mesma linha do número do protocolo ou dentro da célula da tabela —, nunca soltos no topo da página.",
+    "Quando houver vários chips lado a lado, mantenha todos com o mesmo tratamento; misturar variantes coloridas e neutras na mesma fila faz o grupo parecer dois grupos."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Data Table",
+      "slug": "data-table",
+      "relacao": "Dentro da célula, o chip mostra a situação de cada linha sem que a coluna precise de texto longo."
+    },
+    {
+      "componente": "Card",
+      "slug": "card",
+      "relacao": "O chip aparece no card como etiqueta de categoria ou modalidade do serviço, abaixo ou ao lado do título."
+    },
+    {
+      "componente": "List Item",
+      "slug": "list-item",
+      "relacao": "Em listas de solicitações, o chip marca a situação de cada item mantendo a leitura em uma linha."
+    },
+    {
+      "componente": "Badge",
+      "slug": "badge",
+      "relacao": "Resolvem coisas diferentes: o badge rotula sem receber clique; o chip pode virar botão e guardar estado de selecionado. Escolha um dos dois por tela e mantenha a escolha."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Filtros de unidades de atendimento",
+      "contexto": "Página de busca de unidades do Poupatempo, com uma lista longa de endereços e a necessidade de restringir por modalidade de atendimento.",
+      "comoFica": "Acima da lista, uma fila de chips com onClick: \"Presencial\", \"Agendamento obrigatório\" e \"Atende sem agendamento\". Cada chip clicado fica com o estado selected e a lista abaixo é reduzida. A pessoa vê, sem rolar, quais filtros estão ativos."
+    },
+    {
+      "titulo": "Situação dos protocolos abertos",
+      "contexto": "Área logada em que a pessoa acompanha as solicitações que abriu em serviços do Estado, como a segunda via de um documento.",
+      "comoFica": "Cada linha traz o número do protocolo, a data de abertura e um chip de status: \"Em análise\" na variante information, \"Concluído\" na variante success e \"Indeferido\" na variante danger. Os chips não recebem onClick, porque a linha inteira já leva ao detalhe."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Usar selected em um chip que não tem onClick.",
+      "consequencia": "O chip fica com aparência de escolhido, mas não responde ao clique, não expõe aria-pressed e quem usa leitor de tela não recebe nenhuma indicação de seleção.",
+      "correcao": "Use selected somente junto com onClick. Para um rótulo fixo, deixe o chip estático e sem selected."
+    },
+    {
+      "erro": "Colocar um ícone final esperando que ele funcione como botão de remover o filtro.",
+      "consequencia": "O ícone é decorativo e não recebe clique próprio: qualquer toque aciona o chip inteiro, e leitores de tela nem anunciam o ícone.",
+      "correcao": "Trate o clique como ação do chip inteiro (ligar e desligar o filtro) e não prometa no desenho um botão de fechar que a API não oferece."
+    },
+    {
+      "erro": "Escolher entre as variantes support e action esperando aparências diferentes.",
+      "consequencia": "Hoje as duas usam o mesmo estilo base e ficam visualmente idênticas, então a diferença combinada em reunião não chega à tela.",
+      "correcao": "Escolha pela intenção declarada no código e não conte com distinção visual entre as duas até que essa pendência seja resolvida."
+    },
+    {
+      "erro": "Colocar muitos chips coloridos na mesma fila.",
+      "consequencia": "As variantes information, success, warning e danger têm fundo próprio; em sequência, a fila vira um mosaico e a cor deixa de significar alguma coisa.",
+      "correcao": "Use cor apenas onde ela carrega significado de estado e mantenha os demais chips na variante neutra."
+    }
+  ],
+  "notasImplementacao": [
+    "Com onClick o componente renderiza <button type=\"button\"> com aria-pressed refletindo selected e o atributo disabled nativo. Sem onClick renderiza um elemento estático que, quando disabled, recebe aria-disabled=\"true\".",
+    "Os ícones são marcados como aria-hidden. Nenhuma informação pode existir apenas no ícone.",
+    "O componente não implementa atalhos de teclado próprios: quando interativo, depende do comportamento nativo do <button>.",
+    "As variantes support e action não têm regra CSS própria e hoje herdam apenas o estilo base — não há diferença visual entre elas.",
+    "Alguns valores (fundo de seleção, borda forte e as cores de texto de sucesso e de erro) estão como literais no CSS porque as variables correspondentes ainda não foram exportadas nas collections de tokens.",
+    "O componente aceita apenas className e onClick além das props documentadas: não encaminha ref nem repassa outros atributos nativos.",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual."
+  ],
+  "pendentes": [
+    "Não há orientação de quantidade máxima de chips por fila: nem o código nem o Figma definem limite, e qualquer número sugerido aqui seria invenção.",
+    "A diferença editorial entre as variantes support e action não pôde ser descrita, porque as duas não se distinguem no código nem têm definição registrada.",
+    "O campo de tamanhos ficou vazio porque o componente não expõe prop de tamanho.",
+    "Não existe ação de remoção (chip com fechar) na API; por isso não há orientação sobre chips removíveis."
+  ]
+}

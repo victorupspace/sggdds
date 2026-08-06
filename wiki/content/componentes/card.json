@@ -1,0 +1,166 @@
+{
+  "slug": "card",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Conteúdo",
+  "resumo": "Bloco que reúne, em um único container, imagem, marcador de status, título, texto curto e uma ação. Serve para apresentar itens comparáveis — serviços, comunicados, destaques — de forma padronizada.",
+  "quandoUsar": [
+    "Para listar serviços de uma secretaria com nome, resumo de uma ou duas linhas e uma ação, como \"Agendar atendimento\".",
+    "Para destacar comunicados e campanhas em que a imagem ajuda a reconhecer o assunto.",
+    "Para apresentar itens comparáveis lado a lado, quando a pessoa precisa escolher entre opções parecidas.",
+    "Para resumir um item que tem página própria, levando ao detalhe pela ação do rodapé.",
+    "Para agrupar informação e ação no mesmo bloco quando o texto sozinho não deixa claro o que fazer em seguida."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Para uma lista simples de links, sem imagem e sem resumo, como um índice de páginas.",
+      "alternativa": "List Item"
+    },
+    {
+      "texto": "Quando o bloco inteiro deve ser clicável e levar a um único destino.",
+      "alternativa": "Action Card"
+    },
+    {
+      "texto": "Para dados que precisam ser comparados coluna a coluna, como número do protocolo, data e situação.",
+      "alternativa": "Data Table"
+    },
+    {
+      "texto": "Para apenas separar dois trechos de conteúdo em uma página.",
+      "alternativa": "Divider"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Mídia",
+      "descricao": "Espaço opcional de imagem ou vídeo, no topo na orientação vertical e à esquerda na horizontal. Quando não é informado, o espaço não é criado."
+    },
+    {
+      "numero": 2,
+      "parte": "Marcador",
+      "descricao": "Espaço opcional acima do título, feito para receber o Badge do design system com o status ou a categoria do item."
+    },
+    {
+      "numero": 3,
+      "parte": "Barra do título",
+      "descricao": "Traço vermelho vertical antes do título. É decorativo e marca visualmente o começo do conteúdo."
+    },
+    {
+      "numero": 4,
+      "parte": "Título",
+      "descricao": "Texto obrigatório do card, renderizado como título de seção. O nível do título é definido em headingLevel."
+    },
+    {
+      "numero": 5,
+      "parte": "Descrição",
+      "descricao": "Texto de apoio abaixo do título, em cor mais clara. Some quando não é informado."
+    },
+    {
+      "numero": 6,
+      "parte": "Linha divisória",
+      "descricao": "Traço fino entre a descrição e a ação, ligado por showDivider. É decorativo."
+    },
+    {
+      "numero": 7,
+      "parte": "Ação",
+      "descricao": "Espaço no rodapé do card, feito para receber o Button do design system. É onde a interação acontece."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "O card ocupa toda a largura do container em que é colocado. Na orientação horizontal ele exige uma largura mínima no desktop para manter a imagem à esquerda; em telas de até 640px essa orientação empilha automaticamente, com a imagem no topo, igual à vertical, e o espaçamento interno volta ao ritmo do layout vertical. Com redução de movimento ativada, as transições de sombra e de fundo são desligadas.",
+  "dosDonts": [
+    {
+      "faca": "Concentre a interação no espaço de ação, com um Button ou um link.",
+      "naoFaca": "Envolver o card inteiro em um link para deixar o bloco todo clicável.",
+      "porque": "O card não é um elemento focável: ele apenas reage quando algo dentro dele recebe foco. Envolver tudo em um link cria controles aninhados e um alvo de clique que não corresponde ao que está desenhado."
+    },
+    {
+      "faca": "Defina headingLevel de acordo com a posição do card na página.",
+      "naoFaca": "Deixar o nível padrão em todas as telas sem conferir a hierarquia dos títulos.",
+      "porque": "O título do card vira um título real da página. Se o nível não acompanha a estrutura, quem navega por títulos com leitor de tela pula degraus e perde a noção de onde está."
+    },
+    {
+      "faca": "Use a mesma composição em todos os cards de uma mesma lista — a mesma presença de imagem, marcador, descrição e ação.",
+      "naoFaca": "Misturar, na mesma linha, cards com imagem e cards sem imagem.",
+      "porque": "Todas essas partes são opcionais e o card acompanha a altura do conteúdo. A mistura desalinha os blocos e quebra a leitura de comparação, que é a razão de usar cards."
+    }
+  ],
+  "conteudoEEscrita": [
+    "No título, use o nome do serviço como a pessoa procura por ele: \"Licenciamento anual\", não \"LIC-2026\" nem uma sigla isolada.",
+    "Na descrição, diga em uma ou duas linhas o que a pessoa consegue fazer ali. Não repita o título com outras palavras.",
+    "No marcador, use uma palavra ou expressão curta de status ou categoria (\"Online\", \"Presencial\", \"Novo\").",
+    "No rótulo da ação, use verbo mais objeto, coerente com o título do card: se o título é \"Agendamento de RG\", a ação é \"Agendar RG\", não \"Saiba mais\".",
+    "Use maiúscula apenas na primeira palavra e em nomes próprios, em todas as partes do card."
+  ],
+  "hierarquia": [
+    "A barra vermelha e o título formam o ponto de entrada da leitura; a descrição fica em cor mais clara justamente para vir depois.",
+    "O card funciona em grade, com dois ou três por linha. Um card isolado no meio de um texto corrido chama mais atenção do que merece.",
+    "A ação fica sempre no rodapé, depois da linha divisória, e é o último elemento lido do bloco.",
+    "Em uma página com muitos cards, use um título de seção acima da grade para explicar o que aquele conjunto reúne."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Badge",
+      "slug": "badge",
+      "relacao": "O espaço de marcador do card foi feito para receber o Badge, com o status ou a categoria do item."
+    },
+    {
+      "componente": "Button",
+      "slug": "button",
+      "relacao": "O espaço de ação do rodapé recebe o Button, que é o único elemento interativo esperado dentro do card."
+    },
+    {
+      "componente": "Carousel",
+      "slug": "carousel",
+      "relacao": "O Carousel é composto por cards: cada item da lista vira um Card com as mesmas partes descritas aqui."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Vitrine de serviços de uma secretaria",
+      "contexto": "Página que reúne os serviços digitais mais procurados, todos com o mesmo tipo de informação.",
+      "comoFica": "Grade de três colunas com cards verticais: marcador \"Online\", título com o nome do serviço, descrição de uma linha, linha divisória e botão \"Agendar atendimento\". Todos os cards têm as mesmas partes, então os blocos ficam alinhados."
+    },
+    {
+      "titulo": "Comunicado com imagem em uma página de notícias",
+      "contexto": "Aviso sobre mudança no atendimento presencial, com foto da unidade e um botão que leva ao texto completo.",
+      "comoFica": "Card na orientação horizontal, com a imagem à esquerda e o texto à direita no desktop. Abaixo de 640px o bloco empilha sozinho, com a imagem no topo, sem precisar de outra composição."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Colocar mais de um botão no espaço de ação.",
+      "consequencia": "As duas ações competem dentro de um bloco pequeno e a pessoa precisa comparar rótulos antes de decidir qual leva ao serviço.",
+      "correcao": "Deixe uma ação por card. Se houver um caminho secundário, leve-o para a página de detalhe."
+    },
+    {
+      "erro": "Repetir o mesmo rótulo de ação em todos os cards, como \"Saiba mais\".",
+      "consequencia": "Quem navega pelos controles com leitor de tela ouve uma sequência de rótulos idênticos, sem saber a que serviço cada um pertence.",
+      "correcao": "Escreva a ação com o objeto: \"Agendar RG\", \"Emitir certidão\", \"Consultar protocolo\"."
+    },
+    {
+      "erro": "Ligar e desligar a linha divisória sem critério dentro da mesma lista.",
+      "consequencia": "Cards da mesma grade ganham ritmos internos diferentes e a lista parece formada por componentes distintos.",
+      "correcao": "Defina uma regra para o conjunto: com divisória quando há ação, sem divisória quando não há — e aplique a todos."
+    },
+    {
+      "erro": "Usar o card apenas como caixa de texto, sem ação e sem imagem.",
+      "consequencia": "A borda, a sombra e a barra vermelha sugerem que existe algo a fazer ali, e a pessoa procura por um botão que não existe.",
+      "correcao": "Se é só texto, use o conteúdo da página com um separador. Reserve o card para itens que levam a algum lugar."
+    }
+  ],
+  "notasImplementacao": [
+    "O container é uma seção de conteúdo (article) e o título usa o nível informado em headingLevel, entre 2 e 6.",
+    "A barra vermelha do título e a linha divisória são decorativas e não são anunciadas.",
+    "O card não recebe foco: o anel de foco aparece quando um elemento interno é alcançado pelo teclado. Por isso a interação deve ficar nos espaços de mídia, marcador e ação.",
+    "As partes opcionais só existem quando o conteúdo é informado; sem imagem, sem marcador, sem descrição ou sem ação, os espaços correspondentes não são criados.",
+    "As cores de estado, o anel de foco e as sombras usam valores fixos no código, porque as variáveis correspondentes ainda não existem nas coleções exportadas do Figma.",
+    "O comportamento abaixo de 640px foi definido no código; não existe variante para telas pequenas no Figma.",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual."
+  ],
+  "pendentes": [
+    "Não há limite de caracteres definido para título e descrição: o card não corta texto, apenas cresce. A regra de tamanho precisa ser combinada por produto.",
+    "Não foi possível orientar sobre proporção e tratamento das imagens além da altura fixa no layout vertical; o material extraído não define recorte nem formato.",
+    "Não há definição de quantos cards por linha o design system recomenda em cada largura de tela: a grade fica por conta da página que usa o componente."
+  ]
+}

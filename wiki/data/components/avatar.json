@@ -1,0 +1,217 @@
+{
+  "slug": "avatar",
+  "name": "Avatar",
+  "storybookTitle": "Web Components/Avatar",
+  "sourceDir": "packages/react/src/components/Avatar",
+  "exports": ["Avatar"],
+  "typeExports": ["AvatarProps", "AvatarSize"],
+  "oneLiner": "Avatar oferece uma representacao visual consistente para pessoas, usuarios ou entidades em navegacao, conta, listas e composicoes sociais.",
+  "docsDescription": "Avatar oferece uma representacao visual consistente para pessoas, usuarios ou entidades em navegacao, conta, listas e composicoes sociais.\n\nUse para identificacao rapida quando existe uma pessoa ou entidade associada ao conteudo. Nao use Avatar como status, badge, botao independente ou decoracao sem nome acessivel.\n\nResponsividade:\nEste componente foi desenvolvido com comportamento responsivo nativo, mantendo proporcao circular, evitando overflow e ajustando o tamanho xlarge em telas pequenas. A responsividade e aplicada na implementacao do componente e nao depende de variacoes manuais no Storybook.\n\nTokens:\nCores, borda, radius, tamanho, tipografia e estados usam variaveis CSS geradas pelos tokens do Figma. O fallback textual usa soft black como superficie neutra, alinhado aos padroes atuais de identificacao e contraste do Design System.\n\nAcessibilidade:\n- name e usado para nomear o fallback de iniciais.\n- Quando src e informado, a imagem usa alt; se alt nao for informado, name e usado.\n- Caso a imagem falhe, o componente volta para iniciais sem quebrar a interface.\n- O estado disabled comunica indisponibilidade com aria-disabled e tratamento visual.",
+  "props": [
+    {
+      "name": "name",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Nome da pessoa ou entidade representada. Usado como aria-label do fallback e como alt da imagem quando alt nao e informado.",
+      "source": "ambos"
+    },
+    {
+      "name": "alt",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Texto alternativo da imagem quando src for usado.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao avatar.",
+      "source": "ambos"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "values": ["true", "false"],
+      "default": "false",
+      "required": false,
+      "description": "Aplica tratamento visual e aria-disabled.",
+      "source": "ambos"
+    },
+    {
+      "name": "initials",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Iniciais opcionais. Quando ausente, sao derivadas de name. O valor e aparado, cortado em 2 caracteres e passado para maiusculas.",
+      "source": "ambos"
+    },
+    {
+      "name": "size",
+      "type": "AvatarSize",
+      "values": ["xsmall", "small", "medium", "large", "xlarge"],
+      "default": "'medium'",
+      "required": false,
+      "description": "Tamanho do avatar.",
+      "source": "ambos"
+    },
+    {
+      "name": "src",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "URL da imagem do usuario ou entidade. Se a imagem falhar (onError), o componente volta para as iniciais.",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [],
+  "slots": [],
+  "cssClasses": [
+    "ds-avatar",
+    "ds-avatar--size-xsmall",
+    "ds-avatar--size-small",
+    "ds-avatar--size-medium",
+    "ds-avatar--size-large",
+    "ds-avatar--size-xlarge",
+    "ds-avatar--disabled",
+    "ds-avatar__image",
+    "ds-avatar__fallback"
+  ],
+  "cssCustomProperties": [
+    { "name": "--avatar-background", "value": "var(--ds-semantic-text-style-content-color-typography-secondary)", "comment": null },
+    { "name": "--avatar-foreground", "value": "var(--ds-semantic-color-background-neutral-default)", "comment": null },
+    { "name": "--avatar-border-color", "value": "var(--ds-primitive-color-neutral-alpha-8)", "comment": null },
+    { "name": "--avatar-disabled-background", "value": "var(--ds-semantic-color-border-neutral-default)", "comment": null },
+    { "name": "--avatar-disabled-foreground", "value": "var(--ds-semantic-text-style-content-color-typography-tertiary)", "comment": null },
+    { "name": "--avatar-size", "value": "var(--ds-primitive-spacing-40)", "comment": null },
+    { "name": "--avatar-font-size", "value": "var(--ds-component-avatar-typography-font-size-md)", "comment": null },
+    { "name": "--avatar-line-height", "value": "var(--ds-primitive-typography-line-height-16)", "comment": null },
+    { "name": "--avatar-size", "value": "var(--ds-primitive-spacing-24)", "comment": "Override em .ds-avatar--size-xsmall" },
+    { "name": "--avatar-font-size", "value": "var(--ds-component-avatar-typography-font-size-xs)", "comment": "Override em .ds-avatar--size-xsmall" },
+    { "name": "--avatar-line-height", "value": "var(--ds-primitive-typography-line-height-12)", "comment": "Override em .ds-avatar--size-xsmall" },
+    { "name": "--avatar-size", "value": "var(--ds-primitive-spacing-32)", "comment": "Override em .ds-avatar--size-small" },
+    { "name": "--avatar-font-size", "value": "var(--ds-component-avatar-typography-font-size-sm)", "comment": "Override em .ds-avatar--size-small" },
+    { "name": "--avatar-line-height", "value": "var(--ds-primitive-typography-line-height-16)", "comment": "Override em .ds-avatar--size-small" },
+    { "name": "--avatar-size", "value": "var(--ds-primitive-spacing-40)", "comment": "Override em .ds-avatar--size-medium" },
+    { "name": "--avatar-font-size", "value": "var(--ds-component-avatar-typography-font-size-md)", "comment": "Override em .ds-avatar--size-medium" },
+    { "name": "--avatar-line-height", "value": "var(--ds-primitive-typography-line-height-16)", "comment": "Override em .ds-avatar--size-medium" },
+    { "name": "--avatar-size", "value": "var(--ds-primitive-spacing-48)", "comment": "Override em .ds-avatar--size-large" },
+    { "name": "--avatar-font-size", "value": "var(--ds-primitive-typography-font-size-18)", "comment": "Override em .ds-avatar--size-large" },
+    { "name": "--avatar-line-height", "value": "var(--ds-primitive-typography-line-height-24)", "comment": "Override em .ds-avatar--size-large" },
+    { "name": "--avatar-size", "value": "var(--ds-primitive-spacing-64)", "comment": "Override em .ds-avatar--size-xlarge" },
+    { "name": "--avatar-font-size", "value": "var(--ds-primitive-typography-font-size-28)", "comment": "Override em .ds-avatar--size-xlarge" },
+    { "name": "--avatar-line-height", "value": "var(--ds-primitive-typography-line-height-34)", "comment": "Override em .ds-avatar--size-xlarge" },
+    { "name": "--avatar-background", "value": "var(--avatar-disabled-background)", "comment": "Override em .ds-avatar--disabled" },
+    { "name": "--avatar-foreground", "value": "var(--avatar-disabled-foreground)", "comment": "Override em .ds-avatar--disabled" },
+    { "name": "--avatar-size", "value": "var(--ds-primitive-spacing-48)", "comment": "Override em @media (max-width: 420px) para .ds-avatar--size-xlarge" },
+    { "name": "--avatar-font-size", "value": "var(--ds-primitive-typography-font-size-18)", "comment": "Override em @media (max-width: 420px) para .ds-avatar--size-xlarge" },
+    { "name": "--avatar-line-height", "value": "var(--ds-primitive-typography-line-height-24)", "comment": "Override em @media (max-width: 420px) para .ds-avatar--size-xlarge" }
+  ],
+  "tokensUsed": [
+    "--ds-semantic-text-style-content-color-typography-secondary",
+    "--ds-semantic-color-background-neutral-default",
+    "--ds-primitive-color-neutral-alpha-8",
+    "--ds-semantic-color-border-neutral-default",
+    "--ds-semantic-text-style-content-color-typography-tertiary",
+    "--ds-primitive-spacing-40",
+    "--ds-component-avatar-typography-font-size-md",
+    "--ds-primitive-typography-line-height-16",
+    "--ds-primitive-border-width-border-sm",
+    "--ds-component-avatar-border-radius-circle",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-typography-font-weight-medium",
+    "--ds-primitive-spacing-24",
+    "--ds-component-avatar-typography-font-size-xs",
+    "--ds-primitive-typography-line-height-12",
+    "--ds-primitive-spacing-32",
+    "--ds-component-avatar-typography-font-size-sm",
+    "--ds-primitive-spacing-48",
+    "--ds-primitive-typography-font-size-18",
+    "--ds-primitive-typography-line-height-24",
+    "--ds-primitive-spacing-64",
+    "--ds-primitive-typography-font-size-28",
+    "--ds-primitive-typography-line-height-34",
+    "--ds-primitive-spacing-2"
+  ],
+  "stories": [
+    {
+      "id": "web-components-avatar--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-avatar--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-avatar--default&viewMode=story"
+    },
+    {
+      "id": "web-components-avatar--sizes",
+      "name": "Sizes",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-avatar--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-avatar--sizes&viewMode=story"
+    },
+    {
+      "id": "web-components-avatar--image",
+      "name": "Image",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-avatar--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-avatar--image&viewMode=story"
+    },
+    {
+      "id": "web-components-avatar--disabled",
+      "name": "Disabled",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-avatar--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-avatar--disabled&viewMode=story"
+    },
+    {
+      "id": "web-components-avatar--mobile-responsive",
+      "name": "Mobile Responsive",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-avatar--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-avatar--mobile-responsive&viewMode=story"
+    }
+  ],
+  "variants": [
+    { "prop": "size", "values": ["xsmall", "small", "medium", "large", "xlarge"] },
+    { "prop": "disabled", "values": ["true", "false"] }
+  ],
+  "states": ["disabled"],
+  "responsive": [
+    {
+      "query": "@media (max-width: 420px)",
+      "effect": "O tamanho xlarge e reduzido para o equivalente ao large: --avatar-size passa para spacing-48, --avatar-font-size para font-size-18 e --avatar-line-height para line-height-24."
+    }
+  ],
+  "accessibility": {
+    "roles": ["img (no fallback de iniciais, via role=\"img\"; na imagem, papel implicito do <img> com alt)"],
+    "ariaAttributes": ["aria-disabled", "aria-label", "alt"],
+    "keyboardInteractions": [
+      "Nenhuma: o Avatar nao e focavel nem interativo (elemento raiz e um <span>, sem tabIndex nem handlers de teclado)."
+    ],
+    "notes": [
+      "O fallback de iniciais e um <span role=\"img\" aria-label={name}>, entao leitores de tela anunciam o nome completo em vez das letras.",
+      "Quando src e valido, a imagem usa alt = alt ?? name.",
+      "Se a imagem falhar (onError), o src e memorizado como falho e o componente renderiza o fallback de iniciais.",
+      "disabled aplica aria-disabled=\"true\" no elemento raiz (o atributo e omitido quando false), opacity 0.72 e grayscale(1) na imagem.",
+      "As iniciais sao derivadas de name: primeira letra da primeira palavra + primeira letra da segunda palavra (ou segunda letra da primeira palavra quando ha apenas uma), em maiusculas; '?' quando name e vazio.",
+      "O Avatar nao tem estados de hover ou foco — nao ha seletores :hover/:focus-visible no CSS."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Avatar/Avatar.test.tsx",
+    "unitCount": 5,
+    "a11yFile": null,
+    "a11yCount": null
+  },
+  "figmaReferences": [],
+  "pendencias": [
+    "Nao existe arquivo Avatar.a11y.test.tsx.",
+    "Nenhum node-id do Figma e citado em comentarios do codigo do Avatar (nem no TSX nem no CSS).",
+    "A docsDescription menciona que o fallback textual usa 'soft black' como superficie, mas o CSS usa --ds-semantic-text-style-content-color-typography-secondary como --avatar-background; a equivalencia nao pode ser confirmada apenas por este diretorio.",
+    "Nao ha prop para status/badge, nem agrupamento (AvatarGroup) no codigo.",
+    "Os valores concretos dos tokens --ds-* nao estao neste diretorio; ficam em packages/tokens.",
+    "Os parametros parameters.componentCanvas.width (640 no meta, 320 na story MobileResponsive) nao tem campo correspondente no schema."
+  ]
+}

@@ -1,0 +1,143 @@
+{
+  "slug": "back-to-top",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Ações",
+  "resumo": "O Back to Top é um botão redondo fixo em um dos cantos inferiores da tela que devolve a pessoa ao início da página. Ele só aparece depois que a rolagem passa de um limite definido.",
+  "quandoUsar": [
+    "Em páginas longas de conteúdo, como a lista completa de regras e documentos de um serviço.",
+    "Em resultados de consulta com muitas linhas, quando os filtros ficam no topo e a pessoa precisa voltar para mudá-los.",
+    "Em páginas de perguntas frequentes, onde abrir vários itens aumenta muito a altura da tela.",
+    "Quando o conteúdo rola dentro de um container próprio, e não na janela, apontando esse container em target.",
+    "Quando a ação principal fica no topo da página e a leitura leva a pessoa para longe dela."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Em páginas curtas, em que o topo está sempre a uma rolagem de distância.",
+      "alternativa": "header"
+    },
+    {
+      "texto": "Quando a pessoa precisa alternar entre seções, e não voltar ao começo.",
+      "alternativa": "tabs"
+    },
+    {
+      "texto": "Quando a lista é longa demais e deveria ser dividida em partes menores.",
+      "alternativa": "pagination"
+    },
+    {
+      "texto": "Dentro de uma janela sobreposta com pouca rolagem.",
+      "alternativa": "modal"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Botão flutuante",
+      "descricao": "Círculo fixo no canto inferior da tela, sobre o conteúdo, posicionado à direita ou à esquerda conforme a prop position."
+    },
+    {
+      "numero": 2,
+      "parte": "Ícone de seta para cima",
+      "descricao": "Símbolo dentro do botão. É decorativo: o nome do botão vem inteiramente do ariaLabel."
+    },
+    {
+      "numero": 3,
+      "parte": "Estado de visibilidade",
+      "descricao": "O botão permanece na página o tempo todo e só se torna visível e focável depois que a rolagem ultrapassa o threshold."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "Em telas de até 640px o botão e o ícone ficam menores e a distância até a borda diminui; até 420px essa distância diminui de novo, para o botão cobrir menos conteúdo. Com movimento reduzido ativo, o botão aparece sem deslocamento e a rolagem passa a ser imediata, mesmo com scrollBehavior definido como smooth.",
+  "dosDonts": [
+    {
+      "faca": "Mantenha o threshold alto o bastante para o botão só surgir depois de uma rolagem real; o padrão é 320px.",
+      "naoFaca": "Definir threshold como 0.",
+      "porque": "Com zero o botão aparece já no topo da página, cobre conteúdo e oferece uma ação que não muda nada."
+    },
+    {
+      "faca": "Informe target quando o conteúdo rola dentro de um container próprio.",
+      "naoFaca": "Deixar o padrão, que observa a janela, em uma lista com rolagem interna.",
+      "porque": "Sem target o componente escuta a rolagem errada: o botão não aparece na hora certa e leva a pessoa ao topo do lugar errado."
+    },
+    {
+      "faca": "Use position \"left\" apenas quando o canto inferior direito já estiver ocupado por outro elemento fixo.",
+      "naoFaca": "Colocar dois Back to Top na mesma tela, um de cada lado.",
+      "porque": "Dois botões com a mesma função duplicam as paradas de teclado e não acrescentam nenhum caminho novo."
+    }
+  ],
+  "conteudoEEscrita": [
+    "O botão não tem texto visível: todo o significado está no ariaLabel.",
+    "Mantenha o rótulo padrão \"Voltar ao topo\"; ele já nomeia o destino e é o que as pessoas esperam ouvir.",
+    "Se precisar mudar o rótulo, comece por um verbo e diga o destino: \"Voltar ao início da lista\".",
+    "Não use rótulos genéricos como \"Topo\" ou \"Subir\": fora de contexto eles não dizem o que vai acontecer."
+  ],
+  "hierarquia": [
+    "O botão flutua sobre o conteúdo, no canto inferior da tela. Ele é apoio à leitura e nunca substitui a navegação do Header nem os links do Footer.",
+    "Reserve o canto inferior a um único elemento flutuante por vez: banner de cookies, atendimento e Back to Top disputam o mesmo espaço.",
+    "Em páginas com rodapé alto, confira se o botão não cobre informação essencial no fim da rolagem."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Footer",
+      "slug": "footer",
+      "relacao": "No fim da rolagem o botão fica sobre o rodapé; verifique se ele não cobre links ou a identificação do órgão."
+    },
+    {
+      "componente": "Data Table",
+      "slug": "data-table",
+      "relacao": "Em tabelas longas com filtros no topo, o Back to Top devolve a pessoa aos filtros sem rolagem manual."
+    },
+    {
+      "componente": "Pagination",
+      "slug": "pagination",
+      "relacao": "Em listas paginadas, ele complementa a paginação: leva ao topo da página atual, não para a próxima página."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Página de regras e documentos de um serviço",
+      "contexto": "A página do Poupatempo detalha requisitos, documentos e prazos de um serviço e ocupa várias telas de rolagem. O menu do serviço fica no topo.",
+      "comoFica": "Um Back to Top no canto inferior direito, com o threshold padrão. Ele aparece depois que a pessoa passa do primeiro bloco de texto e some quando ela volta ao topo, sem entrar na ordem de foco enquanto está oculto."
+    },
+    {
+      "titulo": "Consulta de débitos com lista longa",
+      "contexto": "No serviço do Detran-SP, a consulta traz muitos registros dentro de um painel com rolagem própria, enquanto o restante da página fica parado.",
+      "comoFica": "O componente recebe em target o painel que rola, e não a janela. Assim o botão aparece conforme a rolagem da lista e devolve a pessoa ao início dos resultados, onde estão os filtros."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Passar visible fixo em true.",
+      "consequencia": "O controle manual desliga os ouvintes de rolagem: o botão fica permanentemente na tela, inclusive quando a pessoa já está no topo.",
+      "correcao": "Deixe visible sem valor e ajuste apenas o threshold; use visible somente em exemplos e testes."
+    },
+    {
+      "erro": "Usar disabled para desligar o botão em algumas páginas.",
+      "consequencia": "O botão continua visível, com aparência apagada, e não faz nada quando acionado.",
+      "correcao": "Não renderize o componente nas páginas em que ele não deve existir."
+    },
+    {
+      "erro": "Usar onClick para outra ação e chamar preventDefault sem tratar a rolagem.",
+      "consequencia": "A rolagem ao topo é cancelada e o botão passa a ser um controle que não cumpre o que o rótulo promete.",
+      "correcao": "Só chame preventDefault quando a rolagem for controlada pela própria aplicação."
+    },
+    {
+      "erro": "Exibir o botão junto do banner de consentimento de cookies.",
+      "consequencia": "Os dois são fixos no mesmo canto e um cobre o outro; a pessoa pode não conseguir aceitar ou recusar os cookies.",
+      "correcao": "Só exiba o Back to Top depois de o banner ser resolvido, ou use position \"left\" enquanto o banner estiver na tela."
+    }
+  ],
+  "notasImplementacao": [
+    "O botão fica sempre na página. Quando oculto, recebe aria-hidden=\"true\" e sai da ordem de foco; a visibilidade é feita por opacidade e por bloqueio de clique.",
+    "No modo não controlado, o componente escuta a rolagem do target e o redimensionamento da janela para decidir quando aparecer.",
+    "O clique respeita a preferência de movimento reduzido e usa rolagem imediata quando ela está ativa.",
+    "O ícone vem da fonte Material Symbols Rounded importada por endereço externo no CSS: sem acesso a essa fonte, não há desenho de reserva no código.",
+    "O componente é sempre fixo na janela pelo CSS do próprio componente; qualquer outro posicionamento precisa ser feito por fora.",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual."
+  ],
+  "pendentes": [
+    "O campo de tamanhos ficou vazio porque o componente não expõe prop de tamanho.",
+    "Não foi possível documentar a ordem de sobreposição com Modal, Toast e o banner de cookies: o z-index é um valor literal (50), sem token nem escala definida no design system.",
+    "A cor do anel de foco é descrita como identity blue na documentação do Storybook, mas o CSS usa outro token; a equivalência não pôde ser confirmada com o JSON extraído."
+  ]
+}

@@ -1,0 +1,381 @@
+{
+  "slug": "progress-bar",
+  "name": "ProgressBar",
+  "storybookTitle": "Web Components/ProgressBar",
+  "sourceDir": "packages/react/src/components/ProgressBar",
+  "exports": [
+    "ProgressBar"
+  ],
+  "typeExports": [
+    "ProgressBarMode",
+    "ProgressBarProps",
+    "ProgressBarVariant"
+  ],
+  "oneLiner": "Progress Bar comunica o status de um processo em andamento, seja como valor mensuravel ou como indicacao de que uma tarefa esta acontecendo.",
+  "docsDescription": "Progress Bar comunica o status de um processo em andamento, seja como valor mensuravel ou como indicacao de que uma tarefa esta acontecendo.\n\nLayout reproduzido do Figma Web Components (nodes 95:23725, 40000030:6873 e 40000030:6888), incluindo os atomos Range e Progress Line.\n\nAnatomia:\n- Top content opcional com Label (Title/Small, Plus Jakarta Sans SemiBold 16) e porcentagem (Label/Large, Medium 16).\n- Progress Line com track de 8px (color/background/neutral/default-hover) e Range preenchido conforme o valor, ambos com border/radius/radius-full.\n- Helper text opcional (Label/Medium, Medium 14).\n\nVariantes (prop style do Figma):\n- Default: Range em color/background/neutral/soft-black e textos em typography/primary.\n- Success: Range em color/background/sucess/default; label e helper text verdes.\n- Error: Range em color/background/danger/default; label e helper text vermelhos.\n- Information: Range em color/background/information/default; textos em typography/primary.\n- Warning: Range em color/background/warning/default; textos em typography/primary.\n\nComportamento:\n- Determinate usa value, min e max para calcular a largura do Range e expor aria-valuenow.\n- Indeterminate reproduz a variante Indeterminate do Progress Line: pilula de 40% da largura em movimento continuo, sem aria-valuenow.\n- Top content, porcentagem e helper text sao opcionais, como as props booleanas do componente no Figma.\n\nTokens:\nTrack, Range, radius, spacing e typography usam as mesmas variables do Figma (progress/track, progress/indicator, color/background/*, spacing/6, border/radius/radius-full).\n\nResponsividade:\nA barra e fluida e ocupa 100% do container; o label quebra linha quando necessario e a porcentagem permanece alinhada a direita.\n\nAcessibilidade:\n- Usa role=\"progressbar\" com aria-valuenow/min/max no modo determinate.\n- Associa label e helper text por aria-labelledby e aria-describedby.\n- Recebe ariaLabel quando nao ha label visual.",
+  "props": [
+    {
+      "name": "ariaLabel",
+      "type": "string",
+      "values": null,
+      "default": "'Progresso'",
+      "required": false,
+      "description": "Nome acessivel usado quando nao ha label visual.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao container.",
+      "source": "ambos"
+    },
+    {
+      "name": "helperText",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Texto auxiliar exibido abaixo da barra.",
+      "source": "ambos"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "values": null,
+      "default": "ds-progress-bar-{useId()}",
+      "required": false,
+      "description": "Id base usado para associacoes acessiveis.",
+      "source": "ambos"
+    },
+    {
+      "name": "label",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Rotulo do progresso exibido no top content.",
+      "source": "ambos"
+    },
+    {
+      "name": "max",
+      "type": "number",
+      "values": null,
+      "default": "100",
+      "required": false,
+      "description": "Valor maximo do intervalo.",
+      "source": "ambos"
+    },
+    {
+      "name": "min",
+      "type": "number",
+      "values": null,
+      "default": "0",
+      "required": false,
+      "description": "Valor minimo do intervalo.",
+      "source": "ambos"
+    },
+    {
+      "name": "mode",
+      "type": "ProgressBarMode",
+      "values": [
+        "determinate",
+        "indeterminate"
+      ],
+      "default": "'determinate'",
+      "required": false,
+      "description": "Modo de progresso.",
+      "source": "ambos"
+    },
+    {
+      "name": "showValue",
+      "type": "boolean",
+      "values": null,
+      "default": "true (aplicado como showValue ?? true; so tem efeito no modo determinate)",
+      "required": false,
+      "description": "Exibe ou oculta a porcentagem no top content.",
+      "source": "ambos"
+    },
+    {
+      "name": "value",
+      "type": "number",
+      "values": null,
+      "default": "0",
+      "required": false,
+      "description": "Valor atual usado no modo determinate.",
+      "source": "ambos"
+    },
+    {
+      "name": "valueLabel",
+      "type": "ReactNode",
+      "values": null,
+      "default": "`${Math.round(percentage)}%`",
+      "required": false,
+      "description": "Texto alternativo para o valor exibido e aria-valuetext.",
+      "source": "ambos"
+    },
+    {
+      "name": "variant",
+      "type": "ProgressBarVariant",
+      "values": [
+        "default",
+        "success",
+        "error",
+        "information",
+        "warning"
+      ],
+      "default": "'default'",
+      "required": false,
+      "description": "Variante visual e semantica (prop style do Figma).",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [],
+  "slots": [
+    {
+      "name": "label",
+      "type": "ReactNode",
+      "description": "Rotulo do progresso exibido no top content."
+    },
+    {
+      "name": "helperText",
+      "type": "ReactNode",
+      "description": "Texto auxiliar exibido abaixo da barra."
+    },
+    {
+      "name": "valueLabel",
+      "type": "ReactNode",
+      "description": "Texto alternativo para o valor exibido e aria-valuetext."
+    }
+  ],
+  "cssClasses": [
+    "ds-progress-bar",
+    "ds-progress-bar--variant-default",
+    "ds-progress-bar--variant-success",
+    "ds-progress-bar--variant-error",
+    "ds-progress-bar--variant-information",
+    "ds-progress-bar--variant-warning",
+    "ds-progress-bar__top-content",
+    "ds-progress-bar__label",
+    "ds-progress-bar__value",
+    "ds-progress-bar__track",
+    "ds-progress-bar--mode-determinate",
+    "ds-progress-bar--mode-indeterminate",
+    "ds-progress-bar__range",
+    "ds-progress-bar__helper"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--progress-bar-track-color",
+      "value": "var(--ds-component-progress-track-color-background)",
+      "comment": "color/background/neutral/default-hover (track do Progress Line)"
+    },
+    {
+      "name": "--progress-bar-range-color",
+      "value": "var(--ds-semantic-color-background-neutral-soft-black)",
+      "comment": "color/background/neutral/soft-black (Range Neutral, estilo Default)"
+    },
+    {
+      "name": "--progress-bar-label-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-primary)",
+      "comment": "text-style/content-color/typography/primary"
+    },
+    {
+      "name": "--progress-bar-helper-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-primary)",
+      "comment": "text-style/content-color/typography/primary"
+    },
+    {
+      "name": "--progress-bar-value-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-primary)",
+      "comment": "text-style/content-color/typography/primary"
+    },
+    {
+      "name": "--progress-bar-track-height",
+      "value": "var(--ds-component-progress-track-size-height-lg)",
+      "comment": "Altura de 8px do Progress Line (progress/track/size/height-lg)"
+    },
+    {
+      "name": "--progress-bar-radius",
+      "value": "var(--ds-component-progress-track-border-radius)",
+      "comment": "border/radius/radius-full"
+    },
+    {
+      "name": "--progress-bar-gap",
+      "value": "var(--ds-primitive-spacing-6)",
+      "comment": "spacing/6 entre top content, barra e helper text"
+    },
+    {
+      "name": "--progress-bar-range-color",
+      "value": "var(--ds-component-progress-indicator-color-background-success)",
+      "comment": "Override em .ds-progress-bar--variant-success: progress/indicator/color/background/success (color/background/sucess/default)"
+    },
+    {
+      "name": "--progress-bar-label-color",
+      "value": "var(--ds-brand-color-utility-success-green-300)",
+      "comment": "Override em .ds-progress-bar--variant-success: text-style/content-color/typography/sucess (#00883D no Figma; a collection exporta typography/success como green-400 #07622F — divergencia reportada)"
+    },
+    {
+      "name": "--progress-bar-helper-color",
+      "value": "var(--ds-brand-color-utility-success-green-300)",
+      "comment": "Override em .ds-progress-bar--variant-success"
+    },
+    {
+      "name": "--progress-bar-range-color",
+      "value": "var(--ds-component-progress-indicator-color-background-error)",
+      "comment": "Override em .ds-progress-bar--variant-error: progress/indicator/color/background/error (color/background/danger/default)"
+    },
+    {
+      "name": "--progress-bar-label-color",
+      "value": "var(--ds-brand-color-utility-danger-red-300)",
+      "comment": "Override em .ds-progress-bar--variant-error: text-style/content-color/typography/danger (#E52207 no Figma; a collection exporta typography/danger como red-400 #B22929 — divergencia reportada)"
+    },
+    {
+      "name": "--progress-bar-helper-color",
+      "value": "var(--ds-brand-color-utility-danger-red-300)",
+      "comment": "Override em .ds-progress-bar--variant-error"
+    },
+    {
+      "name": "--progress-bar-range-color",
+      "value": "var(--ds-semantic-color-background-information-default)",
+      "comment": "Override em .ds-progress-bar--variant-information: color/background/information/default"
+    },
+    {
+      "name": "--progress-bar-range-color",
+      "value": "var(--ds-component-progress-indicator-color-background-warning)",
+      "comment": "Override em .ds-progress-bar--variant-warning: progress/indicator/color/background/warning (color/background/warning/default)"
+    }
+  ],
+  "tokensUsed": [
+    "--ds-brand-color-utility-danger-red-300",
+    "--ds-brand-color-utility-success-green-300",
+    "--ds-component-progress-indicator-border-radius",
+    "--ds-component-progress-indicator-color-background-error",
+    "--ds-component-progress-indicator-color-background-success",
+    "--ds-component-progress-indicator-color-background-warning",
+    "--ds-component-progress-track-border-radius",
+    "--ds-component-progress-track-color-background",
+    "--ds-component-progress-track-size-height-lg",
+    "--ds-primitive-spacing-0",
+    "--ds-primitive-spacing-6",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-typography-font-size-14",
+    "--ds-primitive-typography-font-size-16",
+    "--ds-primitive-typography-font-weight-medium",
+    "--ds-primitive-typography-font-weight-semi-bold",
+    "--ds-semantic-color-background-information-default",
+    "--ds-semantic-color-background-neutral-soft-black",
+    "--ds-semantic-text-style-content-color-typography-primary"
+  ],
+  "stories": [
+    {
+      "id": "web-components-progressbar--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-progressbar--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-progressbar--default&viewMode=story"
+    },
+    {
+      "id": "web-components-progressbar--styles",
+      "name": "Styles",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-progressbar--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-progressbar--styles&viewMode=story"
+    },
+    {
+      "id": "web-components-progressbar--progress-line",
+      "name": "Progress Line",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-progressbar--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-progressbar--progress-line&viewMode=story"
+    },
+    {
+      "id": "web-components-progressbar--indeterminate",
+      "name": "Indeterminate",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-progressbar--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-progressbar--indeterminate&viewMode=story"
+    },
+    {
+      "id": "web-components-progressbar--without-top-content",
+      "name": "Without Top Content",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-progressbar--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-progressbar--without-top-content&viewMode=story"
+    }
+  ],
+  "variants": [
+    {
+      "prop": "variant",
+      "values": [
+        "default",
+        "success",
+        "error",
+        "information",
+        "warning"
+      ]
+    },
+    {
+      "prop": "mode",
+      "values": [
+        "determinate",
+        "indeterminate"
+      ]
+    }
+  ],
+  "states": [
+    "determinate (.ds-progress-bar--mode-determinate: range com inline-size proporcional ao value e transicao de 180ms)",
+    "indeterminate (.ds-progress-bar--mode-indeterminate: range de 40% com animacao ds-progress-bar-indeterminate de 1200ms em loop)",
+    "success / error / information / warning (variantes que trocam a cor do range e, em success e error, tambem a cor de label e helper text)"
+  ],
+  "responsive": [
+    {
+      "query": "(prefers-reduced-motion: reduce)",
+      "effect": "Remove a transicao de inline-size do range e aumenta a duracao da animacao indeterminada de 1200ms para 2400ms."
+    }
+  ],
+  "accessibility": {
+    "roles": [
+      "progressbar (role=\"progressbar\" no elemento .ds-progress-bar__track)"
+    ],
+    "ariaAttributes": [
+      "aria-label (apenas quando nao ha label visual)",
+      "aria-labelledby (aponta para o span do label quando label existe)",
+      "aria-describedby (aponta para o helper text quando helperText existe)",
+      "aria-valuemin / aria-valuemax / aria-valuenow (somente no modo determinate)",
+      "aria-valuetext (somente no modo determinate e quando o valor renderizado e string)"
+    ],
+    "keyboardInteractions": [
+      "Componente nao interativo: nao recebe foco nem possui handlers de teclado."
+    ],
+    "notes": [
+      "aria-valuenow usa o valor clampeado entre min e max.",
+      "No modo indeterminate, aria-valuemin, aria-valuemax, aria-valuenow e aria-valuetext sao omitidos e a porcentagem nao e exibida.",
+      "aria-valuetext so e preenchido quando renderedValue e string; um valueLabel ReactNode nao vira aria-valuetext.",
+      "Ids sao derivados de id ou de useId(): {rootId}-label e {rootId}-helper.",
+      "A porcentagem visivel e Math.round da porcentagem calculada a partir de value, min e max."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/ProgressBar/ProgressBar.test.tsx",
+    "unitCount": 7,
+    "a11yFile": null,
+    "a11yCount": null
+  },
+  "figmaReferences": [
+    {
+      "node": "95:23725",
+      "note": "ProgressBar.styles.css e descricao da story: \"Layout do Figma: Web Components / Progress Bar (nodes 95:23725, 40000030:6873 e 40000030:6888)\"."
+    },
+    {
+      "node": "40000030:6873",
+      "note": "ProgressBar.styles.css e descricao da story: atomos Range e Progress Line."
+    },
+    {
+      "node": "40000030:6888",
+      "note": "ProgressBar.styles.css e descricao da story: atomos Range e Progress Line."
+    }
+  ],
+  "pendencias": [
+    "Nao existe arquivo ProgressBar.a11y.test.tsx no diretorio.",
+    "Divergencia ainda aberta e registrada no CSS entre o Figma e a collection exportada: typography/sucess (#00883D) x green-400 (#07622F) e typography/danger (#E52207) x red-400 (#B22929); o codigo usa green-300/red-300 como aproximacao.",
+    "A descricao cita variantes com \"textos em typography/primary\" para information e warning, mas nao ha token especifico documentado para diferenciar essas variantes alem da cor do Range."
+  ]
+}

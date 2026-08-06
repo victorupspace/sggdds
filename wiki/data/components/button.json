@@ -1,0 +1,621 @@
+{
+  "slug": "button",
+  "name": "Button",
+  "storybookTitle": "Web Components/Button",
+  "sourceDir": "packages/react/src/components/Button",
+  "exports": [
+    "Button"
+  ],
+  "typeExports": [
+    "ButtonProps",
+    "ButtonSize",
+    "ButtonVariant"
+  ],
+  "oneLiner": "Botao de acao em tres variantes (primary, secondary, tertiary) e tres tamanhos, que renderiza <button> nativo ou <a> quando href e informado, com estados de loading e disabled acessiveis.",
+  "docsDescription": "\nButtons permitem que pessoas usuarias executem acoes e tomem decisoes dentro da interface. Eles devem oferecer pontos de entrada claros, consistentes e acessiveis para avancar em tarefas.\n\nUse para acoes primarias, secundarias, navegacao acionavel, confirmacoes e comandos diretos.\n\nNao use Button para texto meramente informativo, tabs, badges, links editoriais longos ou containers clicaveis complexos.\n\nVariantes:\n- Primary: usa soft black como superficie principal.\n- Secondary: usa o vermelho brand como CTA secundario.\n- Tertiary: acao discreta sem superficie preenchida.\n\nResponsividade:\nO componente possui comportamento responsivo nativo. Em telas pequenas, os tamanhos medium e large aumentam a area de toque sem exigir variacoes manuais no Storybook.\n\nTokens:\nAs cores, bordas, raio, espacamentos, tipografia, foco e estados sao derivados das variaveis CSS geradas pelos tokens do Figma. Como o projeto ainda nao possui uma camada semantica completa publicada, o Button cria aliases internos semanticos apontando para os tokens disponiveis.\n\nAcessibilidade:\n- Renderiza button por padrao e anchor quando href e informado.\n- Suporta disabled real em button e aria-disabled/tabIndex em links.\n- Possui foco visivel via token.\n- Loading usa aria-busy e desabilita interacao.\n- Icones sao decorativos e o texto/aria-label deve comunicar a acao.\n",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Texto visivel do botao.",
+      "source": "ambos"
+    },
+    {
+      "name": "variant",
+      "type": "ButtonVariant ('primary' | 'secondary' | 'tertiary')",
+      "values": [
+        "primary",
+        "secondary",
+        "tertiary"
+      ],
+      "default": "'primary'",
+      "required": false,
+      "description": "Variante visual.",
+      "source": "ambos"
+    },
+    {
+      "name": "size",
+      "type": "ButtonSize ('small' | 'medium' | 'large')",
+      "values": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "default": "'medium'",
+      "required": false,
+      "description": "Tamanho visual do botao.",
+      "source": "ambos"
+    },
+    {
+      "name": "iconStart",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Icone decorativo no inicio.",
+      "source": "ambos"
+    },
+    {
+      "name": "iconEnd",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Icone decorativo no final.",
+      "source": "ambos"
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Quando informado, renderiza o componente como link.",
+      "source": "ambos"
+    },
+    {
+      "name": "target",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Atributo target repassado ao <a> quando href e informado.",
+      "source": "types.ts"
+    },
+    {
+      "name": "rel",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Atributo rel repassado ao <a> quando href e informado.",
+      "source": "types.ts"
+    },
+    {
+      "name": "type",
+      "type": "'button' | 'submit' | 'reset'",
+      "values": [
+        "button",
+        "submit",
+        "reset"
+      ],
+      "default": "'button'",
+      "required": false,
+      "description": "Tipo nativo quando renderizado como button.",
+      "source": "ambos"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Desabilita o botao ou link.",
+      "source": "ambos"
+    },
+    {
+      "name": "isLoading",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Mostra estado de carregamento e bloqueia interacao.",
+      "source": "ambos"
+    },
+    {
+      "name": "loadingLabel",
+      "type": "string",
+      "values": null,
+      "default": "'Carregando'",
+      "required": false,
+      "description": "Texto exibido durante carregamento.",
+      "source": "ambos"
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Faz o botao ocupar toda a largura disponivel.",
+      "source": "ambos"
+    },
+    {
+      "name": "ariaLabel",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Rotulo acessivel quando o conteudo visual nao for suficiente.",
+      "source": "ambos"
+    },
+    {
+      "name": "ariaControls",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Repassado como aria-controls tanto no <button> quanto no <a>.",
+      "source": "types.ts"
+    },
+    {
+      "name": "ariaExpanded",
+      "type": "boolean",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Repassado como aria-expanded tanto no <button> quanto no <a>.",
+      "source": "types.ts"
+    },
+    {
+      "name": "ariaPressed",
+      "type": "boolean",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Repassado como aria-pressed tanto no <button> quanto no <a>.",
+      "source": "types.ts"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao elemento raiz.",
+      "source": "ambos"
+    },
+    {
+      "name": "onClick",
+      "type": "MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Callback de clique.",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onClick",
+      "signature": "MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>",
+      "description": "Callback de clique. No modo link (href), o handler so e chamado se o botao nao estiver disabled/isLoading — caso contrario o TSX chama event.preventDefault() e retorna. No modo button, o proprio atributo disabled impede o disparo."
+    }
+  ],
+  "slots": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "description": "Conteudo/label do botao; substituido por loadingLabel enquanto isLoading e true."
+    },
+    {
+      "name": "iconStart",
+      "type": "ReactNode",
+      "description": "Icone decorativo antes do label (wrapper span.ds-button__icon com aria-hidden=\"true\"); nao e renderizado durante o loading."
+    },
+    {
+      "name": "iconEnd",
+      "type": "ReactNode",
+      "description": "Icone decorativo depois do label (wrapper span.ds-button__icon com aria-hidden=\"true\"); nao e renderizado durante o loading."
+    }
+  ],
+  "cssClasses": [
+    "ds-button",
+    "ds-button--variant-primary",
+    "ds-button--variant-secondary",
+    "ds-button--variant-tertiary",
+    "ds-button--size-small",
+    "ds-button--size-medium",
+    "ds-button--size-large",
+    "ds-button--full-width",
+    "ds-button--loading",
+    "ds-button__spinner",
+    "ds-button__icon",
+    "ds-button__label"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--button-background",
+      "value": "var(--ds-semantic-text-style-content-color-typography-secondary)",
+      "comment": "Bloco base .ds-button"
+    },
+    {
+      "name": "--button-background-hover",
+      "value": "var(--ds-semantic-text-style-content-color-typography-primary)",
+      "comment": "Bloco base .ds-button"
+    },
+    {
+      "name": "--button-background-active",
+      "value": "var(--ds-semantic-text-style-content-color-typography-primary)",
+      "comment": "Bloco base .ds-button"
+    },
+    {
+      "name": "--button-foreground",
+      "value": "var(--ds-semantic-color-background-neutral-default)",
+      "comment": "Bloco base .ds-button"
+    },
+    {
+      "name": "--button-border-color",
+      "value": "var(--button-background)",
+      "comment": "Bloco base .ds-button"
+    },
+    {
+      "name": "--button-focus-ring",
+      "value": "var(--ds-semantic-color-background-brand-primary-secondary-default)",
+      "comment": "Bloco base .ds-button"
+    },
+    {
+      "name": "--button-disabled-background",
+      "value": "var(--ds-semantic-color-background-neutral-disabled)",
+      "comment": "Bloco base .ds-button"
+    },
+    {
+      "name": "--button-disabled-foreground",
+      "value": "var(--ds-component-button-color-text-primary-disabled)",
+      "comment": "Bloco base .ds-button"
+    },
+    {
+      "name": "--button-disabled-border-color",
+      "value": "var(--ds-semantic-color-border-neutral-subtle)",
+      "comment": "Bloco base .ds-button"
+    },
+    {
+      "name": "--button-padding-block",
+      "value": "var(--ds-primitive-spacing-12)",
+      "comment": "Bloco base .ds-button"
+    },
+    {
+      "name": "--button-padding-inline",
+      "value": "var(--ds-component-button-spacing-padding-x-md)",
+      "comment": "Bloco base .ds-button"
+    },
+    {
+      "name": "--button-gap",
+      "value": "var(--ds-component-button-spacing-gap-md)",
+      "comment": "Bloco base .ds-button"
+    },
+    {
+      "name": "--button-icon-size",
+      "value": "var(--ds-primitive-spacing-24)",
+      "comment": "Bloco base .ds-button"
+    },
+    {
+      "name": "--button-min-block-size",
+      "value": "calc(var(--button-icon-size) + var(--button-padding-block) + var(--button-padding-block))",
+      "comment": "Bloco base .ds-button"
+    },
+    {
+      "name": "--button-font-size",
+      "value": "var(--ds-primitive-typography-font-size-12)",
+      "comment": "Bloco base .ds-button"
+    },
+    {
+      "name": "--button-line-height",
+      "value": "var(--ds-primitive-typography-line-height-16)",
+      "comment": "Bloco base .ds-button"
+    },
+    {
+      "name": "--button-border-width",
+      "value": "var(--ds-component-button-border-width)",
+      "comment": "Bloco base .ds-button"
+    },
+    {
+      "name": "--button-background",
+      "value": "var(--ds-semantic-color-background-brand-primary-prominent)",
+      "comment": "Override em .ds-button--variant-secondary"
+    },
+    {
+      "name": "--button-background-hover",
+      "value": "var(--ds-semantic-text-style-content-color-typography-danger)",
+      "comment": "Override em .ds-button--variant-secondary"
+    },
+    {
+      "name": "--button-background-active",
+      "value": "var(--ds-semantic-color-background-brand-primary-default-hover)",
+      "comment": "Override em .ds-button--variant-secondary"
+    },
+    {
+      "name": "--button-border-color",
+      "value": "var(--button-background)",
+      "comment": "Override em .ds-button--variant-secondary"
+    },
+    {
+      "name": "--button-background",
+      "value": "transparent",
+      "comment": "Override em .ds-button--variant-tertiary"
+    },
+    {
+      "name": "--button-background-hover",
+      "value": "var(--ds-primitive-color-neutral-alpha-4)",
+      "comment": "Override em .ds-button--variant-tertiary"
+    },
+    {
+      "name": "--button-background-active",
+      "value": "var(--ds-primitive-color-neutral-alpha-8)",
+      "comment": "Override em .ds-button--variant-tertiary"
+    },
+    {
+      "name": "--button-foreground",
+      "value": "var(--ds-semantic-text-style-content-color-typography-secondary)",
+      "comment": "Override em .ds-button--variant-tertiary"
+    },
+    {
+      "name": "--button-border-color",
+      "value": "transparent",
+      "comment": "Override em .ds-button--variant-tertiary"
+    },
+    {
+      "name": "--button-padding-block",
+      "value": "var(--ds-primitive-spacing-8)",
+      "comment": "Override em .ds-button--size-small"
+    },
+    {
+      "name": "--button-padding-inline",
+      "value": "var(--ds-primitive-spacing-10)",
+      "comment": "Override em .ds-button--size-small"
+    },
+    {
+      "name": "--button-icon-size",
+      "value": "var(--ds-primitive-spacing-20)",
+      "comment": "Override em .ds-button--size-small"
+    },
+    {
+      "name": "--button-padding-block",
+      "value": "var(--ds-primitive-spacing-12)",
+      "comment": "Override em .ds-button--size-medium"
+    },
+    {
+      "name": "--button-padding-inline",
+      "value": "var(--ds-component-button-spacing-padding-x-md)",
+      "comment": "Override em .ds-button--size-medium"
+    },
+    {
+      "name": "--button-gap",
+      "value": "var(--ds-component-button-spacing-gap-md)",
+      "comment": "Override em .ds-button--size-medium"
+    },
+    {
+      "name": "--button-icon-size",
+      "value": "var(--ds-primitive-spacing-24)",
+      "comment": "Override em .ds-button--size-medium"
+    },
+    {
+      "name": "--button-font-size",
+      "value": "var(--ds-primitive-typography-font-size-12)",
+      "comment": "Override em .ds-button--size-medium"
+    },
+    {
+      "name": "--button-line-height",
+      "value": "var(--ds-primitive-typography-line-height-16)",
+      "comment": "Override em .ds-button--size-medium"
+    },
+    {
+      "name": "--button-padding-block",
+      "value": "var(--ds-component-button-spacing-padding-y-lg)",
+      "comment": "Override em .ds-button--size-large"
+    },
+    {
+      "name": "--button-padding-inline",
+      "value": "var(--ds-primitive-spacing-16)",
+      "comment": "Override em .ds-button--size-large"
+    },
+    {
+      "name": "--button-gap",
+      "value": "var(--ds-component-button-spacing-gap-lg)",
+      "comment": "Override em .ds-button--size-large"
+    },
+    {
+      "name": "--button-icon-size",
+      "value": "var(--ds-component-button-size-icon-size-lg)",
+      "comment": "Override em .ds-button--size-large"
+    },
+    {
+      "name": "--button-font-size",
+      "value": "var(--ds-primitive-typography-font-size-12)",
+      "comment": "Override em .ds-button--size-large"
+    },
+    {
+      "name": "--button-line-height",
+      "value": "var(--ds-primitive-typography-line-height-16)",
+      "comment": "Override em .ds-button--size-large"
+    },
+    {
+      "name": "--button-min-block-size",
+      "value": "var(--ds-primitive-spacing-48)",
+      "comment": "Override em @media (max-width: 420px) para .ds-button--size-medium e .ds-button--size-large"
+    },
+    {
+      "name": "--button-padding-inline",
+      "value": "var(--ds-primitive-spacing-16)",
+      "comment": "Override em @media (max-width: 420px) para .ds-button--size-medium e .ds-button--size-large"
+    }
+  ],
+  "tokensUsed": [
+    "--ds-component-button-border-width",
+    "--ds-component-button-color-text-primary-disabled",
+    "--ds-component-button-effect-focus-ring-width",
+    "--ds-component-button-size-icon-size-lg",
+    "--ds-component-button-spacing-gap-lg",
+    "--ds-component-button-spacing-gap-md",
+    "--ds-component-button-spacing-padding-x-md",
+    "--ds-component-button-spacing-padding-y-lg",
+    "--ds-primitive-border-radius-radius-full",
+    "--ds-primitive-border-width-border-md",
+    "--ds-primitive-color-neutral-alpha-4",
+    "--ds-primitive-color-neutral-alpha-8",
+    "--ds-primitive-spacing-10",
+    "--ds-primitive-spacing-12",
+    "--ds-primitive-spacing-16",
+    "--ds-primitive-spacing-20",
+    "--ds-primitive-spacing-24",
+    "--ds-primitive-spacing-4",
+    "--ds-primitive-spacing-48",
+    "--ds-primitive-spacing-8",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-typography-font-size-12",
+    "--ds-primitive-typography-font-weight-bold",
+    "--ds-primitive-typography-line-height-16",
+    "--ds-semantic-color-background-brand-primary-default",
+    "--ds-semantic-color-background-brand-primary-default-hover",
+    "--ds-semantic-color-background-brand-primary-secondary-default",
+    "--ds-semantic-color-background-neutral-default",
+    "--ds-semantic-color-background-neutral-disabled",
+    "--ds-semantic-color-border-neutral-subtle",
+    "--ds-semantic-text-style-content-color-typography-danger",
+    "--ds-semantic-text-style-content-color-typography-primary",
+    "--ds-semantic-text-style-content-color-typography-secondary"
+  ],
+  "stories": [
+    {
+      "id": "web-components-button--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-button--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-button--default&viewMode=story"
+    },
+    {
+      "id": "web-components-button--secondary",
+      "name": "Secondary",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-button--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-button--secondary&viewMode=story"
+    },
+    {
+      "id": "web-components-button--tertiary",
+      "name": "Tertiary",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-button--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-button--tertiary&viewMode=story"
+    },
+    {
+      "id": "web-components-button--as-link",
+      "name": "As Link",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-button--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-button--as-link&viewMode=story"
+    },
+    {
+      "id": "web-components-button--loading",
+      "name": "Loading",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-button--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-button--loading&viewMode=story"
+    },
+    {
+      "id": "web-components-button--disabled",
+      "name": "Disabled",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-button--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-button--disabled&viewMode=story"
+    },
+    {
+      "id": "web-components-button--sizes",
+      "name": "Sizes",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-button--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-button--sizes&viewMode=story"
+    }
+  ],
+  "variants": [
+    {
+      "prop": "variant",
+      "values": [
+        "primary",
+        "secondary",
+        "tertiary"
+      ]
+    },
+    {
+      "prop": "size",
+      "values": [
+        "small",
+        "medium",
+        "large"
+      ]
+    },
+    {
+      "prop": "type",
+      "values": [
+        "button",
+        "submit",
+        "reset"
+      ]
+    }
+  ],
+  "states": [
+    "hover (.ds-button:not(:disabled):not([aria-disabled='true']):hover troca border-color e background por --button-background-hover)",
+    "active (.ds-button:not(:disabled):not([aria-disabled='true']):active usa --button-background-active)",
+    "focus-visible (.ds-button:focus-visible com outline --ds-component-button-effect-focus-ring-width e --button-focus-ring, offset spacing/4)",
+    "disabled (.ds-button:disabled e .ds-button[aria-disabled='true']: cores disabled e cursor not-allowed; a variante tertiary mantem background transparent)",
+    "loading (classe .ds-button--loading aplicada no TSX + spinner .ds-button__spinner animado, aria-busy=\"true\" e desabilitacao efetiva via isDisabled)",
+    "full-width (.ds-button--full-width define inline-size: 100%)"
+  ],
+  "responsive": [
+    {
+      "query": "(prefers-reduced-motion: reduce)",
+      "effect": ".ds-button__spinner tem animation: none (a rotacao ds-button-spinner e desligada)."
+    },
+    {
+      "query": "(max-width: 420px)",
+      "effect": ".ds-button--size-medium e .ds-button--size-large passam a --button-min-block-size: spacing/48 e --button-padding-inline: spacing/16 (aumento da area de toque)."
+    }
+  ],
+  "accessibility": {
+    "roles": [
+      "button (elemento <button> nativo quando href nao e informado)",
+      "link (elemento <a href> quando href e informado)"
+    ],
+    "ariaAttributes": [
+      "aria-label (prop ariaLabel, nos dois modos)",
+      "aria-controls (prop ariaControls, nos dois modos)",
+      "aria-expanded (prop ariaExpanded, nos dois modos)",
+      "aria-pressed (prop ariaPressed, nos dois modos)",
+      "aria-busy=\"true\" (aplicado quando isLoading, nos dois modos)",
+      "aria-disabled=\"true\" (apenas no modo link, quando disabled ou isLoading)",
+      "aria-hidden=\"true\" (span.ds-button__icon dos icones e span.ds-button__spinner)"
+    ],
+    "keyboardInteractions": [
+      "Tab / Shift+Tab: foco nativo; no modo link desabilitado o TSX aplica tabIndex={-1}, removendo o elemento da ordem de tabulacao.",
+      "Enter / Space: ativacao nativa do <button>; Enter no <a>. O TSX nao registra handlers de teclado proprios."
+    ],
+    "notes": [
+      "isDisabled = disabled || isLoading: o estado de loading tambem bloqueia a interacao.",
+      "No modo button o atributo nativo disabled e usado; no modo link usa-se aria-disabled + tabIndex=-1 + preventDefault no onClick (o href permanece no DOM, conforme o teste \"disables link interaction accessibly\").",
+      "Durante o loading o label visivel passa a ser loadingLabel (default \"Carregando\"), o que muda o nome acessivel do controle.",
+      "Icones sao sempre decorativos (aria-hidden); em botoes apenas com icone o nome acessivel precisa vir de ariaLabel (coberto pelo teste a11y \"icon-only with ariaLabel\")."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Button/Button.test.tsx",
+    "unitCount": 9,
+    "a11yFile": "packages/react/src/components/Button/Button.a11y.test.tsx",
+    "a11yCount": 5
+  },
+  "figmaReferences": [],
+  "pendencias": [
+    "Nenhum node-id do Figma e citado no codigo do Button (nem no TSX, nem no CSS, nem nas stories) — a rastreabilidade com o design so aparece de forma generica (\"tokens do Figma\").",
+    "A classe .ds-button--loading e aplicada pelo TSX mas nao possui nenhuma regra no Button.styles.css; nao da para determinar pelo codigo se e um gancho para consumidores ou uma sobra.",
+    "A classe .ds-button--variant-primary tambem nao tem regra propria (primary e o estado base de .ds-button).",
+    "As props target, rel, ariaControls, ariaExpanded e ariaPressed nao aparecem em argTypes nem em nenhuma story; nao ha descricao autoral para elas alem do tipo.",
+    "Os argTypes nao declaram table.type/table.defaultValue; os defaults vieram da desestruturacao em Button.tsx.",
+    "O parametro parameters.componentCanvas.width = 360 nao esta documentado no codigo do componente.",
+    "Existem stories homonimas em SwiftUI/Button e Android/Button (showcase/), fora do diretorio React; elas nao foram incluidas aqui porque o title difere de \"Web Components/Button\".",
+    "O fundo da variante secondary passou de brand/primary/prominent para brand/primary/default em 2026-08-06: com o rótulo branco, prominent (#FF161F) dava 3,90:1 e reprovava WCAG AA. Ver CORRECOES-ACESSIBILIDADE.md §6."
+  ]
+}

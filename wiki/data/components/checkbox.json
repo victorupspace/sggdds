@@ -1,0 +1,421 @@
+{
+  "slug": "checkbox",
+  "name": "Checkbox",
+  "storybookTitle": "Web Components/Checkbox",
+  "sourceDir": "packages/react/src/components/Checkbox",
+  "exports": [
+    "Checkbox"
+  ],
+  "typeExports": [
+    "CheckboxProps",
+    "CheckboxState"
+  ],
+  "oneLiner": "Caixa de selecao com input nativo visualmente oculto e controle de 24px desenhado com os glifos do Figma, suportando estados checked, indeterminate, disabled e readOnly, com label e hint associados.",
+  "docsDescription": "\nO Checkbox reproduz o layout do Figma (Web Components / Checkbox): controle de 24px com os glifos exportados (Unselected, Selected e Intermediate), ripple de 32px nos estados hover/pressed, label Label/Medium (Plus Jakarta Sans Medium 14) e hint de 10px.\n\nAnatomia:\n- Input nativo type=\"checkbox\" com controle visual customizado usando os vetores exatos do Figma; o check do estado selecionado e vazado no box preenchido.\n- Label em typography/secondary com gap de Component sizing/6 para o controle; hint em color/pure-black com gap de Component sizing/4.\n\nSelecoes do component set: Unchecked, Checked, Indeterminate e Ready Only (prop readOnly, com label em typography/primary e sem estados de interacao).\n\nEstados: hover e pressed escurecem o glifo para color/icons/neutral/default-hover e exibem o ripple com color/neutral-alpha 4% e 8%; o foco por teclado usa o anel duplo do Figma (branco 84% + azul #2c84d0); disabled usa os tons neutros desabilitados (glifo #a3a3a3, label typography/disabled).\n\nResponsividade:\n- A label inteira e clicavel e o controle e fixo (24px).\n- Label e hint quebram linha naturalmente em containers estreitos.\n\nAcessibilidade:\n- Usa input nativo para preservar teclado, formularios e leitores de tela.\n- Tab move foco para o input e Space altera o estado quando habilitado.\n- Indeterminate usa aria-checked=\"mixed\" e readOnly usa aria-readonly.\n",
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Texto principal do Checkbox.",
+      "source": "ambos"
+    },
+    {
+      "name": "hint",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Texto auxiliar associado por aria-describedby. Quando ausente, o span do hint e o aria-describedby nao sao renderizados.",
+      "source": "ambos"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "ID opcional. Quando ausente, useId gera um ID seguro. Deriva os ids `${id}-label` e `${id}-hint`.",
+      "source": "ambos"
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Nome para integracao com formularios.",
+      "source": "ambos"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Valor enviado em formularios.",
+      "source": "ambos"
+    },
+    {
+      "name": "checked",
+      "type": "boolean",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Estado selecionado para uso controlado (repassado diretamente ao input nativo).",
+      "source": "ambos"
+    },
+    {
+      "name": "defaultChecked",
+      "type": "boolean",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Estado inicial para uso nao controlado.",
+      "source": "ambos"
+    },
+    {
+      "name": "indeterminate",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Ativa o estado intermediario do checkbox (define input.indeterminate via useEffect e aria-checked=\"mixed\").",
+      "source": "ambos"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Desabilita o input nativo.",
+      "source": "ambos"
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Estado somente leitura (Ready Only no Figma): exibe o valor sem permitir alteracao.",
+      "source": "ambos"
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Marca o input como obrigatorio (e exibe o asterisco decorativo .ds-checkbox__required).",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao elemento raiz.",
+      "source": "ambos"
+    },
+    {
+      "name": "onCheckedChange",
+      "type": "(checked: boolean) => void",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Callback chamado ao alterar a selecao.",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onCheckedChange",
+      "signature": "(checked: boolean) => void",
+      "description": "Chamado no onChange do input nativo com event.currentTarget.checked. O TSX retorna cedo (sem chamar o callback) quando disabled ou readOnly; alem disso, no onClick, readOnly chama event.preventDefault(), impedindo a alteracao do estado nativo."
+    }
+  ],
+  "slots": [],
+  "cssClasses": [
+    "ds-checkbox",
+    "ds-checkbox--indeterminate",
+    "ds-checkbox--disabled",
+    "ds-checkbox--readonly",
+    "ds-checkbox__input",
+    "ds-checkbox__control",
+    "ds-checkbox__icon",
+    "ds-checkbox__icon--unchecked",
+    "ds-checkbox__icon--checked",
+    "ds-checkbox__icon--indeterminate",
+    "ds-checkbox__content",
+    "ds-checkbox__label",
+    "ds-checkbox__required",
+    "ds-checkbox__hint"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--checkbox-control-size",
+      "value": "var(--ds-component-component-sizing-24)",
+      "comment": "Component sizing/24 (controle)"
+    },
+    {
+      "name": "--checkbox-control-radius",
+      "value": "var(--ds-primitive-border-radius-radius-sm)",
+      "comment": "border/radius/xs (4px, mesmo valor de radius-sm)"
+    },
+    {
+      "name": "--checkbox-control-color",
+      "value": "var(--ds-primitive-color-pure-black)",
+      "comment": "Fill do vetor exportado: color/pure-black (enabled e focused)"
+    },
+    {
+      "name": "--checkbox-control-color-hover",
+      "value": "var(--ds-semantic-color-icons-neutral-default-hover)",
+      "comment": "color/icons/neutral/default-hover (#292929, hover e pressed)"
+    },
+    {
+      "name": "--checkbox-control-color-disabled",
+      "value": "var(--ds-semantic-color-icons-neutral-disabled)",
+      "comment": "color/icons/neutral/disabled (#a3a3a3, disabled)"
+    },
+    {
+      "name": "--checkbox-ripple-hover",
+      "value": "var(--ds-primitive-color-neutral-alpha-4)",
+      "comment": "color/neutral-alpha/4% (ripple de hover)"
+    },
+    {
+      "name": "--checkbox-ripple-pressed",
+      "value": "var(--ds-primitive-color-neutral-alpha-8)",
+      "comment": "color/neutral-alpha/8% (ripple de pressed)"
+    },
+    {
+      "name": "--checkbox-label-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-secondary)",
+      "comment": "text-style/content color/typography/secondary (label Label/Medium)"
+    },
+    {
+      "name": "--checkbox-hint-color",
+      "value": "var(--ds-primitive-color-pure-black)",
+      "comment": "color/pure-black (hint)"
+    },
+    {
+      "name": "--checkbox-gap",
+      "value": "var(--ds-component-component-sizing-6)",
+      "comment": "Component sizing/6 (gap entre controle e conteudo)"
+    },
+    {
+      "name": "--checkbox-content-gap",
+      "value": "var(--ds-component-component-sizing-4)",
+      "comment": "Component sizing/4 (gap entre label e hint)"
+    },
+    {
+      "name": "--checkbox-label-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-disabled)",
+      "comment": "Override em .ds-checkbox--disabled: label em text-style/content color/typography/disabled"
+    },
+    {
+      "name": "--checkbox-hint-color",
+      "value": "var(--ds-semantic-color-border-brand-disabled)",
+      "comment": "Override em .ds-checkbox--disabled: hint em color/border/brand/disabled"
+    },
+    {
+      "name": "--checkbox-control-color",
+      "value": "var(--checkbox-control-color-disabled)",
+      "comment": "Override em .ds-checkbox--disabled"
+    },
+    {
+      "name": "--checkbox-label-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-primary)",
+      "comment": "Override em .ds-checkbox--readonly: Ready Only no Figma usa label em typography/primary"
+    },
+    {
+      "name": "--checkbox-hint-color",
+      "value": "var(--ds-semantic-color-border-brand-disabled)",
+      "comment": "Override em .ds-checkbox--readonly: hint em color/border/brand/disabled"
+    }
+  ],
+  "tokensUsed": [
+    "--ds-component-component-sizing-24",
+    "--ds-primitive-border-radius-radius-sm",
+    "--ds-primitive-color-pure-black",
+    "--ds-semantic-color-icons-neutral-default-hover",
+    "--ds-semantic-color-icons-neutral-disabled",
+    "--ds-primitive-color-neutral-alpha-4",
+    "--ds-primitive-color-neutral-alpha-8",
+    "--ds-semantic-text-style-content-color-typography-secondary",
+    "--ds-component-component-sizing-6",
+    "--ds-component-component-sizing-4",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-border-radius-radius-full",
+    "--ds-primitive-typography-font-size-14",
+    "--ds-primitive-typography-font-weight-medium",
+    "--ds-primitive-spacing-2",
+    "--ds-primitive-typography-font-size-10",
+    "--ds-primitive-typography-font-weight-regular",
+    "--ds-semantic-text-style-content-color-typography-disabled",
+    "--ds-semantic-color-border-brand-disabled",
+    "--ds-semantic-text-style-content-color-typography-primary"
+  ],
+  "stories": [
+    {
+      "id": "web-components-checkbox--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-checkbox--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-checkbox--default&viewMode=story"
+    },
+    {
+      "id": "web-components-checkbox--selected",
+      "name": "Selected",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-checkbox--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-checkbox--selected&viewMode=story"
+    },
+    {
+      "id": "web-components-checkbox--indeterminate",
+      "name": "Indeterminate",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-checkbox--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-checkbox--indeterminate&viewMode=story"
+    },
+    {
+      "id": "web-components-checkbox--disabled-unchecked",
+      "name": "Disabled Unchecked",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-checkbox--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-checkbox--disabled-unchecked&viewMode=story"
+    },
+    {
+      "id": "web-components-checkbox--disabled-selected",
+      "name": "Disabled Selected",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-checkbox--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-checkbox--disabled-selected&viewMode=story"
+    },
+    {
+      "id": "web-components-checkbox--disabled-indeterminate",
+      "name": "Disabled Indeterminate",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-checkbox--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-checkbox--disabled-indeterminate&viewMode=story"
+    },
+    {
+      "id": "web-components-checkbox--read-only",
+      "name": "Read Only",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-checkbox--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-checkbox--read-only&viewMode=story"
+    },
+    {
+      "id": "web-components-checkbox--without-hint",
+      "name": "Without Hint",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-checkbox--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-checkbox--without-hint&viewMode=story"
+    },
+    {
+      "id": "web-components-checkbox--long-label",
+      "name": "Long Label",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-checkbox--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-checkbox--long-label&viewMode=story"
+    },
+    {
+      "id": "web-components-checkbox--required",
+      "name": "Required",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-checkbox--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-checkbox--required&viewMode=story"
+    },
+    {
+      "id": "web-components-checkbox--controlled",
+      "name": "Controlled",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-checkbox--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-checkbox--controlled&viewMode=story"
+    },
+    {
+      "id": "web-components-checkbox--grouped-states",
+      "name": "Grouped States",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-checkbox--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-checkbox--grouped-states&viewMode=story"
+    },
+    {
+      "id": "web-components-checkbox--grouped-states-mobile",
+      "name": "Grouped States Mobile",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-checkbox--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-checkbox--grouped-states-mobile&viewMode=story"
+    },
+    {
+      "id": "web-components-checkbox--accessibility",
+      "name": "Accessibility",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-checkbox--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-checkbox--accessibility&viewMode=story"
+    }
+  ],
+  "variants": [],
+  "states": [
+    "unchecked (glifo .ds-checkbox__icon--unchecked com opacity 1 por padrao)",
+    "checked (.ds-checkbox__input:checked + .ds-checkbox__control troca o glifo unchecked pelo .ds-checkbox__icon--checked)",
+    "indeterminate (classe .ds-checkbox--indeterminate exibe .ds-checkbox__icon--indeterminate e oculta unchecked/checked; o TSX tambem define input.indeterminate = true)",
+    "hover (.ds-checkbox:not(.ds-checkbox--disabled, .ds-checkbox--readonly):hover dentro de @media (hover: hover): glifo em --checkbox-control-color-hover e ripple --checkbox-ripple-hover)",
+    "active/pressed (.ds-checkbox:not(.ds-checkbox--disabled, .ds-checkbox--readonly):active: glifo hover e ripple --checkbox-ripple-pressed)",
+    "focus-visible (.ds-checkbox__input:focus-visible + .ds-checkbox__control: anel duplo box-shadow 0 0 0 2px rgb(255 255 255 / 84%) e 0 0 0 4px #2c84d0)",
+    "disabled (classe .ds-checkbox--disabled: label typography/disabled, hint color/border/brand/disabled, glifo --checkbox-control-color-disabled e cursor not-allowed; input com disabled nativo)",
+    "readonly (classe .ds-checkbox--readonly: label typography/primary, hint color/border/brand/disabled, cursor default e nenhum estado de hover/pressed; input com aria-readonly=\"true\" e clique bloqueado)",
+    "required (span .ds-checkbox__required com asterisco decorativo + atributo required nativo)"
+  ],
+  "responsive": [
+    {
+      "query": "(hover: hover)",
+      "effect": "Aplica cor de hover no glifo e o ripple --checkbox-ripple-hover apenas quando o componente nao esta disabled nem readonly."
+    },
+    {
+      "query": "(prefers-reduced-motion: reduce)",
+      "effect": "transition: none em .ds-checkbox__control, .ds-checkbox__control::before e .ds-checkbox__icon."
+    }
+  ],
+  "accessibility": {
+    "roles": [
+      "checkbox (input type=\"checkbox\" nativo — confirmado pelo teste getByRole(\"checkbox\", { name: \"Checkbox Label\" }))",
+      "A raiz e um <label> que envolve o input e todo o conteudo, tornando a linha inteira clicavel."
+    ],
+    "ariaAttributes": [
+      "aria-labelledby (aponta para o span `${inputId}-label` com o texto da label)",
+      "aria-describedby (aponta para `${inputId}-hint` apenas quando hint e informado)",
+      "aria-checked=\"mixed\" (apenas quando indeterminate)",
+      "aria-readonly=\"true\" (apenas quando readOnly)",
+      "aria-hidden=\"true\" (span.ds-checkbox__control com os tres glifos SVG e span.ds-checkbox__required com o asterisco)"
+    ],
+    "keyboardInteractions": [
+      "Tab / Shift+Tab: move o foco para o input nativo (visualmente oculto, mas nao removido do fluxo de foco — usa clip/clip-path em vez de display:none).",
+      "Space: alterna o estado quando habilitado (comportamento nativo do input type=\"checkbox\"); com readOnly o onClick chama preventDefault e o estado nao muda."
+    ],
+    "notes": [
+      "O input nativo e mantido no DOM e apenas escondido visualmente (position absolute + clip + clip-path), preservando teclado, formularios e leitores de tela.",
+      "O estado indeterminate e aplicado de fato na propriedade DOM (input.indeterminate) via useEffect, alem do aria-checked=\"mixed\" — coberto pelos testes \"sets the native indeterminate state\" e \"sets aria-checked mixed for assistive technologies\".",
+      "readOnly nao usa o disabled nativo: o input continua focavel e anunciado, com aria-readonly=\"true\" e a alteracao bloqueada em onChange/onClick.",
+      "O asterisco de required e decorativo (aria-hidden); a obrigatoriedade e comunicada pelo atributo required do input.",
+      "Quando id nao e informado, useId gera o identificador e os ids derivados de label e hint."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Checkbox/Checkbox.test.tsx",
+    "unitCount": 16,
+    "a11yFile": "packages/react/src/components/Checkbox/Checkbox.a11y.test.tsx",
+    "a11yCount": 7
+  },
+  "figmaReferences": [
+    {
+      "node": "4:4209",
+      "note": "Checkbox.styles.css: \"Layout do Figma: Web Components / Checkbox (node 4:4209).\" Cada propriedade referencia a mesma variable usada no Figma."
+    },
+    {
+      "node": "4:4209",
+      "note": "Checkbox.tsx: glifos exportados do Figma (Web Components / Checkbox) — Check Box Unselected-24, Check Box Selected-24 e Check Box Intermediate-24."
+    }
+  ],
+  "pendencias": [
+    "A cor do focus ring (#2c84d0) e o branco a 84% sao valores literais: nao ha variable exposta na collection exportada (documentado no CSS).",
+    "O tamanho do ripple (32px) e literal, sem token correspondente.",
+    "O tipo exportado CheckboxState ('unchecked' | 'checked' | 'indeterminate') nao e usado por CheckboxProps nem pelo Checkbox.tsx — nao da para determinar pelo codigo qual e o consumidor previsto.",
+    "Nao existe arquivo Checkbox.stories.css; as stories usam estilos inline (objeto style no CheckboxGroup).",
+    "O componente nao possui @media de breakpoint: o CSS documenta em comentario que o node do Figma nao define variante mobile e que a responsividade vem do controle fixo + quebra natural de texto. As stories GroupedStatesMobile e LongLabel apenas reduzem componentCanvas.width.",
+    "Nao ha estado de erro/invalido implementado (nem classe, nem prop), apesar de required existir.",
+    "Os argTypes nao declaram table.type/table.defaultValue; os defaults vieram da desestruturacao em Checkbox.tsx.",
+    "Os parametros parameters.componentCanvas.width (520 no meta, 320 em LongLabel e GroupedStatesMobile) nao estao documentados no codigo do componente.",
+    "Existem stories homonimas em SwiftUI/Checkbox e Android/Checkbox (showcase/), fora do diretorio React; nao foram incluidas porque o title difere de \"Web Components/Checkbox\"."
+  ]
+}

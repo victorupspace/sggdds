@@ -1,0 +1,180 @@
+{
+  "slug": "list-item",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Conteúdo",
+  "resumo": "O List Item é uma linha de lista com título, texto de apoio opcional e espaços visuais nas pontas. Serve para apresentar itens de listas, resultados de busca, menus e telas de configuração, com ou sem clique.",
+  "quandoUsar": [
+    "Listar os serviços disponíveis em uma unidade do Poupatempo, com o nome do serviço no título e o tempo médio de atendimento na descrição.",
+    "Mostrar o resultado de uma consulta de protocolo, uma linha por protocolo, cada uma levando à página de detalhe (informe href).",
+    "Montar um menu de configurações da conta em que cada linha abre outra tela (informe href ou onClick).",
+    "Apresentar informação só de leitura, como a lista de documentos exigidos para emitir uma certidão: sem href e sem onClick o item fica estático e não entra na tabulação.",
+    "Indicar qual item está aberto no momento dentro de uma lista de navegação lateral, usando selected."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Quando a pessoa precisa comparar vários campos por registro lado a lado, como número do protocolo, data de abertura, órgão e situação.",
+      "alternativa": "data-table"
+    },
+    {
+      "texto": "Quando o item precisa de imagem, texto longo e uma ação em destaque, com peso visual próprio.",
+      "alternativa": "card"
+    },
+    {
+      "texto": "Quando a pessoa precisa escolher uma opção dentro de um formulário e a escolha será enviada.",
+      "alternativa": "radio"
+    },
+    {
+      "texto": "Quando o objetivo é abrir e fechar blocos de texto longo, como perguntas frequentes.",
+      "alternativa": "accordion"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Item",
+      "descricao": "Elemento de lista que envolve toda a linha. É ele que recebe os estados selected e disabled."
+    },
+    {
+      "numero": 2,
+      "parte": "Controle interno",
+      "descricao": "Camada clicável dentro do item. Vira link quando há href, botão quando há apenas onClick, e um bloco não clicável quando não há nenhum dos dois."
+    },
+    {
+      "numero": 3,
+      "parte": "Slot líder (leading)",
+      "descricao": "Espaço visual no início da linha, para ícone ou avatar. É decorativo e não é lido por leitores de tela."
+    },
+    {
+      "numero": 4,
+      "parte": "Conteúdo",
+      "descricao": "Bloco central que empilha título e descrição."
+    },
+    {
+      "numero": 5,
+      "parte": "Título",
+      "descricao": "Texto principal e obrigatório. É a informação que identifica o item."
+    },
+    {
+      "numero": 6,
+      "parte": "Descrição",
+      "descricao": "Texto secundário opcional. Quando existe e a prop line não é informada, o item passa a ocupar duas linhas."
+    },
+    {
+      "numero": 7,
+      "parte": "Slot final (trailing)",
+      "descricao": "Espaço visual no fim da linha, para ícone, selo ou valor. Também é decorativo e substitui o chevron automático."
+    },
+    {
+      "numero": 8,
+      "parte": "Chevron",
+      "descricao": "Seta que aparece sozinha no fim dos itens clicáveis quando o slot final está vazio. Sinaliza que a linha leva a outro lugar."
+    },
+    {
+      "numero": 9,
+      "parte": "Divisor",
+      "descricao": "Linha inferior opcional, ligada pela prop divider, que separa um item do próximo."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "Abaixo de 640px o item reduz o recuo lateral e o espaço entre as partes, o título diminui de 22 para 18 e a descrição cai para 14. O resultado é uma linha mais estreita e mais alta, que continua legível no celular sem cortar o texto.",
+  "dosDonts": [
+    {
+      "faca": "Coloque no título a informação que identifica o item e deixe a descrição para o dado que ajuda a decidir: prazo, órgão responsável ou situação.",
+      "naoFaca": "Repetir o mesmo conteúdo no título e na descrição só para o item ficar com duas linhas.",
+      "porque": "A descrição é lida logo depois do título por leitores de tela. Texto repetido dobra o tempo de leitura sem acrescentar informação."
+    },
+    {
+      "faca": "Escolha uma densidade para a lista inteira: comfortable quando a pessoa lê com calma, compact quando ela escaneia muitos itens.",
+      "naoFaca": "Misturar comfortable e compact na mesma lista.",
+      "porque": "Alturas diferentes na mesma lista sugerem uma hierarquia que não existe e a pessoa procura um agrupamento que não está lá."
+    },
+    {
+      "faca": "Deixe o chevron automático aparecer nos itens que levam a outra tela.",
+      "naoFaca": "Preencher o slot final com um ícone decorativo em um item clicável.",
+      "porque": "O slot final substitui o chevron. Sem ele, a pessoa perde o único sinal visual de que aquela linha abre outro conteúdo."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Escreva o título como o nome da coisa ou do serviço, com maiúscula só na primeira letra e em nomes próprios: \"Segunda via do RG\", não \"SEGUNDA VIA DO RG\".",
+    "Mire em até 60 caracteres no título, para ele caber em uma linha no celular sem quebrar no meio de uma palavra.",
+    "Use a descrição para um único dado de apoio, em uma frase curta. Se precisar de duas informações diferentes, revise se o caso não pede uma tabela.",
+    "Não repita no item o texto que já está no título da lista ou no cabeçalho da página.",
+    "Se o item abre em outra aba, avise no próprio título ou na descrição: o componente não mostra nenhum aviso visual para isso."
+  ],
+  "hierarquia": [
+    "Agrupe os itens em um único bloco de superfície clara sobre o fundo da página. A lista precisa parecer uma superfície só, não vários cartões soltos.",
+    "O título carrega o peso visual da linha. Slot líder e slot final são apoio e nunca devem competir com ele.",
+    "Use o divisor quando os itens têm descrição e ficam altos; em listas curtas de uma linha, o espaçamento já separa o suficiente.",
+    "O estado selecionado marca posição dentro da lista, não sucesso nem confirmação. Use-o só quando existe de fato um item ativo."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Avatar",
+      "slug": "avatar",
+      "relacao": "O slot líder aceita um Avatar para identificar a pessoa ou o órgão de cada linha."
+    },
+    {
+      "componente": "Badge",
+      "slug": "badge",
+      "relacao": "O slot final aceita um Badge com a situação do item, como \"Em análise\". Como o slot é decorativo, repita a situação no título ou na descrição."
+    },
+    {
+      "componente": "Card",
+      "slug": "card",
+      "relacao": "Uma lista de itens pode viver dentro de um Card quando precisa se destacar do restante da página."
+    },
+    {
+      "componente": "Divider",
+      "slug": "divider",
+      "relacao": "Não insira o componente Divider entre os itens: o próprio List Item tem a prop divider, que já usa a espessura e a cor corretas."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Lista de serviços de uma unidade do Poupatempo",
+      "contexto": "A pessoa escolheu uma unidade e precisa decidir qual serviço agendar.",
+      "comoFica": "Uma lista com um item por serviço, em duas linhas: o título traz o nome do serviço e a descrição traz o tempo médio de atendimento. Cada item tem href para a página de agendamento, então o chevron aparece no fim da linha. A densidade é comfortable e o divisor separa os itens."
+    },
+    {
+      "titulo": "Resultado da consulta de protocolo",
+      "contexto": "A pessoa consultou o andamento dos pedidos abertos em seu nome e recebeu vários resultados.",
+      "comoFica": "Uma lista compacta, um item por protocolo. O título traz o número do protocolo e o assunto; a descrição traz a data de abertura e a situação. Um Badge no slot final repete a situação em cor, e o texto da situação continua na descrição para quem usa leitor de tela."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Usar o List Item sem envolver os itens em uma lista.",
+      "consequencia": "O componente renderiza apenas o item de lista, não a lista. Sem o elemento pai, o HTML fica inválido e leitores de tela não anunciam quantos itens existem nem em qual deles a pessoa está.",
+      "correcao": "Envolva o conjunto em uma lista não ordenada, ou ordenada quando a ordem tiver significado."
+    },
+    {
+      "erro": "Colocar informação essencial apenas no slot líder ou no slot final.",
+      "consequencia": "Os dois slots são marcados como decorativos e ficam escondidos de leitores de tela. Quem não vê a tela perde a informação por completo.",
+      "correcao": "Repita a informação no título ou na descrição e mantenha nos slots apenas o reforço visual."
+    },
+    {
+      "erro": "Marcar um item como desabilitado quando ele ainda leva a algum lugar.",
+      "consequencia": "O link perde o endereço e sai da tabulação, e o botão fica bloqueado. A pessoa vê a linha, tenta clicar e nada acontece, sem nenhuma explicação.",
+      "correcao": "Mantenha o item ativo e explique a restrição na descrição, ou retire o item da lista."
+    },
+    {
+      "erro": "Informar href e onClick no mesmo item esperando que ele funcione como botão.",
+      "consequencia": "Com href o item sempre vira um link e navega. O onClick é chamado junto, então a ação local e a navegação disparam ao mesmo tempo.",
+      "correcao": "Escolha um: href quando o item leva para outra página, onClick quando ele executa algo na tela atual."
+    }
+  ],
+  "notasImplementacao": [
+    "O componente renderiza somente o item de lista. A semântica de lista é responsabilidade de quem consome.",
+    "A prop selected aplica aria-selected no item de lista. Esse atributo não é válido no papel implícito de listitem: quando a lista funciona como seleção, quem consome precisa definir o papel adequado no próprio item, usando as props extras repassadas ao elemento.",
+    "Não existe navegação por setas entre os itens. Para usar a lista como menu ou caixa de seleção por teclado, esse comportamento precisa ser implementado por quem consome.",
+    "Links com target de nova aba recebem rel de segurança automaticamente quando rel não é informado.",
+    "Props extras de atributos HTML são repassadas ao item de lista, o que permite definir papel, id e atributos de dados.",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual."
+  ],
+  "pendentes": [
+    "O campo de tamanhos ficou vazio porque o componente não expõe prop de tamanho: a altura da linha vem da densidade (comfortable ou compact), descrita na seção Do & don't.",
+    "A orientação de manter a lista sobre fundo cinza com superfície branca aparece na descrição do Storybook, mas não está implementada no CSS do componente. Falta o time confirmar se isso vira regra do design system.",
+    "O código não cita nenhum node do Figma, então não foi possível apontar o frame de origem deste componente."
+  ]
+}

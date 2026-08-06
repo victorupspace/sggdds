@@ -1,0 +1,227 @@
+{
+  "slug": "back-to-top",
+  "name": "BackToTop",
+  "storybookTitle": "Web Components/BackToTop",
+  "sourceDir": "packages/react/src/components/BackToTop",
+  "exports": ["BackToTop"],
+  "typeExports": ["BackToTopPosition", "BackToTopProps", "BackToTopScrollBehavior"],
+  "oneLiner": "BackToTop permite retornar rapidamente ao topo de uma pagina longa sem perder o contexto de navegacao.",
+  "docsDescription": "BackToTop permite retornar rapidamente ao topo de uma pagina longa sem perder o contexto de navegacao.\n\nUse em paginas extensas, documentacao, listas longas e fluxos com rolagem vertical significativa. Nao use em telas curtas, modais pequenos ou como substituto de navegacao estrutural.\n\nResponsividade:\nEste componente foi desenvolvido com comportamento responsivo nativo. O botao fica fixo no canto inferior, ajusta tamanho/inset em mobile, aparece apenas apos o threshold configurado e evita foco/tab quando oculto.\n\nTokens:\nBackground usa soft black dos tokens, com foreground branco, foco em identity blue, radius full e spacing tokens. A seta usa Material Symbols Rounded com weight 300, conforme solicitado.\n\nAcessibilidade e melhores praticas:\n- Usa button nativo com aria-label claro.\n- Quando oculto, sai da ordem de tab e recebe aria-hidden.\n- Respeita prefers-reduced-motion, usando scroll automatico quando a pessoa reduziu movimento.\n- Mantem area de toque ampla em desktop e mobile.\n- onClick pode cancelar o scroll chamando event.preventDefault().",
+  "props": [
+    {
+      "name": "ariaLabel",
+      "type": "string",
+      "values": null,
+      "default": "'Voltar ao topo'",
+      "required": false,
+      "description": "Nome acessivel do botao (aplicado como aria-label).",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao componente.",
+      "source": "ambos"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "values": ["true", "false"],
+      "default": "false",
+      "required": false,
+      "description": "Desabilita a acao (atributo disabled no <button>).",
+      "source": "ambos"
+    },
+    {
+      "name": "onClick",
+      "type": "MouseEventHandler<HTMLButtonElement>",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Callback de click. Pode chamar preventDefault para cancelar o scroll.",
+      "source": "ambos"
+    },
+    {
+      "name": "position",
+      "type": "BackToTopPosition",
+      "values": ["right", "left"],
+      "default": "'right'",
+      "required": false,
+      "description": "Canto horizontal em que o botao fica posicionado.",
+      "source": "ambos"
+    },
+    {
+      "name": "scrollBehavior",
+      "type": "BackToTopScrollBehavior",
+      "values": ["auto", "smooth"],
+      "default": "'smooth'",
+      "required": false,
+      "description": "Comportamento de scroll quando prefers-reduced-motion nao esta ativo.",
+      "source": "ambos"
+    },
+    {
+      "name": "target",
+      "type": "HTMLElement | Window | null",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Elemento ou Window que sera observado e rolado para o topo. Quando ausente, usa window.",
+      "source": "ambos"
+    },
+    {
+      "name": "threshold",
+      "type": "number",
+      "values": null,
+      "default": "320",
+      "required": false,
+      "description": "Quantidade de scroll em px antes do botao aparecer. O valor e normalizado com Math.max(0, Math.trunc(threshold)).",
+      "source": "ambos"
+    },
+    {
+      "name": "visible",
+      "type": "boolean",
+      "values": ["true", "false"],
+      "default": null,
+      "required": false,
+      "description": "Controle manual de visibilidade para exemplos ou casos controlados. Quando definido, desliga os listeners de scroll/resize.",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onClick",
+      "signature": "MouseEventHandler<HTMLButtonElement>",
+      "description": "Chamado antes do scroll. Se o handler chamar event.preventDefault() (ou o componente estiver disabled), o scroll ao topo nao acontece."
+    }
+  ],
+  "slots": [],
+  "cssClasses": [
+    "ds-back-to-top",
+    "ds-back-to-top--position-right",
+    "ds-back-to-top--position-left",
+    "ds-back-to-top--visible",
+    "ds-back-to-top__icon"
+  ],
+  "cssCustomProperties": [
+    { "name": "--back-to-top-background", "value": "var(--ds-semantic-text-style-content-color-typography-secondary)", "comment": null },
+    { "name": "--back-to-top-background-hover", "value": "var(--ds-semantic-text-style-content-color-typography-primary)", "comment": null },
+    { "name": "--back-to-top-foreground", "value": "var(--ds-semantic-color-background-neutral-default)", "comment": null },
+    { "name": "--back-to-top-focus-ring", "value": "var(--ds-semantic-color-background-brand-primary-secondary-default)", "comment": null },
+    { "name": "--back-to-top-disabled-background", "value": "var(--ds-semantic-color-border-neutral-default)", "comment": null },
+    { "name": "--back-to-top-disabled-foreground", "value": "var(--ds-semantic-text-style-content-color-typography-tertiary)", "comment": null },
+    { "name": "--back-to-top-size", "value": "var(--ds-primitive-spacing-64)", "comment": null },
+    { "name": "--back-to-top-icon-size", "value": "var(--ds-primitive-spacing-32)", "comment": null },
+    { "name": "--back-to-top-inset", "value": "var(--ds-primitive-spacing-32)", "comment": null },
+    { "name": "--back-to-top-z-index", "value": "50", "comment": null },
+    { "name": "--back-to-top-size", "value": "var(--ds-primitive-spacing-48)", "comment": "Override em @media (max-width: 640px)" },
+    { "name": "--back-to-top-icon-size", "value": "var(--ds-primitive-spacing-24)", "comment": "Override em @media (max-width: 640px)" },
+    { "name": "--back-to-top-inset", "value": "var(--ds-primitive-spacing-24)", "comment": "Override em @media (max-width: 640px)" },
+    { "name": "--back-to-top-inset", "value": "var(--ds-primitive-spacing-16)", "comment": "Override em @media (max-width: 420px)" }
+  ],
+  "tokensUsed": [
+    "--ds-semantic-text-style-content-color-typography-secondary",
+    "--ds-semantic-text-style-content-color-typography-primary",
+    "--ds-semantic-color-background-neutral-default",
+    "--ds-semantic-color-background-brand-primary-secondary-default",
+    "--ds-semantic-color-border-neutral-default",
+    "--ds-semantic-text-style-content-color-typography-tertiary",
+    "--ds-primitive-spacing-64",
+    "--ds-primitive-spacing-32",
+    "--ds-primitive-spacing-0",
+    "--ds-primitive-border-radius-radius-full",
+    "--ds-primitive-spacing-16",
+    "--ds-primitive-spacing-2",
+    "--ds-primitive-border-width-border-md",
+    "--ds-primitive-spacing-4",
+    "--ds-primitive-spacing-48",
+    "--ds-primitive-spacing-24"
+  ],
+  "stories": [
+    {
+      "id": "web-components-backtotop--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-backtotop--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-backtotop--default&viewMode=story"
+    },
+    {
+      "id": "web-components-backtotop--left-position",
+      "name": "Left Position",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-backtotop--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-backtotop--left-position&viewMode=story"
+    },
+    {
+      "id": "web-components-backtotop--disabled",
+      "name": "Disabled",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-backtotop--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-backtotop--disabled&viewMode=story"
+    },
+    {
+      "id": "web-components-backtotop--scroll-container",
+      "name": "Scroll Container",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-backtotop--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-backtotop--scroll-container&viewMode=story"
+    },
+    {
+      "id": "web-components-backtotop--mobile-responsive",
+      "name": "Mobile Responsive",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-backtotop--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-backtotop--mobile-responsive&viewMode=story"
+    }
+  ],
+  "variants": [
+    { "prop": "position", "values": ["right", "left"] },
+    { "prop": "scrollBehavior", "values": ["auto", "smooth"] }
+  ],
+  "states": ["hover", "active", "focus-visible", "disabled", "visible"],
+  "responsive": [
+    {
+      "query": "@media (prefers-reduced-motion: reduce)",
+      "effect": "A transicao passa a ser opacity 1ms linear + background-color/color 160ms; transform: none (some o deslocamento de entrada e o afundamento do :active). O TSX tambem consulta window.matchMedia('(prefers-reduced-motion: reduce)') e forca scrollBehavior 'auto' no clique."
+    },
+    {
+      "query": "@media (max-width: 640px)",
+      "effect": "--back-to-top-size passa de spacing-64 para spacing-48, --back-to-top-icon-size de spacing-32 para spacing-24 e --back-to-top-inset de spacing-32 para spacing-24."
+    },
+    {
+      "query": "@media (max-width: 420px)",
+      "effect": "--back-to-top-inset passa para spacing-16."
+    }
+  ],
+  "accessibility": {
+    "roles": ["button (elemento <button type=\"button\">)"],
+    "ariaAttributes": ["aria-label", "aria-hidden"],
+    "keyboardInteractions": [
+      "Tab / Shift+Tab: o botao so entra na ordem de foco quando visivel (tabIndex=-1 quando oculto).",
+      "Enter / Espaco: aciona o botao e rola o alvo ate o topo (ativacao nativa do <button>); nao ha handler onKeyDown customizado."
+    ],
+    "notes": [
+      "Quando nao visivel, o botao recebe aria-hidden=\"true\" e tabIndex={-1}; quando visivel, os dois atributos sao omitidos.",
+      "O botao permanece sempre no DOM; a visibilidade e feita por opacity/pointer-events e pela classe .ds-back-to-top--visible.",
+      "O icone e o texto de ligatura 'arrow_upward' em <span aria-hidden=\"true\"> com a fonte Material Symbols Rounded (weight 300).",
+      "O nome acessivel vem exclusivamente de aria-label (padrao 'Voltar ao topo').",
+      "O clique respeita prefers-reduced-motion: usa behavior 'auto' quando a pessoa reduziu movimento, senao usa scrollBehavior.",
+      "onClick pode cancelar o scroll com event.preventDefault(); o scroll tambem e ignorado quando disabled.",
+      "No modo nao controlado (visible === undefined), listeners de 'scroll' (passive) no target e de 'resize' no window atualizam a visibilidade a partir do threshold."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/BackToTop/BackToTop.test.tsx",
+    "unitCount": 7,
+    "a11yFile": null,
+    "a11yCount": null
+  },
+  "figmaReferences": [],
+  "pendencias": [
+    "Nao existe arquivo BackToTop.a11y.test.tsx.",
+    "Nenhum node-id do Figma e citado em comentarios do codigo do BackToTop (nem no TSX nem no CSS).",
+    "O CSS faz @import de uma fonte externa (https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded...), entao o icone depende de rede/CDN — nao ha fallback SVG no codigo.",
+    "--back-to-top-z-index e um valor literal (50), sem token correspondente.",
+    "A cor de foco e descrita como 'identity blue' na doc, mas o CSS usa --ds-semantic-color-background-brand-primary-secondary-default; a equivalencia nao pode ser confirmada apenas por este diretorio.",
+    "O componente e sempre position: fixed no CSS do proprio componente; nas stories ele e reposicionado para absolute via .back-to-top-story-panel .ds-back-to-top.",
+    "Os valores concretos dos tokens --ds-* nao estao neste diretorio; ficam em packages/tokens.",
+    "Os parametros parameters.componentCanvas.width (640 no meta, 320 na story MobileResponsive) nao tem campo correspondente no schema."
+  ]
+}

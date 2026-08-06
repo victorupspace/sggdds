@@ -1,0 +1,417 @@
+{
+  "slug": "skeleton",
+  "name": "Skeleton",
+  "storybookTitle": "Web Components/Skeleton",
+  "sourceDir": "packages/react/src/components/Skeleton",
+  "exports": [
+    "Skeleton"
+  ],
+  "typeExports": [
+    "SkeletonAnimation",
+    "SkeletonDimension",
+    "SkeletonProps",
+    "SkeletonRadius",
+    "SkeletonShape",
+    "SkeletonTone"
+  ],
+  "oneLiner": "Skeleton representa uma estrutura de carregamento enquanto o conteudo real ainda nao esta disponivel.",
+  "docsDescription": "Skeleton representa uma estrutura de carregamento enquanto o conteudo real ainda nao esta disponivel.\n\nUse para preservar estabilidade visual em listas, cards, avatar, imagens, titulos e blocos de texto. Ele ajuda a pessoa usuaria a entender a estrutura que esta chegando sem depender de percentuais de progresso.\n\nNao use Skeleton para acoes curtas ou carregamentos globais de tela. Nesses casos, use Spinner/Loading. Para progresso mensuravel, use ProgressBar.\n\nAplicacao:\n- shape controla a geometria principal: rectangle, rounded, circle e text.\n- width e height aceitam valores de CSS ou numeros em pixels para facilitar composicoes responsivas.\n- lines cria placeholders de texto em multiplas linhas com a ultima linha menor.\n- radius permite ajustar a forma sem criar novos componentes.\n- animation aceita pulse, wave ou none.\n\nTokens:\nCores, radius, spacing, border e sizing usam variaveis CSS dos tokens importados do Figma. As dimensoes customizadas entram como variaveis CSS locais para permitir composicoes diferentes em desktop e mobile.\n\nAcessibilidade:\n- Por padrao o Skeleton e decorativo e usa aria-hidden para evitar ruido em telas com varios placeholders.\n- Quando usado sozinho como estado de carregamento, informe ariaLabel para ativar role=\"status\" e aria-busy.\n- Respeita prefers-reduced-motion reduzindo a velocidade da animacao.",
+  "props": [
+    {
+      "name": "animation",
+      "type": "SkeletonAnimation",
+      "values": [
+        "pulse",
+        "wave",
+        "none"
+      ],
+      "default": "'pulse'",
+      "required": false,
+      "description": "Tipo de animacao do placeholder.",
+      "source": "ambos"
+    },
+    {
+      "name": "ariaLabel",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Nome acessivel quando o skeleton representa um loading standalone.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao elemento raiz.",
+      "source": "ambos"
+    },
+    {
+      "name": "height",
+      "type": "SkeletonDimension (number | string)",
+      "values": null,
+      "default": "var(--ds-primitive-spacing-20) pelo CSS; spacing-16 no shape text e igual a largura no shape circle",
+      "required": false,
+      "description": "Altura do skeleton. Numeros sao convertidos para px.",
+      "source": "ambos"
+    },
+    {
+      "name": "lineGap",
+      "type": "SkeletonDimension (number | string)",
+      "values": null,
+      "default": "var(--ds-primitive-spacing-8) pelo CSS",
+      "required": false,
+      "description": "Espaco entre linhas no shape text com lines maior que 1.",
+      "source": "ambos"
+    },
+    {
+      "name": "lines",
+      "type": "number",
+      "values": null,
+      "default": "1",
+      "required": false,
+      "description": "Quantidade de linhas para skeleton de texto.",
+      "source": "ambos"
+    },
+    {
+      "name": "radius",
+      "type": "SkeletonRadius",
+      "values": [
+        "none",
+        "sm",
+        "md",
+        "lg",
+        "full"
+      ],
+      "default": "derivado do shape: circle -> 'full', rounded -> 'md', demais -> 'sm'",
+      "required": false,
+      "description": "Raio visual do placeholder.",
+      "source": "ambos"
+    },
+    {
+      "name": "shape",
+      "type": "SkeletonShape",
+      "values": [
+        "rectangle",
+        "rounded",
+        "circle",
+        "text"
+      ],
+      "default": "'rectangle'",
+      "required": false,
+      "description": "Formato do skeleton.",
+      "source": "ambos"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "tone",
+      "type": "SkeletonTone",
+      "values": [
+        "default",
+        "subtle",
+        "strong"
+      ],
+      "default": "'default'",
+      "required": false,
+      "description": "Intensidade visual do placeholder.",
+      "source": "ambos"
+    },
+    {
+      "name": "width",
+      "type": "SkeletonDimension (number | string)",
+      "values": null,
+      "default": "100% pelo CSS; var(--ds-primitive-spacing-64) no shape circle",
+      "required": false,
+      "description": "Largura do skeleton. Numeros sao convertidos para px.",
+      "source": "ambos"
+    },
+    {
+      "name": "...restProps",
+      "type": "Omit<HTMLAttributes<HTMLSpanElement>, 'children'>",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    }
+  ],
+  "callbacks": [],
+  "slots": [],
+  "cssClasses": [
+    "ds-skeleton",
+    "ds-skeleton--shape-rectangle",
+    "ds-skeleton--shape-rounded",
+    "ds-skeleton--shape-circle",
+    "ds-skeleton--shape-text",
+    "ds-skeleton--animation-pulse",
+    "ds-skeleton--animation-wave",
+    "ds-skeleton--animation-none",
+    "ds-skeleton--tone-default",
+    "ds-skeleton--tone-subtle",
+    "ds-skeleton--tone-strong",
+    "ds-skeleton--radius-none",
+    "ds-skeleton--radius-sm",
+    "ds-skeleton--radius-md",
+    "ds-skeleton--radius-lg",
+    "ds-skeleton--radius-full",
+    "ds-skeleton--multiline",
+    "ds-skeleton__line"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--skeleton-background",
+      "value": "var(--ds-semantic-color-border-neutral-default)",
+      "comment": null
+    },
+    {
+      "name": "--skeleton-highlight",
+      "value": "var(--ds-semantic-color-border-neutral-subtle)",
+      "comment": null
+    },
+    {
+      "name": "--skeleton-width",
+      "value": "100%",
+      "comment": null
+    },
+    {
+      "name": "--skeleton-height",
+      "value": "var(--ds-primitive-spacing-20)",
+      "comment": null
+    },
+    {
+      "name": "--skeleton-line-gap",
+      "value": "var(--ds-primitive-spacing-8)",
+      "comment": null
+    },
+    {
+      "name": "--skeleton-radius",
+      "value": "var(--ds-primitive-border-radius-radius-sm)",
+      "comment": null
+    },
+    {
+      "name": "--skeleton-background",
+      "value": "var(--ds-semantic-color-border-neutral-subtle)",
+      "comment": "Override em .ds-skeleton--tone-subtle"
+    },
+    {
+      "name": "--skeleton-highlight",
+      "value": "var(--ds-semantic-color-background-neutral-disabled)",
+      "comment": "Override em .ds-skeleton--tone-subtle"
+    },
+    {
+      "name": "--skeleton-background",
+      "value": "var(--ds-semantic-text-style-content-color-typography-placeholder)",
+      "comment": "Override em .ds-skeleton--tone-strong"
+    },
+    {
+      "name": "--skeleton-highlight",
+      "value": "var(--ds-semantic-color-border-neutral-default)",
+      "comment": "Override em .ds-skeleton--tone-strong"
+    },
+    {
+      "name": "--skeleton-radius",
+      "value": "var(--ds-primitive-border-radius-radius-none)",
+      "comment": "Override em .ds-skeleton--radius-none"
+    },
+    {
+      "name": "--skeleton-radius",
+      "value": "var(--ds-primitive-border-radius-radius-sm)",
+      "comment": "Override em .ds-skeleton--radius-sm"
+    },
+    {
+      "name": "--skeleton-radius",
+      "value": "var(--ds-primitive-border-radius-radius-md)",
+      "comment": "Override em .ds-skeleton--radius-md"
+    },
+    {
+      "name": "--skeleton-radius",
+      "value": "var(--ds-primitive-border-radius-radius-lg)",
+      "comment": "Override em .ds-skeleton--radius-lg"
+    },
+    {
+      "name": "--skeleton-radius",
+      "value": "var(--ds-primitive-border-radius-radius-full)",
+      "comment": "Override em .ds-skeleton--radius-full e em .ds-skeleton--shape-text"
+    },
+    {
+      "name": "--skeleton-width",
+      "value": "var(--ds-primitive-spacing-64)",
+      "comment": "Override em .ds-skeleton--shape-circle"
+    },
+    {
+      "name": "--skeleton-height",
+      "value": "var(--skeleton-width)",
+      "comment": "Override em .ds-skeleton--shape-circle"
+    },
+    {
+      "name": "--skeleton-height",
+      "value": "var(--ds-primitive-spacing-16)",
+      "comment": "Override em .ds-skeleton--shape-text"
+    },
+    {
+      "name": "--skeleton-width",
+      "value": "valor da prop width (numeros viram px)",
+      "comment": "Definido inline pelo TSX no style do elemento raiz"
+    },
+    {
+      "name": "--skeleton-height",
+      "value": "valor da prop height (numeros viram px)",
+      "comment": "Definido inline pelo TSX no style do elemento raiz"
+    },
+    {
+      "name": "--skeleton-line-gap",
+      "value": "valor da prop lineGap (numeros viram px)",
+      "comment": "Definido inline pelo TSX no style do elemento raiz"
+    }
+  ],
+  "tokensUsed": [
+    "--ds-primitive-border-radius-radius-full",
+    "--ds-primitive-border-radius-radius-lg",
+    "--ds-primitive-border-radius-radius-md",
+    "--ds-primitive-border-radius-radius-none",
+    "--ds-primitive-border-radius-radius-sm",
+    "--ds-primitive-spacing-0",
+    "--ds-primitive-spacing-16",
+    "--ds-primitive-spacing-20",
+    "--ds-primitive-spacing-64",
+    "--ds-primitive-spacing-8",
+    "--ds-semantic-color-background-neutral-disabled",
+    "--ds-semantic-color-border-neutral-default",
+    "--ds-semantic-color-border-neutral-subtle",
+    "--ds-semantic-text-style-content-color-typography-placeholder"
+  ],
+  "stories": [
+    {
+      "id": "web-components-skeleton--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-skeleton--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-skeleton--default&viewMode=story"
+    },
+    {
+      "id": "web-components-skeleton--shapes",
+      "name": "Shapes",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-skeleton--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-skeleton--shapes&viewMode=story"
+    },
+    {
+      "id": "web-components-skeleton--text-lines",
+      "name": "Text Lines",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-skeleton--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-skeleton--text-lines&viewMode=story"
+    },
+    {
+      "id": "web-components-skeleton--card-placeholder",
+      "name": "Card Placeholder",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-skeleton--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-skeleton--card-placeholder&viewMode=story"
+    },
+    {
+      "id": "web-components-skeleton--surfaces",
+      "name": "Surfaces",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-skeleton--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-skeleton--surfaces&viewMode=story"
+    },
+    {
+      "id": "web-components-skeleton--wave-animation",
+      "name": "Wave Animation",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-skeleton--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-skeleton--wave-animation&viewMode=story"
+    }
+  ],
+  "variants": [
+    {
+      "prop": "shape",
+      "values": [
+        "rectangle",
+        "rounded",
+        "circle",
+        "text"
+      ]
+    },
+    {
+      "prop": "animation",
+      "values": [
+        "pulse",
+        "wave",
+        "none"
+      ]
+    },
+    {
+      "prop": "tone",
+      "values": [
+        "default",
+        "subtle",
+        "strong"
+      ]
+    },
+    {
+      "prop": "radius",
+      "values": [
+        "none",
+        "sm",
+        "md",
+        "lg",
+        "full"
+      ]
+    }
+  ],
+  "states": [
+    "decorativo (padrao, sem ariaLabel: aria-hidden=\"true\")",
+    "loading anunciado (com ariaLabel: role=\"status\" e aria-busy=\"true\")",
+    "multiline (.ds-skeleton--multiline quando shape e text e lines maior que 1; a ultima linha fica com 72% da largura)",
+    "animacao pulse / wave / none (.ds-skeleton--animation-*)"
+  ],
+  "responsive": [
+    {
+      "query": "(prefers-reduced-motion: reduce)",
+      "effect": "Aumenta a duracao das animacoes pulse (1400ms) e wave (1600ms) para 2800ms, sem desliga-las."
+    },
+    {
+      "query": "(max-width: 640px)",
+      "effect": "Limita o skeleton a max-inline-size: 100%."
+    }
+  ],
+  "accessibility": {
+    "roles": [
+      "status (apenas quando ariaLabel e informado)"
+    ],
+    "ariaAttributes": [
+      "aria-hidden=\"true\" (padrao, quando nao ha ariaLabel)",
+      "aria-busy=\"true\" e aria-label (quando ariaLabel e informado)"
+    ],
+    "keyboardInteractions": [
+      "Componente nao interativo: nao recebe foco nem possui handlers de teclado."
+    ],
+    "notes": [
+      "Por padrao o Skeleton e decorativo (aria-hidden) para nao gerar ruido em telas com varios placeholders.",
+      "Com ariaLabel, aplica role=\"status\" e aria-busy=\"true\"; os atributos sao mutuamente exclusivos com aria-hidden.",
+      "Respeita prefers-reduced-motion aumentando a duracao das animacoes em vez de remove-las.",
+      "lines invalido (0, negativo ou nao finito) e normalizado para 1, e nesse caso nenhum .ds-skeleton__line e renderizado.",
+      "O elemento raiz e sempre um <span>; children nao e aceito pelo tipo."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Skeleton/Skeleton.test.tsx",
+    "unitCount": 6,
+    "a11yFile": null,
+    "a11yCount": null
+  },
+  "figmaReferences": [],
+  "pendencias": [
+    "Nenhum node-id do Figma e citado em comentarios do codigo do componente.",
+    "Nao existe arquivo Skeleton.a11y.test.tsx no diretorio.",
+    "SkeletonProps estende Omit<HTMLAttributes<HTMLSpanElement>, \"children\"> e repassa rest props ao elemento raiz; os handlers e atributos herdados nao estao documentados em argTypes.",
+    "A prop style nao possui entrada em argTypes nem descricao no codigo.",
+    "A ultima linha do modo multiline usa o literal 72% de largura, sem token correspondente."
+  ]
+}

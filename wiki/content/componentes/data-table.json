@@ -1,0 +1,174 @@
+{
+  "slug": "data-table",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Conteúdo",
+  "resumo": "Tabela para conjuntos grandes de registros, com ordenação por coluna, paginação, seleção de linhas e detalhe que abre dentro da própria linha. Serve quando a pessoa precisa comparar muitos itens pelos mesmos atributos.",
+  "quandoUsar": [
+    "Painel de atendimento em que a pessoa servidora precisa comparar dezenas de protocolos por data de entrada, situação e responsável.",
+    "Quando a ordem importa para a tarefa e a pessoa precisa reordenar por uma coluna, como prazo de vencimento ou data da solicitação.",
+    "Quando é preciso marcar vários registros para uma ação em lote, com seleção por linha e seleção de tudo no cabeçalho.",
+    "Quando cada registro tem detalhes que podem ser abertos sem sair da tela, como o histórico de andamento de um protocolo.",
+    "Quando a lista é longa o bastante para exigir paginação e escolha de quantas linhas aparecem por vez."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Lista curta, de três a cinco itens, em que ninguém precisa comparar colunas.",
+      "alternativa": "List Item"
+    },
+    {
+      "texto": "Conteúdo editorial ou serviços em destaque, em que cada item tem imagem, título e chamada.",
+      "alternativa": "Card"
+    },
+    {
+      "texto": "Blocos de texto que só precisam abrir e fechar, como perguntas frequentes.",
+      "alternativa": "Accordion"
+    },
+    {
+      "texto": "Apenas paginar um conteúdo que não é tabular.",
+      "alternativa": "Pagination"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Barra superior",
+      "descricao": "Área acima da tabela que reúne título, sub-header e o slot de ações (filtros, busca e controles)."
+    },
+    {
+      "numero": 2,
+      "parte": "Cabeçalho",
+      "descricao": "Linha de cabeçalhos de coluna. Colunas ordenáveis trazem um botão com o indicador de direção."
+    },
+    {
+      "numero": 3,
+      "parte": "Coluna de controle",
+      "descricao": "Coluna estreita à esquerda com a caixa de seleção da linha e o botão que abre o detalhe, quando esses recursos estão ligados."
+    },
+    {
+      "numero": 4,
+      "parte": "Corpo da tabela",
+      "descricao": "Conjunto de linhas e células com os dados. Aceita alternância de fundo (striped) e destaque ao passar o ponteiro."
+    },
+    {
+      "numero": 5,
+      "parte": "Linha expandida",
+      "descricao": "Bloco que aparece logo abaixo da linha aberta, com o conteúdo entregue por expandableRowsComponent."
+    },
+    {
+      "numero": 6,
+      "parte": "Área de estado",
+      "descricao": "Célula que substitui os dados quando a tabela está carregando ou quando não há registros para mostrar."
+    },
+    {
+      "numero": 7,
+      "parte": "Paginação",
+      "descricao": "Faixa no rodapé da tabela, com troca de página e escolha de linhas por página."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "Até 920px a tabela reduz o espaçamento interno e a largura mínima das colunas, e esconde as colunas marcadas para sumir primeiro. Até 720px reduz de novo a largura mínima das colunas e estica a paginação. Abaixo de 640px a tabela deixa de ser tabela: cada linha vira um cartão empilhado, o cabeçalho fica visualmente oculto e cada célula passa a exibir o nome da própria coluna antes do valor.",
+  "dosDonts": [
+    {
+      "faca": "Defina keyField com um identificador estável do registro, como o número do protocolo.",
+      "naoFaca": "Deixar a tabela cair no índice da linha quando houver seleção, expansão ou paginação.",
+      "porque": "Sem chave estável, reordenar a tabela ou trocar de página faz a seleção e as linhas abertas migrarem para outros registros."
+    },
+    {
+      "faca": "Informe sortAccessor na coluna sempre que a célula renderizar uma data formatada, um valor em reais ou um componente.",
+      "naoFaca": "Deixar a ordenação agir sobre o conteúdo que aparece na tela.",
+      "porque": "Sem o valor de ordenação, a comparação usa o texto exibido: datas em DD/MM saem fora de ordem e valores com símbolo de moeda são ordenados como palavras."
+    },
+    {
+      "faca": "Use hideBelow apenas em colunas de apoio, que a pessoa consegue dispensar no celular.",
+      "naoFaca": "Esconder no celular a coluna que identifica o registro.",
+      "porque": "Abaixo de 640px cada linha vira um cartão isolado; se a coluna de identificação sumir, o cartão fica sem nome e a pessoa não sabe de qual protocolo se trata."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Cabeçalhos curtos e em forma de substantivo: \"Protocolo\", \"Situação\", \"Entrada\". Evite verbos e frases no cabeçalho.",
+    "Escreva cabeçalhos e células com a primeira letra maiúscula e o resto em minúsculas, sem ponto final.",
+    "Troque os textos padrão de estado por textos do serviço: em vez de \"Nenhum dado encontrado\", escreva \"Nenhum protocolo encontrado para esse filtro\".",
+    "Mantenha um único formato por coluna: se a coluna mostra data, todas as células mostram data no mesmo formato.",
+    "No estado vazio, diga o próximo passo (\"Ajuste os filtros ou amplie o período\") em vez de apenas informar a ausência de resultados."
+  ],
+  "hierarquia": [
+    "Título e filtros ficam na barra superior, acima da tabela; a paginação fecha o bloco, abaixo do corpo. A pessoa lê de cima para baixo: o que é, como filtrar, o que apareceu, como avançar.",
+    "Ordene as colunas da esquerda para a direita por importância. A coluna que identifica o registro vem primeiro, logo depois da coluna de controle.",
+    "Use dense apenas quando comparar muitas linhas na mesma tela vale mais do que o conforto de leitura; em telas de uso contínuo, prefira a altura padrão.",
+    "A tabela é o elemento principal do bloco. Se houver cartões, alertas e tabela na mesma tela, a tabela deve receber a maior área."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Pagination",
+      "slug": "pagination",
+      "relacao": "A paginação da tabela é o próprio componente Pagination, incluindo as opções de linhas por página."
+    },
+    {
+      "componente": "Checkbox",
+      "slug": "checkbox",
+      "relacao": "A seleção por linha e a seleção de tudo usam o Checkbox do design system, com estado intermediário quando a seleção é parcial."
+    },
+    {
+      "componente": "Button",
+      "slug": "button",
+      "relacao": "Os controles de ordenar e de expandir são construídos sobre o Button, herdando o anel de foco do sistema."
+    },
+    {
+      "componente": "Chip",
+      "slug": "chip",
+      "relacao": "Dentro da célula, o chip resume a situação do registro sem alargar a coluna. Nesse caso, informe o valor de ordenação da coluna separadamente."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Fila de protocolos em análise",
+      "contexto": "Painel interno de uma secretaria, com centenas de solicitações para triagem diária.",
+      "comoFica": "Barra superior com o título \"Protocolos em análise\" e os filtros no slot de ações. Colunas de protocolo, entrada, situação e responsável, com ordenação por entrada. Seleção por linha para encaminhar vários protocolos de uma vez e expansão da linha para ver o andamento sem abrir outra tela. Paginação de 20 em 20 no rodapé."
+    },
+    {
+      "titulo": "Minhas solicitações no celular",
+      "contexto": "Área logada em que a pessoa acompanha os pedidos que abriu, acessada quase sempre pelo telefone.",
+      "comoFica": "No desktop, tabela com protocolo, serviço, data e situação. Abaixo de 640px cada solicitação vira um cartão empilhado, com o rótulo da coluna antes de cada valor. A coluna de responsável interno é marcada para sumir nas telas menores; a coluna do protocolo permanece, porque é o que identifica o pedido."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Ligar selectableRows e informar selectedRowKeys sem atualizar esse valor em onSelectedRowsChange.",
+      "consequencia": "A seleção fica travada: as caixas não respondem ao clique, porque o estado interno é desligado quando a seleção é controlada de fora.",
+      "correcao": "Ou mantenha a seleção não controlada (usando apenas defaultSelectedRowKeys), ou sincronize selectedRowKeys com o que chega em onSelectedRowsChange."
+    },
+    {
+      "erro": "Usar paginação ou ordenação no servidor sem informar o total de registros.",
+      "consequencia": "A contagem cai para o total local, que é apenas a página atual; a quantidade de páginas exibida fica errada.",
+      "correcao": "Com paginationServer, informe paginationTotalRows com o total real vindo da API."
+    },
+    {
+      "erro": "Usar onRowClicked como único caminho para abrir o detalhe do registro.",
+      "consequencia": "A linha não é focável e não existe equivalente por teclado; quem navega sem mouse não consegue abrir o detalhe.",
+      "correcao": "Coloque a mesma ação em um controle focável — o botão de expandir ou um link dentro da célula — e trate o clique na linha como atalho adicional."
+    },
+    {
+      "erro": "Ligar progressPending esperando um indicador visual de carregamento.",
+      "consequencia": "A classe de carregamento não tem estilo próprio; o que aparece é a linha de estado com o texto padrão, o que parece uma tabela vazia.",
+      "correcao": "Passe um conteúdo próprio em progressComponent, como um Spinner ou um Skeleton, para deixar claro que os dados estão a caminho."
+    }
+  ],
+  "notasImplementacao": [
+    "A tabela é semântica: <table> com nome acessível, cabeçalhos com scope de coluna e aria-sort apenas na coluna ordenada.",
+    "As caixas de seleção têm rótulo acessível visualmente oculto; o seletor do cabeçalho usa o estado intermediário quando a seleção é parcial.",
+    "O botão de expandir expõe aria-expanded e aponta, por aria-controls, para a célula de detalhe correspondente.",
+    "Abaixo de 640px o cabeçalho continua no DOM, apenas oculto visualmente, e cada célula mostra o nome da coluna. Colunas sem nome legível deixam cartões incompreensíveis no celular.",
+    "Todos os textos acessíveis (tabela, selecionar linha, expandir, ordenar, vazio, carregando) podem ser trocados pela prop labels.",
+    "Informar selectedRowKeys, expandedRowKeys, paginationPage ou o par sortColumnId/sortDirection desliga o estado interno correspondente: a partir daí, a atualização é responsabilidade de quem usa o componente.",
+    "Não há navegação por teclado de grade: o componente depende dos elementos nativos e dos componentes Button, Checkbox e Pagination.",
+    "Cliques nos controles de seleção e de expansão não disparam onRowClicked.",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual."
+  ],
+  "pendentes": [
+    "A definição completa das colunas (seletor, célula customizada, ordenação, alinhamento, largura mínima e ocultação por ponto de quebra) não cabe neste formato; a referência está no arquivo de tipos do componente.",
+    "Não foi possível recomendar um dos cinco temas disponíveis: os nomes não correspondem a nenhuma nomenclatura registrada do Figma e a escolha depende de definição de governança.",
+    "O campo de tamanhos ficou vazio porque o componente não expõe prop de tamanho: a única variação de densidade é dense.",
+    "Não há orientação sobre número máximo de colunas por tela, porque nem o código nem o Figma definem esse limite."
+  ]
+}

@@ -1,0 +1,498 @@
+{
+  "slug": "meganav",
+  "name": "Meganav",
+  "storybookTitle": "Web Components/Meganav",
+  "sourceDir": "packages/react/src/components/Meganav",
+  "exports": [
+    "Meganav"
+  ],
+  "typeExports": [
+    "MeganavAlign",
+    "MeganavFeatured",
+    "MeganavFeaturedAction",
+    "MeganavIcon",
+    "MeganavItem",
+    "MeganavProps",
+    "MeganavTriggerVariant"
+  ],
+  "oneLiner": "Meganav e a navegacao dedicada para areas globais acionadas pelo Header, abrindo uma gaveta de navegacao com links ricos, grupos internos e uma area opcional de destaque.",
+  "docsDescription": "Meganav e a navegacao dedicada para areas globais acionadas pelo Header. O componente abre uma gaveta de navegacao com links ricos, grupos internos e uma area opcional de destaque.\n\nUse para menus principais que precisam mostrar mais contexto do que uma lista simples: descricao dos destinos, agrupamento de jornadas, chamadas editoriais e atalhos frequentes.\n\nNao use para menus pequenos com uma ou duas opcoes, dropdowns de formulario ou navegacao local de conteudo.\n\nAnatomia:\n- Trigger com Material Symbols e estados de aria-expanded.\n- Gaveta responsiva com nav semantico.\n- Itens com label, descricao, icone e estado atual.\n- Grupos com navegacao interna.\n- Area featured opcional com midia, texto e acoes.\n\nResponsividade:\nNo desktop, a gaveta abre como popover amplo alinhado ao trigger. No mobile, a gaveta ocupa a lateral ou a tela inteira em viewports estreitos, com cabecalho fixo e botao de fechar.\n\nTokens:\nCores, superficies, bordas, radius, shadow, espacamentos, tipografia, foco e estados usam variaveis CSS dos tokens do Figma. O visual do trigger prioriza soft black e neutros sem depender de cores hardcoded.\n\nAcessibilidade:\n- Trigger usa aria-controls e aria-expanded.\n- Conteudo da gaveta e montado apenas quando aberto.\n- Navegacao usa nav com aria-label.\n- Links atuais usam aria-current.\n- Escape e clique fora fecham a gaveta.\n- Estados de foco sao visiveis para teclado.",
+  "props": [
+    {
+      "name": "items",
+      "type": "MeganavItem[]",
+      "values": null,
+      "default": "defaultItems (Noticias / #noticias, Servicos digitais / #servicos, Tutoriais / #tutoriais)",
+      "required": false,
+      "description": "Itens e grupos de navegacao.",
+      "source": "ambos"
+    },
+    {
+      "name": "align",
+      "type": "MeganavAlign",
+      "values": [
+        "start",
+        "end",
+        "stretch"
+      ],
+      "default": "'start'",
+      "required": false,
+      "description": "Alinhamento horizontal da gaveta no desktop.",
+      "source": "ambos"
+    },
+    {
+      "name": "ariaLabel",
+      "type": "string",
+      "values": null,
+      "default": "'Navegacao principal'",
+      "required": false,
+      "description": "Nome acessivel do nav interno.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "closeLabel",
+      "type": "string",
+      "values": null,
+      "default": "'Fechar navegacao'",
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "defaultOpen",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Estado inicial quando o componente nao e controlado.",
+      "source": "ambos"
+    },
+    {
+      "name": "drawerClassName",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "featured",
+      "type": "MeganavFeatured",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Area opcional de destaque exibida ao lado ou abaixo dos links.",
+      "source": "ambos"
+    },
+    {
+      "name": "mobileTitle",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "onOpenChange",
+      "type": "(open: boolean) => void",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Controla abertura da gaveta.",
+      "source": "ambos"
+    },
+    {
+      "name": "triggerAriaLabel",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "triggerIcon",
+      "type": "MeganavIcon (ReactNode | string)",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "triggerLabel",
+      "type": "string",
+      "values": null,
+      "default": "'Menu'",
+      "required": false,
+      "description": "Texto visivel do trigger.",
+      "source": "ambos"
+    },
+    {
+      "name": "triggerVariant",
+      "type": "MeganavTriggerVariant",
+      "values": [
+        "button",
+        "navigation"
+      ],
+      "default": "'button'",
+      "required": false,
+      "description": "Estilo do trigger para uso solto ou dentro do Header.",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onOpenChange",
+      "signature": "(open: boolean) => void",
+      "description": "Disparado sempre que o Meganav pede abertura ou fechamento (trigger, botao fechar, Escape, clique fora e clique em link/botao interno)."
+    }
+  ],
+  "slots": [
+    {
+      "name": "triggerIcon",
+      "type": "MeganavIcon (ReactNode | string)",
+      "description": "Substitui o simbolo padrao do trigger; string e renderizada como Material Symbol, ReactNode e renderizado direto."
+    }
+  ],
+  "cssClasses": [
+    "ds-meganav",
+    "ds-meganav--align-start",
+    "ds-meganav--align-end",
+    "ds-meganav--align-stretch",
+    "ds-meganav--trigger-button",
+    "ds-meganav--trigger-navigation",
+    "ds-meganav--open",
+    "ds-meganav__trigger",
+    "ds-meganav__trigger-symbol",
+    "ds-meganav__trigger-label",
+    "ds-meganav__trigger-caret",
+    "ds-meganav__material-symbol",
+    "ds-meganav__scrim",
+    "ds-meganav__drawer",
+    "ds-meganav__drawer-header",
+    "ds-meganav__drawer-title",
+    "ds-meganav__close",
+    "ds-meganav__drawer-body",
+    "ds-meganav__drawer-body--with-featured",
+    "ds-meganav__nav",
+    "ds-meganav__list",
+    "ds-meganav__item",
+    "ds-meganav__item-link",
+    "ds-meganav__item-link--static",
+    "ds-meganav__item-copy",
+    "ds-meganav__item-label",
+    "ds-meganav__item-description",
+    "ds-meganav__nested-list",
+    "ds-meganav__nested-item",
+    "ds-meganav__icon",
+    "ds-meganav__featured",
+    "ds-meganav__featured-link",
+    "ds-meganav__featured-media",
+    "ds-meganav__featured-media-placeholder",
+    "ds-meganav__featured-image",
+    "ds-meganav__featured-copy",
+    "ds-meganav__featured-eyebrow",
+    "ds-meganav__featured-title",
+    "ds-meganav__featured-description",
+    "ds-meganav__featured-actions",
+    "ds-meganav__featured-action",
+    "ds-meganav__action-icon"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--meganav-surface",
+      "value": "var(--ds-semantic-color-background-neutral-default)",
+      "comment": null
+    },
+    {
+      "name": "--meganav-surface-muted",
+      "value": "var(--ds-semantic-color-background-neutral-subtle)",
+      "comment": null
+    },
+    {
+      "name": "--meganav-surface-hover",
+      "value": "var(--ds-primitive-color-neutral-alpha-4)",
+      "comment": null
+    },
+    {
+      "name": "--meganav-surface-active",
+      "value": "var(--ds-primitive-color-neutral-alpha-8)",
+      "comment": null
+    },
+    {
+      "name": "--meganav-foreground",
+      "value": "var(--ds-semantic-text-style-content-color-typography-secondary)",
+      "comment": null
+    },
+    {
+      "name": "--meganav-foreground-strong",
+      "value": "var(--ds-primitive-color-neutral-grey-900)",
+      "comment": null
+    },
+    {
+      "name": "--meganav-muted",
+      "value": "var(--ds-semantic-text-style-content-color-typography-tertiary)",
+      "comment": null
+    },
+    {
+      "name": "--meganav-icon",
+      "value": "var(--ds-primitive-color-soft-black)",
+      "comment": null
+    },
+    {
+      "name": "--meganav-border",
+      "value": "var(--ds-semantic-color-border-neutral-subtle)",
+      "comment": null
+    },
+    {
+      "name": "--meganav-border-strong",
+      "value": "var(--ds-semantic-color-border-neutral-default)",
+      "comment": null
+    },
+    {
+      "name": "--meganav-focus-ring",
+      "value": "var(--ds-component-focus-ring-color-ring)",
+      "comment": null
+    },
+    {
+      "name": "--meganav-overlay",
+      "value": "var(--ds-primitive-color-neutral-alpha-24)",
+      "comment": null
+    },
+    {
+      "name": "--meganav-shadow",
+      "value": "var(--ds-semantic-shadow-popover)",
+      "comment": null
+    },
+    {
+      "name": "--meganav-radius",
+      "value": "var(--ds-primitive-border-radius-radius-lg)",
+      "comment": null
+    },
+    {
+      "name": "--meganav-trigger-radius",
+      "value": "var(--ds-primitive-border-radius-radius-full)",
+      "comment": null
+    },
+    {
+      "name": "--meganav-drawer-width",
+      "value": "calc(var(--ds-primitive-spacing-128) * 10)",
+      "comment": null
+    },
+    {
+      "name": "--meganav-drawer-padding",
+      "value": "var(--ds-primitive-spacing-24)",
+      "comment": null
+    },
+    {
+      "name": "--meganav-item-gap",
+      "value": "var(--ds-primitive-spacing-16)",
+      "comment": null
+    },
+    {
+      "name": "--meganav-icon-size",
+      "value": "var(--ds-primitive-spacing-32)",
+      "comment": null
+    },
+    {
+      "name": "--meganav-trigger-size",
+      "value": "var(--ds-primitive-spacing-40)",
+      "comment": null
+    },
+    {
+      "name": "--meganav-icon-size",
+      "value": "var(--ds-primitive-spacing-40)",
+      "comment": "Override em .ds-meganav__featured-media-placeholder .ds-meganav__icon"
+    },
+    {
+      "name": "--meganav-drawer-width",
+      "value": "calc(var(--ds-primitive-spacing-128) * 7)",
+      "comment": "Override em @media (max-width: 900px)"
+    },
+    {
+      "name": "--meganav-drawer-padding",
+      "value": "var(--ds-primitive-spacing-20)",
+      "comment": "Override em @media (max-width: 900px)"
+    },
+    {
+      "name": "--meganav-drawer-padding",
+      "value": "var(--ds-primitive-spacing-16)",
+      "comment": "Override em @media (max-width: 720px)"
+    }
+  ],
+  "tokensUsed": [
+    "--ds-component-focus-ring-color-ring",
+    "--ds-primitive-border-radius-radius-full",
+    "--ds-primitive-border-radius-radius-lg",
+    "--ds-primitive-border-radius-radius-md",
+    "--ds-primitive-border-radius-radius-none",
+    "--ds-primitive-border-radius-radius-sm",
+    "--ds-primitive-border-width-border-md",
+    "--ds-primitive-border-width-border-sm",
+    "--ds-primitive-color-neutral-alpha-2",
+    "--ds-primitive-color-neutral-alpha-24",
+    "--ds-primitive-color-neutral-alpha-4",
+    "--ds-primitive-color-neutral-alpha-8",
+    "--ds-primitive-color-neutral-grey-900",
+    "--ds-primitive-color-soft-black",
+    "--ds-primitive-spacing-0",
+    "--ds-primitive-spacing-12",
+    "--ds-primitive-spacing-128",
+    "--ds-primitive-spacing-16",
+    "--ds-primitive-spacing-20",
+    "--ds-primitive-spacing-24",
+    "--ds-primitive-spacing-32",
+    "--ds-primitive-spacing-4",
+    "--ds-primitive-spacing-40",
+    "--ds-primitive-spacing-48",
+    "--ds-primitive-spacing-64",
+    "--ds-primitive-spacing-8",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-typography-font-size-12",
+    "--ds-primitive-typography-font-size-14",
+    "--ds-primitive-typography-font-size-16",
+    "--ds-primitive-typography-font-size-18",
+    "--ds-primitive-typography-font-size-22",
+    "--ds-primitive-typography-font-weight-bold",
+    "--ds-primitive-typography-font-weight-extra-bold",
+    "--ds-primitive-typography-font-weight-medium",
+    "--ds-primitive-typography-font-weight-regular",
+    "--ds-primitive-typography-font-weight-semi-bold",
+    "--ds-primitive-typography-line-height-16",
+    "--ds-primitive-typography-line-height-20",
+    "--ds-primitive-typography-line-height-24",
+    "--ds-primitive-typography-line-height-26",
+    "--ds-primitive-typography-line-height-28",
+    "--ds-semantic-color-background-neutral-default",
+    "--ds-semantic-color-background-neutral-disabled",
+    "--ds-semantic-color-background-neutral-subtle",
+    "--ds-semantic-color-border-neutral-default",
+    "--ds-semantic-color-border-neutral-subtle",
+    "--ds-semantic-shadow-floating",
+    "--ds-semantic-shadow-popover",
+    "--ds-semantic-text-style-content-color-typography-secondary",
+    "--ds-semantic-text-style-content-color-typography-tertiary"
+  ],
+  "stories": [
+    {
+      "id": "web-components-meganav--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-meganav--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-meganav--default&viewMode=story"
+    },
+    {
+      "id": "web-components-meganav--header-trigger",
+      "name": "Header Trigger",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-meganav--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-meganav--header-trigger&viewMode=story"
+    },
+    {
+      "id": "web-components-meganav--mobile-open",
+      "name": "Mobile Open",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-meganav--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-meganav--mobile-open&viewMode=story"
+    }
+  ],
+  "variants": [
+    {
+      "prop": "align",
+      "values": [
+        "start",
+        "end",
+        "stretch"
+      ]
+    },
+    {
+      "prop": "triggerVariant",
+      "values": [
+        "button",
+        "navigation"
+      ]
+    }
+  ],
+  "states": [
+    "hover (trigger, item-link, featured-action e botao de fechar)",
+    "active/pressed (.ds-meganav__trigger:active)",
+    "focus-visible (trigger, close, item-link, featured-link e featured-action)",
+    "open (.ds-meganav--open: caret rotacionado, trigger destacado, scrim no mobile)",
+    "current (.ds-meganav__item-link[aria-current='page'])",
+    "static (.ds-meganav__item-link--static para itens sem href e sem onClick)"
+  ],
+  "responsive": [
+    {
+      "query": "(prefers-reduced-motion: reduce)",
+      "effect": "Remove a transicao de rotacao do caret do trigger."
+    },
+    {
+      "query": "(max-width: 900px)",
+      "effect": "Reduz --meganav-drawer-width para calc(spacing-128 * 7) e --meganav-drawer-padding para spacing-20."
+    },
+    {
+      "query": "(max-width: 720px)",
+      "effect": "Raiz vira position: static com largura total e trigger em 100% com space-between; o trigger navigation ganha altura de 48px e fundo neutral-alpha-2; a gaveta vira drawer fixo lateral (z-index 70, ate calc(spacing-128 * 4)) com scrim fixo, cabecalho sticky (titulo + botao fechar) e corpo em coluna unica; item-link perde o padding-inline e o fundo de hover/current; nested-list recua spacing-48; featured perde radius e sangra ate as bordas."
+    },
+    {
+      "query": "(max-width: 420px)",
+      "effect": "Drawer ocupa 100% da largura; item-label cai para font-size-16/line-height-24 e item-description e featured-description para font-size-14/line-height-20."
+    }
+  ],
+  "accessibility": {
+    "roles": [
+      "navigation (elemento <nav> interno com aria-label)",
+      "complementary (elemento <aside> da area featured)",
+      "list / listitem (elementos <ul> e <li> da navegacao)"
+    ],
+    "ariaAttributes": [
+      "aria-controls (trigger -> id da gaveta)",
+      "aria-expanded (trigger)",
+      "aria-label (trigger, nav interno, botao de fechar e aside featured)",
+      "aria-current=\"page\" (item marcado com current)",
+      "aria-hidden=\"true\" (icones, caret, scrim e placeholder de midia)"
+    ],
+    "keyboardInteractions": [
+      "Escape fecha a gaveta enquanto ela esta aberta (listener global de keydown).",
+      "Nao ha handlers adicionais de teclado: trigger, botao de fechar, links e botoes seguem a ordem natural de Tab."
+    ],
+    "notes": [
+      "O conteudo da gaveta (scrim, header e nav) so e montado no DOM quando isOpen e true.",
+      "pointerdown fora da raiz do componente fecha a gaveta.",
+      "Clique em qualquer <a> ou <button> dentro da gaveta fecha a gaveta.",
+      "Itens sem href e sem onClick viram <div> nao focavel (.ds-meganav__item-link--static).",
+      "Links com target=\"_blank\" recebem rel=\"noopener noreferrer\" automaticamente quando rel nao e informado.",
+      "Nao implementa focus trap nem devolucao explicita do foco ao trigger apos o fechamento."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Meganav/Meganav.test.tsx",
+    "unitCount": 5,
+    "a11yFile": "packages/react/src/components/Meganav/Meganav.a11y.test.tsx",
+    "a11yCount": 1
+  },
+  "figmaReferences": [],
+  "pendencias": [
+    "Nenhum node-id do Figma e citado em comentarios do codigo do componente.",
+    "As props className, closeLabel, drawerClassName, mobileTitle, onOpenChange, triggerAriaLabel e triggerIcon nao possuem descricao em argTypes nem JSDoc.",
+    "A doc menciona \"cabecalho fixo\" no mobile, mas nao ha documentacao sobre a ausencia de focus trap na gaveta."
+  ]
+}

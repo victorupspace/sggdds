@@ -1,0 +1,167 @@
+{
+  "slug": "text-input",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Formulários",
+  "resumo": "Campo de digitação de uma linha para dados curtos, como nome, e-mail, telefone ou número de protocolo. Traz rótulo, texto de apoio, mensagem de erro e espaço para ícones decorativos dentro do campo.",
+  "quandoUsar": [
+    "Quando o serviço pede dados de identificação curtos no cadastro, como nome completo e e-mail de contato.",
+    "Quando a pessoa precisa digitar um número de protocolo, de processo ou de auto de infração para consultar a situação.",
+    "Quando a página tem uma busca por palavra-chave, como procurar um serviço ou uma unidade de atendimento.",
+    "Quando o formulário pede telefone, e-mail ou endereço de site e o teclado do celular precisa abrir no formato certo.",
+    "Quando a tela pede senha de acesso, com o campo escondendo o que é digitado."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Para respostas longas, como justificativa de recurso, relato de ocorrência ou observações.",
+      "alternativa": "TextArea"
+    },
+    {
+      "texto": "Quando a resposta é uma escolha dentro de uma lista fechada, como estado, município ou tipo de documento.",
+      "alternativa": "Dropdown"
+    },
+    {
+      "texto": "Quando o dado é uma data, como a data de nascimento ou a data desejada para o atendimento.",
+      "alternativa": "Datepicker"
+    },
+    {
+      "texto": "Quando a pessoa precisa enviar um arquivo ou uma foto do documento em vez de digitar.",
+      "alternativa": "FileUpload"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Rótulo",
+      "descricao": "Nome do campo, sempre visível e exigido pelo componente. Recebe um asterisco decorativo quando a resposta é obrigatória."
+    },
+    {
+      "numero": 2,
+      "parte": "Controle",
+      "descricao": "Caixa que envolve os ícones e a área de digitação. É nela que aparecem a borda, o estado de erro e o anel de foco."
+    },
+    {
+      "numero": 3,
+      "parte": "Ícone inicial",
+      "descricao": "Ícone decorativo opcional no começo do campo, usado para reforçar o tipo de dado. Não é lido por leitores de tela e não é clicável."
+    },
+    {
+      "numero": 4,
+      "parte": "Área de digitação",
+      "descricao": "Campo de uma linha, onde entra o texto digitado ou o placeholder quando ele está vazio."
+    },
+    {
+      "numero": 5,
+      "parte": "Ícone final",
+      "descricao": "Ícone decorativo opcional no fim do campo. Também não é clicável nem alcançável por teclado."
+    },
+    {
+      "numero": 6,
+      "parte": "Mensagem",
+      "descricao": "Texto abaixo do campo. Serve como apoio ao preenchimento ou como mensagem de erro, e vem acompanhado de um marcador circular decorativo."
+    }
+  ],
+  "tamanhos": "Duas densidades: medium, que é o padrão, e large. A diferença está apenas na altura mínima e nos espaçamentos internos do controle — a tipografia e a estrutura não mudam. Use large em campos isolados e de destaque, como a busca no topo de uma página; use medium em formulários com vários campos empilhados.",
+  "responsivo": "Em telas de até 420 pixels, o controle volta à altura mínima da densidade medium e usa espaçamentos internos menores, mesmo quando o campo foi configurado como large. Na prática, os dois tamanhos ficam iguais no celular.",
+  "dosDonts": [
+    {
+      "faca": "Escolha o tipo de campo correspondente ao dado: e-mail, telefone, endereço de site, senha ou busca.",
+      "naoFaca": "Deixar todos os campos como texto comum só porque funciona.",
+      "porque": "O tipo define o teclado que abre no celular e a validação nativa do navegador. Quem digita um e-mail em teclado alfanumérico comum erra mais e desiste antes."
+    },
+    {
+      "faca": "Use os ícones do campo apenas como reforço visual do tipo de dado, como a lupa em um campo de busca.",
+      "naoFaca": "Colocar no ícone final uma ação como limpar o campo ou mostrar a senha.",
+      "porque": "Os ícones são renderizados como decoração escondida de leitores de tela e não recebem foco. Uma ação colocada ali fica invisível para quem usa teclado ou leitor de tela."
+    },
+    {
+      "faca": "Acompanhe todo estado de erro de uma mensagem que diga o que corrigir.",
+      "naoFaca": "Colocar o campo em erro só mudando a prop state, sem texto.",
+      "porque": "Sem a mensagem, o campo é anunciado como inválido e fica com a borda vermelha, mas a pessoa não descobre o que precisa mudar e tenta enviar de novo igual."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Escreva o rótulo curto e direto, com o nome do dado: \"CPF\", \"E-mail\", \"Número do protocolo\".",
+    "Use o texto de apoio para explicar o formato esperado ou onde encontrar o dado, por exemplo em qual parte do comprovante o número aparece. Não repita o rótulo.",
+    "Não escreva \"(obrigatório)\" no rótulo. Marque o campo como obrigatório e deixe o asterisco e o atributo nativo fazerem esse trabalho.",
+    "Não use o placeholder como instrução: ele some quando a digitação começa e não é uma alternativa ao rótulo.",
+    "Na mensagem de erro, diga o que fazer: \"Informe um e-mail com @\" comunica mais que \"E-mail inválido\"."
+  ],
+  "hierarquia": [
+    "Por padrão o campo ocupa toda a largura do container. Empilhe os campos em uma única coluna para que a leitura desça em linha reta.",
+    "Ordene do dado mais geral para o mais específico e agrupe o que a pessoa consulta no mesmo documento, para ela não precisar pegar e largar o papel várias vezes.",
+    "Use a densidade large apenas quando o campo é o elemento principal da tela, como a busca de serviços. Dentro de formulários longos, mantenha todos os campos na mesma densidade.",
+    "O rótulo fica sempre acima do campo e a mensagem sempre abaixo. Não coloque outro elemento entre essas três partes."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Button",
+      "slug": "button",
+      "relacao": "O botão de enviar ou consultar fecha o bloco de campos e só deve prosseguir quando a validação passa."
+    },
+    {
+      "componente": "TextArea",
+      "slug": "text-area",
+      "relacao": "Os campos curtos de identificação vêm primeiro; o campo de texto longo entra depois, quando o serviço pede um relato."
+    },
+    {
+      "componente": "Dropdown",
+      "slug": "dropdown",
+      "relacao": "Convivem no mesmo formulário: digitação livre para dados abertos, seleção para listas fechadas como estado e tipo de documento."
+    },
+    {
+      "componente": "Alert",
+      "slug": "alert",
+      "relacao": "Quando o envio falha, o Alert no topo resume quantos campos precisam de correção e cada campo mostra o próprio erro."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Consulta de protocolo",
+      "contexto": "A pessoa recebeu um número de protocolo ao abrir uma solicitação e volta ao portal para acompanhar o andamento.",
+      "comoFica": "Campo único com rótulo \"Número do protocolo\", marcado como obrigatório, texto de apoio indicando onde o número aparece no comprovante e um ícone decorativo de lupa no início. Ao lado ou abaixo, o botão de consultar."
+    },
+    {
+      "titulo": "Cadastro para agendamento no Poupatempo",
+      "contexto": "Antes de escolher unidade e horário, a pessoa informa os dados de contato usados para confirmar o agendamento.",
+      "comoFica": "Três campos empilhados na mesma largura: nome completo, e-mail com tipo de e-mail e telefone com tipo de telefone. O campo de e-mail traz texto de apoio explicando que a confirmação será enviada para esse endereço. Se o e-mail vier sem arroba, a mensagem de erro aparece abaixo do campo e a borda muda."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Colocar botões dentro do campo usando o espaço de ícone, como limpar a busca ou revelar a senha.",
+      "consequencia": "O controle fica escondido de leitores de tela e não é alcançado pelo teclado. Quem não usa mouse perde a funcionalidade por completo.",
+      "correcao": "Coloque a ação fora do campo, como um Button ao lado, e deixe o espaço de ícone apenas para decoração."
+    },
+    {
+      "erro": "Definir um limite de caracteres pelo atributo nativo sem nenhum aviso na tela.",
+      "consequencia": "O navegador simplesmente para de aceitar a digitação. A pessoa acha que o teclado travou e não entende que atingiu o limite.",
+      "correcao": "Explique o limite no texto de apoio. Se a contagem precisar ficar visível durante a digitação, use o TextArea, que tem contador."
+    },
+    {
+      "erro": "Deixar o campo desabilitado enquanto espera o preenchimento de outro campo.",
+      "consequencia": "Campos desabilitados não recebem foco por teclado e passam despercebidos para leitores de tela; a pessoa não descobre que existe uma ordem a seguir.",
+      "correcao": "Mantenha o campo habilitado e explique a dependência no texto de apoio, ou só exiba o campo quando a condição for atendida."
+    },
+    {
+      "erro": "Usar um rótulo genérico e colocar a instrução real no placeholder.",
+      "consequencia": "Assim que a digitação começa, a instrução some. Quem se distrai no meio do preenchimento perde a referência e precisa apagar tudo para relê-la.",
+      "correcao": "Escreva a instrução no texto de apoio, que permanece visível, e deixe o placeholder apenas com um exemplo do formato."
+    }
+  ],
+  "notasImplementacao": [
+    "O componente usa o elemento input nativo com rótulo ligado por htmlFor/id. Quando o id não é informado, ele é gerado automaticamente e reaproveitado nos identificadores do texto de apoio e do erro.",
+    "As mensagens são ligadas ao campo por aria-describedby, com o erro antes do texto de apoio.",
+    "O campo é marcado como inválido (aria-invalid) quando está em estado de erro ou quando existe mensagem de erro. Basta preencher a mensagem: a presença dela já ativa o estado.",
+    "Os ícones de início e de fim ficam dentro de um elemento escondido de leitores de tela. Eles são decorativos por definição.",
+    "O marcador circular das mensagens é o caractere \"i\" estilizado com borda, e não um ícone da biblioteca do design system. Ele só aparece na mensagem de apoio quando não há erro.",
+    "O anel de foco é desenhado no controle inteiro e usa :focus-within, não :focus-visible. Ele aparece também no clique de mouse e no toque.",
+    "Não existe tratamento visual próprio para o modo somente leitura: o CSS cobre passagem do mouse, foco, erro e desabilitado.",
+    "Existem testes automatizados de acessibilidade (axe) para este componente, além dos testes unitários."
+  ],
+  "pendentes": [
+    "Máscaras e formatação automática de CPF, CNPJ, CEP e telefone: o JSON extraído não traz nenhuma prop de máscara. Não dá para afirmar que o componente formata esses dados; a formatação hoje é responsabilidade de quem implementa.",
+    "Validação de formato: o componente expõe o tipo do campo e a mensagem de erro, mas não descreve regras de validação próprias. Quem valida o dado é o produto.",
+    "Comportamento em formulários de consulta (somente leitura): não existe estado visual de readOnly no CSS, apenas desabilitado."
+  ]
+}

@@ -1,0 +1,294 @@
+{
+  "slug": "alert",
+  "name": "Alert",
+  "storybookTitle": "Web Components/Alert",
+  "sourceDir": "packages/react/src/components/Alert",
+  "exports": ["Alert"],
+  "typeExports": ["AlertProps", "AlertRole", "AlertVariant"],
+  "oneLiner": "O Alert reproduz o layout do Figma (Web Components / Alert): card com borda de 1px, icone do tipo (24px), titulo Body/Small Bold, descricao Body/Small e botao de fechar opcional.",
+  "docsDescription": "O Alert reproduz o layout do Figma (Web Components / Alert): card com borda de 1px, icone do tipo (24px), titulo Body/Small Bold, descricao Body/Small e botao de fechar opcional.\n\nVariantes (propriedade type no Figma):\n- Information: fundo information/subtle, borda information/default e icone azul.\n- Success: fundo sucess/subtle, borda sucess/default e icone verde.\n- Warning: fundo warning/subtle, borda warning/default e icone preto.\n- Error: fundo danger/subtle, borda brand/default e icone vermelho.\n\nTokens: superficies e bordas usam color/background e color/border, textos usam text-style/content color/typography/primary, icones usam color/icons, espacamentos usam badge/spacing e accordion/content/spacing, o radius usa badge/border/radius/sm e os tamanhos usam Component sizing — as mesmas variables aplicadas no Figma.\n\nResponsividade: o card e fluido (100% do container), os textos quebram automaticamente e icone e botao de fechar ficam fixos nas extremidades. O node do Figma nao define variante mobile.\n\nAcessibilidade: role status por padrao (alert na variante error), icone decorativo com aria-hidden e botao de fechar com rotulo acessivel. A visibilidade pode ser controlada via isVisible/onVisibleChange ou nao controlada via defaultVisible.",
+  "props": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Titulo curto e objetivo do alerta (Body/Small Bold no Figma).",
+      "source": "ambos"
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Conteudo do Content Slot, exibido abaixo do titulo (Body/Small no Figma).",
+      "source": "ambos"
+    },
+    {
+      "name": "variant",
+      "type": "AlertVariant",
+      "values": ["information", "success", "warning", "error"],
+      "default": "'information'",
+      "required": false,
+      "description": "Tipo do alerta (type no Figma).",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao elemento raiz.",
+      "source": "ambos"
+    },
+    {
+      "name": "dismissible",
+      "type": "boolean",
+      "values": ["true", "false"],
+      "default": "true",
+      "required": false,
+      "description": "Exibe o botao de fechar (showCloseButton no Figma).",
+      "source": "ambos"
+    },
+    {
+      "name": "dismissLabel",
+      "type": "string",
+      "values": null,
+      "default": "'Dispensar alerta'",
+      "required": false,
+      "description": "Rotulo acessivel do botao de fechar (aplicado como aria-label).",
+      "source": "ambos"
+    },
+    {
+      "name": "isVisible",
+      "type": "boolean",
+      "values": ["true", "false"],
+      "default": null,
+      "required": false,
+      "description": "Controla a visibilidade externamente. Quando definido (!== undefined) o componente entra em modo controlado e nao esconde a si mesmo.",
+      "source": "ambos"
+    },
+    {
+      "name": "defaultVisible",
+      "type": "boolean",
+      "values": ["true", "false"],
+      "default": "true",
+      "required": false,
+      "description": "Visibilidade inicial no modo nao controlado.",
+      "source": "ambos"
+    },
+    {
+      "name": "onDismiss",
+      "type": "MouseEventHandler<HTMLButtonElement>",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Callback chamado ao acionar o botao de fechar.",
+      "source": "ambos"
+    },
+    {
+      "name": "onVisibleChange",
+      "type": "(isVisible: boolean) => void",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Callback chamado quando o componente solicita mudanca de visibilidade.",
+      "source": "ambos"
+    },
+    {
+      "name": "role",
+      "type": "AlertRole",
+      "values": ["alert", "status", "note"],
+      "default": null,
+      "required": false,
+      "description": "Role ARIA do alerta. Quando omitido, usa 'alert' na variante error e 'status' nas demais.",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onDismiss",
+      "signature": "MouseEventHandler<HTMLButtonElement>",
+      "description": "Callback chamado ao acionar o botao de fechar. Recebe o evento de clique do <button>."
+    },
+    {
+      "name": "onVisibleChange",
+      "signature": "(isVisible: boolean) => void",
+      "description": "Callback chamado quando o componente solicita mudanca de visibilidade. No clique do botao de fechar e sempre invocado com false, antes de onDismiss."
+    }
+  ],
+  "slots": [
+    { "name": "title", "type": "ReactNode", "description": "Titulo curto do alerta, renderizado dentro de <p class=\"ds-alert__title\">." },
+    { "name": "children", "type": "ReactNode", "description": "Conteudo do Content Slot, renderizado em <div class=\"ds-alert__description\"> quando presente." }
+  ],
+  "cssClasses": [
+    "ds-alert",
+    "ds-alert--variant-information",
+    "ds-alert--variant-success",
+    "ds-alert--variant-warning",
+    "ds-alert--variant-error",
+    "ds-alert__icon",
+    "ds-alert__content",
+    "ds-alert__title",
+    "ds-alert__description",
+    "ds-alert__dismiss"
+  ],
+  "cssCustomProperties": [
+    { "name": "--alert-surface", "value": "var(--ds-semantic-color-background-information-subtle)", "comment": "color/background/information/subtle" },
+    { "name": "--alert-border-color", "value": "var(--ds-semantic-color-border-information-default)", "comment": "color/border/information/default" },
+    { "name": "--alert-icon-color", "value": "var(--ds-semantic-color-icons-information-default)", "comment": "color/icons/information/default (#034ea2, fill do vetor \"error\" exportado)" },
+    { "name": "--alert-text-color", "value": "var(--ds-semantic-text-style-content-color-typography-primary)", "comment": "text-style/content color/typography/primary (título e descrição)" },
+    { "name": "--alert-dismiss-icon-color", "value": "var(--ds-component-alert-close-button-color-icon-default)", "comment": "alert/close button/color/icon/default e hover" },
+    { "name": "--alert-dismiss-icon-color-hover", "value": "var(--ds-component-alert-close-button-color-icon-hover)", "comment": null },
+    { "name": "--alert-gap", "value": "var(--ds-component-badge-spacing-padding-x-md)", "comment": "badge/spacing/padding-x/md (gap entre ícone, conteúdo e botão de fechar)" },
+    { "name": "--alert-padding-x", "value": "var(--ds-component-accordion-content-spacing-padding-x)", "comment": "accordion/content/spacing/padding-x e padding-y" },
+    { "name": "--alert-padding-y", "value": "var(--ds-component-accordion-content-spacing-padding-y)", "comment": null },
+    { "name": "--alert-border-width", "value": "var(--ds-primitive-border-width-border-sm)", "comment": "border/width/border-sm" },
+    { "name": "--alert-radius", "value": "var(--ds-component-badge-border-radius-sm)", "comment": "badge/border/radius/sm" },
+    { "name": "--alert-text-gap", "value": "var(--ds-component-badge-spacing-gap)", "comment": "badge/spacing/gap (gap e padding-x do bloco de texto)" },
+    { "name": "--alert-text-padding-x", "value": "var(--ds-component-badge-spacing-gap)", "comment": null },
+    { "name": "--alert-icon-size", "value": "var(--ds-component-component-sizing-24)", "comment": "Component sizing/24 (ícone da variante)" },
+    { "name": "--alert-text-min-height", "value": "var(--ds-component-component-sizing-32)", "comment": "Component sizing/32 (altura mínima do bloco de texto, 32px literal no Figma)" },
+    { "name": "--alert-dismiss-icon-size", "value": "var(--ds-component-component-sizing-16)", "comment": "Component sizing/16 (ícone do botão de fechar)" },
+    { "name": "--alert-dismiss-padding", "value": "var(--ds-component-badge-spacing-padding-x-md)", "comment": "badge/spacing/padding-x/md (padding do botão de fechar)" },
+    { "name": "--alert-focus-ring", "value": "var(--ds-component-focus-ring-color-ring)", "comment": null },
+    { "name": "--alert-surface", "value": "var(--ds-semantic-color-background-success-subtle)", "comment": "Override em .ds-alert--variant-success — color/background/sucess/subtle (typo do Figma normalizado para success)" },
+    { "name": "--alert-border-color", "value": "var(--ds-semantic-color-border-success-default)", "comment": "Override em .ds-alert--variant-success — color/border/sucess/default" },
+    { "name": "--alert-icon-color", "value": "var(--ds-semantic-color-icons-success-default)", "comment": "Override em .ds-alert--variant-success — color/icons/sucess/default (#00883d, fill do vetor check_circle exportado)" },
+    { "name": "--alert-surface", "value": "var(--ds-semantic-color-background-warning-subtle)", "comment": "Override em .ds-alert--variant-warning — color/background/warning/subtle" },
+    { "name": "--alert-border-color", "value": "var(--ds-semantic-color-border-warning-default)", "comment": "Override em .ds-alert--variant-warning — color/border/warning/default" },
+    { "name": "--alert-icon-color", "value": "var(--ds-semantic-color-icons-neutral-black)", "comment": "Override em .ds-alert--variant-warning — color/icons/neutral/black (#000000, fill do vetor emergency_home exportado)" },
+    { "name": "--alert-surface", "value": "var(--ds-semantic-color-background-danger-subtle)", "comment": "Override em .ds-alert--variant-error — color/background/danger/subtle" },
+    { "name": "--alert-border-color", "value": "var(--ds-semantic-color-border-brand-default)", "comment": "Override em .ds-alert--variant-error — color/border/brand/default (#c50007 — variable aplicada no tipo Error do Figma)" },
+    { "name": "--alert-icon-color", "value": "var(--ds-semantic-color-icons-danger-default)", "comment": "Override em .ds-alert--variant-error — color/icons/danger/default (#e52207, fill do vetor cancel exportado)" }
+  ],
+  "tokensUsed": [
+    "--ds-semantic-color-background-information-subtle",
+    "--ds-semantic-color-border-information-default",
+    "--ds-semantic-color-icons-information-default",
+    "--ds-semantic-text-style-content-color-typography-primary",
+    "--ds-component-alert-close-button-color-icon-default",
+    "--ds-component-alert-close-button-color-icon-hover",
+    "--ds-component-badge-spacing-padding-x-md",
+    "--ds-component-accordion-content-spacing-padding-x",
+    "--ds-component-accordion-content-spacing-padding-y",
+    "--ds-primitive-border-width-border-sm",
+    "--ds-component-badge-border-radius-sm",
+    "--ds-component-badge-spacing-gap",
+    "--ds-component-component-sizing-24",
+    "--ds-component-component-sizing-32",
+    "--ds-component-component-sizing-16",
+    "--ds-component-focus-ring-color-ring",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-semantic-color-background-success-subtle",
+    "--ds-semantic-color-border-success-default",
+    "--ds-semantic-color-icons-success-default",
+    "--ds-semantic-color-background-warning-subtle",
+    "--ds-semantic-color-border-warning-default",
+    "--ds-semantic-color-icons-neutral-black",
+    "--ds-semantic-color-background-danger-subtle",
+    "--ds-semantic-color-border-brand-default",
+    "--ds-semantic-color-icons-danger-default",
+    "--ds-primitive-spacing-0",
+    "--ds-primitive-typography-font-size-14",
+    "--ds-primitive-typography-font-weight-semi-bold",
+    "--ds-primitive-typography-font-weight-medium",
+    "--ds-primitive-border-width-border-none",
+    "--ds-primitive-border-radius-radius-full",
+    "--ds-primitive-color-neutral-alpha-8",
+    "--ds-primitive-color-neutral-alpha-12",
+    "--ds-component-focus-ring-effect-width",
+    "--ds-component-focus-ring-effect-offset"
+  ],
+  "stories": [
+    {
+      "id": "web-components-alert--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-alert--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-alert--default&viewMode=story"
+    },
+    {
+      "id": "web-components-alert--all-variants",
+      "name": "All Variants",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-alert--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-alert--all-variants&viewMode=story"
+    },
+    {
+      "id": "web-components-alert--without-description",
+      "name": "Without Description",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-alert--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-alert--without-description&viewMode=story"
+    },
+    {
+      "id": "web-components-alert--without-dismiss",
+      "name": "Without Dismiss",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-alert--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-alert--without-dismiss&viewMode=story"
+    },
+    {
+      "id": "web-components-alert--error-role",
+      "name": "Error Role",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-alert--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-alert--error-role&viewMode=story"
+    }
+  ],
+  "variants": [
+    { "prop": "variant", "values": ["information", "success", "warning", "error"] },
+    { "prop": "role", "values": ["alert", "status", "note"] },
+    { "prop": "dismissible", "values": ["true", "false"] }
+  ],
+  "states": ["hover (botao de fechar)", "active (botao de fechar)", "focus-visible (botao de fechar)"],
+  "responsive": [
+    {
+      "query": "@media (hover: hover)",
+      "effect": "Estado hover do botao de fechar (o node do Figma nao define hover/active para ele): background --ds-primitive-color-neutral-alpha-8 e cor --alert-dismiss-icon-color-hover."
+    },
+    {
+      "query": "@media (prefers-reduced-motion: reduce)",
+      "effect": "Remove a transicao (background-color, color) de .ds-alert__dismiss."
+    }
+  ],
+  "accessibility": {
+    "roles": ["status (padrao para information, success e warning)", "alert (padrao para a variante error)", "note (opcional via prop role)"],
+    "ariaAttributes": ["role", "aria-hidden", "aria-label"],
+    "keyboardInteractions": [
+      "Tab / Shift+Tab: foco no botao de fechar quando dismissible=true (foco nativo do <button type=\"button\">).",
+      "Enter / Espaco: aciona o botao de fechar (ativacao nativa do <button>); nao ha handler onKeyDown customizado.",
+      "Nao ha atalho Esc para dispensar o alerta."
+    ],
+    "notes": [
+      "O elemento raiz e um <section> com role definido pela prop role ou derivado da variante (error -> alert, demais -> status).",
+      "O icone da variante fica em <span class=\"ds-alert__icon\" aria-hidden=\"true\"> e cada SVG tambem tem aria-hidden=\"true\".",
+      "O botao de fechar recebe aria-label={dismissLabel} (padrao 'Dispensar alerta').",
+      "Quando invisivel, o componente retorna null (o no e removido do DOM, nao apenas escondido).",
+      "No modo controlado (isVisible definido) o clique no botao de fechar apenas dispara onVisibleChange(false) e onDismiss; a aplicacao decide esconder.",
+      "O SVG do botao de fechar tem aria-hidden=\"true\"; o rotulo acessivel vem exclusivamente do aria-label."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Alert/Alert.test.tsx",
+    "unitCount": 9,
+    "a11yFile": null,
+    "a11yCount": null
+  },
+  "figmaReferences": [
+    { "node": "40000002:215", "note": "Layout do Figma: Web Components / Alert (comentario no topo de Alert.styles.css e no bloco de vetores de Alert.tsx)." },
+    { "node": "40000325:4827", "note": "error [Material Symbols] — icone da variante information." },
+    { "node": "40000325:4880", "note": "check_circle [Material Symbols] — icone da variante success." },
+    { "node": "40000325:4895", "note": "emergency_home [Material Symbols] — icone da variante warning." },
+    { "node": "40000325:4910", "note": "cancel [Material Symbols] — icone da variante error." }
+  ],
+  "pendencias": [
+    "Nao existe arquivo Alert.a11y.test.tsx.",
+    "O icone do botao de fechar (\"Icons / General / Close — vetor com inset de 20.83% na caixa de 16px\") esta citado no codigo sem node-id do Figma.",
+    "O node do Figma nao define estados hover/active para o botao de fechar; o CSS usa alpha neutro e alert/close button/color/icon/hover como aproximacao documentada em comentario.",
+    "O node do Figma nao define variante mobile do Alert; o componente nao possui @media de largura no .styles.css (o @media (max-width: 420px) existente esta em Alert.stories.css, que so afeta o cenario das stories).",
+    "A variante Information do Figma usa gap de 8px sem altura minima; o CSS adotou o padrao das demais variantes para as quatro, por consistencia (registrado em comentario).",
+    "Nao ha prop para trocar o icone da variante — os SVGs sao fixos no Alert.tsx.",
+    "Os valores concretos dos tokens --ds-* nao estao neste diretorio; ficam em packages/tokens.",
+    "O parametro parameters.componentCanvas.width = 480 nao tem campo correspondente no schema."
+  ]
+}

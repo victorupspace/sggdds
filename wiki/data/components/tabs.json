@@ -1,0 +1,412 @@
+{
+  "slug": "tabs",
+  "name": "Tabs",
+  "storybookTitle": "Web Components/Tabs",
+  "sourceDir": "packages/react/src/components/Tabs",
+  "exports": ["Tabs"],
+  "typeExports": ["TabsActivationMode", "TabsItem", "TabsProps", "TabsVariant"],
+  "oneLiner": "Organiza multiplas secoes de conteudo no mesmo contexto de pagina e controla a troca do painel ativo.",
+  "docsDescription": "Tabs organizam multiplas secoes de conteudo no mesmo contexto de pagina e controlam a troca do painel ativo.\n\nUse quando as secoes sao equivalentes, relacionadas e a pessoa precisa alternar entre elas sem navegar para outra pagina. Nao use Tabs para etapas sequenciais, menus globais, filtros simples ou conteudos que precisam ficar visiveis ao mesmo tempo.\n\nResponsividade:\nEste componente foi desenvolvido com comportamento responsivo nativo, adaptando espacamentos, alinhamento, largura, quebra de conteudo e areas de toque para diferentes tamanhos de tela. A responsividade e aplicada na implementacao do componente e nao depende de variacoes manuais no Storybook. Em telas pequenas, a lista de tabs preserva a hierarquia visual e usa rolagem horizontal interna para evitar overflow da pagina.\n\nTokens:\nCores, foco, espacamento, bordas, iconografia e tipografia usam variaveis CSS geradas pelos tokens do Figma. Como nao existe token roxo na base atual, o estado selecionado usa o token de identidade disponivel no DS.\n\nAcessibilidade:\n- Usa role=\"tablist\", role=\"tab\" e role=\"tabpanel\".\n- Cada tab informa aria-selected e aria-controls.\n- O painel ativo informa aria-labelledby.\n- Navegacao por teclado suporta ArrowLeft, ArrowRight, Home e End.\n- Tabs desabilitadas usam disabled nativo e sao ignoradas na navegacao por setas.\n- O modo automatic troca conteudo ao navegar com setas; o modo manual apenas move foco.",
+  "props": [
+    {
+      "name": "items",
+      "type": "TabsItem[]",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Lista de tabs com id, label, conteudo, icone, badge e disabled. Itens com id em branco sao descartados por normalizeItems.",
+      "source": "ambos"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Valor controlado da tab ativa. Quando definido (nao null/undefined), o estado interno nao e atualizado.",
+      "source": "ambos"
+    },
+    {
+      "name": "defaultValue",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Tab inicial em uso nao controlado.",
+      "source": "ambos"
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: string) => void",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Callback chamado quando a tab selecionada muda.",
+      "source": "ambos"
+    },
+    {
+      "name": "ariaLabel",
+      "type": "string",
+      "values": null,
+      "default": "'Tabs'",
+      "required": false,
+      "description": "Rotulo acessivel da lista de tabs.",
+      "source": "ambos"
+    },
+    {
+      "name": "activationMode",
+      "type": "TabsActivationMode",
+      "values": ["automatic", "manual"],
+      "default": "'automatic'",
+      "required": false,
+      "description": "Define se setas selecionam automaticamente ou apenas movem foco.",
+      "source": "ambos"
+    },
+    {
+      "name": "variant",
+      "type": "TabsVariant",
+      "values": ["standard", "compact"],
+      "default": "'standard'",
+      "required": false,
+      "description": "Densidade e direcao visual da tab.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao elemento raiz.",
+      "source": "ambos"
+    },
+    {
+      "name": "panelClassName",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao painel ativo.",
+      "source": "ambos"
+    },
+    {
+      "name": "onKeyDown",
+      "type": "KeyboardEventHandler<HTMLDivElement>",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Callback opcional de teclado no tablist. E chamado antes da navegacao interna; se chamar preventDefault, a navegacao por setas nao ocorre.",
+      "source": "ambos"
+    },
+    {
+      "name": "items[].id",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Identificador da tab; usado no value, nos ids de tab/panel e no atributo data-tabs-tab-id.",
+      "source": "types.ts"
+    },
+    {
+      "name": "items[].label",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Conteudo textual da tab, renderizado em .ds-tabs__tab-label.",
+      "source": "types.ts"
+    },
+    {
+      "name": "items[].content",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Conteudo do painel exibido quando a tab esta selecionada.",
+      "source": "types.ts"
+    },
+    {
+      "name": "items[].icon",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Icone opcional renderizado em .ds-tabs__tab-icon com aria-hidden.",
+      "source": "types.ts"
+    },
+    {
+      "name": "items[].badge",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Badge opcional renderizado em .ds-tabs__tab-badge.",
+      "source": "types.ts"
+    },
+    {
+      "name": "items[].disabled",
+      "type": "boolean",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Desabilita a tab via atributo disabled nativo; a tab e ignorada na navegacao por setas e na selecao inicial.",
+      "source": "types.ts"
+    },
+    {
+      "name": "items[].ariaLabel",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "aria-label individual do botao da tab.",
+      "source": "types.ts"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onValueChange",
+      "signature": "(value: string) => void",
+      "description": "Chamado com o id da tab ao selecionar por clique ou por setas no modo automatic; e chamado tanto no modo controlado quanto no nao controlado."
+    },
+    {
+      "name": "onKeyDown",
+      "signature": "KeyboardEventHandler<HTMLDivElement>",
+      "description": "Executado no keydown do tablist antes da logica interna; event.preventDefault() no handler cancela a navegacao por setas/Home/End."
+    }
+  ],
+  "slots": [
+    {
+      "name": "items[].label",
+      "type": "ReactNode",
+      "description": "Rotulo visivel da tab."
+    },
+    {
+      "name": "items[].content",
+      "type": "ReactNode",
+      "description": "Conteudo do painel (role=\"tabpanel\") da tab selecionada."
+    },
+    {
+      "name": "items[].icon",
+      "type": "ReactNode",
+      "description": "Icone opcional; embrulhado em <span aria-hidden=\"true\" class=\"ds-tabs__tab-icon\">."
+    },
+    {
+      "name": "items[].badge",
+      "type": "ReactNode",
+      "description": "Badge opcional; embrulhado em <span class=\"ds-tabs__tab-badge\">."
+    }
+  ],
+  "cssClasses": [
+    "ds-tabs",
+    "ds-tabs--variant-standard",
+    "ds-tabs--variant-compact",
+    "ds-tabs__list",
+    "ds-tabs__tab",
+    "ds-tabs__tab-icon",
+    "ds-tabs__tab-label",
+    "ds-tabs__tab-badge",
+    "ds-tabs__panel"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--tabs-foreground",
+      "value": "var(--ds-semantic-text-style-content-color-typography-secondary)",
+      "comment": "Cor de texto padrao da raiz, do tab em hover e do painel."
+    },
+    {
+      "name": "--tabs-muted",
+      "value": "var(--ds-semantic-text-style-content-color-typography-tertiary)",
+      "comment": "Cor do tab nao selecionado."
+    },
+    {
+      "name": "--tabs-disabled",
+      "value": "var(--ds-semantic-text-style-content-color-typography-placeholder)",
+      "comment": "Cor do tab desabilitado e fundo do badge nesse estado."
+    },
+    {
+      "name": "--tabs-selected",
+      "value": "var(--ds-semantic-color-background-brand-primary-secondary-default)",
+      "comment": "Cor do indicador (::after) e do fundo do badge."
+    },
+    {
+      "name": "--tabs-selected-foreground",
+      "value": "var(--tabs-selected)",
+      "comment": "Cor de texto do tab com aria-selected=\"true\"."
+    },
+    {
+      "name": "--tabs-hover",
+      "value": "var(--ds-primitive-color-neutral-alpha-4)",
+      "comment": "Fundo no hover de tabs habilitadas."
+    },
+    {
+      "name": "--tabs-active",
+      "value": "var(--ds-primitive-color-neutral-alpha-8)",
+      "comment": "Fundo no :active de tabs habilitadas."
+    },
+    {
+      "name": "--tabs-border",
+      "value": "var(--ds-semantic-color-border-neutral-default)",
+      "comment": "Cor da borda inferior do tablist."
+    },
+    {
+      "name": "--tabs-focus-ring",
+      "value": "var(--ds-semantic-color-background-brand-primary-secondary-default)",
+      "comment": "Cor do outline de :focus-visible do tab e do painel."
+    },
+    {
+      "name": "--tabs-tab-gap",
+      "value": "var(--ds-primitive-spacing-8)",
+      "comment": "Gap entre icone, label e badge."
+    },
+    {
+      "name": "--tabs-tab-padding-inline",
+      "value": "var(--ds-primitive-spacing-16)",
+      "comment": "Padding horizontal do tab; em ate 640px vira spacing-12."
+    },
+    {
+      "name": "--tabs-tab-padding-block",
+      "value": "var(--ds-primitive-spacing-12)",
+      "comment": "Padding vertical do tab; em ate 640px vira spacing-8."
+    },
+    {
+      "name": "--tabs-icon-size",
+      "value": "var(--ds-primitive-spacing-32)",
+      "comment": "Tamanho do icone; em ate 640px vira spacing-24."
+    },
+    {
+      "name": "--tabs-badge-size",
+      "value": "var(--ds-primitive-spacing-24)",
+      "comment": "Altura e min-inline-size do badge."
+    },
+    {
+      "name": "--tabs-indicator-size",
+      "value": "var(--ds-primitive-border-width-border-lg)",
+      "comment": "Espessura do indicador de tab selecionada (pseudo-elemento ::after)."
+    },
+    {
+      "name": "--tabs-font-size",
+      "value": "var(--ds-primitive-typography-font-size-20)",
+      "comment": "Font-size do tab; em ate 640px vira font-size-16."
+    },
+    {
+      "name": "--tabs-line-height",
+      "value": "var(--ds-primitive-typography-line-height-28)",
+      "comment": "Line-height do tab; em ate 640px vira line-height-24."
+    }
+  ],
+  "tokensUsed": [
+    "--ds-primitive-border-radius-radius-full",
+    "--ds-primitive-border-radius-radius-none",
+    "--ds-primitive-border-radius-radius-sm",
+    "--ds-primitive-border-width-border-lg",
+    "--ds-primitive-border-width-border-md",
+    "--ds-primitive-border-width-border-sm",
+    "--ds-primitive-color-neutral-alpha-4",
+    "--ds-primitive-color-neutral-alpha-8",
+    "--ds-primitive-spacing-2",
+    "--ds-primitive-spacing-4",
+    "--ds-primitive-spacing-6",
+    "--ds-primitive-spacing-8",
+    "--ds-primitive-spacing-12",
+    "--ds-primitive-spacing-16",
+    "--ds-primitive-spacing-24",
+    "--ds-primitive-spacing-32",
+    "--ds-primitive-spacing-48",
+    "--ds-primitive-spacing-64",
+    "--ds-primitive-spacing-80",
+    "--ds-primitive-spacing-96",
+    "--ds-primitive-spacing-128",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-typography-font-size-14",
+    "--ds-primitive-typography-font-size-16",
+    "--ds-primitive-typography-font-size-20",
+    "--ds-primitive-typography-font-weight-bold",
+    "--ds-primitive-typography-line-height-20",
+    "--ds-primitive-typography-line-height-24",
+    "--ds-primitive-typography-line-height-28",
+    "--ds-semantic-color-background-brand-primary-secondary-default",
+    "--ds-semantic-color-background-neutral-default",
+    "--ds-semantic-color-border-neutral-default",
+    "--ds-semantic-text-style-content-color-typography-placeholder",
+    "--ds-semantic-text-style-content-color-typography-secondary",
+    "--ds-semantic-text-style-content-color-typography-tertiary"
+  ],
+  "stories": [
+    {
+      "id": "web-components-tabs--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-tabs--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-tabs--default&viewMode=story"
+    },
+    {
+      "id": "web-components-tabs--standard",
+      "name": "Standard",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-tabs--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-tabs--standard&viewMode=story"
+    },
+    {
+      "id": "web-components-tabs--compact",
+      "name": "Compact",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-tabs--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-tabs--compact&viewMode=story"
+    },
+    {
+      "id": "web-components-tabs--densities",
+      "name": "Densities",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-tabs--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-tabs--densities&viewMode=story"
+    }
+  ],
+  "variants": [
+    { "prop": "variant", "values": ["standard", "compact"] },
+    { "prop": "activationMode", "values": ["automatic", "manual"] }
+  ],
+  "states": ["hover", "active", "focus-visible", "selected", "disabled"],
+  "responsive": [
+    {
+      "query": "@media (max-width: 640px)",
+      "effect": "Reduz padding inline/block do tab (spacing-12 / spacing-8), icone para spacing-24, tipografia para font-size-16 / line-height-24; o tab standard passa a min-inline-size spacing-128 e min-block-size calc(spacing-48 + spacing-8); o tab compact fica 80x80."
+    }
+  ],
+  "accessibility": {
+    "roles": ["tablist", "tab", "tabpanel"],
+    "ariaAttributes": [
+      "aria-label",
+      "aria-selected",
+      "aria-controls",
+      "aria-labelledby",
+      "aria-hidden"
+    ],
+    "keyboardInteractions": [
+      "ArrowRight: move para a proxima tab habilitada (com wrap circular).",
+      "ArrowLeft: move para a tab habilitada anterior (com wrap circular).",
+      "Home: vai para a primeira tab habilitada.",
+      "End: vai para a ultima tab habilitada.",
+      "Tab: entra/sai da lista usando roving tabIndex (a tab selecionada tem tabIndex=0, as demais -1); o painel tambem e focavel com tabIndex=0.",
+      "Enter / Espaco: seleciona a tab focada pelo comportamento nativo do <button type=\"button\"> (onClick)."
+    ],
+    "notes": [
+      "No modo automatic as setas selecionam e movem o foco (via requestAnimationFrame + focus no data-tabs-tab-id); no modo manual apenas movem o foco.",
+      "Tabs desabilitadas usam o atributo disabled nativo e sao puladas por getNextEnabledIndex, Home e End.",
+      "Ids de tab e painel sao gerados com useId, no formato `${useId}-tab-${item.id}` e `${useId}-panel-${item.id}`.",
+      "O painel ativo tem role=\"tabpanel\", tabIndex=0 e aria-labelledby apontando para o id da tab selecionada.",
+      "O icone e envolvido por um span com aria-hidden=\"true\"; o badge permanece acessivel a leitores de tela.",
+      "Se nenhum item corresponder ao value, a selecao cai para a primeira tab habilitada (getSelectedItem)."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Tabs/Tabs.test.tsx",
+    "unitCount": 6,
+    "a11yFile": "packages/react/src/components/Tabs/Tabs.a11y.test.tsx",
+    "a11yCount": 4
+  },
+  "figmaReferences": [],
+  "pendencias": [
+    "Nenhum node-id do Figma e citado no codigo do Tabs; a doc apenas informa que os tokens vieram do Figma.",
+    "A doc registra que nao existe token roxo na base atual e que o estado selecionado usa o token de identidade disponivel (--ds-semantic-color-background-brand-primary-secondary-default), sem token dedicado de selecao.",
+    "Cada tab define aria-controls com o id do proprio painel, mas apenas o painel selecionado e renderizado no DOM — os aria-controls das tabs nao selecionadas apontam para ids inexistentes.",
+    "parameters.componentCanvas.width = 900 e definido no meta, mas o codigo nao documenta o efeito desse parametro.",
+    "Nao ha classe/estilo dedicado para .ds-tabs--variant-standard no CSS: a variante standard corresponde aos estilos base de .ds-tabs__tab.",
+    "O CSS nao define estilo de scroll indicator para a rolagem horizontal do tablist (scrollbar e ocultada em Firefox e WebKit)."
+  ]
+}

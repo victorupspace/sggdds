@@ -1,0 +1,575 @@
+{
+  "pages": [
+    {
+      "file": "docs/introduction.mdx",
+      "storybookId": "documentation-introdução--docs",
+      "title": "Documentation/Introdução",
+      "headings": [],
+      "wordCount": 0,
+      "resumo": "Arquivo-casca, sem conteúdo editorial próprio. Só declara o <Meta title=\"Documentation/Introdução\"> com parâmetros de layout (fullscreen, toc desligado, aba canvas escondida, viewMode docs) e renderiza <IntroductionPage /> dentro de <Unstyled>. Todo o texto da home do Storybook vive em docs/introduction.docs.tsx. Para a wiki, este arquivo não tem nada a migrar além da decisão de que a home é uma landing page renderizada, não markdown.",
+      "afirmacoesTecnicas": [
+        {
+          "afirmacao": "A página tem title \"Documentation/Introdução\" e id de story \"documentation-introdução--docs\" (id com acentos, não transliterado)",
+          "verificavel": true,
+          "onde": "storybook-static/index.json → entries[\"documentation-introdução--docs\"]"
+        },
+        {
+          "afirmacao": "A home é renderizada em layout fullscreen, sem TOC e sem aba Canvas",
+          "verificavel": true,
+          "onde": "docs/introduction.mdx linhas 5-13 (parameters do <Meta>)"
+        }
+      ],
+      "destinoNaWiki": "/ (home da wiki) — apenas como decisão de arquitetura; o conteúdo vem de introduction.docs.tsx",
+      "reaproveitamento": "reescrever",
+      "riscos": [
+        "Não há conteúdo textual: migrar este arquivo isoladamente produz uma página vazia.",
+        "Depende de APIs do Storybook (@storybook/addon-docs/blocks, Meta, Unstyled) que não existem fora do Storybook — o wrapper não é portável para a wiki."
+      ]
+    },
+    {
+      "file": "docs/introduction.docs.tsx",
+      "storybookId": null,
+      "title": "Introdução — landing page (corpo renderizado de documentation-introdução--docs)",
+      "headings": [
+        "Hero — eyebrow \"SGGD Design System · v0.1\"",
+        "H1: Uma base sólida para construir experiências consistentes, acessíveis e bonitas.",
+        "CTAs: Explorar Foundations / Ver Web Components",
+        "Stats: 68 componentes (Web Components, \"Em progresso\") · 8 áreas (Foundations) · 200+ tokens (Design Tokens) · AA (Acessibilidade WCAG)",
+        "O que é — H2: Construído sobre três pilares que não negociamos.",
+        "H3: Acessibilidade primeiro",
+        "H3: Token-first",
+        "H3: Independência de produto",
+        "Como usar — H2: Comece em três passos.",
+        "H4: 1. Carregue os tokens",
+        "H4: 2. Componha com os componentes",
+        "H4: 3. Personalize por tokens",
+        "Foundations — H2: A base visual que sustenta tudo.",
+        "Cards: Color (Identidade + utilitárias) / Typography (Plus Jakarta Sans) / Spacing (Escala 2 → 128)",
+        "Inventário — H2: Categorias",
+        "Categoria: Ações — Decisão e ação primária do produto",
+        "Categoria: Formulário — Entrada de dados em formulários",
+        "Categoria: Navegação — Localização, hierarquia e fluxo entre seções",
+        "Categoria: Feedback — Comunicação de estado ao usuário",
+        "Categoria: Conteúdo — Exibição de conteúdo e identidade",
+        "Guidelines — H2: Personalize com intenção, não com força.",
+        "H4: Tokens primeiro (Use/Evite)",
+        "H4: Customização por CSS custom properties (Use/Evite)",
+        "H4: Composição > configuração (Use/Evite)",
+        "H4: Acessibilidade não é opcional (Use/Evite)",
+        "Figma — H3: Abra o arquivo Figma do Design System. (card desabilitado, \"Em breve\")",
+        "Princípios — H2: Cinco ideias que orientam toda decisão.",
+        "H4: 01 Acessibilidade é aceite",
+        "H4: 02 Tokens decidem visual",
+        "H4: 03 Pequeno e testável",
+        "H4: 04 Stories são contrato",
+        "H4: 05 Multiplataforma desde a base",
+        "Próximos passos — H2: Continue por aqui.",
+        "Cards finais: Foundations / Web Components / Acessibilidade"
+      ],
+      "wordCount": 693,
+      "resumo": "Landing page React (769 linhas, com CSS próprio em introduction.docs.css) que serve de capa do Storybook. Cobre: proposta de valor do DS, barra de estatísticas, três pilares (acessibilidade primeiro, token-first, independência de produto), tutorial de uso em três passos com snippet de código, atalhos para Foundations, inventário de componentes por categoria com deep links, quatro guidelines em formato Use/Evite, card de Figma desabilitado (\"Em breve\") e cinco princípios. É o texto institucional mais bem escrito do repositório e o melhor candidato a virar a home da wiki, mas quase todos os números e vários links estão errados ou desatualizados.",
+      "afirmacoesTecnicas": [
+        {
+          "afirmacao": "\"SGGD Design System · v0.1\" — versão exibida no eyebrow do hero",
+          "verificavel": true,
+          "onde": "packages/react/package.json → version \"0.1.0\" (confere)"
+        },
+        {
+          "afirmacao": "TARGET_COMPONENTS = 68 componentes como meta (\"68 componentes / Em progresso\")",
+          "verificavel": false,
+          "onde": "docs/introduction.docs.tsx:216 — número escrito à mão, sem origem no repositório; nenhum backlog ou roadmap versionado sustenta o 68"
+        },
+        {
+          "afirmacao": "IMPLEMENTED_COMPONENTS = 33 (\"33 de 68 prontos\", derivado de COMPONENT_CATEGORIES)",
+          "verificavel": true,
+          "onde": "docs/introduction.docs.tsx:215 — mas packages/react/src/index.ts exporta 41 símbolos de valor; faltam Carousel, CookieConsentBanner, DataTable, Meganav, ListItem, RadioGroup, Loading, AccordionItem"
+        },
+        {
+          "afirmacao": "\"8 áreas\" de Foundations",
+          "verificavel": true,
+          "onde": "storybook-static/index.json — existem os 8 ids foundations-{overview,color,typography,spacing,border,breakpoints,elevation,grids}--docs (confere)"
+        },
+        {
+          "afirmacao": "\"200+ tokens\" de Design Tokens",
+          "verificavel": true,
+          "onde": "packages/tokens/dist/css/tokens.css — 1472 variáveis --ds-* publicadas (114 primitive, 44 brand, 122 semantic, 1192 component). O número está tecnicamente correto mas subdimensionado em ~7x"
+        },
+        {
+          "afirmacao": "\"AA\" de acessibilidade WCAG em todos os componentes",
+          "verificavel": false,
+          "onde": "Não há relatório de conformidade versionado; existem 13 arquivos *.a11y.test.tsx usando vitest-axe em packages/react/src, o que é evidência parcial, não certificação AA"
+        },
+        {
+          "afirmacao": "Snippet de instalação usa o pacote `@sggd/design-system` (imports de '@sggd/design-system/tokens.css' e '@sggd/design-system')",
+          "verificavel": true,
+          "onde": "docs/introduction.docs.tsx:382 e :389 — ERRADO. O pacote real é @government/design-system (packages/react/package.json → name)"
+        },
+        {
+          "afirmacao": "Token `--ds-brand-color-identity-blue-primary` existe e vale #034EA2",
+          "verificavel": true,
+          "onde": "packages/tokens/dist/css/tokens.css → --ds-brand-color-identity-blue-primary: #034ea2 (confere)"
+        },
+        {
+          "afirmacao": "Typography: \"Plus Jakarta Sans\", escala \"10 → 96 px\"",
+          "verificavel": true,
+          "onde": "packages/tokens/dist/css/tokens.css — família confere ('Plus Jakarta Sans'), mas font-size vai de 10 a 64 px (22 tokens), não até 96"
+        },
+        {
+          "afirmacao": "Spacing: \"Escala 2 → 128\"",
+          "verificavel": true,
+          "onde": "packages/tokens/dist/css/tokens.css — --ds-primitive-spacing-* vai de 0 a 128 (19 tokens); o piso é 0, não 2"
+        },
+        {
+          "afirmacao": "Paleta de 16 cores exibida no card Foundations/Color (#034EA2, #233254, #005992, #4297D3, #62C9E0, #A1DDF7, #0B9247, #FBB900, #E52207, #262626, #737373, #D4D4D4, #E5E5E5, #F5F5F5, #FAFAFA, #FFFFFF)",
+          "verificavel": true,
+          "onde": "docs/introduction.docs.tsx:467-483 — hex hardcoded no JSX, sem vínculo com tokens.css; a própria página proíbe hardcode na seção Guidelines"
+        },
+        {
+          "afirmacao": "\"foco com 2 px de outline, contraste mínimo 4.5:1\"",
+          "verificavel": true,
+          "onde": "docs/introduction.docs.tsx:640 — precisa ser conferido contra o CSS real de foco dos componentes (packages/react/src/components/**/**.css)"
+        },
+        {
+          "afirmacao": "\"tokens estruturados para crescer para iOS e Android sem refundação\"",
+          "verificavel": true,
+          "onde": "platforms/ios/Sources/SGGDTokens/DSTokens.swift e platforms/android/sggd-tokens/src/main/res/values/ds_colors.xml — já são gerados pelo build (confere e já está além da promessa)"
+        },
+        {
+          "afirmacao": "\"a sincronização [com o Figma] ocorre via Style Dictionary\"",
+          "verificavel": true,
+          "onde": "packages/tokens/style-dictionary.config.ts + scripts/transform-tokens.ts (confere)"
+        },
+        {
+          "afirmacao": "12 deep links de navegação interna do Storybook (STORYBOOK_LINKS) + 33 links dinâmicos ?path=/docs/web-components-{id}--docs",
+          "verificavel": true,
+          "onde": "docs/introduction.docs.tsx:128-141 e :540 — 2 quebrados (ver riscos)"
+        }
+      ],
+      "destinoNaWiki": "/ (home)",
+      "reaproveitamento": "parcial",
+      "riscos": [
+        "LINK QUEBRADO: `?path=/docs/documentation-integracao-com-figma--docs` (linha 139). O id real preserva os acentos: `documentation-integração-com-figma--docs`. Na wiki o slug deve ser normalizado para /guias/integracao-figma.",
+        "LINK QUEBRADO: `?path=/docs/web-components-fileupload--docs` (id 'fileupload' na linha 170). O id real é `web-components-file-upload--docs` (title \"Web Components/File Upload\").",
+        "NOME DE PACOTE ERRADO: o snippet de onboarding — a primeira coisa que um dev copia — usa `@sggd/design-system`, que não existe. O correto é `@government/design-system`. Contradiz diretamente docs/consuming.mdx.",
+        "Inventário desatualizado: 33 componentes listados contra 41 exports em src/index.ts. Ausentes na página: Carousel, CookieConsentBanner, DataTable, Meganav, ListItem, RadioGroup, Loading, AccordionItem.",
+        "Números escritos à mão que envelhecem sozinhos: 68 (meta sem origem), 200+ tokens (real: 1472 variáveis CSS), 10→96 px (real: 10→64), escala 2→128 (real: 0→128). Na wiki, derivar do build como já faz design-tokens.mdx.",
+        "Hex hardcoded no JSX (paleta de 16 cores, swatches do hero) enquanto a mesma página proíbe hardcode na seção Guidelines — incoerência visível para o leitor.",
+        "Card do Figma marcado como 'Em breve' com CTA desabilitado e sem URL: na wiki, ou aponta para o arquivo real, ou some. Placeholder permanente corrói confiança.",
+        "Todos os links internos usam o formato de query do Storybook (`?path=/docs/...`); precisam ser reescritos como rotas da wiki, não copiados.",
+        "Conteúdo acoplado a 25 KB de CSS próprio (docs/introduction.docs.css) e a ícones SVG inline; a migração é de texto + estrutura, não de código."
+      ]
+    },
+    {
+      "file": "docs/accessibility.mdx",
+      "storybookId": "documentation-acessibilidade--docs",
+      "title": "Documentation/Acessibilidade",
+      "headings": ["Accessibility", "Criterios minimos", "Documentacao por componente"],
+      "wordCount": 95,
+      "resumo": "Página mais curta do conjunto (22 linhas). Estabelece que todo componente deve ser projetado, implementado e revisado com referência nas WCAG aplicáveis. Lista sete critérios mínimos (semântica HTML antes de ARIA, navegação por teclado, foco visível, contraste, associação programática de labels/erros, responsividade mobile web, stories com estados auditáveis) e define o que a documentação de cada componente precisa cobrir. É política, não guia: não traz exemplos, níveis de conformidade, ferramentas nem procedimento de teste.",
+      "afirmacoesTecnicas": [
+        {
+          "afirmacao": "\"Todo componente futuro deve ser projetado, implementado e revisado com referencia nas WCAG aplicaveis ao produto\"",
+          "verificavel": false,
+          "onde": "Política sem critério de aceite mensurável: não diz versão da WCAG (2.1? 2.2?) nem nível (A/AA/AAA). A home do Storybook afirma AA; esta página não confirma"
+        },
+        {
+          "afirmacao": "\"Contraste adequado para texto, icones funcionais e estados\"",
+          "verificavel": false,
+          "onde": "\"Adequado\" não é um número. consuming.mdx §13 fixa ≥ 4.5:1 e a home fixa AA — esta página deveria ser a fonte única e não é"
+        },
+        {
+          "afirmacao": "\"Stories com estados relevantes para auditoria visual e funcional\"",
+          "verificavel": true,
+          "onde": "storybook-static/index.json — auditável por componente; existem 13 arquivos *.a11y.test.tsx em packages/react/src que dão suporte automatizado a isso"
+        },
+        {
+          "afirmacao": "\"Cada componente deve documentar uso esperado, estados, comportamento com teclado, semantica HTML, responsividade, variacoes, criterios de acessibilidade e exemplos permitidos e nao permitidos\"",
+          "verificavel": true,
+          "onde": "Checável arquivo a arquivo em packages/react/src/components/**/*.mdx — hoje nenhum componente cobre os 8 itens"
+        }
+      ],
+      "destinoNaWiki": "/fundamentos/acessibilidade",
+      "reaproveitamento": "parcial",
+      "riscos": [
+        "Texto sem acentuação em português ('Criterios minimos', 'Semantica', 'previsivel', 'Documentacao', 'associadas' está ok mas 'nao permitidos' não) — precisa de revisão ortográfica completa antes de virar página pública.",
+        "Título em inglês ('# Accessibility') dentro de um documento em português, e diferente do title da story ('Acessibilidade').",
+        "Não define versão nem nível da WCAG, enquanto a home afirma 'AA' e consuming.mdx §13 afirma '≥ 4.5:1' — três fontes, nenhuma canônica.",
+        "É a página apontada por consuming.mdx §13 como 'critérios completos e checklist por componente', mas não contém checklist algum. Promessa não cumprida.",
+        "Não menciona as ferramentas que o repositório já usa (@storybook/addon-a11y, vitest-axe, axe-core), então o leitor não sabe como verificar nada do que a página exige.",
+        "Escrita no futuro ('Todo componente futuro deve...'), o que deixa ambíguo se vale para os ~38 componentes já entregues."
+      ]
+    },
+    {
+      "file": "docs/consuming.mdx",
+      "storybookId": "documentation-consumindo-a-biblioteca--docs",
+      "title": "Documentation/Consumindo a biblioteca",
+      "headings": [
+        "Consumindo a biblioteca",
+        "Sumário",
+        "1. Pré-requisitos",
+        "2. Instalação",
+        "3. Configuração inicial",
+        "Vite / CRA / SPA",
+        "Next.js (App Router)",
+        "Next.js (Pages Router)",
+        "Remix",
+        "4. Fonte oficial — Plus Jakarta Sans",
+        "5. Importando componentes",
+        "Componentes disponíveis",
+        "Importação de tipos",
+        "6. Design Tokens",
+        "Estrutura de naming",
+        "Exemplos",
+        "Categorias documentadas",
+        "Consumo programático (build-time)",
+        "7. Personalização (theming)",
+        "7.1 Sobrescrita global",
+        "7.2 Sobrescrita por escopo",
+        "7.3 Customização pontual de instância",
+        "7.4 Regras de personalização",
+        "✅ Permitido",
+        "🚫 Proibido",
+        "8. Server-Side Rendering (SSR)",
+        "Componentes 100% server-renderable",
+        "Componentes que requerem cliente",
+        "Frameworks suportados",
+        "9. Tree-shaking e bundle",
+        "Importação granular",
+        "Bundle do CSS",
+        "10. Peer dependencies",
+        "Por que peers e não dependencies",
+        "Verificando compatibilidade",
+        "11. Versionamento e breaking changes",
+        "Superfície pública vs interna",
+        "Pré-1.0",
+        "Comunicação de breaking changes",
+        "12. TypeScript",
+        "Resolução",
+        "Tipos auxiliares de tokens",
+        "13. Acessibilidade",
+        "Responsabilidade do consumidor",
+        "14. Suporte a Dark Mode",
+        "Estado-alvo (especificação)",
+        "Workaround temporário",
+        "15. Limitações conhecidas e pendências",
+        "16. Checklist de adoção",
+        "Suporte e contribuição"
+      ],
+      "wordCount": 2138,
+      "resumo": "Manual técnico completo de adoção (613 linhas, 16 seções numeradas + sumário). Cobre pré-requisitos de versão, instalação nos três gerenciadores, import de tokens.css/styles.css por framework (Vite, Next App e Pages Router, Remix), carregamento da fonte Plus Jakarta Sans, catálogo de componentes por categoria, naming e consumo de tokens, contrato de theming por sobrescrita de variáveis CSS com listas de permitido/proibido, matriz de SSR por componente, tree-shaking e tamanho de bundle, peer dependencies, política de SemVer com superfície pública vs interna, TypeScript, acessibilidade, dark mode (declarado pendente), tabela de 12 limitações conhecidas e checklist de adoção. É de longe a página mais densa e mais valiosa — e a que mais envelheceu.",
+      "afirmacoesTecnicas": [
+        {
+          "afirmacao": "\"Este guia descreve apenas o que está implementado hoje no pacote @government/design-system@0.1.0\"",
+          "verificavel": true,
+          "onde": "packages/react/package.json → name @government/design-system, version 0.1.0 (confere)"
+        },
+        {
+          "afirmacao": "Node.js >=22.12.0 e pnpm >=10.24.0 exigidos",
+          "verificavel": true,
+          "onde": "package.json (raiz) → engines.node \">=22.12.0\", engines.pnpm \">=10.24.0\" (confere)"
+        },
+        {
+          "afirmacao": "React e React DOM em peerDependencies ^19.0.0",
+          "verificavel": true,
+          "onde": "packages/react/package.json → peerDependencies (confere literalmente)"
+        },
+        {
+          "afirmacao": "Pacote distribuído somente como ESM (\"type\": \"module\"), formato es, sem CJS",
+          "verificavel": true,
+          "onde": "packages/react/package.json → \"type\": \"module\"; packages/react/vite.config.ts:56 → formats: ['es'] (confere)"
+        },
+        {
+          "afirmacao": "Três entradas de export: @government/design-system/tokens.css, /styles.css e /tokens.json",
+          "verificavel": true,
+          "onde": "packages/react/package.json → exports/publishConfig.exports mapeiam ./tokens.css → dist/tokens.css, ./styles.css → dist/index.css, ./tokens.json → dist/tokens.json (confere)"
+        },
+        {
+          "afirmacao": "Fonte primária Plus Jakarta Sans via --ds-primitive-typography-font-family-plus-jakarta-sans, não distribuída no pacote",
+          "verificavel": true,
+          "onde": "packages/tokens/dist/css/tokens.css → --ds-primitive-typography-font-family-plus-jakarta-sans: 'Plus Jakarta Sans'; não há dist/fonts/ (confere)"
+        },
+        {
+          "afirmacao": "Tabela de 5 categorias com ~35 componentes disponíveis; \"a lista canônica fica em src/index.ts\"",
+          "verificavel": true,
+          "onde": "packages/react/src/index.ts — 41 exports de valor. Faltam na tabela: Carousel, CookieConsentBanner, DataTable, Meganav, RadioGroup, Loading, AccordionItem"
+        },
+        {
+          "afirmacao": "Naming --ds-{tier}-{category}-{subcategory}-{name}, com tier em \"primitive, semantic (component-level ainda não publicado)\"",
+          "verificavel": true,
+          "onde": "packages/tokens/dist/css/tokens.css — DESATUALIZADO: existem 4 tiers publicados (primitive 114, brand 44, semantic 122, component 1192). O tier component É publicado, e o tier brand nem é citado"
+        },
+        {
+          "afirmacao": "Exemplo de CSS usando --ds-brand-color-brand-red, --ds-primitive-color-white, --ds-primitive-spacing-12/24, --ds-primitive-border-radius-radius-md, --ds-semantic-shadow-raised, --ds-primitive-typography-font-size-16",
+          "verificavel": true,
+          "onde": "packages/tokens/dist/css/tokens.css — os 7 tokens citados existem (confere)"
+        },
+        {
+          "afirmacao": "--ds-brand-color-brand-red vale #ff161f (citado como exemplo de hardcode proibido)",
+          "verificavel": true,
+          "onde": "packages/tokens/dist/css/tokens.css → --ds-brand-color-brand-red: #ff161f (confere)"
+        },
+        {
+          "afirmacao": "As 8 stories de Foundations (Overview, Color, Typography, Spacing, Border, Breakpoints, Elevation, Grids) contêm a enumeração completa dos tokens",
+          "verificavel": true,
+          "onde": "storybook-static/index.json — os 8 ids foundations-*--docs existem (confere)"
+        },
+        {
+          "afirmacao": "7 componentes exigem Client Component: Modal, RadioGroup, Tooltip, Dropdown, Datepicker, Toast, BackToTop",
+          "verificavel": true,
+          "onde": "packages/react/src/index.ts exporta todos os 7. O motivo de cada um é auditável em packages/react/src/components/**/ (uso de window/document/portal)"
+        },
+        {
+          "afirmacao": "\"sideEffects\": [\"*.css\"] no package.json; react, react-dom e react/jsx-runtime como externals",
+          "verificavel": true,
+          "onde": "packages/react/package.json → sideEffects; packages/react/vite.config.ts:60 → external (confere)"
+        },
+        {
+          "afirmacao": "styles.css distribuído tem ≈190 KB minificado e ≈22 KB gzip",
+          "verificavel": true,
+          "onde": "packages/react/dist/index.css — DESATUALIZADO: 246.391 bytes (≈241 KB) e 28.525 bytes gzip (≈28 KB)"
+        },
+        {
+          "afirmacao": "Subpath imports por componente não existem (@government/design-system/button não funciona)",
+          "verificavel": true,
+          "onde": "packages/react/package.json → exports só declara \".\", \"./styles.css\", \"./tokens.css\", \"./tokens.json\" (confere)"
+        },
+        {
+          "afirmacao": "\"A versão atual é 0.1.0. Enquanto o pacote estiver em 0.x, breaking changes podem ocorrer em MINOR\"",
+          "verificavel": true,
+          "onde": "packages/react/package.json → version 0.1.0 (confere)"
+        },
+        {
+          "afirmacao": "\"Pendente: automação de versionamento e changelog. Recomendação: adotar Changesets\"",
+          "verificavel": true,
+          "onde": "DESATUALIZADO: .changeset/config.json existe, @changesets/cli ^2.31.0 está em devDependencies e há scripts changeset/changeset:status/version:packages/release na raiz, além de .github/workflows/release.yml usando changesets/action@v1"
+        },
+        {
+          "afirmacao": "\"CHANGELOG.md (pendente — ainda não existe no repositório)\"",
+          "verificavel": true,
+          "onde": "Não há CHANGELOG.md na raiz nem em packages/react ou packages/tokens (confere — a afirmação está correta)"
+        },
+        {
+          "afirmacao": "\"CI/CD Pendente — GitHub Actions: lint, typecheck, test, build, publish\"",
+          "verificavel": true,
+          "onde": "DESATUALIZADO: .github/workflows/ci.yml já roda os jobs Lint, Typecheck, Test e Build, e release.yml faz o publish via changesets"
+        },
+        {
+          "afirmacao": "\"A11y testing em CI Pendente — @axe-core/playwright ou jest-axe\"",
+          "verificavel": true,
+          "onde": "PARCIALMENTE DESATUALIZADO: existem 13 arquivos *.a11y.test.tsx com vitest-axe em packages/react/src, e o job Test do ci.yml executa pnpm test"
+        },
+        {
+          "afirmacao": "Tipos distribuídos via vite-plugin-dts, com \"types\": \"./dist/src/index.d.ts\" e exports.\".\".types apontando para o mesmo arquivo",
+          "verificavel": true,
+          "onde": "packages/react/package.json → publishConfig (confere para o artefato publicado; no package.json de desenvolvimento types aponta para ./src/index.ts, o que a página não menciona)"
+        },
+        {
+          "afirmacao": "Tipos meta de token exportados: DesignTokenTier, DesignTokenCategory, DesignTokenMode, DesignTokenType, DesignToken, em src/types/tokens.ts, seguindo o W3C Design Tokens Format Module",
+          "verificavel": true,
+          "onde": "packages/react/src/types/tokens.ts — conferir se os 5 tipos ainda são exportados de src/index.ts"
+        },
+        {
+          "afirmacao": "\"Contraste de cores ≥ 4.5:1 para texto regular\" e \"Compatibilidade com leitores de tela testada (NVDA, VoiceOver)\"",
+          "verificavel": false,
+          "onde": "Não há relatório de teste manual com NVDA/VoiceOver versionado no repositório; é a afirmação mais arriscada da página"
+        },
+        {
+          "afirmacao": "Dark mode pendente: DesignTokenMode ('light' | 'dark' | 'high-contrast') existe, mas tokens.css define tudo só em :root",
+          "verificavel": true,
+          "onde": "packages/tokens/dist/css/tokens.css — nenhuma ocorrência de [data-theme] (confere)"
+        },
+        {
+          "afirmacao": "Valores de exemplo do dark mode: --ds-primitive-color-white #ffffff e --ds-primitive-color-soft-black #292929",
+          "verificavel": true,
+          "onde": "packages/tokens/dist/css/tokens.css → ambos conferem"
+        },
+        {
+          "afirmacao": "\"Pacote no npm: @government/design-system\"",
+          "verificavel": false,
+          "onde": "publishConfig.access é \"public\", mas release.yml tem step 'Skip publish (NPM_TOKEN not configured)' — não há evidência de que o pacote esteja publicado no npm público"
+        }
+      ],
+      "destinoNaWiki": "/guias/consumo (índice) com desdobramento em /guias/instalacao, /guias/configuracao-por-framework, /guias/tokens-e-theming, /guias/ssr, /guias/versionamento e /referencia/limitacoes",
+      "reaproveitamento": "parcial",
+      "riscos": [
+        "TIER FALTANDO: a §6 afirma que os tiers são 'primitive, semantic (component-level ainda não publicado)'. Na prática há 4 tiers publicados e o tier component tem 1192 variáveis — a maior parte do sistema. Contradiz frontalmente design-tokens.mdx, que documenta os 4 tiers corretamente.",
+        "NÚMEROS DE BUNDLE ERRADOS: '≈190 KB minificado, ≈22 KB gzip' contra 241 KB / 28 KB reais. Números de tamanho escritos à mão vão errar sempre; na wiki, ou automatizar ou remover.",
+        "TRÊS PENDÊNCIAS JÁ RESOLVIDAS listadas como pendentes na §15 e §11: Changesets (adotado), CI/CD (ci.yml + release.yml existem), A11y testing em CI (13 suítes vitest-axe rodando em pnpm test). Migrar como está publica uma lista de tarefas falsa.",
+        "CATÁLOGO INCOMPLETO: a tabela da §5 omite Carousel, CookieConsentBanner, DataTable, Meganav, RadioGroup, Loading e AccordionItem, embora a própria seção diga que a lista canônica é src/index.ts. Na wiki, gerar essa tabela a partir de src/index.ts.",
+        "INCOERÊNCIA DE MARCA: a página usa --ds-brand-color-brand-red (#ff161f) como cor primária em todos os exemplos, enquanto a home usa --ds-brand-color-identity-blue-primary (#034EA2). O leitor não sabe qual é a cor da marca.",
+        "AFIRMAÇÃO NÃO VERIFICÁVEL DE ALTO RISCO: 'Compatibilidade com leitores de tela testada (NVDA, VoiceOver)' sem nenhum relatório versionado. Em contexto de governo, isso é uma declaração de conformidade sem lastro.",
+        "'Pacote no npm: @government/design-system' sem publicação comprovada — release.yml explicitamente pula o publish quando NPM_TOKEN não está configurado. O guia de instalação começa por 'pnpm add @government/design-system', que pode simplesmente falhar.",
+        "Sumário com 16 âncoras manuais (#1-pré-requisitos, #15-limitações-conhecidas-e-pendências, ...) que dependem da geração de slug do Storybook; qualquer gerador de wiki com outra regra de slug quebra os 16 links de uma vez, além dos links cruzados internos (#72-sobrescrita-por-escopo).",
+        "Aponta para 'Documentation / Acessibilidade' como fonte dos 'critérios completos e checklist por componente' — página que tem 95 palavras e nenhum checklist.",
+        "Aponta para 'Web Components na sidebar deste Storybook' e para 'dist/src/index.d.ts' — referências que só fazem sentido dentro do Storybook e precisam ser reescritas para a wiki.",
+        "Duas seções inteiras (§14 dark mode, §15 limitações) são especificação de futuro, não documentação do presente. Na wiki isso pertence a um roadmap, não ao guia de consumo — misturado, faz o leitor duvidar do que já funciona.",
+        "'Issues, bugs e novos componentes: repositório interno do Design System' — sem URL. Contato inacionável."
+      ]
+    },
+    {
+      "file": "docs/design-tokens.mdx",
+      "storybookId": "documentation-design-tokens--docs",
+      "title": "Documentation/Design Tokens",
+      "headings": [
+        "Design Tokens",
+        "Estratégia em quatro camadas",
+        "Pipeline",
+        "Decisões de normalização",
+        "Inventário atual"
+      ],
+      "wordCount": 415,
+      "resumo": "Explica a arquitetura de tokens em quatro tiers mapeados 1:1 às collections do Figma (Global: Core → primitive, T1: Sampa Design System → brand, T2: Semantics → semantic, T3: Components → component), com o prefixo CSS de cada um. Descreve a cadeia de aliases preservada em runtime, o pipeline de cinco passos (raw → validate → build → CSS/JSON), as saídas nativas iOS/Android, e sete decisões de normalização (kebab-case, $root → default, correção de 'sucess' → 'success', escopos numéricos → px, pesos de fonte nomeados → numéricos, aliasData → referência DTCG, sombras em web-extras). O inventário no final é computado do build, não escrito à mão. Tecnicamente é a página mais correta do conjunto.",
+      "afirmacoesTecnicas": [
+        {
+          "afirmacao": "Os tokens são publicados no pacote @government/tokens",
+          "verificavel": true,
+          "onde": "packages/tokens/package.json → name \"@government/tokens\" (confere)"
+        },
+        {
+          "afirmacao": "Quatro tiers com prefixos --ds-primitive-*, --ds-brand-*, --ds-semantic-*, --ds-component-*",
+          "verificavel": true,
+          "onde": "packages/tokens/dist/css/tokens.css — 114 primitive, 44 brand, 122 semantic, 1192 component (confere)"
+        },
+        {
+          "afirmacao": "A cadeia de alias --ds-component-button-color-background-primary-default → var(--ds-semantic-color-background-brand-primary-default) → var(--ds-brand-color-brand-red-primary) é preservada no CSS",
+          "verificavel": true,
+          "onde": "packages/tokens/dist/css/tokens.css — a cadeia existe exatamente assim e resolve em #c50007 (confere literalmente)"
+        },
+        {
+          "afirmacao": "Os exports brutos do Figma ficam em packages/tokens/src/raw, um arquivo por collection",
+          "verificavel": true,
+          "onde": "packages/tokens/src/raw/ → global-core, t1-sampa, t2-semantics, t3-components, web-extras + README.md (confere)"
+        },
+        {
+          "afirmacao": "Pipeline: pnpm tokens:validate e depois pnpm tokens:build",
+          "verificavel": true,
+          "onde": "package.json (raiz) → tokens:validate e tokens:build delegam para @government/tokens (validate-tokens.ts / transform-tokens.ts) (confere)"
+        },
+        {
+          "afirmacao": "Saída CSS em packages/tokens/dist/css/tokens.css e JSON em packages/tokens/dist/json/tokens.json",
+          "verificavel": true,
+          "onde": "Ambos existem (131 KB e 167 KB) e batem com style-dictionary.config.ts buildPath (confere)"
+        },
+        {
+          "afirmacao": "\"O Style Dictionary também gera saídas nativas a cada build: Swift em platforms/ios e XML de resources em platforms/android\"",
+          "verificavel": true,
+          "onde": "packages/tokens/style-dictionary.config.ts → buildPath '../../platforms/ios/Sources/SGGDTokens/' e '../../platforms/android/sggd-tokens/src/main/res/values/'; os arquivos DSTokens.swift, ds_colors.xml, ds_dimens.xml e ds_strings.xml existem (confere)"
+        },
+        {
+          "afirmacao": "O grupo 'sucess' (grafia do Figma) é normalizado para 'success', com o caminho original em sggd.figmaPath",
+          "verificavel": true,
+          "onde": "packages/tokens/scripts/transform-tokens.ts e packages/tokens/src/normalized/*.tokens.json → chave $extensions.sggd.figmaPath"
+        },
+        {
+          "afirmacao": "Pesos de fonte nomeados viram numéricos (SemiBold → 600), com o nome original em sggd.figmaFontStyle",
+          "verificavel": true,
+          "onde": "packages/tokens/src/normalized/global-core.tokens.json"
+        },
+        {
+          "afirmacao": "As sombras --ds-semantic-shadow-* não existem nas collections do Figma e vivem em src/raw/web-extras.tokens.json",
+          "verificavel": true,
+          "onde": "packages/tokens/src/raw/web-extras.tokens.json existe e --ds-semantic-shadow-raised está em dist/css/tokens.css (confere)"
+        },
+        {
+          "afirmacao": "Inventário renderizado dinamicamente: {totalTokenCount} tokens primitivos + contagem por categoria (color, spacing, border, breakpoints, typography)",
+          "verificavel": true,
+          "onde": "packages/react/src/foundations/tokens/core-tokens.data.ts:153-159, que lê @government/tokens/normalized/global-core.tokens.json → 114 tokens primitivos hoje (confere)"
+        }
+      ],
+      "destinoNaWiki": "/fundamentos/design-tokens (com /fundamentos/design-tokens/pipeline para o passo a passo de build)",
+      "reaproveitamento": "integral",
+      "riscos": [
+        "DEPENDÊNCIA DE BUILD: a seção 'Inventário atual' importa tokenSummary e totalTokenCount de packages/react/src/foundations/tokens/core-tokens.data.ts e renderiza JSX. Isso é a melhor prática da página inteira (números derivados do build, nunca escritos à mão) e é exatamente o que não sobrevive a um copy-paste para markdown estático. Na wiki, precisa de um passo de geração equivalente ou os números viram mentira em uma semana.",
+        "O inventário só conta o tier primitive (114 tokens). Os outros 1358 tokens ficam sem contagem — a página admite isso ('o total de variáveis CSS publicadas está em ...tokens.css'), mas o leitor não tem o número.",
+        "Contradiz docs/consuming.mdx §6, que afirma que o tier component 'ainda não [foi] publicado'. Na migração, esta página é a fonte correta e consuming.mdx deve ser corrigida a partir dela.",
+        "Aponta para 'o README daquele diretório' (packages/tokens/src/raw/README.md) para o mapeamento arquivo → collection, mapeamento que a irmã figma-integration.mdx já traz em tabela. Três lugares para a mesma informação.",
+        "Referências a caminhos de arquivo do monorepo (packages/tokens/src/raw, dist/css) só fazem sentido para quem tem o repositório clonado; para um leitor externo da wiki, boa parte da página é inacionável."
+      ]
+    },
+    {
+      "file": "docs/figma-integration.mdx",
+      "storybookId": "documentation-integração-com-figma--docs",
+      "title": "Documentation/Integração com Figma",
+      "headings": ["Figma Integration", "Collections e tiers", "Como importar tokens"],
+      "wordCount": 203,
+      "resumo": "Página curta (42 linhas) que define o contrato entre o Figma e o repositório: o DS visual vive no Figma e o repositório recebe exports de tokens como insumo técnico versionado. Traz a tabela de mapeamento das quatro collections para os quatro arquivos em packages/tokens/src/raw e seus tiers, e um procedimento de cinco passos para importar tokens (exportar as Figma Variables em JSON, sobrescrever o arquivo correspondente, validar, buildar, revisar o diff antes do PR). Fecha explicando que aliases entre collections viram referências e que renomear/remover variável aparece como referência não resolvida no build, além de uma regra de segurança sobre não incluir dados sensíveis no JSON exportado.",
+      "afirmacoesTecnicas": [
+        {
+          "afirmacao": "Mapeamento: Global: Core → global-core.tokens.json → primitive; T1: Sampa Design System → t1-sampa.tokens.json → brand; T2: Semantics → t2-semantics.tokens.json → semantic; T3: Components → t3-components.tokens.json → component",
+          "verificavel": true,
+          "onde": "packages/tokens/src/raw/ — os 4 arquivos existem com esses nomes exatos e os 4 tiers aparecem em dist/css/tokens.css (confere)"
+        },
+        {
+          "afirmacao": "\"As variáveis do Figma estão organizadas em quatro collections\"",
+          "verificavel": true,
+          "onde": "Verificável no arquivo do Figma, não no repositório — o repositório só prova o lado do export. Nota: existe um src/raw/web-extras.tokens.json que NÃO vem do Figma e não aparece na tabela"
+        },
+        {
+          "afirmacao": "Procedimento de import em 5 passos, com pnpm tokens:validate e pnpm tokens:build",
+          "verificavel": true,
+          "onde": "package.json (raiz) → scripts tokens:validate / tokens:build (confere)"
+        },
+        {
+          "afirmacao": "\"o build reporta aliases que não resolvem entre as collections\" e \"renomear ou remover uma variável no Figma aparece no build como referência não resolvida, nunca como quebra silenciosa\"",
+          "verificavel": true,
+          "onde": "packages/tokens/scripts/validate-tokens.ts e scripts/transform-tokens.ts — o comportamento precisa ser confirmado rodando o build com um alias quebrado"
+        },
+        {
+          "afirmacao": "\"O diff de packages/tokens/src/normalized\" deve ser revisado antes do PR",
+          "verificavel": true,
+          "onde": "packages/tokens/src/normalized/ existe com os 5 arquivos normalizados (confere)"
+        },
+        {
+          "afirmacao": "\"Quando um nome vindo do Figma precisar de correção técnica segura (ex.: sucess → success), o caminho original é preservado em sggd.figmaPath automaticamente pelo pipeline\"",
+          "verificavel": true,
+          "onde": "packages/tokens/scripts/transform-tokens.ts — mesma afirmação que design-tokens.mdx faz (duplicada)"
+        },
+        {
+          "afirmacao": "\"Não inclua segredos, dados sensíveis, nomes de usuários ou artefatos privados desnecessários no JSON exportado\"",
+          "verificavel": false,
+          "onde": "Regra de conduta sem enforcement: nenhum lint, hook ou etapa de CI valida isso hoje"
+        }
+      ],
+      "destinoNaWiki": "/guias/integracao-figma",
+      "reaproveitamento": "integral",
+      "riscos": [
+        "ID COM ACENTO: o storybookId real é `documentation-integração-com-figma--docs`. A home (introduction.docs.tsx:139) aponta para `documentation-integracao-com-figma--docs`, sem acento — link quebrado hoje. Na wiki, fixar o slug como /guias/integracao-figma e nunca gerar slug a partir de texto acentuado.",
+        "SOBREPOSIÇÃO COM design-tokens.mdx: a tabela de collections/tiers, o pipeline validate→build e a regra do sggd.figmaPath aparecem nas duas páginas com redações diferentes. Migrar as duas como estão duplica a manutenção; a wiki precisa de uma única página de pipeline referenciada pelas outras.",
+        "A tabela de collections omite web-extras.tokens.json, que existe em src/raw, alimenta as sombras --ds-semantic-shadow-* e não vem do Figma. Quem seguir a página literalmente pode apagá-lo num reexport.",
+        "Título em inglês ('# Figma Integration') num documento em português e diferente do title da story ('Integração com Figma') — mesmo defeito de accessibility.mdx.",
+        "Não há link para o arquivo do Figma em lugar nenhum: a página inteira é sobre um arquivo que o leitor não consegue abrir a partir dela. A home reforça isso com um card 'Em breve' desabilitado.",
+        "Não descreve quem tem permissão de export, com que frequência, nem quem revisa o PR — o procedimento existe, o processo não."
+      ]
+    }
+  ],
+  "comandosCitados": [
+    "pnpm add @government/design-system",
+    "npm install @government/design-system",
+    "yarn add @government/design-system",
+    "pnpm tokens:validate",
+    "pnpm tokens:build",
+    "pnpm typecheck",
+    "pnpm why react",
+    "npm ls react"
+  ],
+  "urlsCitadas": [
+    "https://fonts.googleapis.com",
+    "https://fonts.gstatic.com",
+    "https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap",
+    "https://github.com/changesets/changesets",
+    "?path=/docs/foundations-overview--docs",
+    "?path=/docs/foundations-color--docs",
+    "?path=/docs/foundations-typography--docs",
+    "?path=/docs/foundations-spacing--docs",
+    "?path=/docs/foundations-border--docs",
+    "?path=/docs/foundations-breakpoints--docs",
+    "?path=/docs/foundations-elevation--docs",
+    "?path=/docs/foundations-grids--docs",
+    "?path=/docs/documentation-design-tokens--docs",
+    "?path=/docs/documentation-acessibilidade--docs",
+    "?path=/docs/documentation-integracao-com-figma--docs",
+    "?path=/docs/web-components-button--docs",
+    "?path=/docs/web-components-{id}--docs (gerado para 33 componentes em introduction.docs.tsx:540)"
+  ],
+  "nomeDoPacoteCitado": "@government/design-system"
+}

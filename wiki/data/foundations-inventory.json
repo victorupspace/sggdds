@@ -1,0 +1,237 @@
+{
+  "_meta": {
+    "gerado": "2026-08-05",
+    "fonte": "storybook-static/index.json + leitura integral dos arquivos-fonte",
+    "observacao": "Todas as 8 paginas de Foundations sao renderizadas por 3 arquivos de documentacao React (core-tokens.docs.tsx, elevation.docs.tsx, grids.docs.tsx). Os .stories.tsx sao apenas wrappers de 18-24 linhas (title + layout fullscreen + tags autodocs + export const Page). Cada titulo gera 2 entries no index: '--docs' (autodocs, entrada da sidebar) e '--page' (a story em si). O id listado abaixo e o '--docs'.",
+    "dadosDeTokens": "packages/tokens/src/normalized/global-core.tokens.json expoe apenas a camada 'primitive' com 5 familias: color (24), spacing (19), border (9), breakpoints (4), typography (58). Nao existem tokens de elevation/shadow, motion, icone ou camada semantica."
+  },
+  "pages": [
+    {
+      "storybookId": "foundations-overview--docs",
+      "title": "Foundations/Overview",
+      "importPath": "./packages/react/src/foundations/tokens/CoreTokensOverview.stories.tsx",
+      "conteudo": "Capa dos Core tokens: hero 'Fundacao visual do Design System' com paragrafo sobre o pipeline, um grid de metricas com a contagem por categoria (Color 24, Spacing 19, Border 9, Breakpoints 4, Typography 58) e um 'PipelineStrip' com os 4 caminhos do build (raw -> normalized -> dist/css/tokens.css -> dist/json/tokens.json). Fecha com uma faixa 'Governanca' que apenas repete os mesmos cards de categoria, sem texto proprio e sem links para as paginas dedicadas. Nenhum token individual e exibido - so numeros.",
+      "tokensExibidos": [
+        "primitive.color (apenas contagem)",
+        "primitive.spacing (apenas contagem)",
+        "primitive.border (apenas contagem)",
+        "primitive.breakpoints (apenas contagem)",
+        "primitive.typography (apenas contagem)"
+      ],
+      "temTabela": false,
+      "temAmostraVisual": false,
+      "rotaWikiSugerida": "/fundamentos/tokens",
+      "lacunasVsEspecificacao": [
+        "Conceito ausente: nao define o que e um design token nem a diferenca entre primitive / semantic / component - esse texto existe apenas em packages/react/src/foundations/tokens/README.md, fora do Storybook",
+        "Nao responde 'por que importa': governanca, consistencia entre times, portabilidade multi-plataforma",
+        "Sem regras de uso: quando criar um token novo, quando um literal e aceitavel, quem aprova, como nomear",
+        "Sem tabela completa de tokens - a pagina mostra so contagens agregadas, nenhum nome, valor ou variavel CSS",
+        "Sem exemplos aplicados (mesma UI antes/depois de tokenizar)",
+        "Sem do & don't",
+        "Sem secao de acessibilidade",
+        "Sem 'como usar no Figma': nomes das collections, como publicar/atualizar variables, como o export chega no repo",
+        "Sem 'como usar em codigo': import de @government/tokens, link de tokens.css, sintaxe var(--ds-*), consumo em iOS/Android",
+        "Sem downloads (tokens.json, tokens.css, arquivo/link do Figma)",
+        "So cobre a camada primitive; as camadas semantic e component citadas no README nao aparecem em lugar nenhum da pagina",
+        "A faixa 'Governanca' promete categorias 'documentadas em paginas dedicadas' mas nao linka para nenhuma delas"
+      ]
+    },
+    {
+      "storybookId": "foundations-color--docs",
+      "title": "Foundations/Color",
+      "importPath": "./packages/react/src/foundations/tokens/CoreTokensColor.stories.tsx",
+      "conteudo": "Galeria de swatches agrupada por familia via groupColorTokens(). Cada token vira um card com um quadrado preenchido por var(--ds-*) e uma lista de definicao (dl) com token path, figmaPath, variavel CSS, alias e valor. Na pratica so renderiza o que existe hoje no arquivo normalizado: 10 cinzas (grey-50 a grey-900), 11 neutral-alpha (rgba(24,24,24,.02) a .96), pure-black, soft-black e white - 24 tokens. O codigo prevê os grupos base/identity/brand/utility/success/warning/danger/info, mas esses dados nao existem no export, entao a paleta institucional (vermelho SP.GOV) simplesmente nao aparece.",
+      "tokensExibidos": [
+        "primitive.color.neutral.grey-50 ... grey-900",
+        "primitive.color.neutral-alpha.2 ... 96",
+        "primitive.color.pure-black",
+        "primitive.color.soft-black",
+        "primitive.color.white"
+      ],
+      "temTabela": false,
+      "temAmostraVisual": true,
+      "rotaWikiSugerida": "/fundamentos/cor",
+      "lacunasVsEspecificacao": [
+        "Paleta incompleta: nenhuma cor de marca/identidade. O vermelho institucional SP.GOV (#C60008 / #C50007 / #FF161F) e as cores de feedback (success/warning/danger/info) nao estao no global-core.tokens.json e portanto nao renderizam",
+        "Sem camada semantica (background/*, text/*, border/*), que e o que os componentes realmente consomem - a pagina documenta primitivos que ninguem deveria usar direto",
+        "Zero texto conceitual: nao ha introducao, 'por que importa' nem explicacao dos grupos; so o subtitulo do hero",
+        "Sem regras de uso: qual cinza e fundo de pagina, qual e borda, qual e texto secundario, quando usar alpha em vez de solido",
+        "Sem tabela - os metadados vem como <dl> dentro de cada card, sem visao comparativa nem possibilidade de escanear/ordenar",
+        "Sem acessibilidade: nenhuma razao de contraste, nenhum par texto/fundo aprovado, nenhuma referencia a WCAG AA/AAA, nada sobre daltonismo ou 'cor nunca como unico portador de informacao'",
+        "Sem do & don't",
+        "Sem exemplos aplicados (a cor dentro de botao, alerta, card, link)",
+        "Sem 'como usar no Figma' alem do figmaPath cru impresso no card",
+        "Sem 'como usar em codigo' (var(--ds-primitive-color-*), tema, dark mode)",
+        "Sem downloads (paleta .ase/.clr, JSON, PNG da paleta)",
+        "Nao sinaliza as divergencias Figma x codigo ja catalogadas em wiki/data/divergencias-sessao.md (warning/subtle, success/subtle, border/danger, inversao primary/secondary do Button)"
+      ]
+    },
+    {
+      "storybookId": "foundations-typography--docs",
+      "title": "Foundations/Typography",
+      "importPath": "./packages/react/src/foundations/tokens/CoreTokensTypography.stories.tsx",
+      "conteudo": "Tres blocos. (1) Destaque da familia: 'AaBb' em display, pangram em PT-BR/EN e um bloco de metadados (Plus Jakarta Sans, sans-serif geometrica open source, pesos 200-800 variable, token CSS) com CTA externo 'Baixar no Google Fonts'. (2) Escala de font-size: 22 linhas renderizando 'Aa' no tamanho real (10px a 64px) mais o <dl> de metadados. (3) 'Supporting scales': tres listas compactas nome/valor para font-weight (6), line-height (25) e letter-spacing (4).",
+      "tokensExibidos": [
+        "primitive.typography.font-family.plus-jakarta-sans",
+        "primitive.typography.font-size.10 ... 64 (22 valores)",
+        "primitive.typography.font-weight.light|regular|medium|semi-bold|bold|extra-bold",
+        "primitive.typography.line-height.12 ... 66 (25 valores)",
+        "primitive.typography.letter-spacing.ls-tight|ls-tighter|ls-base|ls-wide"
+      ],
+      "temTabela": false,
+      "temAmostraVisual": true,
+      "rotaWikiSugerida": "/fundamentos/tipografia",
+      "lacunasVsEspecificacao": [
+        "So existe escala primitiva solta: nao ha estilos tipograficos compostos (display / heading / body / label / caption) combinando size + line-height + weight + letter-spacing, que e o que o designer e o dev realmente usam",
+        "22 tamanhos e 25 line-heights listados sem nenhum pareamento - a pagina nao diz qual line-height acompanha qual font-size",
+        "Sem regras de uso: qual token para H1/H2/H3, corpo de texto, legenda; como a hierarquia muda por breakpoint",
+        "Sem tabela completa (escalas de apoio sao <ul> nome/valor; a escala de tamanho e um empilhamento de cards)",
+        "Sem exemplos aplicados em texto real (artigo, formulario, card com titulo + corpo + label)",
+        "Sem do & don't",
+        "Acessibilidade ausente: tamanho minimo legivel, comprimento de linha, contraste de texto, zoom 200%, redimensionamento de texto WCAG 1.4.4/1.4.12",
+        "Sem 'como usar no Figma': nomes dos text styles, como aplicar, o que fazer quando o style nao existe",
+        "Sem 'como usar em codigo': classes utilitarias, var(--ds-primitive-typography-*), @font-face, fallback stack, carregamento da fonte variavel",
+        "Download existe apenas como link externo ao Google Fonts - nao ha arquivo de fonte hospedado, nem instrucoes de self-hosting, nem licenca",
+        "Metadados do bloco de familia sao hardcoded no JSX ('200 -> 800 (Variable)', 'Sans-serif geometrica'), nao vem do token"
+      ]
+    },
+    {
+      "storybookId": "foundations-spacing--docs",
+      "title": "Foundations/Spacing",
+      "importPath": "./packages/react/src/foundations/tokens/CoreTokensSpacing.stories.tsx",
+      "conteudo": "Uma unica secao 'Spacing scale' com 19 cards ordenados por valor crescente (0, 2, 4, 6, 8, 10, 12, 16, 20, 24, 32, 40, 48, 56, 64, 72, 80, 96, 128 px). Cada card mostra o valor em px, o nome 'spacing-N', uma barra horizontal proporcional ao maior valor da escala e a variavel CSS. Nao ha figmaPath, alias nem texto explicativo alem do subtitulo do hero.",
+      "tokensExibidos": [
+        "primitive.spacing.0 ... 128 (19 steps)"
+      ],
+      "temTabela": false,
+      "temAmostraVisual": true,
+      "rotaWikiSugerida": "/fundamentos/espacamento",
+      "lacunasVsEspecificacao": [
+        "Sem conceito: nao explica a base da escala (4/8), por que ha saltos irregulares (2/6/10) nem como ela se relaciona com o grid",
+        "Sem 'por que importa': ritmo vertical, densidade, previsibilidade entre componentes",
+        "Sem regras de uso: espacamento interno (padding) x externo (margin/gap), o que usar entre secoes, entre cards, dentro de formularios",
+        "Sem tabela completa - cards em vez de tabela, e sem as colunas figmaPath/alias/valor original que as outras paginas de token exibem",
+        "Sem exemplos aplicados (mesmo bloco com espacamento ad hoc x tokenizado)",
+        "Sem do & don't",
+        "Sem acessibilidade: alvo de toque minimo, espacamento entre alvos clicaveis, WCAG 2.5.8 Target Size",
+        "Sem 'como usar no Figma': auto-layout, variables de gap/padding, o que fazer quando o valor nao existe",
+        "Sem 'como usar em codigo': var(--ds-primitive-spacing-*), utilitarios, uso em gap/grid",
+        "Sem downloads",
+        "A escala nao e apresentada como decisao (por que parar em 128, por que existe spacing-0)"
+      ]
+    },
+    {
+      "storybookId": "foundations-border--docs",
+      "title": "Foundations/Border",
+      "importPath": "./packages/react/src/foundations/tokens/CoreTokensBorder.stories.tsx",
+      "conteudo": "Duas secoes com contador. 'Radius' (5 tokens: none 0, sm 4, md 8, lg 16, full 999px) e 'Width' (4 tokens: none 0, sm 1, md 2, lg 4px). Cada token vira um card com um preview quadrado que aplica o raio ou a espessura via var(--ds-*), mais o <dl> de metadados (token, figma, css, alias, valor). O hero anuncia o total de 9 tokens.",
+      "tokensExibidos": [
+        "primitive.border.radius.radius-none|sm|md|lg|full",
+        "primitive.border.width.border-none|sm|md|lg"
+      ],
+      "temTabela": false,
+      "temAmostraVisual": true,
+      "rotaWikiSugerida": "/fundamentos/borda-e-raio",
+      "lacunasVsEspecificacao": [
+        "Conceito raso: uma frase no hero ('a escala mantem leitura objetiva'), sem definir raio/espessura como linguagem visual",
+        "Sem 'por que importa' (percepcao de suavidade, consistencia entre superficies, leitura de affordance)",
+        "Sem regras de uso: qual raio para botao, input, card, modal, avatar, chip; qual espessura para borda default, hover, selecao e foco",
+        "Sem tabela completa (metadados em <dl> por card)",
+        "Sem exemplos aplicados (o token dentro de um componente real)",
+        "Sem do & don't",
+        "Sem acessibilidade - especialmente o indicador de foco: espessura minima, contraste do focus ring, WCAG 2.4.11/2.4.13. Nao existe nem token de cor de foco (color/border/focus ja consta como ausente em divergencias-sessao.md)",
+        "Sem 'como usar no Figma' (variables de corner radius / stroke)",
+        "Sem 'como usar em codigo' (var(--ds-primitive-border-*), border-radius composto, borda logica)",
+        "Sem downloads",
+        "radius-full (999px) nao e explicado - nao ha nota sobre uso em pill/avatar nem sobre o efeito em elementos nao quadrados"
+      ]
+    },
+    {
+      "storybookId": "foundations-breakpoints--docs",
+      "title": "Foundations/Breakpoints",
+      "importPath": "./packages/react/src/foundations/tokens/CoreTokensBreakpoints.stories.tsx",
+      "conteudo": "Uma secao 'Viewport scale' com 4 cards ordenados: bp-xs 0px (Mobile XS), bp-sm 640px (Mobile), bp-md 900px (Tablet), bp-lg 1200px (Desktop). Cada card traz rotulo de dispositivo e descricao hardcoded no mapa BREAKPOINT_LABELS do proprio .tsx, uma barra de escala proporcional a 1440px com ticks 0 e 1440, e metadados compactos do token.",
+      "tokensExibidos": [
+        "primitive.breakpoints.values.bp-xs|bp-sm|bp-md|bp-lg"
+      ],
+      "temTabela": false,
+      "temAmostraVisual": true,
+      "rotaWikiSugerida": "/fundamentos/grid-e-layout#breakpoints",
+      "lacunasVsEspecificacao": [
+        "Conflito nao sinalizado com Foundations/Grids: esta pagina publica 0/640/900/1200 e a de Grids usa 360 / 768-1024 / 1280-1440. As duas paginas nem se referenciam",
+        "Descricoes de dispositivo e a referencia de 1440px sao literais no componente, nao vem de token",
+        "Sem 'por que importa' e sem regras de uso: mobile-first x desktop-first, quais breakpoints sao obrigatorios, o que pode mudar entre eles (densidade) e o que nao pode (conteudo)",
+        "Sem tabela e sem media queries prontas para copiar",
+        "Sem exemplos aplicados: nenhuma demonstracao de um layout mudando de bp-sm para bp-lg",
+        "Sem do & don't",
+        "Sem acessibilidade: reflow WCAG 1.4.10, zoom 200%, orientacao 1.3.4",
+        "Sem 'como usar no Figma' (larguras de frame correspondentes a cada breakpoint)",
+        "Sem 'como usar em codigo' (@media, container queries, hook/util de breakpoint)",
+        "Sem downloads",
+        "Nao e um fundamento autonomo na lista da wiki - deve ser absorvido por grid-e-layout, o que exige reconciliar os dois conjuntos de valores antes"
+      ]
+    },
+    {
+      "storybookId": "foundations-elevation--docs",
+      "title": "Foundations/Elevation",
+      "importPath": "./packages/react/src/foundations/elevation/ElevationShadows.stories.tsx",
+      "conteudo": "A pagina mais redacional do conjunto (nao consome tokens programaticamente). Hero + 5 secoes: (1) regra de background oficial de pagina em grey-100 #F5F5F5, com card do token e argumento contra fundo branco; (2) escala de 4 niveis - Level 0 Base 'box-shadow: none', Level 1 Raised 'alpha-12 + spacing-2/6', Level 2 Floating 'alpha-12 + alpha-8', Level 3 Overlay 'alpha-24 + alpha-12'; (3) demo visual de camadas page/surface/overlay; (4) tres cards de melhores praticas (Consistencia, Composicao, Acessibilidade); (5) bloco Use / Evite.",
+      "tokensExibidos": [
+        "primitive.color.neutral.grey-100 (unico token citado com path, css e valor)",
+        "primitive.color.neutral-alpha.8|12|24 (citados apenas como texto dentro das 'receitas', sem token real)",
+        "primitive.spacing.2|6 (idem, so no texto da receita)"
+      ],
+      "temTabela": false,
+      "temAmostraVisual": true,
+      "rotaWikiSugerida": "/fundamentos/elevacao-e-sombra",
+      "lacunasVsEspecificacao": [
+        "Nao existe token de elevation/shadow no pipeline: os niveis sao 'receitas' textuais ('alpha-12 + spacing-2/6') que nao correspondem a nenhum valor compilado e nao podem ser copiadas. As sombras reais estao hardcoded no elevation.docs.css. divergencias-sessao.md ja registra elevation/level-1..5 como ausente no export",
+        "Sem tabela de tokens - nenhuma coluna com o box-shadow final, offset, blur, spread e cor por nivel",
+        "Nomenclatura inconsistente: 4 niveis aqui (Base/Raised/Floating/Overlay) x 5 niveis (level-1..5) mencionados no Figma",
+        "Sem exemplos aplicados por componente (card, dropdown, modal, toast, popover) mapeando componente -> nivel",
+        "Nao cobre dark mode nem elevacao sobre superficie escura",
+        "Sem 'como usar no Figma': os efeitos existem como estilos de efeito, nao como variables - a pagina nao diz como encontra-los nem como aplica-los",
+        "Sem 'como usar em codigo': nenhuma classe, mixin, var ou snippet copiavel",
+        "Sem downloads",
+        "TEM do & don't (secao 'Use / Evite') e TEM secao de acessibilidade, mas ambos sao listas textuais genericas, sem exemplo visual do erro e sem criterio verificavel",
+        "A regra 'todas as paginas devem usar grey-100 como fundo' e uma decisao de layout global publicada dentro da pagina de elevacao - deveria estar em um fundamento de superficie/layout e ser referenciada aqui"
+      ]
+    },
+    {
+      "storybookId": "foundations-grids--docs",
+      "title": "Foundations/Grids",
+      "importPath": "./packages/react/src/foundations/grids/Grids.stories.tsx",
+      "conteudo": "Hero + 5 secoes: (1) strip 'Breakpoints comuns no Brasil' com 360px / 768-1024px / 1280-1440px; (2) anatomia do grid explicando colunas, gutter e margens; (3) 'Grids que mais utilizamos' com 3 previews renderizados - Mobile 4 colunas/gutter 10px/margem 20px, Tablet 6 colunas/gutter 24px/margem 24px, Desktop 12 colunas/gutter 24px/margem 40px, todos tipo Stretch; (4) tres cards de melhores praticas (Responsividade, Composicao, Acessibilidade); (5) bloco Use / Evite. Todos os numeros sao literais no grids.docs.tsx.",
+      "tokensExibidos": [],
+      "temTabela": false,
+      "temAmostraVisual": true,
+      "rotaWikiSugerida": "/fundamentos/grid-e-layout",
+      "lacunasVsEspecificacao": [
+        "Nenhum valor vem de token: colunas, gutters, margens e breakpoints sao literais no array gridSpecs/breakpointSpecs do .tsx. A pagina afirma que os valores 'se conectam aos tokens de breakpoint ja publicados', mas nao se conectam",
+        "Os breakpoints citados (360 / 768-1024 / 1280-1440) contradizem os tokens publicados em Foundations/Breakpoints (0 / 640 / 900 / 1200) - divergencia nao sinalizada em nenhuma das duas paginas",
+        "Sem tabela de especificacao (breakpoint x colunas x gutter x margem x largura maxima de container)",
+        "Nao define largura maxima de container nem regra de centralizacao - so 'Stretch'",
+        "Gutter de 10px em mobile nao existe na escala de spacing (que tem 8 e 12) - valor orfao nao explicado",
+        "Sem exemplos aplicados: nenhuma pagina real montada sobre o grid, nenhum caso de span de colunas",
+        "Sem 'como usar no Figma': layout grids nomeados, como aplicar no frame, como validar",
+        "Sem 'como usar em codigo': CSS grid, container queries, classes utilitarias, componente de container/row/col",
+        "Sem downloads (template de grid, arquivo Figma, snippet CSS)",
+        "TEM do & don't (secao 'Use / Evite') e TEM secao de acessibilidade, mas ambos textuais, sem demonstracao visual e sem criterio de verificacao",
+        "Nao cobre layout alem do grid: regioes de pagina, densidade, alinhamento vertical, breakpoints de conteudo"
+      ]
+    }
+  ],
+  "fundamentosSemPaginaHoje": [
+    "iconografia",
+    "logo-e-marca",
+    "motion"
+  ],
+  "observacoesSobreCobertura": {
+    "acessibilidade": "NAO esta em fundamentosSemPaginaHoje porque existe Documentation/Acessibilidade (docs/accessibility.mdx), mas sao apenas 21 linhas de MDX fora da secao Foundations. Nao ha pagina de fundamento de acessibilidade - o tema aparece so como subsecao textual dentro de Elevation e Grids. Na pratica precisa ser escrita do zero.",
+    "tokens": "Coberto por Foundations/Overview (so contagens) + Documentation/Design Tokens (docs/design-tokens.mdx, 83 linhas). O conceito primitive/semantic/component so existe em README de pasta, nunca no Storybook.",
+    "grid-e-layout": "Coberto por duas paginas que se contradizem (Foundations/Grids e Foundations/Breakpoints). Precisa de fusao e reconciliacao de valores.",
+    "elevacao-e-sombra": "Tem pagina, mas sem nenhum token real por tras - as sombras vivem em CSS hardcoded.",
+    "iconografia": "Nenhum pacote de icones no monorepo (packages/ contem apenas 'react' e 'tokens'). Os SVGs estao inline nos componentes.",
+    "motion": "Nenhum token de duracao, easing ou delay no pipeline; nenhuma pagina, nenhuma secao."
+  }
+}

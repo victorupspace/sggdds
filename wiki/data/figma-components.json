@@ -1,0 +1,3626 @@
+{
+  "source": "figma",
+  "fileKey": "yDUVLEx2nP1c7SFQDZVj7n",
+  "extractedFrom": "list_file_components_for_code_connect",
+  "publishedTotal": 2251,
+  "iconCount": 2193,
+  "componentCount": 58,
+  "components": [
+    {
+      "name": ". Checkbox Control",
+      "nodeId": "4:4076",
+      "type": "COMPONENT_SET",
+      "page": "↳ Checkbox ✅",
+      "pageId": "4:4050",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=4-4076",
+      "assetKey": "31bf1566bedc97348f8afb224ecee8b86d1df5dc",
+      "instanceCount": 19,
+      "properties": {
+        "Selected": {
+          "name": "Selected",
+          "type": "VARIANT",
+          "key": "Selected",
+          "variantOptions": [
+            "False",
+            "True"
+          ],
+          "defaultValue": "False"
+        },
+        "Intermediate": {
+          "name": "Intermediate",
+          "type": "VARIANT",
+          "key": "Intermediate",
+          "variantOptions": [
+            "True",
+            "False"
+          ],
+          "defaultValue": "False"
+        },
+        "State": {
+          "name": "State",
+          "type": "VARIANT",
+          "key": "State",
+          "variantOptions": [
+            "Default",
+            "Disabled",
+            "Hover",
+            "Focused",
+            "Pressed"
+          ],
+          "defaultValue": "Default"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "Outlined / Check Box Unselected-24",
+          "external": true,
+          "assetKey": "b4b76b3f0fdf332694d9787362eb43eb03958bab"
+        },
+        {
+          "name": "Filled / Check Box Selected-24",
+          "external": true,
+          "assetKey": "fe7c597cb244f1b725d9058e65428319b2eb1999"
+        }
+      ]
+    },
+    {
+      "name": ". Table Header Row",
+      "nodeId": "40000180:20",
+      "type": "COMPONENT",
+      "page": "↳  Table ✅",
+      "pageId": "40000177:3934",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000180-20",
+      "assetKey": "71483e1eef80759d0aa835b88e131d28dd0a2dec",
+      "instanceCount": 0,
+      "properties": {
+        "Protocolo Filter Icon": {
+          "name": "Protocolo Filter Icon",
+          "type": "INSTANCE_SWAP",
+          "key": "Protocolo Filter Icon#40000180:5",
+          "defaultValue": "40000031:17341"
+        },
+        "Solicitante Filter Icon": {
+          "name": "Solicitante Filter Icon",
+          "type": "INSTANCE_SWAP",
+          "key": "Solicitante Filter Icon#40000180:6",
+          "defaultValue": "40000031:17341"
+        },
+        "Servico Filter Icon": {
+          "name": "Servico Filter Icon",
+          "type": "INSTANCE_SWAP",
+          "key": "Servico Filter Icon#40000180:7",
+          "defaultValue": "40000031:17341"
+        },
+        "Header Checkbox": {
+          "name": "Header Checkbox",
+          "type": "INSTANCE_SWAP",
+          "key": "Header Checkbox#40000180:8",
+          "defaultValue": "4:4077"
+        }
+      },
+      "dependencies": []
+    },
+    {
+      "name": ". Table Row",
+      "nodeId": "40000180:2",
+      "type": "COMPONENT",
+      "page": "↳  Table ✅",
+      "pageId": "40000177:3934",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000180-2",
+      "assetKey": "f4d7e1c93ca15dfc288b093a6afc7a83aa028919",
+      "instanceCount": 7,
+      "properties": {
+        "Protocolo": {
+          "name": "Protocolo",
+          "type": "TEXT",
+          "key": "Protocolo#40000180:0",
+          "defaultValue": "SP-2026-01482"
+        },
+        "Solicitante": {
+          "name": "Solicitante",
+          "type": "TEXT",
+          "key": "Solicitante#40000180:1",
+          "defaultValue": "Ana Clara Souza"
+        },
+        "Servico": {
+          "name": "Servico",
+          "type": "TEXT",
+          "key": "Servico#40000180:2",
+          "defaultValue": "Atualizacao cadastral"
+        },
+        "Expand Icon": {
+          "name": "Expand Icon",
+          "type": "INSTANCE_SWAP",
+          "key": "Expand Icon#40000180:3",
+          "defaultValue": "40000031:16395"
+        },
+        "Checkbox": {
+          "name": "Checkbox",
+          "type": "INSTANCE_SWAP",
+          "key": "Checkbox#40000180:4",
+          "defaultValue": "4:4077"
+        }
+      },
+      "dependencies": []
+    },
+    {
+      "name": ".Radio Control",
+      "nodeId": "40000030:4181",
+      "type": "COMPONENT_SET",
+      "page": "↳ Radio ✅",
+      "pageId": "12:2268",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000030-4181",
+      "assetKey": "78a647da7a3843c3e3e78cbb165f8ad5e7c99685",
+      "instanceCount": 20,
+      "properties": {
+        "Selected": {
+          "name": "Selected",
+          "type": "VARIANT",
+          "key": "Selected",
+          "variantOptions": [
+            "False",
+            "True"
+          ],
+          "defaultValue": "False"
+        },
+        "State": {
+          "name": "State",
+          "type": "VARIANT",
+          "key": "State",
+          "variantOptions": [
+            "Default",
+            "Disabled",
+            "Hover",
+            "Focused",
+            "Pressed"
+          ],
+          "defaultValue": "Default"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "radio circle",
+          "external": false,
+          "nodeId": "40000030:4080",
+          "assetKey": "f91d57693de3c5f1e9df3830c26ca22288a947b9"
+        },
+        {
+          "name": ".Radio Control",
+          "external": false,
+          "nodeId": "40000030:4181",
+          "assetKey": "78a647da7a3843c3e3e78cbb165f8ad5e7c99685"
+        },
+        {
+          "name": "radio button checked",
+          "external": false,
+          "nodeId": "40000030:4069",
+          "assetKey": "88701a86a453bab5e114c98e3ad18c3d036ce5db"
+        }
+      ]
+    },
+    {
+      "name": "_Breadcrumb Parts / Link",
+      "nodeId": "40000019:8338",
+      "type": "COMPONENT_SET",
+      "page": "↳  Breadcrumb ✅",
+      "pageId": "72:13076",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000019-8338",
+      "assetKey": "57ccb907b04596e98ed8f19547a3815d7839398b",
+      "instanceCount": 9,
+      "properties": {
+        "Label": {
+          "name": "Label",
+          "type": "TEXT",
+          "key": "Label#12801:0",
+          "defaultValue": "Opção"
+        },
+        "State": {
+          "name": "State",
+          "type": "VARIANT",
+          "key": "State",
+          "variantOptions": [
+            "Enabled",
+            "Hover",
+            "Focused Visible",
+            "Pressed"
+          ],
+          "defaultValue": "Enabled"
+        },
+        "Current": {
+          "name": "Current",
+          "type": "VARIANT",
+          "key": "Current",
+          "variantOptions": [
+            "False",
+            "True"
+          ],
+          "defaultValue": "False"
+        }
+      },
+      "dependencies": []
+    },
+    {
+      "name": "_Carousel Parts / Dot Control",
+      "nodeId": "40000022:1034",
+      "type": "COMPONENT_SET",
+      "page": "↳  Carousel ✅",
+      "pageId": "67:7232",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000022-1034",
+      "assetKey": "e680b07e0b42cb98b51d55f7f496c364c84efad6",
+      "instanceCount": 20,
+      "properties": {
+        "State": {
+          "name": "State",
+          "type": "VARIANT",
+          "key": "State",
+          "variantOptions": [
+            "Enabled",
+            "Hover",
+            "Focused",
+            "Disabled",
+            "Pressed"
+          ],
+          "defaultValue": "Enabled"
+        },
+        "Selected": {
+          "name": "Selected",
+          "type": "VARIANT",
+          "key": "Selected",
+          "variantOptions": [
+            "False",
+            "True"
+          ],
+          "defaultValue": "False"
+        }
+      },
+      "dependencies": []
+    },
+    {
+      "name": "Accordion",
+      "nodeId": "40000056:4236",
+      "type": "COMPONENT_SET",
+      "page": "↳  Accordion ✅",
+      "pageId": "52:24979",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000056-4236",
+      "assetKey": "79df0562ccbf626dedd69978cecee621f2855ab0",
+      "instanceCount": 24,
+      "properties": {
+        "Title": {
+          "name": "Title",
+          "type": "TEXT",
+          "key": "Title#40000056:6",
+          "defaultValue": "Title do Accordion"
+        },
+        "Slot": {
+          "name": "Slot",
+          "type": "SLOT",
+          "key": "Slot#40000056:7",
+          "defaultValue": "-1:-1"
+        },
+        "Show Avatar": {
+          "name": "Show Avatar",
+          "type": "BOOLEAN",
+          "key": "Show Avatar#40000056:8",
+          "defaultValue": true
+        },
+        "Show Badge": {
+          "name": "Show Badge",
+          "type": "BOOLEAN",
+          "key": "Show Badge#40000056:9",
+          "defaultValue": true
+        },
+        "Show Button": {
+          "name": "Show Button",
+          "type": "BOOLEAN",
+          "key": "Show Button#40000056:10",
+          "defaultValue": true
+        },
+        "Show Slot": {
+          "name": "Show Slot",
+          "type": "BOOLEAN",
+          "key": "Show Slot#40000056:11",
+          "defaultValue": true
+        },
+        "Show Icon": {
+          "name": "Show Icon",
+          "type": "BOOLEAN",
+          "key": "Show Icon#40000056:14",
+          "defaultValue": true
+        },
+        "Change Icon": {
+          "name": "Change Icon",
+          "type": "INSTANCE_SWAP",
+          "key": "Change Icon#40000056:16",
+          "defaultValue": "40000031:16392"
+        },
+        "Show Badge Mobile": {
+          "name": "Show Badge Mobile",
+          "type": "BOOLEAN",
+          "key": "Show Badge Mobile#40000056:18",
+          "defaultValue": false
+        },
+        "Show Button Mobile": {
+          "name": "Show Button Mobile",
+          "type": "BOOLEAN",
+          "key": "Show Button Mobile#40000056:22",
+          "defaultValue": false
+        },
+        "Size": {
+          "name": "Size",
+          "type": "VARIANT",
+          "key": "Size",
+          "variantOptions": [
+            "Desktop",
+            "Mobile"
+          ],
+          "defaultValue": "Desktop"
+        },
+        "Background": {
+          "name": "Background",
+          "type": "VARIANT",
+          "key": "Background",
+          "variantOptions": [
+            "White",
+            "Inverse"
+          ],
+          "defaultValue": "White"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "Icons / General / User",
+          "external": true,
+          "assetKey": "58afa56a4dd41f5879f5dc9581b05e60ee6e7c67"
+        },
+        {
+          "name": "Badge /  Counter",
+          "external": true,
+          "assetKey": "df67d5f48edb762ebf680a281e33245abe85253c"
+        },
+        {
+          "name": "Badge / Standard",
+          "external": false,
+          "nodeId": "38:1035",
+          "assetKey": "390d07d6a64372f5b55031fa7e15271bf8b46763"
+        },
+        {
+          "name": "Button",
+          "external": false,
+          "nodeId": "4:283",
+          "assetKey": "e203f8d533f68bbfef4c9102a8cb34b3a93eb6e8"
+        },
+        {
+          "name": "expand_more [outlined]",
+          "external": false,
+          "nodeId": "40000031:16385",
+          "assetKey": "c14289a430e41c017c737545600f68de950f8ccc"
+        }
+      ]
+    },
+    {
+      "name": "Accordion Group",
+      "nodeId": "40000074:5416",
+      "type": "COMPONENT_SET",
+      "page": "↳  Accordion ✅",
+      "pageId": "52:24979",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000074-5416",
+      "assetKey": "0793469873c733f9c1d3035bbaeb0b58d91812f8",
+      "instanceCount": 10,
+      "properties": {
+        "Slot": {
+          "name": "Slot",
+          "type": "SLOT",
+          "key": "Slot#40000074:3",
+          "defaultValue": "-1:-1"
+        },
+        "Size": {
+          "name": "Size",
+          "type": "VARIANT",
+          "key": "Size",
+          "variantOptions": [
+            "Desktop",
+            "Mobile"
+          ],
+          "defaultValue": "Desktop"
+        },
+        "Background": {
+          "name": "Background",
+          "type": "VARIANT",
+          "key": "Background",
+          "variantOptions": [
+            "Inverse",
+            "White"
+          ],
+          "defaultValue": "White"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "Accordion",
+          "external": false,
+          "nodeId": "40000056:4236",
+          "assetKey": "79df0562ccbf626dedd69978cecee621f2855ab0"
+        },
+        {
+          "name": "Accordion item",
+          "external": false,
+          "nodeId": "40000074:5774",
+          "assetKey": "9f35ce742d4b7a1d78e6e5a47d826e6194aaba60"
+        }
+      ]
+    },
+    {
+      "name": "Accordion item",
+      "nodeId": "40000074:5774",
+      "type": "COMPONENT_SET",
+      "page": "↳  Accordion ✅",
+      "pageId": "52:24979",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000074-5774",
+      "assetKey": "9f35ce742d4b7a1d78e6e5a47d826e6194aaba60",
+      "instanceCount": 8,
+      "properties": {
+        "Size": {
+          "name": "Size",
+          "type": "VARIANT",
+          "key": "Size",
+          "variantOptions": [
+            "Desktop",
+            "Mobile"
+          ],
+          "defaultValue": "Desktop"
+        },
+        "Background": {
+          "name": "Background",
+          "type": "VARIANT",
+          "key": "Background",
+          "variantOptions": [
+            "Inverse",
+            "White"
+          ],
+          "defaultValue": "White"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "Accordion",
+          "external": false,
+          "nodeId": "40000056:4236",
+          "assetKey": "79df0562ccbf626dedd69978cecee621f2855ab0"
+        },
+        {
+          "name": "Accordion item",
+          "external": false,
+          "nodeId": "40000074:5774",
+          "assetKey": "9f35ce742d4b7a1d78e6e5a47d826e6194aaba60"
+        }
+      ]
+    },
+    {
+      "name": "ActionCard",
+      "nodeId": "111:39682",
+      "type": "COMPONENT_SET",
+      "page": "↳  Action Card ✅",
+      "pageId": "108:35686",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=111-39682",
+      "assetKey": "f24b3a73c00226e3e0a6d7e44c72036206120953",
+      "instanceCount": 30,
+      "properties": {
+        "Title": {
+          "name": "Title",
+          "type": "TEXT",
+          "key": "Title#111:80",
+          "defaultValue": "Lorem \nIpsum dor simmet"
+        },
+        "Description": {
+          "name": "Description",
+          "type": "TEXT",
+          "key": "Description#111:81",
+          "defaultValue": "Place here the content for the body part of the component"
+        },
+        "Show Description": {
+          "name": "Show Description",
+          "type": "BOOLEAN",
+          "key": "Show Description#111:82",
+          "defaultValue": true
+        },
+        "Show Badge": {
+          "name": "Show Badge",
+          "type": "BOOLEAN",
+          "key": "Show Badge#111:83",
+          "defaultValue": true
+        },
+        "Show Icon-Wrapper": {
+          "name": "Show Icon-Wrapper",
+          "type": "BOOLEAN",
+          "key": "Show Icon-Wrapper#111:84",
+          "defaultValue": true
+        },
+        "Icon": {
+          "name": "Icon",
+          "type": "SLOT",
+          "key": "Icon#111:85",
+          "defaultValue": "-1:-1"
+        },
+        "Focus": {
+          "name": "Focus",
+          "type": "BOOLEAN",
+          "key": "Focus#40000465:0",
+          "defaultValue": false
+        },
+        "State": {
+          "name": "State",
+          "type": "VARIANT",
+          "key": "State",
+          "variantOptions": [
+            "Default",
+            "Selected",
+            "Hover"
+          ],
+          "defaultValue": "Default"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "widgets [outlined]",
+          "external": false,
+          "nodeId": "40000031:47845",
+          "assetKey": "b2991ff2a34a7994a42e9cfa5aeb49a3376d7156"
+        },
+        {
+          "name": "Badge / Standard",
+          "external": false,
+          "nodeId": "38:1035",
+          "assetKey": "390d07d6a64372f5b55031fa7e15271bf8b46763"
+        }
+      ]
+    },
+    {
+      "name": "Alert",
+      "nodeId": "40000002:215",
+      "type": "COMPONENT_SET",
+      "page": "↳ Alert ✅",
+      "pageId": "49:404",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000002-215",
+      "assetKey": "737b94eadc389164ad2dbc93b2585c0137b388be",
+      "instanceCount": 20,
+      "properties": {
+        "Title Text": {
+          "name": "Title Text",
+          "type": "TEXT",
+          "key": "Title Text#40000010:20",
+          "defaultValue": "Title goes here"
+        },
+        "Description": {
+          "name": "Description",
+          "type": "TEXT",
+          "key": "Description#40000010:26",
+          "defaultValue": "Brief description or user instructions go here"
+        },
+        "Show Close Button": {
+          "name": "Show Close Button",
+          "type": "BOOLEAN",
+          "key": "Show Close Button#40000010:32",
+          "defaultValue": true
+        },
+        "Type": {
+          "name": "Type",
+          "type": "VARIANT",
+          "key": "Type",
+          "variantOptions": [
+            "Information",
+            "Success",
+            "Warning",
+            "Error"
+          ],
+          "defaultValue": "Information"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "Button",
+          "external": true,
+          "assetKey": "343e526e79274bfa3edb68774cb3d3c46472e0c5"
+        },
+        {
+          "name": "Icons / General / Close",
+          "external": true,
+          "assetKey": "61ca2b063c43829dd0fa01d3a93888edc0c5650e"
+        },
+        {
+          "name": "Badge /  Counter",
+          "external": true,
+          "assetKey": "df67d5f48edb762ebf680a281e33245abe85253c"
+        }
+      ]
+    },
+    {
+      "name": "Avatar",
+      "nodeId": "40000199:12660",
+      "type": "COMPONENT_SET",
+      "page": "↳  Avatar ✅",
+      "pageId": "52:28069",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000199-12660",
+      "assetKey": "bfb576fbb03cdca08fc15178a433ae92bf3ef162",
+      "instanceCount": 19,
+      "properties": {
+        "Label": {
+          "name": "Label",
+          "type": "TEXT",
+          "key": "Label#8756:6",
+          "defaultValue": "AZ"
+        },
+        "Icon Swap": {
+          "name": "Icon Swap",
+          "type": "INSTANCE_SWAP",
+          "key": "Icon Swap#8756:10",
+          "defaultValue": "72:12518"
+        },
+        "Badge": {
+          "name": "Badge",
+          "type": "BOOLEAN",
+          "key": "Badge#9105:0",
+          "defaultValue": false
+        },
+        "Type": {
+          "name": "Type",
+          "type": "VARIANT",
+          "key": "Type",
+          "variantOptions": [
+            "Letter",
+            "Icon",
+            "Image"
+          ],
+          "defaultValue": "Letter"
+        },
+        "Size": {
+          "name": "Size",
+          "type": "VARIANT",
+          "key": "Size",
+          "variantOptions": [
+            "X-Small",
+            "Small",
+            "Medium",
+            "Large",
+            "X-Large"
+          ],
+          "defaultValue": "X-Small"
+        },
+        "Color": {
+          "name": "Color",
+          "type": "VARIANT",
+          "key": "Color",
+          "variantOptions": [
+            "Neutral",
+            "Brand",
+            "None"
+          ],
+          "defaultValue": "Neutral"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "Badge /  Counter",
+          "external": true,
+          "assetKey": "df67d5f48edb762ebf680a281e33245abe85253c"
+        }
+      ]
+    },
+    {
+      "name": "Badge / Standard",
+      "nodeId": "38:1035",
+      "type": "COMPONENT_SET",
+      "page": "↳  Badge ✅",
+      "pageId": "4:2905",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=38-1035",
+      "assetKey": "390d07d6a64372f5b55031fa7e15271bf8b46763",
+      "instanceCount": 22,
+      "properties": {
+        "Icon": {
+          "name": "Icon",
+          "type": "BOOLEAN",
+          "key": "Icon#2822:7",
+          "defaultValue": true
+        },
+        "Label text": {
+          "name": "Label text",
+          "type": "TEXT",
+          "key": "Label text#2831:52",
+          "defaultValue": "Lable"
+        },
+        "Icon Swap": {
+          "name": "Icon Swap",
+          "type": "SLOT",
+          "key": "Icon Swap#40000342:0",
+          "defaultValue": "-1:-1"
+        },
+        "Size": {
+          "name": "Size",
+          "type": "VARIANT",
+          "key": "Size",
+          "variantOptions": [
+            "Small",
+            "Medium",
+            "Large"
+          ],
+          "defaultValue": "Small"
+        },
+        "Type": {
+          "name": "Type",
+          "type": "VARIANT",
+          "key": "Type",
+          "variantOptions": [
+            "Brand",
+            "Neutral",
+            "Information",
+            "Positive",
+            "Negative",
+            "Notice"
+          ],
+          "defaultValue": "Brand"
+        },
+        "Style": {
+          "name": "Style",
+          "type": "VARIANT",
+          "key": "Style",
+          "variantOptions": [
+            "Solid",
+            "Subtle"
+          ],
+          "defaultValue": "Solid"
+        }
+      },
+      "dependencies": []
+    },
+    {
+      "name": "Breadcrumbs",
+      "nodeId": "87:553",
+      "type": "COMPONENT",
+      "page": "↳  Breadcrumb ✅",
+      "pageId": "72:13076",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=87-553",
+      "assetKey": "3d0bff63e25b50e76387936e5d40190ef641f437",
+      "instanceCount": 8,
+      "properties": {
+        "Show First block": {
+          "name": "Show First block",
+          "type": "BOOLEAN",
+          "key": "Show First block#226:0",
+          "defaultValue": true
+        },
+        "Links": {
+          "name": "Links",
+          "type": "SLOT",
+          "key": "Links#40000386:0",
+          "defaultValue": "-1:-1"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "Button",
+          "external": false,
+          "nodeId": "4:283",
+          "assetKey": "e203f8d533f68bbfef4c9102a8cb34b3a93eb6e8"
+        },
+        {
+          "name": "_Breadcrumb Parts / Link",
+          "external": false,
+          "nodeId": "40000019:8338",
+          "assetKey": "57ccb907b04596e98ed8f19547a3815d7839398b"
+        }
+      ]
+    },
+    {
+      "name": "Button",
+      "nodeId": "4:283",
+      "type": "COMPONENT_SET",
+      "page": "↳  Buttons ✅",
+      "pageId": "4:13",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=4-283",
+      "assetKey": "e203f8d533f68bbfef4c9102a8cb34b3a93eb6e8",
+      "instanceCount": 43,
+      "properties": {
+        "Label text": {
+          "name": "Label text",
+          "type": "TEXT",
+          "key": "Label text#506:1",
+          "defaultValue": "Button"
+        },
+        "Show Trailing Icon": {
+          "name": "Show Trailing Icon",
+          "type": "BOOLEAN",
+          "key": "Show Trailing Icon#2398:0",
+          "defaultValue": true
+        },
+        "Show Leading Icon": {
+          "name": "Show Leading Icon",
+          "type": "BOOLEAN",
+          "key": "Show Leading Icon#2398:100",
+          "defaultValue": true
+        },
+        "Trailing Icon": {
+          "name": "Trailing Icon",
+          "type": "INSTANCE_SWAP",
+          "key": "Trailing Icon#2502:0",
+          "defaultValue": "4:215"
+        },
+        "Leading Icon": {
+          "name": "Leading Icon",
+          "type": "INSTANCE_SWAP",
+          "key": "Leading Icon#2502:100",
+          "defaultValue": "4:218"
+        },
+        "Focus": {
+          "name": "Focus",
+          "type": "BOOLEAN",
+          "key": "Focus#40000347:0",
+          "defaultValue": false
+        },
+        "Type": {
+          "name": "Type",
+          "type": "VARIANT",
+          "key": "Type",
+          "variantOptions": [
+            "Button",
+            "Icon Button"
+          ],
+          "defaultValue": "Button"
+        },
+        "Style": {
+          "name": "Style",
+          "type": "VARIANT",
+          "key": "Style",
+          "variantOptions": [
+            "Primary",
+            "Secondary",
+            "Tertiary",
+            "Ghost"
+          ],
+          "defaultValue": "Primary"
+        },
+        "State": {
+          "name": "State",
+          "type": "VARIANT",
+          "key": "State",
+          "variantOptions": [
+            "Default",
+            "Disabled",
+            "Hover",
+            "Loading"
+          ],
+          "defaultValue": "Default"
+        },
+        "Size": {
+          "name": "Size",
+          "type": "VARIANT",
+          "key": "Size",
+          "variantOptions": [
+            "Large",
+            "Medium",
+            "Small"
+          ],
+          "defaultValue": "Large"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "Spinner",
+          "external": true,
+          "assetKey": "972871b969207cef0212a1107db85891417efc70"
+        }
+      ]
+    },
+    {
+      "name": "Card",
+      "nodeId": "65:5556",
+      "type": "COMPONENT_SET",
+      "page": "↳  Card ✅",
+      "pageId": "52:24464",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=65-5556",
+      "assetKey": "8aaa9752f56e087eb9d9ec925a06a10050aed0ca",
+      "instanceCount": 3,
+      "properties": {},
+      "dependencies": [
+        {
+          "name": "Badge / Standard",
+          "external": false,
+          "nodeId": "38:1035",
+          "assetKey": "390d07d6a64372f5b55031fa7e15271bf8b46763"
+        },
+        {
+          "name": "Divider",
+          "external": false,
+          "nodeId": "219:10474",
+          "assetKey": "fccdd13a2451e0bdc90563c11a9382970cfe9a4a"
+        },
+        {
+          "name": "Button",
+          "external": false,
+          "nodeId": "4:283",
+          "assetKey": "e203f8d533f68bbfef4c9102a8cb34b3a93eb6e8"
+        },
+        {
+          "name": "Title bar",
+          "external": false,
+          "nodeId": "40000032:5473",
+          "assetKey": "95bde0224965a644723232d1978103bb9e77a94d"
+        }
+      ]
+    },
+    {
+      "name": "Carousel",
+      "nodeId": "95:19785",
+      "type": "COMPONENT_SET",
+      "page": "↳  Carousel ✅",
+      "pageId": "67:7232",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=95-19785",
+      "assetKey": "9a78cc4379f594f26ecf4e98e93aefcd3c77f87b",
+      "instanceCount": 11,
+      "properties": {
+        "Show Option 6": {
+          "name": "Show Option 6",
+          "type": "BOOLEAN",
+          "key": "Show Option 6#95:44",
+          "defaultValue": true
+        },
+        "Show Option 5": {
+          "name": "Show Option 5",
+          "type": "BOOLEAN",
+          "key": "Show Option 5#95:45",
+          "defaultValue": true
+        },
+        "Type": {
+          "name": "Type",
+          "type": "VARIANT",
+          "key": "Type",
+          "variantOptions": [
+            "Default",
+            "Arrows",
+            "Darker",
+            "Arrows Disabled",
+            "On Dark"
+          ],
+          "defaultValue": "Default"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "_Carousel Parts / Dot Control",
+          "external": false,
+          "nodeId": "40000022:1034",
+          "assetKey": "e680b07e0b42cb98b51d55f7f496c364c84efad6"
+        },
+        {
+          "name": "Button",
+          "external": false,
+          "nodeId": "4:283",
+          "assetKey": "e203f8d533f68bbfef4c9102a8cb34b3a93eb6e8"
+        }
+      ]
+    },
+    {
+      "name": "Carousel Controls",
+      "nodeId": "40000022:1145",
+      "type": "COMPONENT_SET",
+      "page": "↳  Carousel ✅",
+      "pageId": "67:7232",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000022-1145",
+      "assetKey": "6aab8491fb59e2f478a884ec373a49c32e8bbdfc",
+      "instanceCount": 16,
+      "properties": {
+        "Prev/Next Controls": {
+          "name": "Prev/Next Controls",
+          "type": "BOOLEAN",
+          "key": "Prev/Next Controls#4669:1",
+          "defaultValue": true
+        },
+        "Dot Controls": {
+          "name": "Dot Controls",
+          "type": "BOOLEAN",
+          "key": "Dot Controls#14448:0",
+          "defaultValue": true
+        },
+        "Type": {
+          "name": "Type",
+          "type": "VARIANT",
+          "key": "Type",
+          "variantOptions": [
+            "Compact",
+            "Default"
+          ],
+          "defaultValue": "Default"
+        },
+        "Orientation": {
+          "name": "Orientation",
+          "type": "VARIANT",
+          "key": "Orientation",
+          "variantOptions": [
+            "Horizontal",
+            "Vertical"
+          ],
+          "defaultValue": "Horizontal"
+        },
+        "Position": {
+          "name": "Position",
+          "type": "VARIANT",
+          "key": "Position",
+          "variantOptions": [
+            "Start",
+            "End",
+            "Middle"
+          ],
+          "defaultValue": "Middle"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "Button",
+          "external": false,
+          "nodeId": "4:283",
+          "assetKey": "e203f8d533f68bbfef4c9102a8cb34b3a93eb6e8"
+        },
+        {
+          "name": "_Carousel Parts / Dot Control",
+          "external": false,
+          "nodeId": "40000022:1034",
+          "assetKey": "e680b07e0b42cb98b51d55f7f496c364c84efad6"
+        }
+      ]
+    },
+    {
+      "name": "Checkbox",
+      "nodeId": "4:4209",
+      "type": "COMPONENT_SET",
+      "page": "↳ Checkbox ✅",
+      "pageId": "4:4050",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=4-4209",
+      "assetKey": "0ad3a4c72f76564b6c46ab925d620944fc85e9ca",
+      "instanceCount": 15,
+      "properties": {
+        "Show label": {
+          "name": "Show label",
+          "type": "BOOLEAN",
+          "key": "Show label#710:10",
+          "defaultValue": true
+        },
+        "Show hint": {
+          "name": "Show hint",
+          "type": "BOOLEAN",
+          "key": "Show hint#710:15",
+          "defaultValue": false
+        },
+        "Label": {
+          "name": "Label",
+          "type": "TEXT",
+          "key": "Label#710:20",
+          "defaultValue": "Checkbox Label"
+        },
+        "Hint": {
+          "name": "Hint",
+          "type": "TEXT",
+          "key": "Hint#710:25",
+          "defaultValue": "Hint goes here"
+        },
+        "State": {
+          "name": "State",
+          "type": "VARIANT",
+          "key": "State",
+          "variantOptions": [
+            "Hover",
+            "Focused",
+            "Enabled",
+            "Pressed",
+            "Disabled"
+          ],
+          "defaultValue": "Enabled"
+        },
+        "Selection": {
+          "name": "Selection",
+          "type": "VARIANT",
+          "key": "Selection",
+          "variantOptions": [
+            "Unchecked",
+            "Checked",
+            "Indeterminate",
+            "Ready Only"
+          ],
+          "defaultValue": "Unchecked"
+        }
+      },
+      "dependencies": [
+        {
+          "name": ". Checkbox Control",
+          "external": false,
+          "nodeId": "4:4076",
+          "assetKey": "31bf1566bedc97348f8afb224ecee8b86d1df5dc"
+        }
+      ]
+    },
+    {
+      "name": "Chip",
+      "nodeId": "40000114:11143",
+      "type": "COMPONENT_SET",
+      "page": "↳  Chip ✅",
+      "pageId": "67:7255",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000114-11143",
+      "assetKey": "fdcaf607372b213e21777cc7dd94c98305e6b5b4",
+      "instanceCount": 22,
+      "properties": {
+        "Text": {
+          "name": "Text",
+          "type": "TEXT",
+          "key": "Text#40000114:21",
+          "defaultValue": "Label"
+        },
+        "Show Leading Icon": {
+          "name": "Show Leading Icon",
+          "type": "BOOLEAN",
+          "key": "Show Leading Icon#40000358:20",
+          "defaultValue": true
+        },
+        "Leading Icon": {
+          "name": "Leading Icon",
+          "type": "INSTANCE_SWAP",
+          "key": "Leading Icon#40000358:38",
+          "defaultValue": "40000031:21584"
+        },
+        "Show Trailing Icon": {
+          "name": "Show Trailing Icon",
+          "type": "BOOLEAN",
+          "key": "Show Trailing Icon#40000358:56",
+          "defaultValue": false
+        },
+        "Trailing Icon": {
+          "name": "Trailing Icon",
+          "type": "INSTANCE_SWAP",
+          "key": "Trailing Icon#40000358:74",
+          "defaultValue": "40000031:21584"
+        },
+        "Type": {
+          "name": "Type",
+          "type": "VARIANT",
+          "key": "Type",
+          "variantOptions": [
+            "Support",
+            "Information",
+            "Action",
+            "Warning",
+            "Danger",
+            "Success"
+          ],
+          "defaultValue": "Support"
+        },
+        "State": {
+          "name": "State",
+          "type": "VARIANT",
+          "key": "State",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Disabled",
+            "Selected"
+          ],
+          "defaultValue": "Default"
+        }
+      },
+      "dependencies": []
+    },
+    {
+      "name": "Cookie Banner",
+      "nodeId": "40000174:675",
+      "type": "COMPONENT_SET",
+      "page": "↳  Cookie Banner ✅",
+      "pageId": "40000174:45",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000174-675",
+      "assetKey": "b9980acaba24c1e49c6591324252876390e29b2b",
+      "instanceCount": 8,
+      "properties": {
+        "Text": {
+          "name": "Text",
+          "type": "TEXT",
+          "key": "Text#40000174:3",
+          "defaultValue": "Estamos usando cookies para melhorar sua experiência!"
+        },
+        "Subtitle": {
+          "name": "Subtitle",
+          "type": "TEXT",
+          "key": "Subtitle#40000174:4",
+          "defaultValue": "Ao clicar em “Permitir todos”, você concorda com o uso de todos os cookies. Visite nossa Política de Cookies para saber mais."
+        },
+        "Icon": {
+          "name": "Icon",
+          "type": "SLOT",
+          "key": "Icon#40000174:5",
+          "defaultValue": "-1:-1"
+        },
+        "Background": {
+          "name": "Background",
+          "type": "VARIANT",
+          "key": "Background",
+          "variantOptions": [
+            "White",
+            "Inverse"
+          ],
+          "defaultValue": "White"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "Button",
+          "external": false,
+          "nodeId": "4:283",
+          "assetKey": "e203f8d533f68bbfef4c9102a8cb34b3a93eb6e8"
+        },
+        {
+          "name": "Button/Button/Tertiary/Default/Medium",
+          "external": true,
+          "assetKey": "70ee9d3564029680f247e8439923f8dde9875c0c"
+        }
+      ]
+    },
+    {
+      "name": "Date picker - Cell",
+      "nodeId": "108:29292",
+      "type": "COMPONENT_SET",
+      "page": "↳ Datepicker ✅",
+      "pageId": "67:7254",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=108-29292",
+      "assetKey": "961add7026a9eee5c7ef6fe966708965eb1fee21",
+      "instanceCount": 0,
+      "properties": {
+        "Day": {
+          "name": "Day",
+          "type": "TEXT",
+          "key": "Day#108:55",
+          "defaultValue": "1"
+        },
+        "State": {
+          "name": "State",
+          "type": "VARIANT",
+          "key": "State",
+          "variantOptions": [
+            "Default",
+            "Selected",
+            "DIsabled",
+            "Hover",
+            "Available",
+            "Danger"
+          ],
+          "defaultValue": "Default"
+        }
+      },
+      "dependencies": []
+    },
+    {
+      "name": "Datepicker",
+      "nodeId": "40000266:9165",
+      "type": "COMPONENT_SET",
+      "page": "↳ Datepicker ✅",
+      "pageId": "67:7254",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000266-9165",
+      "assetKey": "8fdc367ab2a68421ff65dc6743d39727f9d48f39",
+      "instanceCount": 20,
+      "properties": {
+        "Datapicker title": {
+          "name": "Datapicker title",
+          "type": "TEXT",
+          "key": "Datapicker title#40000266:0",
+          "defaultValue": "Datapicker title"
+        },
+        "Show Datapicker title": {
+          "name": "Show Datapicker title",
+          "type": "BOOLEAN",
+          "key": "Show Datapicker title#40000266:1",
+          "defaultValue": true
+        },
+        "Month": {
+          "name": "Month",
+          "type": "TEXT",
+          "key": "Month#40000266:2",
+          "defaultValue": "Maio 2026"
+        },
+        "Title": {
+          "name": "Title",
+          "type": "TEXT",
+          "key": "Title#40000266:3",
+          "defaultValue": "Label"
+        },
+        "Input text": {
+          "name": "Input text",
+          "type": "TEXT",
+          "key": "Input text#40000266:4",
+          "defaultValue": "DD/MM/AAAA"
+        },
+        "Show Input": {
+          "name": "Show Input",
+          "type": "BOOLEAN",
+          "key": "Show Input#40000266:5",
+          "defaultValue": true
+        },
+        "Show Label": {
+          "name": "Show Label",
+          "type": "BOOLEAN",
+          "key": "Show Label#40000266:6",
+          "defaultValue": true
+        },
+        "Show Datepicker": {
+          "name": "Show Datepicker",
+          "type": "BOOLEAN",
+          "key": "Show Datepicker#40000266:7",
+          "defaultValue": true
+        },
+        "Show Button Area": {
+          "name": "Show Button Area",
+          "type": "BOOLEAN",
+          "key": "Show Button Area#40000266:8",
+          "defaultValue": true
+        },
+        "Datapicker title2": {
+          "name": "Datapicker title2",
+          "type": "TEXT",
+          "key": "Datapicker title2#40000406:0",
+          "defaultValue": "Datapicker title"
+        },
+        "Background": {
+          "name": "Background",
+          "type": "VARIANT",
+          "key": "Background",
+          "variantOptions": [
+            "White",
+            "Inverse"
+          ],
+          "defaultValue": "White"
+        },
+        "Selection": {
+          "name": "Selection",
+          "type": "VARIANT",
+          "key": "Selection",
+          "variantOptions": [
+            "Single",
+            "Period"
+          ],
+          "defaultValue": "Single"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "chevron_left [outlined]",
+          "external": false,
+          "nodeId": "40000031:9785",
+          "assetKey": "62d9e618f83ed7c9929fd666fb67791aef9870fe"
+        },
+        {
+          "name": "chevron_right [outlined]",
+          "external": false,
+          "nodeId": "40000031:9807",
+          "assetKey": "02c4ef81faae7be863055f4ebd178ec04ed45600"
+        },
+        {
+          "name": "Date picker - Cell",
+          "external": false,
+          "nodeId": "108:29292",
+          "assetKey": "961add7026a9eee5c7ef6fe966708965eb1fee21"
+        },
+        {
+          "name": "Button/Button/Ghost/Default/Medium",
+          "external": true,
+          "assetKey": "4b1fb16f3a477ee0f71396a1db7b3540bc286ce3"
+        },
+        {
+          "name": "Button/Button/Secondary/Default/Medium",
+          "external": true,
+          "assetKey": "d5330bda2149ab200c0cbaa9a0f649b6c6d453f7"
+        }
+      ]
+    },
+    {
+      "name": "Divider",
+      "nodeId": "219:10474",
+      "type": "COMPONENT_SET",
+      "page": "↳  Divider ✅",
+      "pageId": "52:28584",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=219-10474",
+      "assetKey": "fccdd13a2451e0bdc90563c11a9382970cfe9a4a",
+      "instanceCount": 9,
+      "properties": {
+        "Show Label": {
+          "name": "Show Label",
+          "type": "BOOLEAN",
+          "key": "Show Label#40000417:0",
+          "defaultValue": false
+        },
+        "Label": {
+          "name": "Label",
+          "type": "TEXT",
+          "key": "Label#40000417:7",
+          "defaultValue": "Ou"
+        },
+        "Orientation": {
+          "name": "Orientation",
+          "type": "VARIANT",
+          "key": "Orientation",
+          "variantOptions": [
+            "Horizontal",
+            "Vertical"
+          ],
+          "defaultValue": "Horizontal"
+        },
+        "Style": {
+          "name": "Style",
+          "type": "VARIANT",
+          "key": "Style",
+          "variantOptions": [
+            "Default",
+            "Darker",
+            "Subtle"
+          ],
+          "defaultValue": "Default"
+        }
+      },
+      "dependencies": []
+    },
+    {
+      "name": "Dropdown",
+      "nodeId": "108:26342",
+      "type": "COMPONENT_SET",
+      "page": "↳ Dropdown ✅",
+      "pageId": "67:7253",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=108-26342",
+      "assetKey": "65e8e1b1147b06b42a134c53d6d443fc255187c6",
+      "instanceCount": 18,
+      "properties": {
+        "Dropdown content": {
+          "name": "Dropdown content",
+          "type": "SLOT",
+          "key": "Dropdown content#108:51",
+          "defaultValue": "-1:-1"
+        },
+        "Input label": {
+          "name": "Input label",
+          "type": "TEXT",
+          "key": "Input label#108:52",
+          "defaultValue": "Selecione"
+        },
+        "Title": {
+          "name": "Title",
+          "type": "TEXT",
+          "key": "Title#108:53",
+          "defaultValue": "Label"
+        },
+        "State": {
+          "name": "State",
+          "type": "VARIANT",
+          "key": "State",
+          "variantOptions": [
+            "Default",
+            "Disabled",
+            "Focused",
+            "Open",
+            "Selected"
+          ],
+          "defaultValue": "Default"
+        }
+      },
+      "dependencies": []
+    },
+    {
+      "name": "File Container",
+      "nodeId": "40000014:12545",
+      "type": "COMPONENT_SET",
+      "page": "↳  File Upload ✅",
+      "pageId": "67:7252",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000014-12545",
+      "assetKey": "4348df3cac5f0ee2b312c57970622688197898e4",
+      "instanceCount": 6,
+      "properties": {
+        "Instruction Text": {
+          "name": "Instruction Text",
+          "type": "TEXT",
+          "key": "Instruction Text#40000014:38",
+          "defaultValue": "Arraste arquivos aqui ou clique para selecionar"
+        },
+        "Supporting Text": {
+          "name": "Supporting Text",
+          "type": "TEXT",
+          "key": "Supporting Text#40000014:42",
+          "defaultValue": "PDF, CSV ou XLSX até 10mb"
+        },
+        "Feedback Text": {
+          "name": "Feedback Text",
+          "type": "TEXT",
+          "key": "Feedback Text#40000014:46",
+          "defaultValue": "Arquivo não suportado"
+        },
+        "State": {
+          "name": "State",
+          "type": "VARIANT",
+          "key": "State",
+          "variantOptions": [
+            "Resting",
+            "Hover",
+            "Error"
+          ],
+          "defaultValue": "Resting"
+        }
+      },
+      "dependencies": []
+    },
+    {
+      "name": "File upload",
+      "nodeId": "219:7828",
+      "type": "COMPONENT_SET",
+      "page": "↳  File Upload ✅",
+      "pageId": "67:7252",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=219-7828",
+      "assetKey": "bc41f64982192edf0dc3c9f4ceaefaa1859e0bb0",
+      "instanceCount": 11,
+      "properties": {
+        "Label": {
+          "name": "Label",
+          "type": "TEXT",
+          "key": "Label#88:18",
+          "defaultValue": "Label"
+        },
+        "Helper Text": {
+          "name": "Helper Text",
+          "type": "TEXT",
+          "key": "Helper Text#88:19",
+          "defaultValue": "Helper text"
+        },
+        "Show Helper text": {
+          "name": "Show Helper text",
+          "type": "BOOLEAN",
+          "key": "Show Helper text#219:4",
+          "defaultValue": true
+        },
+        "Content Slot": {
+          "name": "Content Slot",
+          "type": "SLOT",
+          "key": "Content Slot#40000014:74",
+          "defaultValue": "-1:-1"
+        },
+        "Type": {
+          "name": "Type",
+          "type": "VARIANT",
+          "key": "Type",
+          "variantOptions": [
+            "Clique para selecionar arquivos",
+            "Arrastar arquivos"
+          ],
+          "defaultValue": "Clique para selecionar arquivos"
+        },
+        "State": {
+          "name": "State",
+          "type": "VARIANT",
+          "key": "State",
+          "variantOptions": [
+            "Default",
+            "Error"
+          ],
+          "defaultValue": "Default"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "Button",
+          "external": false,
+          "nodeId": "4:283",
+          "assetKey": "e203f8d533f68bbfef4c9102a8cb34b3a93eb6e8"
+        },
+        {
+          "name": "Upload Item",
+          "external": false,
+          "nodeId": "40000014:12619",
+          "assetKey": "1fa0bfa750b77054720f6f67e6da240c4a433c38"
+        },
+        {
+          "name": "File Container",
+          "external": false,
+          "nodeId": "40000014:12545",
+          "assetKey": "4348df3cac5f0ee2b312c57970622688197898e4"
+        }
+      ]
+    },
+    {
+      "name": "Footer",
+      "nodeId": "108:13943",
+      "type": "COMPONENT_SET",
+      "page": "↳  Footer ✅",
+      "pageId": "107:9969",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=108-13943",
+      "assetKey": "1740d36ad8577719ef820bafab825f2ffee6e3dc",
+      "instanceCount": 17,
+      "properties": {
+        "Institucional": {
+          "name": "Institucional",
+          "type": "TEXT",
+          "key": "Institucional#107:37",
+          "defaultValue": "Institucional"
+        },
+        "Serviços": {
+          "name": "Serviços",
+          "type": "TEXT",
+          "key": "Serviços#107:38",
+          "defaultValue": "Serviços"
+        },
+        "Fala SP": {
+          "name": "Fala SP",
+          "type": "TEXT",
+          "key": "Fala SP#107:39",
+          "defaultValue": "Fala SP"
+        },
+        "Transparência": {
+          "name": "Transparência",
+          "type": "TEXT",
+          "key": "Transparência#107:40",
+          "defaultValue": "Transparência"
+        },
+        "Termos de uso": {
+          "name": "Termos de uso",
+          "type": "TEXT",
+          "key": "Termos de uso#107:41",
+          "defaultValue": "Termos de uso"
+        },
+        "Políticas de privacidade": {
+          "name": "Políticas de privacidade",
+          "type": "TEXT",
+          "key": "Políticas de privacidade#107:42",
+          "defaultValue": "Políticas de privacidade"
+        },
+        "Informações": {
+          "name": "Informações",
+          "type": "TEXT",
+          "key": "Informações#107:43",
+          "defaultValue": "Informações"
+        },
+        "Logo Principal": {
+          "name": "Logo Principal",
+          "type": "INSTANCE_SWAP",
+          "key": "Logo Principal#40000439:0",
+          "defaultValue": "107:10008"
+        },
+        "Logo Secundário": {
+          "name": "Logo Secundário",
+          "type": "INSTANCE_SWAP",
+          "key": "Logo Secundário#40000439:3",
+          "defaultValue": "107:10074"
+        },
+        "Ícone Social 1": {
+          "name": "Ícone Social 1",
+          "type": "INSTANCE_SWAP",
+          "key": "Ícone Social 1#40000439:6",
+          "defaultValue": "107:10129"
+        },
+        "Ícone Social 2": {
+          "name": "Ícone Social 2",
+          "type": "INSTANCE_SWAP",
+          "key": "Ícone Social 2#40000439:9",
+          "defaultValue": "107:10132"
+        },
+        "Ícone Social 3": {
+          "name": "Ícone Social 3",
+          "type": "INSTANCE_SWAP",
+          "key": "Ícone Social 3#40000439:12",
+          "defaultValue": "107:10144"
+        },
+        "Ícone Social 4": {
+          "name": "Ícone Social 4",
+          "type": "INSTANCE_SWAP",
+          "key": "Ícone Social 4#40000439:15",
+          "defaultValue": "107:10138"
+        },
+        "Ícone Social 5": {
+          "name": "Ícone Social 5",
+          "type": "INSTANCE_SWAP",
+          "key": "Ícone Social 5#40000439:18",
+          "defaultValue": "107:10146"
+        },
+        "Ícone Social 6": {
+          "name": "Ícone Social 6",
+          "type": "INSTANCE_SWAP",
+          "key": "Ícone Social 6#40000439:21",
+          "defaultValue": "107:10151"
+        },
+        "Ícone Social 7": {
+          "name": "Ícone Social 7",
+          "type": "INSTANCE_SWAP",
+          "key": "Ícone Social 7#40000439:24",
+          "defaultValue": "107:10149"
+        },
+        "Ícone Social 8": {
+          "name": "Ícone Social 8",
+          "type": "INSTANCE_SWAP",
+          "key": "Ícone Social 8#40000439:27",
+          "defaultValue": "107:10135"
+        },
+        "Ícone Social 9": {
+          "name": "Ícone Social 9",
+          "type": "INSTANCE_SWAP",
+          "key": "Ícone Social 9#40000439:30",
+          "defaultValue": "107:10141"
+        },
+        "Type": {
+          "name": "Type",
+          "type": "VARIANT",
+          "key": "Type",
+          "variantOptions": [
+            "Desktop",
+            "Mobile"
+          ],
+          "defaultValue": "Desktop"
+        }
+      },
+      "dependencies": []
+    },
+    {
+      "name": "Gov Button",
+      "nodeId": "40000436:15252",
+      "type": "COMPONENT",
+      "page": "↳  gov.br ✅",
+      "pageId": "104:4000",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000436-15252",
+      "assetKey": "cfe0fcc6a068576b03ed5a7602e9b52fc6424f15",
+      "instanceCount": 2,
+      "properties": {},
+      "dependencies": [
+        {
+          "name": "icon",
+          "external": true,
+          "assetKey": "f0b23290ec9ffa5ddd02ddbe14caea0cbae5e35a"
+        }
+      ]
+    },
+    {
+      "name": "Header",
+      "nodeId": "94:14266",
+      "type": "COMPONENT_SET",
+      "page": "↳ Header ✅",
+      "pageId": "94:13344",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=94-14266",
+      "assetKey": "c56efa60ccc9cdaf0a92020c44b816017db65448",
+      "instanceCount": 58,
+      "properties": {
+        "Show Menu Item 7": {
+          "name": "Show Menu Item 7",
+          "type": "BOOLEAN",
+          "key": "Show Menu Item 7#94:32",
+          "defaultValue": false
+        },
+        "Show Menu Item 8": {
+          "name": "Show Menu Item 8",
+          "type": "BOOLEAN",
+          "key": "Show Menu Item 8#94:33",
+          "defaultValue": false
+        },
+        "Show Menu Item 6": {
+          "name": "Show Menu Item 6",
+          "type": "BOOLEAN",
+          "key": "Show Menu Item 6#94:34",
+          "defaultValue": false
+        },
+        "Show Menu Item 5": {
+          "name": "Show Menu Item 5",
+          "type": "BOOLEAN",
+          "key": "Show Menu Item 5#94:35",
+          "defaultValue": false
+        },
+        "Show Icons": {
+          "name": "Show Icons",
+          "type": "BOOLEAN",
+          "key": "Show Icons#94:36",
+          "defaultValue": true
+        },
+        "Show Left Logo": {
+          "name": "Show Left Logo",
+          "type": "BOOLEAN",
+          "key": "Show Left Logo#94:37",
+          "defaultValue": true
+        },
+        "Show Right Logo": {
+          "name": "Show Right Logo",
+          "type": "BOOLEAN",
+          "key": "Show Right Logo#94:38",
+          "defaultValue": true
+        },
+        "Show GovButton": {
+          "name": "Show GovButton",
+          "type": "BOOLEAN",
+          "key": "Show GovButton#94:39",
+          "defaultValue": true
+        },
+        "Show Blog": {
+          "name": "Show Blog",
+          "type": "BOOLEAN",
+          "key": "Show Blog#40000469:0",
+          "defaultValue": true
+        },
+        "Show Serviços Digitais": {
+          "name": "Show Serviços Digitais",
+          "type": "BOOLEAN",
+          "key": "Show Serviços Digitais#40000469:9",
+          "defaultValue": true
+        },
+        "Show Tutoriais": {
+          "name": "Show Tutoriais",
+          "type": "BOOLEAN",
+          "key": "Show Tutoriais#40000469:18",
+          "defaultValue": true
+        },
+        "Show Documentação": {
+          "name": "Show Documentação",
+          "type": "BOOLEAN",
+          "key": "Show Documentação#40000469:27",
+          "defaultValue": true
+        },
+        "Show Ajuda e Suporte": {
+          "name": "Show Ajuda e Suporte",
+          "type": "BOOLEAN",
+          "key": "Show Ajuda e Suporte#40000469:36",
+          "defaultValue": true
+        },
+        "Hover Blog": {
+          "name": "Hover Blog",
+          "type": "BOOLEAN",
+          "key": "Hover Blog#40000469:45",
+          "defaultValue": false
+        },
+        "Hover Serviços Digitais": {
+          "name": "Hover Serviços Digitais",
+          "type": "BOOLEAN",
+          "key": "Hover Serviços Digitais#40000469:54",
+          "defaultValue": false
+        },
+        "Hover Tutoriais": {
+          "name": "Hover Tutoriais",
+          "type": "BOOLEAN",
+          "key": "Hover Tutoriais#40000469:63",
+          "defaultValue": false
+        },
+        "Hover Documentação": {
+          "name": "Hover Documentação",
+          "type": "BOOLEAN",
+          "key": "Hover Documentação#40000469:72",
+          "defaultValue": false
+        },
+        "Hover Ajuda e Suporte": {
+          "name": "Hover Ajuda e Suporte",
+          "type": "BOOLEAN",
+          "key": "Hover Ajuda e Suporte#40000469:81",
+          "defaultValue": false
+        },
+        "Show Update Card": {
+          "name": "Show Update Card",
+          "type": "BOOLEAN",
+          "key": "Show Update Card#40000469:90",
+          "defaultValue": true
+        },
+        "Icon Blog": {
+          "name": "Icon Blog",
+          "type": "INSTANCE_SWAP",
+          "key": "Icon Blog#40000469:99",
+          "defaultValue": "40000031:4710"
+        },
+        "Icon Serviços": {
+          "name": "Icon Serviços",
+          "type": "INSTANCE_SWAP",
+          "key": "Icon Serviços#40000469:108",
+          "defaultValue": "40000031:7130"
+        },
+        "Icon Tutoriais": {
+          "name": "Icon Tutoriais",
+          "type": "INSTANCE_SWAP",
+          "key": "Icon Tutoriais#40000469:117",
+          "defaultValue": "40000031:33200"
+        },
+        "Icon Documentação": {
+          "name": "Icon Documentação",
+          "type": "INSTANCE_SWAP",
+          "key": "Icon Documentação#40000469:126",
+          "defaultValue": "40000031:12850"
+        },
+        "Icon Ajuda": {
+          "name": "Icon Ajuda",
+          "type": "INSTANCE_SWAP",
+          "key": "Icon Ajuda#40000469:135",
+          "defaultValue": "40000031:42110"
+        },
+        "Update Tag": {
+          "name": "Update Tag",
+          "type": "TEXT",
+          "key": "Update Tag#40000469:144",
+          "defaultValue": "ATUALIZAÇÃO"
+        },
+        "Update Title": {
+          "name": "Update Title",
+          "type": "TEXT",
+          "key": "Update Title#40000469:153",
+          "defaultValue": "Nova navegação do portal disponível"
+        },
+        "Update Description": {
+          "name": "Update Description",
+          "type": "TEXT",
+          "key": "Update Description#40000469:162",
+          "defaultValue": "A nova area de servicos organiza protocolos, agendamentos e documentos recentes."
+        },
+        "Link 1 Label": {
+          "name": "Link 1 Label",
+          "type": "TEXT",
+          "key": "Link 1 Label#40000469:171",
+          "defaultValue": "Dispensar"
+        },
+        "Link 2 Label": {
+          "name": "Link 2 Label",
+          "type": "TEXT",
+          "key": "Link 2 Label#40000469:180",
+          "defaultValue": "Novidades"
+        },
+        "Show Link Dispensar": {
+          "name": "Show Link Dispensar",
+          "type": "BOOLEAN",
+          "key": "Show Link Dispensar#40000469:189",
+          "defaultValue": true
+        },
+        "Show Link Novidades": {
+          "name": "Show Link Novidades",
+          "type": "BOOLEAN",
+          "key": "Show Link Novidades#40000469:198",
+          "defaultValue": true
+        },
+        "Nav Items": {
+          "name": "Nav Items",
+          "type": "SLOT",
+          "key": "Nav Items#40000594:0",
+          "defaultValue": "-1:-1"
+        },
+        "Logo": {
+          "name": "Logo",
+          "type": "INSTANCE_SWAP",
+          "key": "Logo#40000595:0",
+          "defaultValue": "40000595:5035"
+        },
+        "Type": {
+          "name": "Type",
+          "type": "VARIANT",
+          "key": "Type",
+          "variantOptions": [
+            "Web",
+            "Mobile"
+          ],
+          "defaultValue": "Web"
+        },
+        "Account": {
+          "name": "Account",
+          "type": "VARIANT",
+          "key": "Account",
+          "variantOptions": [
+            "Default",
+            "Logout",
+            "Logged in"
+          ],
+          "defaultValue": "Logout"
+        },
+        "Dropdown": {
+          "name": "Dropdown",
+          "type": "VARIANT",
+          "key": "Dropdown",
+          "variantOptions": [
+            "Closed",
+            "Nav Item Open",
+            "User Menu Open"
+          ],
+          "defaultValue": "Closed"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "logo-spgov-default",
+          "external": true,
+          "assetKey": "99ef592e125917a6cb2b7b6a6cbba0891ef93417"
+        },
+        {
+          "name": "Nav Item",
+          "external": false,
+          "nodeId": "40000449:538",
+          "assetKey": "f9ccc35ac36bfa67d54e171d3e9461eb37e9d55f"
+        },
+        {
+          "name": "Icon Action",
+          "external": false,
+          "nodeId": "40000447:13489",
+          "assetKey": "8afb0a890d42e13292a81e63b03a367f9ece02b4"
+        },
+        {
+          "name": "Gov Button",
+          "external": false,
+          "nodeId": "40000436:15252",
+          "assetKey": "cfe0fcc6a068576b03ed5a7602e9b52fc6424f15"
+        },
+        {
+          "name": "Badge /  Counter",
+          "external": true,
+          "assetKey": "df67d5f48edb762ebf680a281e33245abe85253c"
+        },
+        {
+          "name": "User Menu",
+          "external": false,
+          "nodeId": "40000447:15034",
+          "assetKey": "5c3635045b592493a1f6b78b6b450462e7dd38c9"
+        },
+        {
+          "name": "chevron_right [outlined]",
+          "external": false,
+          "nodeId": "40000031:9807",
+          "assetKey": "02c4ef81faae7be863055f4ebd178ec04ed45600"
+        },
+        {
+          "name": "play_circle [outlined]",
+          "external": false,
+          "nodeId": "40000031:33193",
+          "assetKey": "aa171ceb69bbcb303f74f2584cc275b85e182442"
+        },
+        {
+          "name": "Divider",
+          "external": false,
+          "nodeId": "219:10474",
+          "assetKey": "fccdd13a2451e0bdc90563c11a9382970cfe9a4a"
+        }
+      ]
+    },
+    {
+      "name": "Hero",
+      "nodeId": "99:26800",
+      "type": "COMPONENT_SET",
+      "page": "↳  Hero ✅",
+      "pageId": "95:24695",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=99-26800",
+      "assetKey": "e1d2eeffb8154d31028422989c6cdd0f8be91c6f",
+      "instanceCount": 23,
+      "properties": {
+        "Right content": {
+          "name": "Right content",
+          "type": "SLOT",
+          "key": "Right content#95:74",
+          "defaultValue": "-1:-1"
+        },
+        "Show Badge / Standard": {
+          "name": "Show Badge / Standard",
+          "type": "BOOLEAN",
+          "key": "Show Badge / Standard#95:75",
+          "defaultValue": true
+        },
+        "Title": {
+          "name": "Title",
+          "type": "TEXT",
+          "key": "Title#95:76",
+          "defaultValue": "Main hero title"
+        },
+        "Description": {
+          "name": "Description",
+          "type": "TEXT",
+          "key": "Description#95:77",
+          "defaultValue": "Main description for the hero component"
+        },
+        "Show Hero Body Text": {
+          "name": "Show Hero Body Text",
+          "type": "BOOLEAN",
+          "key": "Show Hero Body Text#95:78",
+          "defaultValue": true
+        },
+        "Show Left Button": {
+          "name": "Show Left Button",
+          "type": "BOOLEAN",
+          "key": "Show Left Button#95:79",
+          "defaultValue": true
+        },
+        "Show Right Button": {
+          "name": "Show Right Button",
+          "type": "BOOLEAN",
+          "key": "Show Right Button#95:80",
+          "defaultValue": true
+        },
+        "Second description": {
+          "name": "Second description",
+          "type": "TEXT",
+          "key": "Second description#95:81",
+          "defaultValue": "Second description for the hero component"
+        },
+        "Show Hero Second Body": {
+          "name": "Show Hero Second Body",
+          "type": "BOOLEAN",
+          "key": "Show Hero Second Body#95:82",
+          "defaultValue": true
+        },
+        "Type": {
+          "name": "Type",
+          "type": "VARIANT",
+          "key": "Type",
+          "variantOptions": [
+            "Default",
+            "Center"
+          ],
+          "defaultValue": "Default"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "Badge / Standard",
+          "external": false,
+          "nodeId": "38:1035",
+          "assetKey": "390d07d6a64372f5b55031fa7e15271bf8b46763"
+        },
+        {
+          "name": "icons",
+          "external": true,
+          "assetKey": "7fc019711398247d9d129238bfb7236b550c6de6"
+        },
+        {
+          "name": "Button",
+          "external": false,
+          "nodeId": "4:283",
+          "assetKey": "e203f8d533f68bbfef4c9102a8cb34b3a93eb6e8"
+        }
+      ]
+    },
+    {
+      "name": "Icon Action",
+      "nodeId": "40000447:13489",
+      "type": "COMPONENT_SET",
+      "page": "↳ Header ✅",
+      "pageId": "94:13344",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000447-13489",
+      "assetKey": "8afb0a890d42e13292a81e63b03a367f9ece02b4",
+      "instanceCount": 0,
+      "properties": {
+        "Icon": {
+          "name": "Icon",
+          "type": "INSTANCE_SWAP",
+          "key": "Icon#40000447:0",
+          "defaultValue": "40000447:14821"
+        },
+        "State": {
+          "name": "State",
+          "type": "VARIANT",
+          "key": "State",
+          "variantOptions": [
+            "Default",
+            "Hover"
+          ],
+          "defaultValue": "Default"
+        }
+      },
+      "dependencies": []
+    },
+    {
+      "name": "Input field",
+      "nodeId": "40000266:4769",
+      "type": "COMPONENT_SET",
+      "page": "↳ Input ✅",
+      "pageId": "4:5316",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000266-4769",
+      "assetKey": "3b509d136796505ab3118419b9875ff9b80cd5f3",
+      "instanceCount": 17,
+      "properties": {
+        "show Helper Text": {
+          "name": "show Helper Text",
+          "type": "BOOLEAN",
+          "key": "show Helper Text#2021:3",
+          "defaultValue": true
+        },
+        "✏️ Label": {
+          "name": "✏️ Label",
+          "type": "TEXT",
+          "key": "✏️ Label#2021:4",
+          "defaultValue": "Label"
+        },
+        "✏️ Placeholder": {
+          "name": "✏️ Placeholder",
+          "type": "TEXT",
+          "key": "✏️  Placeholder#2021:5",
+          "defaultValue": "Placeholder"
+        },
+        "✏️ Helper text": {
+          "name": "✏️ Helper text",
+          "type": "TEXT",
+          "key": "✏️ Helper text#2021:6",
+          "defaultValue": "Helper text"
+        },
+        "show Trailing Icon": {
+          "name": "show Trailing Icon",
+          "type": "BOOLEAN",
+          "key": "show Trailing Icon#2021:8",
+          "defaultValue": true
+        },
+        "Helper Icon": {
+          "name": "Helper Icon",
+          "type": "INSTANCE_SWAP",
+          "key": "Helper Icon#2021:9",
+          "defaultValue": "4:5317"
+        },
+        "show Label": {
+          "name": "show Label",
+          "type": "BOOLEAN",
+          "key": "show Label#2022:0",
+          "defaultValue": true
+        },
+        "is Mandatory": {
+          "name": "is Mandatory",
+          "type": "BOOLEAN",
+          "key": "is Mandatory#3771:3",
+          "defaultValue": true
+        },
+        "Trailing Icon": {
+          "name": "Trailing Icon",
+          "type": "INSTANCE_SWAP",
+          "key": "Trailing Icon#3966:0",
+          "defaultValue": "4:5321"
+        },
+        "show Disclaimer": {
+          "name": "show Disclaimer",
+          "type": "BOOLEAN",
+          "key": "show Disclaimer#40000592:16",
+          "defaultValue": true
+        },
+        "✏️ Disclaimer": {
+          "name": "✏️ Disclaimer",
+          "type": "TEXT",
+          "key": "✏️ Disclaimer#40000592:24",
+          "defaultValue": "Texto auxiliar"
+        },
+        "State": {
+          "name": "State",
+          "type": "VARIANT",
+          "key": "State",
+          "variantOptions": [
+            "Default",
+            "Focused",
+            "Filled",
+            "Disabled",
+            "Focused Visible"
+          ],
+          "defaultValue": "Default"
+        },
+        "has Success": {
+          "name": "has Success",
+          "type": "VARIANT",
+          "key": "has Success",
+          "variantOptions": [
+            "false",
+            "true"
+          ],
+          "defaultValue": "false"
+        },
+        "has Error": {
+          "name": "has Error",
+          "type": "VARIANT",
+          "key": "has Error",
+          "variantOptions": [
+            "true",
+            "false"
+          ],
+          "defaultValue": "false"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "Mandatory",
+          "external": false,
+          "nodeId": "40000266:5676",
+          "assetKey": "2b2108a2b6dc67bce0c318411e0795fb03817de2"
+        }
+      ]
+    },
+    {
+      "name": "Link",
+      "nodeId": "219:12380",
+      "type": "COMPONENT_SET",
+      "page": "↳  Link ✅",
+      "pageId": "108:35685",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=219-12380",
+      "assetKey": "08afd079173898adbba03b05657816f2e2378130",
+      "instanceCount": 9,
+      "properties": {
+        "Text": {
+          "name": "Text",
+          "type": "TEXT",
+          "key": "Text#219:8",
+          "defaultValue": "Link"
+        },
+        "Show Icon": {
+          "name": "Show Icon",
+          "type": "BOOLEAN",
+          "key": "Show Icon#219:9",
+          "defaultValue": true
+        },
+        "Swap": {
+          "name": "Swap",
+          "type": "SLOT",
+          "key": "Swap#40000177:6",
+          "defaultValue": "-1:-1"
+        },
+        "Type": {
+          "name": "Type",
+          "type": "VARIANT",
+          "key": "Type",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Focused",
+            "Pressed",
+            "Visited",
+            "Disabled"
+          ],
+          "defaultValue": "Default"
+        }
+      },
+      "dependencies": []
+    },
+    {
+      "name": "Logo/Portal de serviços",
+      "nodeId": "40000595:5035",
+      "type": "COMPONENT",
+      "page": "↳ Header ✅",
+      "pageId": "94:13344",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000595-5035",
+      "assetKey": "f10e61d5cca546f51196e5bf64af6318b578566b",
+      "instanceCount": 0,
+      "properties": {},
+      "dependencies": []
+    },
+    {
+      "name": "Mandatory",
+      "nodeId": "40000266:5676",
+      "type": "COMPONENT_SET",
+      "page": "↳ Input ✅",
+      "pageId": "4:5316",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000266-5676",
+      "assetKey": "2b2108a2b6dc67bce0c318411e0795fb03817de2",
+      "instanceCount": 1,
+      "properties": {
+        "Type": {
+          "name": "Type",
+          "type": "VARIANT",
+          "key": "Type",
+          "variantOptions": [
+            "Optional"
+          ],
+          "defaultValue": "Optional"
+        }
+      },
+      "dependencies": []
+    },
+    {
+      "name": "Modal",
+      "nodeId": "40000490:59311",
+      "type": "COMPONENT_SET",
+      "page": "↳ Modal ✅",
+      "pageId": "108:35683",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000490-59311",
+      "assetKey": "a83317d39b31759559f936228395611136dd57a7",
+      "instanceCount": 19,
+      "properties": {
+        "↳ Title": {
+          "name": "↳ Title",
+          "type": "TEXT",
+          "key": "↳ Title#6951:9",
+          "defaultValue": "Title"
+        },
+        "Footer": {
+          "name": "Footer",
+          "type": "BOOLEAN",
+          "key": "Footer#6951:11",
+          "defaultValue": true
+        },
+        "Header": {
+          "name": "Header",
+          "type": "BOOLEAN",
+          "key": "Header#6951:12",
+          "defaultValue": true
+        },
+        "Content Slot": {
+          "name": "Content Slot",
+          "type": "SLOT",
+          "key": "Content Slot#11049:0",
+          "defaultValue": "-1:-1"
+        },
+        "↳ Subheader Slot": {
+          "name": "↳ Subheader Slot",
+          "type": "SLOT",
+          "key": "↳ Subheader Slot#11049:32",
+          "defaultValue": "-1:-1"
+        },
+        "↳ Subheader": {
+          "name": "↳ Subheader",
+          "type": "BOOLEAN",
+          "key": "↳ Subheader#11077:0",
+          "defaultValue": false
+        },
+        "Show Action 3": {
+          "name": "Show Action 3",
+          "type": "BOOLEAN",
+          "key": "Show Action 3#40000570:0",
+          "defaultValue": true
+        },
+        "Size": {
+          "name": "Size",
+          "type": "VARIANT",
+          "key": "Size",
+          "variantOptions": [
+            "Small",
+            "Medium",
+            "Large",
+            "Extended"
+          ],
+          "defaultValue": "Small"
+        },
+        "Mobile": {
+          "name": "Mobile",
+          "type": "VARIANT",
+          "key": "Mobile",
+          "variantOptions": [
+            "False",
+            "True"
+          ],
+          "defaultValue": "False"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "Button",
+          "external": false,
+          "nodeId": "4:283",
+          "assetKey": "e203f8d533f68bbfef4c9102a8cb34b3a93eb6e8"
+        },
+        {
+          "name": "Button",
+          "external": true,
+          "assetKey": "e203f8d533f68bbfef4c9102a8cb34b3a93eb6e8"
+        },
+        {
+          "name": "Button/Button/Tertiary/Default/Medium",
+          "external": true,
+          "assetKey": "70ee9d3564029680f247e8439923f8dde9875c0c"
+        }
+      ]
+    },
+    {
+      "name": "Nav Item",
+      "nodeId": "40000449:538",
+      "type": "COMPONENT_SET",
+      "page": "↳ Header ✅",
+      "pageId": "94:13344",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000449-538",
+      "assetKey": "f9ccc35ac36bfa67d54e171d3e9461eb37e9d55f",
+      "instanceCount": 0,
+      "properties": {
+        "Text": {
+          "name": "Text",
+          "type": "TEXT",
+          "key": "Text#40000455:3",
+          "defaultValue": "Option"
+        },
+        "Show Arrow": {
+          "name": "Show Arrow",
+          "type": "BOOLEAN",
+          "key": "Show Arrow#40000591:0",
+          "defaultValue": true
+        },
+        "State": {
+          "name": "State",
+          "type": "VARIANT",
+          "key": "State",
+          "variantOptions": [
+            "Default",
+            "Hover"
+          ],
+          "defaultValue": "Default"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "keyboard_arrow_down [outlined]",
+          "external": false,
+          "nodeId": "40000031:23645",
+          "assetKey": "29d4d2aef7ae994c760464831bcf61a945708113"
+        }
+      ]
+    },
+    {
+      "name": "Pagination",
+      "nodeId": "40000033:16002",
+      "type": "COMPONENT_SET",
+      "page": "↳  Pagination ✅",
+      "pageId": "40000033:15126",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000033-16002",
+      "assetKey": "da6cc749c76f1dbe5882f7116a4262edf67a1fd6",
+      "instanceCount": 6,
+      "properties": {
+        "Platform": {
+          "name": "Platform",
+          "type": "VARIANT",
+          "key": "Platform",
+          "variantOptions": [
+            "Desktop",
+            "Mobile"
+          ],
+          "defaultValue": "Desktop"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "Pagination/Item",
+          "external": true,
+          "assetKey": "750e7d2bdd4933fb8056cddf4fc808b51cbfd372"
+        }
+      ]
+    },
+    {
+      "name": "Progress bar",
+      "nodeId": "95:23725",
+      "type": "COMPONENT_SET",
+      "page": "↳ Progress Bar ✅",
+      "pageId": "67:7251",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=95-23725",
+      "assetKey": "231d8fc50e1d043f17b5b751a035961660bb7638",
+      "instanceCount": 12,
+      "properties": {
+        "Text": {
+          "name": "Text",
+          "type": "TEXT",
+          "key": "Text#95:58",
+          "defaultValue": "Label"
+        },
+        "Helper text": {
+          "name": "Helper text",
+          "type": "TEXT",
+          "key": "Helper text#95:59",
+          "defaultValue": "Helper text"
+        },
+        "Show Helper text": {
+          "name": "Show Helper text",
+          "type": "BOOLEAN",
+          "key": "Show Helper text#95:60",
+          "defaultValue": true
+        },
+        "Porcentagem": {
+          "name": "Porcentagem",
+          "type": "TEXT",
+          "key": "Porcentagem#95:61",
+          "defaultValue": "25%"
+        },
+        "Show Porcentagem": {
+          "name": "Show Porcentagem",
+          "type": "BOOLEAN",
+          "key": "Show Porcentagem#95:62",
+          "defaultValue": true
+        },
+        "Show Top content": {
+          "name": "Show Top content",
+          "type": "BOOLEAN",
+          "key": "Show Top content#95:63",
+          "defaultValue": true
+        },
+        "Style": {
+          "name": "Style",
+          "type": "VARIANT",
+          "key": "Style",
+          "variantOptions": [
+            "Default",
+            "Sucess",
+            "Error",
+            "Information",
+            "Warning"
+          ],
+          "defaultValue": "Default"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "Progress Line",
+          "external": false,
+          "nodeId": "40000030:6888",
+          "assetKey": "46869cedab005ea7f808d990a86b81404d7807bd"
+        }
+      ]
+    },
+    {
+      "name": "Progress Line",
+      "nodeId": "40000030:6888",
+      "type": "COMPONENT_SET",
+      "page": "↳ Progress Bar ✅",
+      "pageId": "67:7251",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000030-6888",
+      "assetKey": "46869cedab005ea7f808d990a86b81404d7807bd",
+      "instanceCount": 8,
+      "properties": {
+        "Progress": {
+          "name": "Progress",
+          "type": "VARIANT",
+          "key": "Progress",
+          "variantOptions": [
+            "0%",
+            "25%",
+            "50%",
+            "75%",
+            "100%",
+            "Indeterminate"
+          ],
+          "defaultValue": "0%"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "Range",
+          "external": false,
+          "nodeId": "40000030:6873",
+          "assetKey": "4df5149d7889b3374b5fcb6c3f8080e75536b956"
+        }
+      ]
+    },
+    {
+      "name": "Radio",
+      "nodeId": "40000570:385",
+      "type": "COMPONENT_SET",
+      "page": "↳ Radio ✅",
+      "pageId": "12:2268",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000570-385",
+      "assetKey": "ce3e08c64ba9243ac9104915d2d686a44294766f",
+      "instanceCount": 10,
+      "properties": {
+        "Title": {
+          "name": "Title",
+          "type": "TEXT",
+          "key": "Title#95:48",
+          "defaultValue": "Opção"
+        },
+        "Description": {
+          "name": "Description",
+          "type": "TEXT",
+          "key": "Description#95:49",
+          "defaultValue": "Descrição complementar da opção A"
+        },
+        "Show Description": {
+          "name": "Show Description",
+          "type": "BOOLEAN",
+          "key": "Show Description#95:50",
+          "defaultValue": true
+        },
+        "Checked": {
+          "name": "Checked",
+          "type": "VARIANT",
+          "key": "Checked",
+          "variantOptions": [
+            "False",
+            "True"
+          ],
+          "defaultValue": "False"
+        },
+        "State": {
+          "name": "State",
+          "type": "VARIANT",
+          "key": "State",
+          "variantOptions": [
+            "Default",
+            "Disabled"
+          ],
+          "defaultValue": "Default"
+        }
+      },
+      "dependencies": []
+    },
+    {
+      "name": "Radio Button",
+      "nodeId": "12:2511",
+      "type": "COMPONENT_SET",
+      "page": "↳ Radio ✅",
+      "pageId": "12:2268",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=12-2511",
+      "assetKey": "e253a931fdf9118d67d5ee506ce48f44715ac432",
+      "instanceCount": 13,
+      "properties": {
+        "Label": {
+          "name": "Label",
+          "type": "BOOLEAN",
+          "key": "Label#704:0",
+          "defaultValue": true
+        },
+        "Label text": {
+          "name": "Label text",
+          "type": "TEXT",
+          "key": "Label text#704:3",
+          "defaultValue": "Radio Label"
+        },
+        "Hint Text": {
+          "name": "Hint Text",
+          "type": "TEXT",
+          "key": "Hint Text#704:9",
+          "defaultValue": "Hint goes here"
+        },
+        "Hint": {
+          "name": "Hint",
+          "type": "BOOLEAN",
+          "key": "Hint#743:0",
+          "defaultValue": false
+        },
+        "Selected": {
+          "name": "Selected",
+          "type": "VARIANT",
+          "key": "Selected",
+          "variantOptions": [
+            "False",
+            "True"
+          ],
+          "defaultValue": "False"
+        },
+        "State": {
+          "name": "State",
+          "type": "VARIANT",
+          "key": "State",
+          "variantOptions": [
+            "Disabled",
+            "Read Only",
+            "Hover",
+            "Focused",
+            "Pressed",
+            "Enabled"
+          ],
+          "defaultValue": "Enabled"
+        }
+      },
+      "dependencies": [
+        {
+          "name": ".Radio Control",
+          "external": false,
+          "nodeId": "40000030:4181",
+          "assetKey": "78a647da7a3843c3e3e78cbb165f8ad5e7c99685"
+        }
+      ]
+    },
+    {
+      "name": "Range",
+      "nodeId": "40000030:6873",
+      "type": "COMPONENT_SET",
+      "page": "↳ Progress Bar ✅",
+      "pageId": "67:7251",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000030-6873",
+      "assetKey": "4df5149d7889b3374b5fcb6c3f8080e75536b956",
+      "instanceCount": 0,
+      "properties": {
+        "Type": {
+          "name": "Type",
+          "type": "VARIANT",
+          "key": "Type",
+          "variantOptions": [
+            "Brand",
+            "Error",
+            "Success",
+            "Neutral",
+            "Information",
+            "Warning",
+            "Type7"
+          ],
+          "defaultValue": "Brand"
+        }
+      },
+      "dependencies": []
+    },
+    {
+      "name": "Spinner",
+      "nodeId": "40000120:5900",
+      "type": "COMPONENT_SET",
+      "page": "↳  Spinner",
+      "pageId": "108:35684",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000120-5900",
+      "assetKey": "c1a63428fe4a49f663844da9ddbbc9f065435692",
+      "instanceCount": 10,
+      "properties": {
+        "Text": {
+          "name": "Text",
+          "type": "TEXT",
+          "key": "Text#40000120:0",
+          "defaultValue": "Helper text"
+        },
+        "Show Helper text": {
+          "name": "Show Helper text",
+          "type": "BOOLEAN",
+          "key": "Show Helper text#40000120:2",
+          "defaultValue": true
+        },
+        "%": {
+          "name": "%",
+          "type": "VARIANT",
+          "key": "%",
+          "variantOptions": [
+            "25",
+            "50",
+            "75",
+            "99"
+          ],
+          "defaultValue": "25"
+        },
+        "Size": {
+          "name": "Size",
+          "type": "VARIANT",
+          "key": "Size",
+          "variantOptions": [
+            "Small",
+            "Medium",
+            "Big"
+          ],
+          "defaultValue": "Small"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "Spinner/Size4",
+          "external": true,
+          "assetKey": "25f9e666686c2a13d911a9b4de6c3e74c9bbea82"
+        }
+      ]
+    },
+    {
+      "name": "star",
+      "nodeId": "40000570:19839",
+      "type": "COMPONENT_SET",
+      "page": "↳  Rating ✅",
+      "pageId": "40000033:9840",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000570-19839",
+      "assetKey": "8fcbf93a6e5ea76175e53d8796c7f750d7ce51bf",
+      "instanceCount": 0,
+      "properties": {
+        "Type": {
+          "name": "Type",
+          "type": "VARIANT",
+          "key": "Type",
+          "variantOptions": [
+            "Defaul",
+            "Active",
+            "Hover"
+          ],
+          "defaultValue": "Defaul"
+        }
+      },
+      "dependencies": []
+    },
+    {
+      "name": "Star Rating",
+      "nodeId": "40000033:10501",
+      "type": "COMPONENT_SET",
+      "page": "↳  Rating ✅",
+      "pageId": "40000033:9840",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000033-10501",
+      "assetKey": "f01298d4a6c1481a9fc1786969178c4470f92c61",
+      "instanceCount": 16,
+      "properties": {
+        "Rating": {
+          "name": "Rating",
+          "type": "VARIANT",
+          "key": "Rating",
+          "variantOptions": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"
+          ],
+          "defaultValue": "0"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "star",
+          "external": false,
+          "nodeId": "40000570:19839",
+          "assetKey": "8fcbf93a6e5ea76175e53d8796c7f750d7ce51bf"
+        }
+      ]
+    },
+    {
+      "name": "Stepper",
+      "nodeId": "40000045:5961",
+      "type": "COMPONENT_SET",
+      "page": "↳  Stepper",
+      "pageId": "40000041:215",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000045-5961",
+      "assetKey": "a9a65c0e31f2db1a7991d2f6107fdbe16bc7b1be",
+      "instanceCount": 14,
+      "properties": {
+        "Title": {
+          "name": "Title",
+          "type": "TEXT",
+          "key": "Title#40000044:0",
+          "defaultValue": "PROGRESSO"
+        },
+        "Step": {
+          "name": "Step",
+          "type": "TEXT",
+          "key": "Step#40000044:13",
+          "defaultValue": "Lorem Ipsum"
+        },
+        "Next Step": {
+          "name": "Next Step",
+          "type": "TEXT",
+          "key": "Next Step#40000044:26",
+          "defaultValue": "Lorem Ipsum"
+        },
+        "Step Counter": {
+          "name": "Step Counter",
+          "type": "TEXT",
+          "key": "Step Counter#40000044:39",
+          "defaultValue": "1"
+        },
+        "Size": {
+          "name": "Size",
+          "type": "VARIANT",
+          "key": "Size",
+          "variantOptions": [
+            "Desktop",
+            "Mobile"
+          ],
+          "defaultValue": "Desktop"
+        },
+        "Steps": {
+          "name": "Steps",
+          "type": "VARIANT",
+          "key": "Steps",
+          "variantOptions": [
+            "3",
+            "6",
+            "8",
+            "10",
+            "12",
+            "Any"
+          ],
+          "defaultValue": "3"
+        },
+        "State": {
+          "name": "State",
+          "type": "VARIANT",
+          "key": "State",
+          "variantOptions": [
+            "In Progress",
+            "Completed"
+          ],
+          "defaultValue": "In Progress"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "Progress Line",
+          "external": false,
+          "nodeId": "40000030:6888",
+          "assetKey": "46869cedab005ea7f808d990a86b81404d7807bd"
+        }
+      ]
+    },
+    {
+      "name": "Switch",
+      "nodeId": "40000032:7389",
+      "type": "COMPONENT_SET",
+      "page": "↳  Switch",
+      "pageId": "40000032:7067",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000032-7389",
+      "assetKey": "a457f374d8b3d6935e6e02bcd739fae15ad615ff",
+      "instanceCount": 13,
+      "properties": {
+        "Label": {
+          "name": "Label",
+          "type": "TEXT",
+          "key": "Label#5:0",
+          "defaultValue": "Label"
+        },
+        "Description": {
+          "name": "Description",
+          "type": "TEXT",
+          "key": "Description#5:33",
+          "defaultValue": "Description text"
+        },
+        "State": {
+          "name": "State",
+          "type": "VARIANT",
+          "key": "State",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Focused",
+            "Disabled"
+          ],
+          "defaultValue": "Default"
+        },
+        "Toggled": {
+          "name": "Toggled",
+          "type": "VARIANT",
+          "key": "Toggled",
+          "variantOptions": [
+            "Off",
+            "On"
+          ],
+          "defaultValue": "Off"
+        },
+        "Size": {
+          "name": "Size",
+          "type": "VARIANT",
+          "key": "Size",
+          "variantOptions": [
+            "Medium",
+            "Small"
+          ],
+          "defaultValue": "Medium"
+        },
+        "Has Label": {
+          "name": "Has Label",
+          "type": "VARIANT",
+          "key": "Has Label",
+          "variantOptions": [
+            "false",
+            "true"
+          ],
+          "defaultValue": "false"
+        }
+      },
+      "dependencies": []
+    },
+    {
+      "name": "Tab Item",
+      "nodeId": "40000032:6626",
+      "type": "COMPONENT_SET",
+      "page": "↳  Tabs",
+      "pageId": "67:7231",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000032-6626",
+      "assetKey": "5335923bb8e222e9dac2eb399bf22c99c8e52f0a",
+      "instanceCount": 14,
+      "properties": {
+        "Label": {
+          "name": "Label",
+          "type": "TEXT",
+          "key": "Label#2:0",
+          "defaultValue": "Tab Label"
+        },
+        "Badge Count": {
+          "name": "Badge Count",
+          "type": "TEXT",
+          "key": "Badge Count#2:33",
+          "defaultValue": "3"
+        },
+        "icon": {
+          "name": "icon",
+          "type": "SLOT",
+          "key": "icon#40000032:0",
+          "defaultValue": "-1:-1"
+        },
+        "State": {
+          "name": "State",
+          "type": "VARIANT",
+          "key": "State",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Active",
+            "Disabled"
+          ],
+          "defaultValue": "Default"
+        },
+        "Has Icon": {
+          "name": "Has Icon",
+          "type": "VARIANT",
+          "key": "Has Icon",
+          "variantOptions": [
+            "false",
+            "true"
+          ],
+          "defaultValue": "false"
+        },
+        "Has Badge": {
+          "name": "Has Badge",
+          "type": "VARIANT",
+          "key": "Has Badge",
+          "variantOptions": [
+            "false",
+            "true"
+          ],
+          "defaultValue": "false"
+        },
+        "Has Close": {
+          "name": "Has Close",
+          "type": "VARIANT",
+          "key": "Has Close",
+          "variantOptions": [
+            "false",
+            "true"
+          ],
+          "defaultValue": "false"
+        }
+      },
+      "dependencies": []
+    },
+    {
+      "name": "Table",
+      "nodeId": "40000180:42",
+      "type": "COMPONENT",
+      "page": "↳  Table ✅",
+      "pageId": "40000177:3934",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000180-42",
+      "assetKey": "a8aa9bdd3c4c5c03ddcfedd6babdb0c13aba3047",
+      "instanceCount": 8,
+      "properties": {
+        "Title": {
+          "name": "Title",
+          "type": "TEXT",
+          "key": "Title#40000180:9",
+          "defaultValue": "Solicitacoes de servicos"
+        },
+        "Row 1": {
+          "name": "Row 1",
+          "type": "BOOLEAN",
+          "key": "Row 1#40000180:10",
+          "defaultValue": true
+        },
+        "Row 2": {
+          "name": "Row 2",
+          "type": "BOOLEAN",
+          "key": "Row 2#40000180:11",
+          "defaultValue": true
+        },
+        "Row 3": {
+          "name": "Row 3",
+          "type": "BOOLEAN",
+          "key": "Row 3#40000180:12",
+          "defaultValue": true
+        },
+        "Row 4": {
+          "name": "Row 4",
+          "type": "BOOLEAN",
+          "key": "Row 4#40000180:13",
+          "defaultValue": true
+        },
+        "Row 5": {
+          "name": "Row 5",
+          "type": "BOOLEAN",
+          "key": "Row 5#40000180:14",
+          "defaultValue": true
+        }
+      },
+      "dependencies": [
+        {
+          "name": ". Table Header Row",
+          "external": false,
+          "nodeId": "40000180:20",
+          "assetKey": "71483e1eef80759d0aa835b88e131d28dd0a2dec"
+        },
+        {
+          "name": ". Table Row",
+          "external": false,
+          "nodeId": "40000180:2",
+          "assetKey": "f4d7e1c93ca15dfc288b093a6afc7a83aa028919"
+        },
+        {
+          "name": "Pagination",
+          "external": false,
+          "nodeId": "40000033:16002",
+          "assetKey": "da6cc749c76f1dbe5882f7116a4262edf67a1fd6"
+        }
+      ]
+    },
+    {
+      "name": "Text Area",
+      "nodeId": "107:7690",
+      "type": "COMPONENT_SET",
+      "page": "↳  Text Area  ✅",
+      "pageId": "107:4876",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=107-7690",
+      "assetKey": "81e0768ade3367ffcb9876e5b77a64c72735770d",
+      "instanceCount": 0,
+      "properties": {
+        "Title": {
+          "name": "Title",
+          "type": "TEXT",
+          "key": "Title#107:22",
+          "defaultValue": "Label"
+        },
+        "Placeholder": {
+          "name": "Placeholder",
+          "type": "TEXT",
+          "key": "Placeholder#107:23",
+          "defaultValue": "Lorem Ipsum"
+        },
+        "Helper text": {
+          "name": "Helper text",
+          "type": "TEXT",
+          "key": "Helper text#107:24",
+          "defaultValue": "Helper text"
+        },
+        "Show Helper Text": {
+          "name": "Show Helper Text",
+          "type": "BOOLEAN",
+          "key": "Show Helper Text#107:25",
+          "defaultValue": true
+        },
+        "Active": {
+          "name": "Active",
+          "type": "TEXT",
+          "key": "Active#107:26",
+          "defaultValue": "|\n\n\n"
+        },
+        "Mandatory": {
+          "name": "Mandatory",
+          "type": "TEXT",
+          "key": "Mandatory#40000114:0",
+          "defaultValue": "*"
+        },
+        "Show Mandatory": {
+          "name": "Show Mandatory",
+          "type": "BOOLEAN",
+          "key": "Show Mandatory#40000114:6",
+          "defaultValue": true
+        },
+        "State": {
+          "name": "State",
+          "type": "VARIANT",
+          "key": "State",
+          "variantOptions": [
+            "Default",
+            "Hover",
+            "Active",
+            "Disabled",
+            "Error",
+            "Sucess"
+          ],
+          "defaultValue": "Default"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "_Text Area Parts / Expanding Control",
+          "external": true,
+          "assetKey": "fde46448abddc6e27d3b509d3481766c87b8fc90"
+        }
+      ]
+    },
+    {
+      "name": "Text Input",
+      "nodeId": "40000490:39413",
+      "type": "COMPONENT_SET",
+      "page": "↳ Input ✅",
+      "pageId": "4:5316",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000490-39413",
+      "assetKey": "0c13054e29b9023fd2f74d275d25f59b65bb1c5a",
+      "instanceCount": 38,
+      "properties": {
+        "Lead Icon": {
+          "name": "Lead Icon",
+          "type": "BOOLEAN",
+          "key": "Lead Icon#3421:14",
+          "defaultValue": false
+        },
+        "Trailing Icon": {
+          "name": "Trailing Icon",
+          "type": "BOOLEAN",
+          "key": "Trailing Icon#3421:15",
+          "defaultValue": false
+        },
+        "Prefix": {
+          "name": "Prefix",
+          "type": "BOOLEAN",
+          "key": "Prefix#3421:16",
+          "defaultValue": false
+        },
+        "Suffix": {
+          "name": "Suffix",
+          "type": "BOOLEAN",
+          "key": "Suffix#3421:17",
+          "defaultValue": false
+        },
+        "↳ Suffix Value": {
+          "name": "↳ Suffix Value",
+          "type": "TEXT",
+          "key": "↳ Suffix Value#3421:18",
+          "defaultValue": "kg"
+        },
+        "↳ Prefix Value": {
+          "name": "↳ Prefix Value",
+          "type": "TEXT",
+          "key": "↳ Prefix Value#3421:19",
+          "defaultValue": "R$"
+        },
+        "↳ Lead Icon": {
+          "name": "↳ Lead Icon",
+          "type": "INSTANCE_SWAP",
+          "key": "↳ Lead Icon#3421:20",
+          "defaultValue": "40000490:37468"
+        },
+        "Placeholder": {
+          "name": "Placeholder",
+          "type": "TEXT",
+          "key": "Placeholder#3421:21",
+          "defaultValue": "Placeholder"
+        },
+        "Value": {
+          "name": "Value",
+          "type": "TEXT",
+          "key": "Value#3421:25",
+          "defaultValue": "Input Text"
+        },
+        "Clear Button": {
+          "name": "Clear Button",
+          "type": "BOOLEAN",
+          "key": "Clear Button#3435:0",
+          "defaultValue": false
+        },
+        "Size": {
+          "name": "Size",
+          "type": "VARIANT",
+          "key": "Size",
+          "variantOptions": [
+            "Medium"
+          ],
+          "defaultValue": "Medium"
+        },
+        "State": {
+          "name": "State",
+          "type": "VARIANT",
+          "key": "State",
+          "variantOptions": [
+            "Enabled",
+            "Hover",
+            "Focused",
+            "Focused Visible",
+            "Pressed",
+            "Disabled",
+            "Read Only",
+            "Success"
+          ],
+          "defaultValue": "Enabled"
+        },
+        "Populated": {
+          "name": "Populated",
+          "type": "VARIANT",
+          "key": "Populated",
+          "variantOptions": [
+            "False",
+            "True"
+          ],
+          "defaultValue": "False"
+        },
+        "Error": {
+          "name": "Error",
+          "type": "VARIANT",
+          "key": "Error",
+          "variantOptions": [
+            "False",
+            "True"
+          ],
+          "defaultValue": "False"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "Trailing Add-On",
+          "external": true,
+          "assetKey": "aed0598c69a09d69bfc3a61a141e588d8afcff7f"
+        }
+      ]
+    },
+    {
+      "name": "Title bar",
+      "nodeId": "40000032:5473",
+      "type": "COMPONENT_SET",
+      "page": "↳  Card ✅",
+      "pageId": "52:24464",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000032-5473",
+      "assetKey": "95bde0224965a644723232d1978103bb9e77a94d",
+      "instanceCount": 3,
+      "properties": {
+        "Type": {
+          "name": "Type",
+          "type": "VARIANT",
+          "key": "Type",
+          "variantOptions": [
+            "Default",
+            "Hover"
+          ],
+          "defaultValue": "Default"
+        }
+      },
+      "dependencies": []
+    },
+    {
+      "name": "Toast",
+      "nodeId": "40000662:11",
+      "type": "COMPONENT_SET",
+      "page": "↳ Toast",
+      "pageId": "67:7230",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000662-11",
+      "assetKey": "5523cd146c8b1587ac8a9c28d11d11e9e7154c38",
+      "instanceCount": 0,
+      "properties": {
+        "Show action": {
+          "name": "Show action",
+          "type": "BOOLEAN",
+          "key": "Show action#40000662:0",
+          "defaultValue": true
+        },
+        "Show close icon": {
+          "name": "Show close icon",
+          "type": "BOOLEAN",
+          "key": "Show close icon#40000662:4",
+          "defaultValue": true
+        },
+        "Supporting text": {
+          "name": "Supporting text",
+          "type": "TEXT",
+          "key": "Supporting text#40000662:8",
+          "defaultValue": "Mensagem do toast"
+        },
+        "Action text": {
+          "name": "Action text",
+          "type": "TEXT",
+          "key": "Action text#40000662:12",
+          "defaultValue": "Ação"
+        },
+        "Configuration": {
+          "name": "Configuration",
+          "type": "VARIANT",
+          "key": "Configuration",
+          "variantOptions": [
+            "Single line",
+            "Two lines",
+            "Longer action"
+          ],
+          "defaultValue": "Single line"
+        }
+      },
+      "dependencies": []
+    },
+    {
+      "name": "Tooltip",
+      "nodeId": "108:35791",
+      "type": "COMPONENT_SET",
+      "page": "↳  Tooltip",
+      "pageId": "67:7256",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=108-35791",
+      "assetKey": "3c3f8c042f3d0da7062d81693dcc85d993cbe396",
+      "instanceCount": 6,
+      "properties": {
+        "Text": {
+          "name": "Text",
+          "type": "TEXT",
+          "key": "Text#108:63",
+          "defaultValue": "Label"
+        },
+        "Arrow": {
+          "name": "Arrow",
+          "type": "VARIANT",
+          "key": "Arrow",
+          "variantOptions": [
+            "Down",
+            "Left",
+            "Top",
+            "Right",
+            "Arrow5",
+            "Arrow6",
+            "Arrow7",
+            "Arrow8"
+          ],
+          "defaultValue": "Down"
+        },
+        "Knockout": {
+          "name": "Knockout",
+          "type": "VARIANT",
+          "key": "Knockout",
+          "variantOptions": [
+            "False",
+            "True"
+          ],
+          "defaultValue": "False"
+        }
+      },
+      "dependencies": []
+    },
+    {
+      "name": "Upload Item",
+      "nodeId": "40000014:12619",
+      "type": "COMPONENT_SET",
+      "page": "↳  File Upload ✅",
+      "pageId": "67:7252",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000014-12619",
+      "assetKey": "1fa0bfa750b77054720f6f67e6da240c4a433c38",
+      "instanceCount": 13,
+      "properties": {
+        "Document Name": {
+          "name": "Document Name",
+          "type": "TEXT",
+          "key": "Document Name#40000014:50",
+          "defaultValue": "Documento"
+        },
+        "File Type": {
+          "name": "File Type",
+          "type": "TEXT",
+          "key": "File Type#40000014:54",
+          "defaultValue": ".csv"
+        },
+        "File Size": {
+          "name": "File Size",
+          "type": "TEXT",
+          "key": "File Size#40000014:58",
+          "defaultValue": "100kb"
+        },
+        "Feedback Title": {
+          "name": "Feedback Title",
+          "type": "TEXT",
+          "key": "Feedback Title#40000014:62",
+          "defaultValue": "O upload falhou."
+        },
+        "Feedback Description": {
+          "name": "Feedback Description",
+          "type": "TEXT",
+          "key": "Feedback Description#40000014:66",
+          "defaultValue": "O arquivo é muito grande"
+        },
+        "Show Status Icon": {
+          "name": "Show Status Icon",
+          "type": "BOOLEAN",
+          "key": "Show Status Icon#40000014:70",
+          "defaultValue": true
+        },
+        "State": {
+          "name": "State",
+          "type": "VARIANT",
+          "key": "State",
+          "variantOptions": [
+            "Uploading",
+            "Complete",
+            "Failed"
+          ],
+          "defaultValue": "Uploading"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "Spinner",
+          "external": true,
+          "assetKey": "972871b969207cef0212a1107db85891417efc70"
+        }
+      ]
+    },
+    {
+      "name": "User Menu",
+      "nodeId": "40000447:15034",
+      "type": "COMPONENT_SET",
+      "page": "↳ Header ✅",
+      "pageId": "94:13344",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000447-15034",
+      "assetKey": "5c3635045b592493a1f6b78b6b450462e7dd38c9",
+      "instanceCount": 0,
+      "properties": {
+        "Text": {
+          "name": "Text",
+          "type": "TEXT",
+          "key": "Text#40000455:0",
+          "defaultValue": "Nome"
+        },
+        "State": {
+          "name": "State",
+          "type": "VARIANT",
+          "key": "State",
+          "variantOptions": [
+            "Default",
+            "Hover"
+          ],
+          "defaultValue": "Default"
+        }
+      },
+      "dependencies": [
+        {
+          "name": "Avatar",
+          "external": false,
+          "nodeId": "40000199:12660",
+          "assetKey": "bfb576fbb03cdca08fc15178a433ae92bf3ef162"
+        },
+        {
+          "name": "keyboard_arrow_down [outlined]/400",
+          "external": true,
+          "assetKey": "1950f3b9748c155ce74678b6df622d2e33e3a4e0"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+{
+  "slug": "alert",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Feedback",
+  "resumo": "O Alert é um aviso que fica no fluxo da página, com ícone, título e texto opcional. Serve para informar, confirmar, alertar ou explicar um erro sem interromper o que a pessoa está fazendo.",
+  "quandoUsar": [
+    "Para avisar que o prazo de um protocolo vence em menos de 48 horas, antes que a pessoa saia da página.",
+    "Para confirmar que o agendamento foi concluído, no topo da tela de resumo.",
+    "Para informar uma regra que muda o preenchimento, como o titular do documento precisar ser a mesma pessoa do comprovante.",
+    "Para explicar por que o envio do formulário falhou e o que fazer em seguida.",
+    "Para comunicar que um serviço ficará indisponível em um período determinado."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Para confirmação rápida de uma ação que não muda a página, como copiar um número de protocolo.",
+      "alternativa": "toast"
+    },
+    {
+      "texto": "Para apontar erro em um campo específico do formulário.",
+      "alternativa": "text-input"
+    },
+    {
+      "texto": "Para uma decisão que precisa de resposta antes de a pessoa continuar.",
+      "alternativa": "modal"
+    },
+    {
+      "texto": "Para marcar a situação de um item dentro de uma lista.",
+      "alternativa": "badge"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Card do alerta",
+      "descricao": "Caixa com borda de 1px e fundo em tom claro, definidos pela variante."
+    },
+    {
+      "numero": 2,
+      "parte": "Ícone da variante",
+      "descricao": "Símbolo de 24px na lateral esquerda, com cor própria de cada variante. É decorativo e recebe aria-hidden."
+    },
+    {
+      "numero": 3,
+      "parte": "Bloco de conteúdo",
+      "descricao": "Área central que reúne o título e a descrição."
+    },
+    {
+      "numero": 4,
+      "parte": "Título",
+      "descricao": "Texto obrigatório, curto e em peso mais forte. É a primeira coisa lida."
+    },
+    {
+      "numero": 5,
+      "parte": "Descrição",
+      "descricao": "Conteúdo opcional abaixo do título. Aceita texto e outros componentes."
+    },
+    {
+      "numero": 6,
+      "parte": "Botão de fechar",
+      "descricao": "Botão opcional na ponta direita. Vem exibido por padrão e tem rótulo acessível próprio."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "O card ocupa 100% da largura do container, o texto quebra sozinho e o ícone e o botão de fechar permanecem fixos nas extremidades. Não existe variante específica para celular: o mesmo alerta é usado em todas as larguras. Com movimento reduzido ativo, a transição do botão de fechar é removida.",
+  "dosDonts": [
+    {
+      "faca": "Use a variante error apenas para falha e a variante success apenas para conclusão.",
+      "naoFaca": "Usar a variante error para confirmar que deu certo, só porque o vermelho chama mais atenção.",
+      "porque": "A cor é lida antes do texto: o vermelho comunica falha mesmo quando a frase diz o contrário."
+    },
+    {
+      "faca": "Passe dismissible={false} quando a informação precisa continuar visível até o fim da tarefa.",
+      "naoFaca": "Manter o botão de fechar em um aviso obrigatório, só porque ele vem ligado por padrão.",
+      "porque": "Ao fechar, o alerta é removido da página e a pessoa não tem como trazê-lo de volta."
+    },
+    {
+      "faca": "Coloque o alerta imediatamente acima do conteúdo a que ele se refere, como o formulário que falhou.",
+      "naoFaca": "Empilhar três ou quatro alertas no topo da página.",
+      "porque": "Vários avisos juntos disputam a mesma atenção e o mais importante deixa de ser lido."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Título com uma frase curta, de até cerca de 50 caracteres, dizendo o que aconteceu: \"Agendamento confirmado\", \"Não foi possível enviar\".",
+    "Descrição em uma ou duas frases, dizendo o que a pessoa precisa fazer agora.",
+    "Não use o título só para nomear o tipo do aviso (\"Erro\", \"Atenção\"); o tipo já está na cor e no ícone.",
+    "Evite termos internos como sistema, requisição ou instabilidade; escreva o efeito prático para quem está na tela.",
+    "Se mudar o dismissLabel, mantenha um rótulo que diga o que será fechado — ele é o único nome acessível do botão."
+  ],
+  "hierarquia": [
+    "O alerta ocupa a largura do bloco a que se refere e fica acima dele, dentro do fluxo da página, nunca sobreposto ao conteúdo.",
+    "Um alerta por vez na mesma área da tela. Se houver dois assuntos, escolha o mais urgente e leve o outro para perto do conteúdo correspondente.",
+    "O peso visual já vem da borda e do fundo da variante: não aumente a fonte nem acrescente outra caixa colorida em volta."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Button",
+      "slug": "button",
+      "relacao": "A descrição aceita outros componentes, então um Button pode entrar no alerta para a ação de correção, como tentar o envio de novo."
+    },
+    {
+      "componente": "Toast",
+      "slug": "toast",
+      "relacao": "Toast é para confirmação passageira e Alert é para o que precisa continuar visível na página; usar os dois para a mesma mensagem duplica o aviso."
+    },
+    {
+      "componente": "Modal",
+      "slug": "modal",
+      "relacao": "Quando o aviso exige uma decisão antes de continuar, use Modal no lugar do Alert, e não os dois ao mesmo tempo."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Prazo curto na consulta de protocolo",
+      "contexto": "A pessoa consulta o andamento de um pedido e há documentos pendentes com prazo de entrega vencendo em poucos dias.",
+      "comoFica": "Um Alert na variante warning, logo acima da lista de pendências, com título dizendo que há prazo em aberto e descrição informando o que enviar. Como a informação precisa continuar na tela, dismissible fica em false."
+    },
+    {
+      "titulo": "Falha no envio de documentos",
+      "contexto": "A pessoa anexou arquivos em um cadastro e o envio não foi concluído; ela precisa entender o motivo e tentar de novo.",
+      "comoFica": "Um Alert na variante error acima do formulário, com título curto sobre a falha e descrição explicando o que fazer. Como o role padrão da variante error é alert, leitores de tela anunciam a mensagem assim que ela aparece."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Definir isVisible e não atualizar o estado dentro de onVisibleChange.",
+      "consequencia": "No modo controlado o alerta não se esconde sozinho: o botão de fechar dispara os callbacks, mas o aviso continua na tela e parece quebrado.",
+      "correcao": "Guarde a visibilidade no estado da aplicação e atualize-a em onVisibleChange, ou use defaultVisible e deixe o componente controlar."
+    },
+    {
+      "erro": "Trocar o role para note em um erro de envio.",
+      "consequencia": "O aviso deixa de ser anunciado com urgência e quem usa leitor de tela pode continuar preenchendo sem saber da falha.",
+      "correcao": "Não informe role: o componente já usa alert na variante error e status nas demais."
+    },
+    {
+      "erro": "Deixar o título vago e concentrar tudo na descrição.",
+      "consequencia": "O título é obrigatório e é a linha que a pessoa lê primeiro; se ele não disser o que aconteceu, o alerta perde a função.",
+      "correcao": "Resuma o acontecimento no título e detalhe a ação na descrição."
+    },
+    {
+      "erro": "Renderizar o alerta sempre e escondê-lo por CSS externo.",
+      "consequencia": "Quando invisível o próprio componente é removido da página; escondê-lo por fora mantém o nó presente e atrapalha o anúncio do aviso.",
+      "correcao": "Controle a exibição por isVisible ou defaultVisible, e não por regras de CSS na aplicação."
+    }
+  ],
+  "notasImplementacao": [
+    "O elemento raiz é um <section>; o role vem da prop role ou é derivado da variante (error usa alert, as demais usam status).",
+    "Quando invisível, o componente devolve null: o nó é removido da página, não apenas escondido.",
+    "No clique do botão de fechar, onVisibleChange(false) é chamado antes de onDismiss.",
+    "Não há atalho de teclado Esc para dispensar o alerta; só o botão de fechar.",
+    "Não existe prop para trocar o ícone: os desenhos de cada variante são fixos no componente.",
+    "Os estados hover e active do botão de fechar não existem no arquivo do Figma; o CSS usa uma aproximação registrada em comentário.",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual."
+  ],
+  "pendentes": [
+    "O campo de tamanhos ficou vazio porque o componente não expõe prop de tamanho.",
+    "Não há orientação oficial de comportamento em celular: o arquivo do Figma não define variante para telas pequenas e o componente não tem media query de largura.",
+    "Não foi possível documentar em que situação escolher role=note: o valor existe na API, mas o JSON extraído não indica o caso de uso."
+  ]
+}

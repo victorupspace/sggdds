@@ -1,0 +1,165 @@
+{
+  "slug": "dropdown",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Formulários",
+  "resumo": "Campo de formulário que abre uma lista suspensa para escolher uma opção entre várias. Depois de fechado, o campo mostra o valor escolhido.",
+  "quandoUsar": [
+    "Escolher a unidade de atendimento em um agendamento, quando a lista tem dezenas de endereços conhecidos.",
+    "Selecionar o município, o tipo de documento ou o assunto da solicitação a partir de uma relação fechada definida pelo serviço.",
+    "Quando a lista é grande demais para caber em opções visíveis sem esticar o formulário.",
+    "Quando algumas opções precisam aparecer indisponíveis em vez de sumir, como uma unidade sem vaga no período.",
+    "Quando o valor escolhido precisa continuar visível no campo enquanto a pessoa preenche o restante do formulário."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Escolha entre duas e quatro opções que cabem visíveis na tela.",
+      "alternativa": "Radio"
+    },
+    {
+      "texto": "Quando a pessoa pode escolher mais de uma opção ao mesmo tempo.",
+      "alternativa": "Checkbox"
+    },
+    {
+      "texto": "Escolha entre ligado e desligado, sim e não.",
+      "alternativa": "Toggle"
+    },
+    {
+      "texto": "Escolha de uma data ou de um período.",
+      "alternativa": "Datepicker"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Rótulo",
+      "descricao": "Nome do campo, sempre visível e exigido pelo componente. Recebe um asterisco decorativo quando a resposta é obrigatória."
+    },
+    {
+      "numero": 2,
+      "parte": "Campo",
+      "descricao": "Botão que abre a lista. Mostra o valor escolhido ou o texto de exemplo enquanto nada foi selecionado."
+    },
+    {
+      "numero": 3,
+      "parte": "Seta",
+      "descricao": "Ícone à direita do campo, decorativo, que indica a existência da lista."
+    },
+    {
+      "numero": 4,
+      "parte": "Menu",
+      "descricao": "Lista sobreposta que abre logo abaixo do campo, com superfície própria, borda e sombra. Rola por dentro quando a lista é longa."
+    },
+    {
+      "numero": 5,
+      "parte": "Opção",
+      "descricao": "Cada item da lista. Tem destaque quando está ativa pelo teclado ou pelo ponteiro e aparece apagada quando desabilitada."
+    },
+    {
+      "numero": 6,
+      "parte": "Mensagem",
+      "descricao": "Texto abaixo do campo, de apoio ou de erro, conectado ao campo para leitores de tela."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "Não existe variante específica para celular: o componente é fluido e ocupa 100% da largura do container por padrão, respeitando uma largura mínima. Valores longos são cortados com reticências dentro do campo, e listas longas rolam por dentro do menu em vez de esticar a página. A única regra condicional do CSS remove as transições quando a pessoa configura o sistema para reduzir animações.",
+  "dosDonts": [
+    {
+      "faca": "Use o texto de exemplo do campo para a instrução inicial, como \"Selecione\".",
+      "naoFaca": "Colocar uma instrução como primeira opção da lista, do tipo \"Escolha o município\".",
+      "porque": "Uma opção pode ser selecionada e enviada como resposta; o texto de exemplo não pode. A instrução dentro da lista acaba virando valor no formulário."
+    },
+    {
+      "faca": "Escreva o motivo do problema no texto de erro.",
+      "naoFaca": "Sinalizar o erro apenas pela mudança visual do campo.",
+      "porque": "A mensagem de erro é o que fica conectado ao campo para leitores de tela; sem ela, a pessoa ouve que o campo está inválido, mas não descobre o que precisa corrigir."
+    },
+    {
+      "faca": "Ordene as opções de forma previsível — em ordem alfabética ou pelas mais usadas primeiro.",
+      "naoFaca": "Deixar a lista na ordem em que os dados chegam do sistema de origem.",
+      "porque": "O menu não tem busca por digitação; sem ordem previsível, a pessoa precisa varrer a lista inteira com as setas até achar a opção."
+    }
+  ],
+  "conteudoEEscrita": [
+    "O rótulo é curto e específico: \"Município de atendimento\", não apenas \"Município\" quando houver mais de um no formulário.",
+    "Escreva as opções com a primeira letra maiúscula e o resto em minúsculas, sem ponto final.",
+    "Comece cada opção pela palavra que a diferencia das outras, porque valores longos são cortados no campo depois de escolhidos.",
+    "Não repita o rótulo dentro de cada opção. Se o rótulo é \"Tipo de documento\", a opção é \"Certidão de nascimento\", não \"Tipo: certidão de nascimento\".",
+    "Evite siglas isoladas. Se a sigla for necessária, escreva o nome por extenso e coloque a sigla entre parênteses."
+  ],
+  "hierarquia": [
+    "O campo segue a ordem do formulário: rótulo acima, campo no meio, mensagem abaixo.",
+    "O menu abre sobreposto ao conteúdo, sempre para baixo. Evite posicionar o componente colado ao fim da área visível, porque não há reposicionamento automático quando falta espaço.",
+    "O campo tem a mesma altura dos demais campos do formulário, mantendo o alinhamento da coluna quando aparece ao lado de um campo de texto ou de um campo de data.",
+    "Em barras de filtro, o dropdown fica acima do conteúdo que ele filtra e nunca depois dele."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Text Input",
+      "slug": "text-input",
+      "relacao": "Compartilham a estrutura de rótulo, texto de apoio e mensagem de erro. Ficam alinhados na mesma coluna do formulário."
+    },
+    {
+      "componente": "Datepicker",
+      "slug": "datepicker",
+      "relacao": "Em filtros de consulta, o dropdown de situação costuma vir ao lado do campo de período."
+    },
+    {
+      "componente": "Data Table",
+      "slug": "data-table",
+      "relacao": "O dropdown entra na área de ações da tabela como filtro, acima dos resultados que ele restringe."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Escolha da unidade de atendimento",
+      "contexto": "Agendamento em uma unidade do Poupatempo, com lista longa de endereços e algumas unidades sem vaga no período.",
+      "comoFica": "Campo com rótulo \"Unidade de atendimento\" e texto de exemplo \"Selecione\". As unidades aparecem em ordem alfabética; as sem vaga ficam na lista, desabilitadas, para que a pessoa saiba que existem. Ao escolher, o menu fecha e o nome da unidade fica visível no campo."
+    },
+    {
+      "titulo": "Filtro de situação na consulta de protocolos",
+      "contexto": "Tela em que a pessoa acompanha suas solicitações e quer ver apenas as que ainda estão em análise.",
+      "comoFica": "Acima da tabela de resultados, um dropdown com rótulo \"Situação\" e as opções \"Em análise\", \"Concluído\" e \"Indeferido\". A escolha atualiza a lista abaixo, e o valor permanece visível no campo enquanto a pessoa examina os resultados."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Colocar uma opção de instrução, como \"Selecione\", dentro da lista.",
+      "consequencia": "A instrução é selecionável, dispara a mudança de valor e pode ser enviada no formulário como se fosse uma resposta válida.",
+      "correcao": "Use o texto de exemplo do campo para a instrução e deixe na lista apenas respostas reais."
+    },
+    {
+      "erro": "Esperar que o menu abra para cima quando não há espaço na parte de baixo da tela.",
+      "consequencia": "O menu é posicionado sempre abaixo do campo, sem detecção de espaço; parte da lista pode ficar fora da área visível.",
+      "correcao": "Garanta espaço abaixo do campo no layout e teste o componente aberto perto do rodapé e dentro de áreas com rolagem."
+    },
+    {
+      "erro": "Usar o dropdown para uma escolha múltipla.",
+      "consequencia": "O componente aceita apenas um valor; a segunda escolha substitui a primeira e a pessoa perde a seleção anterior sem aviso.",
+      "correcao": "Para escolha múltipla, use caixas de seleção."
+    },
+    {
+      "erro": "Usar listas muito longas sem ordenação e sem agrupamento.",
+      "consequencia": "Não existe busca por digitação: a pessoa precisa percorrer todas as opções com as setas ou rolar o menu até encontrar o item.",
+      "correcao": "Ordene a lista, reduza as opções ao que o serviço realmente atende e, quando a lista for grande demais, reveja o padrão de escolha."
+    }
+  ],
+  "notasImplementacao": [
+    "O campo é um botão que abre uma lista: expõe o estado de aberto e, quando aberto, aponta para o menu correspondente.",
+    "O menu recebe o foco ao abrir e a opção ativa é indicada por atributo, não pelo foco em si; por isso o menu não desenha anel de foco próprio.",
+    "Teclado: as setas abrem o menu e movem entre as opções habilitadas; Home e End vão para a primeira e a última; Enter e Espaço selecionam; Escape fecha e devolve o foco ao campo; Tab fecha sem devolver o foco.",
+    "Não existe prop para controlar a abertura de fora: só é possível definir o estado inicial. Isso difere do Datepicker, que aceita controle externo.",
+    "Não há busca por digitação nem seleção múltipla.",
+    "O menu é posicionado logo abaixo do campo, sem portal e sem detecção de colisão com a borda da tela.",
+    "A mensagem de erro liga o estado inválido automaticamente; o campo obrigatório é anunciado por atributo, e o asterisco é apenas decorativo.",
+    "O estado de foco do Figma pede uma borda mais espessa; o CSS aplica a cor da borda somada a uma sombra interna, sem token para a espessura.",
+    "Vários valores estão como literais no CSS por ausência das variables correspondentes: cor de foco, destaque da opção ativa, elevação do menu, altura do campo, largura mínima do campo e altura máxima do menu.",
+    "As classes de aberto, de erro e do asterisco são aplicadas no código, mas não têm regra de estilo própria."
+  ],
+  "pendentes": [
+    "Não há orientação sobre número máximo de opções: o código apenas limita a altura do menu com rolagem interna, e não existe busca para listas grandes.",
+    "O node do Figma não define variante para telas pequenas, então não há comportamento responsivo específico a documentar além da fluidez do CSS.",
+    "O componente só tem os estados padrão e de erro, por isso não há orientação de confirmação visual após o preenchimento correto.",
+    "O campo de tamanhos ficou vazio porque o componente não expõe prop de tamanho."
+  ]
+}

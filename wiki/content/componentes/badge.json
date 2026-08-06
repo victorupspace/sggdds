@@ -1,0 +1,145 @@
+{
+  "slug": "badge",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Conteúdo",
+  "resumo": "A Badge é uma etiqueta pequena em formato de pílula, com texto curto e ícone opcional. Serve para mostrar a situação ou a classificação de um item sem ocupar espaço na tela.",
+  "quandoUsar": [
+    "Para mostrar a situação de cada pedido em uma lista de protocolos: \"Em análise\", \"Deferido\", \"Indeferido\".",
+    "Para marcar um serviço recém-publicado ou fora do ar em uma grade de atalhos.",
+    "Para indicar que um documento anexado ainda está pendente de conferência.",
+    "Para diferenciar tipos de registro em uma tabela de resultados, quando o texto da coluna sozinho não distingue.",
+    "Para destacar prazo em um item de lista, como \"Vence hoje\"."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Quando o elemento precisa ser clicado para filtrar, selecionar ou ser removido.",
+      "alternativa": "chip"
+    },
+    {
+      "texto": "Quando a mensagem precisa de mais de duas palavras para ser entendida.",
+      "alternativa": "alert"
+    },
+    {
+      "texto": "Quando a informação é o dado principal da linha, e não uma classificação dele.",
+      "alternativa": "data-table"
+    },
+    {
+      "texto": "Quando o objetivo é levar a pessoa a outra página.",
+      "alternativa": "link"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Pílula",
+      "descricao": "Caixa com cantos totalmente arredondados. Fundo e cor de texto vêm da combinação entre variant e appearance."
+    },
+    {
+      "numero": 2,
+      "parte": "Ícone",
+      "descricao": "Opcional, de 14px, sempre à esquerda do texto. É decorativo e não é lido por leitores de tela."
+    },
+    {
+      "numero": 3,
+      "parte": "Rótulo",
+      "descricao": "Texto curto da etiqueta. Quando não cabe na largura disponível, é cortado com reticências."
+    }
+  ],
+  "tamanhos": "Três tamanhos: small (22px, padrão), medium (24px) e large (28px). O small usa fonte 10 e é o indicado dentro de tabelas e listas densas; medium e large usam fonte 12 e servem para cabeçalhos de cards e blocos com mais respiro. O ícone tem 14px nos três tamanhos.",
+  "responsivo": "A Badge é um elemento em linha que não passa de 100% da largura do container. Não há mudança por tamanho de tela: quando o texto não cabe, ele é cortado com reticências e a pílula continua íntegra. O texto completo permanece disponível para leitores de tela.",
+  "dosDonts": [
+    {
+      "faca": "Escreva a situação em uma ou duas palavras: \"Em análise\", \"Deferido\".",
+      "naoFaca": "Colocar uma frase inteira dentro da Badge.",
+      "porque": "O rótulo é cortado com reticências: o fim da frase some da tela, mesmo continuando no código."
+    },
+    {
+      "faca": "Escolha a variante pelo significado: positive para conclusão, negative para recusa, notice para atenção.",
+      "naoFaca": "Escolher a variante pela cor que combina melhor com a página.",
+      "porque": "A cor é lida como significado; um verde em \"Indeferido\" contradiz o texto e faz a pessoa duvidar do que leu."
+    },
+    {
+      "faca": "Use o mesmo appearance em toda a lista, solid ou subtle.",
+      "naoFaca": "Misturar solid e subtle na mesma coluna de situação.",
+      "porque": "A diferença de contraste passa a parecer diferença de importância entre linhas que têm o mesmo peso."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Rótulo de uma ou duas palavras, com até cerca de 20 caracteres.",
+    "Escreva o rótulo com a primeira letra maiúscula e o resto em minúsculas, sem ponto final.",
+    "Use sempre o mesmo termo para a mesma situação em todo o serviço: se numa tela é \"Em análise\", não pode ser \"Analisando\" na outra.",
+    "Não use siglas internas do órgão nem abreviações que só quem trabalha no serviço entende.",
+    "A informação precisa estar no texto: o ícone é decorativo e não chega a quem usa leitor de tela."
+  ],
+  "hierarquia": [
+    "A Badge acompanha um título ou uma linha de dados. Ela não aparece sozinha ocupando um bloco da página.",
+    "Uma Badge por item. Duas ou mais na mesma linha competem entre si e a pessoa deixa de saber qual é a situação principal.",
+    "Em listas, mantenha a Badge sempre na mesma posição de cada linha, para a leitura descer em coluna."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Accordion",
+      "slug": "accordion",
+      "relacao": "A prop badge do AccordionItem exibe uma Badge à direita do título; lembre que ela fica oculta abaixo de 640px."
+    },
+    {
+      "componente": "Action Card",
+      "slug": "action-card",
+      "relacao": "A prop badge do Action Card recebe uma Badge entre o cabeçalho e a descrição, para marcar situações do serviço."
+    },
+    {
+      "componente": "Data Table",
+      "slug": "data-table",
+      "relacao": "Em colunas de situação, a Badge substitui o texto puro e torna a leitura da coluna mais rápida."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Situação dos pedidos na consulta de protocolo",
+      "contexto": "A pessoa acompanha vários pedidos abertos no mesmo serviço e precisa identificar de relance quais já foram concluídos e quais ainda dependem dela.",
+      "comoFica": "Uma Badge no tamanho small ao fim de cada linha: positive para pedidos concluídos, notice para pendências e negative para recusas. Todas na mesma appearance e sempre na mesma posição da linha."
+    },
+    {
+      "titulo": "Serviço indisponível em uma grade de atalhos",
+      "contexto": "A página inicial do serviço mostra atalhos para as tarefas mais usadas, e uma delas fica fora do ar durante uma manutenção programada.",
+      "comoFica": "O card daquele atalho recebe uma Badge com o texto \"Indisponível\". A explicação completa da manutenção fica em um Alert acima da grade, porque não cabe na etiqueta."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Usar a Badge como botão ou link, colocando o clique no elemento em volta.",
+      "consequencia": "O componente não recebe foco nem tem papel de controle: quem navega por teclado não alcança a ação e quem usa leitor de tela não sabe que ela existe.",
+      "correcao": "Use Chip para elementos de filtro acionáveis e Button para ações."
+    },
+    {
+      "erro": "Ligar showIcon sem relação com o conteúdo.",
+      "consequencia": "O ícone padrão é um símbolo de porcentagem; em uma badge de \"Deferido\" ele não faz sentido e ainda ocupa espaço do texto.",
+      "correcao": "Deixe showIcon desligado ou informe um ícone próprio pela prop icon."
+    },
+    {
+      "erro": "Diferenciar duas situações apenas pelo ícone.",
+      "consequencia": "O ícone é decorativo: para leitores de tela as duas badges ficam idênticas.",
+      "correcao": "Faça a diferença no texto e use o ícone só como reforço visual."
+    },
+    {
+      "erro": "Usar rótulos longos em colunas estreitas.",
+      "consequencia": "O texto é cortado e situações diferentes podem aparecer iguais na tela, como \"Aguardando doc…\".",
+      "correcao": "Encurte o rótulo ou dê mais largura à coluna."
+    }
+  ],
+  "notasImplementacao": [
+    "A informação está apenas no texto do componente: não há aria-label nem role no elemento raiz.",
+    "Informar a prop icon exibe o ícone mesmo com showIcon em false.",
+    "O corte do rótulo é visual (reticências com texto em uma única linha); o texto completo continua na página para tecnologia assistiva.",
+    "As alturas de 22, 24 e 28px e o ícone de 14px são valores literais: o grupo de tamanhos da Badge no Figma ainda não existe nas coleções exportadas.",
+    "A cor do texto na combinação notice + subtle é um valor literal, sem variável correspondente na coleção.",
+    "Há divergência registrada no código entre a cor de marca resolvida no Figma e a exportada na coleção de tokens.",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual."
+  ],
+  "pendentes": [
+    "Não há estados interativos no componente (sem hover, foco, ativo ou desabilitado), coerente com a orientação de não usá-lo como botão ou link — por isso não há comportamento de interação a documentar.",
+    "Não existe critério oficial para escolher entre solid e subtle: o JSON extraído traz as duas opções sem regra de uso, e a orientação de manter uma só por lista é editorial, pendente de validação do time de design.",
+    "Não foi possível documentar quando usar a variante brand em vez de negative: as duas usam a paleta vermelha e o JSON não distingue os casos."
+  ]
+}

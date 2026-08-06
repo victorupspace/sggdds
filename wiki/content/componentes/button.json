@@ -1,0 +1,156 @@
+{
+  "slug": "button",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Ações",
+  "resumo": "Botão que executa uma ação ou leva a pessoa para o próximo passo de um serviço. Tem três variantes de peso visual, três tamanhos e pode ser renderizado como botão de formulário ou como link.",
+  "quandoUsar": [
+    "Para a ação que conclui uma tarefa, como enviar uma solicitação, confirmar um agendamento ou emitir um documento.",
+    "Para avançar e voltar entre as etapas de um formulário longo de solicitação.",
+    "Para abrir um recurso que interrompe a leitura, como uma janela de confirmação ou um painel de filtros.",
+    "Para o único caminho de saída de um card ou de um bloco de destaque, quando é preciso que a ação fique visível sem precisar ler o texto todo.",
+    "Para levar a pessoa a uma página que continua a tarefa (por exemplo, \"Consultar protocolo\"), usando href — o componente vira link e continua com a aparência de botão."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Para navegar dentro de um texto corrido, como \"veja a lista de documentos necessários\".",
+      "alternativa": "Link"
+    },
+    {
+      "texto": "Para alternar entre visões do mesmo conteúdo, como \"Presencial\" e \"Online\" na mesma página.",
+      "alternativa": "Tabs"
+    },
+    {
+      "texto": "Para mostrar um estado ou categoria que não é clicável, como \"Em análise\" ao lado de um protocolo.",
+      "alternativa": "Badge"
+    },
+    {
+      "texto": "Para o acesso com a conta gov.br, que tem um botão institucional próprio.",
+      "alternativa": "Button Gov"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Superfície",
+      "descricao": "Área clicável do botão, com cantos totalmente arredondados. Muda de cor conforme a variante e nos estados de passar o cursor, pressionar e desabilitado."
+    },
+    {
+      "numero": 2,
+      "parte": "Rótulo",
+      "descricao": "Texto da ação, sempre presente. Durante o carregamento é substituído pelo texto de loadingLabel."
+    },
+    {
+      "numero": 3,
+      "parte": "Ícone inicial",
+      "descricao": "Ícone opcional antes do rótulo (iconStart). É decorativo e não é lido por leitores de tela."
+    },
+    {
+      "numero": 4,
+      "parte": "Ícone final",
+      "descricao": "Ícone opcional depois do rótulo (iconEnd), também decorativo."
+    },
+    {
+      "numero": 5,
+      "parte": "Indicador de carregamento",
+      "descricao": "Animação circular que aparece com isLoading, no lugar dos ícones, enquanto a ação é processada."
+    }
+  ],
+  "tamanhos": "São três tamanhos, definidos em size: small, medium (padrão) e large. Small reduz o espaçamento interno e o ícone, e serve para ações de apoio dentro de blocos densos, como uma linha de lista. Medium é o tamanho de uso geral em formulários e páginas. Large aumenta o espaçamento, o ícone e o espaço entre ícone e texto, e cabe na ação principal de uma tela ou em botões isolados em áreas de destaque. Em telas de até 420px, medium e large ganham altura mínima maior para ampliar a área de toque.",
+  "responsivo": "O botão se ajusta ao conteúdo por padrão e ocupa toda a largura do container quando fullWidth está ativado — útil em telas estreitas e dentro de cards. Em telas de até 420px, os tamanhos medium e large aumentam a altura mínima e o espaçamento lateral, para ampliar a área de toque sem precisar de ajuste manual. Com redução de movimento ativada, a animação do indicador de carregamento é desligada.",
+  "dosDonts": [
+    {
+      "faca": "Use uma única ação primary por tela ou por bloco e deixe as demais em secondary ou tertiary.",
+      "naoFaca": "Colocar dois botões primary lado a lado, como \"Enviar\" e \"Salvar rascunho\" com o mesmo peso.",
+      "porque": "A variante primary é a superfície de maior peso visual. Com duas iguais, nada indica qual é o caminho esperado e a pessoa hesita antes de decidir."
+    },
+    {
+      "faca": "Escolha a variante pela hierarquia da ação, não pela cor.",
+      "naoFaca": "Usar secondary para \"Excluir\" ou \"Cancelar solicitação\" só porque a superfície é vermelha.",
+      "porque": "O vermelho de secondary é a cor institucional da marca, não um sinal de perigo. Usá-lo como aviso de destruição ensina a pessoa a ler o vermelho errado no resto do produto."
+    },
+    {
+      "faca": "Preencha ariaLabel sempre que o botão tiver apenas ícone.",
+      "naoFaca": "Confiar no desenho do ícone para explicar a ação.",
+      "porque": "Os ícones são renderizados como decorativos. Sem ariaLabel, o botão chega sem nome para quem usa leitor de tela e é anunciado apenas como \"botão\"."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Escreva verbo no infinitivo mais o objeto da ação: \"Agendar atendimento\", \"Emitir certidão\", \"Enviar solicitação\". Evite rótulos soltos como \"OK\", \"Confirmar\" ou \"Enviar\" quando a tela tem mais de uma ação.",
+    "Use de uma a três palavras. Rótulo longo estica o botão e disputa espaço com o texto da página.",
+    "Use maiúscula apenas na primeira palavra e em nomes próprios: \"Consultar protocolo\", não \"Consultar Protocolo\".",
+    "Nunca escreva \"Clique aqui\" nem descreva o gesto: o mesmo botão é usado com toque, teclado e leitor de tela.",
+    "Ajuste loadingLabel ao que está acontecendo (\"Enviando\", \"Emitindo\"). Esse texto substitui o rótulo visível e passa a ser o nome anunciado do botão durante o carregamento."
+  ],
+  "hierarquia": [
+    "Agrupe as ações de um bloco em um único lugar — rodapé do formulário, rodapé do card, rodapé da janela —, na mesma ordem em todas as telas do serviço.",
+    "A ação principal vem primeiro na ordem de leitura e usa a variante de maior peso; as ações de escape, como \"Cancelar\" ou \"Voltar\", usam tertiary.",
+    "Em telas estreitas e dentro de cards, use fullWidth para que a ação principal ocupe a largura toda e fique fácil de alcançar com o polegar.",
+    "Não use o botão como título nem como destaque de conteúdo: ele indica que algo vai acontecer quando for acionado."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Card",
+      "slug": "card",
+      "relacao": "O Card tem um espaço próprio para a ação no rodapé; o Button entra ali como a única saída daquele item."
+    },
+    {
+      "componente": "Modal",
+      "slug": "modal",
+      "relacao": "As ações de confirmar e cancelar de uma janela são botões, com pesos diferentes para separar o caminho principal do de escape."
+    },
+    {
+      "componente": "Button Gov",
+      "slug": "button-gov",
+      "relacao": "Na tela de acesso os dois convivem: o Button Gov cuida da autenticação com a conta gov.br e o Button cobre as demais ações da tela."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Envio de um pedido de certidão",
+      "contexto": "No fim de um formulário longo, a pessoa envia o pedido e também pode guardar o preenchimento para terminar depois.",
+      "comoFica": "Um botão primary \"Enviar pedido\", com type submit, e ao lado um tertiary \"Salvar e continuar depois\". Enquanto o envio acontece, o primeiro entra em isLoading, mostra \"Enviando\" e deixa de responder a cliques até a resposta chegar."
+    },
+    {
+      "titulo": "Ação de um serviço listado em card",
+      "contexto": "Vitrine de serviços do Detran-SP em que cada card leva a uma página diferente para executar o serviço.",
+      "comoFica": "O botão é renderizado como link (href) no espaço de ação do card, com rótulo \"Licenciar veículo\". No celular ele recebe fullWidth e ocupa toda a largura do card, mantendo a mesma aparência de botão."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Deixar o botão desabilitado até o formulário ficar válido, sem dizer o que falta.",
+      "consequencia": "A pessoa tenta enviar, nada acontece e não há explicação: o botão desabilitado não informa o motivo.",
+      "correcao": "Mantenha o botão habilitado e valide no envio, apontando o campo pendente, ou explique ao lado do botão o que ainda falta."
+    },
+    {
+      "erro": "Ativar isLoading e também tratar o clique como se o botão continuasse ativo.",
+      "consequencia": "O carregamento já bloqueia a interação por conta própria, então o segundo clique nunca chega ao código e o comportamento parece inconsistente.",
+      "correcao": "Confie no isLoading para bloquear a ação e use disabled apenas para impedimentos que não são de carregamento."
+    },
+    {
+      "erro": "Usar href com disabled achando que o destino fica inacessível.",
+      "consequencia": "No modo link o endereço continua no código da página, apenas com a navegação bloqueada na interface — ele pode ser aberto por outros caminhos.",
+      "correcao": "Se o destino não pode ser acessado, não renderize o link. Use o modo botão quando o bloqueio precisa valer de fato."
+    },
+    {
+      "erro": "Colocar informação só no ícone, como uma seta que indica que o arquivo será baixado.",
+      "consequencia": "Os ícones são decorativos e não são anunciados; quem usa leitor de tela recebe apenas o rótulo e perde o aviso.",
+      "correcao": "Leve a informação para o texto do botão (\"Baixar comprovante\") e mantenha o ícone como reforço visual."
+    }
+  ],
+  "notasImplementacao": [
+    "Sem href o componente gera um botão nativo; com href, um link. As mesmas propriedades de acessibilidade valem nos dois modos.",
+    "Carregamento e desabilitado se somam: com isLoading ativo o botão fica bloqueado mesmo sem disabled.",
+    "Durante o carregamento o rótulo visível vira loadingLabel, o que também muda o nome anunciado do controle.",
+    "No modo link desabilitado, o elemento sai da ordem de tabulação e o clique é impedido, mas o endereço continua no código.",
+    "Os ícones e o indicador de carregamento são sempre decorativos; em botões só com ícone, o nome vem de ariaLabel.",
+    "As propriedades target, rel, ariaControls, ariaExpanded e ariaPressed existem no componente, mas não aparecem em nenhum exemplo publicado — combine o uso com o time antes de adotar."
+  ],
+  "pendentes": [
+    "Não há variante de perigo no componente, então não foi possível recomendar um tratamento visual para ações destrutivas (excluir cadastro, cancelar protocolo). A decisão depende do time de design system.",
+    "Não foi possível definir a ordem oficial das ações no rodapé (principal à esquerda ou à direita): não existe regra no material extraído.",
+    "Não há orientação sobre quantos botões podem conviver no mesmo bloco antes de a hierarquia se perder; o material extraído não trata de composição.",
+    "O código não cita nenhum node do Figma, então não foi possível apontar a referência de design de cada variante."
+  ]
+}

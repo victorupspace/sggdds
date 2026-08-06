@@ -1,0 +1,380 @@
+{
+  "slug": "card",
+  "name": "Card",
+  "storybookTitle": "Web Components/Card",
+  "sourceDir": "packages/react/src/components/Card",
+  "exports": [
+    "Card"
+  ],
+  "typeExports": [
+    "CardHeadingLevel",
+    "CardOrientation",
+    "CardProps"
+  ],
+  "oneLiner": "Container <article> com midia, badge, titulo com barra da marca, descricao, divider e slot de acao, em orientacao vertical ou horizontal.",
+  "docsDescription": "\nO Card reproduz o layout do Figma (Web Components / Card): container com borda, cantos radius-lg, padding de 24px e elevação sutil, composto por midia, badge, titulo com a barra da marca, descricao, divider e um slot de acao.\n\nAnatomia (as propriedades show* do Figma viram presenca dos slots):\n- media: imagem no topo (vertical, 180px de altura) ou a esquerda (horizontal, 140px de largura), com radius-md.\n- badge: slot para o Badge do DS (no Figma, Neutral Subtle Small com icone).\n- Titulo Title/Medium (SemiBold 20) precedido pela barra vermelha da marca (4x25, brand/primary/default).\n- Descricao Body/Medium (Medium 16, typography/tertiary).\n- Divider de 1px (color/neutral/grey-300) controlado por showDivider.\n- action: slot para o Button do DS (no Figma, secondary com chevrons).\n\nEstados do component set: hover aplica a tinta color/state/hover com elevacao maior, pressed aplica color/state/pressed, e o focus ring do Figma (color/border/focus) aparece quando um elemento interno recebe foco por teclado.\n\nTokens: superficies, borda, radius, espacamentos, cores de texto e divider usam as mesmas variables do Figma; as variables novas ainda ausentes nas collections exportadas (color/state/*, color/border/focus, color/border/default) usam valores literais documentados no CSS.\n\nResponsividade: o card e fluido (100% do container); o layout horizontal usa min-width de 400px no desktop, como no Figma, e abaixo de 640px empilha como o vertical (midia no topo), sem overflow horizontal.\n\nAcessibilidade: raiz article, heading configuravel via headingLevel, barra do titulo e divider decorativos (aria-hidden) e interacao concentrada nos slots (Button/links), sem elementos interativos aninhados.\n",
+  "props": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Titulo principal obrigatorio.",
+      "source": "ambos"
+    },
+    {
+      "name": "description",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Texto complementar abaixo do titulo (Body/Medium no Figma). Quando ausente, o <p> nao e renderizado.",
+      "source": "ambos"
+    },
+    {
+      "name": "badge",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Slot da badge acima do titulo (componha com o Badge do DS; showBadge no Figma).",
+      "source": "ambos"
+    },
+    {
+      "name": "media",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Slot de midia — imagem, video etc. (showImagePlaceholder no Figma). Quando ausente, o div .ds-card__media nao e renderizado.",
+      "source": "ambos"
+    },
+    {
+      "name": "action",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Slot da acao (componha com o Button do DS; showButton no Figma).",
+      "source": "ambos"
+    },
+    {
+      "name": "showDivider",
+      "type": "boolean",
+      "values": null,
+      "default": "true",
+      "required": false,
+      "description": "Exibe o divider entre a descricao e a acao (showDivider no Figma).",
+      "source": "ambos"
+    },
+    {
+      "name": "headingLevel",
+      "type": "CardHeadingLevel (2 | 3 | 4 | 5 | 6)",
+      "values": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "default": "3",
+      "required": false,
+      "description": "Nivel semantico do heading do titulo.",
+      "source": "ambos"
+    },
+    {
+      "name": "orientation",
+      "type": "CardOrientation ('vertical' | 'horizontal')",
+      "values": [
+        "vertical",
+        "horizontal"
+      ],
+      "default": "'vertical'",
+      "required": false,
+      "description": "type no Figma: vertical (midia no topo) ou horizontal (midia a esquerda). Horizontal empilha como vertical abaixo de 640px.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao elemento raiz.",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [],
+  "slots": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "description": "Titulo renderizado no heading (h2..h6 conforme headingLevel), dentro de .ds-card__title."
+    },
+    {
+      "name": "description",
+      "type": "ReactNode",
+      "description": "Texto de apoio renderizado em <p class=\"ds-card__description\">; so aparece se truthy."
+    },
+    {
+      "name": "badge",
+      "type": "ReactNode",
+      "description": "Conteudo do div .ds-card__badge acima do titulo; so aparece se truthy."
+    },
+    {
+      "name": "media",
+      "type": "ReactNode",
+      "description": "Conteudo do div .ds-card__media (topo no vertical, esquerda no horizontal); so aparece se truthy."
+    },
+    {
+      "name": "action",
+      "type": "ReactNode",
+      "description": "Conteudo do div .ds-card__action no rodape do corpo; so aparece se truthy."
+    }
+  ],
+  "cssClasses": [
+    "ds-card",
+    "ds-card--orientation-vertical",
+    "ds-card--orientation-horizontal",
+    "ds-card__media",
+    "ds-card__body",
+    "ds-card__badge",
+    "ds-card__title-row",
+    "ds-card__title-bar",
+    "ds-card__title",
+    "ds-card__description",
+    "ds-card__divider",
+    "ds-card__action"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--card-surface",
+      "value": "var(--ds-semantic-color-background-neutral-white)",
+      "comment": "color/background/neutral/white"
+    },
+    {
+      "name": "--card-border-color",
+      "value": "var(--ds-semantic-color-border-neutral-subtle)",
+      "comment": "color/border/default (#e0e0e0 no Figma) - variable ausente nas collections exportadas; usa color/border/neutral/subtle como aproximacao documentada, igual ao Action Card"
+    },
+    {
+      "name": "--card-state-hover",
+      "value": "rgba(0, 0, 0, 0.04)",
+      "comment": "color/state/hover - variable nova do Figma, ausente nas collections exportadas; valor literal documentado"
+    },
+    {
+      "name": "--card-state-pressed",
+      "value": "rgba(0, 0, 0, 0.12)",
+      "comment": "color/state/pressed - variable nova do Figma, ausente nas collections exportadas; valor literal documentado"
+    },
+    {
+      "name": "--card-focus-ring",
+      "value": "#3366e5",
+      "comment": "color/border/focus (#3366e5) - variable nova do Figma, ausente nas collections exportadas; anel de 2px a 5px da borda, como no Figma"
+    },
+    {
+      "name": "--card-title-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-primary)",
+      "comment": "text-style/content color/typography/primary"
+    },
+    {
+      "name": "--card-description-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-tertiary)",
+      "comment": "text-style/content color/typography/tertiary"
+    },
+    {
+      "name": "--card-title-bar-color",
+      "value": "var(--ds-semantic-color-background-brand-primary-default)",
+      "comment": "color/background/brand/primary/default (barra do titulo; o vetor exportado resolve #c60008 e a collection exportada traz #c50007)"
+    },
+    {
+      "name": "--card-divider-color",
+      "value": "var(--ds-primitive-color-neutral-grey-300)",
+      "comment": "color/neutral/grey-300 (divider)"
+    },
+    {
+      "name": "--card-padding",
+      "value": "var(--ds-component-component-sizing-24)",
+      "comment": "Component sizing/24 (padding)"
+    },
+    {
+      "name": "--card-gap",
+      "value": "var(--ds-component-component-sizing-10)",
+      "comment": "Component sizing/10 (gap do layout vertical)"
+    },
+    {
+      "name": "--card-radius",
+      "value": "var(--ds-primitive-border-radius-radius-lg)",
+      "comment": "border/radius/radius-lg (card)"
+    },
+    {
+      "name": "--card-media-radius",
+      "value": "var(--ds-primitive-border-radius-radius-md)",
+      "comment": "border/radius/radius-md (midia)"
+    },
+    {
+      "name": "--card-shadow",
+      "value": "0 2px 2px rgba(0, 0, 0, 0.08)",
+      "comment": "Elevations do Figma (Effect Styles, nao sao variables)"
+    },
+    {
+      "name": "--card-shadow-hover",
+      "value": "0 4px 8px rgba(0, 0, 0, 0.12)",
+      "comment": "Elevations do Figma (Effect Styles, nao sao variables)"
+    },
+    {
+      "name": "--card-shadow-pressed",
+      "value": "0 2px 4px rgba(0, 0, 0, 0.08)",
+      "comment": "Elevations do Figma (Effect Styles, nao sao variables)"
+    },
+    {
+      "name": "--card-media-block-size",
+      "value": "180px",
+      "comment": "Altura literal da midia no layout vertical (180px no Figma)"
+    },
+    {
+      "name": "--card-gap",
+      "value": "var(--ds-component-component-sizing-12)",
+      "comment": "Override em .ds-card--orientation-horizontal: Component sizing/12 (gap do layout horizontal)"
+    },
+    {
+      "name": "--card-gap",
+      "value": "var(--ds-component-component-sizing-10)",
+      "comment": "Override em @media (max-width: 640px) para .ds-card--orientation-horizontal (volta ao gap vertical ao empilhar)"
+    }
+  ],
+  "tokensUsed": [
+    "--ds-semantic-color-background-neutral-white",
+    "--ds-semantic-color-border-neutral-subtle",
+    "--ds-semantic-text-style-content-color-typography-primary",
+    "--ds-semantic-text-style-content-color-typography-tertiary",
+    "--ds-semantic-color-background-brand-primary-default",
+    "--ds-primitive-color-neutral-grey-300",
+    "--ds-component-component-sizing-24",
+    "--ds-component-component-sizing-10",
+    "--ds-primitive-border-radius-radius-lg",
+    "--ds-primitive-border-radius-radius-md",
+    "--ds-primitive-border-width-border-sm",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-component-component-sizing-12",
+    "--ds-primitive-border-radius-radius-full",
+    "--ds-primitive-spacing-0",
+    "--ds-primitive-typography-font-size-20",
+    "--ds-primitive-typography-font-weight-semi-bold",
+    "--ds-primitive-typography-font-size-16",
+    "--ds-primitive-typography-font-weight-medium",
+    "--ds-primitive-border-width-border-none"
+  ],
+  "stories": [
+    {
+      "id": "web-components-card--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-card--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-card--default&viewMode=story"
+    },
+    {
+      "id": "web-components-card--horizontal",
+      "name": "Horizontal",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-card--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-card--horizontal&viewMode=story"
+    },
+    {
+      "id": "web-components-card--without-media",
+      "name": "Without Media",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-card--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-card--without-media&viewMode=story"
+    },
+    {
+      "id": "web-components-card--without-divider",
+      "name": "Without Divider",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-card--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-card--without-divider&viewMode=story"
+    },
+    {
+      "id": "web-components-card--long-content",
+      "name": "Long Content",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-card--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-card--long-content&viewMode=story"
+    }
+  ],
+  "variants": [
+    {
+      "prop": "orientation",
+      "values": [
+        "vertical",
+        "horizontal"
+      ]
+    },
+    {
+      "prop": "headingLevel",
+      "values": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ]
+    }
+  ],
+  "states": [
+    "hover (.ds-card:hover dentro de @media (hover: hover): tinta --card-state-hover via linear-gradient e box-shadow --card-shadow-hover)",
+    "active/pressed (.ds-card:active: tinta --card-state-pressed e box-shadow --card-shadow-pressed)",
+    "focus-visible interno (.ds-card:has(:focus-visible): outline 2px solid --card-focus-ring com offset 3px — o card nao e focavel, o anel responde ao foco de um elemento interno)"
+  ],
+  "responsive": [
+    {
+      "query": "(hover: hover)",
+      "effect": ".ds-card:hover recebe a tinta de estado hover e a elevacao maior."
+    },
+    {
+      "query": "(prefers-reduced-motion: reduce)",
+      "effect": ".ds-card tem transition: none (box-shadow e background-color deixam de animar)."
+    },
+    {
+      "query": "(max-width: 640px)",
+      "effect": ".ds-card--orientation-horizontal volta a flex-direction: column, min-inline-size: 0 e gap Component sizing/10; a midia passa a inline-size 100% com altura --card-media-block-size."
+    }
+  ],
+  "accessibility": {
+    "roles": [
+      "article (elemento <article> raiz)",
+      "heading (elemento h2..h6 do titulo, definido por headingLevel)",
+      "Os elementos interativos vem dos slots (badge/action) — o Card em si nao renderiza controles."
+    ],
+    "ariaAttributes": [
+      "aria-hidden=\"true\" (span.ds-card__title-bar, a barra vermelha do titulo)",
+      "aria-hidden=\"true\" (hr.ds-card__divider)"
+    ],
+    "keyboardInteractions": [
+      "Nenhuma interacao de teclado propria: o Card nao e focavel nem registra handlers; o foco vive nos elementos passados nos slots (o CSS reage via :has(:focus-visible))."
+    ],
+    "notes": [
+      "A raiz e um <article>, o que expoe o card como landmark de conteudo; o titulo usa heading configuravel para encaixar na hierarquia da pagina.",
+      "Barra do titulo e divider sao puramente decorativos (aria-hidden=\"true\").",
+      "A interacao fica concentrada nos slots (Button/links), evitando elementos interativos aninhados (documentado nas stories)."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Card/Card.test.tsx",
+    "unitCount": 6,
+    "a11yFile": null,
+    "a11yCount": null
+  },
+  "figmaReferences": [
+    {
+      "node": "65:5556",
+      "note": "Card.styles.css: \"Layout do Figma: Web Components / Card (node 65:5556).\" Cada propriedade referencia a mesma variable usada no Figma."
+    }
+  ],
+  "pendencias": [
+    "Nao existe arquivo Card.a11y.test.tsx; nao ha teste automatizado de acessibilidade (axe) para este componente.",
+    "As variables color/state/hover, color/state/pressed, color/border/focus e color/border/default nao existem nas collections exportadas; o CSS usa valores literais (rgba/#3366e5) ou aproximacoes documentadas.",
+    "As elevacoes (--card-shadow, --card-shadow-hover, --card-shadow-pressed) sao Effect Styles do Figma, nao variables — nao ha token --ds-* correspondente.",
+    "Valores literais sem token: gap de 11px em .ds-card__title-row, barra do titulo 4x25px, midia 180px/140px, min-inline-size 400px do layout horizontal, outline 2px/offset 3px do focus ring e block-size 1px do divider.",
+    "A classe .ds-card--orientation-vertical e gerada pelo TSX mas nao tem regra no CSS (vertical e o estado base de .ds-card).",
+    "O breakpoint de 640px foi definido no CSS do componente; o Figma nao define variante mobile.",
+    "Os argTypes nao declaram table.type/table.defaultValue; os defaults vieram da desestruturacao em Card.tsx.",
+    "Os parametros parameters.componentCanvas.width (400 no meta, 480 na story Horizontal) nao estao documentados no codigo do componente."
+  ]
+}

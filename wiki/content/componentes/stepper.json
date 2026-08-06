@@ -1,0 +1,165 @@
+{
+  "slug": "stepper",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Navegação",
+  "resumo": "O Stepper é um card que mostra em qual etapa a pessoa está dentro de um fluxo dividido em partes: o número da etapa atual, uma barra de progresso e o nome da próxima etapa. Ao final, exibe o estado de conclusão com a opção de recomeçar.",
+  "quandoUsar": [
+    "Em um pedido dividido em etapas — dados pessoais, documentos e revisão —, para a pessoa saber quanto falta antes de começar a preencher.",
+    "No topo de cada tela de um agendamento com várias telas, sempre no mesmo lugar, servindo de referência ao longo do fluxo.",
+    "No acompanhamento de um protocolo com fases previstas, indicando em qual fase o pedido está agora e qual vem em seguida.",
+    "Ao encerrar o fluxo, quando a pessoa precisa de confirmação visível de que concluiu tudo e de um caminho para iniciar um novo pedido."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "A pessoa precisa clicar para voltar a uma etapa anterior — o card apenas informa o progresso, não navega.",
+      "alternativa": "breadcrumb"
+    },
+    {
+      "texto": "As seções são equivalentes e podem ser vistas em qualquer ordem, sem sequência obrigatória.",
+      "alternativa": "tabs"
+    },
+    {
+      "texto": "O que precisa ser mostrado é o percentual de uma tarefa única, como o envio de um arquivo.",
+      "alternativa": "progress-bar"
+    },
+    {
+      "texto": "É preciso exibir todas as etapas ao mesmo tempo, com marcação individual do que já foi concluído.",
+      "alternativa": "list-item"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Card",
+      "descricao": "Bloco com fundo, borda e cantos arredondados que reúne todas as informações de progresso."
+    },
+    {
+      "numero": 2,
+      "parte": "Linha superior",
+      "descricao": "Título do card em caixa alta à esquerda e contador da etapa atual sobre o total à direita."
+    },
+    {
+      "numero": 3,
+      "parte": "Linha da etapa",
+      "descricao": "Círculo com o número da etapa atual seguido do nome dessa etapa, em destaque."
+    },
+    {
+      "numero": 4,
+      "parte": "Barra de progresso",
+      "descricao": "Trilha com preenchimento proporcional: etapa atual dividida pelo total de etapas."
+    },
+    {
+      "numero": 5,
+      "parte": "Linha da próxima etapa",
+      "descricao": "Prefixo \"Próxima:\" seguido do nome da etapa seguinte. Desaparece quando a pessoa está na última etapa."
+    },
+    {
+      "numero": 6,
+      "parte": "Estado de conclusão",
+      "descricao": "Substitui o conteúdo do card por ícone de confirmação, título, descrição e botão de recomeçar. Nesse estado a barra de progresso não é exibida."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "Em telas de até 480 pixels o card assume a versão para celular: espaçamentos e padding menores, círculo da etapa reduzido e tipografia menor em todas as linhas, incluindo o botão de recomeçar. O card é fluido e ocupa toda a largura do container em qualquer tela. Quando a pessoa configura o sistema para reduzir animações, o crescimento da barra deixa de ser animado.",
+  "dosDonts": [
+    {
+      "faca": "Numere as etapas a partir de 1: a primeira etapa é 1 e aparece como 1 de N.",
+      "naoFaca": "Passar o índice de um array, que começa em zero.",
+      "porque": "O componente conta a partir de 1 e limita o valor ao intervalo válido. Um zero é elevado para a primeira etapa e o card passa a mostrar uma etapa diferente da que está na tela."
+    },
+    {
+      "faca": "Mantenha a mesma lista de etapas em todas as telas do fluxo.",
+      "naoFaca": "Acrescentar ou remover etapas conforme a pessoa avança.",
+      "porque": "O contador e a barra são proporcionais ao total. Mudar o total no meio do caminho faz o progresso andar para trás sem explicação."
+    },
+    {
+      "faca": "No estado de conclusão, ligue o botão de recomeçar a uma ação real, como iniciar um novo pedido.",
+      "naoFaca": "Usar o estado de conclusão só pela aparência, deixando o botão sem ação.",
+      "porque": "O botão sempre aparece nesse estado e recebe foco pelo teclado. Sem ação ligada a ele, a pessoa clica e nada acontece."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Nome de etapa curto, de uma a três palavras: \"Dados pessoais\", \"Documentos\", \"Revisão\". O mesmo texto aparece em destaque e na linha da próxima etapa.",
+    "Escreva o título do card em capitalização normal, como \"Progresso do pedido\". A caixa alta é aplicada pelo estilo, não pelo texto.",
+    "Prefira substantivos a verbos no imperativo: \"Envio de documentos\" funciona melhor que \"Envie seus documentos\", porque o texto também é lido como próxima etapa.",
+    "No estado de conclusão, o título confirma o que terminou (\"Agendamento confirmado\") e a descrição diz o próximo passo em uma frase.",
+    "O texto do botão de recomeçar deve dizer o que vai acontecer: \"Fazer novo agendamento\" é mais claro que \"Recomeçar\" quando o fluxo não volta ao mesmo ponto."
+  ],
+  "hierarquia": [
+    "Posicione o card no topo do conteúdo da etapa, abaixo do título da página e acima do formulário.",
+    "Repita o mesmo card em todas as telas do fluxo, sempre na mesma posição, para servir de referência estável.",
+    "O card é apoio: o peso visual principal continua sendo o formulário da etapa e o botão que avança.",
+    "Em fluxos longos, o card não substitui um resumo do pedido — ele mostra apenas a etapa atual e a seguinte."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Button",
+      "slug": "button",
+      "relacao": "O botão que avança fica no fim do formulário. O card só muda quando a aplicação atualiza o número da etapa atual."
+    },
+    {
+      "componente": "Breadcrumb",
+      "slug": "breadcrumb",
+      "relacao": "O Breadcrumb diz onde a pessoa está no site; o Stepper diz onde ela está dentro do fluxo. Podem coexistir, com o Breadcrumb acima do título da página."
+    },
+    {
+      "componente": "Alert",
+      "slug": "alert",
+      "relacao": "Quando uma etapa exige documento específico ou tem prazo, explique isso em um Alert abaixo do card, e não dentro dele."
+    },
+    {
+      "componente": "Progress Bar",
+      "slug": "progress-bar",
+      "relacao": "Não use os dois para o mesmo progresso na mesma tela: o Stepper já traz a própria barra de etapas."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Pedido de segunda via em três etapas",
+      "contexto": "Um serviço de emissão de documento divide o pedido em dados pessoais, envio de documentos e revisão.",
+      "comoFica": "No topo de cada tela, o card mostra o título \"Progresso\", o contador 2 de 3, o círculo com o número 2 e o nome \"Envio de documentos\". A barra fica em dois terços e a última linha exibe \"Próxima: Revisão\". Na terceira etapa, a linha da próxima etapa desaparece."
+    },
+    {
+      "titulo": "Confirmação de agendamento concluído",
+      "contexto": "A pessoa termina o agendamento no Poupatempo e precisa saber que não há mais nada a fazer naquele fluxo.",
+      "comoFica": "O mesmo card passa para o estado de conclusão: fundo verde claro, ícone de confirmação, título \"Agendamento confirmado\", descrição orientando a comparecer no horário marcado e o botão \"Fazer novo agendamento\" ligado à ação de reiniciar o fluxo."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Enviar um número de etapa maior que o total, ou começar a contagem em zero.",
+      "consequencia": "O valor é ajustado para caber no intervalo válido e o card exibe uma etapa diferente daquela que a pessoa está preenchendo.",
+      "correcao": "Envie sempre o número da etapa atual contando a partir de 1 e nunca maior que o total de etapas."
+    },
+    {
+      "erro": "Incluir etapas com identificador ou nome em branco na lista.",
+      "consequencia": "Essas etapas são descartadas e o total exibido fica menor que o fluxo real, o que faz o progresso parecer adiantado.",
+      "correcao": "Garanta identificador e nome preenchidos em todas as etapas antes de passar a lista."
+    },
+    {
+      "erro": "Renderizar o card sem nenhuma etapa válida.",
+      "consequencia": "O progresso fica em zero e o texto lido por leitores de tela informa que não há etapa disponível, o que não ajuda ninguém.",
+      "correcao": "Só exiba o card quando houver pelo menos uma etapa válida na lista."
+    },
+    {
+      "erro": "Usar o estado de conclusão sem tratar o botão de recomeçar.",
+      "consequencia": "O botão aparece, recebe foco pelo teclado e pode ser acionado, mas não executa nada — a pessoa acha que o sistema travou.",
+      "correcao": "Ligue o botão a uma ação real ou não use o estado de conclusão nessa tela."
+    }
+  ],
+  "notasImplementacao": [
+    "O card é montado como uma região nomeada pelo título, então ele aparece na lista de regiões dos leitores de tela. Mantenha o título descritivo.",
+    "A barra é anunciada como barra de progresso com o texto completo da etapa, no formato \"Progresso: etapa 2 de 3, Envio de documentos\", e o contador visual é lido como \"2 de 3\" em vez de \"2/3\".",
+    "No estado de conclusão a barra de progresso não é renderizada.",
+    "O componente não navega entre etapas nem marca individualmente as etapas já concluídas: ele mostra a etapa atual e a próxima.",
+    "O número da etapa e o ícone de confirmação são decorativos; a informação chega por texto.",
+    "Vários valores do card — o raio de 12 pixels, os círculos da etapa e do ícone de confirmação, as cores do estado de conclusão e do botão — ainda são valores literais no CSS, sem token correspondente.",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual."
+  ],
+  "pendentes": [
+    "O campo de tamanhos ficou vazio porque o componente não expõe prop de tamanho: a adaptação acontece por largura de tela.",
+    "Não há estado visual para etapas já concluídas individualmente nem interação para voltar a uma etapa, o que impede orientar sobre revisão de etapas anteriores.",
+    "O card em estado de conclusão não tem estado de hover ou de foco próprio, apenas o botão. Por isso não foi possível orientar sobre usar o card inteiro como área clicável."
+  ]
+}

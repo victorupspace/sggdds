@@ -1,0 +1,364 @@
+{
+  "slug": "link",
+  "name": "Link",
+  "storybookTitle": "Web Components/Link",
+  "sourceDir": "packages/react/src/components/Link",
+  "exports": [
+    "Link"
+  ],
+  "typeExports": [
+    "LinkProps",
+    "LinkSize",
+    "LinkVariant"
+  ],
+  "oneLiner": "O Link e o elemento interativo fundamental para navegar para recursos internos ou externos.",
+  "docsDescription": "O Link e o elemento interativo fundamental para navegar para recursos internos ou externos. Ele pode ser usado dentro de blocos de texto ou como chamada navegacional independente, mantendo alta legibilidade e affordance clara.\n\nUse para navegacao, referencias contextuais, rotas internas, documentos, paginas externas e chamadas textuais que nao executam uma acao de sistema.\n\nNao use Link para submeter formularios, confirmar decisoes, abrir modais criticos ou executar comandos. Nesses casos use Button.\n\nVariantes:\n- Default: navegacao principal com azul de identidade.\n- Neutral: uso sobre superficies claras quando o link precisa acompanhar texto neutro.\n- Inverse: uso sobre superficies escuras.\n\nResponsividade:\nO componente foi criado para uso inline e standalone. Em telas pequenas, preserva area minima de toque sem quebrar o fluxo de texto nem gerar overflow horizontal.\n\nTokens:\nCores, foco, espacamento, iconografia e tipografia usam variaveis CSS geradas pelos tokens do Figma. Como a camada semantica ainda nao esta completa no projeto, o componente usa aliases internos semanticos apontando para tokens disponiveis.\n\nAcessibilidade:\n- Renderiza anchor nativo com href obrigatorio.\n- Links externos podem exibir icone automaticamente quando target=\"_blank\" ou external=true.\n- target=\"_blank\" recebe rel=\"noopener noreferrer\" por padrao.\n- disabled usa aria-disabled, remove o item da ordem de tabulacao e bloqueia navegacao.\n- O texto do link deve ser descritivo fora de contexto; evite \"clique aqui\".",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Texto visivel do link, renderizado em .ds-link__label.",
+      "source": "ambos"
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Destino do link.",
+      "source": "ambos"
+    },
+    {
+      "name": "variant",
+      "type": "LinkVariant",
+      "values": [
+        "default",
+        "neutral",
+        "inverse"
+      ],
+      "default": "'default'",
+      "required": false,
+      "description": "Variante visual.",
+      "source": "ambos"
+    },
+    {
+      "name": "size",
+      "type": "LinkSize",
+      "values": [
+        "small",
+        "medium",
+        "large"
+      ],
+      "default": "'medium'",
+      "required": false,
+      "description": "Tamanho tipografico.",
+      "source": "ambos"
+    },
+    {
+      "name": "iconStart",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Icone decorativo no inicio.",
+      "source": "ambos"
+    },
+    {
+      "name": "iconEnd",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Icone decorativo no final. Quando definido, substitui o icone automatico de link externo.",
+      "source": "ambos"
+    },
+    {
+      "name": "showExternalIcon",
+      "type": "boolean",
+      "values": null,
+      "default": "isExternal (external || target === '_blank')",
+      "required": false,
+      "description": "Forca ou oculta o icone de link externo.",
+      "source": "ambos"
+    },
+    {
+      "name": "external",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Marca o link como externo e exibe icone quando showExternalIcon nao for definido.",
+      "source": "ambos"
+    },
+    {
+      "name": "target",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Target nativo do anchor. target=\"_blank\" tambem marca o link como externo.",
+      "source": "ambos"
+    },
+    {
+      "name": "rel",
+      "type": "string",
+      "values": null,
+      "default": "'noopener noreferrer' quando o link e externo e rel nao foi informado",
+      "required": false,
+      "description": "rel nativo do anchor.",
+      "source": "types.ts"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Comunica link indisponivel e bloqueia navegacao (aria-disabled, tabIndex -1 e preventDefault no clique).",
+      "source": "ambos"
+    },
+    {
+      "name": "ariaLabel",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Rotulo acessivel quando o texto visual nao for suficiente.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao elemento raiz.",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onClick",
+      "signature": "MouseEventHandler<HTMLAnchorElement>",
+      "description": "Chamado no clique; quando disabled e true o evento sofre preventDefault e o handler nao e invocado."
+    }
+  ],
+  "slots": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "description": "Texto/conteudo visivel do link (obrigatorio)."
+    },
+    {
+      "name": "iconStart",
+      "type": "ReactNode",
+      "description": "Icone antes do label, embrulhado em span aria-hidden .ds-link__icon."
+    },
+    {
+      "name": "iconEnd",
+      "type": "ReactNode",
+      "description": "Icone depois do label, embrulhado em span aria-hidden .ds-link__icon."
+    }
+  ],
+  "cssClasses": [
+    "ds-link",
+    "ds-link--variant-default",
+    "ds-link--variant-neutral",
+    "ds-link--variant-inverse",
+    "ds-link--size-small",
+    "ds-link--size-medium",
+    "ds-link--size-large",
+    "ds-link--disabled",
+    "ds-link__label",
+    "ds-link__icon"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--link-color",
+      "value": "var(--ds-semantic-color-background-brand-primary-secondary-default)",
+      "comment": "Sobrescrito em .ds-link--variant-neutral (typography/secondary) e .ds-link--variant-inverse (background/neutral/default)"
+    },
+    {
+      "name": "--link-hover-color",
+      "value": "var(--ds-semantic-color-background-brand-primary-secondary-prominent)",
+      "comment": "Sobrescrito nas variantes neutral e inverse"
+    },
+    {
+      "name": "--link-active-color",
+      "value": "var(--ds-semantic-color-background-brand-primary-secondary-default-hover)",
+      "comment": "Sobrescrito nas variantes neutral e inverse"
+    },
+    {
+      "name": "--link-disabled-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-disabled)",
+      "comment": "Sobrescrito na variante inverse (typography/placeholder)"
+    },
+    {
+      "name": "--link-focus-ring",
+      "value": "var(--ds-semantic-color-background-brand-primary-secondary-default)",
+      "comment": "Sobrescrito nas variantes neutral e inverse"
+    },
+    {
+      "name": "--link-gap",
+      "value": "var(--ds-primitive-spacing-4)",
+      "comment": null
+    },
+    {
+      "name": "--link-icon-size",
+      "value": "var(--ds-component-link-size-icon-size)",
+      "comment": "Sobrescrito por tamanho: spacing-12 (small), link/size/icon-size (medium), spacing-20 (large)"
+    },
+    {
+      "name": "--link-font-size",
+      "value": "var(--ds-primitive-typography-font-size-16)",
+      "comment": "Sobrescrito por tamanho: font-size-14 (small), 16 (medium), 18 (large)"
+    },
+    {
+      "name": "--link-line-height",
+      "value": "var(--ds-primitive-typography-line-height-24)",
+      "comment": "Sobrescrito por tamanho: line-height-20 (small), 24 (medium), 28 (large)"
+    },
+    {
+      "name": "--link-touch-size",
+      "value": "var(--ds-primitive-spacing-24)",
+      "comment": "Vira spacing-32 abaixo de 420px (area minima de toque)"
+    }
+  ],
+  "tokensUsed": [
+    "--ds-semantic-color-background-brand-primary-secondary-default",
+    "--ds-semantic-color-background-brand-primary-secondary-prominent",
+    "--ds-semantic-color-background-brand-primary-secondary-default-hover",
+    "--ds-semantic-text-style-content-color-typography-disabled",
+    "--ds-primitive-spacing-4",
+    "--ds-component-link-size-icon-size",
+    "--ds-primitive-typography-font-size-16",
+    "--ds-primitive-typography-line-height-24",
+    "--ds-primitive-spacing-24",
+    "--ds-primitive-border-radius-radius-sm",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-typography-font-weight-regular",
+    "--ds-primitive-border-width-border-sm",
+    "--ds-primitive-spacing-2",
+    "--ds-semantic-text-style-content-color-typography-secondary",
+    "--ds-semantic-text-style-content-color-typography-primary",
+    "--ds-semantic-color-background-neutral-default",
+    "--ds-semantic-color-background-neutral-disabled",
+    "--ds-semantic-color-border-neutral-subtle",
+    "--ds-semantic-text-style-content-color-typography-placeholder",
+    "--ds-primitive-spacing-12",
+    "--ds-primitive-typography-font-size-14",
+    "--ds-primitive-typography-line-height-20",
+    "--ds-primitive-spacing-20",
+    "--ds-primitive-typography-font-size-18",
+    "--ds-primitive-typography-line-height-28",
+    "--ds-primitive-border-width-border-md",
+    "--ds-component-link-effect-focus-ring-width",
+    "--ds-primitive-spacing-32"
+  ],
+  "stories": [
+    {
+      "id": "web-components-link--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-link--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-link--default&viewMode=story"
+    },
+    {
+      "id": "web-components-link--inline",
+      "name": "Inline",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-link--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-link--inline&viewMode=story"
+    },
+    {
+      "id": "web-components-link--external",
+      "name": "External",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-link--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-link--external&viewMode=story"
+    },
+    {
+      "id": "web-components-link--with-icon",
+      "name": "With Icon",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-link--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-link--with-icon&viewMode=story"
+    },
+    {
+      "id": "web-components-link--variants",
+      "name": "Variants",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-link--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-link--variants&viewMode=story"
+    },
+    {
+      "id": "web-components-link--sizes",
+      "name": "Sizes",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-link--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-link--sizes&viewMode=story"
+    }
+  ],
+  "variants": [
+    {
+      "prop": "variant",
+      "values": [
+        "default",
+        "neutral",
+        "inverse"
+      ]
+    },
+    {
+      "prop": "size",
+      "values": [
+        "small",
+        "medium",
+        "large"
+      ]
+    }
+  ],
+  "states": [
+    "hover (.ds-link:not(.ds-link--disabled):hover — cor --link-hover-color e sublinhado com espessura border-md)",
+    "active (.ds-link:not(.ds-link--disabled):active — cor --link-active-color)",
+    "focus-visible (outline link/effect/focus-ring-width na cor --link-focus-ring com offset spacing-4)",
+    "disabled (.ds-link--disabled e [aria-disabled='true'] — cor --link-disabled-color e cursor not-allowed)"
+  ],
+  "responsive": [
+    {
+      "query": "@media (max-width: 420px)",
+      "effect": "--link-touch-size passa de spacing-24 para spacing-32, aumentando a altura minima de toque."
+    }
+  ],
+  "accessibility": {
+    "roles": [
+      "link (<a> nativo, sempre renderizado mesmo quando disabled)"
+    ],
+    "ariaAttributes": [
+      "aria-label (prop ariaLabel)",
+      "aria-disabled=\"true\" quando disabled",
+      "aria-hidden=\"true\" nos wrappers de icone (.ds-link__icon)"
+    ],
+    "keyboardInteractions": [
+      "Anchor nativo: Tab para focar e Enter para navegar.",
+      "disabled aplica tabIndex={-1}, retirando o link da ordem de tabulacao.",
+      "Nao ha handler de teclado customizado; o bloqueio do clique acontece no onClick com preventDefault."
+    ],
+    "notes": [
+      "Links externos (external ou target=\"_blank\") recebem rel=\"noopener noreferrer\" quando rel nao e informado.",
+      "O icone de link externo so aparece quando nao ha iconEnd e shouldShowExternalIcon e verdadeiro.",
+      "Todos os icones sao decorativos (aria-hidden), entao o nome acessivel vem do texto ou de ariaLabel."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Link/Link.test.tsx",
+    "unitCount": 8,
+    "a11yFile": null,
+    "a11yCount": null
+  },
+  "figmaReferences": [],
+  "pendencias": [
+    "Nao ha arquivo Link.a11y.test.tsx (sem cobertura axe).",
+    "Nenhum node-id do Figma e citado no codigo do Link.",
+    "No estado disabled o href permanece no DOM (diferente do ListItem, que o remove): a navegacao e bloqueada apenas por preventDefault, entao abrir em nova aba pelo menu de contexto ainda funciona.",
+    "A variante inverse depende de uma superficie escura fornecida por quem consome; nao ha token/contexto de fundo no proprio componente.",
+    "O componente nao aceita ref nem props nativas adicionais do <a> (LinkProps nao estende AnchorHTMLAttributes)."
+  ]
+}

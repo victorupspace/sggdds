@@ -1,0 +1,421 @@
+{
+  "slug": "radio",
+  "name": "Radio",
+  "storybookTitle": "Web Components/Radio",
+  "sourceDir": "packages/react/src/components/Radio",
+  "exports": [
+    "Radio",
+    "RadioGroup"
+  ],
+  "typeExports": [
+    "RadioGroupOrientation",
+    "RadioGroupProps",
+    "RadioProps"
+  ],
+  "oneLiner": "Radio e RadioGroup permitem selecionar uma unica opcao dentro de um grupo.",
+  "docsDescription": "Radio e RadioGroup permitem selecionar uma unica opcao dentro de um grupo.\n\nLayout reproduzido do Figma Web Components (node 12:2511) com os atomicos RadioButton Unselected/Selected e .Radio Control.\n\nAnatomia:\n- Input nativo type=\"radio\" visualmente oculto.\n- Controle de 24px com os vetores exatos do Figma: circle (nao selecionado, preto) e radio_button_checked (selecionado, azul color/icons/information/default).\n- Ripple de 32px atras do controle nos estados hover (color/neutral-alpha/4%) e pressed (color/neutral-alpha/8%).\n- Focus ring duplo (branco 84% + azul #2c84d0) no foco por teclado.\n- Label obrigatoria (Label/Medium, Plus Jakarta Sans Medium 14, typography/primary).\n- Hint opcional (Regular 10, color/icons/neutral/black) associada por aria-describedby.\n- Gap de 6px (Component sizing/6) entre controle e conteudo.\n- RadioGroup envolve os itens em fieldset e gerencia estado e navegacao por teclado.\n\nEstados (prop state do Figma):\n- Enabled/Hover/Pressed/Focused: controle interativo com ripple e focus ring.\n- Disabled: circulo, label e hint em typography/disabled (#737373), sem interacao.\n- Read Only: exibe apenas label e hint (hint em typography/disabled), sem o controle visivel, como no Figma.\n\nUse quando a pessoa deve escolher exatamente uma opcao entre duas ou mais alternativas mutuamente exclusivas.\n\nNao use quando multiplas selecoes forem permitidas (use Checkbox) ou quando houver apenas uma opcao (use Checkbox ou Toggle).\n\nOrientacao:\n- vertical (padrao): itens empilhados, recomendado para listas longas ou com hints.\n- horizontal: itens lado a lado, recomendado para grupos curtos; quebra linha automaticamente em telas estreitas.\n\nNavegacao por teclado:\n- Tab move o foco para o grupo.\n- ArrowUp / ArrowDown (vertical) ou ArrowLeft / ArrowRight (horizontal) movem entre opcoes e selecionam.",
+  "props": [
+    {
+      "name": "value",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "hint",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "_checked",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "injected by RadioGroup — not part of the public API",
+      "source": "types.ts"
+    },
+    {
+      "name": "_name",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "injected by RadioGroup — not part of the public API",
+      "source": "types.ts"
+    },
+    {
+      "name": "_onChange",
+      "type": "(value: string) => void",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "injected by RadioGroup — not part of the public API",
+      "source": "types.ts"
+    },
+    {
+      "name": "RadioGroup.name",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "RadioGroup.value",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "RadioGroup.onChange",
+      "type": "(value: string) => void",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "RadioGroup.orientation",
+      "type": "RadioGroupOrientation",
+      "values": [
+        "vertical",
+        "horizontal"
+      ],
+      "default": "'vertical'",
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "RadioGroup.label",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "RadioGroup.children",
+      "type": "React.ReactNode",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "RadioGroup.className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "RadioGroup.onChange",
+      "signature": "(value: string) => void",
+      "description": "Chamado ao selecionar uma opcao por clique e tambem ao mover o foco com as setas (selecao automatica)."
+    },
+    {
+      "name": "_onChange",
+      "signature": "(value: string) => void",
+      "description": "Injetado pelo RadioGroup (nao faz parte da API publica). So e chamado quando o Radio nao esta disabled nem readOnly."
+    }
+  ],
+  "slots": [
+    {
+      "name": "RadioGroup.children",
+      "type": "React.ReactNode",
+      "description": "Itens do grupo; apenas filhos cujo type e Radio recebem _checked, _name e _onChange injetados."
+    }
+  ],
+  "cssClasses": [
+    "ds-radio",
+    "ds-radio--disabled",
+    "ds-radio--readonly",
+    "ds-radio__input",
+    "ds-radio__control",
+    "ds-radio__icon",
+    "ds-radio__icon--unselected",
+    "ds-radio__icon--selected",
+    "ds-radio__content",
+    "ds-radio__label",
+    "ds-radio__hint",
+    "ds-radio-group",
+    "ds-radio-group--horizontal",
+    "ds-radio-group__legend",
+    "ds-radio-group__options"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--radio-control-size",
+      "value": "var(--ds-component-component-sizing-24)",
+      "comment": "Controle de 24px (Component sizing/24) com ripple de 32px"
+    },
+    {
+      "name": "--radio-control-color",
+      "value": "var(--ds-primitive-color-pure-black)",
+      "comment": "Fills dos vetores exportados: color/pure-black (circle enabled/focused), color/icons/neutral/default-hover (#292929, hover e pressed)"
+    },
+    {
+      "name": "--radio-control-color-hover",
+      "value": "var(--ds-semantic-color-icons-neutral-default-hover)",
+      "comment": "color/icons/neutral/default-hover (#292929, hover e pressed)"
+    },
+    {
+      "name": "--radio-control-color-selected",
+      "value": "var(--ds-semantic-color-icons-information-default)",
+      "comment": "radio_button_checked selecionado: #034EA2 (color/icons/information/default)"
+    },
+    {
+      "name": "--radio-control-color-disabled",
+      "value": "var(--ds-semantic-text-style-content-color-typography-disabled)",
+      "comment": "Disabled: #737373 (text-style/content-color/typography/disabled)"
+    },
+    {
+      "name": "--radio-ripple-hover",
+      "value": "var(--ds-primitive-color-neutral-alpha-4)",
+      "comment": "color/neutral-alpha/4% e /8% (ripple de hover e pressed)"
+    },
+    {
+      "name": "--radio-ripple-pressed",
+      "value": "var(--ds-primitive-color-neutral-alpha-8)",
+      "comment": "color/neutral-alpha/4% e /8% (ripple de hover e pressed)"
+    },
+    {
+      "name": "--radio-label-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-primary)",
+      "comment": "text-style/content-color/typography/primary (label Label/Medium)"
+    },
+    {
+      "name": "--radio-hint-color",
+      "value": "var(--ds-semantic-color-icons-neutral-black)",
+      "comment": "color/icons/neutral/black (hint)"
+    },
+    {
+      "name": "--radio-gap",
+      "value": "var(--ds-component-component-sizing-6)",
+      "comment": "Component sizing/6 (gap entre controle e conteudo)"
+    },
+    {
+      "name": "--radio-content-gap",
+      "value": "var(--ds-component-component-sizing-0)",
+      "comment": "Component sizing/0 (gap entre label e hint)"
+    },
+    {
+      "name": "--radio-control-color",
+      "value": "var(--radio-control-color-disabled)",
+      "comment": "Override em .ds-radio--disabled"
+    },
+    {
+      "name": "--radio-control-color-selected",
+      "value": "var(--radio-control-color-disabled)",
+      "comment": "Override em .ds-radio--disabled"
+    },
+    {
+      "name": "--radio-label-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-disabled)",
+      "comment": "Override em .ds-radio--disabled"
+    },
+    {
+      "name": "--radio-hint-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-disabled)",
+      "comment": "Override em .ds-radio--disabled e em .ds-radio--readonly"
+    }
+  ],
+  "tokensUsed": [
+    "--ds-component-component-sizing-0",
+    "--ds-component-component-sizing-24",
+    "--ds-component-component-sizing-6",
+    "--ds-primitive-border-radius-radius-full",
+    "--ds-primitive-color-neutral-alpha-4",
+    "--ds-primitive-color-neutral-alpha-8",
+    "--ds-primitive-color-pure-black",
+    "--ds-primitive-spacing-12",
+    "--ds-primitive-spacing-16",
+    "--ds-primitive-spacing-8",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-typography-font-size-10",
+    "--ds-primitive-typography-font-size-14",
+    "--ds-primitive-typography-font-weight-medium",
+    "--ds-primitive-typography-font-weight-regular",
+    "--ds-primitive-typography-font-weight-semi-bold",
+    "--ds-semantic-color-icons-information-default",
+    "--ds-semantic-color-icons-neutral-black",
+    "--ds-semantic-color-icons-neutral-default-hover",
+    "--ds-semantic-text-style-content-color-typography-disabled",
+    "--ds-semantic-text-style-content-color-typography-primary"
+  ],
+  "stories": [
+    {
+      "id": "web-components-radio--vertical",
+      "name": "Vertical",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-radio--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-radio--vertical&viewMode=story"
+    },
+    {
+      "id": "web-components-radio--with-hint",
+      "name": "With Hint",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-radio--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-radio--with-hint&viewMode=story"
+    },
+    {
+      "id": "web-components-radio--horizontal",
+      "name": "Horizontal",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-radio--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-radio--horizontal&viewMode=story"
+    },
+    {
+      "id": "web-components-radio--with-disabled",
+      "name": "With Disabled",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-radio--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-radio--with-disabled&viewMode=story"
+    },
+    {
+      "id": "web-components-radio--read-only",
+      "name": "Read Only",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-radio--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-radio--read-only&viewMode=story"
+    },
+    {
+      "id": "web-components-radio--accessibility",
+      "name": "Accessibility",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-radio--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-radio--accessibility&viewMode=story"
+    }
+  ],
+  "variants": [
+    {
+      "prop": "RadioGroup.orientation",
+      "values": [
+        "vertical",
+        "horizontal"
+      ]
+    }
+  ],
+  "states": [
+    "hover (dentro de @media (hover: hover), so quando nao esta disabled nem readonly: troca a cor do circulo nao selecionado e liga o ripple neutral-alpha-4)",
+    "active/pressed (:active, so quando nao esta disabled nem readonly: ripple neutral-alpha-8)",
+    "focus-visible (.ds-radio__input:focus-visible aplica anel duplo rgb(255 255 255 / 84%) + #2c84d0 no controle)",
+    "checked (.ds-radio__input:checked troca os icones e aplica color/icons/information/default)",
+    "disabled (.ds-radio--disabled: circulo, label e hint em typography/disabled e cursor not-allowed)",
+    "readonly (.ds-radio--readonly: controle com display none, hint em typography/disabled e cursor default)"
+  ],
+  "responsive": [
+    {
+      "query": "(hover: hover)",
+      "effect": "Aplica a cor de hover no circulo nao selecionado e o ripple de hover apenas em dispositivos com hover real."
+    },
+    {
+      "query": "(prefers-reduced-motion: reduce)",
+      "effect": "Remove as transicoes do controle, do ripple (::before) e dos icones."
+    }
+  ],
+  "accessibility": {
+    "roles": [
+      "radio (input type=\"radio\" nativo)",
+      "radiogroup (div .ds-radio-group__options com role=\"radiogroup\")",
+      "group (elemento <fieldset> do RadioGroup)"
+    ],
+    "ariaAttributes": [
+      "aria-labelledby (input -> span do label; fieldset -> legend quando label existe)",
+      "aria-describedby (input -> hint, apenas quando hint existe)",
+      "aria-hidden=\"true\" (span .ds-radio__control com os vetores)"
+    ],
+    "keyboardInteractions": [
+      "ArrowUp / ArrowDown movem o foco e selecionam a opcao anterior/proxima na orientacao vertical.",
+      "ArrowLeft / ArrowRight fazem o mesmo na orientacao horizontal.",
+      "A navegacao ignora inputs desabilitados e faz wrap circular no inicio e no fim da lista.",
+      "Tab leva o foco ao grupo (comportamento nativo do input radio)."
+    ],
+    "notes": [
+      "O input nativo permanece no DOM, apenas visualmente oculto (position absolute, 1x1px, clip e clip-path).",
+      "readOnly mantem o input acessivel a leitores de tela, cancela o clique com preventDefault e esconde o controle visual via CSS.",
+      "O handler de setas fica no <fieldset> e chama onChange ao mover o foco (selecao automatica).",
+      "O RadioGroup so injeta _checked, _name e _onChange em filhos cujo type e o componente Radio.",
+      "A raiz de cada item e um <label> com htmlFor, entao toda a linha (controle, label e hint) e clicavel.",
+      "O fieldset zera border, margin e padding por estilo inline."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Radio/Radio.test.tsx",
+    "unitCount": 7,
+    "a11yFile": "packages/react/src/components/Radio/Radio.a11y.test.tsx",
+    "a11yCount": 5
+  },
+  "figmaReferences": [
+    {
+      "node": "12:2511",
+      "note": "Radio.tsx: \"Glifos exportados do Figma (Web Components / Radio Button, node 12:2511): circle (RadioButton Unselected) e radio_button_checked (RadioButton Selected)\"."
+    },
+    {
+      "node": "12:2511",
+      "note": "Radio.styles.css: \"Layout do Figma: Web Components / Radio Button (node 12:2511) e atomicos RadioButton Unselected/Selected e .Radio Control\"."
+    },
+    {
+      "node": "12:2511",
+      "note": "Radio.stories.tsx: \"Layout reproduzido do Figma Web Components (node 12:2511)\"."
+    }
+  ],
+  "pendencias": [
+    "O meta das stories nao define argTypes: nenhuma prop de Radio ou RadioGroup possui descricao documentada (apenas o comentario de _checked/_name/_onChange em Radio.types.ts).",
+    "O diretorio exporta dois componentes (Radio e RadioGroup); como o schema nao separa componentes, as props do RadioGroup foram listadas com o prefixo \"RadioGroup.\".",
+    "O focus ring usa os literais rgb(255 255 255 / 84%) e #2c84d0 porque, segundo o comentario do CSS, a cor nao esta exposta como variable na collection exportada.",
+    "O ripple usa os literais 32px x 32px, sem token --ds-* correspondente.",
+    "Nao existe arquivo RadioGroup.test.tsx separado nem stories dedicadas ao RadioGroup no index do Storybook.",
+    "Nao ha variante mobile definida no node do Figma (registrado em comentario no fim do Radio.styles.css); nao existem media queries de largura no CSS."
+  ]
+}

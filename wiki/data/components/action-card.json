@@ -1,0 +1,256 @@
+{
+  "slug": "action-card",
+  "name": "ActionCard",
+  "storybookTitle": "Web Components/Action Card",
+  "sourceDir": "packages/react/src/components/ActionCard",
+  "exports": ["ActionCard"],
+  "typeExports": ["ActionCardHeadingLevel", "ActionCardProps"],
+  "oneLiner": "O Action Card é um card acionável para escolhas e atalhos, seguindo o layout do Figma (Web Components / Action Card).",
+  "docsDescription": "O Action Card é um card acionável para escolhas e atalhos, seguindo o layout do Figma (Web Components / Action Card).\n\nAnatomia:\n- Cabeçalho com ícone em círculo pure-black (56px) e título SemiBold 16.\n- Badge opcional entre o cabeçalho e a descrição.\n- Descrição em 14/20 com cor secundária.\n\nEstados do Figma:\n- Default: superfície branca, borda neutra e elevação nível 1.\n- Hover (apenas em dispositivos com ponteiro): superfície neutral/default e elevação nível 2.\n- Selected: borda pure-black (aria-pressed no modo botão, aria-current no modo link).\n- Focus: anel de foco do Design System.\n\nSemântica:\n- Com onClick renderiza um botão; com href renderiza um link; sem ambos, um article estático com heading.\n\nTokens: superfícies e bordas usam color/background/neutral e pure-black, tipografia usa text-style/content color/typography, espaçamentos usam Component sizing. A borda default do Figma (color/border/default) ainda não existe nas collections e usa border/neutral/subtle como equivalente.\n\nResponsividade: o card é fluido (100% do contêiner) com quebra de texto segura; o estado hover fica restrito a mídia com ponteiro para evitar hover preso no touch. Em grades, use auto-fill/minmax para empilhar no mobile, como na story Grid.",
+  "props": [
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Ícone exibido dentro do círculo pure-black do cabeçalho (no types.ts: \"Ícone exibido dentro do círculo preto do cabeçalho.\").",
+      "source": "ambos"
+    },
+    {
+      "name": "title",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Título do card.",
+      "source": "ambos"
+    },
+    {
+      "name": "badge",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Badge opcional exibida entre o cabeçalho e a descrição.",
+      "source": "ambos"
+    },
+    {
+      "name": "description",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Texto de apoio exibido abaixo do cabeçalho.",
+      "source": "ambos"
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "values": ["true", "false"],
+      "default": "false",
+      "required": false,
+      "description": "Estado Selected do Figma (borda pure-black). Aplica aria-pressed no modo botão e aria-current=\"true\" no modo link.",
+      "source": "ambos"
+    },
+    {
+      "name": "onClick",
+      "type": "MouseEventHandler<HTMLElement>",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Torna o card um botão acionável.",
+      "source": "ambos"
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Torna o card um link; tem precedência sobre onClick.",
+      "source": "ambos"
+    },
+    {
+      "name": "headingLevel",
+      "type": "ActionCardHeadingLevel",
+      "values": ["2", "3", "4", "5", "6"],
+      "default": "3",
+      "required": false,
+      "description": "Nível do heading no modo estático (sem onClick/href).",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao elemento raiz.",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onClick",
+      "signature": "MouseEventHandler<HTMLElement>",
+      "description": "Torna o card um botão acionável. Quando href também é informado, o card vira <a> e o onClick é repassado ao link."
+    }
+  ],
+  "slots": [
+    { "name": "icon", "type": "ReactNode", "description": "Ícone exibido dentro do círculo pure-black do cabeçalho; o círculo recebe aria-hidden=\"true\"." },
+    { "name": "badge", "type": "ReactNode", "description": "Badge opcional exibida entre o cabeçalho e a descrição." }
+  ],
+  "cssClasses": [
+    "ds-action-card",
+    "ds-action-card--interactive",
+    "ds-action-card--selected",
+    "ds-action-card__header",
+    "ds-action-card__icon-circle",
+    "ds-action-card__icon",
+    "ds-action-card__title",
+    "ds-action-card__badge",
+    "ds-action-card__description"
+  ],
+  "cssCustomProperties": [
+    { "name": "--action-card-background", "value": "var(--ds-semantic-color-background-neutral-white)", "comment": "color/background/neutral/white" },
+    { "name": "--action-card-background-hover", "value": "var(--ds-semantic-color-background-neutral-default)", "comment": "color/background/neutral/default (estado Hover)" },
+    { "name": "--action-card-border-color", "value": "var(--ds-semantic-color-border-neutral-subtle)", "comment": "color/border/default — a variable do Figma (#e0e0e0) ainda não existe nas collections exportadas; o papel equivalente hoje é border/neutral/subtle." },
+    { "name": "--action-card-selected-border-color", "value": "var(--ds-primitive-color-pure-black)", "comment": "color/pure-black (estado Selected e círculo do ícone)" },
+    { "name": "--action-card-icon-background", "value": "var(--ds-primitive-color-pure-black)", "comment": null },
+    { "name": "--action-card-icon-color", "value": "var(--ds-semantic-text-style-content-color-typography-inverse)", "comment": "text-style/content color/typography/inverse (glifo do ícone)" },
+    { "name": "--action-card-title-color", "value": "var(--ds-semantic-text-style-content-color-typography-primary)", "comment": "text-style/content color/typography/primary e secondary" },
+    { "name": "--action-card-description-color", "value": "var(--ds-semantic-text-style-content-color-typography-secondary)", "comment": null },
+    { "name": "--action-card-focus-ring", "value": "var(--ds-component-focus-ring-color-ring)", "comment": null },
+    { "name": "--action-card-border-width", "value": "var(--ds-primitive-border-width-border-sm)", "comment": "border/width/thin (1px)" },
+    { "name": "--action-card-radius", "value": "var(--ds-primitive-border-radius-radius-lg)", "comment": "border/radius/radius-lg" },
+    { "name": "--action-card-padding", "value": "var(--ds-component-component-sizing-16)", "comment": "Component sizing/16, /10 e /12" },
+    { "name": "--action-card-gap", "value": "var(--ds-component-component-sizing-10)", "comment": null },
+    { "name": "--action-card-header-gap", "value": "var(--ds-component-component-sizing-12)", "comment": null },
+    { "name": "--action-card-icon-circle-size", "value": "var(--ds-component-component-sizing-56)", "comment": "Component sizing/56 e /24 (círculo e glifo do ícone)" },
+    { "name": "--action-card-icon-size", "value": "var(--ds-component-component-sizing-24)", "comment": null },
+    { "name": "--action-card-shadow", "value": "0 2px 4px rgba(0, 0, 0, 0.08)", "comment": "elevation/level-1 e level-2 — Effect Styles do Figma (não são variables)" },
+    { "name": "--action-card-shadow-hover", "value": "0 4px 8px rgba(0, 0, 0, 0.08)", "comment": null }
+  ],
+  "tokensUsed": [
+    "--ds-semantic-color-background-neutral-white",
+    "--ds-semantic-color-background-neutral-default",
+    "--ds-semantic-color-border-neutral-subtle",
+    "--ds-primitive-color-pure-black",
+    "--ds-semantic-text-style-content-color-typography-inverse",
+    "--ds-semantic-text-style-content-color-typography-primary",
+    "--ds-semantic-text-style-content-color-typography-secondary",
+    "--ds-component-focus-ring-color-ring",
+    "--ds-primitive-border-width-border-sm",
+    "--ds-primitive-border-radius-radius-lg",
+    "--ds-component-component-sizing-16",
+    "--ds-component-component-sizing-10",
+    "--ds-component-component-sizing-12",
+    "--ds-component-component-sizing-56",
+    "--ds-component-component-sizing-24",
+    "--ds-primitive-spacing-0",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-border-width-border-none",
+    "--ds-component-focus-ring-effect-width",
+    "--ds-component-focus-ring-effect-offset",
+    "--ds-primitive-border-radius-radius-full",
+    "--ds-primitive-typography-font-size-16",
+    "--ds-primitive-typography-font-weight-semi-bold",
+    "--ds-primitive-typography-font-size-14",
+    "--ds-primitive-typography-font-weight-regular",
+    "--ds-primitive-typography-line-height-20"
+  ],
+  "stories": [
+    {
+      "id": "web-components-action-card--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-action-card--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-action-card--default&viewMode=story"
+    },
+    {
+      "id": "web-components-action-card--selected",
+      "name": "Selected",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-action-card--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-action-card--selected&viewMode=story"
+    },
+    {
+      "id": "web-components-action-card--as-link",
+      "name": "As Link",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-action-card--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-action-card--as-link&viewMode=story"
+    },
+    {
+      "id": "web-components-action-card--without-badge",
+      "name": "Without Badge",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-action-card--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-action-card--without-badge&viewMode=story"
+    },
+    {
+      "id": "web-components-action-card--static",
+      "name": "Static",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-action-card--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-action-card--static&viewMode=story"
+    },
+    {
+      "id": "web-components-action-card--grid",
+      "name": "Grid",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-action-card--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-action-card--grid&viewMode=story"
+    }
+  ],
+  "variants": [
+    { "prop": "selected", "values": ["true", "false"] },
+    { "prop": "headingLevel", "values": ["2", "3", "4", "5", "6"] }
+  ],
+  "states": ["hover", "focus-visible", "selected", "interactive"],
+  "responsive": [
+    {
+      "query": "@media (hover: hover)",
+      "effect": "Estado Hover apenas em dispositivos com ponteiro (evita hover preso no touch): .ds-action-card--interactive:hover troca o background para --action-card-background-hover e a sombra para --action-card-shadow-hover; quando tambem esta selecionado, o hover mantem o background default."
+    },
+    {
+      "query": "@media (prefers-reduced-motion: reduce)",
+      "effect": "Remove a transicao (background-color, border-color, box-shadow) de .ds-action-card--interactive."
+    }
+  ],
+  "accessibility": {
+    "roles": [
+      "button (quando ha onClick e nao ha href — <button type=\"button\">)",
+      "link (quando ha href — <a href>)",
+      "article (modo estatico, elemento <article>)",
+      "heading (modo estatico, <h2>..<h6> conforme headingLevel)"
+    ],
+    "ariaAttributes": ["aria-hidden", "aria-pressed", "aria-current"],
+    "keyboardInteractions": [
+      "Tab / Shift+Tab: foco no card quando ele e botao ou link (foco nativo).",
+      "Enter / Espaco: aciona o card no modo botao (ativacao nativa do <button>).",
+      "Enter: aciona o card no modo link (ativacao nativa do <a>).",
+      "No modo estatico (article) o card nao e focavel; nao ha handler onKeyDown customizado."
+    ],
+    "notes": [
+      "href tem precedencia sobre onClick: com href o card e renderizado como <a> e o onClick continua sendo repassado.",
+      "No modo botao, selected vira aria-pressed={selected} (sempre presente, true ou false).",
+      "No modo link, selected vira aria-current=\"true\"; quando falso, o atributo e omitido.",
+      "O circulo do icone (.ds-action-card__icon-circle) recebe aria-hidden=\"true\".",
+      "No modo estatico o titulo usa um heading real (h2..h6 via headingLevel, padrao h3); nos modos botao/link o titulo e um <span>, portanto nao entra na estrutura de headings da pagina.",
+      "O texto do titulo usa white-space: pre-wrap, entao quebras de linha (\\n) no title sao preservadas."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/ActionCard/ActionCard.test.tsx",
+    "unitCount": 6,
+    "a11yFile": null,
+    "a11yCount": null
+  },
+  "figmaReferences": [
+    { "node": "111:39682", "note": "Layout do Figma: Web Components / Action Card (comentario no topo de ActionCard.styles.css)." }
+  ],
+  "pendencias": [
+    "Nao existe arquivo ActionCard.a11y.test.tsx.",
+    "Nao ha estado disabled implementado (nem prop, nem CSS).",
+    "O modo de renderizacao (article / button / link) nao e uma prop enumerada — deriva de href e onClick, entao nao aparece como variante em \"variants\".",
+    "A borda default do Figma (color/border/default, #e0e0e0) nao existe nas collections exportadas; o CSS usa --ds-semantic-color-border-neutral-subtle como equivalente (registrado em comentario).",
+    "Os valores concretos dos tokens --ds-* nao estao neste diretorio; ficam em packages/tokens.",
+    "Os parametros parameters.componentCanvas.width (300 no meta, 960 na story Grid) nao tem campo correspondente no schema."
+  ]
+}

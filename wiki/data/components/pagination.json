@@ -1,0 +1,418 @@
+{
+  "slug": "pagination",
+  "name": "Pagination",
+  "storybookTitle": "Web Components/Pagination",
+  "sourceDir": "packages/react/src/components/Pagination",
+  "exports": [
+    "Pagination"
+  ],
+  "typeExports": [
+    "PaginationLabels",
+    "PaginationProps"
+  ],
+  "oneLiner": "Pagination organiza listas longas ou datasets em paginas numeradas e oferece controles para navegar sequencialmente ou saltar diretamente para uma pagina.",
+  "docsDescription": "Pagination organiza listas longas ou datasets em paginas numeradas e oferece controles para navegar sequencialmente ou saltar diretamente para uma pagina.\n\nUse quando a quantidade de resultados excede o espaco util da tela e a pessoa precisa manter contexto de posicao, quantidade e navegacao. Nao use para fluxos lineares de progresso; nesse caso use Stepper.\n\nResponsividade:\nEste componente foi desenvolvido com comportamento responsivo nativo, adaptando espacamentos, alinhamento, largura, quebra de conteudo e areas de toque para diferentes tamanhos de tela. A responsividade e aplicada na implementacao do componente e nao depende de variacoes manuais no Storybook. Em telas pequenas, os metadados reorganizam em coluna e a navegacao numerica vira uma experiencia compacta com pagina atual, anterior, proxima e select nativo para salto direto, sem gerar overflow horizontal.\n\nTokens:\nCores, foco, espacamento, bordas, radius, iconografia e tipografia usam variaveis CSS geradas pelos tokens do Figma. O estado selecionado usa soft black, seguindo o padrao atual de acoes primarias do DS.\n\nAcessibilidade:\n- Renderiza nav com aria-label.\n- A pagina atual usa aria-current=\"page\".\n- Controles indisponiveis usam disabled nativo.\n- Controles de primeira, anterior, proxima e ultima pagina possuem aria-label.\n- Selects nativos sao usados para resultados por pagina e salto direto de pagina quando habilitados.",
+  "props": [
+    {
+      "name": "page",
+      "type": "number",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Pagina atual.",
+      "source": "ambos"
+    },
+    {
+      "name": "totalPages",
+      "type": "number",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Total de paginas quando ja calculado pelo consumidor.",
+      "source": "ambos"
+    },
+    {
+      "name": "totalItems",
+      "type": "number",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Total de itens usado para range e calculo de paginas.",
+      "source": "ambos"
+    },
+    {
+      "name": "pageSize",
+      "type": "number",
+      "values": null,
+      "default": "20",
+      "required": false,
+      "description": "Quantidade de itens por pagina.",
+      "source": "ambos"
+    },
+    {
+      "name": "pageSizeOptions",
+      "type": "number[]",
+      "values": null,
+      "default": "[10, 20, 50, 100]",
+      "required": false,
+      "description": "Opcoes do seletor de resultados por pagina.",
+      "source": "ambos"
+    },
+    {
+      "name": "siblingCount",
+      "type": "number",
+      "values": null,
+      "default": "0 (clampeado internamente entre 0 e 2)",
+      "required": false,
+      "description": "Quantidade de paginas ao redor da pagina atual.",
+      "source": "ambos"
+    },
+    {
+      "name": "boundaryCount",
+      "type": "number",
+      "values": null,
+      "default": "3 (clampeado internamente entre 1 e 3)",
+      "required": false,
+      "description": "Quantidade de paginas fixas no inicio e no fim da faixa.",
+      "source": "ambos"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Desabilita navegacao e selects.",
+      "source": "ambos"
+    },
+    {
+      "name": "showFirstLast",
+      "type": "boolean",
+      "values": null,
+      "default": "true",
+      "required": false,
+      "description": "Exibe controles de primeira e ultima pagina.",
+      "source": "ambos"
+    },
+    {
+      "name": "showPageSize",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Exibe seletor de resultados por pagina.",
+      "source": "ambos"
+    },
+    {
+      "name": "showPageSelect",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Exibe seletor para salto direto de pagina.",
+      "source": "ambos"
+    },
+    {
+      "name": "showRange",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Exibe faixa atual de resultados.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao elemento raiz.",
+      "source": "ambos"
+    },
+    {
+      "name": "labels",
+      "type": "PaginationLabels",
+      "values": null,
+      "default": "defaultLabels (ariaLabel 'Paginacao', firstPage 'Primeira pagina', previousPage 'Pagina anterior', nextPage 'Proxima pagina', lastPage 'Ultima pagina', pageSelect 'Pagina', mobilePageSelect 'Selecionar pagina', resultsPerPage 'Resultados por pagina', page (p) => `Ir para pagina ${p}`, currentPage (p) => `Pagina ${p}, atual`, pageStatus (p, t) => `Pagina ${p} de ${t}`, range (s, e, t) => `${s} - ${e} de ${t}`)",
+      "required": false,
+      "description": "Rotulos acessiveis e textos exibidos.",
+      "source": "ambos"
+    },
+    {
+      "name": "onPageChange",
+      "type": "(page: number) => void",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Callback chamado ao solicitar mudanca de pagina.",
+      "source": "ambos"
+    },
+    {
+      "name": "onPageSizeChange",
+      "type": "(pageSize: number, event: ChangeEvent<HTMLSelectElement>) => void",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Callback chamado ao mudar resultados por pagina.",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onPageChange",
+      "signature": "(page: number) => void",
+      "description": "Callback chamado ao solicitar mudanca de pagina. Nao dispara quando disabled e true nem quando a pagina destino e igual a atual."
+    },
+    {
+      "name": "onPageSizeChange",
+      "signature": "(pageSize: number, event: ChangeEvent<HTMLSelectElement>) => void",
+      "description": "Callback chamado ao mudar resultados por pagina."
+    }
+  ],
+  "slots": [],
+  "cssClasses": [
+    "ds-pagination",
+    "ds-pagination--with-meta",
+    "ds-pagination__meta",
+    "ds-pagination__meta-item",
+    "ds-pagination__meta-item--page-size",
+    "ds-pagination__meta-item--page-select",
+    "ds-pagination__range",
+    "ds-pagination__mobile-summary",
+    "ds-pagination__mobile-status",
+    "ds-pagination__list",
+    "ds-pagination__item",
+    "ds-pagination__item--edge-control",
+    "ds-pagination__item--previous-control",
+    "ds-pagination__item--next-control",
+    "ds-pagination__item--ellipsis",
+    "ds-pagination__item--page",
+    "ds-pagination__item--current",
+    "ds-pagination__control",
+    "ds-pagination__page",
+    "ds-pagination__ellipsis",
+    "ds-pagination__select-control",
+    "ds-pagination__select",
+    "ds-pagination__select-icon"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--pagination-foreground",
+      "value": "var(--ds-semantic-text-style-content-color-typography-secondary)",
+      "comment": null
+    },
+    {
+      "name": "--pagination-muted",
+      "value": "var(--ds-semantic-text-style-content-color-typography-tertiary)",
+      "comment": null
+    },
+    {
+      "name": "--pagination-disabled",
+      "value": "var(--ds-semantic-text-style-content-color-typography-placeholder)",
+      "comment": null
+    },
+    {
+      "name": "--pagination-selected-background",
+      "value": "var(--ds-semantic-text-style-content-color-typography-secondary)",
+      "comment": null
+    },
+    {
+      "name": "--pagination-selected-foreground",
+      "value": "var(--ds-semantic-color-background-neutral-default)",
+      "comment": null
+    },
+    {
+      "name": "--pagination-hover",
+      "value": "var(--ds-primitive-color-neutral-alpha-4)",
+      "comment": null
+    },
+    {
+      "name": "--pagination-active",
+      "value": "var(--ds-primitive-color-neutral-alpha-8)",
+      "comment": null
+    },
+    {
+      "name": "--pagination-border",
+      "value": "var(--ds-semantic-color-border-neutral-subtle)",
+      "comment": null
+    },
+    {
+      "name": "--pagination-border-strong",
+      "value": "var(--ds-semantic-color-border-neutral-default)",
+      "comment": "Declarado, mas nao consumido por nenhuma regra do arquivo"
+    },
+    {
+      "name": "--pagination-surface",
+      "value": "var(--ds-semantic-color-background-neutral-default)",
+      "comment": null
+    },
+    {
+      "name": "--pagination-focus-ring",
+      "value": "var(--ds-semantic-color-background-brand-primary-secondary-default)",
+      "comment": null
+    },
+    {
+      "name": "--pagination-control-size",
+      "value": "var(--ds-primitive-spacing-40)",
+      "comment": null
+    },
+    {
+      "name": "--pagination-icon-size",
+      "value": "var(--ds-primitive-spacing-24)",
+      "comment": null
+    },
+    {
+      "name": "--pagination-gap",
+      "value": "var(--ds-component-pagination-spacing-gap)",
+      "comment": null
+    },
+    {
+      "name": "--pagination-meta-gap",
+      "value": "var(--ds-primitive-spacing-32)",
+      "comment": null
+    },
+    {
+      "name": "--pagination-control-size",
+      "value": "var(--ds-primitive-spacing-48)",
+      "comment": "Override em @media (max-width: 640px)"
+    },
+    {
+      "name": "--pagination-icon-size",
+      "value": "var(--ds-primitive-spacing-20)",
+      "comment": "Override em @media (max-width: 640px)"
+    },
+    {
+      "name": "--pagination-gap",
+      "value": "var(--ds-primitive-spacing-8)",
+      "comment": "Override em @media (max-width: 420px)"
+    }
+  ],
+  "tokensUsed": [
+    "--ds-component-pagination-border-radius",
+    "--ds-component-pagination-spacing-gap",
+    "--ds-component-pagination-typography-font-weight",
+    "--ds-primitive-border-width-border-md",
+    "--ds-primitive-border-width-border-sm",
+    "--ds-primitive-color-neutral-alpha-4",
+    "--ds-primitive-color-neutral-alpha-8",
+    "--ds-primitive-spacing-0",
+    "--ds-primitive-spacing-12",
+    "--ds-primitive-spacing-16",
+    "--ds-primitive-spacing-2",
+    "--ds-primitive-spacing-20",
+    "--ds-primitive-spacing-24",
+    "--ds-primitive-spacing-32",
+    "--ds-primitive-spacing-40",
+    "--ds-primitive-spacing-48",
+    "--ds-primitive-spacing-64",
+    "--ds-primitive-spacing-8",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-typography-font-size-14",
+    "--ds-primitive-typography-font-size-16",
+    "--ds-primitive-typography-line-height-20",
+    "--ds-primitive-typography-line-height-24",
+    "--ds-semantic-color-background-brand-primary-secondary-default",
+    "--ds-semantic-color-background-neutral-default",
+    "--ds-semantic-color-border-neutral-default",
+    "--ds-semantic-color-border-neutral-subtle",
+    "--ds-semantic-text-style-content-color-typography-placeholder",
+    "--ds-semantic-text-style-content-color-typography-secondary",
+    "--ds-semantic-text-style-content-color-typography-tertiary"
+  ],
+  "stories": [
+    {
+      "id": "web-components-pagination--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-pagination--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-pagination--default&viewMode=story"
+    },
+    {
+      "id": "web-components-pagination--with-metadata",
+      "name": "With Metadata",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-pagination--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-pagination--with-metadata&viewMode=story"
+    },
+    {
+      "id": "web-components-pagination--anatomy",
+      "name": "Anatomy",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-pagination--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-pagination--anatomy&viewMode=story"
+    },
+    {
+      "id": "web-components-pagination--middle-page",
+      "name": "Middle Page",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-pagination--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-pagination--middle-page&viewMode=story"
+    },
+    {
+      "id": "web-components-pagination--states",
+      "name": "States",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-pagination--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-pagination--states&viewMode=story"
+    },
+    {
+      "id": "web-components-pagination--mobile-responsive",
+      "name": "Mobile Responsive",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-pagination--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-pagination--mobile-responsive&viewMode=story"
+    }
+  ],
+  "variants": [],
+  "states": [
+    "hover (.ds-pagination__control:hover:not(:disabled) e .ds-pagination__page:hover:not(:disabled))",
+    "active/pressed (:active:not(:disabled))",
+    "focus-visible (controles, paginas e selects)",
+    "selected/current (.ds-pagination__page[aria-current='page'] com fundo soft black e cursor default)",
+    "disabled (:disabled em controles, paginas e selects, com cursor not-allowed)"
+  ],
+  "responsive": [
+    {
+      "query": "(max-width: 720px)",
+      "effect": "A raiz vira coluna com align-items stretch e gap spacing-16; meta e lista passam a justify-content center; com metadados, o bloco meta ocupa 100% da largura."
+    },
+    {
+      "query": "(max-width: 640px)",
+      "effect": "Amplia a area de toque (--pagination-control-size 48px, --pagination-icon-size 20px) e reduz o gap para spacing-12; meta vira grid de 1 coluna com itens em space-between; esconde o seletor de pagina do meta, os controles de primeira/ultima pagina, as reticencias e os numeros de pagina nao atuais; exibe o resumo mobile (status da pagina + select de salto direto) e alarga o botao da pagina atual."
+    },
+    {
+      "query": "(max-width: 420px)",
+      "effect": "Reduz --pagination-gap para spacing-8 e fixa font-size-16 / line-height-24 em controles, paginas e selects."
+    }
+  ],
+  "accessibility": {
+    "roles": [
+      "navigation (elemento <nav> raiz com aria-label)",
+      "list / listitem (elementos <ol> e <li>)",
+      "combobox nativo (elementos <select> de resultados por pagina, salto de pagina e resumo mobile)"
+    ],
+    "ariaAttributes": [
+      "aria-label (nav raiz; botoes de primeira, anterior, proxima e ultima pagina; botoes de pagina; selects)",
+      "aria-current=\"page\" (botao da pagina atual)",
+      "aria-hidden=\"true\" (icones SVG e as reticencias)"
+    ],
+    "keyboardInteractions": [
+      "Nao ha handlers de teclado customizados: a navegacao usa <button> e <select> nativos (Tab, Enter/Espaco e setas dentro do select)."
+    ],
+    "notes": [
+      "Controles indisponiveis usam o atributo disabled nativo: primeira e anterior na primeira pagina, proxima e ultima na ultima pagina; disabled desabilita todos.",
+      "goToPage clampeia o destino entre 1 e o total de paginas e ignora a chamada quando disabled ou quando o destino e a pagina atual.",
+      "O rotulo do botao de pagina muda entre labels.page e labels.currentPage conforme a pagina atual.",
+      "O bloco .ds-pagination__mobile-summary esta sempre no DOM e so fica visivel via CSS abaixo de 640px.",
+      "O total de paginas vem de totalPages ou, na falta dele, de ceil(totalItems / pageSize); sem nenhum dos dois, assume 1."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Pagination/Pagination.test.tsx",
+    "unitCount": 7,
+    "a11yFile": null,
+    "a11yCount": null
+  },
+  "figmaReferences": [],
+  "pendencias": [
+    "Nenhum node-id do Figma e citado em comentarios do codigo do componente.",
+    "Nao existe arquivo Pagination.a11y.test.tsx no diretorio.",
+    "Nao foi possivel determinar a finalidade de --pagination-border-strong: e declarado no bloco raiz, mas nao aparece em nenhuma declaracao do CSS.",
+    "O resumo mobile (.ds-pagination__mobile-summary) esta sempre no DOM e fica exposto a leitores de tela mesmo no desktop; nao ha documentacao sobre esse comportamento."
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "total": 2193,
+  "materialSymbols": {
+    "quantidade": 2185,
+    "estilo": "outlined",
+    "peso": "300",
+    "convencaoNome": "snake_case do Material Symbols + sufixo \" [outlined]\"",
+    "porLetraInicial": {
+      "1": 16,
+      "2": 8,
+      "3": 9,
+      "4": 5,
+      "5": 4,
+      "6": 6,
+      "7": 3,
+      "8": 3,
+      "9": 3,
+      "a": 163,
+      "b": 125,
+      "c": 185,
+      "d": 115,
+      "e": 82,
+      "f": 145,
+      "g": 50,
+      "h": 79,
+      "i": 31,
+      "j": 5,
+      "k": 29,
+      "l": 94,
+      "m": 105,
+      "n": 96,
+      "o": 21,
+      "p": 145,
+      "q": 10,
+      "r": 88,
+      "s": 293,
+      "t": 109,
+      "u": 19,
+      "v": 67,
+      "w": 64,
+      "y": 4,
+      "z": 4
+    }
+  },
+  "iconesAvulsos": {
+    "quantidade": 8,
+    "observacao": "Fora da convenção Material Symbols; criados para componentes específicos (Breadcrumb home, setas do Carousel, Radio, upload do File Upload). Estão inline no código React, não vêm de uma biblioteca de ícones.",
+    "itens": [
+      {
+        "nome": "arrow down",
+        "nodeId": "40000019:461"
+      },
+      {
+        "nome": "arrow left",
+        "nodeId": "40000022:1462"
+      },
+      {
+        "nome": "arrow right",
+        "nodeId": "40000022:1461"
+      },
+      {
+        "nome": "arrow up",
+        "nodeId": "40000019:462"
+      },
+      {
+        "nome": "home",
+        "nodeId": "40000019:7894"
+      },
+      {
+        "nome": "radio button checked",
+        "nodeId": "40000030:4069"
+      },
+      {
+        "nome": "radio circle",
+        "nodeId": "40000030:4080"
+      },
+      {
+        "nome": "upload",
+        "nodeId": "219:8049"
+      }
+    ]
+  },
+  "inconsistencias": [
+    {
+      "tipo": "valor de variante divergente",
+      "descricao": "A propriedade de peso grava \"300.svg\" em vez de \"300\"",
+      "quantidade": 135,
+      "impacto": "Quebra filtro/seleção por peso e polui o painel de propriedades no Figma",
+      "exemplos": [
+        "13mp [outlined]",
+        "19mp [outlined]",
+        "8k [outlined]",
+        "account_balance [outlined]",
+        "ad_units [outlined]",
+        "add_task [outlined]",
+        "add_to_drive [outlined]",
+        "add_to_photos [outlined]"
+      ]
+    },
+    {
+      "tipo": "itens fora da convenção",
+      "descricao": "Ícones sem sufixo de estilo publicados junto da biblioteca Material Symbols",
+      "quantidade": 8,
+      "impacto": "Aparecem no mesmo catálogo sem seguir a nomenclatura; dificultam a busca",
+      "exemplos": [
+        "arrow down",
+        "arrow left",
+        "arrow right",
+        "arrow up",
+        "home",
+        "radio button checked",
+        "radio circle",
+        "upload"
+      ]
+    },
+    {
+      "tipo": "licença não declarada",
+      "descricao": "A biblioteca é Material Symbols, mas nenhuma nota de licença foi encontrada no Figma nem no repositório",
+      "quantidade": null,
+      "impacto": "A página /fundamentos/iconografia e /recursos/downloads precisam declarar a licença",
+      "exemplos": []
+    }
+  ],
+  "pendencias": [
+    "Confirmar licença dos ícones (Material Symbols é Apache 2.0, mas precisa de confirmação formal do time)",
+    "Definir se os 8 ícones avulsos entram no catálogo oficial ou são substituídos por equivalentes Material Symbols",
+    "Não há export de ícones em SVG no repositório: o download da página de iconografia dependerá de extração do Figma"
+  ]
+}

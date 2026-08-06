@@ -1,0 +1,920 @@
+{
+  "slug": "data-table",
+  "name": "DataTable",
+  "storybookTitle": "Web Components/Data Table",
+  "sourceDir": "packages/react/src/components/DataTable",
+  "exports": ["DataTable"],
+  "typeExports": [
+    "DataTableColumn",
+    "DataTableKey",
+    "DataTableLabels",
+    "DataTableProps",
+    "DataTableSelectionChange",
+    "DataTableSortDirection",
+    "DataTableSortValue",
+    "DataTableTheme"
+  ],
+  "oneLiner": "Data Table organiza colecoes densas de dados com leitura tabular, ordenacao, paginacao, selecao de linhas e conteudo expansivel.",
+  "docsDescription": "Data Table organiza colecoes densas de dados com leitura tabular, ordenacao, paginacao, selecao de linhas e conteudo expansivel.\n\nA API foi inspirada na experiencia do react-data-table-component, mas a implementacao e nativa deste Design System: sem dependencia externa, com tokens semanticos, tipografia Plus Jakarta Sans e CSS responsivo do projeto.\n\nUse quando a pessoa precisa comparar registros, ordenar atributos, selecionar itens em lote ou abrir detalhes sem sair do contexto. Evite para listas simples, cards editoriais ou conteudo que nao exige comparacao por colunas.\n\nBoas praticas:\n- Defina sempre um keyField estavel para selecao, expansao e paginacao.\n- Use selector para valores simples e cell para renderizacao customizada.\n- Forneca sortAccessor quando a celula renderiza moeda, badge, data formatada ou ReactNode.\n- Em mobile, a tabela passa a exibir linhas em formato empilhado com labels por campo; use hideBelow apenas para remover informacoes secundarias.\n- Se usar selecao controlada, mantenha selectedRowKeys sincronizado com onSelectedRowsChange.\n\nAcessibilidade:\n- Usa table semantica nativa, th com scope=\"col\" e aria-sort.\n- Checkboxes possuem labels acessiveis e estado indeterminate.\n- Linhas expansivas usam botoes com aria-expanded.\n- Estados de foco usam tokens de focus ring.",
+  "props": [
+    {
+      "name": "columns",
+      "type": "DataTableColumn<TData>[]",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Definicoes tipadas das colunas.",
+      "source": "ambos"
+    },
+    {
+      "name": "data",
+      "type": "TData[]",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Registros renderizados pela tabela.",
+      "source": "ambos"
+    },
+    {
+      "name": "keyField",
+      "type": "keyof TData | ((row: TData, rowIndex: number) => DataTableKey)",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Fonte da chave da linha. Sem keyField o componente usa row.id quando existir, caindo para o índice da linha.",
+      "source": "types.ts"
+    },
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Titulo opcional exibido acima da tabela.",
+      "source": "ambos"
+    },
+    {
+      "name": "actions",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Slot opcional para filtros, busca ou controles de tabela.",
+      "source": "ambos"
+    },
+    {
+      "name": "subHeader",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "theme",
+      "type": "DataTableTheme",
+      "values": ["default", "material", "rounded", "catppuccin", "crisp"],
+      "default": "'default'",
+      "required": false,
+      "description": "Tema visual tokenizado da tabela.",
+      "source": "ambos"
+    },
+    {
+      "name": "dense",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Reduz a altura das linhas.",
+      "source": "ambos"
+    },
+    {
+      "name": "striped",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Alterna fundo das linhas para leitura em tabelas densas.",
+      "source": "ambos"
+    },
+    {
+      "name": "highlightOnHover",
+      "type": "boolean",
+      "values": null,
+      "default": "true",
+      "required": false,
+      "description": "Aplica estado visual ao passar o ponteiro sobre linhas.",
+      "source": "ambos"
+    },
+    {
+      "name": "animateRows",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Ativa animacao de entrada nas linhas, respeitando prefers-reduced-motion.",
+      "source": "ambos"
+    },
+    {
+      "name": "persistTableHead",
+      "type": "boolean",
+      "values": null,
+      "default": "true",
+      "required": false,
+      "description": "Mantém o <thead> renderizado mesmo quando não há linhas na página atual.",
+      "source": "types.ts"
+    },
+    {
+      "name": "progressPending",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Renderiza a linha de carregamento (progressComponent ou labels.loading) no lugar dos dados e adiciona a classe ds-data-table--loading.",
+      "source": "types.ts"
+    },
+    {
+      "name": "progressComponent",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Conteúdo exibido durante progressPending. Sem valor, usa labels.loading ('Carregando dados').",
+      "source": "types.ts"
+    },
+    {
+      "name": "noDataComponent",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Conteúdo exibido quando não há linhas. Sem valor, usa labels.noData ('Nenhum dado encontrado').",
+      "source": "types.ts"
+    },
+    {
+      "name": "labels",
+      "type": "DataTableLabels",
+      "values": null,
+      "default": "defaultLabels (mesclado com o que for informado)",
+      "required": false,
+      "description": "Sobrescreve os textos acessíveis padrão (table, selectAllRows, selectRow, expandRow, collapseRow, sortColumn, rowsPerPage, paginationRange, noData, loading).",
+      "source": "types.ts"
+    },
+    {
+      "name": "sortServer",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Desliga a ordenação local; a ordem dos dados passa a ser responsabilidade do servidor.",
+      "source": "types.ts"
+    },
+    {
+      "name": "sortColumnId",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Coluna ordenada em modo controlado.",
+      "source": "types.ts"
+    },
+    {
+      "name": "sortDirection",
+      "type": "DataTableSortDirection",
+      "values": ["asc", "desc"],
+      "default": null,
+      "required": false,
+      "description": "Direção da ordenação em modo controlado.",
+      "source": "types.ts"
+    },
+    {
+      "name": "defaultSortColumnId",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Coluna ordenada inicialmente no modo não controlado.",
+      "source": "types.ts"
+    },
+    {
+      "name": "defaultSortDirection",
+      "type": "DataTableSortDirection",
+      "values": ["asc", "desc"],
+      "default": "'asc'",
+      "required": false,
+      "description": "Direção inicial da ordenação no modo não controlado.",
+      "source": "types.ts"
+    },
+    {
+      "name": "onSort",
+      "type": "(column: DataTableColumn<TData>, direction: DataTableSortDirection) => void",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "pagination",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Habilita paginacao interna.",
+      "source": "ambos"
+    },
+    {
+      "name": "paginationServer",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Desliga o fatiamento local das linhas (o servidor entrega apenas a página atual).",
+      "source": "types.ts"
+    },
+    {
+      "name": "paginationPage",
+      "type": "number",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Página atual em modo controlado. Quando informado, o estado interno de página não é atualizado.",
+      "source": "types.ts"
+    },
+    {
+      "name": "paginationPerPage",
+      "type": "number",
+      "values": null,
+      "default": "10 (usado como estado inicial quando a prop não é informada)",
+      "required": false,
+      "description": "Quantidade de linhas por página. Quando informado, controla o tamanho de página.",
+      "source": "types.ts"
+    },
+    {
+      "name": "paginationRowsPerPageOptions",
+      "type": "number[]",
+      "values": null,
+      "default": "[5, 10, 20, 50]",
+      "required": false,
+      "description": "Opções de linhas por página repassadas ao componente Pagination.",
+      "source": "types.ts"
+    },
+    {
+      "name": "paginationTotalRows",
+      "type": "number",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Total de registros (necessário em paginação server-side). Sem valor, usa o total local ordenado.",
+      "source": "types.ts"
+    },
+    {
+      "name": "onChangePage",
+      "type": "(page: number) => void",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "onChangeRowsPerPage",
+      "type": "(rowsPerPage: number, page: number) => void",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "selectableRows",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Habilita checkbox de selecao por linha e select all visivel.",
+      "source": "ambos"
+    },
+    {
+      "name": "selectableRowDisabled",
+      "type": "(row: TData, rowIndex: number) => boolean",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Desabilita a seleção de linhas específicas (elas também ficam fora do select all).",
+      "source": "types.ts"
+    },
+    {
+      "name": "selectedRowKeys",
+      "type": "DataTableKey[]",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Seleção controlada. Quando informado, o estado interno de seleção não é atualizado.",
+      "source": "types.ts"
+    },
+    {
+      "name": "defaultSelectedRowKeys",
+      "type": "DataTableKey[]",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Seleção inicial no modo não controlado.",
+      "source": "types.ts"
+    },
+    {
+      "name": "clearSelectedRows",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Quando true e sem selectedRowKeys, a seleção exibida é esvaziada.",
+      "source": "types.ts"
+    },
+    {
+      "name": "onSelectedRowsChange",
+      "type": "(state: DataTableSelectionChange<TData>) => void",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "expandableRows",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Habilita coluna de expansao de linhas.",
+      "source": "ambos"
+    },
+    {
+      "name": "expandableRowsComponent",
+      "type": "(row: TData, rowIndex: number) => ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Renderiza o conteúdo da linha expandida.",
+      "source": "types.ts"
+    },
+    {
+      "name": "expandableRowDisabled",
+      "type": "(row: TData, rowIndex: number) => boolean",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Desabilita o botão de expansão de linhas específicas.",
+      "source": "types.ts"
+    },
+    {
+      "name": "expandedRowKeys",
+      "type": "DataTableKey[]",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Expansão controlada. Quando informado, o estado interno de expansão não é atualizado.",
+      "source": "types.ts"
+    },
+    {
+      "name": "defaultExpandedRowKeys",
+      "type": "DataTableKey[]",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Linhas expandidas inicialmente no modo não controlado.",
+      "source": "types.ts"
+    },
+    {
+      "name": "onRowExpandToggled",
+      "type": "(expanded: boolean, row: TData) => void",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "onRowClicked",
+      "type": "(row: TData, rowIndex: number) => void",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Herdada de HTMLAttributes<HTMLDivElement>; é concatenada às classes da raiz.",
+      "source": "types.ts"
+    },
+    {
+      "name": "style",
+      "type": "CSSProperties",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Herdada de HTMLAttributes<HTMLDivElement>; aplicada ao <div> raiz.",
+      "source": "types.ts"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onSort",
+      "signature": "(column: DataTableColumn<TData>, direction: DataTableSortDirection) => void",
+      "description": "Disparado ao clicar no botão de ordenação de uma coluna sortable, com a próxima direção. A ordenação interna só é atualizada quando sortColumnId/sortDirection não são informados; a página volta para 1 quando paginationPage não é controlado."
+    },
+    {
+      "name": "onChangePage",
+      "signature": "(page: number) => void",
+      "description": "Disparado pelo Pagination ao trocar de página; o estado interno só muda quando paginationPage não é informado."
+    },
+    {
+      "name": "onChangeRowsPerPage",
+      "signature": "(rowsPerPage: number, page: number) => void",
+      "description": "Disparado ao trocar o tamanho de página; sempre chamado com page = 1."
+    },
+    {
+      "name": "onSelectedRowsChange",
+      "signature": "(state: DataTableSelectionChange<TData>) => void",
+      "description": "Disparado a cada alteração de seleção com { allSelected, selectedCount, selectedRows, selectedRowKeys }."
+    },
+    {
+      "name": "onRowExpandToggled",
+      "signature": "(expanded: boolean, row: TData) => void",
+      "description": "Disparado ao alternar a expansão de uma linha, com o próximo estado."
+    },
+    {
+      "name": "onRowClicked",
+      "signature": "(row: TData, rowIndex: number) => void",
+      "description": "Disparado no clique de uma linha de dados. Cliques nos controles de seleção e expansão têm stopPropagation e não disparam este callback."
+    }
+  ],
+  "slots": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "description": "Renderizado em .ds-data-table__title dentro do toolbar."
+    },
+    {
+      "name": "actions",
+      "type": "ReactNode",
+      "description": "Renderizado em .ds-data-table__actions dentro do toolbar (filtros, busca, controles)."
+    },
+    {
+      "name": "subHeader",
+      "type": "ReactNode",
+      "description": "Renderizado em .ds-data-table__subheader dentro do toolbar."
+    },
+    {
+      "name": "progressComponent",
+      "type": "ReactNode",
+      "description": "Conteúdo da célula .ds-data-table__empty quando progressPending é true."
+    },
+    {
+      "name": "noDataComponent",
+      "type": "ReactNode",
+      "description": "Conteúdo da célula .ds-data-table__empty quando não há linhas."
+    },
+    {
+      "name": "expandableRowsComponent",
+      "type": "(row: TData, rowIndex: number) => ReactNode",
+      "description": "Render prop do conteúdo da linha expandida (.ds-data-table__expanded-cell)."
+    }
+  ],
+  "cssClasses": [
+    "ds-data-table",
+    "ds-data-table--theme-default",
+    "ds-data-table--theme-material",
+    "ds-data-table--theme-rounded",
+    "ds-data-table--theme-catppuccin",
+    "ds-data-table--theme-crisp",
+    "ds-data-table--dense",
+    "ds-data-table--striped",
+    "ds-data-table--highlight",
+    "ds-data-table--animated",
+    "ds-data-table--loading",
+    "ds-data-table__toolbar",
+    "ds-data-table__title",
+    "ds-data-table__actions",
+    "ds-data-table__subheader",
+    "ds-data-table__viewport",
+    "ds-data-table__table",
+    "ds-data-table__col",
+    "ds-data-table__col--control",
+    "ds-data-table__col--hide-sm",
+    "ds-data-table__col--hide-md",
+    "ds-data-table__col--hide-lg",
+    "ds-data-table__head",
+    "ds-data-table__row",
+    "ds-data-table__row--head",
+    "ds-data-table__control-cell",
+    "ds-data-table__cell",
+    "ds-data-table__cell--head",
+    "ds-data-table__cell--right",
+    "ds-data-table__cell--center",
+    "ds-data-table__cell--wrap",
+    "ds-data-table__cell--hide-sm",
+    "ds-data-table__cell--hide-md",
+    "ds-data-table__cell--hide-lg",
+    "ds-data-table__cell-label",
+    "ds-data-table__sort-button",
+    "ds-data-table__sort-icon",
+    "ds-data-table__body",
+    "ds-data-table__empty",
+    "ds-data-table__expand-button",
+    "ds-data-table__checkbox-shell",
+    "ds-data-table__checkbox",
+    "ds-data-table__expanded-row",
+    "ds-data-table__expanded-cell",
+    "ds-data-table__pagination"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--data-table-surface",
+      "value": "var(--ds-semantic-color-background-neutral-default)",
+      "comment": "Tema catppuccin usa var(--ds-semantic-color-background-brand-primary-subtle)."
+    },
+    {
+      "name": "--data-table-page",
+      "value": "var(--ds-semantic-color-background-neutral-surface)",
+      "comment": "Fundo do viewport no layout empilhado (max-width: 640px)."
+    },
+    {
+      "name": "--data-table-subtle",
+      "value": "var(--ds-semantic-color-background-neutral-subtle)",
+      "comment": "Linhas zebradas; tema catppuccin usa var(--ds-semantic-color-background-neutral-default)."
+    },
+    {
+      "name": "--data-table-hover",
+      "value": "var(--ds-primitive-color-neutral-alpha-4)",
+      "comment": null
+    },
+    {
+      "name": "--data-table-active",
+      "value": "var(--ds-primitive-color-neutral-alpha-8)",
+      "comment": null
+    },
+    {
+      "name": "--data-table-border",
+      "value": "var(--ds-semantic-color-border-neutral-subtle)",
+      "comment": "Tema catppuccin usa var(--ds-brand-color-utility-danger-red-200)."
+    },
+    {
+      "name": "--data-table-border-strong",
+      "value": "var(--ds-semantic-color-border-neutral-default)",
+      "comment": null
+    },
+    {
+      "name": "--data-table-foreground",
+      "value": "var(--ds-semantic-text-style-content-color-typography-secondary)",
+      "comment": null
+    },
+    {
+      "name": "--data-table-muted",
+      "value": "var(--ds-semantic-text-style-content-color-typography-tertiary)",
+      "comment": null
+    },
+    {
+      "name": "--data-table-disabled",
+      "value": "var(--ds-semantic-text-style-content-color-typography-disabled)",
+      "comment": null
+    },
+    {
+      "name": "--data-table-state-background",
+      "value": "var(--ds-semantic-color-background-neutral-soft-black)",
+      "comment": null
+    },
+    {
+      "name": "--data-table-state-background-hover",
+      "value": "var(--ds-semantic-text-style-content-color-typography-secondary)",
+      "comment": null
+    },
+    {
+      "name": "--data-table-state-foreground",
+      "value": "var(--ds-semantic-text-style-content-color-typography-inverse)",
+      "comment": null
+    },
+    {
+      "name": "--data-table-selected-background",
+      "value": "var(--ds-primitive-color-neutral-alpha-4)",
+      "comment": null
+    },
+    {
+      "name": "--data-table-accent",
+      "value": "var(--data-table-state-background)",
+      "comment": "Declarada mas não consumida por nenhuma regra do arquivo."
+    },
+    {
+      "name": "--data-table-accent-hover",
+      "value": "var(--data-table-state-background-hover)",
+      "comment": "Declarada mas não consumida por nenhuma regra do arquivo."
+    },
+    {
+      "name": "--data-table-focus-ring",
+      "value": "var(--ds-component-focus-ring-color-ring)",
+      "comment": null
+    },
+    {
+      "name": "--data-table-radius",
+      "value": "var(--ds-primitive-border-radius-radius-lg)",
+      "comment": "material: var(--ds-component-table-root-border-radius); rounded: radius-lg; crisp: radius-none."
+    },
+    {
+      "name": "--data-table-shadow",
+      "value": "var(--ds-semantic-shadow-floating)",
+      "comment": "material: var(--ds-semantic-shadow-raised); crisp: none."
+    },
+    {
+      "name": "--data-table-row-block-size",
+      "value": "calc(var(--ds-primitive-spacing-64) + var(--ds-primitive-spacing-8))",
+      "comment": "crisp: var(--ds-primitive-spacing-64); dense: calc(spacing-48 + spacing-8)."
+    },
+    {
+      "name": "--data-table-header-block-size",
+      "value": "var(--ds-primitive-spacing-64)",
+      "comment": "dense: calc(spacing-48 + spacing-8)."
+    },
+    {
+      "name": "--data-table-control-size",
+      "value": "var(--ds-primitive-spacing-40)",
+      "comment": "rounded: var(--ds-primitive-spacing-48); volta a spacing-40 em @media (max-width: 640px)."
+    },
+    {
+      "name": "--data-table-control-cell-size",
+      "value": "var(--ds-primitive-spacing-64)",
+      "comment": "calc(spacing-48 + spacing-8) em max-width 920px e var(--ds-primitive-spacing-48) em max-width 640px."
+    },
+    {
+      "name": "--data-table-cell-padding-inline",
+      "value": "var(--ds-primitive-spacing-24)",
+      "comment": "crisp: spacing-16; spacing-16 em max-width 920px e spacing-12 em max-width 640px."
+    },
+    {
+      "name": "--data-table-cell-padding-block",
+      "value": "var(--ds-primitive-spacing-16)",
+      "comment": "dense: var(--ds-primitive-spacing-12)."
+    },
+    {
+      "name": "--data-table-column-min-width",
+      "value": "calc(var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-80))",
+      "comment": "calc(spacing-128 + spacing-64) em max-width 920px e calc(spacing-128 + spacing-48) em max-width 720px. Também é o fallback de minWidth das colunas em getColumnStyle/getColumnGroupStyle."
+    },
+    {
+      "name": "--data-table-row-index",
+      "value": "0",
+      "comment": "Não é declarada no CSS: cada <tr> recebe style={{ '--data-table-row-index': visibleIndex }} no TSX e o CSS consome em animation-delay: calc(var(--data-table-row-index, 0) * 32ms). O 0 é apenas o fallback."
+    },
+    {
+      "name": "--button-background",
+      "value": "transparent",
+      "comment": "Alias do Button aplicado a .ds-data-table__sort-button e .ds-data-table__expand-button."
+    },
+    {
+      "name": "--button-background-hover",
+      "value": "var(--data-table-hover)",
+      "comment": "Alias do Button nos botões de ordenar e expandir."
+    },
+    {
+      "name": "--button-background-active",
+      "value": "var(--data-table-active)",
+      "comment": "Alias do Button nos botões de ordenar e expandir."
+    },
+    {
+      "name": "--button-foreground",
+      "value": "inherit",
+      "comment": "inherit no sort-button; var(--data-table-foreground) no expand-button."
+    },
+    {
+      "name": "--button-border-color",
+      "value": "transparent",
+      "comment": "Alias do Button nos botões de ordenar e expandir."
+    },
+    {
+      "name": "--button-focus-ring",
+      "value": "var(--data-table-focus-ring)",
+      "comment": "Alias do Button nos botões de ordenar e expandir."
+    },
+    {
+      "name": "--button-min-block-size",
+      "value": "var(--ds-primitive-spacing-32)",
+      "comment": "spacing-32 no sort-button; var(--data-table-control-size) no expand-button."
+    },
+    {
+      "name": "--button-padding-inline",
+      "value": "var(--ds-primitive-spacing-0)",
+      "comment": "Alias do Button nos botões de ordenar e expandir."
+    },
+    {
+      "name": "--button-icon-size",
+      "value": "var(--ds-primitive-spacing-20)",
+      "comment": "Alias do Button nos botões de ordenar e expandir."
+    },
+    {
+      "name": "--checkbox-control-size",
+      "value": "var(--ds-primitive-spacing-24)",
+      "comment": "Alias do Checkbox em .ds-data-table__checkbox."
+    },
+    {
+      "name": "--checkbox-control-radius",
+      "value": "var(--ds-primitive-border-radius-radius-sm)",
+      "comment": "Alias do Checkbox."
+    },
+    {
+      "name": "--checkbox-touch-size",
+      "value": "var(--data-table-control-size)",
+      "comment": "Alias do Checkbox."
+    },
+    {
+      "name": "--checkbox-gap",
+      "value": "var(--ds-primitive-spacing-0)",
+      "comment": "Alias do Checkbox."
+    },
+    {
+      "name": "--checkbox-border-color",
+      "value": "var(--data-table-border-strong)",
+      "comment": "Alias do Checkbox."
+    },
+    {
+      "name": "--checkbox-background",
+      "value": "var(--data-table-surface)",
+      "comment": "Alias do Checkbox."
+    },
+    {
+      "name": "--checkbox-selected-background",
+      "value": "var(--data-table-state-background)",
+      "comment": "Alias do Checkbox."
+    },
+    {
+      "name": "--checkbox-selected-color",
+      "value": "var(--data-table-state-foreground)",
+      "comment": "Alias do Checkbox."
+    },
+    {
+      "name": "--checkbox-hover-border-color",
+      "value": "var(--data-table-state-background-hover)",
+      "comment": "Alias do Checkbox."
+    },
+    {
+      "name": "--checkbox-focus-ring",
+      "value": "var(--data-table-focus-ring)",
+      "comment": "Alias do Checkbox."
+    }
+  ],
+  "tokensUsed": [
+    "--ds-brand-color-utility-danger-red-200",
+    "--ds-component-focus-ring-color-ring",
+    "--ds-component-table-cell-typography-font-size",
+    "--ds-component-table-root-border-radius",
+    "--ds-component-table-root-border-width",
+    "--ds-component-table-row-border-width",
+    "--ds-primitive-border-radius-radius-lg",
+    "--ds-primitive-border-radius-radius-md",
+    "--ds-primitive-border-radius-radius-none",
+    "--ds-primitive-border-radius-radius-sm",
+    "--ds-primitive-border-width-border-sm",
+    "--ds-primitive-color-neutral-alpha-4",
+    "--ds-primitive-color-neutral-alpha-8",
+    "--ds-primitive-spacing-0",
+    "--ds-primitive-spacing-10",
+    "--ds-primitive-spacing-12",
+    "--ds-primitive-spacing-128",
+    "--ds-primitive-spacing-16",
+    "--ds-primitive-spacing-2",
+    "--ds-primitive-spacing-20",
+    "--ds-primitive-spacing-24",
+    "--ds-primitive-spacing-32",
+    "--ds-primitive-spacing-4",
+    "--ds-primitive-spacing-40",
+    "--ds-primitive-spacing-48",
+    "--ds-primitive-spacing-64",
+    "--ds-primitive-spacing-8",
+    "--ds-primitive-spacing-80",
+    "--ds-primitive-spacing-96",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-typography-font-size-12",
+    "--ds-primitive-typography-font-size-14",
+    "--ds-primitive-typography-font-size-16",
+    "--ds-primitive-typography-font-size-18",
+    "--ds-primitive-typography-font-weight-bold",
+    "--ds-primitive-typography-font-weight-medium",
+    "--ds-primitive-typography-font-weight-regular",
+    "--ds-primitive-typography-line-height-16",
+    "--ds-primitive-typography-line-height-20",
+    "--ds-primitive-typography-line-height-24",
+    "--ds-semantic-color-background-brand-primary-subtle",
+    "--ds-semantic-color-background-neutral-default",
+    "--ds-semantic-color-background-neutral-soft-black",
+    "--ds-semantic-color-background-neutral-subtle",
+    "--ds-semantic-color-background-neutral-surface",
+    "--ds-semantic-color-border-neutral-default",
+    "--ds-semantic-color-border-neutral-subtle",
+    "--ds-semantic-shadow-floating",
+    "--ds-semantic-shadow-raised",
+    "--ds-semantic-text-style-content-color-typography-disabled",
+    "--ds-semantic-text-style-content-color-typography-inverse",
+    "--ds-semantic-text-style-content-color-typography-secondary",
+    "--ds-semantic-text-style-content-color-typography-tertiary"
+  ],
+  "stories": [
+    {
+      "id": "web-components-data-table--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-data-table--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-data-table--default&viewMode=story"
+    },
+    {
+      "id": "web-components-data-table--interactive",
+      "name": "Interactive",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-data-table--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-data-table--interactive&viewMode=story"
+    },
+    {
+      "id": "web-components-data-table--loading-and-empty",
+      "name": "Loading And Empty",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-data-table--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-data-table--loading-and-empty&viewMode=story"
+    }
+  ],
+  "variants": [
+    {
+      "prop": "theme",
+      "values": ["default", "material", "rounded", "catppuccin", "crisp"]
+    },
+    {
+      "prop": "dense",
+      "values": ["true", "false"]
+    },
+    {
+      "prop": "striped",
+      "values": ["true", "false"]
+    }
+  ],
+  "states": ["hover", "focus-visible", "disabled", "selected", "loading", "empty", "expanded"],
+  "responsive": [
+    {
+      "query": "@media (prefers-reduced-motion: reduce)",
+      "effect": "Desliga a animação de entrada das linhas (.ds-data-table--animated) e a transition do controle do Checkbox."
+    },
+    {
+      "query": "@media (max-width: 920px)",
+      "effect": "Reduz --data-table-cell-padding-inline para spacing-16, --data-table-column-min-width para calc(spacing-128 + spacing-64) e --data-table-control-cell-size para calc(spacing-48 + spacing-8); esconde colunas com hideBelow=\"lg\" (display: none nas células e visibility: collapse no col)."
+    },
+    {
+      "query": "@media (max-width: 720px)",
+      "effect": "Reduz --data-table-column-min-width para calc(spacing-128 + spacing-48), o padding do toolbar para spacing-16 e estica a paginação (justify-content: stretch); esconde colunas com hideBelow=\"md\"."
+    },
+    {
+      "query": "@media (max-width: 640px)",
+      "effect": "Layout empilhado: table/head/body/row/cell viram display: block, o colgroup e o thead ficam visualmente ocultos (clip), o body vira grid de cards com borda e radius, cada célula exibe o rótulo via ::before com content: attr(data-label), alinhamentos right/center voltam para start, colunas com hideBelow sm/md/lg são escondidas e a linha expandida vira um bloco separado."
+    }
+  ],
+  "accessibility": {
+    "roles": ["table", "row", "columnheader", "cell", "button", "checkbox"],
+    "ariaAttributes": [
+      "aria-label",
+      "aria-sort",
+      "aria-selected",
+      "aria-expanded",
+      "aria-controls",
+      "aria-hidden",
+      "aria-disabled"
+    ],
+    "keyboardInteractions": [],
+    "notes": [
+      "A <table> recebe aria-label de labels.table (default 'Tabela de dados').",
+      "Cabeçalhos ordenáveis usam <th scope=\"col\"> com aria-sort ascending/descending apenas na coluna ativa; o botão interno recebe ariaLabel de labels.sortColumn(nome, direção).",
+      "A coluna de controle de expansão no cabeçalho é um <th aria-label=\"Expandir\"> sem conteúdo.",
+      "O botão de expandir recebe aria-expanded, aria-controls apontando para o id da célula expandida (ds-data-table-expanded-<chave>) e ariaLabel de labels.expandRow/collapseRow.",
+      "Linhas com selectableRows recebem aria-selected refletindo a seleção.",
+      "Os checkboxes usam o componente Checkbox do DS com label acessível (labels.selectAllRows / labels.selectRow) visualmente oculto via .ds-data-table__checkbox .ds-checkbox__content; o select all usa indeterminate quando a seleção é parcial.",
+      "Os SVGs de ordenação e chevron têm aria-hidden=\"true\".",
+      "Foco: os botões de ordenar e expandir usam o focus ring do Button com outline-offset de --ds-primitive-spacing-2 e --button-focus-ring apontando para --data-table-focus-ring.",
+      "Em telas ≤ 640px o <thead> é escondido visualmente (mas permanece no DOM) e cada célula mostra o rótulo da coluna via data-label.",
+      "O componente não implementa navegação por teclado própria (sem grid navigation); depende dos elementos nativos e dos componentes Button/Checkbox/Pagination."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/DataTable/DataTable.test.tsx",
+    "unitCount": 5,
+    "a11yFile": null,
+    "a11yCount": null
+  },
+  "figmaReferences": [],
+  "pendencias": [
+    "Nenhum node-id do Figma é citado no código do DataTable.",
+    "Não existe arquivo .a11y.test.tsx para o DataTable.",
+    "A classe ds-data-table--loading é aplicada quando progressPending é true, mas não há nenhuma regra para ela em DataTable.styles.css.",
+    "As custom properties --data-table-accent e --data-table-accent-hover são declaradas mas não são consumidas em nenhuma regra do arquivo.",
+    "O clique em qualquer célula dispara onRowClicked (o <tr> inteiro é clicável) sem que a linha seja focável por teclado — não há equivalente de teclado para onRowClicked.",
+    "A prop title recebe ReactNode em types.ts, mas o argType a declara como control 'text'; o comportamento com nós complexos não está documentado.",
+    "As formas de DataTableColumn, DataTableLabels e DataTableSelectionChange não cabem neste schema de props; a referência completa está em packages/react/src/components/DataTable/DataTable.types.ts.",
+    "O tema 'catppuccin' usa --ds-brand-color-utility-danger-red-200 como cor de borda; não há comentário no código explicando essa escolha.",
+    "Os nomes dos temas ('material', 'rounded', 'catppuccin', 'crisp') não correspondem a nenhuma nomenclatura do Figma documentada no código."
+  ]
+}

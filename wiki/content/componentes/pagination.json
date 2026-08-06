@@ -1,0 +1,181 @@
+{
+  "slug": "pagination",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Navegação",
+  "resumo": "A Pagination quebra listas longas em páginas numeradas. Ela mostra em que página a pessoa está e oferece controles para ir à anterior, à próxima, às pontas ou saltar direto para uma página.",
+  "quandoUsar": [
+    "Dividir o resultado de uma consulta de protocolos quando a lista passa do que cabe na tela e a pessoa precisa saber onde parou.",
+    "Paginar a tabela de horários disponíveis em uma unidade de atendimento, mantendo o filtro aplicado.",
+    "Deixar a pessoa escolher quantos resultados vê por vez, em telas de acompanhamento com muitos registros.",
+    "Mostrar a faixa de resultados exibidos e o total, quando o tamanho do resultado ajuda a decidir se vale refinar a busca.",
+    "Permitir salto direto para uma página quando o resultado tem dezenas de páginas e navegar de uma em uma seria inviável."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Quando o fluxo é linear e tem etapas nomeadas, como um cadastro em quatro passos.",
+      "alternativa": "stepper"
+    },
+    {
+      "texto": "Quando a pessoa alterna entre visões do mesmo conteúdo, como \"Em análise\" e \"Concluídos\".",
+      "alternativa": "tabs"
+    },
+    {
+      "texto": "Quando a lista é curta e cabe inteira na tela, sem necessidade de quebrar em páginas.",
+      "alternativa": "list-item"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Área de navegação",
+      "descricao": "Elemento de navegação que envolve todo o conjunto e tem rótulo acessível próprio."
+    },
+    {
+      "numero": 2,
+      "parte": "Bloco de metadados",
+      "descricao": "Faixa opcional que reúne a faixa de resultados, o seletor de resultados por página e o seletor de salto direto."
+    },
+    {
+      "numero": 3,
+      "parte": "Faixa de resultados",
+      "descricao": "Texto que informa quais resultados estão sendo exibidos e o total, no formato início, fim e total."
+    },
+    {
+      "numero": 4,
+      "parte": "Seletores",
+      "descricao": "Campos de seleção nativos para escolher quantos resultados aparecem por página e para pular direto a uma página."
+    },
+    {
+      "numero": 5,
+      "parte": "Lista de páginas",
+      "descricao": "Lista ordenada com os controles de navegação e os números de página."
+    },
+    {
+      "numero": 6,
+      "parte": "Controles de ponta",
+      "descricao": "Botões de primeira e última página, opcionais, desligados automaticamente quando a pessoa já está no extremo."
+    },
+    {
+      "numero": 7,
+      "parte": "Controles de anterior e próxima",
+      "descricao": "Botões de navegação sequencial, também desligados nos extremos da lista."
+    },
+    {
+      "numero": 8,
+      "parte": "Números de página",
+      "descricao": "Botões numerados, com a página atual marcada em fundo cheio e sem clique."
+    },
+    {
+      "numero": 9,
+      "parte": "Reticências",
+      "descricao": "Marca visual que indica o trecho de páginas omitido entre as pontas e a vizinhança da página atual."
+    },
+    {
+      "numero": 10,
+      "parte": "Resumo para telas pequenas",
+      "descricao": "Bloco com o texto de página atual e total, mais um seletor de salto, que substitui os números no celular."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "Abaixo de 720px o conjunto vira coluna: os metadados ocupam a largura toda e a navegação fica centralizada. Abaixo de 640px a área de toque dos botões cresce, os controles de primeira e última página, as reticências e os números que não são a página atual desaparecem, e entra o resumo com o texto de posição e o seletor de salto. Abaixo de 420px o espaçamento diminui e a tipografia dos controles é fixada, para nada transbordar na horizontal.",
+  "dosDonts": [
+    {
+      "faca": "Informe sempre o total, seja o total de páginas já calculado, seja o total de itens junto com o tamanho da página.",
+      "naoFaca": "Renderizar o componente apenas com a página atual.",
+      "porque": "Sem nenhum total, o componente assume que existe uma única página. A navegação aparece toda desligada e a pessoa conclui que o serviço está com defeito."
+    },
+    {
+      "faca": "Ligue apenas os metadados que ajudam na decisão daquela tela.",
+      "naoFaca": "Ligar faixa de resultados, seletor de tamanho e salto direto ao mesmo tempo em uma lista de duas páginas.",
+      "porque": "Abaixo de 720px o bloco de metadados ocupa a largura inteira e empurra a navegação para baixo. Três controles para poucos resultados viram ruído."
+    },
+    {
+      "faca": "Desabilite o componente enquanto a nova página está carregando.",
+      "naoFaca": "Deixar os controles ativos durante o carregamento.",
+      "porque": "Cliques repetidos disparam várias mudanças de página seguidas. A pessoa perde a referência de onde está e pode ver o resultado de uma requisição antiga."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Os rótulos já vêm em português no componente (\"Primeira página\", \"Página anterior\", \"Próxima página\", \"Última página\"). Só personalize se o produto usar outra palavra para o que está sendo paginado.",
+    "Ao personalizar a faixa de resultados, mantenha a ordem início, fim e total. Trocar a ordem quebra a leitura de quem já conhece o padrão em outras telas do Estado.",
+    "O rótulo da página atual precisa dizer que ela é a atual, e não apenas repetir o número. É esse texto que o leitor de tela anuncia para dar a posição.",
+    "Escreva \"Resultados por página\" do mesmo jeito em todas as telas do serviço. Variar o rótulo entre páginas faz a pessoa reaprender o controle a cada uso.",
+    "Não use os rótulos para explicar o resultado da busca. Contagem, filtro e mensagem de lista vazia pertencem à lista, não à paginação."
+  ],
+  "hierarquia": [
+    "A paginação fica logo abaixo da lista ou da tabela que ela controla, sem outro bloco de conteúdo no meio.",
+    "A página atual é o único elemento com fundo cheio; os demais números são texto e os controles são ícones.",
+    "O bloco de metadados é apoio. A lista de páginas é a ação principal e deve permanecer visível em qualquer largura.",
+    "No celular os números desaparecem e sobram a página atual, anterior, próxima e o salto direto. Desenhe a tela contando com essa versão reduzida."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Data Table",
+      "slug": "data-table",
+      "relacao": "Em consultas tabulares, a paginação fica abaixo da Data Table e controla o conjunto de linhas exibido."
+    },
+    {
+      "componente": "List Item",
+      "slug": "list-item",
+      "relacao": "Em listas de resultados montadas com List Item, a paginação fecha o bloco e mantém a mesma largura da lista."
+    },
+    {
+      "componente": "Card",
+      "slug": "card",
+      "relacao": "Quando os resultados aparecem em Cards, a paginação vai abaixo da grade e nunca dentro de um card."
+    },
+    {
+      "componente": "Dropdown",
+      "slug": "dropdown",
+      "relacao": "Os seletores de resultados por página e de salto direto já fazem parte da Pagination e usam campos de seleção nativos. Não substitua por Dropdown, para o comportamento no celular seguir o mesmo padrão."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Consulta de protocolos abertos",
+      "contexto": "A pessoa consultou os pedidos que abriu no ano e recebeu mais resultados do que cabe na tela.",
+      "comoFica": "A lista mostra vinte protocolos por página. Abaixo dela, a paginação exibe a faixa de resultados à esquerda e os números à direita, com a página atual em fundo cheio. Como são poucas páginas, os controles de primeira e última ficam ligados e o salto direto fica desligado. No celular, sobram a página atual, anterior e próxima."
+    },
+    {
+      "titulo": "Tabela de horários disponíveis para agendamento",
+      "contexto": "A pessoa escolheu a unidade e o serviço, e a tabela devolveu dezenas de páginas de horários.",
+      "comoFica": "Abaixo da tabela, a paginação liga a faixa de resultados, o seletor de resultados por página e o salto direto, porque percorrer as páginas de uma em uma seria inviável. Enquanto a nova página carrega, o componente fica desabilitado e volta ao normal quando os horários chegam."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Não tratar a mudança de página.",
+      "consequencia": "Os botões continuam clicáveis e o foco se move, mas a lista não muda. A pessoa clica várias vezes e conclui que o serviço travou.",
+      "correcao": "Trate o retorno de mudança de página e atualize a página atual passada ao componente."
+    },
+    {
+      "erro": "Exibir o seletor de resultados por página sem tratar a mudança de tamanho.",
+      "consequencia": "A pessoa troca de vinte para cinquenta resultados, o campo mostra o novo valor e a lista continua igual.",
+      "correcao": "Trate o retorno de mudança de tamanho, refaça a consulta e volte para a primeira página."
+    },
+    {
+      "erro": "Esconder os controles de primeira e última página em um resultado com dezenas de páginas, sem ligar o salto direto.",
+      "consequencia": "Sobram apenas anterior e próxima. Chegar ao fim da lista exige dezenas de cliques e, no celular, não há outro caminho.",
+      "correcao": "Mantenha os controles de ponta ligados ou ative o salto direto."
+    },
+    {
+      "erro": "Passar valores altos para a quantidade de páginas vizinhas ou de páginas fixas nas pontas.",
+      "consequencia": "O componente limita esses valores internamente. Números maiores são ignorados sem aviso e o desenho continua igual ao anterior.",
+      "correcao": "Trabalhe dentro dos limites aceitos pelo componente e valide o resultado na tela antes de publicar."
+    }
+  ],
+  "notasImplementacao": [
+    "O total de páginas vem do total de páginas informado ou, na falta dele, do total de itens dividido pelo tamanho da página. Sem nenhum dos dois, o componente assume uma única página.",
+    "O destino de navegação é limitado ao intervalo válido e a mudança de página não é disparada quando o componente está desabilitado nem quando o destino é a página atual.",
+    "Os controles indisponíveis usam o atributo nativo de desabilitado: primeira e anterior na primeira página, próxima e última na última.",
+    "Não há atalhos de teclado próprios: a navegação usa botões e campos de seleção nativos.",
+    "O bloco de resumo para telas pequenas fica sempre no HTML e só é escondido por CSS acima de 640px, o que significa que ele continua exposto a leitores de tela no desktop.",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual."
+  ],
+  "pendentes": [
+    "O campo de tamanhos ficou vazio porque o componente não expõe prop de tamanho: a área de toque muda apenas por largura de tela.",
+    "O resumo para telas pequenas permanece no HTML no desktop e pode ser anunciado duas vezes por leitores de tela. Não há decisão registrada sobre como tratar isso.",
+    "O código não cita nenhum node do Figma, então não foi possível apontar o frame de origem deste componente."
+  ]
+}

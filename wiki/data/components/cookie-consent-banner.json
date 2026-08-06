@@ -1,0 +1,462 @@
+{
+  "slug": "cookie-consent-banner",
+  "name": "CookieConsentBanner",
+  "storybookTitle": "Web Components/Cookie Consent Banner",
+  "sourceDir": "packages/react/src/components/CookieConsentBanner",
+  "exports": ["CookieConsentBanner"],
+  "typeExports": ["CookieConsentBannerPosition", "CookieConsentBannerProps"],
+  "oneLiner": "O Cookie Consent Banner comunica o uso de cookies e oferece acoes claras para aceitar todos os cookies ou gerenciar preferencias.",
+  "docsDescription": "O Cookie Consent Banner comunica o uso de cookies e oferece acoes claras para aceitar todos os cookies ou gerenciar preferencias.\n\nUse em paginas publicas, portais e produtos digitais que precisam coletar consentimento de cookies de forma objetiva, responsiva e acessivel.\n\nNao use como alerta generico, toast temporario, modal de confirmacao ou substituto para uma central completa de preferencias de privacidade.\n\nAnatomia:\n- Card fixo responsivo.\n- Icone de cookie em Material Symbols.\n- Titulo curto e direto.\n- Mensagem explicativa com link para politica de cookies.\n- CTA primario \"Permitir todos\" usando Button.\n- CTA secundario \"Gerenciar cookies\" usando Button com tratamento neutro.\n\nResponsividade:\nNo desktop, o banner usa composicao horizontal com icone ao lado do conteudo. Em telas menores, o layout empilha icone, texto e acoes, preservando leitura, quebra de linha e area minima de toque.\n\nTokens:\nCores, superficie, borda, radius, sombra, espacamentos, tipografia, foco e estados usam variaveis CSS dos tokens do Figma. O CTA secundario usa o componente Button existente com aliases locais para uma aparencia neutra.\n\nAcessibilidade:\n- A raiz usa section com role region e nome acessivel.\n- O link de politica possui foco visivel.\n- CTAs sao componentes Button do Design System.\n- O banner pode ser controlado por isOpen/onOpenChange ou usado de forma nao controlada com defaultOpen.",
+  "props": [
+    {
+      "name": "allowAllLabel",
+      "type": "string",
+      "values": null,
+      "default": "'Permitir todos'",
+      "required": false,
+      "description": "Texto do CTA de aceite total.",
+      "source": "ambos"
+    },
+    {
+      "name": "ariaLabel",
+      "type": "string",
+      "values": null,
+      "default": "'Aviso de consentimento de cookies'",
+      "required": false,
+      "description": "Nome acessivel da regiao do banner.",
+      "source": "ambos"
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Conteudo customizado da mensagem. Quando ausente, usa texto padrao em portugues.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "closeOnAllowAll",
+      "type": "boolean",
+      "values": null,
+      "default": "true",
+      "required": false,
+      "description": "Fecha o banner automaticamente apos clicar em Permitir todos.",
+      "source": "ambos"
+    },
+    {
+      "name": "closeOnManageCookies",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Fecha o banner automaticamente apos clicar em Gerenciar cookies.",
+      "source": "ambos"
+    },
+    {
+      "name": "defaultOpen",
+      "type": "boolean",
+      "values": null,
+      "default": "true",
+      "required": false,
+      "description": "Estado inicial quando o componente nao e controlado.",
+      "source": "ambos"
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Icone customizado opcional.",
+      "source": "ambos"
+    },
+    {
+      "name": "isOpen",
+      "type": "boolean",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Controla a visibilidade do banner.",
+      "source": "ambos"
+    },
+    {
+      "name": "manageCookiesHref",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Href opcional para renderizar o CTA de gerenciamento como link.",
+      "source": "ambos"
+    },
+    {
+      "name": "manageCookiesLabel",
+      "type": "string",
+      "values": null,
+      "default": "'Gerenciar cookies'",
+      "required": false,
+      "description": "Texto do CTA de gerenciamento.",
+      "source": "ambos"
+    },
+    {
+      "name": "onAllowAll",
+      "type": "MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "onManageCookies",
+      "type": "MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "onOpenChange",
+      "type": "(isOpen: boolean) => void",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": null,
+      "source": "types.ts"
+    },
+    {
+      "name": "policyHref",
+      "type": "string",
+      "values": null,
+      "default": "'#politica-de-cookies'",
+      "required": false,
+      "description": "URL da politica de cookies.",
+      "source": "ambos"
+    },
+    {
+      "name": "policyLabel",
+      "type": "string",
+      "values": null,
+      "default": "'Política de Cookies'",
+      "required": false,
+      "description": "Texto do link da politica.",
+      "source": "ambos"
+    },
+    {
+      "name": "position",
+      "type": "CookieConsentBannerPosition",
+      "values": ["bottom", "bottom-left", "bottom-right"],
+      "default": "'bottom'",
+      "required": false,
+      "description": "Posicionamento fixo do banner.",
+      "source": "ambos"
+    },
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "values": null,
+      "default": "'Estamos usando cookies para melhorar sua experiência!'",
+      "required": false,
+      "description": "Titulo principal do banner.",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onAllowAll",
+      "signature": "MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>",
+      "description": "Disparado no clique do CTA \"Permitir todos\". Se o evento não tiver preventDefault e closeOnAllowAll for true, o banner é fechado em seguida."
+    },
+    {
+      "name": "onManageCookies",
+      "signature": "MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>",
+      "description": "Disparado no clique do CTA \"Gerenciar cookies\". Se o evento não tiver preventDefault e closeOnManageCookies for true, o banner é fechado em seguida."
+    },
+    {
+      "name": "onOpenChange",
+      "signature": "(isOpen: boolean) => void",
+      "description": "Chamado com false sempre que o fechamento é solicitado (requestClose), tanto no modo controlado quanto no não controlado."
+    }
+  ],
+  "slots": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "description": "Substitui o parágrafo padrão dentro de .ds-cookie-consent__description (que inclui o link para a política de cookies)."
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "description": "Substitui o ícone padrão (Material Symbols \"cookie\") dentro de .ds-cookie-consent__icon."
+    },
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "description": "Conteúdo do <h2> .ds-cookie-consent__title."
+    }
+  ],
+  "cssClasses": [
+    "ds-cookie-consent",
+    "ds-cookie-consent--position-bottom",
+    "ds-cookie-consent--position-bottom-left",
+    "ds-cookie-consent--position-bottom-right",
+    "ds-cookie-consent__material-symbol",
+    "ds-cookie-consent__icon",
+    "ds-cookie-consent__content",
+    "ds-cookie-consent__title",
+    "ds-cookie-consent__description",
+    "ds-cookie-consent__policy-link",
+    "ds-cookie-consent__actions",
+    "ds-cookie-consent__button",
+    "ds-cookie-consent__button--allow",
+    "ds-cookie-consent__button--manage"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--cookie-consent-surface",
+      "value": "var(--ds-semantic-color-background-neutral-default)",
+      "comment": null
+    },
+    {
+      "name": "--cookie-consent-page-overlay",
+      "value": "var(--ds-primitive-color-neutral-alpha-12)",
+      "comment": "Definida em .ds-cookie-consent, mas não consumida por nenhuma regra do próprio arquivo."
+    },
+    {
+      "name": "--cookie-consent-foreground",
+      "value": "var(--ds-semantic-text-style-content-color-typography-secondary)",
+      "comment": null
+    },
+    {
+      "name": "--cookie-consent-foreground-strong",
+      "value": "var(--ds-primitive-color-neutral-grey-900)",
+      "comment": null
+    },
+    {
+      "name": "--cookie-consent-muted",
+      "value": "var(--ds-semantic-text-style-content-color-typography-tertiary)",
+      "comment": null
+    },
+    {
+      "name": "--cookie-consent-border",
+      "value": "var(--ds-component-cookie-banner-color-border)",
+      "comment": null
+    },
+    {
+      "name": "--cookie-consent-focus-ring",
+      "value": "var(--ds-component-focus-ring-color-ring)",
+      "comment": null
+    },
+    {
+      "name": "--cookie-consent-shadow",
+      "value": "var(--ds-semantic-shadow-modal)",
+      "comment": null
+    },
+    {
+      "name": "--cookie-consent-manage-background",
+      "value": "var(--ds-semantic-color-background-neutral-disabled)",
+      "comment": null
+    },
+    {
+      "name": "--cookie-consent-manage-background-hover",
+      "value": "var(--ds-primitive-color-neutral-alpha-4)",
+      "comment": null
+    },
+    {
+      "name": "--cookie-consent-manage-background-active",
+      "value": "var(--ds-primitive-color-neutral-alpha-8)",
+      "comment": null
+    },
+    {
+      "name": "--cookie-consent-inset",
+      "value": "var(--ds-primitive-spacing-24)",
+      "comment": "Reduzida para var(--ds-component-cookie-banner-spacing-inset) em @media (max-width: 640px)."
+    },
+    {
+      "name": "--cookie-consent-icon-size",
+      "value": "var(--ds-primitive-spacing-64)",
+      "comment": "Mantida em 64 em @media (max-width: 900px) e reduzida para var(--ds-primitive-spacing-48) em @media (max-width: 640px)."
+    },
+    {
+      "name": "--cookie-consent-max-width",
+      "value": "calc(var(--ds-primitive-spacing-128) * 12)",
+      "comment": "Reduzida para calc(var(--ds-primitive-spacing-128) * 5) em @media (max-width: 900px)."
+    },
+    {
+      "name": "--button-min-block-size",
+      "value": "var(--ds-primitive-spacing-64)",
+      "comment": "Alias local aplicado a .ds-cookie-consent__button.ds-button; vira var(--ds-primitive-spacing-48) em @media (max-width: 640px)."
+    },
+    {
+      "name": "--button-padding-inline",
+      "value": "var(--ds-primitive-spacing-32)",
+      "comment": "Alias local do Button; vira var(--ds-primitive-spacing-20) em @media (max-width: 640px)."
+    },
+    {
+      "name": "--button-font-size",
+      "value": "var(--ds-primitive-typography-font-size-20)",
+      "comment": "Alias local do Button; vira var(--ds-primitive-typography-font-size-16) em @media (max-width: 640px)."
+    },
+    {
+      "name": "--button-line-height",
+      "value": "var(--ds-primitive-typography-line-height-28)",
+      "comment": "Alias local do Button; vira var(--ds-primitive-typography-line-height-24) em @media (max-width: 640px)."
+    },
+    {
+      "name": "--button-background",
+      "value": "var(--cookie-consent-manage-background)",
+      "comment": "Alias aplicado apenas em .ds-cookie-consent__button--manage.ds-button (aparência neutra do CTA secundário)."
+    },
+    {
+      "name": "--button-background-hover",
+      "value": "var(--cookie-consent-manage-background-hover)",
+      "comment": "Alias do CTA secundário."
+    },
+    {
+      "name": "--button-background-active",
+      "value": "var(--cookie-consent-manage-background-active)",
+      "comment": "Alias do CTA secundário."
+    },
+    {
+      "name": "--button-border-color",
+      "value": "var(--cookie-consent-manage-background)",
+      "comment": "Alias do CTA secundário."
+    },
+    {
+      "name": "--button-foreground",
+      "value": "var(--cookie-consent-foreground)",
+      "comment": "Alias do CTA secundário."
+    }
+  ],
+  "tokensUsed": [
+    "--ds-component-cookie-banner-border-radius",
+    "--ds-component-cookie-banner-color-border",
+    "--ds-component-cookie-banner-spacing-inset",
+    "--ds-component-focus-ring-color-ring",
+    "--ds-primitive-border-width-border-md",
+    "--ds-primitive-border-width-border-sm",
+    "--ds-primitive-color-neutral-alpha-12",
+    "--ds-primitive-color-neutral-alpha-4",
+    "--ds-primitive-color-neutral-alpha-8",
+    "--ds-primitive-color-neutral-grey-900",
+    "--ds-primitive-spacing-0",
+    "--ds-primitive-spacing-12",
+    "--ds-primitive-spacing-128",
+    "--ds-primitive-spacing-16",
+    "--ds-primitive-spacing-20",
+    "--ds-primitive-spacing-24",
+    "--ds-primitive-spacing-32",
+    "--ds-primitive-spacing-4",
+    "--ds-primitive-spacing-40",
+    "--ds-primitive-spacing-48",
+    "--ds-primitive-spacing-64",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-typography-font-size-16",
+    "--ds-primitive-typography-font-size-18",
+    "--ds-primitive-typography-font-size-20",
+    "--ds-primitive-typography-font-size-24",
+    "--ds-primitive-typography-font-size-28",
+    "--ds-primitive-typography-font-size-32",
+    "--ds-primitive-typography-font-size-38",
+    "--ds-primitive-typography-font-weight-bold",
+    "--ds-primitive-typography-font-weight-extra-bold",
+    "--ds-primitive-typography-font-weight-semi-bold",
+    "--ds-primitive-typography-line-height-24",
+    "--ds-primitive-typography-line-height-28",
+    "--ds-primitive-typography-line-height-30",
+    "--ds-primitive-typography-line-height-34",
+    "--ds-primitive-typography-line-height-36",
+    "--ds-primitive-typography-line-height-40",
+    "--ds-primitive-typography-line-height-46",
+    "--ds-semantic-color-background-neutral-default",
+    "--ds-semantic-color-background-neutral-disabled",
+    "--ds-semantic-shadow-modal",
+    "--ds-semantic-text-style-content-color-typography-secondary",
+    "--ds-semantic-text-style-content-color-typography-tertiary"
+  ],
+  "stories": [
+    {
+      "id": "web-components-cookie-consent-banner--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-cookie-consent-banner--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-cookie-consent-banner--default&viewMode=story"
+    },
+    {
+      "id": "web-components-cookie-consent-banner--bottom-left",
+      "name": "Bottom Left",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-cookie-consent-banner--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-cookie-consent-banner--bottom-left&viewMode=story"
+    },
+    {
+      "id": "web-components-cookie-consent-banner--manage-as-link",
+      "name": "Manage As Link",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-cookie-consent-banner--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-cookie-consent-banner--manage-as-link&viewMode=story"
+    },
+    {
+      "id": "web-components-cookie-consent-banner--mobile",
+      "name": "Mobile",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-cookie-consent-banner--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-cookie-consent-banner--mobile&viewMode=story"
+    }
+  ],
+  "variants": [
+    {
+      "prop": "position",
+      "values": ["bottom", "bottom-left", "bottom-right"]
+    }
+  ],
+  "states": ["hover", "focus-visible"],
+  "responsive": [
+    {
+      "query": "@media (max-width: 900px)",
+      "effect": "Empilha o layout (grid-template-columns: minmax(0, 1fr)), alinha o ícone à esquerda (justify-self: start), reduz --cookie-consent-max-width para calc(spacing-128 * 5), padding para spacing-32 e diminui título (font-size-32/line-height-40) e descrição (font-size-20/line-height-30)."
+    },
+    {
+      "query": "@media (max-width: 640px)",
+      "effect": "Usa --ds-component-cookie-banner-spacing-inset como inset, reduz o ícone para spacing-48, padding e gap para spacing-24, gap do conteúdo para spacing-20, título para font-size-28/line-height-36, descrição para font-size-18/line-height-28, transforma as ações em grid de duas colunas automáticas e reduz os aliases de tamanho dos botões."
+    },
+    {
+      "query": "@media (max-width: 420px)",
+      "effect": "Largura vira calc(100vw - inset*2), padding spacing-20, ações em coluna única (grid-template-columns: minmax(0, 1fr)) e botões com inline-size: 100%."
+    }
+  ],
+  "accessibility": {
+    "roles": ["region"],
+    "ariaAttributes": ["aria-label", "aria-hidden"],
+    "keyboardInteractions": [],
+    "notes": [
+      "A raiz é um <section role=\"region\"> com aria-label vindo da prop ariaLabel (default \"Aviso de consentimento de cookies\").",
+      "O título é renderizado como <h2>.",
+      "O wrapper do ícone (.ds-cookie-consent__icon) e o glifo Material Symbols usam aria-hidden=\"true\".",
+      "O link da política tem foco visível: outline com --ds-primitive-border-width-border-md e --ds-component-focus-ring-color-ring, offset spacing-4; no hover ganha underline.",
+      "Os CTAs usam o componente Button do DS; quando manageCookiesHref é informado, o CTA de gerenciamento é renderizado como link (role link).",
+      "Não há handlers de teclado próprios (nenhum fechamento por Escape nem trap de foco implementados)."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/CookieConsentBanner/CookieConsentBanner.test.tsx",
+    "unitCount": 5,
+    "a11yFile": "packages/react/src/components/CookieConsentBanner/CookieConsentBanner.a11y.test.tsx",
+    "a11yCount": 1
+  },
+  "figmaReferences": [],
+  "pendencias": [
+    "Nenhum node-id do Figma é citado no código do componente; a doc do Storybook menciona os tokens do Figma, mas sem referência de nó.",
+    "Os estados hover/active dos CTAs são implementados pelo componente Button; o CSS do banner apenas fornece aliases (--button-background-hover/active) para o CTA \"Gerenciar cookies\".",
+    "A custom property --cookie-consent-page-overlay é declarada mas não é consumida em nenhuma regra do arquivo — a intenção não pôde ser determinada.",
+    "O CSS importa a fonte Material Symbols Rounded via @import de fonts.googleapis.com; não há fallback documentado caso a fonte não carregue.",
+    "Não há prop para fechar o banner manualmente (botão de fechar/X) nem interação de teclado (Escape) implementada.",
+    "A prop className não tem descrição em argTypes nem JSDoc em CookieConsentBanner.types.ts."
+  ]
+}

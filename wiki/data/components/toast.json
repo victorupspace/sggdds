@@ -1,0 +1,488 @@
+{
+  "slug": "toast",
+  "name": "Toast",
+  "storybookTitle": "Web Components/Toast",
+  "sourceDir": "packages/react/src/components/Toast",
+  "exports": ["Toast"],
+  "typeExports": ["ToastAction", "ToastProps", "ToastRole", "ToastVariant"],
+  "oneLiner": "Notificacao leve, nao modal e temporaria para feedback breve sobre processos do sistema ou acoes da pessoa usuaria.",
+  "docsDescription": "Toast e uma notificacao leve, nao modal e temporaria para feedback breve sobre processos do sistema ou acoes da pessoa usuaria.\n\nUse para confirmacoes curtas, estados de salvamento, erros recuperaveis, avisos temporarios e mensagens que nao exigem interrupcao do fluxo.\n\nNao use Toast para mensagens persistentes, erros bloqueantes, confirmacoes destrutivas, conteudo longo ou informacoes que precisam permanecer visiveis. Nesses casos, use Alert, Modal ou outro componente contextual.\n\nVariantes:\n- Positive: sucesso ou conclusao.\n- Information: feedback informativo.\n- Notice: aviso ou atencao.\n- Negative: erro temporario.\n- Neutral: mensagem neutra do sistema.\n- Brand: notificacao padrao com destaque de marca usando tokens disponiveis.\n\nComportamento:\n- Auto-dismiss ativo por padrao com duration de 5000ms.\n- Pausa o timer em hover e focus por padrao para preservar leitura e interacao.\n- Dismiss pode ser controlado por isOpen/onOpenChange ou usado em modo nao controlado.\n- Renderiza ate duas acoes, seguindo a anatomia da referencia.\n\nTokens:\nCores, surface, foreground, icon, border, radius, spacing, sizing, typography, focus ring e estados usam variaveis CSS dos tokens do Figma. Como ainda nao ha tokens de elevation/shadow publicados, a sombra usa apenas cores alpha tokenizadas e dimensoes da escala de spacing.\n\nAcessibilidade:\n- Usa role=\"status\" por padrao e aria-live=\"polite\".\n- Usa role=\"alert\" e aria-live=\"assertive\" para negative.\n- O icone e decorativo e nao substitui titulo ou supporting text.\n- Acoes e dismiss sao botoes nativos com foco visivel.",
+  "props": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Titulo curto da notificacao.",
+      "source": "ambos"
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Supporting text do toast. Sem children, a raiz recebe a classe ds-toast--without-description.",
+      "source": "ambos"
+    },
+    {
+      "name": "actions",
+      "type": "ToastAction[]",
+      "values": null,
+      "default": "[]",
+      "required": false,
+      "description": "Lista de ate duas acoes renderizadas como botoes (actions.slice(0, 2)); itens alem do segundo sao ignorados.",
+      "source": "ambos"
+    },
+    {
+      "name": "autoDismiss",
+      "type": "boolean",
+      "values": null,
+      "default": "true",
+      "required": false,
+      "description": "Fecha automaticamente apos duration quando verdadeiro.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao elemento raiz.",
+      "source": "ambos"
+    },
+    {
+      "name": "defaultOpen",
+      "type": "boolean",
+      "values": null,
+      "default": "true",
+      "required": false,
+      "description": "Estado inicial no modo nao controlado.",
+      "source": "ambos"
+    },
+    {
+      "name": "dismissible",
+      "type": "boolean",
+      "values": null,
+      "default": "true",
+      "required": false,
+      "description": "Exibe o botao de dismiss.",
+      "source": "ambos"
+    },
+    {
+      "name": "dismissLabel",
+      "type": "string",
+      "values": null,
+      "default": "'Dispensar notificacao'",
+      "required": false,
+      "description": "Rotulo acessivel do botao de dismiss (aria-label).",
+      "source": "ambos"
+    },
+    {
+      "name": "duration",
+      "type": "number",
+      "values": null,
+      "default": "5000",
+      "required": false,
+      "description": "Tempo em milissegundos antes do auto-dismiss. Valores <= 0 desativam o timer.",
+      "source": "ambos"
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Icone customizado opcional. Sem valor, usa o icone padrao da variante.",
+      "source": "ambos"
+    },
+    {
+      "name": "isOpen",
+      "type": "boolean",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Controla a visibilidade externamente. Quando definido (!== undefined), o componente entra em modo controlado e nao altera o proprio estado.",
+      "source": "ambos"
+    },
+    {
+      "name": "onDismiss",
+      "type": "MouseEventHandler<HTMLButtonElement>",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Callback chamado no dismiss manual (clique no botao de fechar).",
+      "source": "ambos"
+    },
+    {
+      "name": "onOpenChange",
+      "type": "(isOpen: boolean) => void",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Callback chamado quando o toast solicita mudanca de abertura (dismiss manual ou auto-dismiss); sempre recebe false.",
+      "source": "ambos"
+    },
+    {
+      "name": "pauseOnFocus",
+      "type": "boolean",
+      "values": null,
+      "default": "true",
+      "required": false,
+      "description": "Pausa o auto-dismiss enquanto o toast ou seus controles recebem foco.",
+      "source": "ambos"
+    },
+    {
+      "name": "pauseOnHover",
+      "type": "boolean",
+      "values": null,
+      "default": "true",
+      "required": false,
+      "description": "Pausa o auto-dismiss enquanto o ponteiro esta sobre o toast.",
+      "source": "ambos"
+    },
+    {
+      "name": "role",
+      "type": "ToastRole",
+      "values": ["alert", "status"],
+      "default": "'alert' para variant negative, 'status' nas demais",
+      "required": false,
+      "description": "Role ARIA da notificacao.",
+      "source": "ambos"
+    },
+    {
+      "name": "showIcon",
+      "type": "boolean",
+      "values": null,
+      "default": "true",
+      "required": false,
+      "description": "Exibe ou oculta o icone lider. Quando false, a raiz recebe ds-toast--without-icon e o grid perde a coluna do icone.",
+      "source": "ambos"
+    },
+    {
+      "name": "variant",
+      "type": "ToastVariant",
+      "values": ["brand", "neutral", "positive", "information", "notice", "negative"],
+      "default": "'brand'",
+      "required": false,
+      "description": "Variante semantica e visual.",
+      "source": "ambos"
+    },
+    {
+      "name": "actions[].label",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Texto do botao de acao.",
+      "source": "types.ts"
+    },
+    {
+      "name": "actions[].onClick",
+      "type": "MouseEventHandler<HTMLButtonElement>",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Handler de clique da acao. Nao fecha o toast automaticamente.",
+      "source": "types.ts"
+    },
+    {
+      "name": "actions[]...buttonProps",
+      "type": "Omit<ButtonHTMLAttributes<HTMLButtonElement>, 'children' | 'className' | 'type'>",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Demais atributos nativos de button repassados ao botao da acao (ex.: disabled, aria-*).",
+      "source": "types.ts"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onDismiss",
+      "signature": "(event: MouseEvent<HTMLButtonElement>) => void",
+      "description": "Chamado apos requestClose() no clique do botao de dismiss; nao e chamado no auto-dismiss."
+    },
+    {
+      "name": "onOpenChange",
+      "signature": "(isOpen: boolean) => void",
+      "description": "Chamado com false tanto no dismiss manual quanto no auto-dismiss; no modo controlado e a unica forma de fechar o toast."
+    },
+    {
+      "name": "actions[].onClick",
+      "signature": "(event: MouseEvent<HTMLButtonElement>) => void",
+      "description": "Handler de cada botao de acao renderizado."
+    }
+  ],
+  "slots": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "description": "Titulo renderizado em <p class=\"ds-toast__title\">."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "description": "Supporting text renderizado em <div class=\"ds-toast__description\">; quando ausente, a descricao nao e renderizada."
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "description": "Icone lider opcional; embrulhado em <span aria-hidden=\"true\" class=\"ds-toast__icon\">, substituindo o icone padrao da variante."
+    }
+  ],
+  "cssClasses": [
+    "ds-toast",
+    "ds-toast--variant-brand",
+    "ds-toast--variant-neutral",
+    "ds-toast--variant-positive",
+    "ds-toast--variant-information",
+    "ds-toast--variant-notice",
+    "ds-toast--variant-negative",
+    "ds-toast--without-description",
+    "ds-toast--without-actions",
+    "ds-toast--without-icon",
+    "ds-toast__icon",
+    "ds-toast__content",
+    "ds-toast__title",
+    "ds-toast__description",
+    "ds-toast__actions",
+    "ds-toast__action",
+    "ds-toast__action--primary",
+    "ds-toast__action--secondary",
+    "ds-toast__dismiss"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--toast-surface",
+      "value": "var(--ds-semantic-color-background-neutral-default)",
+      "comment": "Fundo do card; positive/information/notice/negative usam os tokens --ds-component-toast-color-background-*."
+    },
+    {
+      "name": "--toast-border-color",
+      "value": "var(--ds-semantic-color-border-neutral-prominent)",
+      "comment": "Borda do card; cada variante aponta para o token de borda correspondente (information, success, warning, danger, neutral-prominent)."
+    },
+    {
+      "name": "--toast-foreground",
+      "value": "var(--ds-semantic-text-style-content-color-typography-secondary)",
+      "comment": "Cor de titulo, descricao e texto dos botoes; nao e sobrescrita por variante."
+    },
+    {
+      "name": "--toast-icon-color",
+      "value": "var(--ds-semantic-color-icons-neutral-default)",
+      "comment": "Cor do icone lider (currentColor do SVG); sobrescrita por cada variante."
+    },
+    {
+      "name": "--toast-icon-mark",
+      "value": "var(--ds-semantic-color-icons-neutral-white)",
+      "comment": "Cor do traco interno dos icones (usada em stroke=\"var(--toast-icon-mark)\" dentro dos SVGs do TSX)."
+    },
+    {
+      "name": "--toast-action-border-color",
+      "value": "var(--ds-semantic-color-border-neutral-subtle)",
+      "comment": "Borda da acao secundaria (segundo botao)."
+    },
+    {
+      "name": "--toast-action-hover",
+      "value": "var(--ds-primitive-color-neutral-alpha-4)",
+      "comment": "Fundo no hover de acoes e do dismiss."
+    },
+    {
+      "name": "--toast-focus-ring",
+      "value": "var(--ds-component-focus-ring-color-ring)",
+      "comment": "Cor do outline :focus-visible; cada variante aponta para o token de tipografia semantica correspondente."
+    },
+    {
+      "name": "--toast-width",
+      "value": "496px",
+      "comment": "Largura maxima do toast (inline-size: min(100%, var(--toast-width))); em ate 640px vira 100%."
+    },
+    {
+      "name": "--toast-padding-block",
+      "value": "var(--ds-component-toast-spacing-padding-y)",
+      "comment": "Padding vertical do card."
+    },
+    {
+      "name": "--toast-padding-inline",
+      "value": "var(--ds-primitive-spacing-12)",
+      "comment": "Padding horizontal do card."
+    },
+    {
+      "name": "--toast-column-gap",
+      "value": "var(--ds-component-toast-spacing-gap)",
+      "comment": "Gap entre colunas do grid; em ate 640px vira --ds-primitive-spacing-8."
+    },
+    {
+      "name": "--toast-action-gap",
+      "value": "var(--ds-primitive-spacing-8)",
+      "comment": "Gap entre os botoes de acao."
+    },
+    {
+      "name": "--toast-icon-size",
+      "value": "var(--ds-primitive-spacing-20)",
+      "comment": "Tamanho do icone lider e largura da primeira coluna do grid."
+    },
+    {
+      "name": "--toast-dismiss-size",
+      "value": "var(--ds-primitive-spacing-32)",
+      "comment": "Area do botao de dismiss."
+    }
+  ],
+  "tokensUsed": [
+    "--ds-component-focus-ring-color-ring",
+    "--ds-component-toast-border-radius",
+    "--ds-component-toast-color-background-error",
+    "--ds-component-toast-color-background-info",
+    "--ds-component-toast-color-background-success",
+    "--ds-component-toast-color-background-warning",
+    "--ds-component-toast-color-icon-error",
+    "--ds-component-toast-color-icon-info",
+    "--ds-component-toast-color-icon-success",
+    "--ds-component-toast-color-icon-warning",
+    "--ds-component-toast-spacing-gap",
+    "--ds-component-toast-spacing-padding-y",
+    "--ds-component-toast-typography-font-size",
+    "--ds-primitive-border-radius-radius-full",
+    "--ds-primitive-border-radius-radius-sm",
+    "--ds-primitive-border-width-border-md",
+    "--ds-primitive-border-width-border-sm",
+    "--ds-primitive-color-neutral-alpha-4",
+    "--ds-primitive-color-neutral-alpha-8",
+    "--ds-primitive-spacing-2",
+    "--ds-primitive-spacing-4",
+    "--ds-primitive-spacing-6",
+    "--ds-primitive-spacing-8",
+    "--ds-primitive-spacing-12",
+    "--ds-primitive-spacing-16",
+    "--ds-primitive-spacing-20",
+    "--ds-primitive-spacing-32",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-typography-font-size-14",
+    "--ds-primitive-typography-font-size-16",
+    "--ds-primitive-typography-font-weight-bold",
+    "--ds-primitive-typography-font-weight-regular",
+    "--ds-primitive-typography-line-height-20",
+    "--ds-primitive-typography-line-height-22",
+    "--ds-primitive-typography-line-height-24",
+    "--ds-semantic-color-background-neutral-default",
+    "--ds-semantic-color-border-danger-default",
+    "--ds-semantic-color-border-information-default",
+    "--ds-semantic-color-border-neutral-default",
+    "--ds-semantic-color-border-neutral-prominent",
+    "--ds-semantic-color-border-neutral-subtle",
+    "--ds-semantic-color-border-success-default",
+    "--ds-semantic-color-border-warning-default",
+    "--ds-semantic-color-icons-information-default",
+    "--ds-semantic-color-icons-neutral-default",
+    "--ds-semantic-color-icons-neutral-white",
+    "--ds-semantic-shadow-raised",
+    "--ds-semantic-text-style-content-color-typography-danger",
+    "--ds-semantic-text-style-content-color-typography-disabled",
+    "--ds-semantic-text-style-content-color-typography-information",
+    "--ds-semantic-text-style-content-color-typography-secondary",
+    "--ds-semantic-text-style-content-color-typography-success",
+    "--ds-semantic-text-style-content-color-typography-warning"
+  ],
+  "stories": [
+    {
+      "id": "web-components-toast--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-toast--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-toast--default&viewMode=story"
+    },
+    {
+      "id": "web-components-toast--all-variants",
+      "name": "All Variants",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-toast--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-toast--all-variants&viewMode=story"
+    },
+    {
+      "id": "web-components-toast--with-two-actions",
+      "name": "With Two Actions",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-toast--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-toast--with-two-actions&viewMode=story"
+    },
+    {
+      "id": "web-components-toast--auto-dismiss",
+      "name": "Auto Dismiss",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-toast--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-toast--auto-dismiss&viewMode=story"
+    },
+    {
+      "id": "web-components-toast--without-dismiss",
+      "name": "Without Dismiss",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-toast--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-toast--without-dismiss&viewMode=story"
+    },
+    {
+      "id": "web-components-toast--responsive-content",
+      "name": "Responsive Content",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-toast--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-toast--responsive-content&viewMode=story"
+    },
+    {
+      "id": "web-components-toast--without-icon",
+      "name": "Without Icon",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-toast--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-toast--without-icon&viewMode=story"
+    }
+  ],
+  "variants": [
+    {
+      "prop": "variant",
+      "values": ["brand", "neutral", "positive", "information", "notice", "negative"]
+    },
+    { "prop": "role", "values": ["alert", "status"] },
+    { "prop": "showIcon", "values": ["true", "false"] },
+    { "prop": "dismissible", "values": ["true", "false"] },
+    { "prop": "autoDismiss", "values": ["true", "false"] }
+  ],
+  "states": ["hover", "active", "focus-visible", "disabled", "open/closed", "paused"],
+  "responsive": [
+    {
+      "query": "@media (max-width: 640px)",
+      "effect": "--toast-width vira 100% e --toast-column-gap vira spacing-8; o grid passa a 3 colunas (icone, conteudo, auto) — 2 colunas em --without-icon; as acoes ocupam da coluna 2 ate o fim alinhadas a esquerda (coluna 1 em --without-icon) e o dismiss vai para a coluna 3, linha 1."
+    },
+    {
+      "query": "@media (max-width: 420px)",
+      "effect": "O grid fica com 2 colunas (icone + conteudo) ou 1 coluna em --without-icon; o dismiss ocupa a coluna 2 linha 1 com justify-self: end e margens negativas de spacing-6; as acoes ocupam a linha inteira com padding-inline-start compensando o icone; titulo e descricao usam --ds-component-toast-typography-font-size com line-height-22."
+    }
+  ],
+  "accessibility": {
+    "roles": ["status", "alert"],
+    "ariaAttributes": ["aria-live", "aria-label", "aria-hidden"],
+    "keyboardInteractions": [
+      "Tab: alcanca os botoes de acao e o botao de dismiss (buttons nativos); o foco no toast pausa o auto-dismiss quando pauseOnFocus e true.",
+      "Enter / Espaco: aciona a acao focada ou o dismiss pelo comportamento nativo do <button type=\"button\">.",
+      "O anel de foco usa :focus-visible com a cor da variante (--toast-focus-ring)."
+    ],
+    "notes": [
+      "A raiz e um <section> com role=\"status\" por padrao e role=\"alert\" quando variant === 'negative' (ou quando role e passado explicitamente).",
+      "aria-live e 'assertive' quando role === 'alert' ou variant === 'negative'; caso contrario 'polite'.",
+      "O icone lider fica em um span com aria-hidden=\"true\" e todos os SVGs internos tambem tem aria-hidden.",
+      "O botao de dismiss tem aria-label={dismissLabel} (padrao 'Dispensar notificacao') e conteudo apenas grafico.",
+      "onFocus/onBlur e onMouseEnter/onMouseLeave no <section> pausam e retomam o timer de auto-dismiss (pauseOnFocus / pauseOnHover).",
+      "Quando fechado (currentOpen false), o componente retorna null e nada permanece no DOM.",
+      "Acoes desabilitadas usam o atributo disabled nativo e recebem cor de texto de typography-disabled."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Toast/Toast.test.tsx",
+    "unitCount": 11,
+    "a11yFile": null,
+    "a11yCount": null
+  },
+  "figmaReferences": [],
+  "pendencias": [
+    "Nenhum node-id do Figma e citado no codigo do Toast; a doc apenas informa que os tokens vieram do Figma.",
+    "Nao existe arquivo Toast.a11y.test.tsx (sem cobertura automatizada de axe).",
+    "As classes ds-toast--without-description, ds-toast--without-actions e ds-toast__action--primary sao aplicadas no TSX mas nao possuem regras no Toast.styles.css.",
+    "--toast-width usa o literal 496px, sem token correspondente na escala.",
+    "A doc registra que ainda nao ha tokens de elevation/shadow publicados; o CSS usa --ds-semantic-shadow-raised, entao a nota da doc pode estar desatualizada em relacao ao codigo atual.",
+    "O componente nao implementa uma regiao/limitador de fila de toasts (viewport, empilhamento ou portal); o posicionamento fica a cargo de quem consome.",
+    "Nao ha animacao de entrada/saida nem tratamento de prefers-reduced-motion no CSS.",
+    "parameters.componentCanvas.width = 520 e definido no meta, mas o codigo nao documenta o efeito desse parametro."
+  ]
+}

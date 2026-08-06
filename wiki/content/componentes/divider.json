@@ -1,0 +1,146 @@
+{
+  "slug": "divider",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Conteúdo",
+  "resumo": "Linha fina que separa blocos de conteúdo, na horizontal ou na vertical. Pode receber um texto curto no meio, como \"Ou\", e tem três tons para ficar mais ou menos visível.",
+  "quandoUsar": [
+    "Separar grupos de campos em um formulário longo de cadastro, quando o espaçamento sozinho não deixa claro onde um grupo termina.",
+    "Marcar a alternativa entre dois caminhos de acesso a um serviço, com o texto \"Ou\" entre o botão de entrar com a conta gov.br e a outra opção.",
+    "Separar itens de uma lista de resultados que não usa cartões nem fundo alternado, como uma relação de unidades de atendimento.",
+    "Separar grupos de ações dentro de uma barra horizontal, usando a orientação vertical entre os grupos.",
+    "Fechar um bloco de conteúdo antes de uma área de peso diferente, como o rodapé da página."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Quando os blocos já estão separados por superfície própria, borda ou sombra.",
+      "alternativa": "Card"
+    },
+    {
+      "texto": "Quando o bloco precisa de nome e não apenas de separação, e o conteúdo pode ficar recolhido.",
+      "alternativa": "Accordion"
+    },
+    {
+      "texto": "Para indicar a passagem entre etapas de um processo, como agendar, confirmar e concluir.",
+      "alternativa": "Stepper"
+    },
+    {
+      "texto": "Para separar colunas de dados tabulares.",
+      "alternativa": "Data Table"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Container",
+      "descricao": "Elemento que agrupa as linhas e o texto opcional. Define a orientação e o tom."
+    },
+    {
+      "numero": 2,
+      "parte": "Segmento inicial",
+      "descricao": "Primeira parte da linha. Na horizontal com texto, esse trecho tem comprimento fixo antes do texto."
+    },
+    {
+      "numero": 3,
+      "parte": "Texto",
+      "descricao": "Conteúdo opcional entre os dois segmentos. Quando existe, o divider deixa de ser decorativo e passa a ser anunciado como separador."
+    },
+    {
+      "numero": 4,
+      "parte": "Segmento final",
+      "descricao": "Segunda parte da linha, que ocupa o espaço restante do container."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": null,
+  "dosDonts": [
+    {
+      "faca": "Use o tom mais claro dentro de um bloco e o tom padrão entre seções diferentes.",
+      "naoFaca": "Misturar os três tons na mesma tela sem uma regra clara.",
+      "porque": "Os tons existem para criar níveis de separação; usados sem critério, viram ruído e a linha passa a competir com o conteúdo em vez de organizá-lo."
+    },
+    {
+      "faca": "Deixe o divider decorativo (comportamento padrão) quando ele for apenas visual.",
+      "naoFaca": "Desligar o modo decorativo sem informar um nome acessível.",
+      "porque": "Nessa situação o separador é exposto às leitores de tela sem nome, e o código não define nenhum texto alternativo."
+    },
+    {
+      "faca": "Use texto no divider apenas quando a palavra explica a separação, como \"Ou\".",
+      "naoFaca": "Escrever frases dentro do divider.",
+      "porque": "Na horizontal, o primeiro segmento tem comprimento fixo e o segundo ocupa o resto; um texto longo consome o segmento final e o elemento deixa de parecer uma linha de separação."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Prefira uma palavra: \"Ou\", \"E\". O divider separa, não explica.",
+    "Escreva o texto com a primeira letra maiúscula e o resto em minúsculas, sem ponto final.",
+    "Não repita no texto do divider a informação que já está no título logo acima.",
+    "Não use o texto para instrução (\"Escolha uma das opções abaixo\"). Isso é texto de apoio e pertence ao bloco, não à linha.",
+    "Evite abreviações e siglas: o texto fica isolado no meio da linha, sem contexto ao redor."
+  ],
+  "hierarquia": [
+    "O divider é o elemento de menor peso da tela. Se ele chama atenção antes do conteúdo, o tom escolhido está forte demais.",
+    "Na horizontal, ele ocupa toda a largura do container. Controle a extensão da linha pela largura do bloco que a contém, não pelo componente.",
+    "Na vertical, ele se estica no eixo do elemento pai e por isso depende de um pai com altura definida.",
+    "O espaço acima e abaixo separa mais do que a linha em si. Use a linha quando o espaçamento sozinho não resolver, e não como decoração padrão entre todos os blocos."
+  ],
+  "combinacoes": [
+    {
+      "componente": "List Item",
+      "slug": "list-item",
+      "relacao": "Separa itens de uma lista simples quando não há cartões nem fundo alternado para marcar o limite entre eles."
+    },
+    {
+      "componente": "Card",
+      "slug": "card",
+      "relacao": "Dentro do card, separa o cabeçalho do corpo ou o corpo da área de ações. Use o tom mais claro para não brigar com a borda do próprio card."
+    },
+    {
+      "componente": "Button Gov",
+      "slug": "button-gov",
+      "relacao": "Em telas de acesso, aparece com o texto \"Ou\" entre o botão de entrada pela conta gov.br e o caminho alternativo."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Dois caminhos de acesso ao serviço",
+      "contexto": "Tela de entrada de um serviço digital do Estado que aceita a conta gov.br e também um acesso alternativo.",
+      "comoFica": "O botão de entrar com a conta gov.br ocupa o topo do bloco. Abaixo dele, um divider horizontal com o texto \"Ou\". Em seguida, o segundo caminho. A separação deixa claro que são alternativas, e não etapas sequenciais."
+    },
+    {
+      "titulo": "Grupos de campos em um cadastro",
+      "contexto": "Formulário longo de atualização cadastral, com dados pessoais, endereço e documentos na mesma página.",
+      "comoFica": "Cada grupo termina com um divider de tom mais claro, sem texto, mantido decorativo. A linha reforça o corte entre os grupos sem criar títulos novos e sem disputar atenção com os rótulos dos campos."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Desligar o modo decorativo e não informar o nome acessível.",
+      "consequencia": "O separador é anunciado por leitores de tela sem nenhum nome, o que interrompe a leitura sem acrescentar informação.",
+      "correcao": "Mantenha o divider decorativo quando ele for apenas visual. Se ele precisa ser anunciado, informe o nome acessível."
+    },
+    {
+      "erro": "Usar a orientação vertical dentro de um container sem altura definida.",
+      "consequencia": "A linha se estica no eixo do pai e, sem altura, simplesmente não aparece — o que parece um erro de renderização.",
+      "correcao": "Garanta altura no container, como em uma barra de ações com altura própria, antes de usar a orientação vertical."
+    },
+    {
+      "erro": "Colocar o divider colado a um elemento que já tem borda, como um card ou uma tabela.",
+      "consequencia": "Aparecem duas linhas quase idênticas, e a separação vira um detalhe visual mal acabado.",
+      "correcao": "Escolha uma das duas separações: ou a borda do elemento, ou o divider."
+    }
+  ],
+  "notasImplementacao": [
+    "Por padrão a raiz é escondida das leitores de tela. Com texto, ou com o modo decorativo desligado, ela passa a expor o papel de separador junto com a orientação.",
+    "Os segmentos de linha são sempre escondidos das leitores de tela; o texto permanece legível por leitores de tela.",
+    "O componente não é focável e não tem nenhuma interação de teclado.",
+    "As classes do tom padrão e do estado com texto são aplicadas no código, mas não têm regra CSS própria.",
+    "O comprimento fixo do primeiro segmento na orientação horizontal é um valor literal vindo do Figma, sem token correspondente. Na vertical não existe regra equivalente: os dois segmentos dividem o espaço.",
+    "O texto do divider usa a fonte única do design system, mesmo que o arquivo do Figma indique outra família nesse elemento.",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual."
+  ],
+  "pendentes": [
+    "O campo de comportamento responsivo ficou vazio porque o CSS não tem nenhuma media query e o node do Figma não define variante para telas pequenas.",
+    "Não há orientação de espaçamento externo ao redor do divider: o componente só define o espaço interno entre linha e texto, e as margens ficam por conta do bloco que o usa.",
+    "O campo de tamanhos ficou vazio porque o componente não expõe prop de tamanho nem de espessura."
+  ]
+}

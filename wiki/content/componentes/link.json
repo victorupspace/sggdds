@@ -1,0 +1,161 @@
+{
+  "slug": "link",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Ações",
+  "resumo": "Texto clicável que leva a pessoa para outra página, documento ou site. Funciona dentro de um parágrafo ou sozinho, como chamada de navegação.",
+  "quandoUsar": [
+    "Para levar a pessoa a outra página do serviço, como a lista de documentos aceitos ou as perguntas frequentes.",
+    "Dentro de um texto explicativo, quando uma palavra ou expressão precisa apontar para a regra, a lei ou a página que a detalha.",
+    "Para abrir um documento ou uma página de outro órgão, sinalizando que a pessoa está saindo do serviço.",
+    "Como saída secundária ao lado de um botão, quando existe um caminho alternativo que não é a ação principal — por exemplo, consultar em vez de iniciar.",
+    "Em listas de referências e materiais de apoio, em que cada item é uma página de destino."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Para enviar um formulário, confirmar uma solicitação ou executar qualquer ação que mude dados no sistema.",
+      "alternativa": "Button"
+    },
+    {
+      "texto": "Para abrir uma janela sobreposta que interrompe a tarefa e pede uma decisão.",
+      "alternativa": "Modal"
+    },
+    {
+      "texto": "Para mostrar o caminho percorrido até a página atual, com os níveis anteriores.",
+      "alternativa": "Breadcrumb"
+    },
+    {
+      "texto": "Para navegar entre páginas de um resultado de consulta.",
+      "alternativa": "Pagination"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Área clicável",
+      "descricao": "O link em si, com destino obrigatório, área mínima de toque garantida e contorno de foco visível."
+    },
+    {
+      "numero": 2,
+      "parte": "Ícone inicial",
+      "descricao": "Ícone decorativo opcional antes do texto, usado para reforçar o tipo de destino."
+    },
+    {
+      "numero": 3,
+      "parte": "Texto do link",
+      "descricao": "Conteúdo visível e obrigatório. É ele que dá nome ao link para leitores de tela."
+    },
+    {
+      "numero": 4,
+      "parte": "Ícone final",
+      "descricao": "Ícone decorativo opcional depois do texto. Quando informado, ocupa o lugar do ícone automático de link externo."
+    },
+    {
+      "numero": 5,
+      "parte": "Indicação de link externo",
+      "descricao": "Ícone exibido automaticamente quando o link é marcado como externo ou abre em nova aba."
+    }
+  ],
+  "tamanhos": "São três tamanhos. O medium é o padrão e acompanha o texto corrido das páginas. O small serve para textos de apoio, legendas e áreas densas, como notas abaixo de um campo. O large é para chamadas de navegação isoladas, em que o link aparece sozinho e precisa ser percebido de longe. Dentro de um parágrafo, use sempre o mesmo tamanho do texto em volta.",
+  "responsivo": "O link foi feito para funcionar tanto dentro de um texto quanto sozinho, sem quebrar o fluxo da leitura nem gerar rolagem horizontal. Abaixo de 420px a altura mínima de toque aumenta, para reduzir o erro de toque em telas pequenas.",
+  "dosDonts": [
+    {
+      "faca": "Escreva no texto do link o nome da página ou do documento de destino.",
+      "naoFaca": "Usar \"clique aqui\", \"saiba mais\" ou \"veja\" como texto do link.",
+      "porque": "Muita gente navega saltando de link em link, ouvindo apenas o texto de cada um. Fora do parágrafo, \"clique aqui\" não diz para onde leva."
+    },
+    {
+      "faca": "Marque como externo, ou abra em nova aba, os links que saem do serviço, deixando o ícone automático aparecer.",
+      "naoFaca": "Informar um ícone final próprio em links externos.",
+      "porque": "O ícone informado ocupa o lugar do ícone automático de link externo, e a pessoa perde o único aviso visual de que vai deixar o site do Estado."
+    },
+    {
+      "faca": "Use a variante inverse apenas sobre fundo escuro, como no rodapé.",
+      "naoFaca": "Aplicar a variante inverse sobre o fundo claro das páginas de conteúdo.",
+      "porque": "A variante inverse foi desenhada para contrastar com superfícies escuras. Sobre fundo claro o contraste cai e o link fica ilegível."
+    }
+  ],
+  "conteudoEEscrita": [
+    "O texto do link é o nome do destino, com apenas a primeira letra maiúscula, sem ponto final.",
+    "Prefira de duas a cinco palavras: curto o bastante para ser lido de relance e específico o bastante para funcionar fora do contexto.",
+    "Não repita o mesmo texto de link para destinos diferentes na mesma página; se dois links dizem \"formulário\", diferencie pelo nome do formulário.",
+    "Não escreva \"link para\" nem \"abre em nova aba\" dentro do texto: a informação de destino externo já é indicada pelo ícone.",
+    "Use o rótulo acessível apenas quando o texto visível não bastar, e mantenha nele as mesmas palavras do texto visível, acrescentando o que falta."
+  ],
+  "hierarquia": [
+    "Dentro de um parágrafo, o link acompanha o tamanho e o peso do texto em volta: só a cor e o sublinhado o distinguem.",
+    "Como chamada isolada, fica alinhado ao conteúdo a que se refere e logo abaixo dele, nunca centralizado sozinho no meio da página.",
+    "Ao lado de um botão, o link é sempre a opção de menor peso: ele oferece a alternativa, e o botão carrega a ação principal.",
+    "Use a variante neutral quando o link precisa ficar discreto ao lado de um texto secundário, e a variante padrão quando ele precisa ser encontrado."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Button",
+      "slug": "button",
+      "relacao": "Aparecem juntos no fim de um formulário ou de um bloco: o botão executa a ação, o link oferece o caminho alternativo."
+    },
+    {
+      "componente": "Footer",
+      "slug": "footer",
+      "relacao": "Os links do rodapé seguem as mesmas regras de escrita e usam a leitura sobre fundo escuro."
+    },
+    {
+      "componente": "Card",
+      "slug": "card",
+      "relacao": "Dentro de um card, o link leva ao detalhe do assunto sem transformar o bloco inteiro em área clicável."
+    },
+    {
+      "componente": "Alert",
+      "slug": "alert",
+      "relacao": "Um aviso pode terminar com um link para a página que explica a regra ou resolve a pendência."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Referência dentro do texto de um serviço",
+      "contexto": "Página que explica como solicitar a segunda via de um documento e precisa apontar a lista oficial de documentos aceitos.",
+      "comoFica": "Link no tamanho padrão, dentro do parágrafo, com o texto \"documentos aceitos\" apontando para a página da lista. O restante da frase continua legível e o link acompanha o tamanho do texto em volta."
+    },
+    {
+      "titulo": "Caminho alternativo em um agendamento",
+      "contexto": "Tela em que a pessoa pode agendar um atendimento ou verificar um agendamento que já fez.",
+      "comoFica": "Botão \"Agendar atendimento\" como ação principal e, ao lado, o link \"Consultar agendamento\" no tamanho padrão. A diferença de peso visual deixa claro qual é o caminho esperado, sem esconder o outro."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Usar um link para executar uma ação do sistema, como enviar um formulário ou confirmar um cancelamento.",
+      "consequencia": "A pessoa é levada a esperar uma navegação e acaba disparando uma mudança de dados; além disso, o comportamento por teclado e o menu do navegador passam a oferecer opções que não fazem sentido, como abrir a ação em nova aba.",
+      "correcao": "Use o Button para ações e reserve o Link para navegação."
+    },
+    {
+      "erro": "Marcar o link como desabilitado achando que isso impede totalmente o acesso ao destino.",
+      "consequencia": "O clique é bloqueado, mas o endereço continua no documento: quem abre pelo menu do navegador chega a uma página que deveria estar indisponível.",
+      "correcao": "Quando o destino não pode ser acessado, não publique o link; se ele precisa ficar visível, garanta a restrição também na página de destino."
+    },
+    {
+      "erro": "Marcar um link interno como externo ou abrir páginas do próprio serviço em nova aba.",
+      "consequencia": "A pessoa recebe o aviso de que está saindo do site sem sair, acumula abas e perde o botão de voltar como caminho de retorno.",
+      "correcao": "Reserve a marcação de externo e a abertura em nova aba para destinos fora do serviço."
+    },
+    {
+      "erro": "Confiar apenas nos ícones para dar sentido ao link, deixando o texto genérico.",
+      "consequencia": "Os ícones são decorativos e não são anunciados: quem usa leitor de tela ouve apenas o texto genérico e não sabe o destino.",
+      "correcao": "Coloque a informação no texto do link e use os ícones apenas como reforço."
+    }
+  ],
+  "notasImplementacao": [
+    "O destino é obrigatório: o componente sempre produz um link real, mesmo quando está desabilitado.",
+    "Links externos, ou que abrem em nova aba, recebem por padrão as proteções de segurança de destino.",
+    "No estado desabilitado o link sai da ordem de navegação por teclado e o clique é bloqueado, mas o endereço permanece no documento.",
+    "Os ícones são decorativos e não são anunciados; o nome acessível vem do texto visível ou do rótulo acessível.",
+    "A variante inverse depende de uma superfície escura fornecida pela página; o componente não cria esse fundo.",
+    "O componente não aceita referência direta ao elemento nem atributos nativos adicionais do link.",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual."
+  ],
+  "pendentes": [
+    "Não foi possível orientar sobre link com quebra em várias linhas dentro de textos muito longos: o comportamento não está descrito no componente.",
+    "Não há orientação sobre link já visitado, porque o componente não define esse estado.",
+    "Não foi possível recomendar um par de variante e superfície com contraste verificado: os valores de cor vêm da coleção de tokens e não foram conferidos aqui."
+  ]
+}

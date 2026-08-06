@@ -1,0 +1,551 @@
+{
+  "pares": [
+    {
+      "figmaName": "Accordion",
+      "figmaNodeId": "40000056:4236",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000056-4236",
+      "figmaPage": "↳  Accordion ✅",
+      "codeSlug": "accordion",
+      "storybookTitle": "Web Components/Accordion",
+      "confianca": "exata",
+      "justificativa": "accordion.json registra figmaReferences[].node = 40000056:4236. Nomes identicos."
+    },
+    {
+      "figmaName": "ActionCard",
+      "figmaNodeId": "111:39682",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=111-39682",
+      "figmaPage": "↳  Action Card ✅",
+      "codeSlug": "action-card",
+      "storybookTitle": "Web Components/Action Card",
+      "confianca": "exata",
+      "justificativa": "action-card.json registra figmaReferences[].node = 111:39682. Figma grafa 'ActionCard' (sem espaco), Storybook 'Action Card'."
+    },
+    {
+      "figmaName": "Alert",
+      "figmaNodeId": "40000002:215",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000002-215",
+      "figmaPage": "↳ Alert ✅",
+      "codeSlug": "alert",
+      "storybookTitle": "Web Components/Alert",
+      "confianca": "exata",
+      "justificativa": "alert.json registra figmaReferences[].node = 40000002:215; commit 64e9889 'Alert: novo layout do Figma (Web Components 40000002:215)'."
+    },
+    {
+      "figmaName": "Avatar",
+      "figmaNodeId": "40000199:12660",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000199-12660",
+      "figmaPage": "↳  Avatar ✅",
+      "codeSlug": "avatar",
+      "storybookTitle": "Web Components/Avatar",
+      "confianca": "provavel",
+      "justificativa": "Nome identico (Avatar). avatar.json tem figmaReferences vazio e a pendencia 'Nenhum node-id do Figma e citado em comentarios do codigo do Avatar' — o node-id nunca foi gravado no repositorio."
+    },
+    {
+      "figmaName": "Badge / Standard",
+      "figmaNodeId": "38:1035",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=38-1035",
+      "figmaPage": "↳  Badge ✅",
+      "codeSlug": "badge",
+      "storybookTitle": "Web Components/Badge",
+      "confianca": "exata",
+      "justificativa": "badge.json registra figmaReferences[].node = 38:1035; commit 024386d 'Badge: novo layout do Figma (Web Components 38:1035)'. Figma grafa 'Badge / Standard'."
+    },
+    {
+      "figmaName": "Breadcrumbs",
+      "figmaNodeId": "87:553",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=87-553",
+      "figmaPage": "↳  Breadcrumb ✅",
+      "codeSlug": "breadcrumb",
+      "storybookTitle": "Web Components/Breadcrumb",
+      "confianca": "exata",
+      "justificativa": "breadcrumb.json registra figmaReferences[].node = 87:553; commit cdb07b1 'Breadcrumb: novo layout do Figma (Web Components 87:553)'. Figma no plural ('Breadcrumbs')."
+    },
+    {
+      "figmaName": "Button",
+      "figmaNodeId": "4:283",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=4-283",
+      "figmaPage": "↳  Buttons ✅",
+      "codeSlug": "button",
+      "storybookTitle": "Web Components/Button",
+      "confianca": "provavel",
+      "justificativa": "Nome identico (Button) e unico component set de botao generico publicado. button.json tem figmaReferences vazio: nenhum node-id foi gravado no codigo, por isso nao e 'exata'."
+    },
+    {
+      "figmaName": "Card",
+      "figmaNodeId": "65:5556",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=65-5556",
+      "figmaPage": "↳  Card ✅",
+      "codeSlug": "card",
+      "storybookTitle": "Web Components/Card",
+      "confianca": "exata",
+      "justificativa": "card.json registra figmaReferences[].node = 65:5556; commit 4cc7102 'Card: novo layout do Figma (Web Components 65:5556)'."
+    },
+    {
+      "figmaName": "Carousel",
+      "figmaNodeId": "95:19785",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=95-19785",
+      "figmaPage": "↳  Carousel ✅",
+      "codeSlug": "carousel",
+      "storybookTitle": "Web Components/Carousel",
+      "confianca": "exata",
+      "justificativa": "carousel.json registra figmaReferences[].node = 95:19785 (duas vezes)."
+    },
+    {
+      "figmaName": "Checkbox",
+      "figmaNodeId": "4:4209",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=4-4209",
+      "figmaPage": "↳ Checkbox ✅",
+      "codeSlug": "checkbox",
+      "storybookTitle": "Web Components/Checkbox",
+      "confianca": "exata",
+      "justificativa": "checkbox.json registra figmaReferences[].node = 4:4209."
+    },
+    {
+      "figmaName": "Chip",
+      "figmaNodeId": "40000114:11143",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000114-11143",
+      "figmaPage": "↳  Chip ✅",
+      "codeSlug": "chip",
+      "storybookTitle": "Web Components/Chip",
+      "confianca": "exata",
+      "justificativa": "chip.json registra figmaReferences[].node = 40000114:11143."
+    },
+    {
+      "figmaName": "Cookie Banner",
+      "figmaNodeId": "40000174:675",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000174-675",
+      "figmaPage": "↳  Cookie Banner ✅",
+      "codeSlug": "cookie-consent-banner",
+      "storybookTitle": "Web Components/Cookie Consent Banner",
+      "confianca": "provavel",
+      "justificativa": "Unico banner de cookies publicado no Figma. Nomes diferentes ('Cookie Banner' x 'CookieConsentBanner') e cookie-consent-banner.json tem figmaReferences vazio."
+    },
+    {
+      "figmaName": "Datepicker",
+      "figmaNodeId": "40000266:9165",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000266-9165",
+      "figmaPage": "↳ Datepicker ✅",
+      "codeSlug": "datepicker",
+      "storybookTitle": "Web Components/Datepicker",
+      "confianca": "exata",
+      "justificativa": "datepicker.json registra figmaReferences[].node = 40000266:9165."
+    },
+    {
+      "figmaName": "Divider",
+      "figmaNodeId": "219:10474",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=219-10474",
+      "figmaPage": "↳  Divider ✅",
+      "codeSlug": "divider",
+      "storybookTitle": "Web Components/Divider",
+      "confianca": "exata",
+      "justificativa": "divider.json registra figmaReferences[].node = 219:10474."
+    },
+    {
+      "figmaName": "Dropdown",
+      "figmaNodeId": "108:26342",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=108-26342",
+      "figmaPage": "↳ Dropdown ✅",
+      "codeSlug": "dropdown",
+      "storybookTitle": "Web Components/Dropdown",
+      "confianca": "exata",
+      "justificativa": "dropdown.json registra figmaReferences[].node = 108:26342."
+    },
+    {
+      "figmaName": "File upload",
+      "figmaNodeId": "219:7828",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=219-7828",
+      "figmaPage": "↳  File Upload ✅",
+      "codeSlug": "file-upload",
+      "storybookTitle": "Web Components/File Upload",
+      "confianca": "exata",
+      "justificativa": "file-upload.json registra figmaReferences[].node = 219:7828 (duas vezes). Figma grafa 'File upload' (u minusculo)."
+    },
+    {
+      "figmaName": "Footer",
+      "figmaNodeId": "108:13943",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=108-13943",
+      "figmaPage": "↳  Footer ✅",
+      "codeSlug": "footer",
+      "storybookTitle": "Web Components/Footer",
+      "confianca": "provavel",
+      "justificativa": "Nome identico (Footer) e unico rodape publicado. footer.json tem figmaReferences vazio e a pendencia 'Nenhum node-id do Figma e citado no codigo do Footer'."
+    },
+    {
+      "figmaName": "Gov Button",
+      "figmaNodeId": "40000436:15252",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000436-15252",
+      "figmaPage": "↳  gov.br ✅",
+      "codeSlug": "button-gov",
+      "storybookTitle": "Web Components/ButtonGov",
+      "confianca": "provavel",
+      "justificativa": "Unico botao gov.br publicado (pagina '↳  gov.br ✅'). Nomes invertidos ('Gov Button' x 'ButtonGov') e button-gov.json tem figmaReferences vazio."
+    },
+    {
+      "figmaName": "Header",
+      "figmaNodeId": "94:14266",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=94-14266",
+      "figmaPage": "↳ Header ✅",
+      "codeSlug": "header",
+      "storybookTitle": "Web Components/Header",
+      "confianca": "exata",
+      "justificativa": "header.json registra figmaReferences[].node = 94:14266 (duas vezes)."
+    },
+    {
+      "figmaName": "Hero",
+      "figmaNodeId": "99:26800",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=99-26800",
+      "figmaPage": "↳  Hero ✅",
+      "codeSlug": "hero",
+      "storybookTitle": "Web Components/Hero",
+      "confianca": "exata",
+      "justificativa": "hero.json registra figmaReferences[].node = 99:26800."
+    },
+    {
+      "figmaName": "Input field",
+      "figmaNodeId": "40000266:4769",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000266-4769",
+      "figmaPage": "↳ Input ✅",
+      "codeSlug": "text-input",
+      "storybookTitle": "Web Components/TextInput",
+      "confianca": "incerta",
+      "justificativa": "A pagina '↳ Input ✅' publica DOIS component sets de campo de texto: 'Input field' (40000266:4769) e 'Text Input' (40000490:39413). O codigo tem um unico TextInput e nao cita node-id nenhum. 'Input field' cobre label/placeholder/helper/mandatory/disclaimer (mais proximo da API do TextInput), 'Text Input' cobre prefix/suffix/clear. Nao da para decidir qual e a fonte vigente sem o time."
+    },
+    {
+      "figmaName": "Link",
+      "figmaNodeId": "219:12380",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=219-12380",
+      "figmaPage": "↳  Link ✅",
+      "codeSlug": "link",
+      "storybookTitle": "Web Components/Link",
+      "confianca": "provavel",
+      "justificativa": "Nome identico (Link) e unico set de link publicado. link.json tem figmaReferences vazio e a pendencia 'Nenhum node-id do Figma e citado no codigo do Link'."
+    },
+    {
+      "figmaName": "Modal",
+      "figmaNodeId": "40000490:59311",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000490-59311",
+      "figmaPage": "↳ Modal ✅",
+      "codeSlug": "modal",
+      "storybookTitle": "Web Components/Modal",
+      "confianca": "exata",
+      "justificativa": "modal.json registra figmaReferences[].node = 40000490:59311 (duas vezes)."
+    },
+    {
+      "figmaName": "Pagination",
+      "figmaNodeId": "40000033:16002",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000033-16002",
+      "figmaPage": "↳  Pagination ✅",
+      "codeSlug": "pagination",
+      "storybookTitle": "Web Components/Pagination",
+      "confianca": "provavel",
+      "justificativa": "Nome identico (Pagination) e unico set de paginacao publicado. pagination.json tem figmaReferences vazio e a pendencia 'Nenhum node-id do Figma e citado em comentarios do codigo do componente'."
+    },
+    {
+      "figmaName": "Progress bar",
+      "figmaNodeId": "95:23725",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=95-23725",
+      "figmaPage": "↳ Progress Bar ✅",
+      "codeSlug": "progress-bar",
+      "storybookTitle": "Web Components/ProgressBar",
+      "confianca": "exata",
+      "justificativa": "progress-bar.json registra figmaReferences[].node = 95:23725 (alem de 40000030:6873 Range e 40000030:6888 Progress Line, que sao os atomos)."
+    },
+    {
+      "figmaName": "Radio",
+      "figmaNodeId": "40000570:385",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000570-385",
+      "figmaPage": "↳ Radio ✅",
+      "codeSlug": "radio",
+      "storybookTitle": "Web Components/Radio",
+      "confianca": "incerta",
+      "justificativa": "Segundo component set de radio publicado, com Title/Description/Show Description e State=[Default, Disabled]. O codigo aponta explicitamente para 12:2511 ('Radio Button'), nao para este. Pode ser um redesenho em formato de cartao ainda nao implementado ou um set legado."
+    },
+    {
+      "figmaName": "Radio Button",
+      "figmaNodeId": "12:2511",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=12-2511",
+      "figmaPage": "↳ Radio ✅",
+      "codeSlug": "radio",
+      "storybookTitle": "Web Components/Radio",
+      "confianca": "exata",
+      "justificativa": "radio.json registra figmaReferences[].node = 12:2511 (tres vezes). Os eixos do set ('Selected', State com 'Read Only') batem com as props checked/readOnly."
+    },
+    {
+      "figmaName": "Spinner",
+      "figmaNodeId": "40000120:5900",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000120-5900",
+      "figmaPage": "↳  Spinner",
+      "codeSlug": "spinner",
+      "storybookTitle": "Web Components/Spinner",
+      "confianca": "provavel",
+      "justificativa": "Nome identico (Spinner) e unico set publicado. spinner.json tem figmaReferences vazio e a pendencia 'Nenhum node-id do Figma e citado no codigo do Spinner'."
+    },
+    {
+      "figmaName": "Stepper",
+      "figmaNodeId": "40000045:5961",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000045-5961",
+      "figmaPage": "↳  Stepper",
+      "codeSlug": "stepper",
+      "storybookTitle": "Web Components/Stepper",
+      "confianca": "exata",
+      "justificativa": "stepper.json registra figmaReferences[].node = 40000045:5961 (alem de 40000030:6888 Progress Line)."
+    },
+    {
+      "figmaName": "Switch",
+      "figmaNodeId": "40000032:7389",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000032-7389",
+      "figmaPage": "↳  Switch",
+      "codeSlug": "toggle",
+      "storybookTitle": "Web Components/Toggle",
+      "confianca": "provavel",
+      "justificativa": "Unico controle liga/desliga publicado. Nomes diferentes ('Switch' no Figma x 'Toggle' no codigo) e toggle.json tem figmaReferences vazio, com a pendencia 'Nenhum node-id do Figma e citado no codigo do Toggle'."
+    },
+    {
+      "figmaName": "Table",
+      "figmaNodeId": "40000180:42",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000180-42",
+      "figmaPage": "↳  Table ✅",
+      "codeSlug": "data-table",
+      "storybookTitle": "Web Components/Data Table",
+      "confianca": "provavel",
+      "justificativa": "Unica tabela publicada (pagina '↳  Table ✅'). Nomes diferentes ('Table' x 'DataTable') e data-table.json tem figmaReferences vazio, com a pendencia 'Nenhum node-id do Figma e citado no codigo do DataTable'."
+    },
+    {
+      "figmaName": "Text Area",
+      "figmaNodeId": "107:7690",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=107-7690",
+      "figmaPage": "↳  Text Area  ✅",
+      "codeSlug": "text-area",
+      "storybookTitle": "Web Components/TextArea",
+      "confianca": "provavel",
+      "justificativa": "Nome equivalente (Text Area x TextArea) e unico set publicado. text-area.json tem figmaReferences vazio."
+    },
+    {
+      "figmaName": "Text Input",
+      "figmaNodeId": "40000490:39413",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000490-39413",
+      "figmaPage": "↳ Input ✅",
+      "codeSlug": "text-input",
+      "storybookTitle": "Web Components/TextInput",
+      "confianca": "provavel",
+      "justificativa": "Nome equivalente (Text Input x TextInput). Pareamento nao e 'exata' porque text-input.json tem figmaReferences vazio e existe um segundo candidato na mesma pagina ('Input field', 40000266:4769)."
+    },
+    {
+      "figmaName": "Toast",
+      "figmaNodeId": "40000662:11",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=40000662-11",
+      "figmaPage": "↳ Toast",
+      "codeSlug": "toast",
+      "storybookTitle": "Web Components/Toast",
+      "confianca": "provavel",
+      "justificativa": "Nome identico (Toast). O set foi construido no Figma durante a sessao de reimplementacao (wiki/data/divergencias-sessao.md, cabecalho), mas toast.json tem figmaReferences vazio."
+    },
+    {
+      "figmaName": "Tooltip",
+      "figmaNodeId": "108:35791",
+      "figmaUrl": "https://www.figma.com/design/yDUVLEx2nP1c7SFQDZVj7n/Web-Components?node-id=108-35791",
+      "figmaPage": "↳  Tooltip",
+      "codeSlug": "tooltip",
+      "storybookTitle": "Web Components/Tooltip",
+      "confianca": "exata",
+      "justificativa": "tooltip.json registra figmaReferences[].node = 108:35791."
+    }
+  ],
+  "somenteFigma": [
+    {
+      "figmaName": "Star Rating",
+      "nodeId": "40000033:10501",
+      "page": "↳  Rating ✅",
+      "tipo": "componente",
+      "observacao": "Componente de catalogo sem nenhuma implementacao em codigo: nao ha diretorio em packages/react/src/components nem story 'Web Components/*' correspondente. Eixo Rating=[0, 1, 2, 3, 4, 5]. Atomo associado: 'star' (40000570:19839)."
+    },
+    {
+      "figmaName": ". Checkbox Control",
+      "nodeId": "4:4076",
+      "page": "↳ Checkbox ✅",
+      "tipo": "parte-interna",
+      "observacao": "Atomo do Checkbox (nome iniciado por '.'): so o quadrado de controle com Selected/Intermediate/State. O componente de catalogo e 'Checkbox' (4:4209 -> checkbox)."
+    },
+    {
+      "figmaName": ". Table Header Row",
+      "nodeId": "40000180:20",
+      "page": "↳  Table ✅",
+      "tipo": "parte-interna",
+      "observacao": "Atomo do Table: linha de cabecalho com os icones de filtro e o checkbox do header. Pai: 'Table' (40000180:42 -> data-table)."
+    },
+    {
+      "figmaName": ". Table Row",
+      "nodeId": "40000180:2",
+      "page": "↳  Table ✅",
+      "tipo": "parte-interna",
+      "observacao": "Atomo do Table: linha de dados (Protocolo/Solicitante/Servico + expand + checkbox). Pai: 'Table' (40000180:42 -> data-table)."
+    },
+    {
+      "figmaName": ".Radio Control",
+      "nodeId": "40000030:4181",
+      "page": "↳ Radio ✅",
+      "tipo": "parte-interna",
+      "observacao": "Atomo do Radio (nome iniciado por '.'): so o circulo de controle. Pai: 'Radio Button' (12:2511 -> radio)."
+    },
+    {
+      "figmaName": "_Breadcrumb Parts / Link",
+      "nodeId": "40000019:8338",
+      "page": "↳  Breadcrumb ✅",
+      "tipo": "parte-interna",
+      "observacao": "Atomo do Breadcrumb (nome iniciado por '_'): o link individual, com State=[Enabled, Hover, Focused Visible, Pressed] e Current. Pai: 'Breadcrumbs' (87:553 -> breadcrumb)."
+    },
+    {
+      "figmaName": "_Carousel Parts / Dot Control",
+      "nodeId": "40000022:1034",
+      "page": "↳  Carousel ✅",
+      "tipo": "parte-interna",
+      "observacao": "Atomo do Carousel (nome iniciado por '_'): o ponto indicador. Pai: 'Carousel' (95:19785 -> carousel)."
+    },
+    {
+      "figmaName": "Accordion Group",
+      "nodeId": "40000074:5416",
+      "page": "↳  Accordion ✅",
+      "tipo": "parte-interna",
+      "observacao": "Wrapper de agrupamento do Accordion (Slot + Size + Background). Corresponde ao componente <Accordion> container do codigo, ja pareado por 40000056:4236."
+    },
+    {
+      "figmaName": "Accordion item",
+      "nodeId": "40000074:5774",
+      "page": "↳  Accordion ✅",
+      "tipo": "parte-interna",
+      "observacao": "Item individual do Accordion (Size + Background). Corresponde a <AccordionItem>, exportado por accordion.json, mas nao e um componente de catalogo separado."
+    },
+    {
+      "figmaName": "Carousel Controls",
+      "nodeId": "40000022:1145",
+      "page": "↳  Carousel ✅",
+      "tipo": "parte-interna",
+      "observacao": "Bloco de controles do Carousel (setas + dots, com Orientation e Position). Pai: 'Carousel' (95:19785 -> carousel); no codigo vira as props showControls/showIndicators."
+    },
+    {
+      "figmaName": "Date picker - Cell",
+      "nodeId": "108:29292",
+      "page": "↳ Datepicker ✅",
+      "tipo": "parte-interna",
+      "observacao": "Celula de dia do calendario, com State=[Default, Selected, DIsabled (sic), Hover, Available, Danger]. Pai: 'Datepicker' (40000266:9165 -> datepicker)."
+    },
+    {
+      "figmaName": "File Container",
+      "nodeId": "40000014:12545",
+      "page": "↳  File Upload ✅",
+      "tipo": "parte-interna",
+      "observacao": "Area de arraste (dropzone) do File Upload, com State=[Resting, Hover, Error]. Pai: 'File upload' (219:7828 -> file-upload)."
+    },
+    {
+      "figmaName": "Icon Action",
+      "nodeId": "40000447:13489",
+      "page": "↳ Header ✅",
+      "tipo": "parte-interna",
+      "observacao": "Botao de icone utilitario da barra do Header, com State=[Default, Hover]. Pai: 'Header' (94:14266 -> header); no codigo corresponde a utilityItems."
+    },
+    {
+      "figmaName": "Logo/Portal de serviços",
+      "nodeId": "40000595:5035",
+      "page": "↳ Header ✅",
+      "tipo": "parte-interna",
+      "observacao": "Asset de logo ('Logo/Portal de servicos') publicado na pagina do Header. Nao e um componente de UI: no codigo entra pelas props primaryLogo/secondaryLogo do Header, que recebem ReactNode."
+    },
+    {
+      "figmaName": "Mandatory",
+      "nodeId": "40000266:5676",
+      "page": "↳ Input ✅",
+      "tipo": "parte-interna",
+      "observacao": "Marcador de obrigatoriedade/opcional dos campos, com uma unica opcao Type=[Optional]. Pais: 'Input field' (40000266:4769) e 'Text Area' (107:7690); no codigo corresponde a prop required."
+    },
+    {
+      "figmaName": "Nav Item",
+      "nodeId": "40000449:538",
+      "page": "↳ Header ✅",
+      "tipo": "parte-interna",
+      "observacao": "Item de navegacao do Header, com State=[Default, Hover]. Pai: 'Header' (94:14266 -> header); no codigo corresponde a navigationItems."
+    },
+    {
+      "figmaName": "Progress Line",
+      "nodeId": "40000030:6888",
+      "page": "↳ Progress Bar ✅",
+      "tipo": "parte-interna",
+      "observacao": "Trilho de progresso, com Progress=[0%, 25%, 50%, 75%, 100%, Indeterminate]. Citado como figmaReference tanto por progress-bar.json quanto por stepper.json."
+    },
+    {
+      "figmaName": "Range",
+      "nodeId": "40000030:6873",
+      "page": "↳ Progress Bar ✅",
+      "tipo": "parte-interna",
+      "observacao": "Faixa colorida do progresso, com Type=[Brand, Error, Success, Neutral, Information, Warning, Type7]. Citado como figmaReference por progress-bar.json."
+    },
+    {
+      "figmaName": "star",
+      "nodeId": "40000570:19839",
+      "page": "↳  Rating ✅",
+      "tipo": "parte-interna",
+      "observacao": "Estrela unitaria do Rating, com Type=[Defaul (sic), Active, Hover]. Pai: 'Star Rating' (40000033:10501), que nao tem implementacao em codigo."
+    },
+    {
+      "figmaName": "Tab Item",
+      "nodeId": "40000032:6626",
+      "page": "↳  Tabs",
+      "tipo": "parte-interna",
+      "observacao": "Aba individual, com State/Has Icon/Has Badge/Has Close. Nao existe component set 'Tabs' publicado no Figma: o container so existe em codigo (Web Components/Tabs)."
+    },
+    {
+      "figmaName": "Title bar",
+      "nodeId": "40000032:5473",
+      "page": "↳  Card ✅",
+      "tipo": "parte-interna",
+      "observacao": "Barra de titulo publicada na pagina '↳  Card ✅', com Type=[Default, Hover]. Corresponde ao bloco de titulo do Card (65:5556 -> card)."
+    },
+    {
+      "figmaName": "Upload Item",
+      "nodeId": "40000014:12619",
+      "page": "↳  File Upload ✅",
+      "tipo": "parte-interna",
+      "observacao": "Item da lista de arquivos enviados, com State=[Uploading, Complete, Failed]. Pai: 'File upload' (219:7828 -> file-upload); no codigo corresponde a showFileList/itemStatusLabel."
+    },
+    {
+      "figmaName": "User Menu",
+      "nodeId": "40000447:15034",
+      "page": "↳ Header ✅",
+      "tipo": "parte-interna",
+      "observacao": "Bloco de menu do usuario do Header, com State=[Default, Hover]. Pai: 'Header' (94:14266 -> header); no codigo corresponde as props user/accountAction."
+    }
+  ],
+  "somenteCodigo": [
+    {
+      "slug": "back-to-top",
+      "storybookTitle": "Web Components/BackToTop",
+      "observacao": "Nao ha componente publicado na biblioteca Figma 'Web Components' com esse nome ou funcao. back-to-top.json tem figmaReferences vazio e registra a pendencia 'Nenhum node-id do Figma e citado em comentarios do codigo do BackToTop'."
+    },
+    {
+      "slug": "list-item",
+      "storybookTitle": "Web Components/ListItem",
+      "observacao": "Nao ha componente publicado na biblioteca Figma com esse nome ou funcao. list-item.json tem figmaReferences vazio e registra 'Nenhum node-id do Figma e citado no codigo do ListItem'."
+    },
+    {
+      "slug": "meganav",
+      "storybookTitle": "Web Components/Meganav",
+      "observacao": "Nao ha componente publicado na biblioteca Figma com esse nome ou funcao (o Header publica 'Nav Item' e 'User Menu', mas nao a gaveta de navegacao). meganav.json tem figmaReferences vazio."
+    },
+    {
+      "slug": "skeleton",
+      "storybookTitle": "Web Components/Skeleton",
+      "observacao": "Nao ha componente publicado na biblioteca Figma com esse nome ou funcao. skeleton.json tem figmaReferences vazio e registra 'Nenhum node-id do Figma e citado em comentarios do codigo do componente'."
+    },
+    {
+      "slug": "tabs",
+      "storybookTitle": "Web Components/Tabs",
+      "observacao": "O Figma publica apenas o atomo 'Tab Item' (40000032:6626) na pagina '↳  Tabs'; nao existe component set do container Tabs. tabs.json tem figmaReferences vazio."
+    }
+  ],
+  "cobertura": {
+    "figmaTotal": 58,
+    "codigoTotal": 38,
+    "pareados": 35,
+    "percentualFigmaCoberto": 60.3,
+    "percentualCodigoCoberto": 86.8
+  }
+}

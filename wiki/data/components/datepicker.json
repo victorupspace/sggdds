@@ -1,0 +1,587 @@
+{
+  "slug": "datepicker",
+  "name": "Datepicker",
+  "storybookTitle": "Web Components/Datepicker",
+  "sourceDir": "packages/react/src/components/Datepicker",
+  "exports": ["Datepicker"],
+  "typeExports": [
+    "DatepickerBackground",
+    "DatepickerMode",
+    "DatepickerProps",
+    "DatepickerRangeValue",
+    "DatepickerState"
+  ],
+  "oneLiner": "O Datepicker reproduz o layout do Figma (Web Components / Datepicker): label SemiBold 14, campo de 40px com borda color/border/neutral/prominent e radius-sm, e calendario em card com radius-md, padding 16x20 e elevacao level-2.",
+  "docsDescription": "O Datepicker reproduz o layout do Figma (Web Components / Datepicker): label SemiBold 14, campo de 40px com borda color/border/neutral/prominent e radius-sm, e calendario em card com radius-md, padding 16x20 e elevacao level-2.\n\nSelecoes (propriedade selection no Figma):\n- Single: um campo com o icone calendar_month de 24px.\n- Period (mode=\"range\"): dois campos DD/MM/AAAA separados por \"até\".\n\nSuperficies (propriedade background no Figma): white (padrao) e inverse (campos e calendario em color/background/neutral/default).\n\nCalendario:\n- Titulo SemiBold 20 e seletor de mes centralizado com os chevrons exportados do Figma.\n- Semana comeca na segunda-feira (S T Q Q S S D) e os fins de semana usam input/error-text/color/text, como no Figma.\n- Dias fora do mes usam typography/disabled; o dia selecionado usa color/background/neutral/black com texto inverse; o periodo usa color/background/neutral/default-hover.\n- Area de botoes com Cancelar (ghost) e Confirmar (secondary) compondo o Button do DS.\n\nTokens: espacamentos usam Component sizing (8/16/20/24), radius border/radius/radius-sm|md e a elevacao level-2 (variables novas ausentes nas collections exportadas) fica como literal documentado no CSS.\n\nResponsividade: o componente e fluido (100% do container), os campos do periodo dividem o espaco com flex e o grid do calendario usa space-between, adaptando-se a qualquer largura sem overflow.\n\nAcessibilidade: input readonly com role combobox, aria-haspopup/expanded/controls, popover role dialog, grid de dias com aria-label completo em pt-BR e aria-selected, Escape fecha o calendario e o foco visivel usa o focus ring do DS.",
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Rotulo visivel e acessivel do campo.",
+      "source": "ambos"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Valor controlado em YYYY-MM-DD para modo single.",
+      "source": "ambos"
+    },
+    {
+      "name": "defaultValue",
+      "type": "string",
+      "values": null,
+      "default": "'' (string vazia como estado inicial)",
+      "required": false,
+      "description": "Valor inicial em YYYY-MM-DD no modo não controlado; também é o valor restaurado pelo botão Cancelar.",
+      "source": "types.ts"
+    },
+    {
+      "name": "rangeValue",
+      "type": "DatepickerRangeValue",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Intervalo controlado ({ start?: string; end?: string } em YYYY-MM-DD).",
+      "source": "types.ts"
+    },
+    {
+      "name": "defaultRangeValue",
+      "type": "DatepickerRangeValue",
+      "values": null,
+      "default": "{} (objeto vazio)",
+      "required": false,
+      "description": "Intervalo inicial no modo não controlado; também é o intervalo restaurado pelo botão Cancelar.",
+      "source": "types.ts"
+    },
+    {
+      "name": "mode",
+      "type": "DatepickerMode",
+      "values": ["single", "range"],
+      "default": "'single'",
+      "required": false,
+      "description": "`selection` no Figma: Single (um campo) ou Period (dois campos com \"até\").",
+      "source": "ambos"
+    },
+    {
+      "name": "background",
+      "type": "DatepickerBackground",
+      "values": ["white", "inverse"],
+      "default": "'white'",
+      "required": false,
+      "description": "Superficie do componente (background no Figma).",
+      "source": "ambos"
+    },
+    {
+      "name": "state",
+      "type": "DatepickerState",
+      "values": ["default", "error", "success"],
+      "default": "'default'",
+      "required": false,
+      "description": "Estado visual controlado.",
+      "source": "ambos"
+    },
+    {
+      "name": "helperText",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Texto de apoio abaixo do campo.",
+      "source": "ambos"
+    },
+    {
+      "name": "errorText",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Mensagem de erro conectada por aria-describedby. Informar errorText também liga o estado de erro (aria-invalid).",
+      "source": "ambos"
+    },
+    {
+      "name": "successText",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Mensagem de sucesso conectada por aria-describedby. Informar successText também liga o estado de sucesso (quando não há erro).",
+      "source": "ambos"
+    },
+    {
+      "name": "minDate",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Data minima selecionavel em YYYY-MM-DD.",
+      "source": "ambos"
+    },
+    {
+      "name": "maxDate",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Data maxima selecionavel em YYYY-MM-DD.",
+      "source": "ambos"
+    },
+    {
+      "name": "defaultMonth",
+      "type": "string",
+      "values": null,
+      "default": "mês da seleção atual ou o mês corrente (new Date())",
+      "required": false,
+      "description": "Mes inicial no formato YYYY-MM-DD.",
+      "source": "ambos"
+    },
+    {
+      "name": "showFooter",
+      "type": "boolean",
+      "values": null,
+      "default": "true",
+      "required": false,
+      "description": "Exibe a area de botoes Cancelar/Confirmar (showButtonArea no Figma). Com showFooter=false a seleção de uma data única fecha o calendário.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao wrapper.",
+      "source": "ambos"
+    },
+    {
+      "name": "inputClassName",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS adicional aplicada ao(s) input(s) .ds-datepicker__field.",
+      "source": "types.ts"
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "values": null,
+      "default": "true",
+      "required": false,
+      "description": "Faz o componente ocupar 100% da largura do container.",
+      "source": "ambos"
+    },
+    {
+      "name": "open",
+      "type": "boolean",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Controla a abertura do calendario.",
+      "source": "ambos"
+    },
+    {
+      "name": "defaultOpen",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Abertura inicial do calendário no modo não controlado.",
+      "source": "types.ts"
+    },
+    {
+      "name": "onOpenChange",
+      "type": "(open: boolean) => void",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Callback chamado ao abrir ou fechar o calendario.",
+      "source": "ambos"
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: string) => void",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Callback chamado ao selecionar uma data unica.",
+      "source": "ambos"
+    },
+    {
+      "name": "onRangeValueChange",
+      "type": "(value: DatepickerRangeValue) => void",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Callback chamado ao selecionar intervalo.",
+      "source": "ambos"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Desabilita o campo e bloqueia abertura do calendario. Herdada de InputHTMLAttributes<HTMLInputElement>.",
+      "source": "ambos"
+    },
+    {
+      "name": "readOnly",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Mantem o valor visivel, mas bloqueia abertura e edicao. Herdada de InputHTMLAttributes<HTMLInputElement>.",
+      "source": "ambos"
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Marca o campo como obrigatorio usando atributo nativo e exibe o asterisco decorativo. Herdada de InputHTMLAttributes<HTMLInputElement>.",
+      "source": "ambos"
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "values": null,
+      "default": "'DD/MM/AAAA'",
+      "required": false,
+      "description": "Placeholder exibido quando nao ha data selecionada. Herdada de InputHTMLAttributes<HTMLInputElement>.",
+      "source": "ambos"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "values": null,
+      "default": "useId() gerado automaticamente",
+      "required": false,
+      "description": "Id do input principal; serve de base para os ids de helper, erro, sucesso e popover. Herdada de InputHTMLAttributes<HTMLInputElement>.",
+      "source": "types.ts"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onOpenChange",
+      "signature": "(open: boolean) => void",
+      "description": "Chamado sempre que a abertura muda por interação (clique no campo, no botão de calendário, Enter/Espaço/ArrowDown, Escape, Cancelar, Confirmar). Não é chamado quando disabled ou readOnly."
+    },
+    {
+      "name": "onValueChange",
+      "signature": "(value: string) => void",
+      "description": "Chamado com a data em YYYY-MM-DD ao selecionar um dia no modo single."
+    },
+    {
+      "name": "onRangeValueChange",
+      "signature": "(value: DatepickerRangeValue) => void",
+      "description": "Chamado com { start, end } ao selecionar dias no modo range. O primeiro clique define start (com end undefined); o segundo define end, exceto se a data for anterior ao start, quando um novo start é iniciado."
+    }
+  ],
+  "slots": [],
+  "cssClasses": [
+    "ds-datepicker",
+    "ds-datepicker--inverse",
+    "ds-datepicker--open",
+    "ds-datepicker--error",
+    "ds-datepicker--success",
+    "ds-datepicker--disabled",
+    "ds-datepicker--read-only",
+    "ds-datepicker--full-width",
+    "ds-datepicker__label",
+    "ds-datepicker__required",
+    "ds-datepicker__period",
+    "ds-datepicker__period-separator",
+    "ds-datepicker__control",
+    "ds-datepicker__control--single",
+    "ds-datepicker__field",
+    "ds-datepicker__icon-button",
+    "ds-datepicker__popover",
+    "ds-datepicker__title",
+    "ds-datepicker__month-header",
+    "ds-datepicker__nav-button",
+    "ds-datepicker__month-title",
+    "ds-datepicker__calendar",
+    "ds-datepicker__weekdays",
+    "ds-datepicker__days",
+    "ds-datepicker__week",
+    "ds-datepicker__day",
+    "ds-datepicker__day--outside",
+    "ds-datepicker__day--weekend",
+    "ds-datepicker__day--selected",
+    "ds-datepicker__day--in-range",
+    "ds-datepicker__footer",
+    "ds-datepicker__message",
+    "ds-datepicker__message--error",
+    "ds-datepicker__message--success"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--datepicker-surface",
+      "value": "var(--ds-semantic-color-background-neutral-white)",
+      "comment": "color/background/neutral/white (superfícies; inverse usa neutral/default). Em .ds-datepicker--inverse vira var(--ds-semantic-color-background-neutral-default)."
+    },
+    {
+      "name": "--datepicker-text-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-primary)",
+      "comment": "text-style/content color/typography/primary"
+    },
+    {
+      "name": "--datepicker-field-border-color",
+      "value": "var(--ds-semantic-color-border-neutral-prominent)",
+      "comment": "color/border/neutral/prominent (borda dos campos)"
+    },
+    {
+      "name": "--datepicker-popup-border-color",
+      "value": "var(--ds-semantic-color-border-neutral-subtle)",
+      "comment": "color/border/default (#e0e0e0 no Figma) — variable ausente nas collections exportadas; usa color/border/neutral/subtle como aproximação documentada"
+    },
+    {
+      "name": "--datepicker-weekend-color",
+      "value": "var(--ds-component-input-error-text-color-text)",
+      "comment": "input/error-text/color/text (dias de fim de semana em vermelho)"
+    },
+    {
+      "name": "--datepicker-muted-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-disabled)",
+      "comment": "text-style/content color/typography/disabled (dias fora do mês)"
+    },
+    {
+      "name": "--datepicker-selected-background",
+      "value": "var(--ds-semantic-color-background-neutral-black)",
+      "comment": "color/background/neutral/black + typography/inverse (dia selecionado)"
+    },
+    {
+      "name": "--datepicker-selected-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-inverse)",
+      "comment": "typography/inverse (texto do dia selecionado)"
+    },
+    {
+      "name": "--datepicker-range-background",
+      "value": "var(--ds-semantic-color-background-neutral-default-hover)",
+      "comment": "color/background/neutral/default-hover (dias dentro do período; também usado no hover dos dias)"
+    },
+    {
+      "name": "--datepicker-gap",
+      "value": "var(--ds-component-component-sizing-8)",
+      "comment": "Component sizing/8 (gap raiz)"
+    },
+    {
+      "name": "--datepicker-popup-padding-x",
+      "value": "var(--ds-component-component-sizing-16)",
+      "comment": "Component sizing/16 (padding horizontal do calendário)"
+    },
+    {
+      "name": "--datepicker-popup-padding-y",
+      "value": "var(--ds-component-component-sizing-20)",
+      "comment": "Component sizing/20 (padding vertical do calendário)"
+    },
+    {
+      "name": "--datepicker-popup-gap",
+      "value": "var(--ds-component-component-sizing-20)",
+      "comment": "Component sizing/20 (gap interno do popover)"
+    },
+    {
+      "name": "--datepicker-popup-shadow",
+      "value": "0 4px 8px 0 rgb(0 0 0 / 8%)",
+      "comment": "elevation/level-2 (0 4px 8px 0) com elevation/color/default — variables novas ausentes nas collections exportadas; literal documentado"
+    },
+    {
+      "name": "--datepicker-cell-size",
+      "value": "var(--ds-component-component-sizing-24)",
+      "comment": "Component sizing/24 (células e ícone do calendário)"
+    },
+    {
+      "name": "--datepicker-chevron-size",
+      "value": "var(--ds-component-component-sizing-20)",
+      "comment": "Component sizing/20 (chevrons de navegação de mês)"
+    },
+    {
+      "name": "--datepicker-focus-ring",
+      "value": "var(--ds-component-focus-ring-color-ring)",
+      "comment": null
+    }
+  ],
+  "tokensUsed": [
+    "--ds-component-component-sizing-16",
+    "--ds-component-component-sizing-20",
+    "--ds-component-component-sizing-24",
+    "--ds-component-component-sizing-8",
+    "--ds-component-focus-ring-color-ring",
+    "--ds-component-focus-ring-effect-offset",
+    "--ds-component-focus-ring-effect-width",
+    "--ds-component-input-error-text-color-text",
+    "--ds-primitive-border-radius-radius-md",
+    "--ds-primitive-border-radius-radius-sm",
+    "--ds-primitive-border-width-border-none",
+    "--ds-primitive-border-width-border-sm",
+    "--ds-primitive-spacing-0",
+    "--ds-primitive-spacing-12",
+    "--ds-primitive-spacing-2",
+    "--ds-primitive-spacing-8",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-typography-font-size-12",
+    "--ds-primitive-typography-font-size-14",
+    "--ds-primitive-typography-font-size-20",
+    "--ds-primitive-typography-font-weight-medium",
+    "--ds-primitive-typography-font-weight-semi-bold",
+    "--ds-primitive-typography-line-height-20",
+    "--ds-semantic-color-background-neutral-black",
+    "--ds-semantic-color-background-neutral-default",
+    "--ds-semantic-color-background-neutral-default-hover",
+    "--ds-semantic-color-background-neutral-white",
+    "--ds-semantic-color-border-neutral-disabled",
+    "--ds-semantic-color-border-neutral-prominent",
+    "--ds-semantic-color-border-neutral-subtle",
+    "--ds-semantic-color-icons-neutral-black",
+    "--ds-semantic-text-style-content-color-typography-disabled",
+    "--ds-semantic-text-style-content-color-typography-inverse",
+    "--ds-semantic-text-style-content-color-typography-primary",
+    "--ds-semantic-text-style-content-color-typography-success"
+  ],
+  "stories": [
+    {
+      "id": "web-components-datepicker--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-datepicker--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-datepicker--default&viewMode=story"
+    },
+    {
+      "id": "web-components-datepicker--open",
+      "name": "Open",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-datepicker--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-datepicker--open&viewMode=story"
+    },
+    {
+      "id": "web-components-datepicker--period",
+      "name": "Period",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-datepicker--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-datepicker--period&viewMode=story"
+    },
+    {
+      "id": "web-components-datepicker--inverse",
+      "name": "Inverse",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-datepicker--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-datepicker--inverse&viewMode=story"
+    },
+    {
+      "id": "web-components-datepicker--error",
+      "name": "Error",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-datepicker--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-datepicker--error&viewMode=story"
+    },
+    {
+      "id": "web-components-datepicker--disabled",
+      "name": "Disabled",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-datepicker--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-datepicker--disabled&viewMode=story"
+    },
+    {
+      "id": "web-components-datepicker--responsive-content",
+      "name": "Responsive Content",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-datepicker--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-datepicker--responsive-content&viewMode=story"
+    }
+  ],
+  "variants": [
+    {
+      "prop": "mode",
+      "values": ["single", "range"]
+    },
+    {
+      "prop": "background",
+      "values": ["white", "inverse"]
+    },
+    {
+      "prop": "state",
+      "values": ["default", "error", "success"]
+    }
+  ],
+  "states": [
+    "hover",
+    "focus",
+    "focus-visible",
+    "disabled",
+    "readonly",
+    "open",
+    "selected",
+    "in-range",
+    "outside-month",
+    "weekend",
+    "error",
+    "success"
+  ],
+  "responsive": [
+    {
+      "query": "@media (hover: hover)",
+      "effect": "Dias não desabilitados e não selecionados recebem background var(--datepicker-range-background) no hover (o node do Figma não especifica hover; o CSS documenta a aproximação)."
+    },
+    {
+      "query": "@media (prefers-reduced-motion: reduce)",
+      "effect": "Remove a transition (background-color, color) de .ds-datepicker__day."
+    }
+  ],
+  "accessibility": {
+    "roles": ["combobox", "dialog", "grid", "row", "gridcell", "button"],
+    "ariaAttributes": [
+      "aria-controls",
+      "aria-describedby",
+      "aria-expanded",
+      "aria-haspopup",
+      "aria-invalid",
+      "aria-label",
+      "aria-modal",
+      "aria-live",
+      "aria-selected",
+      "aria-hidden"
+    ],
+    "keyboardInteractions": [
+      "Enter no campo: abre o calendário (preventDefault).",
+      "Espaço no campo: abre o calendário (preventDefault).",
+      "ArrowDown no campo: abre o calendário (preventDefault).",
+      "Escape em qualquer lugar da raiz: fecha o calendário.",
+      "Tab/Shift+Tab: percorre campo, botão de calendário, navegação de mês, dias e botões do rodapé (ordem natural do DOM)."
+    ],
+    "notes": [
+      "O input é readOnly e usa role=\"combobox\" com aria-haspopup=\"dialog\", aria-expanded e aria-controls (apontando para <id>-popup quando aberto).",
+      "O <label> é associado ao input por htmlFor/id; no modo range o segundo campo usa aria-label \"<label> (fim)\".",
+      "aria-describedby concatena, nessa ordem: id da mensagem de erro (se em erro), id da mensagem de sucesso (se em sucesso), id do helper text e o id do popover quando aberto.",
+      "aria-invalid=\"true\" quando state=\"error\" ou quando errorText é informado.",
+      "O popover é um <div role=\"dialog\"> com aria-modal=\"false\" e aria-label \"Calendário de <label>\".",
+      "O título do mês tem aria-live=\"polite\", anunciando a navegação entre meses.",
+      "A grade usa role=\"grid\" > role=\"row\" > role=\"gridcell\" com aria-selected; cada dia é um <button> com aria-label completo em pt-BR (Intl.DateTimeFormat dateStyle: 'full').",
+      "A linha de abreviações dos dias da semana e o separador \"até\" são aria-hidden=\"true\"; o asterisco de obrigatório também é decorativo (aria-hidden).",
+      "Dias fora de minDate/maxDate são renderizados como <button disabled>.",
+      "Foco visível em campo, botão de calendário, botões de navegação e dias usa --ds-component-focus-ring-effect-width/offset com --ds-component-focus-ring-color-ring.",
+      "Não há trap de foco no popover nem devolução automática de foco ao campo ao fechar."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Datepicker/Datepicker.test.tsx",
+    "unitCount": 9,
+    "a11yFile": "packages/react/src/components/Datepicker/Datepicker.a11y.test.tsx",
+    "a11yCount": 6
+  },
+  "figmaReferences": [
+    {
+      "node": "40000266:9165",
+      "note": "Web Components / Datepicker — citado no cabeçalho de Datepicker.styles.css e no comentário do CalendarIcon em Datepicker.tsx (vetores calendar_month e chevrons exportados do Figma)."
+    }
+  ],
+  "pendencias": [
+    "As classes ds-datepicker--open, ds-datepicker--error, ds-datepicker--success, ds-datepicker--read-only e ds-datepicker__required são aplicadas no TSX mas não têm nenhuma regra em Datepicker.styles.css.",
+    "O comentário do CSS registra que o node do Figma não define variante mobile nem estado de hover para os dias — o hover atual é uma aproximação documentada.",
+    "A elevação level-2 e a cor color/border/default do Figma não existem nas collections exportadas: o CSS usa o literal 0 4px 8px 0 rgb(0 0 0 / 8%) e --ds-semantic-color-border-neutral-subtle como aproximação.",
+    "No modo range, apenas o primeiro input recebe {...inputProps}, id, ref e required; o segundo campo não propaga essas props nem tem id próprio.",
+    "O botão Confirmar apenas fecha o calendário (não há confirmação/commit separado do valor, que já foi emitido no clique do dia).",
+    "Não há navegação por setas dentro da grade de dias (role=\"grid\") nem foco inicial no dia selecionado ao abrir o popover.",
+    "O popover é renderizado em fluxo dentro do wrapper (sem portal ou posicionamento flutuante); o comportamento em containers com overflow não está documentado.",
+    "A prop state=\"success\" só produz efeito visual quando successText é informado (a classe ds-datepicker--success não tem estilo)."
+  ]
+}

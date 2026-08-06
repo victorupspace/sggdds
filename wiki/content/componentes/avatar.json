@@ -1,0 +1,144 @@
+{
+  "slug": "avatar",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Conteúdo",
+  "resumo": "O Avatar mostra, em um círculo, a foto ou as iniciais de uma pessoa, órgão ou entidade. Serve para identificar rapidamente de quem é o conteúdo que está ao lado.",
+  "quandoUsar": [
+    "No cabeçalho de uma área logada, para identificar de qual conta é a sessão em uso.",
+    "Em uma lista de movimentações de protocolo, para separar visualmente quem registrou cada etapa.",
+    "Ao lado do nome do órgão responsável por uma solicitação, na tela de acompanhamento.",
+    "Em um item de accordion que representa uma pessoa ou um órgão, ocupando o espaço à esquerda do título.",
+    "Na confirmação de dados cadastrais, junto do nome completo, quando a pessoa já tem foto no cadastro."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Para representar a situação de um item, como \"em análise\" ou \"deferido\".",
+      "alternativa": "badge"
+    },
+    {
+      "texto": "Como botão de acesso ao menu da conta, já que o Avatar não recebe foco nem trata clique.",
+      "alternativa": "button"
+    },
+    {
+      "texto": "Como ilustração de abertura de uma seção, sem relação com uma pessoa ou entidade.",
+      "alternativa": "hero"
+    },
+    {
+      "texto": "Para exibir a identidade visual do órgão na barra superior do site.",
+      "alternativa": "header"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Círculo",
+      "descricao": "Caixa circular que define o tamanho do componente e recebe uma borda sutil."
+    },
+    {
+      "numero": 2,
+      "parte": "Imagem",
+      "descricao": "Foto exibida quando src é informado, recortada dentro do círculo."
+    },
+    {
+      "numero": 3,
+      "parte": "Iniciais",
+      "descricao": "Até duas letras derivadas do nome. Aparecem quando não há imagem ou quando a imagem falha ao carregar."
+    }
+  ],
+  "tamanhos": "Cinco tamanhos, do menor para o maior: xsmall, small, medium (padrão), large e xlarge. Use os menores em listas densas e linhas de tabela, medium em cabeçalhos e itens de lista comuns, e large ou xlarge em telas de perfil, onde o Avatar é o elemento de identificação principal.",
+  "responsivo": "Em telas de até 420px, o tamanho xlarge é reduzido ao equivalente do large, para não ocupar boa parte da largura do celular. Os demais tamanhos não mudam com o tamanho da tela.",
+  "dosDonts": [
+    {
+      "faca": "Preencha name com o nome completo da pessoa ou o nome do órgão.",
+      "naoFaca": "Colocar só as iniciais em name para poupar caracteres.",
+      "porque": "name é o nome acessível do componente: é ele que leitores de tela anunciam, e as iniciais visíveis já são derivadas dele."
+    },
+    {
+      "faca": "Informe alt quando a imagem mostrar algo diferente do nome, como o brasão de um órgão.",
+      "naoFaca": "Preencher alt com texto genérico, do tipo \"foto\" ou \"imagem\".",
+      "porque": "Sem alt o componente usa o name, que já é útil; um alt genérico troca informação por ruído."
+    },
+    {
+      "faca": "Use disabled apenas quando a pessoa ou a entidade estiver mesmo indisponível no serviço.",
+      "naoFaca": "Usar disabled para deixar o avatar visualmente mais discreto.",
+      "porque": "disabled aplica aria-disabled e comunica indisponibilidade a quem usa leitor de tela, além de deixar a imagem em cinza."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Escreva em name o nome como ele aparece no cadastro, sem abreviar e sem inverter a ordem.",
+    "Quando informar initials, escreva já as duas letras desejadas: o valor é aparado, cortado em dois caracteres e passado para maiúsculas.",
+    "Para órgãos com nome composto, defina initials manualmente — a derivação automática usa a primeira letra das duas primeiras palavras.",
+    "Se o nome puder vir vazio, trate o dado antes de renderizar: sem name o componente exibe um ponto de interrogação.",
+    "Não coloque cargo, número de protocolo ou situação dentro do name — ele é anunciado por inteiro em voz alta."
+  ],
+  "hierarquia": [
+    "O Avatar acompanha um nome escrito, sempre à esquerda dele. Sozinho, ele não identifica ninguém de forma confiável.",
+    "Em uma mesma lista, use um único tamanho para todos os avatares: variação de tamanho passa ideia de importância diferente.",
+    "Em telas de perfil o Avatar pode ser o elemento de maior peso visual do bloco; nas demais telas ele é apoio ao texto."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Accordion",
+      "slug": "accordion",
+      "relacao": "A prop leading do AccordionItem aceita um Avatar, para itens que representam pessoas ou órgãos."
+    },
+    {
+      "componente": "List Item",
+      "slug": "list-item",
+      "relacao": "Em listas de atendimentos ou mensagens, o Avatar entra no início do item, antes do texto, em tamanho small ou medium."
+    },
+    {
+      "componente": "Card",
+      "slug": "card",
+      "relacao": "Em cards que apresentam um responsável ou um contato, o Avatar aparece junto do nome, no topo do conteúdo."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Identificação da conta em uma área logada",
+      "contexto": "Depois de entrar com a conta gov.br, a pessoa precisa confirmar rapidamente que está no cadastro certo, principalmente em computadores compartilhados.",
+      "comoFica": "Um Avatar no tamanho medium, ao lado do nome completo, no cabeçalho da área logada. Sem foto no cadastro, ele mostra as duas iniciais derivadas do nome, e leitores de tela anunciam o nome inteiro."
+    },
+    {
+      "titulo": "Histórico de movimentações de um protocolo",
+      "contexto": "A tela de acompanhamento lista cada movimentação com data e responsável, misturando registros feitos pela pessoa e pelo órgão.",
+      "comoFica": "Cada linha da lista começa com um Avatar no tamanho small, com as iniciais de quem registrou a movimentação. O mesmo tamanho vale para todas as linhas, mantendo o texto alinhado em coluna."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Envolver o Avatar em um botão sem dar rótulo próprio ao botão.",
+      "consequencia": "O Avatar já é anunciado como imagem com o nome da pessoa; o botão sem rótulo passa a ser chamado por esse nome e ninguém descobre o que ele faz.",
+      "correcao": "Dê um rótulo ao botão, como \"Abrir menu da conta\", e mantenha o Avatar apenas como conteúdo visual."
+    },
+    {
+      "erro": "Confiar na foto e deixar o name mal preenchido.",
+      "consequencia": "Se a imagem falhar, o componente volta para as iniciais derivadas do name, e um nome incompleto vira duas letras sem sentido.",
+      "correcao": "Preencha sempre o name corretamente, exista foto ou não."
+    },
+    {
+      "erro": "Esperar comportamento de hover, foco ou clique no Avatar.",
+      "consequencia": "O componente não é focável nem interativo e não tem estilos de hover ou de foco; a interação simplesmente não acontece.",
+      "correcao": "Coloque a interação em um Button ou Link em volta, com rótulo próprio, e deixe o Avatar como imagem."
+    },
+    {
+      "erro": "Usar xlarge dentro de listas.",
+      "consequencia": "Em telas de até 420px o xlarge cai para o tamanho do large, e o alinhamento da lista fica diferente entre celular e computador.",
+      "correcao": "Reserve xlarge para telas de perfil e use xsmall, small ou medium em listas."
+    }
+  ],
+  "notasImplementacao": [
+    "As iniciais são renderizadas em um elemento com role=\"img\" e aria-label com o name, então leitores de tela anunciam o nome completo, não as letras.",
+    "Quando a imagem falha, o endereço é memorizado como inválido e o componente passa a exibir as iniciais sem quebrar o layout.",
+    "disabled aplica aria-disabled=\"true\", reduz a opacidade e coloca a imagem em escala de cinza; quando false, o atributo é omitido.",
+    "Não existem props de status, marcador ou agrupamento de avatares no código.",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual.",
+    "A documentação do Storybook cita soft black como superfície do fallback, mas o CSS usa a cor de tipografia secundária; a equivalência precisa de confirmação do time de tokens."
+  ],
+  "pendentes": [
+    "Não foi possível informar os tamanhos em pixels: os valores concretos ficam no pacote de tokens, fora do JSON extraído.",
+    "Não há orientação sobre a foto enviada pela pessoa (proporção, recorte, tamanho mínimo): o componente não trata isso e o JSON não traz regra.",
+    "Não existe agrupamento de avatares no código, então não há como documentar empilhamento ou contagem de participantes."
+  ]
+}

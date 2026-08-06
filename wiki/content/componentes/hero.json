@@ -1,0 +1,171 @@
+{
+  "slug": "hero",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Conteúdo",
+  "resumo": "Bloco de abertura da página. Apresenta o título, uma explicação curta, os botões principais e, se necessário, uma imagem ou outro conteúdo ao lado.",
+  "quandoUsar": [
+    "Na abertura da página inicial de um serviço, para dizer em uma frase o que a pessoa consegue resolver ali.",
+    "Na entrada de um serviço com mais de um caminho, quando a pessoa precisa escolher entre iniciar uma solicitação ou consultar uma que já existe.",
+    "Quando o serviço precisa explicar quem tem direito ou o que é preciso ter em mãos antes de começar, usando as duas linhas de descrição.",
+    "Quando a página tem um aviso curto de contexto acima do título, como a situação do serviço, apresentado com uma etiqueta.",
+    "Em campanhas e comunicados oficiais que se resumem a uma mensagem e um caminho de ação, usando a variante centralizada."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Para apresentar um item entre vários equivalentes em uma listagem de serviços.",
+      "alternativa": "Card"
+    },
+    {
+      "texto": "Para avisos de prazo, indisponibilidade ou erro que precisam de atenção imediata.",
+      "alternativa": "Alert"
+    },
+    {
+      "texto": "Para oferecer uma escolha entre caminhos de serviço em blocos clicáveis lado a lado.",
+      "alternativa": "Action Card"
+    },
+    {
+      "texto": "Para alternar imagens ou mensagens em sequência no topo da página.",
+      "alternativa": "Carousel"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Área do destaque",
+      "descricao": "Seção de fundo claro que abre a página. Recebe um nome acessível opcional para virar uma região identificável."
+    },
+    {
+      "numero": 2,
+      "parte": "Etiqueta",
+      "descricao": "Espaço acima do título para uma etiqueta curta de contexto."
+    },
+    {
+      "numero": 3,
+      "parte": "Título",
+      "descricao": "Texto principal do bloco, em tamanho de display. O nível do título pode ser ajustado conforme a estrutura da página."
+    },
+    {
+      "numero": 4,
+      "parte": "Descrição",
+      "descricao": "Parágrafo curto que explica o serviço."
+    },
+    {
+      "numero": 5,
+      "parte": "Segunda descrição",
+      "descricao": "Parágrafo adicional opcional, com o mesmo tratamento visual do primeiro."
+    },
+    {
+      "numero": 6,
+      "parte": "Ações",
+      "descricao": "Área dos botões principais, no fim da coluna de conteúdo."
+    },
+    {
+      "numero": 7,
+      "parte": "Área livre",
+      "descricao": "Espaço para imagem, ilustração ou outro componente. Fica ao lado do conteúdo na variante padrão e abaixo dele na variante centralizada."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "Abaixo de 768px o bloco deixa de ser em duas colunas: o conteúdo fica em cima e a área livre embaixo, ocupando toda a largura, e o espaçamento lateral diminui. Na variante centralizada o alinhamento ao centro é mantido. Os botões quebram para a linha de baixo quando não cabem lado a lado.",
+  "dosDonts": [
+    {
+      "faca": "Escreva um título curto, de até oito palavras, que diga o que a pessoa resolve na página.",
+      "naoFaca": "Usar o título para o nome completo do programa, do decreto ou da secretaria responsável.",
+      "porque": "O título é o primeiro texto lido e ocupa o maior tamanho da página. Um nome oficial extenso rouba a resposta que a pessoa procura, que é o que ela pode fazer ali."
+    },
+    {
+      "faca": "Use no máximo dois botões, um principal e um secundário, com destaques diferentes.",
+      "naoFaca": "Colocar três ou mais botões com o mesmo peso visual na área de ações.",
+      "porque": "O componente não limita a quantidade de botões: se você colocar mais, eles quebram em várias linhas e a pessoa perde a indicação de qual é o caminho esperado."
+    },
+    {
+      "faca": "Reserve a variante padrão para quando existir uma imagem ou ilustração que ajude a entender o serviço.",
+      "naoFaca": "Preencher a área livre com uma imagem genérica só para não deixar espaço em branco.",
+      "porque": "Na variante padrão a área livre recebe metade da atenção do bloco. Uma imagem sem função ocupa esse espaço e reduz a leitura do título e da descrição."
+    }
+  ],
+  "conteudoEEscrita": [
+    "O título tem até oito palavras e começa pelo que a pessoa faz, não pelo nome do sistema.",
+    "A descrição cabe em até duas linhas e responde a uma pergunta prática: quem pode usar, o que é preciso ter em mãos ou quanto tempo leva.",
+    "Use a segunda descrição apenas quando houver uma segunda informação essencial; se não houver, deixe de fora em vez de repetir a primeira com outras palavras.",
+    "Os textos dos botões usam verbo no infinitivo e apenas a primeira letra maiúscula: \"Agendar atendimento\", \"Consultar protocolo\".",
+    "A etiqueta acima do título é uma expressão de até três palavras, sem ponto final, e não substitui um aviso de erro ou prazo."
+  ],
+  "hierarquia": [
+    "É o primeiro bloco de conteúdo da página, logo abaixo do cabeçalho e do caminho de navegação.",
+    "Use apenas um destaque por página: ele é o único bloco com título em tamanho de display.",
+    "Mantenha o título do destaque como o título de primeiro nível da página; quando houver outro título de primeiro nível, reduza o nível do destaque para não duplicar.",
+    "O botão principal do destaque é a ação mais importante da tela; nenhum outro botão da página deve ter peso visual maior."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Badge",
+      "slug": "badge",
+      "relacao": "A etiqueta acima do título é preenchida com o Badge do design system, para marcar contexto ou situação do serviço."
+    },
+    {
+      "componente": "Button",
+      "slug": "button",
+      "relacao": "A área de ações recebe os botões do design system: um principal e, quando necessário, um secundário."
+    },
+    {
+      "componente": "Breadcrumb",
+      "slug": "breadcrumb",
+      "relacao": "Vem logo acima do destaque, dando o caminho até a página antes da mensagem principal."
+    },
+    {
+      "componente": "Action Card",
+      "slug": "action-card",
+      "relacao": "Depois do destaque, os caminhos secundários do serviço aparecem em blocos clicáveis, sem disputar com o botão principal."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Abertura de um serviço de agendamento",
+      "contexto": "Página de entrada de um serviço de atendimento presencial, em que a pessoa pode marcar um horário ou consultar um agendamento já feito.",
+      "comoFica": "Variante padrão, com título curto sobre marcar atendimento, uma descrição explicando o que é preciso ter em mãos, dois botões — agendar e consultar — e, ao lado, uma imagem do atendimento. No celular, a imagem desce para baixo do texto e os botões se empilham."
+    },
+    {
+      "titulo": "Comunicado sobre uma nova regra de serviço",
+      "contexto": "Página informativa sobre uma mudança nas regras de emissão de um documento, sem imagem disponível.",
+      "comoFica": "Variante centralizada, com etiqueta de contexto acima do título, título de até oito palavras, uma descrição com a data de início da regra e um único botão levando à página do serviço."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Usar o destaque em nível de título principal em uma página que já tem outro título de primeiro nível.",
+      "consequencia": "A página passa a ter dois títulos de primeiro nível e a estrutura lida por leitores de tela deixa de refletir a hierarquia real.",
+      "correcao": "Ajuste o nível do título do destaque para o segundo nível quando ele não for o título principal da página."
+    },
+    {
+      "erro": "Colocar mais de um destaque na mesma página, um para cada assunto.",
+      "consequencia": "Vários blocos com título em tamanho de display competem entre si e a pessoa não identifica qual é a tarefa principal.",
+      "correcao": "Mantenha um destaque na abertura e apresente os demais assuntos com blocos de conteúdo comuns."
+    },
+    {
+      "erro": "Usar mais de um destaque na página sem dar nome acessível a nenhum deles.",
+      "consequencia": "As seções não são anunciadas como regiões e quem navega por marcos não consegue distinguir uma da outra.",
+      "correcao": "Informe um nome acessível curto quando houver mais de uma seção de destaque na mesma página."
+    },
+    {
+      "erro": "Colocar conteúdo essencial, como requisitos ou prazos, apenas dentro da área livre.",
+      "consequencia": "Em telas pequenas esse conteúdo vai para o fim do bloco e pode não ser visto por quem começa a tarefa direto pelo botão.",
+      "correcao": "Mantenha o que é essencial na descrição e use a área livre para apoio visual."
+    }
+  ],
+  "notasImplementacao": [
+    "O nível do título só muda a marcação: cabe a quem monta a página garantir que a ordem dos títulos faça sentido.",
+    "Sem nome acessível, a seção não é anunciada como região por leitores de tela.",
+    "As orientações de até oito palavras no título e no máximo dois botões são editoriais: o componente não valida nem limita o conteúdo.",
+    "O componente não tem controles próprios nem estados de interação; a navegação por teclado depende inteiramente da etiqueta, dos botões e do que for colocado na área livre.",
+    "A largura máxima do conteúdo, a altura mínima do bloco e a largura mínima da área livre são valores fixos, sem token correspondente.",
+    "Não existe variante para telas pequenas no arquivo de design; o ponto de quebra de 768px foi definido na implementação.",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual."
+  ],
+  "pendentes": [
+    "Não foi possível orientar sobre destaque com imagem de fundo ou fundo colorido: o componente só oferece fundo claro.",
+    "Não há orientação sobre proporção e peso de arquivo da imagem além da recomendação editorial de 16:9 ou 4:3 registrada no Figma; o componente não trata a imagem.",
+    "Não foi possível orientar sobre comportamento com o cursor ou com foco dentro do bloco, porque o componente não define estados de interação."
+  ]
+}

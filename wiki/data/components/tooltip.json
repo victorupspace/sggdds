@@ -1,0 +1,362 @@
+{
+  "slug": "tooltip",
+  "name": "Tooltip",
+  "storybookTitle": "Web Components/Tooltip",
+  "sourceDir": "packages/react/src/components/Tooltip",
+  "exports": [
+    "Tooltip"
+  ],
+  "typeExports": [
+    "TooltipPlacement",
+    "TooltipProps",
+    "TooltipTone"
+  ],
+  "oneLiner": "Tooltip exibe microcopy nao essencial que rotula ou descreve brevemente um elemento interativo.",
+  "docsDescription": "Tooltip exibe microcopy nao essencial que rotula ou descreve brevemente um elemento interativo. Ele abre apenas por hover com dispositivo apontador ou foco via teclado.\n\nUse para complementar botoes iconicos, controles compactos e comandos cujo label visual precisa de apoio breve.\n\nNao use Tooltip para conteudo essencial, mensagens de erro, confirmacoes, instrucoes longas, conteudo interativo ou informacao que precisa estar sempre visivel. Em mobile/touch, prefira texto persistente quando a informacao for necessaria para concluir a tarefa.\n\nComportamento:\n- Injeta aria-describedby no elemento filho enquanto aberto.\n- Abre por hover e foco.\n- Fecha por mouseleave, blur ou Escape.\n- Suporta delay de abertura e fechamento.\n- Suporta posicionamentos top, right, bottom e left.\n\nLayout reproduzido do Figma Web Components (node 108:35791) com o atomo Arrow.\n\nAnatomia:\n- Balao com padding 8x4 (Component sizing/8 e /4), radius 4 (border/radius/radius-sm), largura entre 40 e 200px e texto Body/Extra Small (Plus Jakarta Sans Medium 12) centralizado.\n- Tom dark (padrao): fundo color/background/neutral/black e texto typography/inverse.\n- Tom light (variante Knockout do Figma): fundo color/background/neutral/white e texto typography/primary.\n- Seta triangular de 8x4 do atomo Arrow, na cor da superficie, em qualquer um dos quatro lados.\n- Sombra do node (0 4px 4px 12% + 0 2px 2px 8%), sem variable na collection exportada.\n\nAcessibilidade:\n- O elemento flutuante usa role=\"tooltip\".\n- O trigger precisa ser focavel/interativo.\n- Tooltip nao recebe foco e nao contem acoes.\n- O texto deve ser curto, idealmente uma frase pequena.",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactElement<Record<string, unknown>>",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Elemento interativo que aciona o tooltip.",
+      "source": "ambos"
+    },
+    {
+      "name": "content",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Microcopy exibida no tooltip.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao wrapper.",
+      "source": "ambos"
+    },
+    {
+      "name": "tooltipClassName",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao bubble.",
+      "source": "ambos"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "ID opcional do tooltip.",
+      "source": "ambos"
+    },
+    {
+      "name": "placement",
+      "type": "TooltipPlacement ('top' | 'right' | 'bottom' | 'left')",
+      "values": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ],
+      "default": "'top'",
+      "required": false,
+      "description": "Posicao do tooltip em relacao ao trigger.",
+      "source": "ambos"
+    },
+    {
+      "name": "tone",
+      "type": "TooltipTone ('dark' | 'light')",
+      "values": [
+        "dark",
+        "light"
+      ],
+      "default": "'dark'",
+      "required": false,
+      "description": "Tom visual do tooltip.",
+      "source": "ambos"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Desabilita abertura e aria-describedby.",
+      "source": "ambos"
+    },
+    {
+      "name": "isOpen",
+      "type": "boolean",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Controla abertura externamente.",
+      "source": "ambos"
+    },
+    {
+      "name": "defaultOpen",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Estado inicial no modo nao controlado, util para documentacao.",
+      "source": "ambos"
+    },
+    {
+      "name": "delayDuration",
+      "type": "number",
+      "values": null,
+      "default": "160",
+      "required": false,
+      "description": "Delay em ms antes de abrir.",
+      "source": "ambos"
+    },
+    {
+      "name": "closeDelay",
+      "type": "number",
+      "values": null,
+      "default": "80",
+      "required": false,
+      "description": "Delay em ms antes de fechar.",
+      "source": "ambos"
+    },
+    {
+      "name": "onOpenChange",
+      "type": "(isOpen: boolean) => void",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Callback chamado quando o componente solicita mudanca de abertura.",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onOpenChange",
+      "signature": "(isOpen: boolean) => void",
+      "description": "Chamado sempre que o componente solicita mudanca de abertura (apos delayDuration para abrir e apos closeDelay para fechar), tanto no modo controlado quanto no nao controlado."
+    }
+  ],
+  "slots": [
+    {
+      "name": "children",
+      "type": "ReactElement<Record<string, unknown>>",
+      "description": "Elemento interativo que aciona o tooltip. E clonado com cloneElement para receber aria-describedby, onFocus, onBlur, onKeyDown, onMouseEnter e onMouseLeave; os handlers originais do filho sao preservados e chamados antes."
+    },
+    {
+      "name": "content",
+      "type": "ReactNode",
+      "description": "Microcopy exibida dentro de span.ds-tooltip__content no balao com role=\"tooltip\"."
+    }
+  ],
+  "cssClasses": [
+    "ds-tooltip",
+    "ds-tooltip--placement-top",
+    "ds-tooltip--placement-right",
+    "ds-tooltip--placement-bottom",
+    "ds-tooltip--placement-left",
+    "ds-tooltip--tone-dark",
+    "ds-tooltip--tone-light",
+    "ds-tooltip--open",
+    "ds-tooltip--disabled",
+    "ds-tooltip__bubble",
+    "ds-tooltip__content"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--tooltip-surface",
+      "value": "var(--ds-semantic-color-background-neutral-black)",
+      "comment": "color/background/neutral/black (a collection exporta tooltip/color/background como soft-black #292929; o node usa neutral/black - divergencia reportada)"
+    },
+    {
+      "name": "--tooltip-foreground",
+      "value": "var(--ds-semantic-text-style-content-color-typography-inverse)",
+      "comment": "text-style/content-color/typography/inverse"
+    },
+    {
+      "name": "--tooltip-arrow-width",
+      "value": "var(--ds-component-tooltip-arrow-size-width)",
+      "comment": "tooltip/arrow: 8x4 (largura x altura)"
+    },
+    {
+      "name": "--tooltip-arrow-height",
+      "value": "var(--ds-component-tooltip-arrow-size-height)",
+      "comment": "tooltip/arrow: 8x4 (largura x altura)"
+    },
+    {
+      "name": "--tooltip-offset",
+      "value": "calc(var(--tooltip-arrow-height) + var(--ds-component-tooltip-offset-spacing-offset))",
+      "comment": "tooltip/offset/spacing/offset (4px) + altura da seta"
+    },
+    {
+      "name": "--tooltip-padding-block",
+      "value": "var(--ds-component-tooltip-spacing-padding-y)",
+      "comment": "tooltip/spacing/padding-x (Component sizing/8) e padding-y (Component sizing/4)"
+    },
+    {
+      "name": "--tooltip-padding-inline",
+      "value": "var(--ds-component-tooltip-spacing-padding-x)",
+      "comment": "tooltip/spacing/padding-x (Component sizing/8) e padding-y (Component sizing/4)"
+    },
+    {
+      "name": "--tooltip-radius",
+      "value": "var(--ds-component-tooltip-border-radius)",
+      "comment": "tooltip/border-radius (border/radius/radius-sm, 4px)"
+    },
+    {
+      "name": "--tooltip-min-inline-size",
+      "value": "40px",
+      "comment": "Larguras do node: min 40 e max 200 (o token tooltip/size/max-width exporta 128px - divergencia reportada)"
+    },
+    {
+      "name": "--tooltip-max-inline-size",
+      "value": "200px",
+      "comment": "Larguras do node: min 40 e max 200 (o token tooltip/size/max-width exporta 128px - divergencia reportada)"
+    },
+    {
+      "name": "--tooltip-surface",
+      "value": "var(--ds-semantic-color-background-neutral-white)",
+      "comment": "Redefinido em .ds-tooltip--tone-light (variante Knockout do Figma): color/background/neutral/white"
+    },
+    {
+      "name": "--tooltip-foreground",
+      "value": "var(--ds-semantic-text-style-content-color-typography-primary)",
+      "comment": "Redefinido em .ds-tooltip--tone-light: text-style/content-color/typography/primary"
+    }
+  ],
+  "tokensUsed": [
+    "--ds-semantic-color-background-neutral-black",
+    "--ds-semantic-text-style-content-color-typography-inverse",
+    "--ds-component-tooltip-arrow-size-width",
+    "--ds-component-tooltip-arrow-size-height",
+    "--ds-component-tooltip-offset-spacing-offset",
+    "--ds-component-tooltip-spacing-padding-y",
+    "--ds-component-tooltip-spacing-padding-x",
+    "--ds-component-tooltip-border-radius",
+    "--ds-semantic-color-background-neutral-white",
+    "--ds-semantic-text-style-content-color-typography-primary",
+    "--ds-primitive-spacing-32",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-component-tooltip-typography-font-size",
+    "--ds-primitive-typography-font-weight-medium"
+  ],
+  "stories": [
+    {
+      "id": "web-components-tooltip--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-tooltip--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-tooltip--default&viewMode=story"
+    },
+    {
+      "id": "web-components-tooltip--light",
+      "name": "Light",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-tooltip--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-tooltip--light&viewMode=story"
+    },
+    {
+      "id": "web-components-tooltip--placements",
+      "name": "Placements",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-tooltip--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-tooltip--placements&viewMode=story"
+    },
+    {
+      "id": "web-components-tooltip--icon-button",
+      "name": "Icon Button",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-tooltip--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-tooltip--icon-button&viewMode=story"
+    },
+    {
+      "id": "web-components-tooltip--long-label",
+      "name": "Long Label",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-tooltip--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-tooltip--long-label&viewMode=story"
+    }
+  ],
+  "variants": [
+    {
+      "prop": "placement",
+      "values": [
+        "top",
+        "right",
+        "bottom",
+        "left"
+      ]
+    },
+    {
+      "prop": "tone",
+      "values": [
+        "dark",
+        "light"
+      ]
+    }
+  ],
+  "states": [
+    "fechado (padrao: .ds-tooltip__bubble com opacity 0, visibility hidden, pointer-events none e aria-hidden=\"true\")",
+    "aberto (.ds-tooltip--open .ds-tooltip__bubble: opacity 1, visibility visible, aria-hidden=\"false\" e aria-describedby injetado no trigger)",
+    "disabled (classe .ds-tooltip--disabled aplicada e abertura bloqueada no TSX; nao existe regra CSS para essa classe)"
+  ],
+  "responsive": [
+    {
+      "query": "@media (prefers-reduced-motion: reduce)",
+      "effect": "Remove a transicao de opacity/visibility do .ds-tooltip__bubble (transition: none)."
+    }
+  ],
+  "accessibility": {
+    "roles": [
+      "tooltip"
+    ],
+    "ariaAttributes": [
+      "aria-describedby",
+      "aria-hidden"
+    ],
+    "keyboardInteractions": [
+      "Foco no trigger (Tab) agenda a abertura apos delayDuration (padrao 160ms).",
+      "Blur no trigger agenda o fechamento apos closeDelay (padrao 80ms).",
+      "Escape com foco no trigger agenda o fechamento apos closeDelay."
+    ],
+    "notes": [
+      "O balao flutuante usa role=\"tooltip\" e aria-hidden={!currentOpen}; ele nunca recebe foco e tem pointer-events: none.",
+      "O trigger recebe aria-describedby apenas enquanto o tooltip esta aberto e ha content; um aria-describedby ja existente no filho e preservado e concatenado.",
+      "Quando disabled e true, currentOpen e sempre false e aria-describedby nao e injetado.",
+      "O trigger precisa ser um elemento focavel/interativo: o componente nao adiciona tabIndex nem role ao filho.",
+      "Os handlers originais do filho (onFocus, onBlur, onKeyDown, onMouseEnter, onMouseLeave) sao chamados antes da logica do tooltip.",
+      "Os timers de abertura/fechamento sao limpos no unmount (useEffect de cleanup).",
+      "Nao ha abertura por toque/tap: o componente escuta apenas mouse e foco."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Tooltip/Tooltip.test.tsx",
+    "unitCount": 7,
+    "a11yFile": null,
+    "a11yCount": null
+  },
+  "figmaReferences": [
+    {
+      "node": "108:35791",
+      "note": "Web Components / Tooltip. Citado no cabecalho do Tooltip.styles.css (\"Layout do Figma: Web Components / Tooltip (node 108:35791) e atomo Arrow\") e na descricao das stories (\"Layout reproduzido do Figma Web Components (node 108:35791) com o atomo Arrow\")."
+    }
+  ],
+  "pendencias": [
+    "Nao existe arquivo Tooltip.a11y.test.tsx; a11yFile e a11yCount ficam nulos.",
+    "A classe ds-tooltip--disabled e aplicada pelo TSX mas nao possui nenhuma regra no Tooltip.styles.css.",
+    "A classe ds-tooltip--tone-dark e aplicada pelo TSX mas nao possui regra propria: o tom dark vem dos valores padrao definidos em .ds-tooltip.",
+    "Divergencia documentada em comentario: a collection exporta tooltip/color/background como soft-black #292929, enquanto o node usa neutral/black.",
+    "Divergencia documentada em comentario: o token tooltip/size/max-width exporta 128px, mas o CSS usa 200px (max) e 40px (min) como literais.",
+    "A sombra do balao (0 4px 4px rgb(0 0 0 / 12%) + 0 2px 2px rgb(0 0 0 / 8%)) e literal: nao ha variable correspondente na collection exportada.",
+    "O atomo Arrow do Figma e citado por nome, mas sem node-id proprio no codigo.",
+    "Nao ha deteccao de colisao/flip automatico de placement: a posicao e puramente CSS a partir da prop placement.",
+    "Nao ha suporte explicito a touch (nenhum handler de toque/tap); a propria doc recomenda texto persistente em mobile.",
+    "O node do Figma nao define variante mobile; a unica regra @media do componente e prefers-reduced-motion.",
+    "O valor final dos tokens --ds-* nao foi resolvido aqui; apenas os nomes consumidos via var() no Tooltip.styles.css foram extraidos (Tooltip.stories.css e exclusivo das stories e nao foi contabilizado)."
+  ]
+}

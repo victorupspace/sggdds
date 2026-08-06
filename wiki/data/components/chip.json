@@ -1,0 +1,324 @@
+{
+  "slug": "chip",
+  "name": "Chip",
+  "storybookTitle": "Web Components/Chip",
+  "sourceDir": "packages/react/src/components/Chip",
+  "exports": ["Chip"],
+  "typeExports": ["ChipProps", "ChipVariant"],
+  "oneLiner": "O Chip reproduz o layout do Figma (Web Components / Chip): pill compacta com radius-sm, padding de 6px, gap de 4px, texto Label/Small (Plus Jakarta Sans Medium 12) e ícones opcionais de 16px nos slots Leading/Trailing (glifo help por padrão).",
+  "docsDescription": "O Chip reproduz o layout do Figma (Web Components / Chip): pill compacta com radius-sm, padding de 6px, gap de 4px, texto Label/Small (Plus Jakarta Sans Medium 12) e ícones opcionais de 16px nos slots Leading/Trailing (glifo help por padrão).\n\nTipos (propriedade type no Figma):\n- Support e Action: borda neutral/subtle com texto typography/tertiary; hover em background/neutral/default; selecionado usa color/state/selected com borda color/border/strong.\n- Information, Warning, Danger e Success: fundo subtle da cor com texto na tipografia correspondente, hover em subtle-hover e selecionado com borda de 1.5px na cor do texto (danger escurece o texto para color/typography/danger no hover/selected).\n\nEstados: Default, Hover (apenas quando interativo, via onClick), Selected (borda de 1.5px) e Disabled (fundo neutral/inverse, borda neutral/disabled e texto typography/disabled).\n\nTokens: as variables novas do Figma ainda ausentes nas collections exportadas (sizing/chip/*, color/state/selected, color/border/strong, color/typography/success e color/typography/danger) usam literais documentados no CSS.\n\nResponsividade: o Chip e inline-flex com max-width de 100%; labels maiores que o container sao truncados com reticencias.\n\nAcessibilidade: com onClick o Chip vira um botao com aria-pressed refletindo selected e foco visivel com o focus ring do DS; sem onClick e um elemento estatico. Icones sao decorativos (aria-hidden).",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Conteudo textual do chip.",
+      "source": "ambos"
+    },
+    {
+      "name": "variant",
+      "type": "ChipVariant",
+      "values": ["support", "action", "information", "success", "warning", "danger"],
+      "default": "'support'",
+      "required": false,
+      "description": "Tipo do Chip, equivalente à propriedade `type` do componente no Figma.",
+      "source": "ambos"
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Estado Selected do Figma (borda de 1.5px e fundo de seleção).",
+      "source": "ambos"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Estado Disabled do Figma (definido para Support/Action; aplicado a todas as variantes).",
+      "source": "ambos"
+    },
+    {
+      "name": "showLeadingIcon",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Exibe o ícone padrão (help) antes do texto (`showLeadingIcon` no Figma).",
+      "source": "ambos"
+    },
+    {
+      "name": "leadingIcon",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Substitui o ícone inicial (slot Leading Icon). Implica exibição.",
+      "source": "ambos"
+    },
+    {
+      "name": "showTrailingIcon",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Exibe o ícone padrão (help) após o texto (`showTrailingIcon` no Figma).",
+      "source": "ambos"
+    },
+    {
+      "name": "trailingIcon",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Substitui o ícone final (slot Trailing Icon). Implica exibição.",
+      "source": "ambos"
+    },
+    {
+      "name": "onClick",
+      "type": "MouseEventHandler<HTMLButtonElement>",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Torna o Chip interativo (renderiza um botão com estados hover/pressed).",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao chip.",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onClick",
+      "signature": "MouseEventHandler<HTMLButtonElement>",
+      "description": "Torna o Chip interativo: quando informado, o componente renderiza um <button type=\"button\"> com aria-pressed e a classe ds-chip--interactive."
+    }
+  ],
+  "slots": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "description": "Conteúdo textual renderizado dentro de .ds-chip__label."
+    },
+    {
+      "name": "leadingIcon",
+      "type": "ReactNode",
+      "description": "Substitui o ícone inicial (slot Leading Icon do Figma). Quando informado, dispensa showLeadingIcon."
+    },
+    {
+      "name": "trailingIcon",
+      "type": "ReactNode",
+      "description": "Substitui o ícone final (slot Trailing Icon do Figma). Quando informado, dispensa showTrailingIcon."
+    }
+  ],
+  "cssClasses": [
+    "ds-chip",
+    "ds-chip--variant-support",
+    "ds-chip--variant-action",
+    "ds-chip--variant-information",
+    "ds-chip--variant-success",
+    "ds-chip--variant-warning",
+    "ds-chip--variant-danger",
+    "ds-chip--interactive",
+    "ds-chip--selected",
+    "ds-chip--disabled",
+    "ds-chip__icon",
+    "ds-chip__label"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--chip-gap",
+      "value": "4px",
+      "comment": "sizing/chip/gap (4px), padding-x e padding-y (6px) — variables novas do Figma, ausentes nas collections exportadas; valores literais documentados"
+    },
+    {
+      "name": "--chip-padding-x",
+      "value": "6px",
+      "comment": "sizing/chip/padding-x — variable nova do Figma; literal documentado"
+    },
+    {
+      "name": "--chip-padding-y",
+      "value": "6px",
+      "comment": "sizing/chip/padding-y — variable nova do Figma; literal documentado"
+    },
+    {
+      "name": "--chip-background",
+      "value": "transparent",
+      "comment": "Sobrescrita nas variantes information/success/warning/danger para o background subtle da cor."
+    },
+    {
+      "name": "--chip-hover-background",
+      "value": "var(--ds-semantic-color-background-neutral-default)",
+      "comment": "color/background/neutral/default (hover de Support/Action); variantes coloridas usam o subtle-hover."
+    },
+    {
+      "name": "--chip-selected-background",
+      "value": "rgb(0 0 0 / 16%)",
+      "comment": "color/state/selected — variable nova; literal documentado. Variantes coloridas usam o subtle-hover."
+    },
+    {
+      "name": "--chip-border-color",
+      "value": "var(--ds-semantic-color-border-neutral-subtle)",
+      "comment": "color/border/neutral/subtle"
+    },
+    {
+      "name": "--chip-border-width",
+      "value": "var(--ds-primitive-border-width-border-sm)",
+      "comment": "Definido como 0px nas variantes information/success/warning/danger."
+    },
+    {
+      "name": "--chip-selected-border-color",
+      "value": "#bdbdbd",
+      "comment": "color/border/strong (#bdbdbd) — variable nova; literal documentado. Nas variantes coloridas assume a cor do texto da variante."
+    },
+    {
+      "name": "--chip-text-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-tertiary)",
+      "comment": "text-style/content color/typography/tertiary (Support/Action)"
+    },
+    {
+      "name": "--chip-hover-text-color",
+      "value": "var(--chip-text-color)",
+      "comment": "Somente a variante danger sobrescreve com #700000 (color/typography/danger — variable nova; literal)."
+    },
+    {
+      "name": "--chip-focus-ring",
+      "value": "var(--ds-component-focus-ring-color-ring)",
+      "comment": null
+    }
+  ],
+  "tokensUsed": [
+    "--ds-component-component-sizing-16",
+    "--ds-component-focus-ring-color-ring",
+    "--ds-component-focus-ring-effect-offset",
+    "--ds-component-focus-ring-effect-width",
+    "--ds-primitive-border-radius-radius-sm",
+    "--ds-primitive-border-width-border-none",
+    "--ds-primitive-border-width-border-sm",
+    "--ds-primitive-spacing-0",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-typography-font-size-12",
+    "--ds-primitive-typography-font-weight-medium",
+    "--ds-semantic-color-background-danger-subtle",
+    "--ds-semantic-color-background-danger-subtle-hover",
+    "--ds-semantic-color-background-information-subtle",
+    "--ds-semantic-color-background-information-subtle-hover",
+    "--ds-semantic-color-background-neutral-default",
+    "--ds-semantic-color-background-neutral-inverse",
+    "--ds-semantic-color-background-success-subtle",
+    "--ds-semantic-color-background-success-subtle-hover",
+    "--ds-semantic-color-background-warning-subtle",
+    "--ds-semantic-color-background-warning-subtle-hover",
+    "--ds-semantic-color-border-neutral-disabled",
+    "--ds-semantic-color-border-neutral-subtle",
+    "--ds-semantic-text-style-content-color-typography-danger",
+    "--ds-semantic-text-style-content-color-typography-disabled",
+    "--ds-semantic-text-style-content-color-typography-information",
+    "--ds-semantic-text-style-content-color-typography-tertiary",
+    "--ds-semantic-text-style-content-color-typography-warning"
+  ],
+  "stories": [
+    {
+      "id": "web-components-chip--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-chip--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-chip--default&viewMode=story"
+    },
+    {
+      "id": "web-components-chip--all-variants",
+      "name": "All Variants",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-chip--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-chip--all-variants&viewMode=story"
+    },
+    {
+      "id": "web-components-chip--selected",
+      "name": "Selected",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-chip--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-chip--selected&viewMode=story"
+    },
+    {
+      "id": "web-components-chip--disabled",
+      "name": "Disabled",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-chip--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-chip--disabled&viewMode=story"
+    },
+    {
+      "id": "web-components-chip--interactive",
+      "name": "Interactive",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-chip--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-chip--interactive&viewMode=story"
+    },
+    {
+      "id": "web-components-chip--with-trailing-icon",
+      "name": "With Trailing Icon",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-chip--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-chip--with-trailing-icon&viewMode=story"
+    },
+    {
+      "id": "web-components-chip--long-label",
+      "name": "Long Label",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-chip--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-chip--long-label&viewMode=story"
+    }
+  ],
+  "variants": [
+    {
+      "prop": "variant",
+      "values": ["support", "action", "information", "success", "warning", "danger"]
+    }
+  ],
+  "states": ["hover", "focus", "focus-visible", "selected", "disabled"],
+  "responsive": [
+    {
+      "query": "@media (hover: hover)",
+      "effect": ".ds-chip--interactive:hover:not(:disabled) aplica --chip-hover-background e --chip-hover-text-color; em dispositivos sem hover real o estado não é aplicado."
+    },
+    {
+      "query": "@media (prefers-reduced-motion: reduce)",
+      "effect": "Remove a transition (background-color, border-color, color) de .ds-chip."
+    }
+  ],
+  "accessibility": {
+    "roles": ["button"],
+    "ariaAttributes": ["aria-pressed", "aria-disabled", "aria-hidden"],
+    "keyboardInteractions": [],
+    "notes": [
+      "Com onClick o Chip renderiza <button type=\"button\"> com aria-pressed refletindo a prop selected e disabled nativo.",
+      "Sem onClick o Chip é um <span> estático; quando disabled recebe aria-disabled=\"true\".",
+      "Os wrappers de ícone (.ds-chip__icon) e o SVG padrão usam aria-hidden=\"true\" (ícones decorativos).",
+      "Foco: :focus remove o outline e :focus-visible aplica outline com --ds-component-focus-ring-effect-width/offset e --ds-component-focus-ring-color-ring.",
+      "O componente não implementa handlers de teclado próprios; quando interativo depende do comportamento nativo do elemento <button>."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Chip/Chip.test.tsx",
+    "unitCount": 10,
+    "a11yFile": null,
+    "a11yCount": null
+  },
+  "figmaReferences": [
+    {
+      "node": "40000114:11143",
+      "note": "Web Components / Chip — citado em Chip.tsx (ícone padrão dos slots Leading/Trailing) e no cabeçalho de Chip.styles.css."
+    }
+  ],
+  "pendencias": [
+    "Não existe arquivo .a11y.test.tsx para o Chip; a cobertura de acessibilidade automatizada não pôde ser determinada.",
+    "As variantes 'support' e 'action' não possuem regra CSS própria (usam apenas o bloco base .ds-chip), então não é possível diferenciar visualmente as duas pelo código.",
+    "Valores literais usados por ausência de variables exportadas (rgb(0 0 0 / 16%) para color/state/selected, #bdbdbd para color/border/strong, #1a612a para color/typography/success e #700000 para color/typography/danger) não têm token --ds-* correspondente.",
+    "Os argTypes das stories não declaram defaults; os valores default listados vêm da desestruturação em Chip.tsx.",
+    "O Chip não encaminha ref nem props nativas adicionais (apenas className e onClick), e isso não está documentado explicitamente na doc do Storybook."
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "slug": "accordion",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Conteúdo",
+  "resumo": "O Accordion agrupa blocos de conteúdo relacionados em cards que abrem e fecham. Serve para encurtar páginas longas quando a pessoa precisa de apenas uma parte da informação por vez.",
+  "quandoUsar": [
+    "Quando a página reúne perguntas frequentes de um serviço e a pessoa procura só uma resposta, como as dúvidas sobre agendamento no Poupatempo.",
+    "Quando o mesmo serviço tem regras diferentes por perfil (pessoa física, pessoa jurídica, procurador) e cada perfil só precisa ler o seu bloco.",
+    "Quando a lista de documentos exigidos ocupa várias rolagens antes do botão que continua o pedido.",
+    "Quando existe detalhamento opcional de algo já resolvido, como o histórico de movimentações de um protocolo.",
+    "Quando o conteúdo de apoio empurra a ação principal da página para fora da primeira tela."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Quando a pessoa precisa comparar os blocos entre si, como valores de taxas por categoria de veículo.",
+      "alternativa": "data-table"
+    },
+    {
+      "texto": "Quando o conteúdo é curto e cabe inteiro na tela — esconder duas linhas cria um clique sem ganho.",
+      "alternativa": "divider"
+    },
+    {
+      "texto": "Quando os blocos são caminhos alternativos e a pessoa alterna entre eles o tempo todo.",
+      "alternativa": "tabs"
+    },
+    {
+      "texto": "Quando a informação precisa ser lida antes de a pessoa continuar o fluxo.",
+      "alternativa": "alert"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Container do Accordion",
+      "descricao": "Agrupa os itens e define a superfície dos cards, conforme a prop background (white ou inverse)."
+    },
+    {
+      "numero": 2,
+      "parte": "Card do item",
+      "descricao": "Cada bloco colapsável, com borda, cantos arredondados e sombra leve."
+    },
+    {
+      "numero": 3,
+      "parte": "Cabeçalho",
+      "descricao": "Faixa superior do card. O clique em qualquer ponto do cabeçalho, fora da área de badge e ação, abre ou fecha o item."
+    },
+    {
+      "numero": 4,
+      "parte": "Leading",
+      "descricao": "Espaço opcional à esquerda do título, para um elemento de apoio como um Avatar."
+    },
+    {
+      "numero": 5,
+      "parte": "Título",
+      "descricao": "Texto do item, obrigatório, renderizado dentro do botão que controla a abertura."
+    },
+    {
+      "numero": 6,
+      "parte": "Badge e ação",
+      "descricao": "Elementos opcionais à direita do título: primeiro a badge, depois a ação, antes do chevron."
+    },
+    {
+      "numero": 7,
+      "parte": "Chevron",
+      "descricao": "Seta que indica se o item está aberto ou fechado; gira quando o item é expandido."
+    },
+    {
+      "numero": 8,
+      "parte": "Painel de conteúdo",
+      "descricao": "Bloco arredondado com o conteúdo do item, em superfície invertida em relação ao card."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "Abaixo de 640px o título diminui para 16px, o chevron fica menor e o painel usa fonte e espaçamento reduzidos. Nessa largura, a badge e a ação do cabeçalho ficam ocultas — por isso elas nunca podem carregar informação essencial. Com a preferência de movimento reduzido ativa, a rotação do chevron e a animação de abertura são removidas.",
+  "dosDonts": [
+    {
+      "faca": "Escreva no título a pergunta ou o assunto por inteiro, como \"Quais documentos preciso levar?\".",
+      "naoFaca": "Usar títulos genéricos como \"Saiba mais\" ou \"Detalhes\".",
+      "porque": "O título é a única parte visível com o item fechado; é com ele que a pessoa decide se vale abrir."
+    },
+    {
+      "faca": "Deixe os itens fechados por padrão e use defaultExpanded só para o item mais procurado.",
+      "naoFaca": "Abrir todos os itens de início combinando allowMultiple com uma lista longa em defaultExpanded.",
+      "porque": "Com tudo aberto, o Accordion só acrescenta bordas e cliques: o ganho de encurtar a página desaparece."
+    },
+    {
+      "faca": "Mantenha um único assunto por item, com a instrução inteira dentro do painel.",
+      "naoFaca": "Quebrar uma instrução em dois itens que precisam ser lidos juntos.",
+      "porque": "Como allowMultiple é false por padrão, abrir o segundo item fecha o primeiro e a pessoa perde metade da instrução."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Título de uma linha, com cerca de 60 caracteres no máximo, para não virar três linhas no celular.",
+    "Escreva o título como a pessoa formula a dúvida: pergunta direta (\"Quem pode solicitar?\") ou assunto curto (\"Prazo de entrega\").",
+    "Use maiúscula apenas na primeira letra e em nomes próprios; não escreva títulos em caixa alta.",
+    "No painel, comece pela resposta e só depois explique; não repita o título na primeira frase.",
+    "Se usar badge, limite-a a uma palavra (\"Novo\", \"Obrigatório\"). Ela some no celular, então não pode conter dado necessário."
+  ],
+  "hierarquia": [
+    "O Accordion vem depois do conteúdo essencial da página e antes do rodapé: é material de consulta, não a ação principal.",
+    "Escolha background pelo fundo da página: white deixa o card branco com painel cinza, indicado sobre fundos cinza; inverse deixa o card cinza com painel branco, indicado sobre fundos brancos.",
+    "Não coloque dois Accordions em sequência. Reúna tudo em um só, com um título de seção acima explicando o conjunto."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Avatar",
+      "slug": "avatar",
+      "relacao": "A prop leading do AccordionItem aceita um Avatar, útil quando cada item representa uma pessoa ou um órgão."
+    },
+    {
+      "componente": "Badge",
+      "slug": "badge",
+      "relacao": "A prop badge exibe uma Badge à direita do título, para marcar a situação do item — lembrando que ela fica oculta abaixo de 640px."
+    },
+    {
+      "componente": "Button",
+      "slug": "button",
+      "relacao": "A prop action aceita um Button para uma ação secundária no cabeçalho; o clique nessa área não abre nem fecha o item."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Dúvidas frequentes sobre agendamento no Poupatempo",
+      "contexto": "A página do serviço concentra as dúvidas mais comuns sobre marcar, remarcar e cancelar atendimento. A pessoa chega com uma pergunta específica e não quer ler o texto inteiro.",
+      "comoFica": "Um Accordion com todos os itens fechados, cada título trazendo a pergunta na íntegra. Como allowMultiple fica em false, abrir uma resposta fecha a anterior e a tela nunca cresce demais. A pergunta mais procurada entra em defaultExpanded."
+    },
+    {
+      "titulo": "Documentos exigidos por tipo de solicitante",
+      "contexto": "Na emissão de uma certidão, a lista de documentos muda conforme quem pede: o próprio titular, um representante legal ou uma empresa.",
+      "comoFica": "Um Accordion com um item por tipo de solicitante. O título nomeia o perfil e o painel traz a lista de documentos daquele perfil. Uma Badge marca o perfil mais comum, e a mesma informação aparece na primeira linha do painel, já que a badge some no celular."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Repetir o mesmo id em dois AccordionItem.",
+      "consequencia": "O Accordion controla a expansão pelo id: os dois itens passam a abrir e fechar juntos e a ligação entre botão e painel fica ambígua para leitores de tela.",
+      "correcao": "Dê um id único e estável a cada item, vindo do dado e não da posição na lista."
+    },
+    {
+      "erro": "Colocar dentro de um painel fechado a única informação obrigatória do fluxo.",
+      "consequencia": "A pessoa segue para a próxima etapa sem ler a regra, porque nada na tela indica que ela existe.",
+      "correcao": "Traga o que é obrigatório para o corpo da página, com um Alert quando for o caso, e deixe no Accordion apenas o detalhamento."
+    },
+    {
+      "erro": "Marcar um item como disabled sem explicar o motivo na página.",
+      "consequencia": "O item sai da ordem de foco e não abre; quem navega por teclado percebe apenas que ele foi pulado, sem saber por quê.",
+      "correcao": "Só use disabled quando o motivo estiver escrito por perto; caso contrário, não exiba o item."
+    },
+    {
+      "erro": "Usar a badge ou a ação do cabeçalho para informação que só existe ali.",
+      "consequencia": "Abaixo de 640px os dois elementos ficam ocultos e a informação desaparece no celular.",
+      "correcao": "Repita a informação no título ou no painel e trate badge e ação como reforço visual."
+    }
+  ],
+  "notasImplementacao": [
+    "O conteúdo do painel continua no DOM quando o item está fechado, apenas com aria-hidden=true; a altura é animada por grid-template-rows, sem medição em JavaScript.",
+    "Não existe modo controlado: o componente aceita apenas defaultExpanded e mantém o estado internamente.",
+    "O título do item é sempre envolvido por um <h3>; o nível do heading não é configurável por prop.",
+    "A navegação entre itens usa apenas Tab, Enter e Espaço. Não há navegação por setas nem Home/End.",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual."
+  ],
+  "pendentes": [
+    "O campo de tamanhos ficou vazio porque o componente não expõe prop de tamanho.",
+    "Não foi possível recomendar um número máximo de itens por Accordion: o JSON extraído não traz limite nem orientação do time de design.",
+    "Não há orientação para páginas com hierarquia de títulos diferente, porque o trigger usa <h3> fixo e não existe prop para mudar o nível."
+  ]
+}

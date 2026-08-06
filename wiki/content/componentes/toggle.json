@@ -1,0 +1,162 @@
+{
+  "slug": "toggle",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Formulários",
+  "resumo": "Chave que liga e desliga uma configuração, com efeito imediato. A pessoa toca no controle e a mudança vale na hora, sem precisar de botão de salvar.",
+  "quandoUsar": [
+    "Para a pessoa ligar ou desligar o aviso por e-mail sobre o andamento de um protocolo, valendo a partir daquele momento.",
+    "Para ativar um recurso de apresentação da página, como alto contraste ou modo de leitura simplificada.",
+    "Para ativar o lembrete automático de vencimento de uma taxa ou de uma data de atendimento.",
+    "Em uma tela de preferências, quando cada linha é uma configuração independente das outras.",
+    "Para permitir ou bloquear o compartilhamento de um dado opcional, quando a escolha passa a valer imediatamente."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Quando a escolha só passa a valer depois de a pessoa enviar o formulário, como o aceite de termos de um cadastro.",
+      "alternativa": "Checkbox"
+    },
+    {
+      "texto": "Quando a pessoa precisa escolher uma entre várias opções que se excluem, como o tipo de atendimento.",
+      "alternativa": "Radio"
+    },
+    {
+      "texto": "Quando o controle executa uma tarefa em vez de mudar um estado, como emitir uma segunda via ou enviar um pedido.",
+      "alternativa": "Button"
+    },
+    {
+      "texto": "Quando é um filtro de lista que só é aplicado depois que a pessoa confirma a busca.",
+      "alternativa": "Checkbox"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Trilho",
+      "descricao": "Faixa arredondada que muda de cor conforme o estado: neutra quando desligado, escura quando ligado. É decorativa e não é lida por leitores de tela."
+    },
+    {
+      "numero": 2,
+      "parte": "Botão deslizante",
+      "descricao": "Círculo que desliza dentro do trilho, à esquerda quando desligado e à direita quando ligado. Também é decorativo."
+    },
+    {
+      "numero": 3,
+      "parte": "Rótulo",
+      "descricao": "Texto principal, obrigatório, que descreve o que está sendo ligado. É ele que dá nome ao controle para leitores de tela."
+    },
+    {
+      "numero": 4,
+      "parte": "Marca de obrigatório",
+      "descricao": "Asterisco exibido ao lado do rótulo quando a configuração é obrigatória. É apenas visual."
+    },
+    {
+      "numero": 5,
+      "parte": "Texto auxiliar",
+      "descricao": "Frase opcional abaixo do rótulo, para explicar a consequência de ligar ou desligar."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "Em telas de até 420 pixels, o trilho e o botão deslizante ficam um pouco menores e o espaço entre o controle e o texto diminui, mas a área mínima de toque aumenta. Ou seja: o controle parece menor e continua fácil de acertar com o dedo.",
+  "dosDonts": [
+    {
+      "faca": "Escreva o rótulo descrevendo o que fica ativo quando a chave está ligada: \"Receber avisos por e-mail\".",
+      "naoFaca": "Escrever o rótulo com negação ou em forma de pergunta: \"Não receber avisos por e-mail\".",
+      "porque": "Com negação, ligar a chave significa desligar o recurso. A pessoa precisa fazer uma dupla negação de cabeça e erra a configuração sem perceber."
+    },
+    {
+      "faca": "Aplique a mudança na hora e confirme o resultado quando ele não for visível na tela.",
+      "naoFaca": "Colocar a chave dentro de um formulário que só grava as escolhas ao clicar em salvar.",
+      "porque": "A chave comunica efeito imediato pelo próprio desenho. Se a mudança depender de um botão, a pessoa sai da página achando que já configurou e nada foi salvo."
+    },
+    {
+      "faca": "Use o texto auxiliar para explicar a consequência da configuração em uma frase.",
+      "naoFaca": "Deixar a chave desabilitada sem dizer por quê.",
+      "porque": "O controle desabilitado não recebe foco pelo teclado e passa despercebido para quem usa leitor de tela. A pessoa não descobre que existe uma condição a cumprir antes."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Escreva o rótulo de forma afirmativa, nomeando o que fica ativo. Comece por um verbo quando isso deixar a frase mais clara.",
+    "Não escreva \"Ligado\", \"Desligado\", \"Sim\" ou \"Não\" no rótulo. O estado já é comunicado pelo desenho do controle e pela semântica de chave que ele usa.",
+    "Use o texto auxiliar para uma frase só, dizendo o efeito prático: para onde vai o aviso, com que frequência, o que muda na tela.",
+    "Escreva o rótulo com a primeira letra maiúscula e o resto em minúsculas, sem ponto final. O texto auxiliar pode ter ponto final por ser uma frase completa.",
+    "Marque como obrigatório apenas quando uma regra do serviço exigir aceite explícito. O asterisco é apenas visual; a obrigatoriedade real vem do atributo nativo."
+  ],
+  "hierarquia": [
+    "O controle fica à esquerda e o texto à direita. Quando houver vários na mesma tela, alinhe todos os trilhos na mesma coluna para a leitura descer em linha reta.",
+    "Agrupe as chaves por assunto, com um título de seção acima de cada grupo. Uma lista longa de chaves sem agrupamento vira ruído.",
+    "É um controle de baixo destaque, próprio de telas de preferências e configuração. Não use para a ação principal de uma página de serviço.",
+    "Clicar em qualquer parte do bloco alterna o estado, inclusive no rótulo e no texto auxiliar. Não coloque links dentro desse texto."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Toast",
+      "slug": "toast",
+      "relacao": "Quando ligar a chave não muda nada visível na tela, o aviso temporário confirma que a preferência foi gravada."
+    },
+    {
+      "componente": "Checkbox",
+      "slug": "checkbox",
+      "relacao": "Divisão de papéis no mesmo produto: a chave para o que vale na hora, a caixa de seleção para o que só vale ao enviar o formulário."
+    },
+    {
+      "componente": "Divider",
+      "slug": "divider",
+      "relacao": "Separa grupos de preferências em uma lista longa de chaves, sem precisar de caixas ou cartões."
+    },
+    {
+      "componente": "Card",
+      "slug": "card",
+      "relacao": "Reúne um bloco de preferências relacionadas em uma tela que tem outros assuntos além da configuração."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Preferências de aviso sobre um protocolo",
+      "contexto": "Na área da pessoa no portal do serviço, ela decide como quer ser avisada quando o protocolo mudar de situação.",
+      "comoFica": "Duas chaves empilhadas: \"Receber avisos por e-mail\" e \"Receber avisos por SMS\", cada uma com um texto auxiliar dizendo o que será enviado. Ao alternar, a preferência é gravada na hora e um aviso temporário confirma a mudança."
+    },
+    {
+      "titulo": "Lembrete antes do atendimento agendado",
+      "contexto": "Depois de confirmar um agendamento no Poupatempo, a pessoa escolhe se quer receber um lembrete antes da data.",
+      "comoFica": "Uma chave com rótulo \"Receber lembrete antes do atendimento\" e texto auxiliar explicando que o lembrete usa o e-mail informado no cadastro. Se ainda não houver e-mail cadastrado, o texto auxiliar explica isso em vez de a chave aparecer desabilitada sem justificativa."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Informar o estado por fora sem tratar a mudança.",
+      "consequencia": "O controle fica travado: a pessoa clica, o leitor de tela anuncia a chave, mas o botão deslizante não se move e nada acontece.",
+      "correcao": "Ou trate onCheckedChange atualizando o estado, ou use o estado inicial não controlado (defaultChecked) e deixe o componente cuidar da alternância."
+    },
+    {
+      "erro": "Escrever o rótulo com negação, como \"Não quero receber comunicações\".",
+      "consequencia": "Ligar a chave passa a significar recusar. A pessoa lê rápido, liga achando que está aceitando e configura o oposto do que queria.",
+      "correcao": "Reescreva de forma afirmativa: \"Receber comunicações sobre o serviço\"."
+    },
+    {
+      "erro": "Usar a chave em um formulário que só salva no botão de enviar.",
+      "consequencia": "O desenho promete efeito imediato e o sistema entrega efeito adiado. Quem sai da página sem clicar em salvar perde a configuração sem nenhum aviso.",
+      "correcao": "Salve a preferência na hora da alternância, ou troque o controle por Checkbox, que combina com envio por botão."
+    },
+    {
+      "erro": "Deixar o controle desabilitado como forma de indicar que o recurso ainda não está disponível.",
+      "consequencia": "O controle não recebe foco pelo teclado e não é alcançado por leitor de tela. A pessoa não descobre que o recurso existe nem o que precisa fazer para liberá-lo.",
+      "correcao": "Explique a condição em texto visível ao lado do grupo, ou só exiba a chave quando ela puder ser usada."
+    }
+  ],
+  "notasImplementacao": [
+    "O componente usa uma caixa de seleção nativa anunciada como chave (role switch). A raiz é um rótulo, então clicar em qualquer parte do bloco — trilho, rótulo ou texto auxiliar — alterna o controle.",
+    "O nome acessível vem do rótulo e o texto auxiliar só é ligado ao controle quando existe. Trilho e botão deslizante ficam escondidos de leitores de tela.",
+    "A tecla Espaço alterna o estado pelo comportamento nativo da caixa de seleção; não há tratamento de teclado próprio no componente.",
+    "O asterisco de obrigatório é apenas visual. A semântica vem do atributo required no controle nativo.",
+    "O callback de mudança não é disparado quando o controle está desabilitado.",
+    "A área de toque tem no mínimo 44 pixels, e sobe para 48 pixels em telas de até 420 pixels, mesmo com o trilho ficando menor.",
+    "Existem testes automatizados de acessibilidade (axe) cobrindo quatro cenários: com rótulo, ligado, com texto auxiliar e desabilitado.",
+    "Não há teste automatizado cobrindo passagem do mouse, foco visível nem o uso controlado sem callback de mudança."
+  ],
+  "pendentes": [
+    "O campo de tamanhos ficou vazio porque o componente não expõe nenhuma prop de variação: não há tamanhos nem tons a documentar.",
+    "Estado de carregamento enquanto a preferência é gravada no servidor: o JSON extraído não traz prop nem estado visual para isso. Como a chave promete efeito imediato, falta o time definir o que mostrar quando a gravação demora ou falha.",
+    "Como comunicar erro de gravação: não existe estado de erro no componente. A mensagem precisaria vir de outro elemento, e essa decisão ainda não está definida."
+  ]
+}

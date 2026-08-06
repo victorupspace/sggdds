@@ -1,0 +1,302 @@
+{
+  "slug": "stepper",
+  "name": "Stepper",
+  "storybookTitle": "Web Components/Stepper",
+  "sourceDir": "packages/react/src/components/Stepper",
+  "exports": ["Stepper"],
+  "typeExports": ["StepperProps", "StepperStep"],
+  "oneLiner": "Card de progresso que comunica a etapa atual de fluxos divididos em etapas, com estado Completed e acao de recomecar.",
+  "docsDescription": "O Stepper comunica o progresso atual de fluxos divididos em etapas, como um card de progresso.\n\nLayout reproduzido do Figma Web Components (node 40000045:5961) com o atomo Progress Line (40000030:6888).\n\nAnatomia (estado In Progress):\n- Card com fundo color/background/neutral/default, borda border-sm em color/neutral/grey-200 e radius 12.\n- Top row: titulo em caixa alta (SemiBold 11, tracking 0.66px) e contador atual/total (Medium 11), ambos em grey-600.\n- Step row: circulo de 32px em typography/primary com o numero da etapa (SemiBold 14, branco) e o nome da etapa (SemiBold 18, typography/primary).\n- Progress Line: track de 8px em color/background/neutral/default-hover e Range em color/background/neutral/black, proporcional a etapa atual.\n- Next row: prefixo \"Próxima:\" (SemiBold 12) e nome da proxima etapa (Regular 12) em grey-600; some na ultima etapa.\n\nEstado Completed:\n- Card verde claro (#E9FDF3) com borda #E0E0E0 a 80%.\n- Circulo de 38px em #1E7D47 com o vetor check do Figma, titulo SemiBold 15 e descricao Regular 12 em #1E7D47.\n- Botao Recomeçar (#181818, radius 8) alinhado a direita, com onRestart.\n\nRegras:\n- currentStep e baseado em 1: currentStep={1} renderiza 1/total.\n- A barra usa progresso proporcional: etapa atual dividida pelo total.\n- Textos do titulo, prefixo e estado Completed sao customizaveis.\n\nResponsividade (variante Size=Mobile do Figma, ate 480px):\n- Padding 16, gaps 10, circulo de 28px e tipografia reduzida.\n- O card e fluido e ocupa 100% do container.\n\nAcessibilidade:\n- A barra usa role=\"progressbar\" com aria-valuemin, aria-valuemax, aria-valuenow e aria-valuetext.\n- O contador e a etapa atual sao comunicados em texto visivel.\n- O botao Recomeçar e um button nativo com focus ring.",
+  "props": [
+    {
+      "name": "steps",
+      "type": "StepperStep[]",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Lista de etapas com id e label. Etapas com id ou label em branco sao descartadas por normalizeSteps.",
+      "source": "ambos"
+    },
+    {
+      "name": "currentStep",
+      "type": "number",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Etapa atual (baseada em 1). O valor e truncado e limitado ao intervalo 1..total.",
+      "source": "ambos"
+    },
+    {
+      "name": "label",
+      "type": "string",
+      "values": null,
+      "default": "'Progresso'",
+      "required": false,
+      "description": "Titulo do card exibido em caixa alta. Tambem e o aria-label do <section>.",
+      "source": "ambos"
+    },
+    {
+      "name": "nextLabel",
+      "type": "string",
+      "values": null,
+      "default": "'Próxima:'",
+      "required": false,
+      "description": "Prefixo da proxima etapa.",
+      "source": "ambos"
+    },
+    {
+      "name": "completed",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Exibe o estado Completed do Figma.",
+      "source": "ambos"
+    },
+    {
+      "name": "completedTitle",
+      "type": "string",
+      "values": null,
+      "default": "'Serviço concluído'",
+      "required": false,
+      "description": "Titulo do estado Completed.",
+      "source": "ambos"
+    },
+    {
+      "name": "completedDescription",
+      "type": "string",
+      "values": null,
+      "default": "'Todas as etapas foram finalizadas'",
+      "required": false,
+      "description": "Descricao do estado Completed.",
+      "source": "ambos"
+    },
+    {
+      "name": "restartLabel",
+      "type": "string",
+      "values": null,
+      "default": "'Recomeçar'",
+      "required": false,
+      "description": "Texto do botao do estado Completed.",
+      "source": "ambos"
+    },
+    {
+      "name": "onRestart",
+      "type": "() => void",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Callback do botao Recomeçar no estado Completed.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao container.",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onRestart",
+      "signature": "() => void",
+      "description": "Disparado no onClick do botao .ds-stepper__restart, renderizado apenas quando completed e true."
+    }
+  ],
+  "slots": [],
+  "cssClasses": [
+    "ds-stepper",
+    "ds-stepper--completed",
+    "ds-stepper__top-row",
+    "ds-stepper__label",
+    "ds-stepper__counter",
+    "ds-stepper__step-row",
+    "ds-stepper__number",
+    "ds-stepper__title",
+    "ds-stepper__progress",
+    "ds-stepper__progress-fill",
+    "ds-stepper__next-row",
+    "ds-stepper__next-label",
+    "ds-stepper__next-value",
+    "ds-stepper__completed-row",
+    "ds-stepper__completed-info",
+    "ds-stepper__check",
+    "ds-stepper__completed-text",
+    "ds-stepper__completed-title",
+    "ds-stepper__completed-description",
+    "ds-stepper__restart"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--stepper-background",
+      "value": "var(--ds-semantic-color-background-neutral-default)",
+      "comment": "color/background/neutral/default (#f5f5f5); em .ds-stepper--completed vira o literal #e9fdf3."
+    },
+    {
+      "name": "--stepper-border",
+      "value": "var(--ds-primitive-border-width-border-sm) solid var(--ds-primitive-color-neutral-grey-200)",
+      "comment": "border/width/border-sm + color/neutral/grey-200; em --completed vira border-sm solid rgb(224 224 224 / 80%)."
+    },
+    {
+      "name": "--stepper-radius",
+      "value": "12px",
+      "comment": "Radius de 12px do card — sem variable no Figma (entre radius-md 8 e lg 16)."
+    },
+    {
+      "name": "--stepper-padding",
+      "value": "var(--ds-primitive-spacing-20)",
+      "comment": "Desktop 20; mobile (max-width: 480px) reduz para --ds-primitive-spacing-16."
+    },
+    {
+      "name": "--stepper-gap",
+      "value": "var(--ds-primitive-spacing-12)",
+      "comment": "Desktop 12; mobile reduz para --ds-primitive-spacing-10."
+    },
+    {
+      "name": "--stepper-muted-color",
+      "value": "var(--ds-primitive-color-neutral-grey-600)",
+      "comment": "color/neutral/grey-600 (#505050, linhas de apoio)."
+    },
+    {
+      "name": "--stepper-primary-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-primary)",
+      "comment": "text-style/content-color/typography/primary (circulo e titulo da etapa)."
+    },
+    {
+      "name": "--stepper-circle-size",
+      "value": "32px",
+      "comment": "Circulo da etapa: 32px no desktop, 28px no mobile."
+    }
+  ],
+  "tokensUsed": [
+    "--ds-component-component-sizing-24",
+    "--ds-component-focus-ring-color-ring",
+    "--ds-component-focus-ring-effect-offset",
+    "--ds-component-focus-ring-effect-width",
+    "--ds-component-progress-track-border-radius",
+    "--ds-component-progress-track-color-background",
+    "--ds-component-progress-track-size-height-lg",
+    "--ds-primitive-border-radius-radius-full",
+    "--ds-primitive-border-radius-radius-md",
+    "--ds-primitive-border-width-border-none",
+    "--ds-primitive-border-width-border-sm",
+    "--ds-primitive-color-neutral-grey-200",
+    "--ds-primitive-color-neutral-grey-600",
+    "--ds-primitive-color-neutral-grey-800",
+    "--ds-primitive-color-white",
+    "--ds-primitive-spacing-0",
+    "--ds-primitive-spacing-8",
+    "--ds-primitive-spacing-10",
+    "--ds-primitive-spacing-12",
+    "--ds-primitive-spacing-16",
+    "--ds-primitive-spacing-20",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-typography-font-size-10",
+    "--ds-primitive-typography-font-size-12",
+    "--ds-primitive-typography-font-size-14",
+    "--ds-primitive-typography-font-size-18",
+    "--ds-primitive-typography-font-weight-medium",
+    "--ds-primitive-typography-font-weight-regular",
+    "--ds-primitive-typography-font-weight-semi-bold",
+    "--ds-semantic-color-background-neutral-black",
+    "--ds-semantic-color-background-neutral-default",
+    "--ds-semantic-text-style-content-color-typography-primary"
+  ],
+  "stories": [
+    {
+      "id": "web-components-stepper--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-stepper--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-stepper--default&viewMode=story"
+    },
+    {
+      "id": "web-components-stepper--six-steps",
+      "name": "Six Steps",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-stepper--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-stepper--six-steps&viewMode=story"
+    },
+    {
+      "id": "web-components-stepper--twelve-steps",
+      "name": "Twelve Steps",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-stepper--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-stepper--twelve-steps&viewMode=story"
+    },
+    {
+      "id": "web-components-stepper--last-step",
+      "name": "Last Step",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-stepper--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-stepper--last-step&viewMode=story"
+    },
+    {
+      "id": "web-components-stepper--completed",
+      "name": "Completed",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-stepper--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-stepper--completed&viewMode=story"
+    }
+  ],
+  "variants": [{ "prop": "completed", "values": ["false", "true"] }],
+  "states": ["completed", "hover", "focus-visible"],
+  "responsive": [
+    {
+      "query": "@media (hover: hover)",
+      "effect": "Em dispositivos com hover real, .ds-stepper__restart:hover muda o fundo para var(--ds-primitive-color-neutral-grey-800)."
+    },
+    {
+      "query": "@media (prefers-reduced-motion: reduce)",
+      "effect": "Remove as transicoes de .ds-stepper__progress-fill (inline-size 180ms) e de .ds-stepper__restart (background-color 120ms)."
+    },
+    {
+      "query": "@media (max-width: 480px)",
+      "effect": "Variante Size=Mobile: padding 16, gap 10, circulo da etapa 28px, label/contador em font-size-10 (tracking 0.6px), titulo 15px, next row 11px, circulo do check 34px, titulo Completed 13px, descricao 11px e botao Recomeçar com padding spacing-8/14px e font-size-12."
+    }
+  ],
+  "accessibility": {
+    "roles": ["progressbar"],
+    "ariaAttributes": [
+      "aria-label",
+      "aria-hidden",
+      "aria-valuemin",
+      "aria-valuemax",
+      "aria-valuenow",
+      "aria-valuetext"
+    ],
+    "keyboardInteractions": [
+      "Tab: alcanca o botao Recomeçar (button nativo) no estado Completed; recebe focus ring via :focus-visible.",
+      "Enter / Espaco: aciona onRestart pelo comportamento nativo do <button type=\"button\">."
+    ],
+    "notes": [
+      "A raiz e um <section> com aria-label={label} (landmark region implicito quando nomeado).",
+      "A barra usa role=\"progressbar\" com aria-valuemin=0, aria-valuemax={total}, aria-valuenow={etapa atual} e aria-valuetext com o texto completo (ex.: 'Progresso: etapa 2 de 3, Dados do veículo').",
+      "O numero da etapa (.ds-stepper__number) e o icone de check tem aria-hidden=\"true\"; o icone SVG tambem carrega aria-hidden.",
+      "O contador visual recebe aria-label no formato '<atual> de <total>' para leitura mais natural que '2/3'.",
+      "No estado Completed a barra de progresso nao e renderizada.",
+      "Quando nao ha etapas validas, aria-valuenow fica 0 e o texto do progresso vira '<label>: nenhuma etapa disponivel'."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Stepper/Stepper.test.tsx",
+    "unitCount": 8,
+    "a11yFile": null,
+    "a11yCount": null
+  },
+  "figmaReferences": [
+    {
+      "node": "40000045:5961",
+      "note": "Web Components / Stepper — layout de referencia do card e origem do vetor de check (citado em Stepper.styles.css, Stepper.tsx e Stepper.stories.tsx)."
+    },
+    {
+      "node": "40000030:6888",
+      "note": "Atomo Progress Line usado na barra de progresso (citado em Stepper.styles.css e Stepper.stories.tsx)."
+    }
+  ],
+  "pendencias": [
+    "Varios valores continuam como literais sem token: radius do card 12px, circulo da etapa 32px/28px, circulo do check 38px/34px, cores #e9fdf3, #1e7d47, #181818 e rgb(224 224 224 / 80%), font-size 11px/13px/15px, letter-spacing 0.66px/0.6px, gap 3px e padding 10px 18px / 14px do botao.",
+    "Nao existe arquivo Stepper.a11y.test.tsx (sem cobertura automatizada de axe).",
+    "Nao ha estado visual de etapa concluida individual nem navegacao entre etapas: o componente so mostra a etapa atual e a proxima.",
+    "parameters.componentCanvas.width = 640 e definido no meta, mas o codigo nao documenta o efeito desse parametro.",
+    "O estado Completed nao expoe um estado :hover/:focus separado para o card, apenas para o botao Recomeçar."
+  ]
+}

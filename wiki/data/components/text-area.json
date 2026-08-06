@@ -1,0 +1,428 @@
+{
+  "slug": "text-area",
+  "name": "TextArea",
+  "storybookTitle": "Web Components/TextArea",
+  "sourceDir": "packages/react/src/components/TextArea",
+  "exports": ["TextArea"],
+  "typeExports": ["TextAreaProps", "TextAreaResize", "TextAreaState"],
+  "oneLiner": "Entrada multilinha que agrupa label, helper text, mensagem de erro e contador de caracteres para formularios.",
+  "docsDescription": "O TextArea agrupa entrada multilinha, label, helper text e contador de caracteres para formularios que precisam de contexto estrutural completo.\n\nUse para mensagens, descricoes, observacoes, justificativas e conteudos longos que precisam de varias linhas editaveis.\n\nNao use para respostas curtas de uma linha, valores numericos, selecoes, upload de arquivo ou acoes. Para entrada curta, use TextInput.\n\nEstados:\n- Default: superficie clara, borda neutra, helper e contador opcionais.\n- Focus: anel de foco visivel usando tokens do DS.\n- Error: borda, foco, helper e mensagem de erro com tokens de feedback.\n- Disabled: comunica indisponibilidade e bloqueia edicao.\n\nResponsividade:\nEste componente foi desenvolvido com comportamento responsivo nativo, adaptando largura, altura minima, espacamentos, quebra de helper e posicionamento do contador para diferentes tamanhos de tela. A responsividade e aplicada na implementacao do componente e nao depende de variacoes manuais no Storybook.\n\nTokens:\nCores, bordas, radius, espacamentos, tipografia e foco usam variaveis CSS geradas pelos tokens do Figma. Como a camada semantica ainda nao cobre todos os casos no projeto, o componente cria aliases internos semanticos apontando para tokens disponiveis.\n\nAcessibilidade:\n- Usa textarea nativo com label associado por htmlFor/id.\n- Helper, erro e contador entram em aria-describedby.\n- Erro usa aria-invalid.\n- Contador usa aria-live=\"polite\" para atualizar leitores de tela sem interromper a digitacao.\n- Required, disabled, rows e maxLength usam atributos nativos.\n- O foco permanece visivel para teclado, mouse e touch.",
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Rotulo visivel e acessivel do campo.",
+      "source": "ambos"
+    },
+    {
+      "name": "helperText",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Texto de apoio abaixo do campo.",
+      "source": "ambos"
+    },
+    {
+      "name": "errorText",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Mensagem de erro conectada por aria-describedby. A simples presenca de errorText ja ativa o estado de erro.",
+      "source": "ambos"
+    },
+    {
+      "name": "state",
+      "type": "TextAreaState",
+      "values": ["default", "error"],
+      "default": "'default'",
+      "required": false,
+      "description": "Estado visual controlado.",
+      "source": "ambos"
+    },
+    {
+      "name": "resize",
+      "type": "TextAreaResize",
+      "values": ["none", "vertical"],
+      "default": "'vertical'",
+      "required": false,
+      "description": "Controla se a pessoa usuaria pode redimensionar verticalmente.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao wrapper.",
+      "source": "ambos"
+    },
+    {
+      "name": "textareaClassName",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao textarea nativo.",
+      "source": "ambos"
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "values": null,
+      "default": "true",
+      "required": false,
+      "description": "Faz o componente ocupar 100% da largura do container.",
+      "source": "ambos"
+    },
+    {
+      "name": "showCounter",
+      "type": "boolean",
+      "values": null,
+      "default": "true",
+      "required": false,
+      "description": "Exibe contador de caracteres.",
+      "source": "ambos"
+    },
+    {
+      "name": "onChange",
+      "type": "ChangeEventHandler<HTMLTextAreaElement>",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Callback nativo de alteracao do textarea.",
+      "source": "ambos"
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: string, event: ChangeEvent<HTMLTextAreaElement>) => void",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Callback simplificado que recebe value e event.",
+      "source": "ambos"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Desabilita o textarea usando atributo nativo. Herdado de TextareaHTMLAttributes, com default aplicado no componente.",
+      "source": "ambos"
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Marca o campo como obrigatorio usando atributo nativo e exibe o asterisco (aria-hidden) no label.",
+      "source": "ambos"
+    },
+    {
+      "name": "rows",
+      "type": "number",
+      "values": null,
+      "default": "4",
+      "required": false,
+      "description": "Quantidade inicial de linhas do textarea nativo.",
+      "source": "ambos"
+    },
+    {
+      "name": "maxLength",
+      "type": "number",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Limite nativo de caracteres e base do contador (formato 'atual/limite'). Sem maxLength, o contador exibe apenas o total de caracteres.",
+      "source": "ambos"
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Texto temporario exibido quando o campo esta vazio.",
+      "source": "ambos"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "values": null,
+      "default": "useId()",
+      "required": false,
+      "description": "Id do textarea; quando ausente, e gerado com useId e reaproveitado nos ids de helper, erro e contador.",
+      "source": "types.ts"
+    },
+    {
+      "name": "value",
+      "type": "string | number | readonly string[]",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Valor controlado (herdado de TextareaHTMLAttributes). Quando definido, o contador usa o comprimento desse valor.",
+      "source": "types.ts"
+    },
+    {
+      "name": "defaultValue",
+      "type": "string | number | readonly string[]",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Valor inicial nao controlado (herdado de TextareaHTMLAttributes); inicializa a contagem interna de caracteres.",
+      "source": "types.ts"
+    },
+    {
+      "name": "...textareaProps",
+      "type": "Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'children' | 'className' | 'onChange'>",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Demais atributos nativos do textarea sao repassados diretamente ao elemento (ex.: name, autoFocus, readOnly, placeholder).",
+      "source": "types.ts"
+    },
+    {
+      "name": "ref",
+      "type": "Ref<HTMLTextAreaElement>",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "O componente usa forwardRef e encaminha a ref para o <textarea> nativo.",
+      "source": "types.ts"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onChange",
+      "signature": "(event: ChangeEvent<HTMLTextAreaElement>) => void",
+      "description": "Callback nativo, chamado depois da atualizacao interna do contador."
+    },
+    {
+      "name": "onValueChange",
+      "signature": "(value: string, event: ChangeEvent<HTMLTextAreaElement>) => void",
+      "description": "Callback simplificado com o valor ja extraido de event.currentTarget.value; chamado apos onChange."
+    }
+  ],
+  "slots": [],
+  "cssClasses": [
+    "ds-text-area",
+    "ds-text-area--resize-none",
+    "ds-text-area--resize-vertical",
+    "ds-text-area--error",
+    "ds-text-area--disabled",
+    "ds-text-area--full-width",
+    "ds-text-area__label",
+    "ds-text-area__required",
+    "ds-text-area__field",
+    "ds-text-area__support",
+    "ds-text-area__messages",
+    "ds-text-area__message",
+    "ds-text-area__message--error",
+    "ds-text-area__counter"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--text-area-label-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-secondary)",
+      "comment": "Cor do label; em --disabled aponta para --text-area-disabled-color."
+    },
+    {
+      "name": "--text-area-text-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-secondary)",
+      "comment": "Cor do texto digitado e da raiz; em --disabled aponta para --text-area-disabled-color."
+    },
+    {
+      "name": "--text-area-placeholder-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-disabled)",
+      "comment": "Cor do ::placeholder (opacity 1); em --disabled aponta para --text-area-disabled-color."
+    },
+    {
+      "name": "--text-area-helper-color",
+      "value": "var(--ds-component-textarea-helper-text-color-text)",
+      "comment": "Cor do bloco de apoio (helper + contador); em --error vira --text-area-error-color e em --disabled vira --text-area-disabled-color."
+    },
+    {
+      "name": "--text-area-background",
+      "value": "var(--ds-semantic-color-background-neutral-default)",
+      "comment": "Fundo do campo; em --disabled usa --text-area-disabled-background."
+    },
+    {
+      "name": "--text-area-border-color",
+      "value": "var(--ds-semantic-color-border-neutral-default)",
+      "comment": "Borda do campo; em --error vira --text-area-error-color e em --disabled vira --text-area-disabled-border-color."
+    },
+    {
+      "name": "--text-area-hover-border-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-secondary)",
+      "comment": "Borda no hover, aplicada apenas quando nao ha --disabled nem --error."
+    },
+    {
+      "name": "--text-area-focus-color",
+      "value": "var(--ds-semantic-color-background-brand-primary-secondary-default)",
+      "comment": "Borda e outline no :focus; em --error vira --text-area-error-color."
+    },
+    {
+      "name": "--text-area-error-color",
+      "value": "var(--ds-component-textarea-error-text-color-text)",
+      "comment": "Cor base do estado de erro (borda, foco, helper e mensagem)."
+    },
+    {
+      "name": "--text-area-disabled-background",
+      "value": "var(--ds-semantic-color-background-neutral-disabled)",
+      "comment": "Fundo usado no estado desabilitado."
+    },
+    {
+      "name": "--text-area-disabled-border-color",
+      "value": "var(--ds-semantic-color-border-neutral-default)",
+      "comment": "Borda usada no estado desabilitado."
+    },
+    {
+      "name": "--text-area-disabled-color",
+      "value": "var(--ds-component-textarea-color-text-disabled)",
+      "comment": "Cor de texto/label/helper no estado desabilitado."
+    },
+    {
+      "name": "--text-area-min-block-size",
+      "value": "calc(var(--ds-primitive-spacing-128) + var(--ds-primitive-spacing-16))",
+      "comment": "Altura minima do campo; em ate 640px vira --ds-primitive-spacing-128."
+    },
+    {
+      "name": "--text-area-padding-block",
+      "value": "var(--ds-primitive-spacing-16)",
+      "comment": "Padding vertical do campo; em ate 640px vira spacing-12."
+    },
+    {
+      "name": "--text-area-padding-inline",
+      "value": "var(--ds-primitive-spacing-24)",
+      "comment": "Padding horizontal do campo; em ate 640px vira spacing-16."
+    }
+  ],
+  "tokensUsed": [
+    "--ds-component-textarea-color-text-disabled",
+    "--ds-component-textarea-effect-focus-ring-width",
+    "--ds-component-textarea-error-text-color-text",
+    "--ds-component-textarea-helper-text-color-text",
+    "--ds-primitive-border-radius-radius-lg",
+    "--ds-primitive-border-width-border-md",
+    "--ds-primitive-spacing-2",
+    "--ds-primitive-spacing-4",
+    "--ds-primitive-spacing-8",
+    "--ds-primitive-spacing-12",
+    "--ds-primitive-spacing-16",
+    "--ds-primitive-spacing-24",
+    "--ds-primitive-spacing-128",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-typography-font-size-20",
+    "--ds-primitive-typography-font-size-28",
+    "--ds-primitive-typography-font-weight-bold",
+    "--ds-primitive-typography-font-weight-regular",
+    "--ds-primitive-typography-line-height-28",
+    "--ds-primitive-typography-line-height-34",
+    "--ds-primitive-typography-line-height-38",
+    "--ds-semantic-color-background-brand-primary-secondary-default",
+    "--ds-semantic-color-background-neutral-default",
+    "--ds-semantic-color-background-neutral-disabled",
+    "--ds-semantic-color-border-neutral-default",
+    "--ds-semantic-text-style-content-color-typography-disabled",
+    "--ds-semantic-text-style-content-color-typography-secondary"
+  ],
+  "stories": [
+    {
+      "id": "web-components-textarea--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-textarea--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-textarea--default&viewMode=story"
+    },
+    {
+      "id": "web-components-textarea--focus",
+      "name": "Focus",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-textarea--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-textarea--focus&viewMode=story"
+    },
+    {
+      "id": "web-components-textarea--error",
+      "name": "Error",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-textarea--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-textarea--error&viewMode=story"
+    },
+    {
+      "id": "web-components-textarea--with-value",
+      "name": "With Value",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-textarea--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-textarea--with-value&viewMode=story"
+    },
+    {
+      "id": "web-components-textarea--disabled",
+      "name": "Disabled",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-textarea--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-textarea--disabled&viewMode=story"
+    },
+    {
+      "id": "web-components-textarea--responsive-content",
+      "name": "Responsive Content",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-textarea--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-textarea--responsive-content&viewMode=story"
+    },
+    {
+      "id": "web-components-textarea--states",
+      "name": "States",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-textarea--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-textarea--states&viewMode=story"
+    }
+  ],
+  "variants": [
+    { "prop": "state", "values": ["default", "error"] },
+    { "prop": "resize", "values": ["none", "vertical"] },
+    { "prop": "fullWidth", "values": ["true", "false"] },
+    { "prop": "showCounter", "values": ["true", "false"] }
+  ],
+  "states": ["hover", "focus", "error", "disabled", "placeholder"],
+  "responsive": [
+    {
+      "query": "@media (max-width: 640px)",
+      "effect": "min-block-size do campo vira spacing-128, padding block/inline viram spacing-12/spacing-16, e label, campo, mensagem e contador caem para font-size-20 / line-height-28; o gap do bloco de apoio vira spacing-12."
+    },
+    {
+      "query": "@media (max-width: 420px)",
+      "effect": "O bloco .ds-text-area__support passa a uma unica coluna e o contador e alinhado ao final (justify-self: end)."
+    }
+  ],
+  "accessibility": {
+    "roles": [],
+    "ariaAttributes": ["aria-describedby", "aria-invalid", "aria-live", "aria-hidden"],
+    "keyboardInteractions": [
+      "Tab: foca o <textarea> nativo (elemento desabilitado nao recebe foco).",
+      "Digitacao e navegacao dentro do campo seguem o comportamento nativo do textarea."
+    ],
+    "notes": [
+      "Usa <textarea> nativo com <label htmlFor> apontando para o id (proprio ou gerado via useId).",
+      "aria-describedby concatena, nessa ordem, o id do erro (apenas quando ha erro), o id do helper e o id do contador.",
+      "aria-invalid=\"true\" e aplicado quando state === 'error', quando ha errorText, ou quando o valor excede maxLength.",
+      "O contador tem aria-live=\"polite\" para nao interromper a digitacao.",
+      "O asterisco de campo obrigatorio tem aria-hidden=\"true\"; a obrigatoriedade e comunicada pelo atributo required nativo.",
+      "O foco usa o seletor :focus (nao :focus-visible), entao o anel aparece tambem em clique de mouse/touch, conforme descrito na doc."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/TextArea/TextArea.test.tsx",
+    "unitCount": 9,
+    "a11yFile": null,
+    "a11yCount": null
+  },
+  "figmaReferences": [],
+  "pendencias": [
+    "Nenhum node-id do Figma e citado no codigo do TextArea; a doc apenas informa que os tokens vieram do Figma.",
+    "Nao existe arquivo TextArea.a11y.test.tsx (sem cobertura automatizada de axe).",
+    "A doc registra que a camada semantica de tokens nao cobre todos os casos e que o componente cria aliases internos (--text-area-*) apontando para tokens disponiveis.",
+    "Props nativas (placeholder, name, readOnly, autoFocus etc.) sao herdadas de TextareaHTMLAttributes e nao estao todas listadas em argTypes; a documentacao delas depende do tipo nativo.",
+    "Nao ha estado readonly com tratamento visual proprio no CSS, apenas disabled e error.",
+    "parameters.componentCanvas.width = 560 e definido no meta, mas o codigo nao documenta o efeito desse parametro."
+  ]
+}

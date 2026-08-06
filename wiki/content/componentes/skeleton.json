@@ -1,0 +1,156 @@
+{
+  "slug": "skeleton",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Feedback",
+  "resumo": "O Skeleton é um bloco cinza que ocupa o lugar do conteúdo enquanto ele ainda está sendo carregado. Serve para manter a página estável e mostrar a estrutura que vai chegar, sem prometer tempo de espera.",
+  "quandoUsar": [
+    "Enquanto a lista de protocolos da pessoa é buscada, para que os cartões não apareçam de repente e empurrem o resto da página.",
+    "Ao abrir o detalhe de um agendamento, segurando no lugar os blocos de título, data e unidade até os dados chegarem.",
+    "Em consultas que retornam tabelas, indicando quantas linhas devem aparecer antes do resultado chegar.",
+    "Quando só uma parte da tela depende de dados e o restante já é utilizável — o formulário já está pronto e apenas o histórico ainda carrega.",
+    "Para reservar o espaço de imagens e fotos de perfil que demoram mais que o texto, evitando que o layout se desloque quando elas chegam."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "A espera é curta e cobre a tela inteira, como enviar um formulário e aguardar a resposta.",
+      "alternativa": "spinner"
+    },
+    {
+      "texto": "Existe percentual conhecido de conclusão, como no envio de um arquivo grande.",
+      "alternativa": "progress-bar"
+    },
+    {
+      "texto": "A busca terminou e não trouxe resultado, ou falhou — o espaço não pode continuar com blocos cinzas animados.",
+      "alternativa": "alert"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Bloco de reserva",
+      "descricao": "Elemento único que ocupa o espaço do conteúdo. Recebe largura, altura, raio de canto e intensidade de cinza."
+    },
+    {
+      "numero": 2,
+      "parte": "Forma",
+      "descricao": "Geometria do bloco: retângulo, retângulo com cantos arredondados, círculo ou linha de texto."
+    },
+    {
+      "numero": 3,
+      "parte": "Linhas de texto",
+      "descricao": "Quando a forma é de texto e há mais de uma linha, o componente desenha uma linha por vez, com a última mais curta para lembrar o fim de um parágrafo."
+    },
+    {
+      "numero": 4,
+      "parte": "Animação",
+      "descricao": "Movimento que indica atividade: pulsar, onda ou nenhum."
+    },
+    {
+      "numero": 5,
+      "parte": "Intensidade",
+      "descricao": "Tom do cinza em relação ao fundo: padrão, suave ou forte."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "Em telas de até 640 pixels o bloco nunca ultrapassa a largura do container, então larguras fixas em pixels ficam limitadas ao espaço disponível e não geram rolagem lateral. Quando a pessoa configura o sistema para reduzir animações, o movimento não é desligado: ele fica mais lento.",
+  "dosDonts": [
+    {
+      "faca": "Desenhe o esqueleto com a mesma quantidade de blocos, alturas e larguras do conteúdo real.",
+      "naoFaca": "Usar um retângulo genérico grande no lugar de um cartão que tem título, texto e botão.",
+      "porque": "O objetivo é evitar que a página pule quando o conteúdo chega. Se o bloco de reserva tem outro tamanho, o salto acontece do mesmo jeito."
+    },
+    {
+      "faca": "Anuncie o carregamento uma única vez, no bloco que representa a região, e deixe os demais decorativos.",
+      "naoFaca": "Informar o nome acessível em cada um dos blocos de uma lista.",
+      "porque": "Cada nome acessível transforma o bloco em uma região de status. Com dez blocos, o leitor de tela anuncia dez vezes o mesmo carregamento."
+    },
+    {
+      "faca": "Troque o esqueleto pelo conteúdo assim que a resposta chegar, mesmo quando o resultado for vazio.",
+      "naoFaca": "Manter os blocos cinzas na tela depois de uma falha na consulta.",
+      "porque": "O bloco animado promete que algo está a caminho. Em caso de erro, a pessoa espera por algo que nunca vai chegar."
+    }
+  ],
+  "conteudoEEscrita": [
+    "O componente não exibe texto na tela. O único texto é o nome acessível, escrito para ser ouvido: \"Carregando lista de protocolos\".",
+    "Comece pelo verbo no gerúndio e diga o que está carregando. Evite apenas \"Carregando\", que não informa nada.",
+    "Não escreva tempo estimado: o componente não conhece a duração da espera.",
+    "Use uma frase curta, sem ponto final, e sem termos técnicos como \"requisição\", \"skeleton\" ou \"endpoint\".",
+    "Não tente colocar texto dentro do bloco — o componente não aceita conteúdo interno."
+  ],
+  "hierarquia": [
+    "O bloco ocupa exatamente o lugar do conteúdo que vai substituir, dentro do mesmo container e com o mesmo espaçamento.",
+    "Escolha a intensidade pelo contraste com o fundo: a versão suave para fundos claros e a forte quando o bloco precisa se separar de uma superfície já acinzentada.",
+    "Limite a quantidade de blocos ao que cabe na primeira tela. Não desenhe trinta linhas para uma lista que mostra dez.",
+    "Cabeçalho, caminho de navegação e botões que já funcionam continuam visíveis. O esqueleto cobre apenas a região que depende de dados."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Card",
+      "slug": "card",
+      "relacao": "Dentro de um Card, use a forma circular no lugar do ícone, uma linha de texto para o título e duas ou três linhas para a descrição."
+    },
+    {
+      "componente": "Data Table",
+      "slug": "data-table",
+      "relacao": "Repita blocos com a mesma altura das linhas da tabela enquanto o resultado da consulta é carregado."
+    },
+    {
+      "componente": "Avatar",
+      "slug": "avatar",
+      "relacao": "Use a forma circular com a mesma largura do Avatar para reservar o espaço da foto e evitar deslocamento quando a imagem chega."
+    },
+    {
+      "componente": "Spinner",
+      "slug": "spinner",
+      "relacao": "O Spinner cobre a ação curta e o Skeleton cobre o conteúdo que está chegando. Para a mesma espera, escolha um dos dois."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Lista de protocolos em andamento",
+      "contexto": "A pessoa entra na área de acompanhamento e o sistema ainda está buscando os protocolos vinculados ao cadastro dela.",
+      "comoFica": "Três blocos com a mesma altura dos cartões reais. Em cada um, uma linha de texto para o número do protocolo e duas linhas para o serviço e a data. Apenas o container da lista recebe o nome acessível \"Carregando seus protocolos\"; os blocos internos ficam decorativos."
+    },
+    {
+      "titulo": "Detalhe do agendamento no Poupatempo",
+      "contexto": "Ao abrir um agendamento salvo, o cabeçalho já está pronto, mas os dados da unidade e do horário demoram alguns segundos.",
+      "comoFica": "O bloco de dados exibe um esqueleto circular no lugar do ícone da unidade e duas linhas de texto ao lado, com as mesmas larguras do endereço e do horário. Quando os dados chegam, nada se move na tela."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Deixar o bloco com a largura padrão dentro de um container que não tem largura definida.",
+      "consequencia": "O bloco estica ou encolhe e deixa de corresponder ao conteúdo real, produzindo o salto de layout que ele deveria evitar.",
+      "correcao": "Informe largura e altura, ou coloque o esqueleto no mesmo container que vai receber o conteúdo."
+    },
+    {
+      "erro": "Pedir várias linhas sem usar a forma de texto.",
+      "consequencia": "As linhas não são desenhadas e aparece um bloco único, sem o desenho de parágrafo que se esperava.",
+      "correcao": "Use a forma de texto junto com a quantidade de linhas."
+    },
+    {
+      "erro": "Informar o nome acessível em todos os blocos da tela.",
+      "consequencia": "Cada bloco vira uma região de status e o leitor de tela repete o anúncio de carregamento uma vez por bloco.",
+      "correcao": "Anuncie apenas uma vez, no bloco que representa a região, e mantenha os demais no comportamento decorativo padrão."
+    },
+    {
+      "erro": "Passar zero ou um número negativo de linhas para esconder o esqueleto.",
+      "consequencia": "O valor é corrigido para uma linha e o bloco continua aparecendo, em vez de sumir.",
+      "correcao": "Para não exibir nada, não renderize o componente."
+    }
+  ],
+  "notasImplementacao": [
+    "Por padrão o componente é decorativo e fica invisível para leitores de tela. Informe o nome acessível apenas quando ele for o único indicador de carregamento da região: aí ele passa a se comportar como região de status.",
+    "Quantidade de linhas inválida (zero, negativa ou não numérica) é corrigida para uma linha, e nesse caso nenhuma linha extra é desenhada.",
+    "Largura, altura e espaço entre linhas aceitam número, convertido para pixels, ou texto CSS. Os valores viram variáveis no próprio elemento.",
+    "O elemento é sempre um bloco de texto em linha e não aceita conteúdo interno.",
+    "Com a preferência de menos movimento ativada, as animações ficam mais lentas em vez de serem removidas. Para desligar de vez, use a animação \"none\".",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual."
+  ],
+  "pendentes": [
+    "O campo de tamanhos ficou vazio porque o componente não expõe prop de tamanho: as dimensões são livres.",
+    "O código não cita nenhum node do Figma: a orientação visual veio apenas do código e das stories publicadas.",
+    "A largura reduzida da última linha do modo de várias linhas é um valor fixo no CSS e não pode ser ajustada por propriedade — não foi possível orientar como alterá-la."
+  ]
+}

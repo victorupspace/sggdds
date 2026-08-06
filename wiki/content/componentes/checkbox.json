@@ -1,0 +1,166 @@
+{
+  "slug": "checkbox",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Formulários",
+  "resumo": "Caixa de seleção usada quando a pessoa pode marcar ou desmarcar uma opção de forma independente. Tem rótulo obrigatório, texto de apoio opcional e um estado intermediário para seleções parciais.",
+  "quandoUsar": [
+    "Para o aceite de termos e autorizações antes de enviar uma solicitação, com a pessoa marcando cada consentimento.",
+    "Para escolher mais de um item na mesma pergunta, como os documentos que serão anexados a um pedido.",
+    "Para filtrar uma lista de unidades ou serviços por características que se somam, como \"Atende aos sábados\" e \"Acessível\".",
+    "Para uma opção única e opcional dentro de um formulário, como receber aviso por e-mail quando o protocolo mudar de situação.",
+    "Para marcar todos os itens de uma lista de uma vez, usando o estado intermediário quando apenas parte deles está selecionada."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Quando a pessoa deve escolher uma única opção entre várias, como o tipo de atendimento.",
+      "alternativa": "Radio"
+    },
+    {
+      "texto": "Para ligar e desligar uma configuração que tem efeito imediato, sem precisar salvar.",
+      "alternativa": "Toggle"
+    },
+    {
+      "texto": "Quando a lista de opções é longa e ocuparia a tela inteira em forma de caixas.",
+      "alternativa": "Dropdown"
+    },
+    {
+      "texto": "Para exibir uma situação que a pessoa não pode alterar, como \"Documento entregue\".",
+      "alternativa": "Badge"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Área clicável",
+      "descricao": "A linha inteira é um rótulo clicável: tocar no texto marca e desmarca a opção, não só na caixa."
+    },
+    {
+      "numero": 2,
+      "parte": "Caixa de seleção",
+      "descricao": "Controle quadrado de 24px com três desenhos possíveis: vazio, marcado e intermediário. Ao passar o cursor e ao pressionar, aparece um círculo de destaque atrás dele."
+    },
+    {
+      "numero": 3,
+      "parte": "Campo nativo",
+      "descricao": "Campo de seleção do navegador, escondido visualmente mas mantido no fluxo: é ele que responde ao teclado, ao envio do formulário e aos leitores de tela."
+    },
+    {
+      "numero": 4,
+      "parte": "Rótulo",
+      "descricao": "Texto obrigatório que descreve a opção. Quebra em várias linhas quando necessário."
+    },
+    {
+      "numero": 5,
+      "parte": "Asterisco de obrigatório",
+      "descricao": "Marca decorativa exibida ao lado do rótulo quando a opção é obrigatória."
+    },
+    {
+      "numero": 6,
+      "parte": "Texto de apoio",
+      "descricao": "Linha menor abaixo do rótulo, ligada ao campo, usada para uma ressalva ou um exemplo curto."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "A caixa tem tamanho fixo de 24px em qualquer tela e o componente não define pontos de quebra próprios: em containers estreitos, rótulo e texto de apoio simplesmente quebram em mais linhas, sem corte nem reticências. Como a linha inteira é clicável, a área de toque cresce junto com o texto. Com redução de movimento ativada, as transições da caixa e do círculo de destaque são desligadas.",
+  "dosDonts": [
+    {
+      "faca": "Use somente leitura para mostrar uma resposta que já foi dada e não pode mais ser alterada.",
+      "naoFaca": "Usar o estado desabilitado para exibir respostas de uma etapa anterior.",
+      "porque": "O campo desabilitado sai da navegação por teclado e pode não ser anunciado; o somente leitura mantém o campo alcançável e informa que ele não é editável."
+    },
+    {
+      "faca": "Escreva o rótulo na afirmativa, descrevendo o que acontece quando a caixa está marcada.",
+      "naoFaca": "Escrever a opção na negativa, como \"Não desejo receber avisos por e-mail\".",
+      "porque": "Com negação, marcar a caixa significa negar. A pessoa precisa desfazer a frase na cabeça antes de responder e erra com frequência."
+    },
+    {
+      "faca": "Use um checkbox por decisão, com o texto completo daquele consentimento.",
+      "naoFaca": "Reunir vários aceites em uma caixa só, como \"Li e aceito os termos, a política de privacidade e o compartilhamento dos meus dados\".",
+      "porque": "Consentimentos diferentes precisam poder ser dados separadamente, e um registro único não permite saber com o que exatamente a pessoa concordou."
+    }
+  ],
+  "conteudoEEscrita": [
+    "O rótulo descreve o resultado de marcar a caixa. Em consentimentos, escreva na primeira pessoa: \"Autorizo a consulta dos meus dados no cadastro estadual\".",
+    "Mantenha o rótulo em uma ou duas linhas. Se precisar de mais, o excesso provavelmente é explicação e deve sair do rótulo.",
+    "Use o texto de apoio para uma ressalva ou um exemplo curto. Informação sem a qual a pessoa não consegue decidir precisa estar no rótulo, porque o texto de apoio é bem menor.",
+    "Quando a opção for obrigatória, não escreva \"(obrigatório)\" no rótulo: o asterisco já aparece ao lado. Use o texto de apoio para explicar a consequência de não marcar.",
+    "Não use ponto final em rótulos curtos e mantenha maiúscula apenas na primeira palavra e em nomes próprios."
+  ],
+  "hierarquia": [
+    "Empilhe as opções de um mesmo assunto na vertical, com um título acima explicando o que aquele conjunto pergunta.",
+    "O aceite obrigatório fica logo acima do botão que envia o formulário, no fim da leitura, para ser a última coisa conferida.",
+    "Não misture caixas de seleção e opções de escolha única no mesmo bloco visual: a forma do controle é o que indica se a pessoa pode marcar mais de uma.",
+    "A caixa é discreta de propósito. O peso da decisão vem do texto do rótulo, não do controle."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Button",
+      "slug": "button",
+      "relacao": "O aceite obrigatório antecede o botão que envia a solicitação; os dois fecham o formulário na mesma sequência de leitura."
+    },
+    {
+      "componente": "Alert",
+      "slug": "alert",
+      "relacao": "O checkbox não tem estado de erro. Quando um aceite obrigatório não é marcado, a mensagem precisa vir de um Alert próximo do campo ou no topo do formulário."
+    },
+    {
+      "componente": "Radio",
+      "slug": "radio",
+      "relacao": "São controles complementares: use Radio quando a escolha é única e Checkbox quando as opções se somam. Manter os dois com o mesmo padrão de rótulo ajuda a diferenciar pelo formato."
+    },
+    {
+      "componente": "Data Table",
+      "slug": "data-table",
+      "relacao": "Quando uma tabela permite selecionar linhas, o Checkbox é o controle dessa seleção, e o estado intermediário representa a seleção parcial no cabeçalho."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Aceite de termos antes de enviar um pedido de certidão",
+      "contexto": "A pessoa preencheu os dados e precisa autorizar a consulta às bases do Estado para concluir o pedido.",
+      "comoFica": "Um checkbox obrigatório com o rótulo \"Autorizo a consulta dos meus dados para emissão da certidão\" e um texto de apoio curto explicando por que a consulta é necessária. Se a pessoa tentar enviar sem marcar, a mensagem aparece em um Alert acima do botão, já que o próprio campo não tem estado de erro."
+    },
+    {
+      "titulo": "Filtro de unidades de atendimento",
+      "contexto": "Lista de unidades do Poupatempo com filtros que podem ser combinados, como acessibilidade e atendimento aos sábados.",
+      "comoFica": "Um grupo vertical de checkboxes com título \"Filtrar unidades\" e, no topo, uma opção \"Selecionar todos\". Quando parte dos filtros está marcada, essa opção fica no estado intermediário, deixando claro que a seleção é parcial."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Usar o estado intermediário em um checkbox isolado, sem uma lista de itens abaixo.",
+      "consequencia": "O desenho de traço no meio da caixa não corresponde a nada e é anunciado como estado misto, o que confunde quem usa leitor de tela.",
+      "correcao": "Use o intermediário apenas em um controle que resume a seleção de um grupo visível."
+    },
+    {
+      "erro": "Controlar a seleção pela aplicação e não tratar a mudança de valor.",
+      "consequencia": "A pessoa clica e a caixa não muda, porque o valor exibido continua vindo de fora e nunca é atualizado.",
+      "correcao": "Ou use o valor inicial e deixe o campo se controlar sozinho, ou atualize o estado da aplicação a cada mudança."
+    },
+    {
+      "erro": "Esquecer o nome e o valor do campo em um formulário enviado pelo navegador.",
+      "consequencia": "A opção aparece marcada na tela, mas não chega ao serviço junto com os demais dados.",
+      "correcao": "Informe nome e valor sempre que o formulário depender do envio nativo."
+    },
+    {
+      "erro": "Marcar a caixa por padrão em um consentimento.",
+      "consequencia": "O aceite deixa de ser uma decisão da pessoa e passa a ser um descuido, o que fragiliza o registro do consentimento.",
+      "correcao": "Deixe consentimentos sempre desmarcados e exija a ação explícita de marcar."
+    }
+  ],
+  "notasImplementacao": [
+    "O campo nativo é mantido no código e apenas escondido visualmente, o que preserva teclado, envio de formulário e leitores de tela.",
+    "O estado intermediário é aplicado de fato no campo, além de ser anunciado como estado misto.",
+    "Somente leitura não usa o desabilitado nativo: o campo continua focável e anunciado, e a alteração é bloqueada tanto no clique quanto na mudança de valor.",
+    "O asterisco de obrigatório é decorativo; a obrigatoriedade é comunicada pelo atributo do campo.",
+    "Quando o identificador não é informado, o componente gera um automaticamente e deriva dele os identificadores do rótulo e do texto de apoio.",
+    "O anel de foco usa cores fixas no código, sem token equivalente, e o componente não define pontos de quebra próprios."
+  ],
+  "pendentes": [
+    "O componente não tem estado de erro ou inválido. Não foi possível documentar como sinalizar visualmente um aceite obrigatório não marcado dentro do próprio campo; a solução depende de decisão do time.",
+    "Não há componente de grupo de checkboxes no material extraído, então a orientação de agrupamento aqui é editorial e precisa ser confirmada quando existir uma solução oficial de grupo com título e mensagem de erro.",
+    "Não foi possível documentar o uso previsto do tipo de estado exportado pelo componente (vazio, marcado, intermediário), porque ele não é consumido pelo próprio código.",
+    "Não há orientação sobre limite de caracteres do rótulo e do texto de apoio: o componente não corta texto e o material extraído não define limite."
+  ]
+}

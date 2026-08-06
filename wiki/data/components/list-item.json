@@ -1,0 +1,440 @@
+{
+  "slug": "list-item",
+  "name": "ListItem",
+  "storybookTitle": "Web Components/ListItem",
+  "sourceDir": "packages/react/src/components/ListItem",
+  "exports": [
+    "ListItem"
+  ],
+  "typeExports": [
+    "ListItemClickEvent",
+    "ListItemDensity",
+    "ListItemLine",
+    "ListItemProps",
+    "ListItemRadius"
+  ],
+  "oneLiner": "List Item organiza uma unidade de informacao dentro de listas, menus, resultados, configuracoes e navegacao contextual.",
+  "docsDescription": "List Item organiza uma unidade de informacao dentro de listas, menus, resultados, configuracoes e navegacao contextual.\n\nUse para representar uma linha clicavel ou estatica com titulo, descricao opcional, icone lider e conteudo auxiliar no fim da linha.\n\nVariantes:\n- One-line: titulo unico para listas simples e escaneaveis.\n- Two-line: titulo com supporting text para contexto adicional.\n- Interactive: quando href ou onClick sao informados, o item renderiza link ou botao nativo.\n\nTokens:\nSuperficie, texto, icone, borda, radius, spacing, sizing, typography, focus ring e estados usam variaveis CSS dos tokens do Figma. A lista deve viver sobre o background oficial grey-100, usando white para a superficie do grupo.\n\nAcessibilidade:\n- O componente renderiza um li semantico.\n- Links e botoes sao elementos nativos quando o item e interativo.\n- Disabled remove foco de links e desabilita botoes.\n- Selected expoe aria-selected quando aplicavel.\n- Leading e trailing sao decorativos por padrao; use title/description para conteudo essencial.",
+  "props": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Titulo principal do item.",
+      "source": "ambos"
+    },
+    {
+      "name": "description",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Texto secundario opcional. Quando presente e line nao for informado, o item passa a two-line.",
+      "source": "ambos"
+    },
+    {
+      "name": "line",
+      "type": "ListItemLine",
+      "values": [
+        "one-line",
+        "two-line"
+      ],
+      "default": "description ? 'two-line' : 'one-line'",
+      "required": false,
+      "description": "Forca layout one-line ou two-line.",
+      "source": "ambos"
+    },
+    {
+      "name": "density",
+      "type": "ListItemDensity",
+      "values": [
+        "comfortable",
+        "compact"
+      ],
+      "default": "'comfortable'",
+      "required": false,
+      "description": "Densidade vertical do item.",
+      "source": "ambos"
+    },
+    {
+      "name": "radius",
+      "type": "ListItemRadius",
+      "values": [
+        "none",
+        "sm",
+        "md"
+      ],
+      "default": "'none'",
+      "required": false,
+      "description": "Arredondamento do item usando tokens de border radius.",
+      "source": "ambos"
+    },
+    {
+      "name": "divider",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Exibe divisor inferior (border-bottom border-sm).",
+      "source": "ambos"
+    },
+    {
+      "name": "selected",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Aplica estado selecionado e aria-selected.",
+      "source": "ambos"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Desabilita interacao e aplica estado visual (link perde href e sai da tabulacao; botao recebe disabled).",
+      "source": "ambos"
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Quando informado, o item renderiza um link (<a> dentro do <li>).",
+      "source": "ambos"
+    },
+    {
+      "name": "target",
+      "type": "AnchorHTMLAttributes<HTMLAnchorElement>['target']",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "target nativo do anchor; com _blank e sem rel o componente aplica 'noopener noreferrer'.",
+      "source": "types.ts"
+    },
+    {
+      "name": "rel",
+      "type": "AnchorHTMLAttributes<HTMLAnchorElement>['rel']",
+      "values": null,
+      "default": "'noopener noreferrer' quando target === '_blank' e rel nao foi informado",
+      "required": false,
+      "description": "rel nativo do anchor.",
+      "source": "types.ts"
+    },
+    {
+      "name": "leading",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Slot visual antes do conteudo principal (decorativo, aria-hidden).",
+      "source": "ambos"
+    },
+    {
+      "name": "trailing",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Slot visual depois do conteudo principal (decorativo, aria-hidden). Substitui o chevron automatico dos itens interativos.",
+      "source": "ambos"
+    },
+    {
+      "name": "ariaLabel",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Rotulo acessivel opcional para o controle interno (<a>, <button> ou <div>).",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao li.",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onClick",
+      "signature": "(event: ListItemClickEvent) => void",
+      "description": "Quando informado sem href, o item renderiza um <button type=\"button\">. Com href, e chamado no clique do <a> (bloqueado por preventDefault quando disabled)."
+    }
+  ],
+  "slots": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "description": "Conteudo de .ds-list-item__title (obrigatorio)."
+    },
+    {
+      "name": "description",
+      "type": "ReactNode",
+      "description": "Conteudo de .ds-list-item__description; sua presenca define o layout two-line."
+    },
+    {
+      "name": "leading",
+      "type": "ReactNode",
+      "description": "Slot lider, renderizado em span aria-hidden .ds-list-item__leading."
+    },
+    {
+      "name": "trailing",
+      "type": "ReactNode",
+      "description": "Slot final, renderizado em span aria-hidden .ds-list-item__trailing."
+    }
+  ],
+  "cssClasses": [
+    "ds-list-item",
+    "ds-list-item--one-line",
+    "ds-list-item--two-line",
+    "ds-list-item--density-comfortable",
+    "ds-list-item--density-compact",
+    "ds-list-item--radius-none",
+    "ds-list-item--radius-sm",
+    "ds-list-item--radius-md",
+    "ds-list-item--divider",
+    "ds-list-item--selected",
+    "ds-list-item--disabled",
+    "ds-list-item--interactive",
+    "ds-list-item--without-leading",
+    "ds-list-item--without-trailing",
+    "ds-list-item__control",
+    "ds-list-item__leading",
+    "ds-list-item__content",
+    "ds-list-item__title",
+    "ds-list-item__description",
+    "ds-list-item__trailing",
+    "ds-list-item__chevron"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--list-item-surface",
+      "value": "var(--ds-semantic-color-background-neutral-default)",
+      "comment": "Recebe --list-item-surface-selected em .ds-list-item--selected"
+    },
+    {
+      "name": "--list-item-surface-hover",
+      "value": "var(--ds-primitive-color-neutral-alpha-4)",
+      "comment": null
+    },
+    {
+      "name": "--list-item-surface-active",
+      "value": "var(--ds-primitive-color-neutral-alpha-8)",
+      "comment": null
+    },
+    {
+      "name": "--list-item-surface-selected",
+      "value": "var(--ds-semantic-color-background-information-subtle)",
+      "comment": null
+    },
+    {
+      "name": "--list-item-border-color",
+      "value": "var(--ds-semantic-color-border-neutral-subtle)",
+      "comment": null
+    },
+    {
+      "name": "--list-item-title-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-secondary)",
+      "comment": "Vira typography/disabled em .ds-list-item--disabled"
+    },
+    {
+      "name": "--list-item-description-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-disabled)",
+      "comment": "Vira typography/placeholder em .ds-list-item--disabled"
+    },
+    {
+      "name": "--list-item-icon-color",
+      "value": "var(--ds-primitive-color-neutral-grey-700)",
+      "comment": "Vira typography/information em selected e typography/placeholder em disabled"
+    },
+    {
+      "name": "--list-item-focus-ring",
+      "value": "var(--ds-semantic-color-background-brand-primary-secondary-default)",
+      "comment": null
+    },
+    {
+      "name": "--list-item-padding-block",
+      "value": "var(--ds-primitive-spacing-20)",
+      "comment": "spacing-12 em density-compact"
+    },
+    {
+      "name": "--list-item-padding-inline",
+      "value": "var(--ds-primitive-spacing-32)",
+      "comment": "spacing-20 em density-compact e abaixo de 640px"
+    },
+    {
+      "name": "--list-item-gap",
+      "value": "var(--ds-primitive-spacing-16)",
+      "comment": "spacing-12 em density-compact e abaixo de 640px"
+    },
+    {
+      "name": "--list-item-radius",
+      "value": "var(--ds-primitive-border-radius-radius-none)",
+      "comment": "radius-sm em --radius-sm e radius-md em --radius-md"
+    },
+    {
+      "name": "--list-item-leading-size",
+      "value": "var(--ds-primitive-spacing-24)",
+      "comment": null
+    },
+    {
+      "name": "--list-item-trailing-size",
+      "value": "var(--ds-primitive-spacing-24)",
+      "comment": null
+    }
+  ],
+  "tokensUsed": [
+    "--ds-semantic-color-background-neutral-default",
+    "--ds-primitive-color-neutral-alpha-4",
+    "--ds-primitive-color-neutral-alpha-8",
+    "--ds-semantic-color-background-information-subtle",
+    "--ds-semantic-color-border-neutral-subtle",
+    "--ds-semantic-text-style-content-color-typography-secondary",
+    "--ds-semantic-text-style-content-color-typography-disabled",
+    "--ds-primitive-color-neutral-grey-700",
+    "--ds-semantic-color-background-brand-primary-secondary-default",
+    "--ds-primitive-spacing-20",
+    "--ds-primitive-spacing-32",
+    "--ds-primitive-spacing-16",
+    "--ds-primitive-border-radius-radius-none",
+    "--ds-primitive-spacing-24",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-border-radius-radius-sm",
+    "--ds-primitive-border-radius-radius-md",
+    "--ds-primitive-spacing-12",
+    "--ds-primitive-spacing-64",
+    "--ds-primitive-spacing-80",
+    "--ds-primitive-border-width-border-sm",
+    "--ds-semantic-text-style-content-color-typography-information",
+    "--ds-primitive-border-width-border-md",
+    "--ds-primitive-spacing-2",
+    "--ds-semantic-text-style-content-color-typography-placeholder",
+    "--ds-primitive-spacing-4",
+    "--ds-primitive-typography-font-size-22",
+    "--ds-primitive-typography-font-weight-regular",
+    "--ds-primitive-typography-line-height-30",
+    "--ds-primitive-typography-font-size-18",
+    "--ds-primitive-typography-line-height-26",
+    "--ds-primitive-typography-line-height-24",
+    "--ds-primitive-typography-font-size-14",
+    "--ds-primitive-typography-line-height-20"
+  ],
+  "stories": [
+    {
+      "id": "web-components-listitem--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-listitem--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-listitem--default&viewMode=story"
+    },
+    {
+      "id": "web-components-listitem--one-line-list",
+      "name": "One Line List",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-listitem--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-listitem--one-line-list&viewMode=story"
+    },
+    {
+      "id": "web-components-listitem--two-line-list",
+      "name": "Two Line List",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-listitem--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-listitem--two-line-list&viewMode=story"
+    },
+    {
+      "id": "web-components-listitem--with-slots",
+      "name": "With Slots",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-listitem--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-listitem--with-slots&viewMode=story"
+    },
+    {
+      "id": "web-components-listitem--link-item",
+      "name": "Link Item",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-listitem--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-listitem--link-item&viewMode=story"
+    }
+  ],
+  "variants": [
+    {
+      "prop": "line",
+      "values": [
+        "one-line",
+        "two-line"
+      ]
+    },
+    {
+      "prop": "density",
+      "values": [
+        "comfortable",
+        "compact"
+      ]
+    },
+    {
+      "prop": "radius",
+      "values": [
+        "none",
+        "sm",
+        "md"
+      ]
+    }
+  ],
+  "states": [
+    "hover (apenas em .ds-list-item--interactive nao desabilitado: fundo neutral/alpha-4, ou information/subtle quando tambem selected)",
+    "active (.ds-list-item--interactive:not(--disabled) .ds-list-item__control:active — fundo neutral/alpha-8)",
+    "focus-visible (outline border-md na cor --list-item-focus-ring com offset negativo de spacing-2)",
+    "selected (.ds-list-item--selected — superficie information/subtle, icone typography/information e aria-selected=\"true\")",
+    "disabled (.ds-list-item--disabled — textos/icone rebaixados, cursor not-allowed, aria-disabled=\"true\", href removido no link e disabled no botao)",
+    "interactive (.ds-list-item--interactive quando ha href ou onClick: cursor pointer e chevron automatico quando nao ha trailing)"
+  ],
+  "responsive": [
+    {
+      "query": "@media (max-width: 640px)",
+      "effect": "--list-item-padding-inline vira spacing-20 e --list-item-gap vira spacing-12; o titulo cai para font-size-18/line-height-26 e a descricao para font-size-14/line-height-20."
+    }
+  ],
+  "accessibility": {
+    "roles": [
+      "listitem (<li> raiz — exige um <ul>/<ol> no consumidor)",
+      "link (<a> interno quando href e informado)",
+      "button (<button type=\"button\"> interno quando ha onClick sem href)",
+      "generic (<div> interno quando o item nao e interativo)"
+    ],
+    "ariaAttributes": [
+      "aria-selected=\"true\" no <li> quando selected",
+      "aria-disabled=\"true\" no <li> quando disabled",
+      "aria-label no controle interno (prop ariaLabel)",
+      "aria-hidden=\"true\" nos slots leading/trailing e no chevron"
+    ],
+    "keyboardInteractions": [
+      "Item com href: <a> nativo (Tab + Enter); disabled aplica tabIndex={-1} e remove o href.",
+      "Item com onClick: <button type=\"button\"> nativo (Tab + Enter/Espaco); disabled usa o atributo disabled nativo.",
+      "Item estatico (<div>) nao entra na ordem de tabulacao.",
+      "Nao ha handler de teclado customizado no componente."
+    ],
+    "notes": [
+      "Os slots leading e trailing sao sempre decorativos (aria-hidden), entao qualquer informacao essencial precisa estar em title/description.",
+      "O chevron automatico so aparece em itens interativos sem trailing.",
+      "Props extras (restProps de HTMLAttributes<HTMLLIElement>) sao repassadas ao <li>, permitindo role/id/data-* customizados."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/ListItem/ListItem.test.tsx",
+    "unitCount": 8,
+    "a11yFile": null,
+    "a11yCount": null
+  },
+  "figmaReferences": [],
+  "pendencias": [
+    "Nao ha arquivo ListItem.a11y.test.tsx (sem cobertura axe).",
+    "Nenhum node-id do Figma e citado no codigo do ListItem.",
+    "aria-selected e aplicado no <li> com role implicito listitem, onde o atributo nao e valido segundo a especificacao ARIA (seria necessario role=\"option\"/\"row\" no consumidor); o codigo nao trata esse caso.",
+    "O componente nao renderiza o <ul>/<ol> — a semantica de lista depende de quem consome (as stories usam .list-item-story-list).",
+    "A doc afirma que a lista deve viver sobre o background grey-100, mas isso nao esta implementado no CSS do componente (apenas nas stories).",
+    "Nao ha estado de foco/selecao gerenciado por teclado entre itens (roving tabindex) para uso como menu ou listbox."
+  ]
+}

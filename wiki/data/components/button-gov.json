@@ -1,0 +1,319 @@
+{
+  "slug": "button-gov",
+  "name": "ButtonGov",
+  "storybookTitle": "Web Components/ButtonGov",
+  "sourceDir": "packages/react/src/components/ButtonGov",
+  "exports": [
+    "ButtonGov"
+  ],
+  "typeExports": [
+    "ButtonGovProps"
+  ],
+  "oneLiner": "CTA institucional de autenticacao gov.br (250x48 no desktop, largura total no mobile) que renderiza <button> ou <a>, com o label \"Entrar com o gov.br\" dividido em dois pesos tipograficos.",
+  "docsDescription": "\nButtonGov e o CTA especifico de autenticacao gov.br. Ele fica em story separada para nao misturar esta variacao institucional com as variacoes gerais do Button.\n\nUse exclusivamente para entrada/autenticacao com gov.br. Nao use como CTA generico, botao de formulario comum ou link de navegacao; para esses casos use Button.\n\nResponsividade:\nEste componente foi desenvolvido com comportamento responsivo nativo. Em desktop respeita a especificacao de 250px de largura por 48px de altura, padding horizontal de 24px, padding vertical de 8px e gap de 8px. Em telas estreitas, ocupa a largura disponivel do container para preservar area de toque e evitar overflow horizontal.\n\nTokens:\nCores, radius, espacamentos, foco e estados usam variaveis CSS geradas pelos tokens do Figma. A largura fixa de 250px vem da especificacao do componente e nao possui token equivalente na base atual.\n\nTipografia:\nPlus Jakarta Sans e a unica familia tipografica do Design System, inclusive neste componente. A hierarquia da marca gov.br e preservada pelos pesos: \"Entrar com o\" usa Semibold 600 e \"gov.br\" usa Bold 700.\n\nAcessibilidade:\n- Renderiza button nativo ou anchor quando href e informado.\n- Estados disabled e loading usam atributos nativos/ARIA.\n- Foco visivel, hover, active e disabled usam tokens do Design System.\n- O icone e decorativo; o nome acessivel vem do label ou ariaLabel.\n",
+  "props": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "values": null,
+      "default": "'Entrar com o gov.br' (constante DEFAULT_LABEL)",
+      "required": false,
+      "description": "Label do botao. Por padrao usa Entrar com o gov.br.",
+      "source": "ambos"
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "values": null,
+      "default": "<GovUserIcon /> (SVG de usuario definido no proprio ButtonGov.tsx)",
+      "required": false,
+      "description": "Icone opcional. O padrao e o usuario gov.br.",
+      "source": "ambos"
+    },
+    {
+      "name": "href",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Quando informado, renderiza o componente como link.",
+      "source": "ambos"
+    },
+    {
+      "name": "target",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Atributo target quando renderizado como link.",
+      "source": "ambos"
+    },
+    {
+      "name": "rel",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Atributo rel quando renderizado como link.",
+      "source": "ambos"
+    },
+    {
+      "name": "type",
+      "type": "'button' | 'submit' | 'reset'",
+      "values": [
+        "button",
+        "submit",
+        "reset"
+      ],
+      "default": "'button'",
+      "required": false,
+      "description": "Tipo nativo do button.",
+      "source": "ambos"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Desabilita o controle.",
+      "source": "ambos"
+    },
+    {
+      "name": "isLoading",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Mostra estado de carregamento e bloqueia interacao.",
+      "source": "ambos"
+    },
+    {
+      "name": "loadingLabel",
+      "type": "string",
+      "values": null,
+      "default": "'Carregando'",
+      "required": false,
+      "description": "Label exibido durante carregamento.",
+      "source": "ambos"
+    },
+    {
+      "name": "ariaLabel",
+      "type": "string",
+      "values": null,
+      "default": "undefined (resolvido para 'Entrar com o gov.br' quando children e o label padrao e nao esta em loading)",
+      "required": false,
+      "description": "Nome acessivel opcional quando o label visual nao for suficiente.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao ButtonGov.",
+      "source": "ambos"
+    },
+    {
+      "name": "onClick",
+      "type": "MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Callback de click.",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onClick",
+      "signature": "MouseEventHandler<HTMLButtonElement | HTMLAnchorElement>",
+      "description": "Callback de click. No modo link o TSX intercepta o evento: se isDisabled (disabled || isLoading) chama event.preventDefault() e nao invoca o callback. No modo button o atributo disabled nativo impede o disparo."
+    }
+  ],
+  "slots": [
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "description": "Label do botao; quando o valor e exatamente \"Entrar com o gov.br\" o componente o divide em dois spans com pesos diferentes (ds-button-gov__label-base 600 e ds-button-gov__label-brand 700)."
+    },
+    {
+      "name": "icon",
+      "type": "ReactNode",
+      "description": "Icone decorativo a esquerda do label, dentro de span.ds-button-gov__icon com aria-hidden=\"true\"; substituido pelo spinner durante o loading."
+    }
+  ],
+  "cssClasses": [
+    "ds-button-gov",
+    "ds-button-gov--loading",
+    "ds-button-gov__spinner",
+    "ds-button-gov__icon",
+    "ds-button-gov__label",
+    "ds-button-gov__label-base",
+    "ds-button-gov__label-brand"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--button-gov-background",
+      "value": "var(--ds-semantic-color-background-brand-primary-secondary-default)",
+      "comment": null
+    },
+    {
+      "name": "--button-gov-background-hover",
+      "value": "var(--ds-semantic-color-background-brand-primary-secondary-prominent)",
+      "comment": null
+    },
+    {
+      "name": "--button-gov-background-active",
+      "value": "var(--ds-semantic-color-background-brand-primary-secondary-default-hover)",
+      "comment": null
+    },
+    {
+      "name": "--button-gov-foreground",
+      "value": "var(--ds-semantic-color-background-neutral-default)",
+      "comment": null
+    },
+    {
+      "name": "--button-gov-focus-ring",
+      "value": "var(--ds-semantic-text-style-content-color-typography-secondary)",
+      "comment": null
+    },
+    {
+      "name": "--button-gov-disabled-background",
+      "value": "var(--ds-semantic-color-background-neutral-disabled)",
+      "comment": null
+    },
+    {
+      "name": "--button-gov-disabled-foreground",
+      "value": "var(--ds-semantic-text-style-content-color-typography-disabled)",
+      "comment": null
+    },
+    {
+      "name": "--button-gov-inline-size",
+      "value": "250px",
+      "comment": "Valor literal: a largura de 250px vem da especificacao do componente e nao possui token equivalente na base atual (documentado nas stories)."
+    },
+    {
+      "name": "--button-gov-block-size",
+      "value": "var(--ds-primitive-spacing-48)",
+      "comment": null
+    },
+    {
+      "name": "--button-gov-icon-size",
+      "value": "var(--ds-primitive-spacing-20)",
+      "comment": null
+    }
+  ],
+  "tokensUsed": [
+    "--ds-semantic-color-background-brand-primary-secondary-default",
+    "--ds-semantic-color-background-brand-primary-secondary-prominent",
+    "--ds-semantic-color-background-brand-primary-secondary-default-hover",
+    "--ds-semantic-color-background-neutral-default",
+    "--ds-semantic-text-style-content-color-typography-secondary",
+    "--ds-semantic-color-background-neutral-disabled",
+    "--ds-semantic-text-style-content-color-typography-disabled",
+    "--ds-primitive-spacing-48",
+    "--ds-primitive-spacing-20",
+    "--ds-primitive-spacing-8",
+    "--ds-primitive-spacing-24",
+    "--ds-primitive-border-width-border-sm",
+    "--ds-primitive-border-radius-radius-full",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-typography-font-size-18",
+    "--ds-primitive-typography-line-height-24",
+    "--ds-primitive-border-width-border-md",
+    "--ds-primitive-spacing-4"
+  ],
+  "stories": [
+    {
+      "id": "web-components-buttongov--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-buttongov--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-buttongov--default&viewMode=story"
+    },
+    {
+      "id": "web-components-buttongov--states",
+      "name": "States",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-buttongov--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-buttongov--states&viewMode=story"
+    },
+    {
+      "id": "web-components-buttongov--as-link",
+      "name": "As Link",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-buttongov--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-buttongov--as-link&viewMode=story"
+    },
+    {
+      "id": "web-components-buttongov--mobile-responsive",
+      "name": "Mobile Responsive",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-buttongov--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-buttongov--mobile-responsive&viewMode=story"
+    }
+  ],
+  "variants": [
+    {
+      "prop": "type",
+      "values": [
+        "button",
+        "submit",
+        "reset"
+      ]
+    }
+  ],
+  "states": [
+    "hover (.ds-button-gov:not(:disabled):not([aria-disabled='true']):hover usa --button-gov-background-hover)",
+    "active (.ds-button-gov:not(:disabled):not([aria-disabled='true']):active usa --button-gov-background-active)",
+    "focus-visible (.ds-button-gov:focus-visible com outline border-md e --button-gov-focus-ring, offset spacing/4)",
+    "disabled (.ds-button-gov:disabled e .ds-button-gov[aria-disabled='true']: background/foreground disabled e cursor not-allowed)",
+    "loading (classe .ds-button-gov--loading aplicada no TSX + spinner .ds-button-gov__spinner animado, aria-busy=\"true\" e desabilitacao efetiva via isDisabled)"
+  ],
+  "responsive": [
+    {
+      "query": "(prefers-reduced-motion: reduce)",
+      "effect": ".ds-button-gov__spinner tem animation: none (a rotacao ds-button-gov-spinner e desligada)."
+    },
+    {
+      "query": "(max-width: 420px)",
+      "effect": ".ds-button-gov passa a inline-size: 100% (ocupa a largura do container em vez dos 250px)."
+    }
+  ],
+  "accessibility": {
+    "roles": [
+      "button (elemento <button> nativo quando href nao e informado)",
+      "link (elemento <a href> quando href e informado)"
+    ],
+    "ariaAttributes": [
+      "aria-label (resolvedAriaLabel: prop ariaLabel ou, quando children e o label padrao e nao esta em loading, \"Entrar com o gov.br\")",
+      "aria-busy=\"true\" (quando isLoading, nos dois modos)",
+      "aria-disabled=\"true\" (apenas no modo link, quando disabled ou isLoading)",
+      "aria-hidden=\"true\" (span.ds-button-gov__icon, span.ds-button-gov__spinner e o <svg> do GovUserIcon)"
+    ],
+    "keyboardInteractions": [
+      "Tab / Shift+Tab: foco nativo; no modo link desabilitado o TSX aplica tabIndex={-1}, removendo o elemento da ordem de tabulacao.",
+      "Enter / Space: ativacao nativa do <button>; Enter no <a>. Nao ha handlers de teclado proprios no TSX."
+    ],
+    "notes": [
+      "O label padrao e quebrado em dois spans (\"Entrar com o\" + \"gov.br\") apenas quando children === \"Entrar com o gov.br\"; por isso o componente define resolvedAriaLabel para garantir o nome acessivel completo.",
+      "isDisabled = disabled || isLoading: loading tambem bloqueia interacao.",
+      "Durante o loading o label visivel passa a ser loadingLabel e o aria-label deixa de ser preenchido automaticamente (resolvedAriaLabel fica undefined se ariaLabel nao for passado), de modo que o nome acessivel vem do proprio loadingLabel.",
+      "O icone e sempre decorativo (aria-hidden=\"true\")."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/ButtonGov/ButtonGov.test.tsx",
+    "unitCount": 5,
+    "a11yFile": null,
+    "a11yCount": null
+  },
+  "figmaReferences": [],
+  "pendencias": [
+    "Nao existe arquivo ButtonGov.a11y.test.tsx; nao ha teste automatizado de acessibilidade (axe) para este componente.",
+    "Nenhum node-id do Figma e citado no codigo; a rastreabilidade com o design so aparece de forma generica (\"tokens do Figma\", \"especificacao do componente\").",
+    "Os pesos tipograficos 600 e 700 (.ds-button-gov__label-base / __label-brand e o font-weight do bloco raiz) sao valores literais no CSS, sem token --ds-primitive-typography-font-weight-* correspondente.",
+    "A largura de 250px e literal (--button-gov-inline-size) por falta de token equivalente, conforme documentado nas stories.",
+    "A classe .ds-button-gov--loading e aplicada pelo TSX mas nao possui regra no ButtonGov.styles.css.",
+    "Os argTypes nao declaram table.type/table.defaultValue; os defaults vieram da desestruturacao em ButtonGov.tsx.",
+    "Os parametros parameters.componentCanvas.width (520 no meta, 320 na story MobileResponsive) nao estao documentados no codigo do componente."
+  ]
+}

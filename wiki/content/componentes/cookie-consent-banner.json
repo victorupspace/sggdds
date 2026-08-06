@@ -1,0 +1,175 @@
+{
+  "slug": "cookie-consent-banner",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Feedback",
+  "resumo": "Faixa fixa na parte de baixo da tela que avisa sobre o uso de cookies e oferece dois caminhos: permitir todos ou ir gerenciar as preferências. Traz também o link para a política de cookies do serviço.",
+  "quandoUsar": [
+    "Na primeira visita a um portal de serviços do Estado, antes que a pessoa comece um agendamento ou preencha um formulário.",
+    "Quando o site usa cookies além dos estritamente necessários — medição de audiência, por exemplo — e precisa registrar a decisão da pessoa.",
+    "Quando já existe uma página de política de cookies publicada para onde apontar o link.",
+    "Quando existe uma tela de preferências para onde levar quem não quer aceitar tudo, acionada por manageCookiesHref ou por onManageCookies."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Para avisar sobre instabilidade, manutenção programada ou prazo de um serviço.",
+      "alternativa": "Alert"
+    },
+    {
+      "texto": "Para confirmar rapidamente algo que a pessoa acabou de fazer, como salvar um rascunho.",
+      "alternativa": "Toast"
+    },
+    {
+      "texto": "Para pedir uma decisão que precisa bloquear a tarefa até ser respondida.",
+      "alternativa": "Modal"
+    },
+    {
+      "texto": "Como central completa de preferências, com escolha por categoria de cookie.",
+      "alternativa": "Modal"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Faixa fixa",
+      "descricao": "Bloco com superfície própria, borda e sombra, fixado na parte de baixo da tela. A posição é definida por position: bottom, bottom-left ou bottom-right."
+    },
+    {
+      "numero": 2,
+      "parte": "Ícone",
+      "descricao": "Ícone de cookie, decorativo. Pode ser substituído pela prop icon."
+    },
+    {
+      "numero": 3,
+      "parte": "Título",
+      "descricao": "Frase curta que abre o aviso, renderizada como <h2>. Vem da prop title."
+    },
+    {
+      "numero": 4,
+      "parte": "Mensagem",
+      "descricao": "Parágrafo que explica o uso de cookies. Pode ser substituído por children."
+    },
+    {
+      "numero": 5,
+      "parte": "Link da política",
+      "descricao": "Link para a política de cookies, dentro da mensagem padrão. Controlado por policyHref e policyLabel."
+    },
+    {
+      "numero": 6,
+      "parte": "Área de ações",
+      "descricao": "Bloco que agrupa os dois botões e passa a ocupar uma coluna única nas telas mais estreitas."
+    },
+    {
+      "numero": 7,
+      "parte": "Botão \"Permitir todos\"",
+      "descricao": "Ação de aceite total. Fecha o banner por padrão, porque closeOnAllowAll começa ligado."
+    },
+    {
+      "numero": 8,
+      "parte": "Botão \"Gerenciar cookies\"",
+      "descricao": "Ação secundária, com aparência neutra. Vira link quando manageCookiesHref é informado e, por padrão, não fecha o banner."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "Em telas grandes o banner é horizontal, com o ícone ao lado do texto. Abaixo de 900px o conteúdo empilha, o ícone vai para a esquerda e o banner fica mais estreito. Abaixo de 640px o ícone diminui, títulos e textos reduzem de tamanho e os dois botões passam a dividir a linha. Abaixo de 420px o banner ocupa quase toda a largura da tela e os botões ficam um embaixo do outro, cada um com a largura inteira.",
+  "dosDonts": [
+    {
+      "faca": "Mantenha \"Permitir todos\" e \"Gerenciar cookies\" visíveis juntos, na mesma área de ações.",
+      "naoFaca": "Deixar apenas o botão de aceite, escondendo o caminho de gerenciar.",
+      "porque": "Com um único botão não há escolha, e o banner deixa de coletar consentimento para virar apenas um obstáculo que a pessoa fecha no automático."
+    },
+    {
+      "faca": "Aponte policyHref para a página de política de cookies realmente publicada do serviço.",
+      "naoFaca": "Deixar o valor padrão de âncora em produção.",
+      "porque": "O link é focável e aparece na navegação por teclado e por leitor de tela; se ele não leva a lugar nenhum, a pessoa chega a um destino vazio no meio do aviso."
+    },
+    {
+      "faca": "Guarde a decisão na aplicação e só exiba o banner enquanto não houver resposta registrada.",
+      "naoFaca": "Reexibir o banner a cada página depois que a pessoa já respondeu.",
+      "porque": "O componente não persiste nada: ele apenas abre e fecha. Sem registro na aplicação, o aviso volta em toda navegação e cobre o conteúdo repetidamente."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Título de uma linha, em linguagem comum e sem jargão jurídico. Ele apresenta o assunto; a explicação vem no parágrafo.",
+    "Mensagem em uma ou duas frases: diga que o site usa cookies, para que serve e onde ler a regra completa.",
+    "Nos botões, use verbo no infinitivo e resultado claro. Mantenha \"Permitir todos\" e \"Gerenciar cookies\" quando não houver motivo forte para mudar, porque são os rótulos que o restante do sistema usa.",
+    "No link, nomeie o destino: \"Política de Cookies\". Nunca use \"clique aqui\" nem \"saiba mais\".",
+    "Não escreva consentimento implícito, do tipo \"ao continuar navegando você concorda\". A decisão precisa vir de um dos dois botões."
+  ],
+  "hierarquia": [
+    "O banner é fixo e fica por cima do conteúdo, na parte de baixo da tela. Ele é o elemento mais recente da leitura, não o mais importante da página.",
+    "Deve ser o único elemento fixo sobreposto no momento em que aparece. Se houver outro elemento flutuante na mesma região, verifique se um não cobre o outro.",
+    "Dentro do banner, o título tem o maior peso, seguido da mensagem e, por último, dos botões, que fecham a leitura à direita no desktop e embaixo no celular.",
+    "Não deixe o banner cobrindo permanentemente links essenciais do rodapé; ele precisa sair da tela assim que a pessoa responder."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Button",
+      "slug": "button",
+      "relacao": "Os dois CTAs são o Button do design system. O botão de gerenciar recebe tratamento neutro por meio dos aliases locais do banner."
+    },
+    {
+      "componente": "Footer",
+      "slug": "footer",
+      "relacao": "O banner é a primeira exposição da política; o rodapé é o acesso permanente a ela. Use o mesmo texto de link nos dois lugares."
+    },
+    {
+      "componente": "Modal",
+      "slug": "modal",
+      "relacao": "Quando o gerenciamento de preferências abre sobre a página, o banner é quem leva até lá pelo CTA secundário."
+    },
+    {
+      "componente": "Back to Top",
+      "slug": "back-to-top",
+      "relacao": "Os dois ficam fixos sobre o conteúdo. Ao exibir o banner, confira se ele não cobre o botão de voltar ao topo."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Primeira visita ao portal de agendamento",
+      "contexto": "Pessoa chega ao portal para agendar atendimento no Poupatempo e nunca respondeu ao aviso de cookies naquele navegador.",
+      "comoFica": "O banner aparece fixo na base da tela com o título curto, a explicação em uma frase e o link para a Política de Cookies. Ao clicar em \"Permitir todos\", o banner fecha e a aplicação grava a decisão, para que o aviso não volte na próxima página."
+    },
+    {
+      "titulo": "Gerenciamento em página separada",
+      "contexto": "Serviço de consulta de protocolo que mantém uma página própria de preferências de privacidade.",
+      "comoFica": "O CTA secundário recebe manageCookiesHref e passa a ser um link para essa página. A pessoa sai do banner direto para a tela de preferências, onde escolhe por categoria; o banner só é encerrado depois que a escolha for registrada."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Informar isOpen sem tratar onOpenChange.",
+      "consequencia": "No modo controlado o estado interno não muda: a pessoa clica em \"Permitir todos\", o callback dispara e o banner continua na tela.",
+      "correcao": "Quando usar isOpen, atualize o estado da aplicação dentro de onOpenChange. Se não precisa controlar de fora, use apenas defaultOpen."
+    },
+    {
+      "erro": "Esperar que a tecla Escape ou um botão de fechar encerrem o aviso.",
+      "consequencia": "Não existe botão de fechar nem atalho de teclado. Quem navega por teclado só sai do banner escolhendo um dos dois CTAs.",
+      "correcao": "Garanta que os dois CTAs estejam sempre alcançáveis e que ambos levem a um desfecho; não desenhe um X que o componente não tem."
+    },
+    {
+      "erro": "Substituir a mensagem por children e esquecer o link da política.",
+      "consequencia": "O link vive dentro do parágrafo padrão. Ao trocar o conteúdo, o acesso à política desaparece do banner.",
+      "correcao": "Se usar children, inclua o link para a política dentro do texto novo."
+    },
+    {
+      "erro": "Tratar o banner como registro do consentimento.",
+      "consequencia": "O componente não guarda nada e não sabe o que foi decidido antes; ele reabre conforme o valor de defaultOpen a cada carregamento.",
+      "correcao": "Registre a decisão na aplicação e decida ali se o banner deve ou não ser renderizado."
+    }
+  ],
+  "notasImplementacao": [
+    "A raiz é um <section role=\"region\"> com nome acessível vindo de ariaLabel; o título é um <h2>. Considere a posição desse <h2> na hierarquia de títulos da página.",
+    "Não há trap de foco, fechamento por Escape nem botão de fechar implementados.",
+    "O ícone e seu container são aria-hidden. Nenhuma informação pode depender só dele.",
+    "Quando manageCookiesHref é informado, o CTA de gerenciamento passa a ser um link em vez de botão.",
+    "O componente não persiste a decisão: cabe à aplicação gravar a escolha e controlar a reexibição.",
+    "O CSS importa a fonte Material Symbols de um domínio externo e não há alternativa documentada caso ela não carregue. Em ambientes sem acesso externo, use a prop icon para fornecer o próprio ícone.",
+    "A custom property --cookie-consent-page-overlay é declarada mas não é usada por nenhuma regra do componente."
+  ],
+  "pendentes": [
+    "A API não expõe uma ação de \"Recusar todos\" no próprio banner; a recusa depende da tela de gerenciamento. A política sobre isso precisa de definição jurídica e de governança.",
+    "Não há regra definida de validade ou de reexibição do consentimento (por quanto tempo a decisão vale), porque isso não está no componente nem em documento associado.",
+    "O campo de tamanhos ficou vazio porque o componente não expõe prop de tamanho."
+  ]
+}

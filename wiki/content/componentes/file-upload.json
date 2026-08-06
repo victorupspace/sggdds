@@ -1,0 +1,177 @@
+{
+  "slug": "file-upload",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Formulários",
+  "resumo": "Campo de formulário para a pessoa anexar arquivos ao serviço. Tem dois modos de acionamento — um botão de anexar ou uma área para arrastar e soltar — e mostra a lista dos arquivos escolhidos, com nome, status e botão para remover.",
+  "quandoUsar": [
+    "Quando o serviço exige comprovante digitalizado, como comprovante de residência em um cadastro ou laudo em um pedido de isenção.",
+    "Quando a pessoa precisa conferir o que anexou antes de enviar o protocolo: a lista de arquivos mostra o que já foi escolhido e permite remover item por item.",
+    "Quando a mesma etapa aceita mais de um documento — por exemplo frente e verso de um documento —, ativando a propriedade multiple.",
+    "Quando o serviço aceita apenas alguns formatos e a pessoa precisa saber disso antes de escolher o arquivo, usando dropzoneHint ou helperText para informar formatos e limite.",
+    "Quando o anexo faz parte de um formulário maior de solicitação, ficando junto dos demais campos em vez de virar uma etapa isolada."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Para listar documentos que o órgão já emitiu e a pessoa só precisa abrir ou baixar.",
+      "alternativa": "List Item"
+    },
+    {
+      "texto": "Para mostrar o andamento do envio ao servidor com percentual: o componente não tem estado de progresso, o status do item é um texto fixo.",
+      "alternativa": "Progress Bar"
+    },
+    {
+      "texto": "Para confirmar que a solicitação inteira foi enviada com sucesso depois do envio do formulário.",
+      "alternativa": "Alert"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Rótulo",
+      "descricao": "Nome do campo, sempre visível e exigido pelo componente. Recebe um asterisco decorativo quando a resposta é obrigatória."
+    },
+    {
+      "numero": 2,
+      "parte": "Acionador",
+      "descricao": "No modo button, o botão de anexar arquivos. No modo dropzone, a área com borda em que a pessoa clica ou solta os arquivos."
+    },
+    {
+      "numero": 3,
+      "parte": "Instrução do dropzone",
+      "descricao": "Frase dentro da área de arrastar que explica a ação disponível (dropzoneText)."
+    },
+    {
+      "numero": 4,
+      "parte": "Texto de apoio do dropzone",
+      "descricao": "Linha menor abaixo da instrução, usada para informar formatos aceitos e limite de tamanho (dropzoneHint)."
+    },
+    {
+      "numero": 5,
+      "parte": "Campo de arquivo nativo",
+      "descricao": "Elemento de seleção de arquivo do navegador. Fica escondido visualmente, mas continua disponível para leitores de tela e para o teclado."
+    },
+    {
+      "numero": 6,
+      "parte": "Texto de apoio do campo",
+      "descricao": "Orientação geral abaixo do acionador (helperText), com cor secundária."
+    },
+    {
+      "numero": 7,
+      "parte": "Mensagem de erro",
+      "descricao": "Feedback em vermelho exibido quando o campo está em erro. No dropzone aparece dentro da área; no modo button aparece como um item de falha na lista."
+    },
+    {
+      "numero": 8,
+      "parte": "Lista de arquivos",
+      "descricao": "Relação dos arquivos já escolhidos, anunciada por leitores de tela quando muda."
+    },
+    {
+      "numero": 9,
+      "parte": "Item de arquivo",
+      "descricao": "Cada linha da lista: ícone, nome do arquivo com a extensão preservada, linha de tamanho e status, marca de confirmação e botão para remover aquele arquivo."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "O campo ocupa toda a largura do container por padrão (fullWidth). Abaixo de 640px, o espaçamento lateral do dropzone diminui para caber em telas estreitas. Nomes longos de arquivo são cortados no meio, mas a extensão continua visível, para a pessoa reconhecer o tipo do documento. Quando a pessoa usa o sistema com redução de movimento, a transição de cor do dropzone é desligada.",
+  "dosDonts": [
+    {
+      "faca": "Escreva no dropzoneHint (ou no helperText) quais formatos e qual limite de tamanho o serviço aceita, antes de a pessoa escolher o arquivo.",
+      "naoFaca": "Deixar o texto de apoio padrão quando o serviço aceita outros formatos ou outro limite.",
+      "porque": "O componente não valida tipo nem tamanho de arquivo. Esse texto é a única informação que a pessoa tem antes de tentar enviar; se ele estiver errado, a pessoa só descobre a regra depois da recusa."
+    },
+    {
+      "faca": "Ative multiple quando a etapa realmente aceitar vários documentos.",
+      "naoFaca": "Pedir \"anexe os documentos\" no rótulo deixando multiple desligado.",
+      "porque": "Com multiple desligado, a seleção e o arrastar ficam limitados a um arquivo. A pessoa escolhe vários, vê só um na lista e não entende o que aconteceu."
+    },
+    {
+      "faca": "Preencha errorText com a razão da recusa daquele arquivo, em uma frase.",
+      "naoFaca": "Usar o estado de erro apenas para chamar atenção para um campo obrigatório que ainda não foi preenchido.",
+      "porque": "Definir errorText já força o estado de erro e pinta a área de vermelho. Vermelho sem explicação faz a pessoa achar que o envio falhou, quando ela apenas ainda não anexou nada."
+    }
+  ],
+  "conteudoEEscrita": [
+    "O rótulo nomeia o documento pedido, não a ação: \"Comprovante de residência\" funciona melhor que \"Anexar arquivo\".",
+    "O texto de apoio informa formato e limite em linguagem direta, sem sigla solta: cite as extensões aceitas e o tamanho máximo em uma linha curta.",
+    "A mensagem de erro diz o que houve e o que fazer: \"Arquivo acima do tamanho aceito. Envie um arquivo menor.\" Evite \"Erro\" ou \"Arquivo inválido\" sem complemento.",
+    "O rótulo do botão começa com verbo no infinitivo e usa apenas a primeira letra maiúscula, como o padrão \"Anexar arquivos\".",
+    "O status do item (itemStatusLabel) descreve o resultado, não a promessa: use uma palavra curta e no particípio, como \"Carregado\"."
+  ],
+  "hierarquia": [
+    "Posicione o campo no ponto do formulário em que o documento é pedido, na mesma coluna dos demais campos, e não em uma área destacada da tela.",
+    "Use o modo button quando o anexo é um item entre muitos do formulário: ele ocupa pouco espaço e não compete com os outros campos.",
+    "Use o modo dropzone quando o envio de arquivo é a tarefa principal daquela etapa: a área grande sinaliza que aquele é o passo esperado.",
+    "A lista de arquivos fica logo abaixo do acionador e cresce para baixo; reserve espaço na tela para ela e não coloque o botão de envio colado no campo."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Button",
+      "slug": "button",
+      "relacao": "O modo button usa o botão secundário do design system como acionador; o botão que envia o formulário deve ser outro, com peso visual maior."
+    },
+    {
+      "componente": "Text Input",
+      "slug": "text-input",
+      "relacao": "Convive com os demais campos do formulário de solicitação, mantendo o mesmo alinhamento e o mesmo padrão de rótulo e texto de apoio."
+    },
+    {
+      "componente": "Alert",
+      "slug": "alert",
+      "relacao": "Erros do arquivo ficam no próprio campo (errorText); um Alert no topo do formulário resume que há pendências antes do envio."
+    },
+    {
+      "componente": "Stepper",
+      "slug": "stepper",
+      "relacao": "Em solicitações divididas em etapas, o envio de documentos costuma ser uma etapa própria indicada no Stepper."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Documentos de um pedido de isenção",
+      "contexto": "Formulário em que a pessoa solicita isenção de uma taxa e precisa anexar comprovante de renda e comprovante de residência.",
+      "comoFica": "Modo dropzone, com multiple ativado, rótulo \"Documentos comprobatórios\" e texto de apoio informando os formatos e o tamanho máximo aceitos pelo serviço. Conforme a pessoa solta os arquivos, cada um aparece na lista com nome, status e botão de remover, e ela confere tudo antes de enviar."
+    },
+    {
+      "titulo": "Foto do documento em um agendamento",
+      "contexto": "Etapa de agendamento de atendimento presencial que pede uma única imagem do documento de identidade.",
+      "comoFica": "Modo button, sem multiple, rótulo \"Foto do RG ou CNH\" e um texto de apoio explicando que a foto precisa estar legível. Se o arquivo for recusado pela regra do serviço, errorText descreve o motivo e o item aparece marcado como falha na lista."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Deixar o rótulo genérico ou reaproveitar o mesmo rótulo em vários campos de anexo da mesma página.",
+      "consequencia": "O nome acessível de todos os campos fica igual e quem usa leitor de tela não sabe em qual documento está.",
+      "correcao": "Dê a cada campo um rótulo com o nome do documento pedido."
+    },
+    {
+      "erro": "Desligar a lista de arquivos (showFileList) para economizar espaço.",
+      "consequencia": "A pessoa não tem como confirmar o que anexou nem remover um arquivo errado, e só descobre o problema depois do envio.",
+      "correcao": "Mantenha a lista visível; se o espaço é o problema, reduza o texto de apoio em vez de esconder a confirmação."
+    },
+    {
+      "erro": "Prometer no texto de apoio uma validação que o serviço não faz, ou copiar o texto padrão de formatos e limite sem conferir.",
+      "consequencia": "A pessoa envia um arquivo que o sistema aceita na tela e o órgão recusa depois, gerando retrabalho e nova visita ao serviço.",
+      "correcao": "Alinhe o texto de apoio com a regra real do back-end e trate a recusa exibindo errorText."
+    },
+    {
+      "erro": "Usar o estado de erro do campo como aviso geral do formulário.",
+      "consequencia": "A área do anexo fica vermelha mesmo quando o problema está em outro campo, e a pessoa procura o erro no lugar errado.",
+      "correcao": "Reserve o estado de erro para problemas do próprio arquivo e comunique pendências gerais fora do campo."
+    }
+  ],
+  "notasImplementacao": [
+    "O componente não valida tipo nem tamanho de arquivo: a regra precisa ser aplicada por quem consome, e o resultado devolvido pelo campo via errorText.",
+    "Não existe estado de progresso ou carregamento; o status do item é um texto estático. Se o serviço envia arquivos grandes, o feedback de envio precisa vir de fora do componente.",
+    "Todos os papéis de acessibilidade vêm da semântica nativa (campo de arquivo, botões e lista). Não há papel declarado manualmente nem manipulador de teclado próprio.",
+    "Não há alternativa por teclado para arrastar e soltar além do próprio campo de arquivo; por isso o dropzone precisa continuar clicável e focalizável.",
+    "A lista de arquivos é anunciada de forma educada por leitores de tela quando muda, então evite atualizar a lista fora da ação da pessoa.",
+    "Quando id não é informado, o componente gera um identificador próprio e deriva dele os identificadores de rótulo, apoio, erro e lista."
+  ],
+  "pendentes": [
+    "Não foi possível recomendar limite de tamanho ou lista de formatos: o componente não valida arquivos e a regra depende de cada serviço.",
+    "Não há orientação para envio em andamento (upload demorado), porque o componente não expõe estado de progresso nem percentual.",
+    "Não foi possível orientar sobre o comportamento de passar o cursor sobre o dropzone: o CSS não define esse estado.",
+    "O valor final da borda de erro não pôde ser confirmado: o código registra divergência entre o arquivo do Figma e a coleção de tokens exportada."
+  ]
+}

@@ -1,0 +1,365 @@
+{
+  "slug": "modal",
+  "name": "Modal",
+  "storybookTitle": "Web Components/Modal",
+  "sourceDir": "packages/react/src/components/Modal",
+  "exports": [
+    "Modal"
+  ],
+  "typeExports": [
+    "ModalProps",
+    "ModalSize"
+  ],
+  "oneLiner": "O Modal reproduz o layout do Figma (Web Components / Modal): dialogo sobreposto com backdrop, container branco com radius de 16 e secoes de header, conteudo e footer.",
+  "docsDescription": "O Modal reproduz o layout do Figma (Web Components / Modal): diálogo sobreposto com backdrop modal/backdrop (preto a 48%), container branco com radius de 16 (modal/container) e seções separadas por modal/body/spacing/gap.\n\nTamanhos (Size no Figma): small (440px, confirmações), medium (600px, formulários), large (960px, conteúdo denso) e extended (1200px, visões de dados).\n\nAnatomia:\n- Botão de fechar: Icon Button Ghost de 40px no canto superior direito com o ícone close [outlined] exportado.\n- Header: título Title/Medium Sm (SemiBold 18, modal/header/color/text) com borda modal/header/color/border e Subheader Slot opcional.\n- Content Slot (children): corpo em Body/Medium com os paddings modal/body/spacing.\n- Footer Slot: componha com os Buttons do DS — ação primária = secondary, dispensar = tertiary, como na documentação do Figma (gap modal/footer/spacing/gap).\n\nResponsividade (Mobile=True no Figma): abaixo de 768px, small e medium viram bottom sheet ancorado na base com os botões do footer empilhados em largura total; large permanece centralizado.\n\nAcessibilidade: role dialog com aria-modal, aria-labelledby/describedby, focus trap, Escape e clique no backdrop fecham (configuráveis), scroll do body bloqueado e foco devolvido ao elemento de origem.",
+  "props": [
+    {
+      "name": "isOpen",
+      "type": "boolean",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Controla a exibição do modal.",
+      "source": "ambos"
+    },
+    {
+      "name": "onClose",
+      "type": "() => void",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Callback chamado ao fechar.",
+      "source": "ambos"
+    },
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Título do modal (conciso, descreve a ação).",
+      "source": "ambos"
+    },
+    {
+      "name": "subheader",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Subheader Slot opcional abaixo do título (Subheader Slot no Figma).",
+      "source": "ambos"
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Content Slot: conteúdo principal do modal.",
+      "source": "types.ts"
+    },
+    {
+      "name": "footer",
+      "type": "ReactNode",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Footer Slot: componha com os Buttons do DS (ação primária = secondary, dispensar = tertiary, como na documentação do Figma).",
+      "source": "ambos"
+    },
+    {
+      "name": "size",
+      "type": "ModalSize",
+      "values": [
+        "small",
+        "medium",
+        "large",
+        "extended"
+      ],
+      "default": "'small'",
+      "required": false,
+      "description": "Size no Figma: small, medium, large ou extended.",
+      "source": "ambos"
+    },
+    {
+      "name": "closeLabel",
+      "type": "string",
+      "values": null,
+      "default": "'Fechar modal'",
+      "required": false,
+      "description": "Rótulo acessível do botão de fechar.",
+      "source": "ambos"
+    },
+    {
+      "name": "closeOnOverlayClick",
+      "type": "boolean",
+      "values": null,
+      "default": "true",
+      "required": false,
+      "description": "Fecha ao clicar no backdrop.",
+      "source": "ambos"
+    },
+    {
+      "name": "closeOnEsc",
+      "type": "boolean",
+      "values": null,
+      "default": "true",
+      "required": false,
+      "description": "Fecha ao pressionar Escape.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao overlay.",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onClose",
+      "signature": "() => void",
+      "description": "Callback chamado ao fechar. Disparado pelo botao de fechar, por Escape (quando closeOnEsc) e pelo clique no backdrop (quando closeOnOverlayClick)."
+    }
+  ],
+  "slots": [
+    {
+      "name": "title",
+      "type": "ReactNode",
+      "description": "Título do modal (conciso, descreve a ação)."
+    },
+    {
+      "name": "subheader",
+      "type": "ReactNode",
+      "description": "Subheader Slot opcional abaixo do título."
+    },
+    {
+      "name": "children",
+      "type": "ReactNode",
+      "description": "Content Slot: conteúdo principal do modal."
+    },
+    {
+      "name": "footer",
+      "type": "ReactNode",
+      "description": "Footer Slot (componha com os Buttons do DS)."
+    }
+  ],
+  "cssClasses": [
+    "ds-modal",
+    "ds-modal--size-small",
+    "ds-modal--size-medium",
+    "ds-modal--size-large",
+    "ds-modal--size-extended",
+    "ds-modal__dialog",
+    "ds-modal__close",
+    "ds-modal__header",
+    "ds-modal__title",
+    "ds-modal__subheader",
+    "ds-modal__body",
+    "ds-modal__footer"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--modal-overlay-background",
+      "value": "rgb(0 0 0 / 48%)",
+      "comment": "modal/backdrop: color/background (#000) com effect/opacity de 48%"
+    },
+    {
+      "name": "--modal-surface",
+      "value": "var(--ds-component-modal-container-color-background)",
+      "comment": "modal/container/color/background e border/radius"
+    },
+    {
+      "name": "--modal-radius",
+      "value": "var(--ds-component-modal-container-border-radius)",
+      "comment": "modal/container/color/background e border/radius"
+    },
+    {
+      "name": "--modal-section-gap",
+      "value": "var(--ds-component-modal-body-spacing-gap)",
+      "comment": "modal/body/spacing/gap (entre header, viewport e footer)"
+    },
+    {
+      "name": "--modal-max-inline-size",
+      "value": "440px",
+      "comment": "Larguras do Figma: Small 440, Medium 600, Large 960, Extended 1200"
+    },
+    {
+      "name": "--modal-focus-ring",
+      "value": "var(--ds-component-focus-ring-color-ring)",
+      "comment": null
+    },
+    {
+      "name": "--modal-max-inline-size",
+      "value": "600px",
+      "comment": "Override em .ds-modal--size-medium"
+    },
+    {
+      "name": "--modal-max-inline-size",
+      "value": "960px",
+      "comment": "Override em .ds-modal--size-large"
+    },
+    {
+      "name": "--modal-max-inline-size",
+      "value": "1200px",
+      "comment": "Override em .ds-modal--size-extended"
+    }
+  ],
+  "tokensUsed": [
+    "--ds-component-component-sizing-24",
+    "--ds-component-focus-ring-color-ring",
+    "--ds-component-focus-ring-effect-offset",
+    "--ds-component-focus-ring-effect-width",
+    "--ds-component-icon-button-color-background-ghost-hover",
+    "--ds-component-icon-button-size-width-md",
+    "--ds-component-modal-body-spacing-gap",
+    "--ds-component-modal-body-spacing-padding-x",
+    "--ds-component-modal-body-spacing-padding-y",
+    "--ds-component-modal-container-border-radius",
+    "--ds-component-modal-container-color-background",
+    "--ds-component-modal-container-spacing-inset",
+    "--ds-component-modal-footer-spacing-gap",
+    "--ds-component-modal-footer-spacing-padding-x",
+    "--ds-component-modal-footer-spacing-padding-y",
+    "--ds-component-modal-header-color-border",
+    "--ds-component-modal-header-color-text",
+    "--ds-component-modal-header-spacing-padding-x",
+    "--ds-component-modal-header-spacing-padding-y",
+    "--ds-component-modal-header-typography-font-size",
+    "--ds-component-modal-header-typography-font-weight",
+    "--ds-primitive-border-radius-radius-full",
+    "--ds-primitive-border-width-border-none",
+    "--ds-primitive-border-width-border-sm",
+    "--ds-primitive-spacing-0",
+    "--ds-primitive-spacing-16",
+    "--ds-primitive-spacing-32",
+    "--ds-primitive-spacing-4",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-typography-font-size-14",
+    "--ds-primitive-typography-font-size-16",
+    "--ds-primitive-typography-font-weight-medium",
+    "--ds-semantic-color-icons-neutral-black",
+    "--ds-semantic-text-style-content-color-typography-primary",
+    "--ds-semantic-text-style-content-color-typography-tertiary"
+  ],
+  "stories": [
+    {
+      "id": "web-components-modal--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-modal--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-modal--default&viewMode=story"
+    },
+    {
+      "id": "web-components-modal--medium",
+      "name": "Medium",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-modal--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-modal--medium&viewMode=story"
+    },
+    {
+      "id": "web-components-modal--large",
+      "name": "Large",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-modal--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-modal--large&viewMode=story"
+    },
+    {
+      "id": "web-components-modal--extended",
+      "name": "Extended",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-modal--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-modal--extended&viewMode=story"
+    },
+    {
+      "id": "web-components-modal--with-subheader",
+      "name": "With Subheader",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-modal--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-modal--with-subheader&viewMode=story"
+    },
+    {
+      "id": "web-components-modal--without-footer",
+      "name": "Without Footer",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-modal--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-modal--without-footer&viewMode=story"
+    }
+  ],
+  "variants": [
+    {
+      "prop": "size",
+      "values": [
+        "small",
+        "medium",
+        "large",
+        "extended"
+      ]
+    }
+  ],
+  "states": [
+    "aberto / fechado (isOpen; quando false o componente retorna null e nao renderiza nada)",
+    "hover do botao de fechar (.ds-modal__close:hover dentro de @media (hover: hover))",
+    "focus (.ds-modal__close:focus remove o outline padrao)",
+    "focus-visible (.ds-modal__close:focus-visible aplica o focus ring de tokens)"
+  ],
+  "responsive": [
+    {
+      "query": "(hover: hover)",
+      "effect": "Aplica o background icon-button/color/background/ghost/hover no botao de fechar apenas em dispositivos com hover real."
+    },
+    {
+      "query": "(prefers-reduced-motion: reduce)",
+      "effect": "Remove a transicao de background-color do botao de fechar."
+    },
+    {
+      "query": "(max-width: 768px)",
+      "effect": "Variante Mobile=True do Figma: o overlay alinha ao final (align-items: flex-end) e perde o padding, transformando small e medium em bottom sheet; large e extended voltam a ficar centralizados com padding spacing-16; o dialog fica limitado a 440px com margin-inline auto; o footer vira column-reverse com align-items stretch e os botoes ocupam 100% da largura."
+    }
+  ],
+  "accessibility": {
+    "roles": [
+      "dialog (role=\"dialog\" no container .ds-modal__dialog)"
+    ],
+    "ariaAttributes": [
+      "aria-modal=\"true\" (dialog)",
+      "aria-labelledby (dialog -> id do <h2> do titulo)",
+      "aria-describedby (dialog -> id do subheader, apenas quando subheader existe)",
+      "aria-label (botao de fechar, valor de closeLabel)",
+      "aria-hidden=\"true\" (SVG do icone close)"
+    ],
+    "keyboardInteractions": [
+      "Escape fecha o modal quando closeOnEsc e true (padrao) e chama event.preventDefault().",
+      "Tab e Shift+Tab ficam presos no dialogo (focus trap manual sobre a lista de elementos focaveis).",
+      "Sem elementos focaveis, Tab devolve o foco ao botao de fechar.",
+      "Ao abrir, o foco vai para o primeiro elemento focavel do dialogo ou, na falta dele, para o botao de fechar (via requestAnimationFrame)."
+    ],
+    "notes": [
+      "Bloqueia o scroll do body (document.body.style.overflow = 'hidden') enquanto aberto e restaura o valor anterior na limpeza do efeito.",
+      "Devolve o foco ao elemento que estava ativo antes da abertura.",
+      "O clique no backdrop so fecha quando o mousedown tambem comecou no proprio backdrop (evita fechar em drag iniciado dentro do dialogo).",
+      "Seletor de focaveis: a[href], button, textarea, input, select e [tabindex] diferente de -1, ignorando elementos com disabled ou aria-hidden=\"true\".",
+      "O componente nao usa React Portal: o markup e renderizado no lugar em que o Modal aparece na arvore.",
+      "O titulo e sempre renderizado como <h2>."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Modal/Modal.test.tsx",
+    "unitCount": 9,
+    "a11yFile": "packages/react/src/components/Modal/Modal.a11y.test.tsx",
+    "a11yCount": 4
+  },
+  "figmaReferences": [
+    {
+      "node": "40000490:59311",
+      "note": "Modal.tsx: \"close [outlined] — vetor exportado do Figma (Web Components / Modal, node 40000490:59311)\"."
+    },
+    {
+      "node": "40000490:59311",
+      "note": "Modal.styles.css: \"Layout do Figma: Web Components / Modal (node 40000490:59311)\"."
+    }
+  ],
+  "pendencias": [
+    "A prop children nao possui entrada em argTypes; a descricao vem apenas do JSDoc em Modal.types.ts.",
+    "--modal-overlay-background usa o literal rgb(0 0 0 / 48%), sem token --ds-* correspondente para o backdrop.",
+    "O botao de fechar posiciona-se com os literais 10px / 18px (inset-block-start / inset-inline-end), sem token equivalente.",
+    "Nao ha documentacao sobre o comportamento com multiplos modais empilhados nem sobre uso de portal."
+  ]
+}

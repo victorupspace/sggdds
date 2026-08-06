@@ -1,0 +1,175 @@
+{
+  "slug": "footer",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Navegação",
+  "resumo": "Bloco que fecha a página com a navegação secundária do site: grupos de links, marca do Governo do Estado, canais oficiais em redes sociais, links legais e o texto de direitos autorais.",
+  "quandoUsar": [
+    "No fim de todas as páginas de um portal de serviços, para que a pessoa sempre encontre canais oficiais e páginas institucionais sem voltar ao topo.",
+    "Quando a pessoa chega ao fim de uma consulta ou de um formulário e precisa de um próximo caminho, como \"Fale conosco\" ou \"Perguntas frequentes\".",
+    "Para reunir links exigidos por lei ou por política, como política de privacidade, acessibilidade e termos de uso, sempre no mesmo lugar em todo o portal.",
+    "Para indicar quais são os perfis oficiais do órgão em redes sociais, reduzindo a chance de a pessoa seguir um perfil falso.",
+    "Para reforçar de quem é o serviço, exibindo a marca do Governo do Estado no fechamento da página."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Dentro de um card, de uma janela sobreposta ou de qualquer área interna que não seja o rodapé da página.",
+      "alternativa": "Card"
+    },
+    {
+      "texto": "Para a navegação principal do serviço, com as seções que a pessoa usa para realizar a tarefa.",
+      "alternativa": "Header"
+    },
+    {
+      "texto": "Para o aviso de cookies e a coleta do consentimento.",
+      "alternativa": "Cookie Consent Banner"
+    },
+    {
+      "texto": "Para levar a pessoa de volta ao início de uma página longa.",
+      "alternativa": "Back To Top"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Área do rodapé",
+      "descricao": "Faixa escura que fecha a página, com o conteúdo limitado a uma largura máxima e centralizado."
+    },
+    {
+      "numero": 2,
+      "parte": "Navegação de rodapé",
+      "descricao": "Bloco de navegação que reúne os grupos de links, com nome acessível próprio."
+    },
+    {
+      "numero": 3,
+      "parte": "Grupo de links",
+      "descricao": "Cada coluna do rodapé: um título e a lista de links daquele assunto."
+    },
+    {
+      "numero": 4,
+      "parte": "Controle de abrir e fechar o grupo",
+      "descricao": "Botão que aparece em telas pequenas e transforma cada grupo em um bloco que abre e fecha."
+    },
+    {
+      "numero": 5,
+      "parte": "Divisor",
+      "descricao": "Linha que separa os grupos de links da área de identidade."
+    },
+    {
+      "numero": 6,
+      "parte": "Marca",
+      "descricao": "Identidade exibida no rodapé. Pode virar link quando recebe um endereço, ou ser removida."
+    },
+    {
+      "numero": 7,
+      "parte": "Redes sociais",
+      "descricao": "Lista de canais oficiais em botões circulares. Cada item tem um nome acessível, mesmo quando mostra só o ícone."
+    },
+    {
+      "numero": 8,
+      "parte": "Linha legal",
+      "descricao": "Texto de direitos autorais e a lista de links legais, na base do rodapé."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "O rodapé se adapta sozinho, sem variação manual. Até 1200px as colunas de grupos passam de quatro para duas e os espaçamentos diminuem. Abaixo de 720px cada grupo vira um bloco que abre e fecha, com um controle de 48 pixels de altura, os grupos ganham uma linha de separação, a marca e o texto de direitos autorais ficam centralizados, as redes sociais e os links legais quebram em várias linhas e o texto dos links aumenta. Abaixo de 420px o espaçamento lateral e o tamanho da marca diminuem de novo, sem gerar rolagem horizontal.",
+  "dosDonts": [
+    {
+      "faca": "Mantenha o mesmo rodapé, com os mesmos grupos e a mesma ordem, em todas as páginas do serviço.",
+      "naoFaca": "Montar grupos diferentes por página ou esconder links legais em algumas telas.",
+      "porque": "O rodapé é o lugar previsível para achar canais oficiais e páginas obrigatórias. Se ele muda a cada página, a pessoa deixa de procurar ali."
+    },
+    {
+      "faca": "Dê a cada grupo um título que descreva o assunto dos links, como \"Serviços\" ou \"Suporte\".",
+      "naoFaca": "Criar um grupo chamado \"Outros\" ou \"Links\" para acomodar o que sobrou.",
+      "porque": "Em telas pequenas o título é a única coisa visível antes de a pessoa abrir o grupo; um título vago obriga a abrir tudo para descobrir o conteúdo."
+    },
+    {
+      "faca": "Informe o endereço de cada link do rodapé.",
+      "naoFaca": "Deixar itens sem endereço para \"reservar espaço\" de páginas que ainda não existem.",
+      "porque": "Sem endereço o item deixa de ser link e vira um botão sem destino: a pessoa clica, nada acontece e não é possível abrir em outra aba."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Títulos de grupo são substantivos curtos, de uma ou duas palavras, com apenas a primeira letra maiúscula.",
+    "Os links usam o nome real da página de destino, sem verbo de comando: \"Perguntas frequentes\", e não \"Clique para ver as perguntas\".",
+    "Cada grupo deve ter no máximo o número de links que cabe sem virar uma lista de rolagem; se passar disso, divida o assunto em dois grupos.",
+    "O texto de direitos autorais cita o Governo do Estado de São Paulo e o ano corrente; confirme o ano antes de publicar, porque o valor padrão é fixo no componente.",
+    "Cada rede social precisa de um nome escrito, mesmo quando aparece só o ícone: é esse texto que o leitor de tela anuncia."
+  ],
+  "hierarquia": [
+    "É o último bloco da página, sempre depois de todo o conteúdo, e nunca fixo na tela.",
+    "Tem contraste invertido em relação ao corpo da página, o que já o separa visualmente; não acrescente molduras nem fundos extras em volta.",
+    "Os links do rodapé têm peso visual menor que os botões e links do conteúdo: eles são a saída da página, não a ação principal.",
+    "Dentro do rodapé, a ordem de leitura vai do mais útil para o mais formal: grupos de links, depois marca e canais oficiais, e por último direitos autorais e links legais."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Header",
+      "slug": "header",
+      "relacao": "Formam o par de abertura e fechamento da página; os grupos do rodapé costumam repetir e detalhar as seções da navegação principal."
+    },
+    {
+      "componente": "Link",
+      "slug": "link",
+      "relacao": "Segue a mesma regra de escrita dos links do conteúdo: texto descritivo fora de contexto e destino externo sinalizado."
+    },
+    {
+      "componente": "Back To Top",
+      "slug": "back-to-top",
+      "relacao": "Em páginas longas, aparece antes do rodapé para quem quer voltar ao início em vez de navegar pelo fechamento."
+    },
+    {
+      "componente": "Cookie Consent Banner",
+      "slug": "cookie-consent-banner",
+      "relacao": "O aviso de cookies coleta o consentimento; o rodapé guarda o link permanente para a política, que a pessoa pode consultar depois."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Portal de serviços ao cidadão",
+      "contexto": "Página inicial de um portal que reúne agendamentos, consultas e emissão de documentos do Estado.",
+      "comoFica": "Quatro grupos no desktop — serviços, informações, governo e suporte —, a marca do Governo do Estado, os canais oficiais em redes sociais e, na base, os direitos autorais com os links de privacidade e acessibilidade. No celular, cada grupo fecha e a pessoa abre só o que interessa."
+    },
+    {
+      "titulo": "Fim de um fluxo de agendamento",
+      "contexto": "Tela de confirmação de um agendamento de atendimento presencial, em que a tarefa já terminou.",
+      "comoFica": "O rodapé aparece depois da confirmação com os grupos de suporte e informações em destaque, oferecendo \"Fale conosco\" e \"Perguntas frequentes\" como próximo caminho, sem competir com o botão de imprimir o comprovante."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Passar uma lista de grupos vazia para \"simplificar\" o rodapé.",
+      "consequencia": "O bloco de navegação some por completo e a página fica sem a saída secundária esperada em todo o portal.",
+      "correcao": "Reduza o número de links dentro de cada grupo em vez de remover a navegação inteira."
+    },
+    {
+      "erro": "Marcar links do rodapé como desabilitados enquanto a página de destino não fica pronta.",
+      "consequencia": "O item vira um botão desabilitado e some da navegação por teclado: a pessoa vê o nome de uma página que não consegue acessar nem entender por quê.",
+      "correcao": "Publique o link só quando a página existir, ou aponte para uma página provisória que explique a situação."
+    },
+    {
+      "erro": "Manter o texto de direitos autorais padrão sem revisar o ano e a titularidade.",
+      "consequencia": "A página passa a exibir um ano incorreto, o que enfraquece a confiança em um serviço oficial.",
+      "correcao": "Informe o texto de direitos autorais do serviço, com o ano correto, em vez de aceitar o valor padrão."
+    },
+    {
+      "erro": "Repetir o rodapé dentro de uma área interna da página, como um bloco de conteúdo ou uma janela sobreposta.",
+      "consequencia": "A página passa a ter dois blocos de fechamento, com dois conjuntos de navegação e de direitos autorais, o que confunde a leitura por teclado e por leitor de tela.",
+      "correcao": "Use apenas um rodapé por página, como último bloco."
+    }
+  ],
+  "notasImplementacao": [
+    "O estado aberto ou fechado de cada grupo é interno: dá para definir qual começa aberto, mas não há como controlar isso de fora nem receber aviso de abertura e fechamento.",
+    "Itens sem endereço, ou desabilitados, são renderizados como botão em vez de link.",
+    "Links marcados como externos abrem em nova aba já com as proteções de segurança aplicadas.",
+    "O controle de abrir e fechar o grupo fica escondido no desktop, mas continua no documento e disponível para leitores de tela em qualquer largura.",
+    "Além da marca, do texto de direitos autorais e do ícone de cada rede social, o componente não expõe pontos de extensão: blocos institucionais extras não têm lugar previsto.",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual."
+  ],
+  "pendentes": [
+    "Não foi possível orientar sobre um bloco institucional extra (endereço, telefone do órgão, selos de certificação): o componente não oferece área para esse conteúdo.",
+    "Não há orientação sobre abrir ou fechar grupos por comando do serviço, porque esse estado não pode ser controlado de fora.",
+    "Não foi possível descrever variações de tema ou de marca além da troca da identidade: o componente não expõe variantes."
+  ]
+}

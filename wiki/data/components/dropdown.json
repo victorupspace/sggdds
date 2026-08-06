@@ -1,0 +1,370 @@
+{
+  "slug": "dropdown",
+  "name": "Dropdown",
+  "storybookTitle": "Web Components/Dropdown",
+  "sourceDir": "packages/react/src/components/Dropdown",
+  "exports": ["Dropdown"],
+  "typeExports": ["DropdownOption", "DropdownProps", "DropdownState"],
+  "oneLiner": "O Dropdown reproduz o layout do Figma (Web Components / Dropdown): label SemiBold 14, campo de 40px com borda color/border/neutral/prominent e radius-sm, chevron de 20px e menu sobreposto com as opções.",
+  "docsDescription": "O Dropdown reproduz o layout do Figma (Web Components / Dropdown): label SemiBold 14, campo de 40px com borda color/border/neutral/prominent e radius-sm, chevron de 20px e menu sobreposto com as opções.\n\nEstados do component set:\n- Default: campo com placeholder \"Selecione\" em typography/primary.\n- Focused: borda de 2px em color/border/focus (por teclado, via focus-visible).\n- Open: menu com fundo neutral/white, borda color/border/default, radius de 8px, elevação level-2 e opções com padding 12x10; a opção ativa usa color/state/hover.\n- Selected: campo exibindo o valor escolhido.\n- Disabled: fundo neutral/default-hover com textos e chevron em typography/disabled.\n\nTokens: as variables novas do Figma ainda ausentes nas collections exportadas (color/border/focus, border/width/focus, color/state/hover, elevation/level-2) usam literais documentados no CSS.\n\nResponsividade: o componente e fluido (100% do container, min-width 160), o valor trunca com reticencias e o menu abre sobreposto com rolagem interna quando a lista e longa.\n\nAcessibilidade: o campo e um botao com aria-haspopup=\"listbox\", aria-expanded e aria-controls; o menu usa role=\"listbox\" com aria-activedescendant e opcoes role=\"option\" com aria-selected; navegacao completa por teclado (setas, Home/End, Enter, Escape) e foco devolvido ao campo ao fechar.",
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Rotulo visivel e acessivel do campo.",
+      "source": "ambos"
+    },
+    {
+      "name": "options",
+      "type": "DropdownOption[]",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Lista de opcoes exibidas no menu. Cada opção tem { value: string; label: string; disabled?: boolean }.",
+      "source": "ambos"
+    },
+    {
+      "name": "placeholder",
+      "type": "string",
+      "values": null,
+      "default": "'Selecione'",
+      "required": false,
+      "description": "Texto exibido sem seleção (\"Selecione\" no Figma).",
+      "source": "ambos"
+    },
+    {
+      "name": "helperText",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Texto de apoio abaixo do campo.",
+      "source": "ambos"
+    },
+    {
+      "name": "errorText",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Mensagem de erro conectada por aria-describedby. Informar errorText também liga o estado de erro (aria-invalid).",
+      "source": "ambos"
+    },
+    {
+      "name": "state",
+      "type": "DropdownState",
+      "values": ["default", "error"],
+      "default": "'default'",
+      "required": false,
+      "description": "Estado visual controlado.",
+      "source": "ambos"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Estado Disabled do Figma. Bloqueia a abertura do menu.",
+      "source": "ambos"
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Marca o campo como obrigatorio (aria-required) e exibe o asterisco decorativo.",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao wrapper.",
+      "source": "ambos"
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "values": null,
+      "default": "true",
+      "required": false,
+      "description": "Faz o componente ocupar 100% da largura do container.",
+      "source": "ambos"
+    },
+    {
+      "name": "value",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Valor controlado.",
+      "source": "ambos"
+    },
+    {
+      "name": "defaultValue",
+      "type": "string",
+      "values": null,
+      "default": "'' (string vazia)",
+      "required": false,
+      "description": "Valor inicial no modo nao controlado.",
+      "source": "ambos"
+    },
+    {
+      "name": "defaultOpen",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Abre o menu inicialmente (estado Open do Figma).",
+      "source": "ambos"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "values": null,
+      "default": "useId() gerado automaticamente",
+      "required": false,
+      "description": "Id do botão de gatilho; serve de base para os ids de label, listbox, opções, helper e erro.",
+      "source": "types.ts"
+    },
+    {
+      "name": "onValueChange",
+      "type": "(value: string) => void",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Callback chamado ao selecionar uma opcao.",
+      "source": "ambos"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onValueChange",
+      "signature": "(value: string) => void",
+      "description": "Chamado com o value da opção escolhida (clique ou Enter/Espaço). Opções com disabled não disparam o callback. No modo não controlado o estado interno também é atualizado; em ambos os casos o menu fecha e o foco volta para o botão."
+    }
+  ],
+  "slots": [],
+  "cssClasses": [
+    "ds-dropdown",
+    "ds-dropdown--open",
+    "ds-dropdown--error",
+    "ds-dropdown--disabled",
+    "ds-dropdown--full-width",
+    "ds-dropdown__label",
+    "ds-dropdown__required",
+    "ds-dropdown__control",
+    "ds-dropdown__field",
+    "ds-dropdown__value",
+    "ds-dropdown__icon",
+    "ds-dropdown__menu",
+    "ds-dropdown__option",
+    "ds-dropdown__option--active",
+    "ds-dropdown__option--disabled",
+    "ds-dropdown__message",
+    "ds-dropdown__message--error"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--dropdown-field-surface",
+      "value": "var(--ds-primitive-color-white)",
+      "comment": "color/white (campo)"
+    },
+    {
+      "name": "--dropdown-menu-surface",
+      "value": "var(--ds-semantic-color-background-neutral-white)",
+      "comment": "color/background/neutral/white (menu)"
+    },
+    {
+      "name": "--dropdown-border-color",
+      "value": "var(--ds-semantic-color-border-neutral-prominent)",
+      "comment": "color/border/neutral/prominent"
+    },
+    {
+      "name": "--dropdown-focus-border-color",
+      "value": "#3366e5",
+      "comment": "color/border/focus (#3366e5) e border/width/focus (2px) — variables novas ausentes nas collections exportadas; literais documentados"
+    },
+    {
+      "name": "--dropdown-menu-border-color",
+      "value": "var(--ds-semantic-color-border-neutral-subtle)",
+      "comment": "color/border/default (#e0e0e0 no Figma) — variable ausente nas collections exportadas; usa color/border/neutral/subtle como aproximação documentada"
+    },
+    {
+      "name": "--dropdown-text-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-primary)",
+      "comment": "text-style/content color/typography/primary"
+    },
+    {
+      "name": "--dropdown-disabled-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-disabled)",
+      "comment": "text-style/content color/typography/disabled"
+    },
+    {
+      "name": "--dropdown-icon-color",
+      "value": "var(--ds-semantic-color-icons-neutral-black)",
+      "comment": "color/icon/default (preto, fill do chevron exportado; também usado no texto das opções)"
+    },
+    {
+      "name": "--dropdown-option-active-background",
+      "value": "rgb(0 0 0 / 4%)",
+      "comment": "color/state/hover — variable nova; literal documentado (opção ativa)"
+    },
+    {
+      "name": "--dropdown-gap",
+      "value": "var(--ds-component-component-sizing-6)",
+      "comment": "Component sizing/6 (gap entre label, campo e menu)"
+    },
+    {
+      "name": "--dropdown-menu-shadow",
+      "value": "0 4px 4px rgb(0 0 0 / 8%)",
+      "comment": "elevation/level-2 com metade do blur, como no node (drop-shadow do menu)"
+    }
+  ],
+  "tokensUsed": [
+    "--ds-component-component-sizing-20",
+    "--ds-component-component-sizing-6",
+    "--ds-component-input-error-text-color-text",
+    "--ds-primitive-border-radius-radius-md",
+    "--ds-primitive-border-radius-radius-sm",
+    "--ds-primitive-border-width-border-none",
+    "--ds-primitive-border-width-border-sm",
+    "--ds-primitive-color-white",
+    "--ds-primitive-spacing-0",
+    "--ds-primitive-spacing-10",
+    "--ds-primitive-spacing-12",
+    "--ds-primitive-spacing-2",
+    "--ds-primitive-spacing-4",
+    "--ds-primitive-spacing-8",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-typography-font-size-12",
+    "--ds-primitive-typography-font-size-14",
+    "--ds-primitive-typography-font-weight-medium",
+    "--ds-primitive-typography-font-weight-regular",
+    "--ds-primitive-typography-font-weight-semi-bold",
+    "--ds-semantic-color-background-neutral-default-hover",
+    "--ds-semantic-color-background-neutral-white",
+    "--ds-semantic-color-border-neutral-prominent",
+    "--ds-semantic-color-border-neutral-subtle",
+    "--ds-semantic-color-icons-neutral-black",
+    "--ds-semantic-text-style-content-color-typography-disabled",
+    "--ds-semantic-text-style-content-color-typography-primary"
+  ],
+  "stories": [
+    {
+      "id": "web-components-dropdown--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-dropdown--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-dropdown--default&viewMode=story"
+    },
+    {
+      "id": "web-components-dropdown--open",
+      "name": "Open",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-dropdown--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-dropdown--open&viewMode=story"
+    },
+    {
+      "id": "web-components-dropdown--selected",
+      "name": "Selected",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-dropdown--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-dropdown--selected&viewMode=story"
+    },
+    {
+      "id": "web-components-dropdown--disabled",
+      "name": "Disabled",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-dropdown--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-dropdown--disabled&viewMode=story"
+    },
+    {
+      "id": "web-components-dropdown--error-state",
+      "name": "Error State",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-dropdown--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-dropdown--error-state&viewMode=story"
+    },
+    {
+      "id": "web-components-dropdown--long-list",
+      "name": "Long List",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-dropdown--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-dropdown--long-list&viewMode=story"
+    }
+  ],
+  "variants": [
+    {
+      "prop": "state",
+      "values": ["default", "error"]
+    }
+  ],
+  "states": ["focus", "focus-visible", "open", "disabled", "selected", "active-option", "error"],
+  "responsive": [
+    {
+      "query": "@media (prefers-reduced-motion: reduce)",
+      "effect": "Remove a transition de .ds-dropdown__field e .ds-dropdown__icon."
+    }
+  ],
+  "accessibility": {
+    "roles": ["listbox", "option", "button"],
+    "ariaAttributes": [
+      "aria-controls",
+      "aria-describedby",
+      "aria-expanded",
+      "aria-haspopup",
+      "aria-invalid",
+      "aria-required",
+      "aria-labelledby",
+      "aria-activedescendant",
+      "aria-selected",
+      "aria-disabled",
+      "aria-hidden"
+    ],
+    "keyboardInteractions": [
+      "ArrowDown/ArrowUp no campo: abre o menu (preventDefault) posicionando a opção ativa na seleção atual ou na primeira habilitada.",
+      "ArrowDown no menu: move a opção ativa para a próxima habilitada.",
+      "ArrowUp no menu: move a opção ativa para a anterior habilitada.",
+      "Home no menu: ativa a primeira opção habilitada.",
+      "End no menu: ativa a última opção habilitada.",
+      "Enter ou Espaço no menu: seleciona a opção ativa e fecha o menu (preventDefault).",
+      "Escape no menu: fecha o menu e devolve o foco ao campo (preventDefault).",
+      "Tab no menu: fecha o menu sem devolver o foco ao campo."
+    ],
+    "notes": [
+      "O gatilho é um <button type=\"button\"> com aria-haspopup=\"listbox\", aria-expanded, aria-controls (apenas quando aberto), aria-invalid (em erro) e aria-required (quando required).",
+      "O <label> tem htmlFor apontando para o id do botão e id próprio (<id>-label), reutilizado como aria-labelledby do listbox.",
+      "aria-describedby concatena o id da mensagem de erro (quando em erro) e o id do helper text.",
+      "O menu é um <ul role=\"listbox\" tabIndex={-1}> que recebe foco ao abrir (useEffect) e usa aria-activedescendant apontando para <id>-option-<índice>.",
+      "Cada opção é um <li role=\"option\"> com aria-selected refletindo o valor atual e aria-disabled=\"true\" quando desabilitada.",
+      "O onMouseDown das opções faz preventDefault para não roubar o foco do listbox antes do clique; onMouseEnter move a opção ativa.",
+      "O onBlur do listbox fecha o menu quando o foco sai do container (sem devolver o foco ao campo).",
+      "O chevron e o asterisco de obrigatório são decorativos (aria-hidden=\"true\").",
+      "Foco visível: o campo usa :focus-visible com borda --dropdown-focus-border-color e box-shadow inset de 1px (o Figma especifica 2px); o menu não exibe anel próprio — o foco de teclado é indicado pela opção ativa."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/Dropdown/Dropdown.test.tsx",
+    "unitCount": 10,
+    "a11yFile": "packages/react/src/components/Dropdown/Dropdown.a11y.test.tsx",
+    "a11yCount": 5
+  },
+  "figmaReferences": [
+    {
+      "node": "108:26342",
+      "note": "Web Components / Dropdown — citado no cabeçalho de Dropdown.styles.css e no comentário do ChevronIcon em Dropdown.tsx (glifo arrow_back_ios_new rotacionado -90°)."
+    }
+  ],
+  "pendencias": [
+    "As classes ds-dropdown--open e ds-dropdown--error são aplicadas no TSX mas não têm nenhuma regra em Dropdown.styles.css; ds-dropdown__required também não tem estilo próprio.",
+    "O estado Focused do Figma especifica borda de 2px (border/width/focus); o CSS aplica border-color mais um box-shadow inset de 1px, sem token para a largura.",
+    "Os literais #3366e5 (color/border/focus), rgb(0 0 0 / 4%) (color/state/hover) e 0 4px 4px rgb(0 0 0 / 8%) (elevation/level-2) não têm token --ds-* correspondente nas collections exportadas.",
+    "O max-block-size de 320px do menu e o min-inline-size de 160px / block-size de 40px do campo são literais, sem token associado.",
+    "O menu é posicionado com position: absolute abaixo do campo (sem portal nem detecção de colisão); não há flip para cima quando não há espaço na viewport.",
+    "Não há digitação para busca (typeahead) nem suporte a seleção múltipla.",
+    "O componente não expõe prop open/onOpenChange: a abertura é sempre interna (apenas defaultOpen), diferente do Datepicker.",
+    "O CSS registra que o node do Figma não define variante mobile — não existe @media de layout responsivo, apenas o de prefers-reduced-motion."
+  ]
+}

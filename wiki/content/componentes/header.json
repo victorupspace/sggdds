@@ -1,0 +1,182 @@
+{
+  "slug": "header",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Navegação",
+  "resumo": "Cabeçalho oficial das páginas do Estado. Reúne em duas barras a identidade SP.GOV.BR, o selo do Portal de Serviços ao Cidadão, a navegação principal, os atalhos de busca, tradução e acessibilidade, e a área de conta da pessoa.",
+  "quandoUsar": [
+    "No topo de todas as páginas de um portal ou serviço digital do Estado, para que a identidade e a navegação sejam sempre as mesmas.",
+    "Quando o serviço exige identificação e a pessoa precisa entrar com a conta gov.br a partir de qualquer página.",
+    "Quando a pessoa já está identificada e precisa acessar a própria conta, as configurações ou sair, de qualquer tela do serviço.",
+    "Quando a navegação principal tem seções com subitens que precisam ser exibidos em um painel maior ao serem abertas.",
+    "Quando o serviço oferece atalhos permanentes de busca, tradução e recursos de acessibilidade."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Para mostrar em que ponto da estrutura do site a pessoa está e como voltar aos níveis anteriores.",
+      "alternativa": "Breadcrumb"
+    },
+    {
+      "texto": "Para o título e a chamada principal da página, com texto de apoio e botões de ação.",
+      "alternativa": "Hero"
+    },
+    {
+      "texto": "Para navegar entre as partes de um mesmo conteúdo, sem sair da página.",
+      "alternativa": "Tabs"
+    },
+    {
+      "texto": "Como cabeçalho de uma janela sobreposta ou de uma área interna da página.",
+      "alternativa": "Modal"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Barra superior",
+      "descricao": "Faixa de identidade, com a marca à esquerda e o selo institucional à direita."
+    },
+    {
+      "numero": 2,
+      "parte": "Marca principal",
+      "descricao": "Logo SP.GOV.BR. Vira link quando recebe um endereço, e pode ser substituído ou removido."
+    },
+    {
+      "numero": 3,
+      "parte": "Selo do Portal de Serviços",
+      "descricao": "Identidade secundária à direita da barra superior, também substituível ou removível."
+    },
+    {
+      "numero": 4,
+      "parte": "Barra inferior",
+      "descricao": "Faixa que reúne a navegação principal à esquerda e os controles à direita, separada da barra superior por uma linha."
+    },
+    {
+      "numero": 5,
+      "parte": "Itens de navegação",
+      "descricao": "Lista de seções do serviço. Itens que têm subitens exibem uma seta para baixo e abrem o painel de navegação ampliada."
+    },
+    {
+      "numero": 6,
+      "parte": "Ícones utilitários",
+      "descricao": "Botões circulares de busca, tradução e acessibilidade, à direita da barra inferior."
+    },
+    {
+      "numero": 7,
+      "parte": "Área de conta",
+      "descricao": "Botão de entrar com o gov.br quando ninguém está identificado, ou o menu da pessoa quando há alguém identificado."
+    },
+    {
+      "numero": 8,
+      "parte": "Menu da pessoa",
+      "descricao": "Avatar, nome e seta que abrem um painel com os itens de conta, configurações e saída."
+    },
+    {
+      "numero": 9,
+      "parte": "Botão de menu",
+      "descricao": "Controle exibido em telas pequenas, que abre e fecha a navegação empilhada."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "Abaixo de 768px o cabeçalho assume a forma para telas pequenas: a barra superior vira duas linhas, com a marca SP.GOV.BR em cima e, embaixo, o selo do portal junto dos ícones utilitários, do avatar e do botão de menu. As duas identidades ficam menores. A barra inferior deixa de aparecer e só volta, empilhada, quando a pessoa abre o menu. Quando o dispositivo não tem cursor, o realce de passagem sobre os ícones não é aplicado, e com redução de movimento ligada a transição de cor dos ícones é desligada.",
+  "dosDonts": [
+    {
+      "faca": "Use o mesmo cabeçalho, com a mesma lista de seções, em todas as páginas do serviço.",
+      "naoFaca": "Retirar seções da navegação em telas específicas, como durante o preenchimento de um formulário.",
+      "porque": "O cabeçalho é o ponto fixo de orientação. Se a lista muda de página para página, a pessoa perde a referência de onde está e do que o serviço oferece."
+    },
+    {
+      "faca": "Escolha entre a ação de entrar e a pessoa identificada conforme a sessão: informe a pessoa identificada quando houver sessão ativa.",
+      "naoFaca": "Configurar a ação de entrar esperando que ela apareça junto do menu da pessoa.",
+      "porque": "Quando há alguém identificado, a ação de entrar é ignorada e não é exibida. Contar com as duas ao mesmo tempo produz um cabeçalho diferente do previsto."
+    },
+    {
+      "faca": "Mantenha os ícones utilitários com os rótulos que descrevem a função de cada um.",
+      "naoFaca": "Reaproveitar esses botões circulares para ações do serviço, como \"compartilhar\" ou \"imprimir\".",
+      "porque": "Esses três atalhos são reconhecidos como recursos do portal em qualquer página do Estado. Misturar ações de conteúdo neles quebra esse reconhecimento."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Os itens de navegação usam uma ou duas palavras, com apenas a primeira letra maiúscula, e nomeiam a seção — não a ação de ir até ela.",
+    "Não repita a palavra \"menu\" nem \"página\" nos itens: a posição no cabeçalho já comunica isso.",
+    "Cada ícone utilitário precisa de um rótulo escrito, porque é ele que dá nome ao botão para quem usa leitor de tela e para quem passa o cursor.",
+    "O botão de conta deslogada deve dizer com que identidade a pessoa vai entrar, no padrão \"Entrar com o gov.br\".",
+    "Os itens do menu da pessoa são curtos e no infinitivo ou substantivo, como \"Minha conta\", \"Configurações\" e \"Sair\"."
+  ],
+  "hierarquia": [
+    "É o primeiro bloco da página, antes de qualquer conteúdo, e antecede o caminho de navegação e o destaque da página.",
+    "A barra superior carrega identidade e a inferior carrega navegação; não misture ações de conteúdo em nenhuma das duas.",
+    "A área de conta fica na extremidade direita da barra inferior, depois dos ícones utilitários, porque é a ação mais pessoal e menos frequente.",
+    "Em telas pequenas, tudo o que não é identidade se concentra na segunda linha e no menu, mantendo a marca sempre visível."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Meganav",
+      "slug": "meganav",
+      "relacao": "Itens de navegação com subitens abrem o painel de navegação ampliada, que é responsável pela interação por teclado dentro dele."
+    },
+    {
+      "componente": "Button Gov",
+      "slug": "button-gov",
+      "relacao": "A ação de conta deslogada é apresentada com o botão gov.br do design system."
+    },
+    {
+      "componente": "Avatar",
+      "slug": "avatar",
+      "relacao": "O menu da pessoa identificada usa o Avatar do design system; sem imagem própria, ele é gerado a partir do nome informado."
+    },
+    {
+      "componente": "Breadcrumb",
+      "slug": "breadcrumb",
+      "relacao": "Aparece logo abaixo do cabeçalho, completando a orientação com o caminho até a página atual."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Portal de serviços com pessoa não identificada",
+      "contexto": "Primeira visita ao portal, em que a pessoa ainda vai consultar serviços antes de decidir entrar.",
+      "comoFica": "Barra superior com SP.GOV.BR e o selo do Portal de Serviços ao Cidadão; barra inferior com as seções do portal, os atalhos de busca, tradução e acessibilidade, e o botão de entrar com o gov.br na ponta direita."
+    },
+    {
+      "titulo": "Consulta de protocolo com pessoa identificada",
+      "contexto": "Pessoa que já entrou com a conta gov.br e acompanha o andamento de uma solicitação.",
+      "comoFica": "O botão de entrar dá lugar ao menu da pessoa, com avatar e nome. Ao abrir, o painel oferece o acesso à conta, às configurações e à saída, sem tirar a pessoa da página de consulta."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Marcar a seção atual esperando que ela fique destacada visualmente.",
+      "consequencia": "A informação chega para leitores de tela, mas nada muda na tela: quem enxerga não identifica em que seção está.",
+      "correcao": "Não dependa apenas dessa marcação para indicar a seção atual enquanto o destaque visual não existir; reforce a posição no conteúdo da página, com o caminho de navegação e o título."
+    },
+    {
+      "erro": "Remover as duas identidades ao mesmo tempo para \"usar só a marca do órgão\".",
+      "consequencia": "A página perde a identificação como serviço oficial do Estado, justamente o que dá confiança em um serviço público.",
+      "correcao": "Substitua a identidade secundária pela marca do órgão, mas mantenha a identidade principal do Estado."
+    },
+    {
+      "erro": "Tratar o menu da pessoa como um menu completo, com fechamento por Escape ou por clique fora.",
+      "consequencia": "O painel fica aberto quando a pessoa espera que feche, e quem navega por teclado não tem como sair dele pelo caminho habitual.",
+      "correcao": "Considere essa limitação ao desenhar o fluxo e não coloque no painel ações que exijam saída rápida; acompanhe a evolução do componente."
+    },
+    {
+      "erro": "Adicionar muitos ícones utilitários para acomodar recursos do serviço.",
+      "consequencia": "Em telas pequenas os controles disputam espaço com a marca e o botão de menu, e a lista é repetida em duas áreas do documento, gerando controles com o mesmo nome.",
+      "correcao": "Mantenha apenas os atalhos do portal no cabeçalho e leve os recursos do serviço para dentro da página."
+    }
+  ],
+  "notasImplementacao": [
+    "O painel do menu da pessoa não fecha com Escape nem com clique fora e não gerencia o foco; o padrão de menu está incompleto.",
+    "A seção atual é anunciada para leitores de tela, mas não existe estilo correspondente: não há distinção visual do item atual.",
+    "Os ícones utilitários aparecem duas vezes no documento (na área de telas pequenas e na barra inferior), então leitores de tela encontram dois controles com o mesmo nome.",
+    "O avatar exibido na área de telas pequenas é decorativo e não é anunciado.",
+    "O estado do menu de telas pequenas pode ser informado de fora, mas o componente também mantém um estado interno; o comportamento totalmente controlado não está garantido por testes.",
+    "As barras usam altura fixa de 80 pixels porque os tokens disponíveis trazem valores do desenho anterior; a divergência com o Figma segue em aberto.",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual."
+  ],
+  "pendentes": [
+    "Não foi possível orientar sobre o destaque visual da seção atual, porque esse estilo não existe no componente.",
+    "Não foi possível descrever o efeito visual do menu da pessoa aberto sobre o cabeçalho: a classe correspondente é aplicada, mas não tem regra de estilo.",
+    "Não há orientação para cabeçalho fixo ou que reage à rolagem: esse comportamento não existe no componente.",
+    "Não foi possível descrever variações de altura, densidade ou tema, porque o componente não expõe variantes."
+  ]
+}

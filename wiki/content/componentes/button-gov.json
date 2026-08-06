@@ -1,0 +1,140 @@
+{
+  "slug": "button-gov",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Ações",
+  "resumo": "Botão institucional usado só para entrar com a conta gov.br. Vem com o rótulo \"Entrar com o gov.br\" e o ícone de pessoa já definidos, e pode funcionar como botão ou como link para o fluxo de autenticação.",
+  "quandoUsar": [
+    "Na tela de acesso de um serviço que aceita a conta gov.br para identificar a pessoa.",
+    "No ponto em que uma consulta pública vira uma solicitação e passa a exigir identificação, como ao transformar uma simulação em pedido.",
+    "Em uma janela ou painel de acesso aberto no meio do fluxo, quando a pessoa tenta uma ação que exige login.",
+    "Na entrada da área logada do serviço, onde a pessoa acompanha protocolos e documentos emitidos."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Para qualquer outra ação de formulário ou de página, mesmo em telas de acesso — enviar, continuar, confirmar.",
+      "alternativa": "Button"
+    },
+    {
+      "texto": "Para explicar o que é a conta gov.br ou como criá-la: isso é apoio, não é o caminho principal.",
+      "alternativa": "Link"
+    },
+    {
+      "texto": "Para sair da conta, trocar de perfil ou acessar dados do cadastro depois de a pessoa já estar identificada.",
+      "alternativa": "Button"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Superfície",
+      "descricao": "Área clicável do botão, com cantos totalmente arredondados e largura fixa de 250px no desktop."
+    },
+    {
+      "numero": 2,
+      "parte": "Ícone de pessoa",
+      "descricao": "Ícone padrão à esquerda do rótulo. É decorativo e some durante o carregamento, dando lugar ao indicador."
+    },
+    {
+      "numero": 3,
+      "parte": "Rótulo em dois pesos",
+      "descricao": "O texto padrão é dividido em duas partes: \"Entrar com o\" em peso semibold e \"gov.br\" em bold, preservando a hierarquia da marca."
+    },
+    {
+      "numero": 4,
+      "parte": "Indicador de carregamento",
+      "descricao": "Animação circular exibida com isLoading, enquanto o acesso é processado ou o redirecionamento acontece."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "No desktop o botão tem largura fixa de 250px e altura de 48px. Em telas de até 420px ele passa a ocupar toda a largura do container, o que preserva a área de toque e evita rolagem horizontal. Com redução de movimento ativada, a animação do indicador de carregamento é desligada.",
+  "dosDonts": [
+    {
+      "faca": "Mantenha o rótulo padrão \"Entrar com o gov.br\".",
+      "naoFaca": "Reescrever para \"Login gov.br\", \"Acessar com gov.br\" ou apenas \"Entrar\".",
+      "porque": "Só o texto exato é dividido nos dois pesos que reproduzem a marca, e só nele o nome acessível é preenchido automaticamente. Qualquer outro texto perde a divisão e exige ariaLabel manual."
+    },
+    {
+      "faca": "Use um único Button Gov por tela, no ponto em que a identificação é necessária.",
+      "naoFaca": "Repetir o botão no topo, no meio e no rodapé da mesma página.",
+      "porque": "É um ponto de entrada institucional único. Repetido, sugere que existem acessos diferentes e espalha a decisão em vez de concentrá-la."
+    },
+    {
+      "faca": "Use href quando o acesso leva para o fluxo de autenticação em outra página.",
+      "naoFaca": "Deixar o botão em carregamento indefinido enquanto o redirecionamento não acontece.",
+      "porque": "O carregamento troca o rótulo e bloqueia a interação. Se a resposta demorar ou falhar, a pessoa fica olhando um botão sem texto de ação e sem saída."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Escreva \"gov.br\" sempre em minúsculas e sem tradução, como manda a marca. Não use \"GOV.BR\", \"Gov.Br\" nem \"govbr\".",
+    "Se precisar trocar o rótulo, preencha também o ariaLabel com a frase completa: o nome acessível automático só é aplicado ao texto padrão.",
+    "Use loadingLabel curto e específico do momento (\"Carregando\" é o padrão; \"Redirecionando\" também serve). Ele vira o texto visível e o nome anunciado durante o carregamento.",
+    "Deixe fora do botão a explicação sobre o que é a conta gov.br e como criá-la: essa informação vira um parágrafo curto ou um link logo abaixo.",
+    "Não adicione \"seguro\", \"oficial\" ou outros adjetivos ao rótulo — o botão já é o elemento institucional da tela."
+  ],
+  "hierarquia": [
+    "É o elemento de maior peso da tela de acesso: vem antes de qualquer alternativa de entrada e antes dos textos de apoio.",
+    "No desktop mantém a largura de 250px mesmo em containers largos; não estique o botão para preencher a coluna.",
+    "No celular ocupa a largura toda do container, e por isso deve ficar isolado, sem outro botão na mesma linha.",
+    "Textos de apoio, dúvidas e links de ajuda ficam abaixo do botão, em peso visual menor."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Header",
+      "slug": "header",
+      "relacao": "O cabeçalho leva à área de acesso; o Button Gov é o que conclui essa entrada na tela de destino."
+    },
+    {
+      "componente": "Modal",
+      "slug": "modal",
+      "relacao": "Quando a identificação é pedida no meio de uma tarefa, o botão pode ficar dentro de uma janela de acesso, sem tirar a pessoa da página."
+    },
+    {
+      "componente": "Link",
+      "slug": "link",
+      "relacao": "Abaixo do botão, um link discreto responde às dúvidas sobre a conta gov.br sem competir com a ação principal."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Entrada na área de acompanhamento de protocolos",
+      "contexto": "Serviço estadual em que a pessoa precisa se identificar para ver o andamento dos pedidos que já abriu.",
+      "comoFica": "A tela tem um título curto, o Button Gov como link para o fluxo de autenticação e, logo abaixo, um link \"O que é a conta gov.br?\". Nada mais disputa atenção na dobra."
+    },
+    {
+      "titulo": "Agendamento que passa a exigir identificação",
+      "contexto": "A pessoa consultou horários disponíveis no Poupatempo sem estar identificada e agora precisa confirmar o agendamento.",
+      "comoFica": "Ao confirmar, aparece um bloco de acesso com o resumo do horário escolhido e o Button Gov ocupando a largura toda no celular. Ao voltar do gov.br, a pessoa retoma o agendamento no ponto em que parou."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Usar o Button Gov para outra ação da tela, como \"Continuar sem me identificar\".",
+      "consequencia": "A pessoa reconhece o botão pela marca e espera ser levada ao gov.br; ao ser levada para outro lugar, perde a confiança na tela de acesso.",
+      "correcao": "Reserve este componente para a autenticação gov.br e use o Button para as demais ações."
+    },
+    {
+      "erro": "Trocar o rótulo sem informar ariaLabel.",
+      "consequencia": "O nome anunciado deixa de ser preenchido automaticamente e o botão pode chegar sem contexto para quem usa leitor de tela.",
+      "correcao": "Volte ao texto padrão ou preencha ariaLabel com a frase completa da ação."
+    },
+    {
+      "erro": "Colocar o Button Gov e um botão comum lado a lado com o mesmo destaque.",
+      "consequencia": "As duas formas de acesso parecem equivalentes e a pessoa escolhe pela cor, não pelo que realmente precisa.",
+      "correcao": "Defina qual acesso é o principal, dê o peso maior a ele e deixe o outro em uma variante mais discreta ou em outra linha."
+    }
+  ],
+  "notasImplementacao": [
+    "A divisão do rótulo em dois pesos só acontece quando o texto é exatamente \"Entrar com o gov.br\"; por isso o componente define o nome acessível completo nesse caso.",
+    "Durante o carregamento o nome acessível automático deixa de ser aplicado e passa a vir do loadingLabel.",
+    "Carregamento e desabilitado se somam: com isLoading o controle fica bloqueado mesmo sem disabled.",
+    "No modo link desabilitado, o elemento sai da ordem de tabulação e o clique é impedido; o endereço continua no código da página.",
+    "A largura de 250px e os pesos tipográficos 600 e 700 são valores fixos no código, sem token equivalente na base atual.",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual."
+  ],
+  "pendentes": [
+    "Não foi possível definir a hierarquia entre o acesso gov.br e outros métodos de acesso na mesma tela: o material extraído não trata dessa composição.",
+    "Não há orientação sobre o que exibir depois da autenticação (estado logado, nome da pessoa, saída da conta); o componente cobre apenas a entrada.",
+    "O código não cita nenhum node do Figma, então não foi possível apontar o frame de origem deste componente."
+  ]
+}

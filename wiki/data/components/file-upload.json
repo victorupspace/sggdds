@@ -1,0 +1,461 @@
+{
+  "slug": "file-upload",
+  "name": "FileUpload",
+  "storybookTitle": "Web Components/File Upload",
+  "sourceDir": "packages/react/src/components/FileUpload",
+  "exports": [
+    "FileUpload"
+  ],
+  "typeExports": [
+    "FileUploadInteractionEvent",
+    "FileUploadMode",
+    "FileUploadProps",
+    "FileUploadState"
+  ],
+  "oneLiner": "O File Upload reproduz o layout do Figma (Web Components / File Upload): label Label/Medium, dois tipos de acionamento e a lista de Upload Items.",
+  "docsDescription": "O File Upload reproduz o layout do Figma (Web Components / File Upload): label Label/Medium, dois tipos de acionamento e a lista de Upload Items.\n\nTipos (propriedade type no Figma):\n- button (\"Clique para selecionar arquivos\"): botao \"Anexar arquivos\" compondo o Button secondary do DS com o icone upload exportado.\n- dropzone (\"Arrastar arquivos\"): area com fundo neutral/default, borda neutral/subtle, radius-md, padding Component sizing 72x10, instrucao Body/Small e texto de apoio Disclaimer/Medium (10px).\n\nUpload Items: fundo neutral/default com radius 8, icone cards_stack de 24px, nome Body/Small com extensao preservada e truncamento, linha de status (tamanho • status) em Body/Extra Small com typography/placeholder, check_circle verde (icons/sucess/default) e botao de remover close_small.\n\nEstado Error: no dropzone o container vira danger/subtle com borda danger/default e o feedback em typography/danger; no modo button o erro aparece como o Upload Item de falha do Figma (danger/subtle + cards_stack vermelho).\n\nResponsividade: o componente e fluido (100% do container), nomes de arquivo truncam preservando a extensao e o padding lateral de 72px do dropzone reduz para 16px abaixo de 640px.\n\nAcessibilidade: input file nativo conectado por aria-labelledby/aria-describedby, dropzone como label com foco visivel via focus-within, lista com aria-live e botoes de remover com rotulo especifico por arquivo.",
+  "props": [
+    {
+      "name": "label",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": true,
+      "description": "Rotulo visivel e acessivel do campo.",
+      "source": "ambos"
+    },
+    {
+      "name": "mode",
+      "type": "FileUploadMode",
+      "values": [
+        "button",
+        "dropzone"
+      ],
+      "default": "'button'",
+      "required": false,
+      "description": "Tipo do Figma: button ou dropzone.",
+      "source": "ambos"
+    },
+    {
+      "name": "state",
+      "type": "FileUploadState",
+      "values": [
+        "default",
+        "error"
+      ],
+      "default": "'default'",
+      "required": false,
+      "description": "Estado visual controlado.",
+      "source": "ambos"
+    },
+    {
+      "name": "helperText",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Texto de apoio abaixo do acionador.",
+      "source": "ambos"
+    },
+    {
+      "name": "errorText",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Mensagem de erro (Upload Item de falha no modo button). Definir errorText tambem forca o estado de erro (isError = state === 'error' || Boolean(errorText)).",
+      "source": "ambos"
+    },
+    {
+      "name": "className",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS opcional aplicada ao wrapper.",
+      "source": "ambos"
+    },
+    {
+      "name": "inputClassName",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Classe CSS adicional aplicada ao input file nativo.",
+      "source": "types.ts"
+    },
+    {
+      "name": "fullWidth",
+      "type": "boolean",
+      "values": null,
+      "default": "true",
+      "required": false,
+      "description": "Faz o componente ocupar 100% da largura do container.",
+      "source": "ambos"
+    },
+    {
+      "name": "files",
+      "type": "File[]",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Arquivos controlados. Quando definido, o componente opera em modo controlado (nao atualiza o estado interno).",
+      "source": "ambos"
+    },
+    {
+      "name": "defaultFiles",
+      "type": "File[]",
+      "values": null,
+      "default": "[]",
+      "required": false,
+      "description": "Arquivos iniciais no modo nao controlado.",
+      "source": "types.ts"
+    },
+    {
+      "name": "showFileList",
+      "type": "boolean",
+      "values": null,
+      "default": "true",
+      "required": false,
+      "description": "Exibe a lista de Upload Items.",
+      "source": "ambos"
+    },
+    {
+      "name": "uploadLabel",
+      "type": "string",
+      "values": null,
+      "default": "'Anexar arquivos'",
+      "required": false,
+      "description": "Rotulo do botao (Anexar arquivos no Figma).",
+      "source": "ambos"
+    },
+    {
+      "name": "dropzoneText",
+      "type": "string",
+      "values": null,
+      "default": "'Arraste arquivos aqui ou clique para selecionar'",
+      "required": false,
+      "description": "Instrucao do dropzone.",
+      "source": "ambos"
+    },
+    {
+      "name": "dropzoneHint",
+      "type": "string",
+      "values": null,
+      "default": "'PDF, CSV ou XLSX até 10mb'",
+      "required": false,
+      "description": "Texto de apoio do dropzone (formatos e limite).",
+      "source": "ambos"
+    },
+    {
+      "name": "itemStatusLabel",
+      "type": "string",
+      "values": null,
+      "default": "'Carregado'",
+      "required": false,
+      "description": "Status exibido nos itens carregados.",
+      "source": "ambos"
+    },
+    {
+      "name": "multiple",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Permite selecionar mais de um arquivo. Herdado de InputHTMLAttributes<HTMLInputElement>; quando false a selecao e o drop sao limitados a 1 arquivo.",
+      "source": "ambos"
+    },
+    {
+      "name": "disabled",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Herdado de InputHTMLAttributes<HTMLInputElement>. Desabilita o input, o botao de anexar e os botoes de remover, e bloqueia o drop.",
+      "source": "types.ts"
+    },
+    {
+      "name": "required",
+      "type": "boolean",
+      "values": null,
+      "default": "false",
+      "required": false,
+      "description": "Herdado de InputHTMLAttributes<HTMLInputElement>. Marca o input como obrigatorio e exibe o asterisco (aria-hidden) no label.",
+      "source": "types.ts"
+    },
+    {
+      "name": "accept",
+      "type": "string",
+      "values": null,
+      "default": null,
+      "required": false,
+      "description": "Herdado de InputHTMLAttributes<HTMLInputElement>; repassado ao input file.",
+      "source": "types.ts"
+    },
+    {
+      "name": "id",
+      "type": "string",
+      "values": null,
+      "default": "useId()",
+      "required": false,
+      "description": "Herdado de InputHTMLAttributes<HTMLInputElement>. Quando ausente, um id e gerado por useId() e usado para derivar os ids de label, helper, erro e lista.",
+      "source": "types.ts"
+    }
+  ],
+  "callbacks": [
+    {
+      "name": "onChange",
+      "signature": "ChangeEventHandler<HTMLInputElement>",
+      "description": "Handler nativo do input file; disparado depois de o componente registrar os arquivos selecionados."
+    },
+    {
+      "name": "onFilesChange",
+      "signature": "(files: File[], event: FileUploadInteractionEvent) => void",
+      "description": "Callback chamado quando a selecao muda (selecao pelo input, drop no dropzone ou remocao de item)."
+    },
+    {
+      "name": "onFileRemove",
+      "signature": "(file: File, index: number, event: MouseEvent<HTMLButtonElement>) => void",
+      "description": "Callback chamado ao remover um arquivo pelo botao close_small."
+    }
+  ],
+  "slots": [],
+  "cssClasses": [
+    "ds-file-upload",
+    "ds-file-upload--mode-button",
+    "ds-file-upload--mode-dropzone",
+    "ds-file-upload--error",
+    "ds-file-upload--disabled",
+    "ds-file-upload--full-width",
+    "ds-file-upload--dragging",
+    "ds-file-upload__label",
+    "ds-file-upload__required",
+    "ds-file-upload__input",
+    "ds-file-upload__dropzone",
+    "ds-file-upload__dropzone-text",
+    "ds-file-upload__dropzone-feedback",
+    "ds-file-upload__dropzone-hint",
+    "ds-file-upload__helper",
+    "ds-file-upload__items",
+    "ds-file-upload__item",
+    "ds-file-upload__item--error",
+    "ds-file-upload__item-icon",
+    "ds-file-upload__item-info",
+    "ds-file-upload__item-name",
+    "ds-file-upload__item-basename",
+    "ds-file-upload__item-extension",
+    "ds-file-upload__item-status",
+    "ds-file-upload__item-bullet",
+    "ds-file-upload__item-check",
+    "ds-file-upload__item-remove"
+  ],
+  "cssCustomProperties": [
+    {
+      "name": "--file-upload-text-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-primary)",
+      "comment": "text-style/content color/typography/primary"
+    },
+    {
+      "name": "--file-upload-muted-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-tertiary)",
+      "comment": "text-style/content color/typography/tertiary (helper e apoio do dropzone)"
+    },
+    {
+      "name": "--file-upload-status-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-placeholder)",
+      "comment": "text-style/content color/typography/placeholder (status dos itens)"
+    },
+    {
+      "name": "--file-upload-danger-color",
+      "value": "var(--ds-semantic-text-style-content-color-typography-danger)",
+      "comment": "text-style/content color/typography/danger (textos de erro)"
+    },
+    {
+      "name": "--file-upload-surface",
+      "value": "var(--ds-semantic-color-background-neutral-default)",
+      "comment": "color/background/neutral/default (dropzone e itens)"
+    },
+    {
+      "name": "--file-upload-border-color",
+      "value": "var(--ds-semantic-color-border-neutral-subtle)",
+      "comment": "color/border/neutral/subtle (borda do dropzone)"
+    },
+    {
+      "name": "--file-upload-danger-surface",
+      "value": "var(--ds-semantic-color-background-danger-subtle)",
+      "comment": "color/background/danger/subtle e color/border/danger/default (o arquivo Figma resolve a borda para #e52207; a collection exportada traz #c50007)"
+    },
+    {
+      "name": "--file-upload-danger-border-color",
+      "value": "var(--ds-semantic-color-border-danger-default)",
+      "comment": "color/background/danger/subtle e color/border/danger/default (o arquivo Figma resolve a borda para #e52207; a collection exportada traz #c50007)"
+    },
+    {
+      "name": "--file-upload-check-color",
+      "value": "var(--ds-semantic-color-icons-success-default)",
+      "comment": "color/icons/sucess/default (#00883d, fill do check_circle exportado)"
+    },
+    {
+      "name": "--file-upload-gap",
+      "value": "var(--ds-component-component-sizing-8)",
+      "comment": "Component sizing/8 (gap da raiz e dos itens)"
+    }
+  ],
+  "tokensUsed": [
+    "--ds-semantic-text-style-content-color-typography-primary",
+    "--ds-semantic-text-style-content-color-typography-tertiary",
+    "--ds-semantic-text-style-content-color-typography-placeholder",
+    "--ds-semantic-text-style-content-color-typography-danger",
+    "--ds-semantic-color-background-neutral-default",
+    "--ds-semantic-color-border-neutral-subtle",
+    "--ds-semantic-color-background-danger-subtle",
+    "--ds-semantic-color-border-danger-default",
+    "--ds-semantic-color-icons-success-default",
+    "--ds-component-component-sizing-8",
+    "--ds-primitive-typography-font-family-plus-jakarta-sans",
+    "--ds-primitive-spacing-2",
+    "--ds-primitive-typography-font-size-14",
+    "--ds-primitive-typography-font-weight-medium",
+    "--ds-primitive-spacing-0",
+    "--ds-primitive-typography-font-size-12",
+    "--ds-component-component-sizing-10",
+    "--ds-component-component-sizing-72",
+    "--ds-primitive-border-width-border-sm",
+    "--ds-primitive-border-radius-radius-md",
+    "--ds-semantic-color-border-neutral-prominent",
+    "--ds-component-focus-ring-effect-width",
+    "--ds-component-focus-ring-color-ring",
+    "--ds-component-focus-ring-effect-offset",
+    "--ds-primitive-typography-font-size-10",
+    "--ds-primitive-typography-font-weight-regular",
+    "--ds-component-component-sizing-24",
+    "--ds-semantic-color-icons-danger-default",
+    "--ds-component-component-sizing-2",
+    "--ds-component-component-sizing-4",
+    "--ds-primitive-border-radius-radius-full",
+    "--ds-primitive-border-width-border-none",
+    "--ds-semantic-text-style-content-color-typography-disabled",
+    "--ds-component-component-sizing-16"
+  ],
+  "stories": [
+    {
+      "id": "web-components-file-upload--default",
+      "name": "Default",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-file-upload--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-file-upload--default&viewMode=story"
+    },
+    {
+      "id": "web-components-file-upload--dropzone",
+      "name": "Dropzone",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-file-upload--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-file-upload--dropzone&viewMode=story"
+    },
+    {
+      "id": "web-components-file-upload--button-error",
+      "name": "Button Error",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-file-upload--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-file-upload--button-error&viewMode=story"
+    },
+    {
+      "id": "web-components-file-upload--dropzone-error",
+      "name": "Dropzone Error",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-file-upload--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-file-upload--dropzone-error&viewMode=story"
+    },
+    {
+      "id": "web-components-file-upload--disabled",
+      "name": "Disabled",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-file-upload--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-file-upload--disabled&viewMode=story"
+    },
+    {
+      "id": "web-components-file-upload--long-file-names",
+      "name": "Long File Names",
+      "docsUrl": "https://sggdds.vercel.app/?path=/docs/web-components-file-upload--docs",
+      "iframeUrl": "https://sggdds.vercel.app/iframe.html?id=web-components-file-upload--long-file-names&viewMode=story"
+    }
+  ],
+  "variants": [
+    {
+      "prop": "mode",
+      "values": [
+        "button",
+        "dropzone"
+      ]
+    },
+    {
+      "prop": "state",
+      "values": [
+        "default",
+        "error"
+      ]
+    }
+  ],
+  "states": [
+    "default",
+    "error (ds-file-upload--error e ds-file-upload__item--error)",
+    "disabled (ds-file-upload--disabled e :disabled no botao de remover)",
+    "dragging (ds-file-upload--dragging, aplicado no dragenter e limpo no dragleave/drop)",
+    "focus-within (outline no dropzone quando o input file recebe foco)",
+    "focus-visible (outline no botao de remover)"
+  ],
+  "responsive": [
+    {
+      "query": "@media (prefers-reduced-motion: reduce)",
+      "effect": "Remove a transition de background-color/border-color do dropzone."
+    },
+    {
+      "query": "@media (max-width: 640px)",
+      "effect": "padding-inline do dropzone cai de Component sizing/72 para Component sizing/16 (o node do Figma nao define variante mobile)."
+    }
+  ],
+  "accessibility": {
+    "roles": [
+      "button (botao 'Anexar arquivos' e botoes de remover, elementos <button> nativos)",
+      "list / listitem (<ul>/<li> da lista de arquivos)"
+    ],
+    "ariaAttributes": [
+      "aria-labelledby (input -> span do label)",
+      "aria-describedby (erro + helper + lista de arquivos, nessa ordem)",
+      "aria-invalid=\"true\" no estado de erro",
+      "aria-live=\"polite\" na <ul> de arquivos",
+      "aria-label nos botoes de remover (`Remover <nome do arquivo>`)",
+      "aria-hidden=\"true\" no asterisco de required, nos icones SVG e no bullet do status"
+    ],
+    "keyboardInteractions": [
+      "Modo button: o input file recebe tabIndex=-1 e o foco vai para o botao 'Anexar arquivos' (Enter/Espaco abrem o seletor via inputRef.click()).",
+      "Modo dropzone: o input file nativo continua na ordem de tabulacao (tabIndex nao e alterado) e Enter/Espaco abrem o seletor; o label ganha outline por :focus-within.",
+      "Botoes de remover: acionaveis por Enter/Espaco (button nativo) e com outline em :focus-visible."
+    ],
+    "notes": [
+      "Nao ha nenhum atributo role explicito no TSX; todos os papeis vem da semantica nativa (input[type=file], button, ul/li).",
+      "O input file e visualmente escondido por clip/clip-path, permanecendo acessivel a leitores de tela.",
+      "O dropzone e um <label htmlFor> do input, entao o clique/drop sempre recai sobre o input nativo.",
+      "Nao existe handler de teclado customizado (onKeyDown) no componente.",
+      "Nao ha alternativa por teclado para o drag & drop alem do proprio input file."
+    ]
+  },
+  "tests": {
+    "unitFile": "packages/react/src/components/FileUpload/FileUpload.test.tsx",
+    "unitCount": 12,
+    "a11yFile": "packages/react/src/components/FileUpload/FileUpload.a11y.test.tsx",
+    "a11yCount": 6
+  },
+  "figmaReferences": [
+    {
+      "node": "219:7828",
+      "note": "FileUpload.styles.css: 'Layout do Figma: Web Components / File Upload (node 219:7828)'."
+    },
+    {
+      "node": "219:7828",
+      "note": "FileUpload.tsx: 'Vetores exportados do Figma (Web Components / File Upload, node 219:7828); a cor vem do CSS via currentColor'."
+    }
+  ],
+  "pendencias": [
+    "Nao ha validacao de tipo/tamanho de arquivo no componente: dropzoneHint ('PDF, CSV ou XLSX ate 10mb') e apenas texto e o limite real depende de quem consome.",
+    "O contraste/valor final do token de borda de erro nao pode ser confirmado pelo codigo: o comentario do CSS registra divergencia entre o arquivo Figma (#e52207) e a collection exportada (#c50007).",
+    "Nao ha estado de progresso/loading de upload; itemStatusLabel e um texto estatico ('Carregado' por padrao), sem indicacao de upload em andamento ou percentual.",
+    "O modo dropzone nao possui estado visual de :hover no CSS (apenas transition, dragging, error e focus-within).",
+    "O arquivo/URL do Figma nao consta no codigo, apenas o node-id 219:7828."
+  ]
+}

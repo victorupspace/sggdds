@@ -1,0 +1,161 @@
+{
+  "slug": "tabs",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Navegação",
+  "resumo": "As Tabs dividem o conteúdo de uma mesma página em seções que a pessoa alterna sem sair dela. Apenas a seção selecionada fica visível de cada vez.",
+  "quandoUsar": [
+    "Separar as informações de um protocolo em \"Resumo\", \"Documentos\" e \"Histórico\", quando tudo pertence ao mesmo pedido.",
+    "Alternar entre \"Agendados\" e \"Concluídos\" na lista de atendimentos da pessoa, sem trocar de página.",
+    "Apresentar o conteúdo de um serviço em blocos equivalentes — o que é, quem pode pedir, documentos necessários — sem criar uma página para cada bloco.",
+    "Oferecer duas formas de consulta na mesma tela, por CPF e por número de protocolo, cada uma com o seu formulário.",
+    "Mostrar quantidades que ajudam a decidir por onde começar, usando um marcador numérico ao lado do rótulo da seção."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "As seções são etapas que precisam ser cumpridas em ordem, como um pedido em três passos.",
+      "alternativa": "stepper"
+    },
+    {
+      "texto": "A pessoa precisa ler ou comparar dois conteúdos ao mesmo tempo.",
+      "alternativa": "accordion"
+    },
+    {
+      "texto": "Os itens levam para outras páginas do site em vez de trocar o conteúdo desta.",
+      "alternativa": "meganav"
+    },
+    {
+      "texto": "O objetivo é filtrar uma lista por categoria mantendo a mesma tabela na tela.",
+      "alternativa": "chip"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Lista de abas",
+      "descricao": "Faixa com borda inferior que reúne todas as abas. Em telas pequenas ela rola horizontalmente dentro do próprio bloco."
+    },
+    {
+      "numero": 2,
+      "parte": "Aba",
+      "descricao": "Botão com o rótulo da seção. A aba selecionada recebe um indicador de cor e as demais ficam em cinza."
+    },
+    {
+      "numero": 3,
+      "parte": "Ícone",
+      "descricao": "Elemento visual opcional antes do rótulo. É decorativo e não é lido por leitores de tela."
+    },
+    {
+      "numero": 4,
+      "parte": "Marcador numérico",
+      "descricao": "Indicador opcional depois do rótulo, para números que ajudam a decidir. Continua acessível a leitores de tela."
+    },
+    {
+      "numero": 5,
+      "parte": "Painel",
+      "descricao": "Área abaixo da lista com o conteúdo da aba selecionada. Somente o painel ativo existe na página."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "Em telas de até 640 pixels o componente reduz o espaçamento interno das abas, o tamanho do ícone e a tipografia. A aba padrão ganha largura e altura mínimas maiores, para virar uma área de toque confortável, e a aba compacta assume um formato quadrado menor. A lista rola horizontalmente dentro do próprio bloco, sem provocar rolagem lateral na página.",
+  "dosDonts": [
+    {
+      "faca": "Use rótulos de uma ou duas palavras e mantenha todas as abas visíveis sempre que possível.",
+      "naoFaca": "Escrever frases nas abas para caber uma explicação.",
+      "porque": "A lista rola horizontalmente em telas pequenas. Rótulos longos empurram as abas seguintes para fora da tela e a pessoa não descobre que elas existem."
+    },
+    {
+      "faca": "Use o modo manual quando cada aba disparar uma consulta ao servidor.",
+      "naoFaca": "Manter o modo automático, que é o padrão, em abas que carregam dados ao serem selecionadas.",
+      "porque": "No modo automático as setas do teclado selecionam a aba ao passar por ela. Percorrer cinco abas dispara cinco consultas seguidas."
+    },
+    {
+      "faca": "Escreva um rótulo acessível que diga o que a lista organiza, como \"Seções do protocolo\".",
+      "naoFaca": "Deixar o valor padrão \"Tabs\".",
+      "porque": "Quem usa leitor de tela ouve o nome da lista antes das opções. \"Tabs\" não informa o que está sendo alternado."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Rótulos curtos, de uma a duas palavras, com maiúscula apenas na primeira letra e sem ponto final.",
+    "Use substantivos, como \"Documentos\", em vez de perguntas ou verbos no imperativo.",
+    "Não repita o nome da página no rótulo: se a página é \"Meu protocolo\", a aba é \"Histórico\", não \"Histórico do protocolo\".",
+    "Use o marcador numérico só para números que ajudam a decidir por onde começar, como a quantidade de pendências. Ele não comporta texto longo.",
+    "Quando uma aba estiver desabilitada, explique o motivo fora dela: o componente não exibe justificativa."
+  ],
+  "hierarquia": [
+    "As abas ficam logo abaixo do título da página ou do bloco que elas organizam. Elas não substituem a navegação do site.",
+    "A primeira aba é a mais usada, porque é ela que abre quando nenhuma seleção inicial é definida.",
+    "Use a variante padrão no conteúdo principal da página e a compacta quando as abas forem um controle secundário dentro de um bloco.",
+    "Evite passar de cinco ou seis abas: acima disso a lista começa a exigir rolagem lateral em telas menores e a visão do conjunto se perde."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Badge",
+      "slug": "badge",
+      "relacao": "Use um Badge no marcador da aba para indicar quantidade, como o número de documentos pendentes."
+    },
+    {
+      "componente": "Data Table",
+      "slug": "data-table",
+      "relacao": "Cada painel pode conter uma tabela diferente do mesmo pedido, trocando o conteúdo sem recarregar a página."
+    },
+    {
+      "componente": "Card",
+      "slug": "card",
+      "relacao": "Painéis com muitos blocos de informação ficam mais legíveis quando o conteúdo é organizado em Cards."
+    },
+    {
+      "componente": "Skeleton",
+      "slug": "skeleton",
+      "relacao": "Enquanto o conteúdo de um painel carrega, use Skeleton dentro do painel em vez de deixá-lo vazio."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Detalhe do protocolo",
+      "contexto": "A pessoa abre um protocolo e precisa ver o resumo, os documentos enviados e o histórico de andamento — tudo sobre o mesmo pedido.",
+      "comoFica": "Três abas abaixo do título: \"Resumo\", \"Documentos\" e \"Histórico\". A aba de documentos leva um marcador com o número de pendências. O rótulo acessível da lista é \"Seções do protocolo\" e o modo é automático, porque os três painéis usam dados já carregados."
+    },
+    {
+      "titulo": "Consulta por placa ou por número do auto",
+      "contexto": "Um serviço do Detran-SP permite consultar infrações por placa ou por número do auto. Cada caminho tem um formulário diferente.",
+      "comoFica": "Duas abas, cada uma com o seu formulário no painel. Como trocar de aba limpa o formulário anterior, o modo é manual: as setas apenas movem o foco e a pessoa confirma com Enter, evitando trocar de formulário sem querer."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Usar abas para as etapas de um pedido.",
+      "consequencia": "A pessoa pula direto para a terceira seção sem preencher a primeira e envia o pedido incompleto.",
+      "correcao": "Use um fluxo em etapas, com o card de progresso e botões de avanço."
+    },
+    {
+      "erro": "Repetir identificadores entre abas ou deixar algum em branco.",
+      "consequencia": "Abas com identificador em branco são descartadas da lista, e identificadores repetidos criam ligações ambíguas entre aba e painel.",
+      "correcao": "Garanta um identificador único e preenchido para cada item da lista."
+    },
+    {
+      "erro": "Definir a aba ativa com um valor que não existe na lista.",
+      "consequencia": "A seleção cai silenciosamente para a primeira aba habilitada e a tela exibe um conteúdo diferente do esperado, sem aviso.",
+      "correcao": "Confira o valor selecionado contra os identificadores dos itens antes de renderizar."
+    },
+    {
+      "erro": "Desabilitar todas as abas de um contexto.",
+      "consequencia": "Não sobra nenhuma aba selecionável e a navegação por teclado não tem para onde ir.",
+      "correcao": "Mantenha ao menos uma aba habilitada ou substitua o bloco por uma mensagem explicando por que não há conteúdo."
+    }
+  ],
+  "notasImplementacao": [
+    "Somente o painel selecionado existe na página. O conteúdo dos demais painéis não é montado antes da seleção.",
+    "A navegação por teclado usa um único ponto de parada: o Tab entra na aba selecionada, as setas esquerda e direita percorrem as abas habilitadas com volta circular, e Home e End vão para a primeira e a última.",
+    "No modo automático as setas selecionam a aba ao mover o foco. No modo manual elas apenas movem o foco, e a seleção acontece com Enter ou Espaço.",
+    "O tratamento de teclado opcional roda antes da lógica interna: cancelar o evento dentro dele desliga a navegação por setas, Home e End.",
+    "Abas desabilitadas usam o atributo padrão do navegador e são puladas na navegação e na seleção inicial.",
+    "As abas não selecionadas ainda apontam para painéis que não existem na página. É um ponto conhecido, registrado como pendência técnica do componente.",
+    "O estado selecionado usa o token de identidade disponível no design system porque ainda não existe token dedicado para seleção na base atual."
+  ],
+  "pendentes": [
+    "O campo de tamanhos ficou vazio porque o componente não expõe prop de tamanho: a diferença de densidade vem da variante padrão ou compacta.",
+    "O código não cita nenhum node do Figma, então não foi possível descrever o desenho de referência nem as diferenças com a implementação.",
+    "A lista rola horizontalmente em telas pequenas, mas não existe indicador visual de rolagem definido no CSS. Não foi possível orientar como sinalizar que há mais abas fora da tela."
+  ]
+}

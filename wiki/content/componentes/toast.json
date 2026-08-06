@@ -1,0 +1,163 @@
+{
+  "slug": "toast",
+  "status": "em-revisao",
+  "statusNota": "Status oficial pendente de definição de governança.",
+  "categoria": "Feedback",
+  "resumo": "Aviso curto e temporário que aparece sobre a página para confirmar o resultado de uma ação sem interromper o que a pessoa está fazendo. Some sozinho depois de alguns segundos e pode trazer até duas ações.",
+  "quandoUsar": [
+    "Para confirmar que o rascunho de um formulário longo foi salvo, sem tirar a pessoa da etapa em que ela está.",
+    "Para confirmar uma ação feita em uma lista, como cancelar um agendamento, oferecendo a ação de desfazer logo em seguida.",
+    "Para avisar que uma operação falhou por instabilidade momentânea e pode ser repetida, com a ação de tentar de novo.",
+    "Para confirmar que um número de protocolo ou um link foi copiado, quando não há nenhuma outra mudança visível na tela.",
+    "Para informar o resultado de uma ação secundária, como o reenvio de um e-mail de confirmação."
+  ],
+  "quandoNaoUsar": [
+    {
+      "texto": "Quando a mensagem precisa continuar visível, como o aviso de que faltam documentos ou de que o prazo está acabando.",
+      "alternativa": "Alert"
+    },
+    {
+      "texto": "Quando a pessoa precisa decidir antes de continuar, como confirmar o cancelamento definitivo de uma solicitação.",
+      "alternativa": "Modal"
+    },
+    {
+      "texto": "Quando o objetivo é explicar o que faz um botão ou um ícone da interface.",
+      "alternativa": "Tooltip"
+    },
+    {
+      "texto": "Quando a mensagem é sobre algo em andamento, como o envio de um arquivo que ainda está processando.",
+      "alternativa": "ProgressBar"
+    }
+  ],
+  "anatomia": [
+    {
+      "numero": 1,
+      "parte": "Ícone",
+      "descricao": "Marcador visual da variante, exibido por padrão à esquerda. É decorativo: não substitui o título nem o texto de apoio."
+    },
+    {
+      "numero": 2,
+      "parte": "Título",
+      "descricao": "Frase curta obrigatória com o resultado da ação. É a única parte que sempre aparece."
+    },
+    {
+      "numero": 3,
+      "parte": "Texto de apoio",
+      "descricao": "Complemento opcional com o detalhe ou o próximo passo. Sem ele, o aviso fica em uma linha só."
+    },
+    {
+      "numero": 4,
+      "parte": "Ações",
+      "descricao": "Até dois botões, como desfazer ou tentar de novo. A partir do terceiro, os itens são simplesmente ignorados."
+    },
+    {
+      "numero": 5,
+      "parte": "Botão de dispensar",
+      "descricao": "Botão para fechar o aviso na hora. Aparece por padrão e tem rótulo acessível próprio, já que mostra apenas um símbolo."
+    }
+  ],
+  "tamanhos": null,
+  "responsivo": "Em telas de até 640 pixels, o aviso passa a ocupar toda a largura disponível e o espaço entre as colunas diminui. Em telas de até 420 pixels, as ações descem para uma linha inteira abaixo do texto, o botão de dispensar vai para o canto superior direito e o título e o texto de apoio usam tipografia menor.",
+  "dosDonts": [
+    {
+      "faca": "Reserve a variante negativa para erros de verdade, que a pessoa pode resolver repetindo a ação.",
+      "naoFaca": "Usar a variante negativa para avisos comuns ou para chamar atenção.",
+      "porque": "A variante negativa muda o comportamento de acessibilidade: o aviso passa a interromper a leitura em curso do leitor de tela. Usada fora de erro, ela atrapalha quem está no meio de um formulário."
+    },
+    {
+      "faca": "Aumente o tempo de exibição, ou desligue o fechamento automático, quando o aviso tiver alguma ação.",
+      "naoFaca": "Deixar os 5 segundos padrão em um aviso com \"Desfazer\".",
+      "porque": "Quem navega por teclado ou usa leitor de tela precisa percorrer a página até alcançar o botão. Se o aviso sumir antes, a ação de recuperação simplesmente não existe para essa pessoa."
+    },
+    {
+      "faca": "Mantenha o título em uma linha e coloque o detalhe no texto de apoio.",
+      "naoFaca": "Escrever um parágrafo dentro do título.",
+      "porque": "O aviso desaparece em poucos segundos. Texto que exige leitura atenta não cabe nesse tempo e a informação se perde sem que ninguém perceba."
+    }
+  ],
+  "conteudoEEscrita": [
+    "Escreva o título como o resultado já concluído, em uma frase curta e sem ponto final: \"Agendamento cancelado\", \"Rascunho salvo\".",
+    "Use o texto de apoio para uma frase só: o detalhe que a pessoa precisa saber ou o próximo passo. Se precisar de mais de uma frase, a mensagem não cabe em um aviso temporário.",
+    "Escreva as ações com verbo no infinitivo e no máximo duas palavras: \"Desfazer\", \"Tentar de novo\", \"Ver detalhes\".",
+    "Mantenha o rótulo acessível do botão de fechar descritivo. Ele é o único texto que o leitor de tela anuncia nesse botão, porque o botão mostra apenas um símbolo.",
+    "Não coloque no aviso dados que precisam ser lidos com calma ou copiados, como número de protocolo completo. Esses dados ficam na página."
+  ],
+  "hierarquia": [
+    "O aviso flutua sobre o conteúdo e não empurra o layout. Ele complementa a página; nunca é o único lugar onde a informação aparece.",
+    "Escolha uma posição de tela e mantenha a mesma em todo o produto. O componente não define onde ele aparece: isso é decidido na implementação.",
+    "Tem peso visual menor que Modal e Alert. Se a mensagem precisar competir com o conteúdo principal, ela não é um aviso temporário.",
+    "Mostre um aviso por vez. Dois avisos sobrepostos disputam a mesma região da tela e nenhum deles é lido até o fim."
+  ],
+  "combinacoes": [
+    {
+      "componente": "Button",
+      "slug": "button",
+      "relacao": "O botão que a pessoa aciona é o que dispara o aviso; o aviso confirma que a ação do botão terminou."
+    },
+    {
+      "componente": "Alert",
+      "slug": "alert",
+      "relacao": "Divisão de papéis: o aviso temporário confirma o que acabou de acontecer, o Alert fica na página enquanto a pendência existir."
+    },
+    {
+      "componente": "Modal",
+      "slug": "modal",
+      "relacao": "O Modal pede a confirmação antes de uma ação sensível; o aviso temporário informa o resultado depois que o Modal fecha."
+    },
+    {
+      "componente": "DataTable",
+      "slug": "data-table",
+      "relacao": "Em ações feitas por linha, como excluir ou cancelar um item, o aviso confirma a mudança e oferece desfazer sem tirar a pessoa da lista."
+    }
+  ],
+  "exemplos": [
+    {
+      "titulo": "Cancelamento de agendamento",
+      "contexto": "Na lista de agendamentos do Poupatempo, a pessoa cancela um atendimento marcado e continua na mesma lista para remarcar.",
+      "comoFica": "Aviso com variante positiva, título \"Agendamento cancelado\", texto de apoio informando que o horário voltou a ficar disponível e uma ação \"Desfazer\". Como há ação, o tempo de exibição é ampliado além do padrão."
+    },
+    {
+      "titulo": "Falha temporária na consulta de pontos",
+      "contexto": "A pessoa consulta a pontuação da carteira no Detran-SP e o serviço não responde por instabilidade momentânea.",
+      "comoFica": "Aviso com variante negativa, título \"Não foi possível consultar agora\", texto de apoio explicando que o serviço está indisponível no momento e uma ação \"Tentar de novo\". Por ser variante negativa, o aviso é anunciado imediatamente por leitores de tela."
+    }
+  ],
+  "errosComuns": [
+    {
+      "erro": "Desligar ao mesmo tempo o botão de dispensar e o fechamento automático.",
+      "consequencia": "O aviso fica preso na tela cobrindo parte do conteúdo, sem nenhuma forma de a pessoa removê-lo.",
+      "correcao": "Mantenha pelo menos uma saída: ou o botão de dispensar visível, ou o fechamento automático ativo."
+    },
+    {
+      "erro": "Controlar a visibilidade por fora sem tratar o pedido de fechamento.",
+      "consequencia": "Quando a visibilidade é controlada externamente, o componente não muda o próprio estado. Sem tratar o pedido de fechamento, o aviso nunca some, nem no clique nem no tempo.",
+      "correcao": "Trate sempre onOpenChange no modo controlado, ou use o modo não controlado quando não houver necessidade de comandar o aviso de fora."
+    },
+    {
+      "erro": "Passar três ou mais ações esperando que todas apareçam.",
+      "consequencia": "O componente exibe apenas as duas primeiras e descarta o resto sem aviso. A ação que a pessoa precisava pode ser justamente a descartada.",
+      "correcao": "Escolha no máximo duas ações e coloque as demais na própria página, onde elas permanecem disponíveis."
+    },
+    {
+      "erro": "Disparar vários avisos em sequência para a mesma operação.",
+      "consequencia": "O componente não gerencia fila nem empilhamento. Os avisos aparecem sobrepostos ou disputando o mesmo espaço e a mensagem final fica ilegível.",
+      "correcao": "Junte a informação em um único aviso ou defina no produto uma região que controle a ordem e a quantidade."
+    }
+  ],
+  "notasImplementacao": [
+    "A raiz é anunciada como status com leitura discreta (aria-live polite). Na variante negativa, ela passa a alert com leitura imediata (aria-live assertive), interrompendo o que o leitor de tela estiver anunciando.",
+    "O fechamento automático vem ligado por padrão, com 5 segundos. Valores iguais ou menores que zero desligam o temporizador.",
+    "O temporizador é pausado quando o ponteiro passa sobre o aviso e quando algum controle dele recebe foco. Os dois comportamentos vêm ligados por padrão.",
+    "O callback de dispensa manual só é chamado no clique do botão de fechar. No fechamento automático, apenas onOpenChange é chamado, sempre com false.",
+    "Quando a visibilidade é informada por fora, o componente entra em modo controlado e não altera mais o próprio estado.",
+    "Fechado, o componente não deixa nada no DOM: ele deixa de ser renderizado.",
+    "O componente não implementa região, portal, empilhamento nem fila de avisos. Onde o aviso aparece na tela é decisão de quem consome.",
+    "Não há animação de entrada e saída, nem tratamento de preferência por movimento reduzido.",
+    "Não há teste automatizado de acessibilidade para este componente; a verificação precisa ser manual."
+  ],
+  "pendentes": [
+    "Tamanhos: o componente não tem prop de tamanho (size). A largura é definida pelo layout e pelas regras de tela pequena, então não há variação de tamanho a documentar.",
+    "Posição na tela: o JSON extraído registra que não existe região, portal ou empilhamento no componente. Não dá para documentar canto padrão, ordem de empilhamento ou limite de avisos simultâneos sem inventar uma regra que o código não tem. Falta o time definir essa política.",
+    "Diferença de uso entre as variantes brand e neutral: as duas existem na API, mas nem o código nem a documentação atual dizem em que situação escolher uma ou outra."
+  ]
+}

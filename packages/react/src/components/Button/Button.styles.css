@@ -49,7 +49,11 @@
 }
 
 .ds-button--variant-secondary {
-  --button-background: var(--ds-semantic-color-background-brand-primary-prominent);
+  /* Era brand/primary/prominent (#FF161F, a cor da marca gráfica): com o
+     rótulo branco dava 3,90:1 e reprovava WCAG AA. brand/primary/default
+     (#C50007) dá 6,22:1. O token prominent segue correto onde é forma, não
+     superfície de texto — o Footer usa nele a marca do logo. */
+  --button-background: var(--ds-semantic-color-background-brand-primary-default);
   --button-background-hover: var(--ds-semantic-text-style-content-color-typography-danger);
   --button-background-active: var(--ds-semantic-color-background-brand-primary-default-hover);
   --button-border-color: var(--button-background);

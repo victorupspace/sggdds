@@ -1886,21 +1886,11 @@
         "typography": {
           "brand": {
             "$extensions": {
-              "com.figma.aliasData": {
-                "targetVariableId": "VariableID:6d5544ef0a32772387575c1787f8dd3f693d1c7d/-1:-1",
-                "targetVariableName": "color/brand/red",
-                "targetVariableSetId": "VariableCollectionId:7a234b91ec55dbc40fe1ea4a3beed55251121707/-1:-1",
-                "targetVariableSetName": "T1: Sampa Design System"
-              },
-              "com.figma.scopes": [
-                "TEXT_FILL"
-              ],
-              "com.figma.variableId": "VariableID:40000022:18",
-              "sggd.figmaPath": "text style/content color/typography/brand",
-              "sggd.figmaResolvedValue": "#FF161F"
+              "sggd.correcaoAcessibilidade": "era #FF161F sobre branco (3,90:1); agora 6,22:1",
+              "sggd.figmaPath": "semantic/text style/content color/typography/brand"
             },
             "$type": "color",
-            "$value": "{brand.color.brand.red}"
+            "$value": "#c50007"
           },
           "danger": {
             "$extensions": {

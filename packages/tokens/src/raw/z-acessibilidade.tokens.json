@@ -1,0 +1,379 @@
+{
+  "$description": "CORRECOES DE ACESSIBILIDADE — aplicadas no codigo, fora da exportacao do Figma. Cada token abaixo formava um par texto/fundo abaixo de 4,5:1 (WCAG 2.1 AA). A coleta de arquivos ordena por nome, entao este arquivo e lido depois de t3-components/t2-semantics e sobrescreve os valores exportados. E a unica divergencia intencional entre Figma e codigo: apagar este arquivo restaura exatamente o que o Figma publica. Estados desabilitados nao entram aqui: a WCAG 1.4.3 isenta componentes inativos. Ver CORRECOES-ACESSIBILIDADE.md e INCONSISTENCIAS.md.",
+  "component": {
+    "button": {
+      "color": {
+        "text": {
+          "secondary": {
+            "$root": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "alpha": 1,
+                "hex": "#000000"
+              },
+              "$extensions": {
+                "sggd.correcaoAcessibilidade": "era #FFFFFF sobre #E5E5E5 (1,26:1); agora 16,67:1"
+              }
+            },
+            "hover": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.0,
+                  0.0,
+                  0.0
+                ],
+                "alpha": 1,
+                "hex": "#000000"
+              },
+              "$extensions": {
+                "sggd.correcaoAcessibilidade": "era #FFFFFF sobre #E5E5E5 (1,26:1); agora 16,67:1"
+              }
+            }
+          }
+        }
+      }
+    },
+    "date-picker": {
+      "color": {
+        "text-placeholder": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.45098,
+              0.45098,
+              0.45098
+            ],
+            "alpha": 1,
+            "hex": "#737373"
+          },
+          "$extensions": {
+            "sggd.correcaoAcessibilidade": "era #A3A3A3 sobre branco (2,52:1); agora 4,74:1"
+          }
+        }
+      }
+    },
+    "input": {
+      "color": {
+        "text-placeholder": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.45098,
+              0.45098,
+              0.45098
+            ],
+            "alpha": 1,
+            "hex": "#737373"
+          },
+          "$extensions": {
+            "sggd.correcaoAcessibilidade": "era #A3A3A3 sobre branco (2,52:1); agora 4,74:1"
+          }
+        }
+      }
+    },
+    "search-field": {
+      "color": {
+        "text-placeholder": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.45098,
+              0.45098,
+              0.45098
+            ],
+            "alpha": 1,
+            "hex": "#737373"
+          },
+          "$extensions": {
+            "sggd.correcaoAcessibilidade": "era #A3A3A3 sobre branco (2,52:1); agora 4,74:1"
+          }
+        }
+      }
+    },
+    "select": {
+      "color": {
+        "text-placeholder": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.45098,
+              0.45098,
+              0.45098
+            ],
+            "alpha": 1,
+            "hex": "#737373"
+          },
+          "$extensions": {
+            "sggd.correcaoAcessibilidade": "era #A3A3A3 sobre branco (2,52:1); agora 4,74:1"
+          }
+        }
+      },
+      "option": {
+        "color": {
+          "text": {
+            "selected": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.772549,
+                  0.0,
+                  0.027451
+                ],
+                "alpha": 1,
+                "hex": "#c50007"
+              },
+              "$extensions": {
+                "sggd.correcaoAcessibilidade": "era #FF161F sobre #FFE3E4 (3,22:1); agora 5,14:1"
+              }
+            }
+          }
+        }
+      }
+    },
+    "textarea": {
+      "color": {
+        "text-placeholder": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.45098,
+              0.45098,
+              0.45098
+            ],
+            "alpha": 1,
+            "hex": "#737373"
+          },
+          "$extensions": {
+            "sggd.correcaoAcessibilidade": "era #A3A3A3 sobre branco (2,52:1); agora 4,74:1"
+          }
+        }
+      }
+    },
+    "alert": {
+      "color": {
+        "text": {
+          "warning": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.588235,
+                0.411765,
+                0.0
+              ],
+              "alpha": 1,
+              "hex": "#966900"
+            },
+            "$extensions": {
+              "sggd.correcaoAcessibilidade": "era #C38900 sobre #FFF9DD (2,88:1); agora 4,60:1"
+            }
+          }
+        }
+      },
+      "action-link": {
+        "color": {
+          "text": {
+            "$root": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.772549,
+                  0.0,
+                  0.027451
+                ],
+                "alpha": 1,
+                "hex": "#c50007"
+              },
+              "$extensions": {
+                "sggd.correcaoAcessibilidade": "era #FF161F sobre branco (3,90:1); agora 6,22:1"
+              }
+            }
+          }
+        }
+      }
+    },
+    "badge": {
+      "color": {
+        "text": {
+          "warning": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.588235,
+                0.411765,
+                0.0
+              ],
+              "alpha": 1,
+              "hex": "#966900"
+            },
+            "$extensions": {
+              "sggd.correcaoAcessibilidade": "era #C38900 sobre #FFF9DD (2,88:1); agora 4,60:1"
+            }
+          },
+          "brand": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.772549,
+                0.0,
+                0.027451
+              ],
+              "alpha": 1,
+              "hex": "#c50007"
+            },
+            "$extensions": {
+              "sggd.correcaoAcessibilidade": "era #FF161F sobre #FFE3E4 (3,22:1); agora 5,14:1"
+            }
+          }
+        }
+      }
+    },
+    "tag": {
+      "color": {
+        "text": {
+          "warning": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.588235,
+                0.411765,
+                0.0
+              ],
+              "alpha": 1,
+              "hex": "#966900"
+            },
+            "$extensions": {
+              "sggd.correcaoAcessibilidade": "era #C38900 sobre #FFF9DD (2,88:1); agora 4,60:1"
+            }
+          },
+          "brand": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.772549,
+                0.0,
+                0.027451
+              ],
+              "alpha": 1,
+              "hex": "#c50007"
+            },
+            "$extensions": {
+              "sggd.correcaoAcessibilidade": "era #FF161F sobre #FFE3E4 (3,22:1); agora 5,14:1"
+            }
+          }
+        }
+      }
+    },
+    "toast": {
+      "color": {
+        "text": {
+          "warning": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.588235,
+                0.411765,
+                0.0
+              ],
+              "alpha": 1,
+              "hex": "#966900"
+            },
+            "$extensions": {
+              "sggd.correcaoAcessibilidade": "era #C38900 sobre #FFF9DD (2,88:1); agora 4,60:1"
+            }
+          }
+        }
+      }
+    },
+    "toggle-button": {
+      "color": {
+        "text": {
+          "selected": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.772549,
+                0.0,
+                0.027451
+              ],
+              "alpha": 1,
+              "hex": "#c50007"
+            },
+            "$extensions": {
+              "sggd.correcaoAcessibilidade": "era #FF161F sobre branco (3,90:1); agora 6,22:1"
+            }
+          }
+        }
+      }
+    },
+    "bottom-nav": {
+      "item": {
+        "color": {
+          "text": {
+            "selected": {
+              "$type": "color",
+              "$value": {
+                "colorSpace": "srgb",
+                "components": [
+                  0.772549,
+                  0.0,
+                  0.027451
+                ],
+                "alpha": 1,
+                "hex": "#c50007"
+              },
+              "$extensions": {
+                "sggd.correcaoAcessibilidade": "era #FF161F sobre branco (3,90:1); agora 6,22:1"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "semantic": {
+    "text style": {
+      "content color": {
+        "typography": {
+          "brand": {
+            "$type": "color",
+            "$value": {
+              "colorSpace": "srgb",
+              "components": [
+                0.772549,
+                0.0,
+                0.027451
+              ],
+              "alpha": 1,
+              "hex": "#c50007"
+            },
+            "$extensions": {
+              "sggd.correcaoAcessibilidade": "era #FF161F sobre branco (3,90:1); agora 6,22:1"
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -409,21 +409,11 @@
           "text": {
             "default": {
               "$extensions": {
-                "com.figma.aliasData": {
-                  "targetVariableId": "VariableID:048e187d0e285e8d419f20745b682340bd0c896e/-1:-1",
-                  "targetVariableName": "text style/content color/typography/brand",
-                  "targetVariableSetId": "VariableCollectionId:39c5a472e47b4540938b9effa9748f792e0f046f/-1:-1",
-                  "targetVariableSetName": "T2: Semantics"
-                },
-                "com.figma.scopes": [
-                  "TEXT_FILL"
-                ],
-                "com.figma.variableId": "VariableID:40000070:644",
-                "sggd.figmaPath": "alert/action-link/color/text/$root",
-                "sggd.figmaResolvedValue": "#FF161F"
+                "sggd.correcaoAcessibilidade": "era #FF161F sobre branco (3,90:1); agora 6,22:1",
+                "sggd.figmaPath": "component/alert/action-link/color/text/$root"
               },
               "$type": "color",
-              "$value": "{semantic.text-style.content-color.typography.brand}"
+              "$value": "#c50007"
             },
             "hover": {
               "$extensions": {
@@ -958,20 +948,10 @@
           },
           "warning": {
             "$extensions": {
-              "com.figma.aliasData": {
-                "targetVariableId": "VariableID:ba35b48c77b076408097c2b66378dc6824d4b3b3/-1:-1",
-                "targetVariableName": "text style/content color/typography/warning",
-                "targetVariableSetId": "VariableCollectionId:39c5a472e47b4540938b9effa9748f792e0f046f/-1:-1",
-                "targetVariableSetName": "T2: Semantics"
-              },
-              "com.figma.scopes": [
-                "TEXT_FILL"
-              ],
-              "com.figma.variableId": "VariableID:40000070:615",
-              "sggd.figmaResolvedValue": "#C38900"
+              "sggd.correcaoAcessibilidade": "era #C38900 sobre #FFF9DD (2,88:1); agora 4,60:1"
             },
             "$type": "color",
-            "$value": "{semantic.text-style.content-color.typography.warning}"
+            "$value": "#966900"
           }
         },
         "text-muted": {
@@ -2451,20 +2431,10 @@
         "text": {
           "brand": {
             "$extensions": {
-              "com.figma.aliasData": {
-                "targetVariableId": "VariableID:048e187d0e285e8d419f20745b682340bd0c896e/-1:-1",
-                "targetVariableName": "text style/content color/typography/brand",
-                "targetVariableSetId": "VariableCollectionId:39c5a472e47b4540938b9effa9748f792e0f046f/-1:-1",
-                "targetVariableSetName": "T2: Semantics"
-              },
-              "com.figma.scopes": [
-                "TEXT_FILL"
-              ],
-              "com.figma.variableId": "VariableID:40000070:519",
-              "sggd.figmaResolvedValue": "#FF161F"
+              "sggd.correcaoAcessibilidade": "era #FF161F sobre #FFE3E4 (3,22:1); agora 5,14:1"
             },
             "$type": "color",
-            "$value": "{semantic.text-style.content-color.typography.brand}"
+            "$value": "#c50007"
           },
           "error": {
             "$extensions": {
@@ -2536,20 +2506,10 @@
           },
           "warning": {
             "$extensions": {
-              "com.figma.aliasData": {
-                "targetVariableId": "VariableID:ba35b48c77b076408097c2b66378dc6824d4b3b3/-1:-1",
-                "targetVariableName": "text style/content color/typography/warning",
-                "targetVariableSetId": "VariableCollectionId:39c5a472e47b4540938b9effa9748f792e0f046f/-1:-1",
-                "targetVariableSetName": "T2: Semantics"
-              },
-              "com.figma.scopes": [
-                "TEXT_FILL"
-              ],
-              "com.figma.variableId": "VariableID:40000070:517",
-              "sggd.figmaResolvedValue": "#C38900"
+              "sggd.correcaoAcessibilidade": "era #C38900 sobre #FFF9DD (2,88:1); agora 4,60:1"
             },
             "$type": "color",
-            "$value": "{semantic.text-style.content-color.typography.warning}"
+            "$value": "#966900"
           }
         }
       },
@@ -3422,20 +3382,10 @@
             },
             "selected": {
               "$extensions": {
-                "com.figma.aliasData": {
-                  "targetVariableId": "VariableID:048e187d0e285e8d419f20745b682340bd0c896e/-1:-1",
-                  "targetVariableName": "text style/content color/typography/brand",
-                  "targetVariableSetId": "VariableCollectionId:39c5a472e47b4540938b9effa9748f792e0f046f/-1:-1",
-                  "targetVariableSetName": "T2: Semantics"
-                },
-                "com.figma.scopes": [
-                  "TEXT_FILL"
-                ],
-                "com.figma.variableId": "VariableID:40000070:1437",
-                "sggd.figmaResolvedValue": "#FF161F"
+                "sggd.correcaoAcessibilidade": "era #FF161F sobre branco (3,90:1); agora 6,22:1"
               },
               "$type": "color",
-              "$value": "{semantic.text-style.content-color.typography.brand}"
+              "$value": "#c50007"
             }
           }
         },
@@ -5196,21 +5146,11 @@
           "secondary": {
             "default": {
               "$extensions": {
-                "com.figma.aliasData": {
-                  "targetVariableId": "VariableID:ecf683cec46e9baafa4fee29b44f18d1f19e86c8/-1:-1",
-                  "targetVariableName": "text style/content color/typography/inverse",
-                  "targetVariableSetId": "VariableCollectionId:39c5a472e47b4540938b9effa9748f792e0f046f/-1:-1",
-                  "targetVariableSetName": "T2: Semantics"
-                },
-                "com.figma.scopes": [
-                  "TEXT_FILL"
-                ],
-                "com.figma.variableId": "VariableID:40000070:35",
-                "sggd.figmaPath": "button/color/text/secondary/$root",
-                "sggd.figmaResolvedValue": "#FFFFFF"
+                "sggd.correcaoAcessibilidade": "era #FFFFFF sobre #E5E5E5 (1,26:1); agora 16,67:1",
+                "sggd.figmaPath": "component/button/color/text/secondary/$root"
               },
               "$type": "color",
-              "$value": "{semantic.text-style.content-color.typography.inverse}"
+              "$value": "#000000"
             },
             "disabled": {
               "$extensions": {
@@ -5231,20 +5171,10 @@
             },
             "hover": {
               "$extensions": {
-                "com.figma.aliasData": {
-                  "targetVariableId": "VariableID:ecf683cec46e9baafa4fee29b44f18d1f19e86c8/-1:-1",
-                  "targetVariableName": "text style/content color/typography/inverse",
-                  "targetVariableSetId": "VariableCollectionId:39c5a472e47b4540938b9effa9748f792e0f046f/-1:-1",
-                  "targetVariableSetName": "T2: Semantics"
-                },
-                "com.figma.scopes": [
-                  "TEXT_FILL"
-                ],
-                "com.figma.variableId": "VariableID:40000070:36",
-                "sggd.figmaResolvedValue": "#FFFFFF"
+                "sggd.correcaoAcessibilidade": "era #FFFFFF sobre #E5E5E5 (1,26:1); agora 16,67:1"
               },
               "$type": "color",
-              "$value": "{semantic.text-style.content-color.typography.inverse}"
+              "$value": "#000000"
             }
           }
         }
@@ -8008,20 +7938,10 @@
         },
         "text-placeholder": {
           "$extensions": {
-            "com.figma.aliasData": {
-              "targetVariableId": "VariableID:58636069a987c86adc673f48d8faf49aa63b273a/-1:-1",
-              "targetVariableName": "text style/content color/typography/placeholder",
-              "targetVariableSetId": "VariableCollectionId:39c5a472e47b4540938b9effa9748f792e0f046f/-1:-1",
-              "targetVariableSetName": "T2: Semantics"
-            },
-            "com.figma.scopes": [
-              "TEXT_FILL"
-            ],
-            "com.figma.variableId": "VariableID:40000070:1306",
-            "sggd.figmaResolvedValue": "#A3A3A3"
+            "sggd.correcaoAcessibilidade": "era #A3A3A3 sobre branco (2,52:1); agora 4,74:1"
           },
           "$type": "color",
-          "$value": "{semantic.text-style.content-color.typography.placeholder}"
+          "$value": "#737373"
         }
       },
       "effect": {
@@ -11461,20 +11381,10 @@
         },
         "text-placeholder": {
           "$extensions": {
-            "com.figma.aliasData": {
-              "targetVariableId": "VariableID:58636069a987c86adc673f48d8faf49aa63b273a/-1:-1",
-              "targetVariableName": "text style/content color/typography/placeholder",
-              "targetVariableSetId": "VariableCollectionId:39c5a472e47b4540938b9effa9748f792e0f046f/-1:-1",
-              "targetVariableSetName": "T2: Semantics"
-            },
-            "com.figma.scopes": [
-              "TEXT_FILL"
-            ],
-            "com.figma.variableId": "VariableID:40000070:145",
-            "sggd.figmaResolvedValue": "#A3A3A3"
+            "sggd.correcaoAcessibilidade": "era #A3A3A3 sobre branco (2,52:1); agora 4,74:1"
           },
           "$type": "color",
-          "$value": "{semantic.text-style.content-color.typography.placeholder}"
+          "$value": "#737373"
         }
       },
       "counter": {
@@ -15193,20 +15103,10 @@
         },
         "text-placeholder": {
           "$extensions": {
-            "com.figma.aliasData": {
-              "targetVariableId": "VariableID:58636069a987c86adc673f48d8faf49aa63b273a/-1:-1",
-              "targetVariableName": "text style/content color/typography/placeholder",
-              "targetVariableSetId": "VariableCollectionId:39c5a472e47b4540938b9effa9748f792e0f046f/-1:-1",
-              "targetVariableSetName": "T2: Semantics"
-            },
-            "com.figma.scopes": [
-              "TEXT_FILL"
-            ],
-            "com.figma.variableId": "VariableID:40000070:1365",
-            "sggd.figmaResolvedValue": "#A3A3A3"
+            "sggd.correcaoAcessibilidade": "era #A3A3A3 sobre branco (2,52:1); agora 4,74:1"
           },
           "$type": "color",
-          "$value": "{semantic.text-style.content-color.typography.placeholder}"
+          "$value": "#737373"
         }
       },
       "icon": {
@@ -15808,20 +15708,10 @@
         },
         "text-placeholder": {
           "$extensions": {
-            "com.figma.aliasData": {
-              "targetVariableId": "VariableID:58636069a987c86adc673f48d8faf49aa63b273a/-1:-1",
-              "targetVariableName": "text style/content color/typography/placeholder",
-              "targetVariableSetId": "VariableCollectionId:39c5a472e47b4540938b9effa9748f792e0f046f/-1:-1",
-              "targetVariableSetName": "T2: Semantics"
-            },
-            "com.figma.scopes": [
-              "TEXT_FILL"
-            ],
-            "com.figma.variableId": "VariableID:40000070:312",
-            "sggd.figmaResolvedValue": "#A3A3A3"
+            "sggd.correcaoAcessibilidade": "era #A3A3A3 sobre branco (2,52:1); agora 4,74:1"
           },
           "$type": "color",
-          "$value": "{semantic.text-style.content-color.typography.placeholder}"
+          "$value": "#737373"
         }
       },
       "dropdown": {
@@ -16378,20 +16268,10 @@
             },
             "selected": {
               "$extensions": {
-                "com.figma.aliasData": {
-                  "targetVariableId": "VariableID:048e187d0e285e8d419f20745b682340bd0c896e/-1:-1",
-                  "targetVariableName": "text style/content color/typography/brand",
-                  "targetVariableSetId": "VariableCollectionId:39c5a472e47b4540938b9effa9748f792e0f046f/-1:-1",
-                  "targetVariableSetName": "T2: Semantics"
-                },
-                "com.figma.scopes": [
-                  "TEXT_FILL"
-                ],
-                "com.figma.variableId": "VariableID:40000070:354",
-                "sggd.figmaResolvedValue": "#FF161F"
+                "sggd.correcaoAcessibilidade": "era #FF161F sobre #FFE3E4 (3,22:1); agora 5,14:1"
               },
               "$type": "color",
-              "$value": "{semantic.text-style.content-color.typography.brand}"
+              "$value": "#c50007"
             }
           }
         },
@@ -19659,20 +19539,10 @@
         "text": {
           "brand": {
             "$extensions": {
-              "com.figma.aliasData": {
-                "targetVariableId": "VariableID:048e187d0e285e8d419f20745b682340bd0c896e/-1:-1",
-                "targetVariableName": "text style/content color/typography/brand",
-                "targetVariableSetId": "VariableCollectionId:39c5a472e47b4540938b9effa9748f792e0f046f/-1:-1",
-                "targetVariableSetName": "T2: Semantics"
-              },
-              "com.figma.scopes": [
-                "TEXT_FILL"
-              ],
-              "com.figma.variableId": "VariableID:40000070:568",
-              "sggd.figmaResolvedValue": "#FF161F"
+              "sggd.correcaoAcessibilidade": "era #FF161F sobre #FFE3E4 (3,22:1); agora 5,14:1"
             },
             "$type": "color",
-            "$value": "{semantic.text-style.content-color.typography.brand}"
+            "$value": "#c50007"
           },
           "error": {
             "$extensions": {
@@ -19744,20 +19614,10 @@
           },
           "warning": {
             "$extensions": {
-              "com.figma.aliasData": {
-                "targetVariableId": "VariableID:ba35b48c77b076408097c2b66378dc6824d4b3b3/-1:-1",
-                "targetVariableName": "text style/content color/typography/warning",
-                "targetVariableSetId": "VariableCollectionId:39c5a472e47b4540938b9effa9748f792e0f046f/-1:-1",
-                "targetVariableSetName": "T2: Semantics"
-              },
-              "com.figma.scopes": [
-                "TEXT_FILL"
-              ],
-              "com.figma.variableId": "VariableID:40000070:566",
-              "sggd.figmaResolvedValue": "#C38900"
+              "sggd.correcaoAcessibilidade": "era #C38900 sobre #FFF9DD (2,88:1); agora 4,60:1"
             },
             "$type": "color",
-            "$value": "{semantic.text-style.content-color.typography.warning}"
+            "$value": "#966900"
           }
         }
       },
@@ -20407,20 +20267,10 @@
         },
         "text-placeholder": {
           "$extensions": {
-            "com.figma.aliasData": {
-              "targetVariableId": "VariableID:58636069a987c86adc673f48d8faf49aa63b273a/-1:-1",
-              "targetVariableName": "text style/content color/typography/placeholder",
-              "targetVariableSetId": "VariableCollectionId:39c5a472e47b4540938b9effa9748f792e0f046f/-1:-1",
-              "targetVariableSetName": "T2: Semantics"
-            },
-            "com.figma.scopes": [
-              "TEXT_FILL"
-            ],
-            "com.figma.variableId": "VariableID:40000070:387",
-            "sggd.figmaResolvedValue": "#A3A3A3"
+            "sggd.correcaoAcessibilidade": "era #A3A3A3 sobre branco (2,52:1); agora 4,74:1"
           },
           "$type": "color",
-          "$value": "{semantic.text-style.content-color.typography.placeholder}"
+          "$value": "#737373"
         }
       },
       "counter": {
@@ -21248,20 +21098,10 @@
           },
           "warning": {
             "$extensions": {
-              "com.figma.aliasData": {
-                "targetVariableId": "VariableID:ba35b48c77b076408097c2b66378dc6824d4b3b3/-1:-1",
-                "targetVariableName": "text style/content color/typography/warning",
-                "targetVariableSetId": "VariableCollectionId:39c5a472e47b4540938b9effa9748f792e0f046f/-1:-1",
-                "targetVariableSetName": "T2: Semantics"
-              },
-              "com.figma.scopes": [
-                "TEXT_FILL"
-              ],
-              "com.figma.variableId": "VariableID:40000070:653",
-              "sggd.figmaResolvedValue": "#C38900"
+              "sggd.correcaoAcessibilidade": "era #C38900 sobre #FFF9DD (2,88:1); agora 4,60:1"
             },
             "$type": "color",
-            "$value": "{semantic.text-style.content-color.typography.warning}"
+            "$value": "#966900"
           }
         }
       },
@@ -21736,20 +21576,10 @@
           },
           "selected": {
             "$extensions": {
-              "com.figma.aliasData": {
-                "targetVariableId": "VariableID:048e187d0e285e8d419f20745b682340bd0c896e/-1:-1",
-                "targetVariableName": "text style/content color/typography/brand",
-                "targetVariableSetId": "VariableCollectionId:39c5a472e47b4540938b9effa9748f792e0f046f/-1:-1",
-                "targetVariableSetName": "T2: Semantics"
-              },
-              "com.figma.scopes": [
-                "TEXT_FILL"
-              ],
-              "com.figma.variableId": "VariableID:40000070:1135",
-              "sggd.figmaResolvedValue": "#FF161F"
+              "sggd.correcaoAcessibilidade": "era #FF161F sobre branco (3,90:1); agora 6,22:1"
             },
             "$type": "color",
-            "$value": "{semantic.text-style.content-color.typography.brand}"
+            "$value": "#c50007"
           }
         }
       },

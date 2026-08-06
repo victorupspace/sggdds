@@ -64,7 +64,7 @@ export function Sidebar({ grupos }: { grupos: GrupoNav[] }) {
   const totalPaginas = grupos.reduce((total, g) => total + g.itens.length, 0);
 
   return (
-    <nav aria-label="Navegação principal" className="wiki-sidebar">
+    <nav aria-label="Navegação principal" className="wiki-sidebar" data-pagefind-ignore="all">
       <button
         aria-controls="wiki-sidebar-lista"
         aria-expanded={listaVisivel}

@@ -22,7 +22,7 @@ function IconeExterno() {
 
 export function SiteHeader() {
   return (
-    <header className="wiki-header">
+    <header className="wiki-header" data-pagefind-ignore="all">
       <Link className="wiki-header__marca" href="/">
         {/* Logo oficial, vetor exportado de Foundations (node 40000172:79) */}
         <img

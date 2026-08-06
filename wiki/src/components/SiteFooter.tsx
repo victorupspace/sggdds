@@ -2,7 +2,7 @@ const ANO = 2026;
 
 export function SiteFooter() {
   return (
-    <footer className="wiki-footer">
+    <footer className="wiki-footer" data-pagefind-ignore="all">
       <div className="wiki-footer__interno">
         <div>
           <p>

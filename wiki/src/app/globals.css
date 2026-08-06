@@ -1635,6 +1635,14 @@ kbd {
   block-size: 20px;
 }
 
+/* Na home o campo tem 520px: o painel acompanha a largura dele e alinha pela
+   esquerda. No cabeçalho, onde o campo encosta na borda direita, o padrão
+   continua sendo alinhar pela direita. */
+.wiki-busca--grande .wiki-busca__resultados {
+  inline-size: 100%;
+  inset-inline: 0 auto;
+}
+
 .wiki-mini__cartao-titulo {
   color: var(--wiki-text);
   font-weight: var(--ds-primitive-typography-font-weight-semi-bold);

@@ -83,10 +83,10 @@ export function Toc() {
     };
   }, [varrer]);
 
-  if (titulos.length < 2) return <aside className="wiki-toc" />;
+  if (titulos.length < 2) return <aside className="wiki-toc" data-pagefind-ignore="all" />;
 
   return (
-    <aside aria-labelledby="toc-titulo" className="wiki-toc">
+    <aside aria-labelledby="toc-titulo" className="wiki-toc" data-pagefind-ignore="all">
       <h2 className="wiki-toc__titulo" id="toc-titulo">
         Nesta página
       </h2>

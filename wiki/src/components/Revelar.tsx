@@ -58,6 +58,12 @@ export function Revelar({
         duration: 0.5,
         ease: 'power2.out',
         stagger: intervalo,
+        // Sem isto o GSAP deixa `transform: translate(0px, 0px)` inline em cada
+        // alvo. Transform cria contexto de empilhamento, e um z-index declarado
+        // dentro dele não consegue mais subir acima de irmãos posteriores — foi
+        // o que enterrou o painel de resultados da busca atrás dos cartões.
+        // Limpar no fim também dispensa a camada de composição que sobrava.
+        clearProps: 'all',
         ...(aoCarregar
           ? {}
           : {

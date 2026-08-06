@@ -69,7 +69,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Sidebar grupos={grupos} />
 
           <div className="wiki-main">
-            <main className="wiki-conteudo" id="conteudo">
+            {/* O Pagefind indexa o <body> inteiro por padrão, então cabeçalho,
+                navegação, sumário e rodapé entravam no índice: todo resultado
+                começava com "Design System Figma Storybook…" em vez do conteúdo
+                da página. Marcar aqui o corpo indexável, e ignorar o cromo na
+                raiz de cada componente, resolve o trecho e ainda tira do índice
+                palavras que se repetem nas 86 páginas. */}
+            <main className="wiki-conteudo" data-pagefind-body id="conteudo">
               {children}
             </main>
             <Toc />

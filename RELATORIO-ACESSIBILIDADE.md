@@ -3,7 +3,7 @@
 Auditoria automatizada com axe-core sobre o site construído, em navegador real (Chromium).
 Regras aplicadas: WCAG 2.0 A/AA e WCAG 2.1 A/AA.
 
-- Data: 2026-08-06
+- Data: 2026-08-07
 - Páginas auditadas: **86** de 86 geradas
 - Páginas sem violação: **86**
 - Violações totais: **0**

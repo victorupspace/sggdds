@@ -145,6 +145,7 @@ npm run validate:data     # dados extraídos batem com o código-fonte
 npm run validate:conteudo # completude das seções e checagem de invenção
 node scripts/verificar-links.mjs        # links internos e âncoras (exige build)
 node scripts/auditar-acessibilidade.mjs --todas   # axe em todas as páginas
+node scripts/auditar-reflow.mjs         # WCAG 1.4.10 nos componentes, via Storybook publicado
 ```
 
 Da **raiz do monorepo** existem atalhos equivalentes, para não precisar trocar de diretório:

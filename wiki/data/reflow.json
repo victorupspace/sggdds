@@ -1,0 +1,317 @@
+{
+  "fonte": "Storybook publicado (sggdds.vercel.app), medido com Playwright/Chromium",
+  "criterio": "WCAG 2.1 — 1.4.10 Reflow",
+  "larguraCss": 320,
+  "escopo": "primeira story de cada componente, isoladamente dentro do iframe",
+  "data": "2026-08-07",
+  "totalMedidos": 38,
+  "passam": 38,
+  "falham": 0,
+  "naoMedidos": 0,
+  "componentes": [
+    {
+      "nome": "Accordion",
+      "slug": "accordion",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "ActionCard",
+      "slug": "action-card",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Alert",
+      "slug": "alert",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Avatar",
+      "slug": "avatar",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "BackToTop",
+      "slug": "back-to-top",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Badge",
+      "slug": "badge",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Breadcrumb",
+      "slug": "breadcrumb",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Button",
+      "slug": "button",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "ButtonGov",
+      "slug": "button-gov",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Card",
+      "slug": "card",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Carousel",
+      "slug": "carousel",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Checkbox",
+      "slug": "checkbox",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Chip",
+      "slug": "chip",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "CookieConsentBanner",
+      "slug": "cookie-consent-banner",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "DataTable",
+      "slug": "data-table",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Datepicker",
+      "slug": "datepicker",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Divider",
+      "slug": "divider",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Dropdown",
+      "slug": "dropdown",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "FileUpload",
+      "slug": "file-upload",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Footer",
+      "slug": "footer",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Header",
+      "slug": "header",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Hero",
+      "slug": "hero",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Link",
+      "slug": "link",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "ListItem",
+      "slug": "list-item",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Meganav",
+      "slug": "meganav",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Modal",
+      "slug": "modal",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Pagination",
+      "slug": "pagination",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "ProgressBar",
+      "slug": "progress-bar",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Radio",
+      "slug": "radio",
+      "story": "Vertical",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Skeleton",
+      "slug": "skeleton",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Spinner",
+      "slug": "spinner",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Stepper",
+      "slug": "stepper",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Tabs",
+      "slug": "tabs",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "TextArea",
+      "slug": "text-area",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "TextInput",
+      "slug": "text-input",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Toast",
+      "slug": "toast",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Toggle",
+      "slug": "toggle",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    },
+    {
+      "nome": "Tooltip",
+      "slug": "tooltip",
+      "story": "Default",
+      "passa": true,
+      "excedentePx": 0,
+      "culpados": []
+    }
+  ]
+}

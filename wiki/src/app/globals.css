@@ -1734,6 +1734,44 @@ kbd {
   }
 }
 
+/* ── Blocos de número em página de conteúdo ───────────────────────────────
+ * Usados em dez páginas para destacar uma medida levantada do próprio sistema.
+ * A marcação existia desde o começo, mas nunca teve estilo: os números saíam
+ * como texto corrido, colados ao rótulo.
+ */
+
+.wiki-numeros {
+  display: grid;
+  gap: var(--ds-primitive-spacing-12);
+  margin-block: var(--ds-primitive-spacing-24);
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.wiki-numero {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ds-primitive-spacing-4);
+  padding: var(--ds-primitive-spacing-20);
+  border: 1px solid var(--wiki-border);
+  border-radius: var(--wiki-radius-lg);
+  background: var(--wiki-surface);
+}
+
+.wiki-numero__valor {
+  color: var(--wiki-text);
+  font-size: var(--ds-primitive-typography-font-size-32);
+  font-variant-numeric: tabular-nums;
+  font-weight: var(--ds-primitive-typography-font-weight-extra-bold);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+
+.wiki-numero__rotulo {
+  color: var(--wiki-text-secondary);
+  font-size: var(--ds-primitive-typography-font-size-14);
+  line-height: 1.4;
+}
+
 /* ── Página de componente ─────────────────────────────────────────────────── */
 
 .wiki-cabecalho-componente {

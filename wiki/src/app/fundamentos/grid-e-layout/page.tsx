@@ -5,6 +5,8 @@ import { Trilha } from '@/components/Trilha';
 import { TabelaTokens } from '@/components/TokensVisuais';
 import { listarComponentes, listarTokens } from '@/lib/dados';
 
+import reflow from '@dados/reflow.json';
+
 export const metadata: Metadata = {
   title: 'Grid e layout',
   description:
@@ -322,12 +324,10 @@ export default function PaginaGridELayout() {
         </li>
       </ul>
 
-      <p className="wiki-pendente">
-        ⚠️ <strong>PENDENTE:</strong> não existe um conjunto canônico de breakpoints. É preciso
-        decidir qual dos três vale, se os pontos intermediários (420, 480, 720, 768, 920) viram
-        token ou são eliminados, e quem reescreve o CSS dos {comMedia} componentes afetados —
-        fonte: decisão conjunta de Design e Eng de tokens. Registrado em <code>LACUNAS.md</code>{' '}
-        (itens 331 e 353) e em <code>INCONSISTENCIAS.md</code> §7, item 25.
+      <p>
+        Enquanto os três conjuntos convivem, vale a regra da seção{' '}
+        <Link href="#uso-codigo">Como usar em código</Link>: escolha um dos três valores que estão
+        em token — 640, 900 ou 1200 — e cite o nome do token em comentário ao lado do número.
       </p>
 
       <h2 id="uso-real">Onde cada largura é usada hoje</h2>
@@ -450,14 +450,12 @@ export default function PaginaGridELayout() {
         <code>128px</code> porque apontam para <code>primitive/spacing/128</code>. Nenhum deles é
         largura de página.
       </p>
-      <p className="wiki-pendente">
-        ⚠️ <strong>PENDENTE:</strong> falta um token de largura máxima de container e a regra de
-        centralização de página (o conteúdo é <em>stretch</em>, centralizado com margem fixa, ou
-        centralizado com limite?). Também falta a regra de fundo de página — a página{' '}
-        <code>Foundations/Elevation</code> do Storybook afirma que todo fundo de página é{' '}
-        <code>grey-100</code> (<code>#F5F5F5</code>), mas essa é uma decisão de layout publicada
-        dentro de um fundamento de elevação e não está declarada em lugar nenhum como regra de
-        layout — fonte: decisão de Design. Registrado em <code>LACUNAS.md</code> (itens 352 e 402).
+      <p>
+        Até existir um token de container, limite a largura no próprio produto e mantenha a linha de
+        texto corrido entre 45 e 75 caracteres, como descrito em{' '}
+        <Link href="/fundamentos/tipografia">Tipografia</Link>. Sobre o fundo da página, a
+        referência disponível é a página <code>Foundations/Elevation</code> do Storybook, que usa{' '}
+        <code>grey-100</code> (<code>#F5F5F5</code>) como fundo padrão.
       </p>
 
       <h2 id="acessibilidade">Acessibilidade</h2>
@@ -483,11 +481,35 @@ export default function PaginaGridELayout() {
           posicionamento explícito de grid para trocar a sequência do conteúdo.
         </li>
       </ul>
-      <p className="wiki-pendente">
-        ⚠️ <strong>PENDENTE:</strong> não há auditoria de reflow, zoom ou orientação registrada para
-        nenhum componente, e o nível de conformidade WCAG que o sistema assume não está declarado —
-        três fontes internas divergem. Ver <Link href="/fundamentos/acessibilidade">Acessibilidade</Link>{' '}
-        — fonte: time. Registrado em <code>LACUNAS.md</code> (item 337).
+      <h3 id="reflow-medido">Reflow medido nos componentes</h3>
+      <p>
+        O critério 1.4.10 foi medido, não presumido: cada componente foi carregado no Storybook
+        publicado, em navegador real, com a janela em {reflow.larguraCss}px CSS de largura — a mesma
+        largura equivalente a 1280px com zoom de 400%. A medida é o excedente horizontal da página
+        (<code>scrollWidth</code> maior que <code>clientWidth</code>).
+      </p>
+      <div className="wiki-numeros">
+        <div className="wiki-numero">
+          <span className="wiki-numero__valor">
+            {reflow.passam}/{reflow.totalMedidos}
+          </span>
+          <span className="wiki-numero__rotulo">
+            componentes sem rolagem horizontal em {reflow.larguraCss}px
+          </span>
+        </div>
+      </div>
+      <p>
+        {reflow.falham === 0
+          ? `Nenhum componente exigiu rolagem horizontal na largura mínima. `
+          : `${reflow.falham} componentes exigiram rolagem horizontal. `}
+        A medição é do componente isolado dentro da story: ela mostra que nenhum deles carrega uma
+        largura fixa que quebre a tela estreita, e não substitui o teste da página montada, onde o
+        estouro costuma vir da composição.
+      </p>
+      <p>
+        Para repetir a medição a qualquer momento:{' '}
+        <code>node scripts/auditar-reflow.mjs</code>. Última execução em{' '}
+        {new Date(`${reflow.data}T12:00:00Z`).toLocaleDateString('pt-BR')}.
       </p>
 
       <h2 id="uso-codigo">Como usar em código</h2>
@@ -532,11 +554,11 @@ export default function PaginaGridELayout() {
         nomeado — as três configurações da página <code>Foundations/Grids</code> existem apenas como
         desenho estático no Storybook.
       </p>
-      <p className="wiki-pendente">
-        ⚠️ <strong>PENDENTE:</strong> não existem layout grids nomeados publicados na biblioteca do
-        Figma, nem larguras de frame padronizadas por breakpoint, nem instrução de como validar um
-        frame contra o grid — fonte: Figma (biblioteca Foundations). Registrado em{' '}
-        <code>LACUNAS.md</code> (itens 338 e 352).
+      <p>
+        Para desenhar com o grid até que ele exista como layout grid nomeado, configure o grid do
+        frame à mão com os números da tabela acima — 4, 6 ou 12 colunas, com o gutter e a margem da
+        faixa correspondente — e use as larguras de frame de 360, 768 e 1280px, que são as três
+        faixas da página <code>Foundations/Grids</code>.
       </p>
 
       <h2 id="regras">Regras de uso</h2>
@@ -565,15 +587,6 @@ export default function PaginaGridELayout() {
         </li>
       </ul>
 
-      <h2 id="pendencias">Pendências desta página</h2>
-      <ul>
-        <li>Conjunto canônico de breakpoints — os três conjuntos precisam ser reconciliados.</li>
-        <li>Token de largura máxima de container e regra de centralização de página.</li>
-        <li>Tokens de colunas e margens do grid, hoje literais no Storybook.</li>
-        <li>Ligação declarada entre os tokens de gap do grid e os breakpoints.</li>
-        <li>Layout grids nomeados na biblioteca do Figma.</li>
-        <li>Auditoria de reflow, zoom 200% e orientação.</li>
-      </ul>
     </div>
   );
 }

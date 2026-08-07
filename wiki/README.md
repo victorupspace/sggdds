@@ -45,6 +45,12 @@ ser informado, porque ele é o que decide qual `vercel.json` vale:
 
 Nenhuma variável de ambiente é necessária.
 
+O `@vercel/analytics` está no layout. Ele funciona no export estático porque só
+injeta um script de mesma origem (`/_vercel/insights`), servido pela própria
+infraestrutura da Vercel — não há chamada a terceiros nem cookie. Fora da Vercel
+o script não existe e a falha é silenciosa. As métricas aparecem na aba
+**Analytics** do projeto depois do primeiro deploy.
+
 ### Por que `"framework": null` e não o preset do Next
 
 A Wiki é `output: 'export'` — cem por cento estática, sem runtime de servidor. O build tem três

@@ -1,3 +1,4 @@
+import { Analytics } from '@vercel/analytics/next';
 import type { Metadata } from 'next';
 import { Plus_Jakarta_Sans } from 'next/font/google';
 
@@ -83,6 +84,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </div>
 
         <SiteFooter />
+
+        {/* Analytics da Vercel. Funciona no export estático: o componente só
+            injeta um script de mesma origem (/_vercel/insights), servido pela
+            infraestrutura da Vercel — não há chamada a terceiros nem cookie.
+            Em build local o script não existe e a falha é silenciosa. */}
+        <Analytics />
       </body>
     </html>
   );

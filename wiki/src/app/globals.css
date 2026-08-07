@@ -47,7 +47,14 @@
   --wiki-header-h: 64px;
   --wiki-sidebar-w: 288px;
   --wiki-toc-w: 232px;
-  --wiki-content-max: 800px;
+  /* Largura do contêiner de conteúdo. Tabelas, blocos de código e grades de
+     token usam toda ela. */
+  --wiki-content-max: 1240px;
+  /* Medida de leitura do texto corrido, à parte do contêiner. Em 800px a linha
+     tinha 61 caracteres; 60rem chega a ~73, ainda dentro da faixa de 45 a 75
+     que a página de Tipografia documenta. Sem este limite, alargar o contêiner
+     jogaria a linha para mais de 110 caracteres. */
+  --wiki-medida: 60rem;
 
   /* Acentos da identidade do Estado. O primeiro valor é a superfície, o
      segundo é a única tinta que passa AA sobre ela. */
@@ -381,6 +388,17 @@ kbd {
   max-inline-size: var(--wiki-content-max);
 }
 
+/* Só o texto corrido é limitado pela medida de leitura. Tabela, código, grade
+   de tokens e demonstração ficam livres para usar a coluna inteira — era
+   exatamente o que faltava: a tabela rolava na horizontal com espaço vazio ao
+   lado. O seletor pega filhos diretos da prosa, então blocos de componente,
+   que vêm embrulhados com classe própria, não são afetados. */
+.wiki-prosa > :where(p, ul, ol, dl, blockquote),
+.wiki-prosa > .wiki-aviso,
+.wiki-prosa > .wiki-pendente {
+  max-inline-size: var(--wiki-medida);
+}
+
 .wiki-toc {
   position: sticky;
   max-block-size: calc(100dvh - var(--wiki-header-h) - var(--ds-primitive-spacing-40));
@@ -563,7 +581,11 @@ kbd {
 }
 
 .wiki-tabela code {
-  white-space: nowrap;
+  /* Nome de token não tem espaço, então sem isto a célula empurra a tabela para
+     além da coluna e obriga a rolar na horizontal — escondendo uma coluna
+     inteira. Quebrar nos hifens usa a altura, que é de graça, e mantém o nome
+     legível. A rolagem continua existindo como último recurso. */
+  overflow-wrap: anywhere;
 }
 
 /* ── Selo de status e blocos de aviso ─────────────────────────────────────── */
@@ -656,9 +678,24 @@ kbd {
 
 /* ── Responsivo (breakpoints do Design System) ────────────────────────────── */
 
+/* Faixa intermediária: entre 1200 e 1500px a soma de barra lateral, conteúdo e
+   sumário não cabe folgada. Em vez de esconder o sumário, que é útil, apertamos
+   as duas colunas laterais e o respiro — o conteúdo ganha 64px. */
+@media (max-width: 1500px) {
+  :root {
+    --wiki-sidebar-w: 264px;
+    --wiki-toc-w: 208px;
+  }
+
+  .wiki-main {
+    padding-inline: var(--ds-primitive-spacing-32);
+  }
+}
+
 @media (max-width: 1200px) {
   .wiki-main {
     grid-template-columns: minmax(0, 1fr);
+    padding-inline: var(--ds-primitive-spacing-32);
   }
 
   .wiki-toc {
